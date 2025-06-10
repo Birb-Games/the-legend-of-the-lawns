@@ -15,5 +15,4 @@ position = Vector2(18, 0)
 lawnmower = NodePath("../Lawnmower")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-18, 0)
 zoom = Vector2(3, 3)
