@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdof72f4g0m0p"]
+[gd_scene load_steps=4 format=3 uid="uid://dyquswmvbbgde"]
 
 [ext_resource type="Texture2D" uid="uid://crgpls4v2oc7q" path="res://assets/textures/lawnmower.png" id="1_8t1u5"]
 
@@ -13,14 +13,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8t1u5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf4ts"]
 size = Vector2(12, 12)
 
-[node name="Lawnmower" type="CharacterBody2D"]
+[node name="Lawnmower" type="RigidBody2D"]
+gravity_scale = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_8t1u5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8t1u5")
+shape = SubResource("RectangleShape2D_pf4ts")
