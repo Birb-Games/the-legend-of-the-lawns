@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=3 format=3 uid="uid://deycsrxnsbm3q"]
+
+[ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawn.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://dyquswmvbbgde" path="res://scenes/lawnmower.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Lawn" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="Lawnmower" parent="." instance=ExtResource("2_0wfyh")]
