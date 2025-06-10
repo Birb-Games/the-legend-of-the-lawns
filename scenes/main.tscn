@@ -8,6 +8,8 @@
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
 [node name="Lawn" parent="." instance=ExtResource("1_sugp2")]
 
 [node name="Lawnmower" parent="." instance=ExtResource("2_0wfyh")]
