@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=4 uid="uid://dxpn5t34f6wkw"]
+[gd_scene load_steps=3 format=4 uid="uid://dxpn5t34f6wkw"]
 
+[ext_resource type="Script" uid="uid://cex6xa5f02ubi" path="res://scripts/lawn.gd" id="1_jttde"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="1_sypa5"]
 
 [node name="Lawn" type="Node2D"]
+script = ExtResource("1_jttde")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 editor_description = "Placeholder level for testinng.
