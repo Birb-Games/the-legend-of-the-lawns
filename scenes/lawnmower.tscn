@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyquswmvbbgde"]
+
+[ext_resource type="Texture2D" uid="uid://crgpls4v2oc7q" path="res://assets/textures/lawnmower.png" id="1_8t1u5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a44u4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8t1u5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lawnmower" type="AnimatedSprite2D"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_a44u4")
