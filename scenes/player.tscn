@@ -8,6 +8,7 @@ radius = 12.0
 height = 48.0
 
 [node name="player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
