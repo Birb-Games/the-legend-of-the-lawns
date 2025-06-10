@@ -17,7 +17,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf4ts"]
 size = Vector2(12, 12)
 
-[node name="Lawnmower" type="RigidBody2D"]
+[node name="Lawnmower" type="RigidBody2D" groups=["lawnmower"]]
 collision_layer = 2
 gravity_scale = 0.0
 lock_rotation = true
