@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene load_steps=8 format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player.gd" id="1_g2els"]
@@ -21,9 +21,19 @@ size = Vector2(12, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(20, 27)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qhqgy"]
+particle_flag_disable_z = true
+spread = 3.0
+initial_velocity_min = 50.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+color = Color(0.054902, 0.529412, 0.8, 1)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_gun") groups=["player"]]
 z_index = 1
 script = ExtResource("1_g2els")
+water_gun = NodePath("WaterGun")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -40,6 +50,20 @@ script = ExtResource("3_qhqgy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pull"]
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="WaterGun" type="Sprite2D" parent="."]
+position = Vector2(5, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="WaterGun"]
+amount = 50
+lifetime = 0.25
+process_material = SubResource("ParticleProcessMaterial_qhqgy")
+
+[node name="RayCast2D" type="RayCast2D" parent="WaterGun"]
+enabled = false
+target_position = Vector2(75, 0)
+collision_mask = 4
+collide_with_areas = true
 
 [connection signal="body_entered" from="Pull" to="Pull" method="_on_body_entered"]
 [connection signal="body_exited" from="Pull" to="Pull" method="_on_body_exited"]
