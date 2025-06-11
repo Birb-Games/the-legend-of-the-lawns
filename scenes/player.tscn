@@ -220,7 +220,7 @@ animations = [{
 size = Vector2(12, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(20, 27)
+size = Vector2(18, 20)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -230,9 +230,8 @@ script = ExtResource("1_g2els")
 position = Vector2(0, -1)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_g2els")
-animation = &"walk_up"
+animation = &"idle_down"
 autoplay = "idle_down"
-frame_progress = 0.161182
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -243,7 +242,7 @@ collision_mask = 3
 script = ExtResource("3_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pull"]
-position = Vector2(0, 4.5)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="Shadow" type="Sprite2D" parent="."]
