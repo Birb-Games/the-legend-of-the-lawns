@@ -35,15 +35,6 @@ func can_pull() -> bool:
 func _process(delta: float) -> void:
 	set_animation()
 
-	if Input.is_action_just_pressed("shoot"):
-		water_gun.get_child(0).emitting = true
-		water_gun.get_child(1).enabled = true
-	if Input.is_action_pressed("shoot"):
-		if water_gun.get_child(1).is_colliding():
-			print("Water gun is hitting: ", water_gun.get_child(1).get_collider().name)
-	else:
-		water_gun.get_child(0).emitting = false
-
 func _physics_process(_delta: float):
 	velocity = Vector2.ZERO
 
