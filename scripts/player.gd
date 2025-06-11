@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var lawnmower: RigidBody2D
+@export var water_gun: Sprite2D
 
 var speed: int = 60
 
@@ -24,15 +25,15 @@ func set_animation():
 	var animation = state + "_" + dir
 	$AnimatedSprite2D.animation = animation
 	
-func _process(delta: float) -> void:
-	set_animation()
-
 func can_pull() -> bool:
 	# Pull lawnmower with player
 	var dot_prod = (position - lawnmower.position).normalized().dot(velocity.normalized())
 	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
 	var same_direction: bool = dot_prod > 0.8
 	return same_direction and $Pull.can_pull
+
+func _process(delta: float) -> void:
+	set_animation()
 
 func _physics_process(_delta: float):
 	velocity = Vector2.ZERO
