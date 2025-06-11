@@ -3,9 +3,38 @@ extends CharacterBody2D
 @export var lawnmower: RigidBody2D
 @export var water_gun: Sprite2D
 
-var speed: int = 80
+var speed: int = 60
+
+var dir: String = "down"
+var pulling: bool = false
+
+func set_animation():
+	if (velocity.x < 0.0 and !pulling) or (velocity.x > 0.0 and pulling):
+		dir = "left"
+	elif (velocity.x > 0.0 and !pulling) or (velocity.x < 0.0 and pulling):
+		dir = "right"
+	
+	if (velocity.y < 0.0 and !pulling) or (velocity.y > 0.0 and pulling):
+		dir = "up"
+	elif (velocity.y > 0.0 and !pulling) or (velocity.y < 0.0 and pulling):
+		dir = "down"
+	
+	var state = "walk"
+	if velocity.length() == 0.0:
+		state = "idle"
+	var animation = state + "_" + dir
+	$AnimatedSprite2D.animation = animation
+	
+func can_pull() -> bool:
+	# Pull lawnmower with player
+	var dot_prod = (position - lawnmower.position).normalized().dot(velocity.normalized())
+	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
+	var same_direction: bool = dot_prod > 0.8
+	return same_direction and $Pull.can_pull
 
 func _process(delta: float) -> void:
+	set_animation()
+
 	if Input.is_action_just_pressed("shoot"):
 		water_gun.get_child(0).emitting = true
 		water_gun.get_child(1).enabled = true
@@ -33,14 +62,13 @@ func _physics_process(_delta: float):
 		velocity /= velocity.length()
 	velocity *= speed
 	
-	# Pull lawnmower with player
-	var comparison_vector: Vector2 = abs(velocity.normalized() + Vector2.from_angle(get_angle_to(lawnmower.position)))
-	var same_direction: bool = comparison_vector.x <= 0.1 or comparison_vector.y <= 0.1
-		# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
-		
-	if Input.is_action_pressed("pull") and $Pull.can_pull and same_direction:
+	if Input.is_action_pressed("pull") and can_pull():
 		lawnmower.linear_velocity = velocity
-	elif (Input.is_action_just_released("pull") and $Pull.can_pull) or !same_direction:
+		pulling = true
+	elif (Input.is_action_just_released("pull") and can_pull()) or !can_pull():
 		lawnmower.linear_velocity = Vector2.ZERO
+		pulling = false
+	else:
+		pulling = false
 
 	move_and_slide()
