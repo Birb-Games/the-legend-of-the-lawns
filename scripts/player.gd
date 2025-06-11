@@ -2,7 +2,29 @@ extends CharacterBody2D
 
 @export var lawnmower: RigidBody2D
 
-var speed: int = 80
+var speed: int = 60
+
+var dir: String = "down"
+
+func set_animation():
+	if velocity.x < 0.0:
+		dir = "left"
+	elif velocity.x > 0.0:
+		dir = "right"
+	
+	if velocity.y < 0.0:
+		dir = "up"
+	elif velocity.y > 0.0:
+		dir = "down"
+	
+	var state = "walk"
+	if velocity.length() == 0.0:
+		state = "idle"
+	var animation = state + "_" + dir
+	$AnimatedSprite2D.animation = animation
+	
+func _process(delta: float) -> void:
+	set_animation()
 
 func _physics_process(_delta: float):
 	velocity = Vector2.ZERO

@@ -12,8 +12,8 @@ lawnmower = NodePath("../Lawnmower")
 [node name="Lawnmower" parent="." instance=ExtResource("2_0wfyh")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("lawnmower") instance=ExtResource("1_o5qli")]
-position = Vector2(18, 0)
+position = Vector2(18, -5)
 lawnmower = NodePath("../Lawnmower")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
