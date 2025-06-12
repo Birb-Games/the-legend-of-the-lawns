@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8jx2be4cfkb8"]
+
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/hud.gd" id="1_oo0fn"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_oo0fn")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 647.0
+
+[node name="InfoText" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 1.0
+offset_top = 563.0
+offset_right = 1152.0
+offset_bottom = 638.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 24
+text = "Info Text"
+horizontal_alignment = 1
+vertical_alignment = 1

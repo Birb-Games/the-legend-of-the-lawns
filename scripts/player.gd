@@ -38,6 +38,9 @@ func set_animation():
 		state = "idle"
 	var animation = state + "_" + dir
 	$AnimatedSprite2D.animation = animation
+
+func in_lawnmower_range():
+	return $Pull.can_pull
 	
 func can_pull() -> bool:
 	# Pull lawnmower with player
@@ -46,7 +49,7 @@ func can_pull() -> bool:
 	var same_direction: bool = dot_prod > 0.8
 	return same_direction and $Pull.can_pull
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	set_animation()
 
 func currently_pulling() -> bool:

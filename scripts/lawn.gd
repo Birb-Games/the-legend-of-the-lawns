@@ -9,7 +9,7 @@ func mow_tile(pos: Vector2i):
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 0), 0)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Mow the lawn
 	var tile_sz = float($TileMapLayer.tile_set.tile_size.x)
 	var lawnmower_pos = lawnmower.position / tile_sz - Vector2(0.5, 0.5)
