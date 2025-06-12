@@ -7,13 +7,14 @@ var neighborhood: Node2D = preload("res://scenes/neighborhood.tscn").instantiate
 var current_lawn: Node2D
 
 func _ready() -> void:
-	lawns.set("BasicLawn", preload("res://scenes/lawn.tscn").instantiate())
+	lawns.set("BasicLawn", preload("res://scenes/basic_lawn.tscn").instantiate())
+	lawns.set("FancyLawn", preload("res://scenes/fancy_lawn.tscn").instantiate())
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("shoot") and !lawnmower.is_inside_tree():
+	if Input.is_action_just_pressed("talk") and $Neighborhood/Villager1.player_in_area:
 		load_field("BasicLawn")
-	elif Input.is_action_just_pressed("shoot") and lawnmower.is_inside_tree():
-		return_to_neighborhood()
+	elif Input.is_action_just_pressed("talk") and $Neighborhood/Villager2.player_in_area:
+		load_field("FancyLawn")
 
 func load_field(lawn_name: String) -> void:
 	if lawnmower.is_inside_tree():
