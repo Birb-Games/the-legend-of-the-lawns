@@ -46,6 +46,7 @@ animations = [{
 size = Vector2(18, 14)
 
 [node name="Lawnmower" type="RigidBody2D" groups=["lawnmower"]]
+z_index = 1
 collision_layer = 6
 gravity_scale = 0.0
 lock_rotation = true

@@ -2,7 +2,7 @@ extends RigidBody2D
 
 var dir: String = "left"
 var intersecting_player: bool = false
-@export var player: CharacterBody2D
+@onready var player: CharacterBody2D = $/root/Main/Player
 
 func _ready() -> void:
 	$Shadows/ShadowLeft.show()

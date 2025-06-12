@@ -1,20 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=3 format=3 uid="uid://deycsrxnsbm3q"]
 
+[ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawn.tscn" id="1_sugp2"]
-[ext_resource type="PackedScene" uid="uid://dyquswmvbbgde" path="res://scenes/lawnmower.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
-
-[node name="Lawn" parent="." node_paths=PackedStringArray("lawnmower") instance=ExtResource("1_sugp2")]
-lawnmower = NodePath("../Lawnmower")
-
-[node name="Lawnmower" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_0wfyh")]
-player = NodePath("../Player")
+script = ExtResource("1_jyhfs")
 
 [node name="Player" parent="." node_paths=PackedStringArray("lawnmower") instance=ExtResource("1_o5qli")]
 position = Vector2(18, -5)
-lawnmower = NodePath("../Lawnmower")
+lawnmower = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)

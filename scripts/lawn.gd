@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var lawnmower: RigidBody2D
+@onready var lawnmower: RigidBody2D = $/root/Main/Lawnmower
 
 # Mows a grass tile
 func mow_tile(pos: Vector2i):

@@ -40,13 +40,16 @@ func set_animation():
 	$AnimatedSprite2D.animation = animation
 	
 func can_pull() -> bool:
+	if !mower_exists():
+		return false
+
 	# Pull lawnmower with player
 	var dot_prod = (position - lawnmower.position).normalized().dot(velocity.normalized())
 	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
 	var same_direction: bool = dot_prod > 0.8
 	return same_direction and $Pull.can_pull
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	set_animation()
 
 func currently_pulling() -> bool:
@@ -79,9 +82,14 @@ func _physics_process(_delta: float):
 		lawnmower.linear_velocity = velocity
 		pulling = true
 	elif (Input.is_action_just_released("pull") and can_pull()) or !can_pull():
-		lawnmower.linear_velocity = Vector2.ZERO
+		if mower_exists():
+			lawnmower.linear_velocity = Vector2.ZERO
 		pulling = false
 	else:
 		pulling = false
 
 	move_and_slide()
+
+func mower_exists() -> bool:
+	lawnmower = get_node_or_null("/root/Main/Lawnmower")
+	return lawnmower != null and lawnmower.is_inside_tree()

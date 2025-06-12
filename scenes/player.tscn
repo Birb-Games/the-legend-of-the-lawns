@@ -234,7 +234,7 @@ scale_max = 2.0
 color = Color(0.054902, 0.529412, 0.8, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_gun") groups=["player"]]
-z_index = 1
+z_index = 2
 script = ExtResource("1_g2els")
 water_gun = NodePath("WaterGun")
 
