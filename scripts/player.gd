@@ -3,10 +3,24 @@ extends CharacterBody2D
 @export var lawnmower: RigidBody2D
 @export var water_gun: Sprite2D
 
-var speed: int = 60
+const NORMAL_SPEED: float = 60.0
+const PULL_SPEED: float = NORMAL_SPEED / 4.0
+var speed: float = NORMAL_SPEED
 
 var dir: String = "down"
 var pulling: bool = false
+
+func get_dir_vec() -> Vector2:
+	match dir:
+		"left":
+			return Vector2.LEFT
+		"right":
+			return Vector2.RIGHT
+		"down":
+			return Vector2.DOWN
+		"up":
+			return Vector2.UP
+	return Vector2.ZERO
 
 func set_animation():
 	if (velocity.x < 0.0 and !pulling) or (velocity.x > 0.0 and pulling):
@@ -35,6 +49,9 @@ func can_pull() -> bool:
 func _process(delta: float) -> void:
 	set_animation()
 
+func currently_pulling() -> bool:
+	return Input.is_action_pressed("pull") and can_pull()
+
 func _physics_process(_delta: float):
 	velocity = Vector2.ZERO
 
@@ -48,12 +65,17 @@ func _physics_process(_delta: float):
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1.0
 	
+	if currently_pulling():
+		speed = PULL_SPEED
+	else:
+		speed = NORMAL_SPEED
+	
 	# Normalize player velocity
 	if velocity.length() > 0.0:
 		velocity /= velocity.length()
 	velocity *= speed
 	
-	if Input.is_action_pressed("pull") and can_pull():
+	if currently_pulling():
 		lawnmower.linear_velocity = velocity
 		pulling = true
 	elif (Input.is_action_just_released("pull") and can_pull()) or !can_pull():

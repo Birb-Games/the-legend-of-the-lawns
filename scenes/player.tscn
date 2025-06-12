@@ -238,6 +238,11 @@ z_index = 1
 script = ExtResource("1_g2els")
 water_gun = NodePath("WaterGun")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+scale = Vector2(0.365385, 0.365385)
+texture = ExtResource("4_dqkch")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 scale = Vector2(0.75, 0.75)
@@ -258,7 +263,7 @@ position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="WaterGun" type="Sprite2D" parent="."]
-position = Vector2(10, 0)
+position = Vector2(8, 1)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("4_tuyoq")
 script = ExtResource("4_qlg0r")
@@ -274,12 +279,6 @@ enabled = false
 target_position = Vector2(140, 0)
 collision_mask = 4
 collide_with_areas = true
-
-[node name="Shadow" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(0, 11)
-scale = Vector2(0.365385, 0.365385)
-texture = ExtResource("4_dqkch")
 
 [connection signal="body_entered" from="Pull" to="Pull" method="_on_body_entered"]
 [connection signal="body_exited" from="Pull" to="Pull" method="_on_body_exited"]
