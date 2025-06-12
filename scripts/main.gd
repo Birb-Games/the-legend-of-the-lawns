@@ -1,12 +1,36 @@
 extends Node2D
 
-var lawns: Array[Node2D] = []
+var lawns: Dictionary = {}
 var lawnmower: RigidBody2D = preload("res://scenes/lawnmower.tscn").instantiate()
+var neighborhood: Node2D = preload("res://scenes/neighborhood.tscn").instantiate()
+@onready var player: CharacterBody2D = $Player
+var current_lawn: Node2D
 
 func _ready() -> void:
-	lawns.append(preload("res://scenes/lawn.tscn").instantiate())
+	lawns.set("BasicLawn", preload("res://scenes/lawn.tscn").instantiate())
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		add_child(lawnmower)
-		add_child(lawns[0])
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("shoot") and !lawnmower.is_inside_tree():
+		load_field("BasicLawn")
+	elif Input.is_action_just_pressed("shoot") and lawnmower.is_inside_tree():
+		return_to_neighborhood()
+
+func load_field(lawn_name: String) -> void:
+	if lawnmower.is_inside_tree():
+		printerr("Loading field without unloading previous!")
+	
+	remove_child(neighborhood)
+	add_child(lawnmower)
+	lawnmower.position = Vector2.ZERO
+	current_lawn = lawns.get(lawn_name)
+	add_child(current_lawn)
+	player.position = Vector2.ZERO
+
+func return_to_neighborhood() -> void:
+	if !lawnmower.is_inside_tree():
+		printerr("Loading neighborhood not from field!")
+	
+	add_child(neighborhood)
+	remove_child(lawnmower)
+	remove_child(current_lawn)
+	player.position = Vector2.ZERO

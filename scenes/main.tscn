@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=4 format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://dhd8ttlwqnlj1" path="res://scenes/neighborhood.tscn" id="3_sugp2"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jyhfs")
 
-[node name="Player" parent="." node_paths=PackedStringArray("lawnmower") instance=ExtResource("1_o5qli")]
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(18, -5)
-lawnmower = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
+
+[node name="Neighborhood" parent="." instance=ExtResource("3_sugp2")]
