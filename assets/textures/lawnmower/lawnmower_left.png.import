@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crgpls4v2oc7q"
-path="res://.godot/imported/lawnmower.png-fabe50a78d25daad6ccb007e57d60e43.ctex"
+uid="uid://bmjen6ijdt3ve"
+path="res://.godot/imported/lawnmower_left.png-12f03d3cfee1f20eefbfe77d9158e992.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/lawnmower.png"
-dest_files=["res://.godot/imported/lawnmower.png-fabe50a78d25daad6ccb007e57d60e43.ctex"]
+source_file="res://assets/textures/lawnmower/lawnmower_left.png"
+dest_files=["res://.godot/imported/lawnmower_left.png-12f03d3cfee1f20eefbfe77d9158e992.ctex"]
 
 [params]
 

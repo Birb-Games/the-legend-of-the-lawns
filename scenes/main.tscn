@@ -9,7 +9,8 @@
 [node name="Lawn" parent="." node_paths=PackedStringArray("lawnmower") instance=ExtResource("1_sugp2")]
 lawnmower = NodePath("../Lawnmower")
 
-[node name="Lawnmower" parent="." instance=ExtResource("2_0wfyh")]
+[node name="Lawnmower" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_0wfyh")]
+player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("lawnmower") instance=ExtResource("1_o5qli")]
 position = Vector2(18, -5)
