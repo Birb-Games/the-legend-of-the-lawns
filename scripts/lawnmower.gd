@@ -3,12 +3,13 @@ extends RigidBody2D
 var dir: String = "left"
 var intersecting_player: bool = false
 @onready var player: CharacterBody2D = $/root/Main/Player
+var default_layer: int
 
 func _ready() -> void:
 	$Shadows/ShadowLeft.show()
+	default_layer = collision_layer
 
 func set_animation():
-	var prev_dir = dir
 	if intersecting_player:
 		if player.velocity.x < 0.0 and !player.currently_pulling():
 			dir = "left"
@@ -45,8 +46,22 @@ func _process(delta: float) -> void:
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("player"):
 		intersecting_player = false
-		linear_velocity = Vector2.ZERO
+		#linear_velocity = Vector2.ZERO
+	if body.is_in_group("lawn_obstacle"):
+		# Allow the player to pull the lawnmower again
+		collision_layer = default_layer
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		intersecting_player = true
+	if body.is_in_group("lawn_obstacle"):
+		# Make it so that the player can not push the lawn mower any further
+		# This does make it so that the lawn mower is stuck and the player has
+		# to pull the lawn mower out
+		collision_layer |= 1
+		linear_velocity = -player.get_dir_vec()
+
+# If the collision layer has 1 flagged, then that means that the player
+# can not push the lawn mower
+func is_stuck() -> bool:
+	return collision_layer & 1 != 0

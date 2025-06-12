@@ -1,0 +1,11 @@
+CREDITS
+-------
+
+Programming: Nullptr Error, gldeA
+
+THIRD PARTY ARTWORK/RESOURCES USED:
+-----------------------------------
+
+Font: 8BitOperator 
+by Grand Chaos Productions (http://grandchaos9000.deviantart.com)
+License: SIL Open Font License

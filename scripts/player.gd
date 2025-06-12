@@ -38,6 +38,9 @@ func set_animation():
 		state = "idle"
 	var animation = state + "_" + dir
 	$AnimatedSprite2D.animation = animation
+
+func in_lawnmower_range():
+	return $Pull.can_pull
 	
 func can_pull() -> bool:
 	if !mower_exists():

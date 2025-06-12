@@ -11,6 +11,8 @@ func _ready() -> void:
 	lawns.set("FancyLawn", preload("res://scenes/fancy_lawn.tscn").instantiate())
 
 func _process(_delta: float) -> void:
+	update_hud()
+
 	if Input.is_action_just_pressed("talk") and $Neighborhood/Villager1.player_in_area:
 		load_field("BasicLawn")
 	elif Input.is_action_just_pressed("talk") and $Neighborhood/Villager2.player_in_area:
@@ -35,3 +37,9 @@ func return_to_neighborhood() -> void:
 	remove_child(lawnmower)
 	remove_child(current_lawn)
 	player.position = Vector2.ZERO
+
+func update_hud():
+	if $Player.in_lawnmower_range() and $Lawnmower.is_stuck():
+		$HUD.update_info_text("Lawn mower is stuck!")
+	else:
+		$HUD.update_info_text("")

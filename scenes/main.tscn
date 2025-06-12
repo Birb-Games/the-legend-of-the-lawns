@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=5 format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dhd8ttlwqnlj1" path="res://scenes/neighborhood.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="4_jyhfs"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jyhfs")
@@ -14,3 +15,5 @@ position = Vector2(18, -5)
 zoom = Vector2(4, 4)
 
 [node name="Neighborhood" parent="." instance=ExtResource("3_sugp2")]
+
+[node name="HUD" parent="." instance=ExtResource("4_jyhfs")]
