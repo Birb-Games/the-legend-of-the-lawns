@@ -7,10 +7,38 @@
 script = ExtResource("1_oo0fn")
 
 [node name="Control" type="Control" parent="."]
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 647.0
+
+[node name="ProgressBar" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 48.0
+color = Color(0.967307, 0.804114, 0, 1)
+
+[node name="ProgressBackground" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 48.0
+color = Color(0.552956, 0.552956, 0.552956, 1)
+
+[node name="ProgressBarPercent" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 33.0
+offset_right = 142.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 22
+text = "0%"
 
 [node name="InfoText" type="Label" parent="Control"]
 layout_mode = 2
