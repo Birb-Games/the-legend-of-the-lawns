@@ -62,14 +62,15 @@ func _physics_process(_delta: float):
 	velocity = Vector2.ZERO
 
 	# movement
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1.0
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1.0
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1.0
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1.0
+	if !$/root/Main/HUD/Control/NeighborMenu.visible: #don't move when menu open
+		if Input.is_action_pressed("move_up"):
+			velocity.y -= 1.0
+		if Input.is_action_pressed("move_down"):
+			velocity.y += 1.0
+		if Input.is_action_pressed("move_left"):
+			velocity.x -= 1.0
+		if Input.is_action_pressed("move_right"):
+			velocity.x += 1.0
 	
 	if currently_pulling():
 		speed = PULL_SPEED
