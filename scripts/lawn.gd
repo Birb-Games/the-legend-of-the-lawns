@@ -9,6 +9,17 @@ func mow_tile(pos: Vector2i):
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 0), 0)
 
+func destroy_hedge(pos: Vector2i):
+	var cell_atlas = $TileMapLayer.get_cell_atlas_coords(pos)
+	var hedges = [Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+	var found = false
+	for hedge in hedges:
+		if cell_atlas == hedge:
+			found = true
+	if !found:
+		return
+	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 2), 0)
+
 func _process(_delta: float) -> void:
 	# Mow the lawn
 	var tile_sz = float($TileMapLayer.tile_set.tile_size.x)
@@ -22,3 +33,24 @@ func _process(_delta: float) -> void:
 			positions.push_back(p)
 	for pos in positions:
 		mow_tile(pos)
+	
+	# destroy hedges
+	positions = []
+	var dir_vec = lawnmower.get_dir_vec()
+	var mower_rect = lawnmower.rect()
+	mower_rect.size /= tile_sz
+	mower_rect.position /= tile_sz
+	for dx in range(-1, 2):
+		for dy in range(-1, 2):
+			var tile_rect = Rect2(
+				round(lawnmower_pos.x) + dx,
+				round(lawnmower_pos.y) + dy,
+				1.0,
+				1.0,
+			)
+			if !tile_rect.intersects(mower_rect):
+				continue
+			var p = Vector2i(round(lawnmower_pos.x) + dx, round(lawnmower_pos.y) + dy)
+			positions.push_back(p)
+	for pos in positions:
+		destroy_hedge(pos)
