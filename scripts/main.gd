@@ -3,12 +3,12 @@ extends Node2D
 var lawnmower: RigidBody2D = preload("res://scenes/lawnmower.tscn").instantiate()
 var neighborhood: Node2D = preload("res://scenes/neighborhood.tscn").instantiate()
 
-# A dictionary of dictionaries containing the descriptions of lawns, the lawns themselves, and the nodes for each neighbor.
+# A dictionary of dictionaries containing the wages, descriptions of lawns, the lawns themselves, and the nodes for each neighbor.
 @onready var neighbors: Dictionary = {
-	"Villager1": {"description": "A very boring lawn.", "lawn": "res://scenes/lawns/basic_lawn.tscn", "node": $Neighborhood/Villager1},
-	"Villager2": {"description": "A very fancy lawn! A fancy lawn deserves a long description, thus this description will be used to test the text wrapping.",
+	"Villager1": {"wage": 5, "description": "A very boring lawn.", "lawn": "res://scenes/lawns/basic_lawn.tscn", "node": $Neighborhood/Villager1},
+	"Villager2": {"wage": 8, "description": "A very fancy lawn! A fancy lawn deserves a long description, thus this description will be used to test the text wrapping.",
 		"lawn": "res://scenes/lawns/fancy_lawn.tscn", "node": $Neighborhood/Villager2},
-	"Fred": {"description": "A lawn with a lot of hedges.", "lawn": "res://scenes/lawns/hedge_lawn.tscn", "node": $Neighborhood/ThatOtherNeighbor},
+	"Fred": {"wage": 2, "description": "A lawn with a lot of hedges.", "lawn": "res://scenes/lawns/hedge_lawn.tscn", "node": $Neighborhood/ThatOtherNeighbor},
 }
 
 @onready var player: CharacterBody2D = $Player
@@ -33,7 +33,7 @@ func talk_to_neighbor(neighbor_name: String) -> void:
 		printerr("Talking to neighbor while in lawn!")
 	
 	current_lawn = neighbors.get(neighbor_name).get("lawn")
-	$HUD.set_neighbor_menu(neighbor_name, neighbors.get(neighbor_name).get("description"))
+	$HUD.set_neighbor_menu(neighbor_name, neighbors.get(neighbor_name).get("wage"), neighbors.get(neighbor_name).get("description"))
 
 func load_current_lawn() -> void:
 	if current_lawn == "":

@@ -24,8 +24,9 @@ func update_progress_bar(percent: float) -> void:
 		$Control/ProgressBar.size.x = percent * $Control/ProgressBackground.size.x
 		$Control/ProgressBarPercent.text = str(int(percent * 100)) + "%"
 
-func set_neighbor_menu(name: String, description: String) -> void:
+func set_neighbor_menu(name: String, wage: float, description: String) -> void:
 	$Control/NeighborMenu/VBoxContainer/Name.text = name
+	$Control/NeighborMenu/VBoxContainer/Wage.text = "$" + str(wage)
 	$Control/NeighborMenu/VBoxContainer/Description.text = description
 	$Control/NeighborMenu/VBoxContainer/HBoxContainer/Accept.disabled = false
 	$Control/NeighborMenu/VBoxContainer/HBoxContainer/Leave.disabled = false

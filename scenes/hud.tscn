@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8jx2be4cfkb8"]
+[gd_scene load_steps=5 format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/hud.gd" id="1_oo0fn"]
@@ -15,8 +15,6 @@ corner_radius_top_left = 64
 corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oo0fn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ysmq"]
 
@@ -83,10 +81,15 @@ theme_override_font_sizes/font_size = 64
 text = "Name"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="Control/NeighborMenu/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+[node name="Wage" type="Label" parent="Control/NeighborMenu/VBoxContainer"]
+custom_minimum_size = Vector2(750, 40)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_oo0fn")
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 40
+text = "$0"
+autowrap_mode = 3
 
 [node name="Description" type="Label" parent="Control/NeighborMenu/VBoxContainer"]
 custom_minimum_size = Vector2(750, 280)
