@@ -5,12 +5,14 @@ var neighborhood: Node2D = preload("res://scenes/neighborhood.tscn").instantiate
 
 # A dictionary of dictionaries containing the descriptions of lawns, the lawns themselves, and the nodes for each neighbor.
 @onready var neighbors: Dictionary = {
-	"Villager1": {"description": "A very boring lawn.", "lawn": preload("res://scenes/basic_lawn.tscn").instantiate(), "node": $Neighborhood/Villager1},
-	"Villager2": {"description": "A very fancy lawn!", "lawn": preload("res://scenes/fancy_lawn.tscn").instantiate(), "node": $Neighborhood/Villager2}
+	"Villager1": {"description": "A very boring lawn.", "lawn": "res://scenes/lawns/basic_lawn.tscn", "node": $Neighborhood/Villager1},
+	"Villager2": {"description": "A very fancy lawn! A fancy lawn deserves a long description, thus this description will be used to test the text wrapping.",
+		"lawn": "res://scenes/lawns/fancy_lawn.tscn", "node": $Neighborhood/Villager2},
+	"Fred": {"description": "A lawn with a lot of hedges.", "lawn": "res://scenes/lawns/hedge_lawn.tscn", "node": $Neighborhood/ThatOtherNeighbor},
 }
 
 @onready var player: CharacterBody2D = $Player
-var current_lawn: Node2D #used for loading and unloading the selected lawn
+var current_lawn: String = "" #used for loading and unloading the selected lawn
 var lawn_loaded: bool = false
 
 func _process(_delta: float) -> void:
@@ -34,13 +36,13 @@ func talk_to_neighbor(neighbor_name: String) -> void:
 	$HUD.set_neighbor_menu(neighbor_name, neighbors.get(neighbor_name).get("description"))
 
 func load_current_lawn() -> void:
-	if current_lawn == null:
+	if current_lawn == "":
 		printerr("No lawn selected!")
 	
 	remove_child(neighborhood)
 	add_child(lawnmower)
 	lawnmower.position = Vector2.ZERO
-	add_child(current_lawn)
+	add_child(load(current_lawn).instantiate())
 	player.position = Vector2.ZERO
 	lawn_loaded = true
 
@@ -50,8 +52,8 @@ func return_to_neighborhood() -> void:
 	
 	add_child(neighborhood)
 	remove_child(lawnmower)
-	remove_child(current_lawn)
-	current_lawn = null
+	$Lawn.queue_free()
+	current_lawn = ""
 	player.position = Vector2.ZERO
 	lawn_loaded = false
 
