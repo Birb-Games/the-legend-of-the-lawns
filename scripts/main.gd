@@ -4,7 +4,7 @@ var lawns: Dictionary = {}
 var lawnmower: RigidBody2D = preload("res://scenes/lawnmower.tscn").instantiate()
 var neighborhood: Node2D = preload("res://scenes/neighborhood.tscn").instantiate()
 @onready var player: CharacterBody2D = $Player
-var current_lawn: Node2D
+var current_lawn: Node2D #used for unloading the current lawn, null if in neighborhood
 
 func _ready() -> void:
 	lawns.set("BasicLawn", preload("res://scenes/basic_lawn.tscn").instantiate())
@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 		load_field("FancyLawn")
 
 func load_field(lawn_name: String) -> void:
-	if lawnmower.is_inside_tree():
+	if current_lawn != null:
 		printerr("Loading field without unloading previous!")
 	
 	remove_child(neighborhood)
@@ -30,18 +30,22 @@ func load_field(lawn_name: String) -> void:
 	player.position = Vector2.ZERO
 
 func return_to_neighborhood() -> void:
-	if !lawnmower.is_inside_tree():
-		printerr("Loading neighborhood not from field!")
+	if current_lawn == null:
+		printerr("Loading neighborhood from neighborhood!")
 	
 	add_child(neighborhood)
 	remove_child(lawnmower)
 	remove_child(current_lawn)
+	current_lawn = null
 	player.position = Vector2.ZERO
 
 func update_hud():
-	if $Player.in_lawnmower_range() and $Lawnmower.is_stuck():
-		$HUD.update_info_text("Lawn mower is stuck!")
-	else:
-		$HUD.update_info_text("")
-	
-	$HUD.update_progress_bar($Lawn.get_perc_cut())
+	if current_lawn != null:
+		if $Player.in_lawnmower_range() and $Lawnmower.is_stuck():
+			$HUD.update_info_text("Lawn mower is stuck!")
+		else:
+			$HUD.update_info_text("")
+		
+		$HUD.update_progress_bar($Lawn.get_perc_cut())
+	else: 
+		$HUD.update_progress_bar(-1.0) # -1.0 hides the progress bar
