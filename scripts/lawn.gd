@@ -52,7 +52,6 @@ func _process(_delta: float) -> void:
 
 	# destroy hedges
 	positions = []
-	var dir_vec = lawnmower.get_dir_vec()
 	var mower_rect = lawnmower.rect()
 	mower_rect.size /= tile_sz
 	mower_rect.position /= tile_sz

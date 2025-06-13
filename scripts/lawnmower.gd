@@ -54,12 +54,12 @@ func _process(delta: float) -> void:
 	# push the player back if they aren't moving
 	if intersecting_player and player.velocity.length() == 0.0:
 		var diff = (position - player.position).normalized()
-		var dir = Vector2.ZERO
+		var dir_vec = Vector2.ZERO
 		if abs(diff.x) > abs(diff.y):
-			dir = Vector2(diff.x, 0.0)
+			dir_vec = Vector2(diff.x, 0.0)
 		else:
-			dir = Vector2(0.0, diff.y)
-		player.position -= dir * delta * 8.0
+			dir_vec = Vector2(0.0, diff.y)
+		player.position -= dir_vec * delta * 8.0
 
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("player"):
