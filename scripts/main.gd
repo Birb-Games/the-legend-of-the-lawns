@@ -43,3 +43,5 @@ func update_hud():
 		$HUD.update_info_text("Lawn mower is stuck!")
 	else:
 		$HUD.update_info_text("")
+	
+	$HUD.update_progress_bar($Lawn.get_perc_cut())

@@ -43,7 +43,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf4ts"]
-size = Vector2(18, 14)
+size = Vector2(16, 14)
 
 [node name="Lawnmower" type="RigidBody2D" groups=["lawnmower"]]
 z_index = 1
