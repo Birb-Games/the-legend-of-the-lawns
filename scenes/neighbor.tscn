@@ -1,15 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmfatvi0c60nn"]
 
-[ext_resource type="Script" path="res://scripts/speak_area.gd" id="1_k1hep"]
+[ext_resource type="Script" uid="uid://b63obvvd24phb" path="res://scripts/speak_area.gd" id="1_k1hep"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrakx"]
 size = Vector2(16, 64)
 
-[node name="Villager1" type="Area2D"]
+[node name="Neighbor" type="Sprite2D"]
 script = ExtResource("1_k1hep")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_nrakx")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]
