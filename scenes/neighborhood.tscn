@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cex6xa5f02ubi" path="res://scripts/lawn.gd" id="1_nrakx"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
-[ext_resource type="Script" uid="uid://b63obvvd24phb" path="res://scripts/speak_area.gd" id="3_tqujx"]
+[ext_resource type="Script" path="res://scripts/speak_area.gd" id="3_tqujx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrakx"]
 size = Vector2(16, 64)

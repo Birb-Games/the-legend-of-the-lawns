@@ -3,6 +3,9 @@ extends CanvasLayer
 func _ready() -> void:
 	$Control/InfoText.text = ""
 
+	$Control/NeighborMenu/VBoxContainer/HBoxContainer/Leave.pressed.connect($/root/Main._on_leave_button_pressed)
+	$Control/NeighborMenu/VBoxContainer/HBoxContainer/Accept.pressed.connect($/root/Main._on_accept_button_pressed)
+
 # used for pop up messages to provide information to the player
 func update_info_text(text: String) -> void:
 	$Control/InfoText.text = text
@@ -20,3 +23,15 @@ func update_progress_bar(percent: float) -> void:
 		$Control/ProgressBarPercent.show()
 		$Control/ProgressBar.size.x = percent * $Control/ProgressBackground.size.x
 		$Control/ProgressBarPercent.text = str(int(percent * 100)) + "%"
+
+func set_neighbor_menu(name: String, description: String) -> void:
+	$Control/NeighborMenu/VBoxContainer/Name.text = name
+	$Control/NeighborMenu/VBoxContainer/Description.text = description
+	$Control/NeighborMenu/VBoxContainer/HBoxContainer/Accept.disabled = false
+	$Control/NeighborMenu/VBoxContainer/HBoxContainer/Leave.disabled = false
+	$Control/NeighborMenu.visible = true
+
+func hide_neighbor_menu() -> void:
+	$Control/NeighborMenu.visible = false
+	$Control/NeighborMenu/VBoxContainer/HBoxContainer/Accept.disabled = true
+	$Control/NeighborMenu/VBoxContainer/HBoxContainer/Leave.disabled = true
