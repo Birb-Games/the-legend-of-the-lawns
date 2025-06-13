@@ -1,7 +1,7 @@
 extends Node2D
 
 var lawnmower: RigidBody2D = preload("res://scenes/lawnmower.tscn").instantiate()
-var neighborhood: Node2D = preload("res://scenes/neighborhood.tscn").instantiate()
+@onready var neighborhood: Node2D = $Neighborhood
 
 # A dictionary of dictionaries containing the wages, descriptions of lawns, the lawns themselves, and the nodes for each neighbor.
 @onready var neighbors: Dictionary = {
