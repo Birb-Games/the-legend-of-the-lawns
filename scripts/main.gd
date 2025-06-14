@@ -1,76 +1,61 @@
 extends Node2D
 
-var lawnmower: RigidBody2D = preload("res://scenes/lawnmower.tscn").instantiate()
 @onready var neighborhood: Node2D = $Neighborhood
-
-# A dictionary of dictionaries containing the wages, descriptions of lawns, the lawns themselves, and the nodes for each neighbor.
-@onready var neighbors: Dictionary = {
-	"Villager1": {"wage": 5, "description": "A very boring lawn.", "lawn": "res://scenes/lawns/basic_lawn.tscn", "node": $Neighborhood/Villager1},
-	"Villager2": {"wage": 8, "description": "A very fancy lawn! A fancy lawn deserves a long description, thus this description will be used to test the text wrapping.",
-		"lawn": "res://scenes/lawns/fancy_lawn.tscn", "node": $Neighborhood/Villager2},
-	"Fred": {"wage": 2, "description": "A lawn with a lot of hedges.", "lawn": "res://scenes/lawns/hedge_lawn.tscn", "node": $Neighborhood/ThatOtherNeighbor},
-}
-
 @onready var player: CharacterBody2D = $Player
-var current_lawn: String = "" #used for loading and unloading the selected lawn
+@onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
 
 func _process(_delta: float) -> void:
 	update_hud()
-
-	if Input.is_action_just_pressed("talk"):
-		for neighbor_name in neighbors.keys():
-			if neighbors.get(neighbor_name).get("node").player_in_area:
-				talk_to_neighbor(neighbor_name)
 	
-	#debug for returning to neighborhood
-	if Input.is_action_just_pressed("ui_cancel"):
-		if lawn_loaded:
-			return_to_neighborhood()
+	# debug for returning to neighborhood
+	if Input.is_action_just_pressed("ui_cancel") and lawn_loaded:
+		return_to_neighborhood()
 
-func talk_to_neighbor(neighbor_name: String) -> void:
-	if lawn_loaded:
-		printerr("Talking to neighbor while in lawn!")
-	
-	current_lawn = neighbors.get(neighbor_name).get("lawn")
-	$HUD.set_neighbor_menu(neighbor_name, neighbors.get(neighbor_name).get("wage"), neighbors.get(neighbor_name).get("description"))
-
-func load_current_lawn() -> void:
-	if current_lawn == "":
-		printerr("No lawn selected!")
-	
+func load_lawn(lawn_template: PackedScene) -> void:
+	# Unload neighborhood
 	remove_child(neighborhood)
-	add_child(lawnmower)
-	lawnmower.position = Vector2.ZERO
-	add_child(load(current_lawn).instantiate())
-	player.position = Vector2.ZERO
+	# Load lawn
+	var lawn = lawn_template.instantiate()
+	lawn.name = "Lawn"
+	add_child(lawn)
+	# Set player position and direction
+	player.position = lawn.get_spawn()
+	player.dir = "down"
+	# Set lawn loaded flag
 	lawn_loaded = true
 
 func return_to_neighborhood() -> void:
-	if !lawn_loaded:
-		printerr("Loading neighborhood from neighborhood!")
-	
-	add_child(neighborhood)
-	remove_child(lawnmower)
-	$Lawn.queue_free()
-	current_lawn = ""
-	player.position = Vector2.ZERO
+	if get_node("Lawn"):
+		get_node("Lawn").queue_free()
+	if !neighborhood.is_inside_tree():
+		add_child(neighborhood)
+	player.position = player_pos
+	player.dir = "down"
 	lawn_loaded = false
+
+func update_hud_lawn():
+	$HUD/Control/InfoText.show()
+	if $Player.in_lawnmower_range() and $Lawn/Lawnmower.is_stuck():
+		$HUD.update_info_text("Lawn mower is stuck!")
+	else:
+		$HUD.update_info_text("")
+	
+	$HUD.update_progress_bar($Lawn.get_perc_cut())
+
+func update_hud_neighborhood():
+	if $Player.can_talk_to_neighbor:
+		$HUD.update_info_text("Press [SPACE] to knock on door.")
+	else:
+		$HUD.update_info_text("")
+	
+	# hide info text if talking to a neighbor
+	$HUD/Control/InfoText.visible = !$HUD/Control/NeighborMenu.visible
+	
+	$HUD.update_progress_bar(-1.0) # -1.0 hides the progress bar
 
 func update_hud():
 	if lawn_loaded:
-		if $Player.in_lawnmower_range() and $Lawnmower.is_stuck():
-			$HUD.update_info_text("Lawn mower is stuck!")
-		else:
-			$HUD.update_info_text("")
-		
-		$HUD.update_progress_bar($Lawn.get_perc_cut())
-	else: 
-		$HUD.update_progress_bar(-1.0) # -1.0 hides the progress bar
-
-func _on_leave_button_pressed() -> void:
-	$HUD.hide_neighbor_menu()
-
-func _on_accept_button_pressed() -> void:
-	$HUD.hide_neighbor_menu()
-	load_current_lawn()
+		update_hud_lawn()
+	else:
+		update_hud_neighborhood()

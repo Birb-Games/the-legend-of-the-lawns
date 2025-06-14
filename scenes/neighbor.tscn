@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmfatvi0c60nn"]
+[gd_scene load_steps=9 format=3 uid="uid://bmfatvi0c60nn"]
 
 [ext_resource type="Texture2D" uid="uid://di85fhpd0nqap" path="res://assets/textures/neighbors/neighbor_bob.png" id="1_8cdwt"]
 [ext_resource type="Script" uid="uid://b63obvvd24phb" path="res://scripts/speak_area.gd" id="1_k1hep"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="3_dsynj"]
+[ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="3_x7cql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsynj"]
 atlas = ExtResource("1_8cdwt")
@@ -29,13 +30,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrakx"]
 size = Vector2(18, 42)
 
-[node name="Neighbor" type="AnimatedSprite2D"]
+[node name="Neighbor" type="AnimatedSprite2D" groups=["neighbor"]]
 z_index = 1
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_k1hep")
 animation = &"neighbor_bob"
 autoplay = "neighbor_bob"
 script = ExtResource("1_k1hep")
+lawn_template = ExtResource("3_x7cql")
 
 [node name="Area2D" type="Area2D" parent="."]
 

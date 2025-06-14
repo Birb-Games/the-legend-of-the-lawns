@@ -64,7 +64,6 @@ func _process(delta: float) -> void:
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("player"):
 		intersecting_player = false
-		#linear_velocity = Vector2.ZERO
 	if body.is_in_group("lawn_obstacle"):
 		# Allow the player to pull the lawnmower again
 		collision_layer = default_layer

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8jx2be4cfkb8"]
+[gd_scene load_steps=7 format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/hud.gd" id="1_oo0fn"]
+[ext_resource type="Script" uid="uid://hn6dknq2w4cs" path="res://scripts/neighbor_menu.gd" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://cxb6mmn3hbetq" path="res://assets/textures/npc_profile_placeholder.png" id="4_6fi6k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
 bg_color = Color(0.762404, 0.762404, 0.762404, 1)
@@ -11,10 +13,10 @@ border_width_right = 16
 border_width_bottom = 16
 border_color = Color(0, 0, 0, 1)
 border_blend = true
-corner_radius_top_left = 64
-corner_radius_top_right = 64
-corner_radius_bottom_right = 64
-corner_radius_bottom_left = 64
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ysmq"]
 
@@ -56,19 +58,23 @@ theme_override_font_sizes/font_size = 22
 text = "0%"
 
 [node name="NeighborMenu" type="Panel" parent="Control"]
-visible = false
 layout_mode = 0
-offset_left = 144.0
-offset_top = 81.0
-offset_right = 1008.0
-offset_bottom = 567.0
+offset_left = 46.0
+offset_top = 381.0
+offset_right = 1108.0
+offset_bottom = 623.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oo0fn")
+script = ExtResource("3_5ysmq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/NeighborMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = 19.0
+offset_right = -271.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -77,29 +83,28 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 40
 text = "Name"
-horizontal_alignment = 1
 
-[node name="Wage" type="Label" parent="Control/NeighborMenu/VBoxContainer"]
-custom_minimum_size = Vector2(750, 40)
+[node name="Description" type="Label" parent="Control/NeighborMenu/VBoxContainer"]
+custom_minimum_size = Vector2(750, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
-theme_override_font_sizes/font_size = 40
-text = "$0"
+theme_override_font_sizes/font_size = 28
+text = "Description
+"
 autowrap_mode = 3
 
-[node name="Description" type="Label" parent="Control/NeighborMenu/VBoxContainer"]
-custom_minimum_size = Vector2(750, 280)
+[node name="Wage" type="Label" parent="Control/NeighborMenu/VBoxContainer"]
+custom_minimum_size = Vector2(750, 36)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 32
-text = "Description
-"
+text = "$0"
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/NeighborMenu/VBoxContainer"]
@@ -109,9 +114,9 @@ alignment = 1
 [node name="Leave" type="Button" parent="Control/NeighborMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ahhtf")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 disabled = true
-text = "Leave"
+text = "Nah"
 
 [node name="Panel" type="Panel" parent="Control/NeighborMenu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
@@ -121,9 +126,17 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_5ysmq")
 [node name="Accept" type="Button" parent="Control/NeighborMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ahhtf")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 disabled = true
-text = "Accept"
+text = "Deal!"
+
+[node name="TextureRect" type="TextureRect" parent="Control/NeighborMenu"]
+layout_mode = 0
+offset_left = 825.0
+offset_top = 32.0
+offset_right = 1005.0
+offset_bottom = 212.0
+texture = ExtResource("4_6fi6k")
 
 [node name="InfoText" type="Label" parent="Control"]
 layout_mode = 2
@@ -136,3 +149,6 @@ theme_override_font_sizes/font_size = 24
 text = "Info Text"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="Control/NeighborMenu/VBoxContainer/HBoxContainer/Leave" to="Control/NeighborMenu" method="_on_leave_pressed"]
+[connection signal="pressed" from="Control/NeighborMenu/VBoxContainer/HBoxContainer/Accept" to="Control/NeighborMenu" method="_on_accept_pressed"]

@@ -83,7 +83,7 @@ texture = ExtResource("3_vbbpe")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.941176, 0.941176)
 sprite_frames = SubResource("SpriteFrames_8t1u5")
-animation = &"down"
+animation = &"left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pf4ts")

@@ -1,6 +1,9 @@
+class_name Player
+
 extends CharacterBody2D
 
-@export var lawnmower: RigidBody2D
+const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
+@onready var lawnmower: RigidBody2D = get_node_or_null(LAWNMOWER_PATH)
 @export var water_gun: Sprite2D
 
 const NORMAL_SPEED: float = 60.0
@@ -9,6 +12,7 @@ var speed: float = NORMAL_SPEED
 
 var dir: String = "down"
 var pulling: bool = false
+var can_talk_to_neighbor: bool = false
 
 func get_dir_vec() -> Vector2:
 	match dir:
@@ -95,5 +99,5 @@ func _physics_process(_delta: float):
 	move_and_slide()
 
 func mower_exists() -> bool:
-	lawnmower = get_node_or_null("/root/Main/Lawnmower")
+	lawnmower = get_node_or_null(LAWNMOWER_PATH)
 	return lawnmower != null and lawnmower.is_inside_tree()

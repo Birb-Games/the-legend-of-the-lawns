@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var lawnmower: RigidBody2D
+@onready var lawnmower: RigidBody2D = $Lawnmower
 
 var total_grass_tiles: int
 var cut_grass_tiles: int = 0
@@ -34,9 +34,6 @@ func destroy_hedge(pos: Vector2i):
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 2), 0)
 
 func _process(_delta: float) -> void:
-	if not mower_exists():
-		return
-	
 	# Mow the lawn
 	var tile_sz = float($TileMapLayer.tile_set.tile_size.x)
 	var lawnmower_pos = lawnmower.position / tile_sz - Vector2(0.5, 0.5)
@@ -70,6 +67,5 @@ func _process(_delta: float) -> void:
 	for pos in positions:
 		destroy_hedge(pos)
 
-func mower_exists() -> bool:
-	lawnmower = get_node_or_null("/root/Main/Lawnmower")
-	return lawnmower != null and lawnmower.is_inside_tree()
+func get_spawn() -> Vector2:
+	return $PlayerSpawn.position
