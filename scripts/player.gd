@@ -13,6 +13,7 @@ var speed: float = NORMAL_SPEED
 var dir: String = "down"
 var pulling: bool = false
 var can_talk_to_neighbor: bool = false
+var can_pick_up_water_gun: bool = false
 
 func get_dir_vec() -> Vector2:
 	match dir:
@@ -27,15 +28,15 @@ func get_dir_vec() -> Vector2:
 	return Vector2.ZERO
 
 func set_animation():
-	if (velocity.x < 0.0 and !pulling) or (velocity.x > 0.0 and pulling):
-		dir = "left"
-	elif (velocity.x > 0.0 and !pulling) or (velocity.x < 0.0 and pulling):
-		dir = "right"
-	
 	if (velocity.y < 0.0 and !pulling) or (velocity.y > 0.0 and pulling):
 		dir = "up"
 	elif (velocity.y > 0.0 and !pulling) or (velocity.y < 0.0 and pulling):
 		dir = "down"
+	
+	if (velocity.x < 0.0 and !pulling) or (velocity.x > 0.0 and pulling):
+		dir = "left"
+	elif (velocity.x > 0.0 and !pulling) or (velocity.x < 0.0 and pulling):
+		dir = "right"
 	
 	var state = "walk"
 	if velocity.length() == 0.0:
@@ -44,23 +45,25 @@ func set_animation():
 	$AnimatedSprite2D.animation = animation
 
 func in_lawnmower_range():
-	return $Pull.can_pull
+	return $InteractZone.can_pull
 	
 func can_pull() -> bool:
 	if !mower_exists():
+		return false
+	if $WaterGun.visible:
 		return false
 
 	# Pull lawnmower with player
 	var dot_prod = (position - lawnmower.position).normalized().dot(velocity.normalized())
 	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
 	var same_direction: bool = dot_prod > 0.8
-	return same_direction and $Pull.can_pull
+	return same_direction and $InteractZone.can_pull
 
 func _process(_delta: float) -> void:
 	set_animation()
 
 func currently_pulling() -> bool:
-	return Input.is_action_pressed("pull") and can_pull()
+	return Input.is_action_pressed("interact") and can_pull()
 
 func _physics_process(_delta: float):
 	velocity = Vector2.ZERO
@@ -89,7 +92,7 @@ func _physics_process(_delta: float):
 	if currently_pulling():
 		lawnmower.linear_velocity = velocity
 		pulling = true
-	elif (Input.is_action_just_released("pull") and can_pull()) or !can_pull():
+	elif (Input.is_action_just_released("interact") and can_pull()) or !can_pull():
 		if mower_exists():
 			lawnmower.linear_velocity = Vector2.ZERO
 		pulling = false
@@ -101,3 +104,17 @@ func _physics_process(_delta: float):
 func mower_exists() -> bool:
 	lawnmower = get_node_or_null(LAWNMOWER_PATH)
 	return lawnmower != null and lawnmower.is_inside_tree()
+
+func _on_interact_zone_body_entered(body: Node2D) -> void:
+	if body.is_in_group("water_gun_item"):
+		can_pick_up_water_gun = true
+
+func _on_interact_zone_body_exited(body: Node2D) -> void:
+	if body.is_in_group("water_gun_item"):
+		can_pick_up_water_gun = false
+
+func enable_water_gun():
+	$WaterGun.show()
+
+func disable_water_gun():
+	$WaterGun.hide()

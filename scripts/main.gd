@@ -30,16 +30,22 @@ func return_to_neighborhood() -> void:
 		get_node("Lawn").queue_free()
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
+	$Player/WaterGun.hide()
 	player.position = player_pos
 	player.dir = "down"
 	lawn_loaded = false
 
 func update_hud_lawn():
 	$HUD/Control/InfoText.show()
-	if $Player.in_lawnmower_range() and $Lawn/Lawnmower.is_stuck():
+	$HUD.update_info_text("")
+	if $Player/WaterGun.visible and $Player.in_lawnmower_range():
+		$HUD.update_info_text("You can not move the lawn mower while holding a water gun.")
+	elif $Player/WaterGun.visible:
+		$HUD.update_info_text("Press [SPACE] to drop water gun.")
+	elif $Player.in_lawnmower_range() and $Lawn/Lawnmower.is_stuck():
 		$HUD.update_info_text("Lawn mower is stuck!")
-	else:
-		$HUD.update_info_text("")
+	elif $Player.can_pick_up_water_gun:
+		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
 	
 	$HUD.update_progress_bar($Lawn.get_perc_cut())
 

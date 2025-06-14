@@ -29,7 +29,7 @@ func generate_dialog():
 
 func _process(_delta: float) -> void:
 	# Have the player interact with the neighbor
-	if Input.is_action_just_pressed("talk") and player_in_area and !visible:
+	if Input.is_action_just_pressed("interact") and player_in_area and !visible:
 		generate_dialog()
 		show()
 		$/root/Main/HUD.set_neighbor_menu(self)

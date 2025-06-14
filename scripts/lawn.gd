@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var lawnmower: RigidBody2D = $Lawnmower
+@onready var water_gun_item: StaticBody2D = $WaterGun
 
 var total_grass_tiles: int
 var cut_grass_tiles: int = 0
@@ -33,7 +34,44 @@ func destroy_hedge(pos: Vector2i):
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 2), 0)
 
+# Have the player pick up the water gun
+func pickup_water_gun():
+	if !water_gun_item.is_inside_tree():
+		return
+	var player = get_node_or_null("/root/Main/Player")
+	if player == null:
+		return
+	if !player.can_pick_up_water_gun:
+		return
+	if Input.is_action_just_pressed("interact"):
+		remove_child(water_gun_item)
+		player.enable_water_gun()
+
+func drop_water_gun():
+	var player = get_node_or_null("/root/Main/Player")
+	if player == null:
+		return
+	if !player.get_node("WaterGun").visible:
+		return
+	if Input.is_action_just_pressed("interact"):
+		water_gun_item.position = player.position + Vector2(0.0, 8.0)
+		add_child(water_gun_item)
+		player.disable_water_gun()
+
+func water_gun_interaction():
+	if water_gun_item.is_inside_tree():
+		pickup_water_gun()
+	else:
+		drop_water_gun()
+
 func _process(_delta: float) -> void:
+	water_gun_interaction()
+	
+	# Handle lawn mower interactin
+	# if the water gun is picked up (not inside the tree),
+	# then do not allow the mower to be pushed
+	$Lawnmower.can_push = !water_gun_item.is_inside_tree()
+	
 	# Mow the lawn
 	var tile_sz = float($TileMapLayer.tile_set.tile_size.x)
 	var lawnmower_pos = lawnmower.position / tile_sz - Vector2(0.5, 0.5)

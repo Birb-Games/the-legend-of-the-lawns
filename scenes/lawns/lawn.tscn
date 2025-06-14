@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://dxpn5t34f6wkw"]
+[gd_scene load_steps=5 format=4 uid="uid://dxpn5t34f6wkw"]
 
 [ext_resource type="Script" uid="uid://cex6xa5f02ubi" path="res://scripts/lawn.gd" id="1_eudnv"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_fe7f8"]
 [ext_resource type="PackedScene" uid="uid://dyquswmvbbgde" path="res://scenes/lawnmower.tscn" id="3_fe7f8"]
+[ext_resource type="PackedScene" uid="uid://5004ltphju6p" path="res://scenes/water_gun.tscn" id="4_p5gcc"]
 
 [node name="Lawn" type="Node2D"]
 script = ExtResource("1_eudnv")
@@ -19,3 +20,6 @@ position = Vector2(17, -5)
 
 [node name="Lawnmower" parent="." instance=ExtResource("3_fe7f8")]
 position = Vector2(-16, 0)
+
+[node name="WaterGun" parent="." instance=ExtResource("4_p5gcc")]
+position = Vector2(1.66893e-06, -24)

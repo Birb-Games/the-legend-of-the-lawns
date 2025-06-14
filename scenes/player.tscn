@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://lbqtf4xbeym" path="res://scripts/pull.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://lbqtf4xbeym" path="res://scripts/interact_zone.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cqowbl67yjalq" path="res://scripts/water_gun.gd" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c782i0j0kkyib" path="res://assets/textures/watergun.png" id="4_tuyoq"]
@@ -254,11 +254,11 @@ autoplay = "idle_down"
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="Pull" type="Area2D" parent="."]
+[node name="InteractZone" type="Area2D" parent="."]
 collision_mask = 3
 script = ExtResource("3_qhqgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pull"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractZone"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_qhqgy")
 
@@ -280,5 +280,7 @@ target_position = Vector2(140, 0)
 collision_mask = 4
 collide_with_areas = true
 
-[connection signal="body_entered" from="Pull" to="Pull" method="_on_body_entered"]
-[connection signal="body_exited" from="Pull" to="Pull" method="_on_body_exited"]
+[connection signal="body_entered" from="InteractZone" to="." method="_on_interact_zone_body_entered"]
+[connection signal="body_entered" from="InteractZone" to="InteractZone" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractZone" to="." method="_on_interact_zone_body_exited"]
+[connection signal="body_exited" from="InteractZone" to="InteractZone" method="_on_body_exited"]
