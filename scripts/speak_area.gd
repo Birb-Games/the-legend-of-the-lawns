@@ -1,3 +1,5 @@
+class_name NeighborNPC
+
 extends AnimatedSprite2D
 
 var player_in_area: bool = false
@@ -21,6 +23,7 @@ var current_dialog: String = ""
 
 func _ready() -> void:
 	hide()
+	play(animation)
 
 func generate_dialog():
 	if len(possible_dialog) == 0:

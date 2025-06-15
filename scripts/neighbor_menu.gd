@@ -1,6 +1,6 @@
 extends Panel
 
-var current_neighbor: AnimatedSprite2D
+var current_neighbor: NeighborNPC
 
 func _ready() -> void:
 	hide_menu()
@@ -8,7 +8,7 @@ func _ready() -> void:
 func format_wage(wage: int) -> String:
 	return "I will pay you <$%d> to mow my lawn." % wage
 
-func set_menu(neighbor: AnimatedSprite2D) -> void:
+func set_menu(neighbor: NeighborNPC) -> void:
 	$VBoxContainer/Name.text = neighbor.display_name
 	$VBoxContainer/Wage.text = format_wage(neighbor.wage)
 	$VBoxContainer/Description.text = neighbor.current_dialog

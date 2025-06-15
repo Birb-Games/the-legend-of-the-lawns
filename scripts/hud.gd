@@ -12,15 +12,11 @@ func update_progress_bar(percent: float) -> void:
 	# used for the neighborhood
 	if percent < 0.0:
 		$Control/ProgressBar.hide()
-		$Control/ProgressBackground.hide()
-		$Control/ProgressBarPercent.hide()
 		return
 	else:
 		$Control/ProgressBar.show()
-		$Control/ProgressBackground.show()
-		$Control/ProgressBarPercent.show()
-		$Control/ProgressBar.size.x = percent * $Control/ProgressBackground.size.x
-		$Control/ProgressBarPercent.text = str(int(percent * 100)) + "%"
+		$Control/ProgressBar.size.x = percent * $Control/ProgressBar/ProgressBackground.size.x
+		$Control/ProgressBar/ProgressBarPercent.text = str(int(percent * 100)) + "%"
 
 func set_neighbor_menu(neighbor: AnimatedSprite2D) -> void:
 	$Control/NeighborMenu.set_menu(neighbor)
