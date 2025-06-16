@@ -5,12 +5,14 @@ extends Node2D
 @onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
 
+# How much money the player currently has
+var money: int = 0
+# What day it currently is
+# Should be used for determining difficulty as well
+var current_day: int = 1
+
 func _process(_delta: float) -> void:
 	update_hud()
-	
-	# debug for returning to neighborhood
-	if Input.is_action_just_pressed("ui_cancel") and lawn_loaded:
-		return_to_neighborhood()
 
 func load_lawn(lawn_template: PackedScene) -> void:
 	# Unload neighborhood
@@ -65,3 +67,6 @@ func update_hud():
 		update_hud_lawn()
 	else:
 		update_hud_neighborhood()
+	
+	$HUD.update_day_counter(current_day)
+	$HUD.update_money_counter(money)

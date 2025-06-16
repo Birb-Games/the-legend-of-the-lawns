@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8jx2be4cfkb8"]
+[gd_scene load_steps=8 format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/hud.gd" id="1_oo0fn"]
 [ext_resource type="Script" uid="uid://hn6dknq2w4cs" path="res://scripts/neighbor_menu.gd" id="3_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://cxb6mmn3hbetq" path="res://assets/textures/npc_profile_placeholder.png" id="4_6fi6k"]
+[ext_resource type="Script" uid="uid://yh7qqp21ebil" path="res://scripts/pause_menu.gd" id="5_uo2fv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
 bg_color = Color(0.762404, 0.762404, 0.762404, 1)
@@ -21,6 +22,7 @@ corner_radius_bottom_left = 32
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ysmq"]
 
 [node name="HUD" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_oo0fn")
 
 [node name="Control" type="Control" parent="."]
@@ -44,6 +46,7 @@ offset_left = 68.0
 offset_top = 1.0
 offset_right = 110.0
 offset_bottom = 24.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 22
 text = "0%"
@@ -60,6 +63,7 @@ layout_mode = 0
 offset_top = -17.0
 offset_right = 125.0
 offset_bottom = -5.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 text = "Lawn Progress"
 
@@ -150,11 +154,83 @@ offset_left = 1.0
 offset_top = 563.0
 offset_right = 1152.0
 offset_bottom = 638.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 24
 text = "Info Text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MoneyLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 848.0
+offset_top = 29.0
+offset_right = 1123.0
+offset_bottom = 52.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 32
+text = "$0/500"
+horizontal_alignment = 2
+
+[node name="DayLabel" type="Label" parent="Control"]
+offset_left = 848.0
+offset_top = 57.0
+offset_right = 1123.0
+offset_bottom = 75.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 24
+text = "Day 1"
+horizontal_alignment = 2
+
+[node name="PauseMenu" type="ColorRect" parent="Control"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0846899, 0.0846899, 0.0846899, 0.501961)
+script = ExtResource("5_uo2fv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PauseMenu"]
+layout_mode = 0
+offset_top = 295.0
+offset_right = 1152.0
+offset_bottom = 369.0
+alignment = 1
+
+[node name="Yes" type="Button" parent="Control/PauseMenu/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 32
+text = "Yes"
+
+[node name="Panel" type="Panel" parent="Control/PauseMenu/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="No" type="Button" parent="Control/PauseMenu/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 32
+text = "No"
+
+[node name="Label" type="Label" parent="Control/PauseMenu"]
+layout_mode = 0
+offset_top = 145.0
+offset_right = 1152.0
+offset_bottom = 263.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 40
+text = "[PAUSED]
+Are you sure you want to quit this lawn?
+
+Your progress will be lost."
+horizontal_alignment = 1
+
 [connection signal="pressed" from="Control/NeighborMenu/VBoxContainer/HBoxContainer/Leave" to="Control/NeighborMenu" method="_on_leave_pressed"]
 [connection signal="pressed" from="Control/NeighborMenu/VBoxContainer/HBoxContainer/Accept" to="Control/NeighborMenu" method="_on_accept_pressed"]
+[connection signal="pressed" from="Control/PauseMenu/HBoxContainer/Yes" to="Control/PauseMenu" method="_on_yes_pressed"]
+[connection signal="pressed" from="Control/PauseMenu/HBoxContainer/No" to="Control/PauseMenu" method="_on_no_pressed"]
