@@ -58,7 +58,7 @@ position = Vector2(648, -170)
 animation = &"neighbor_nancy"
 display_name = "Neighbor Nancy"
 lawn_template = ExtResource("3_xlwpo")
-possible_dialog = PackedStringArray("Oh, you want to mow my lawn? I suppose I can use some help - just don\'t damage my flowers.", "I guess I could use some help with my lawn. Just please don\'t hurt my flowers.", "Thank you for offering to mow my lawn! I would appreciate it if you didn\'t destroy my precious flowers though.")
+possible_dialog = PackedStringArray("Oh, you want to mow my lawn? I suppose it is a bit overgrown...", "My lawn needs to be mowed today but I\'m too lazy.")
 wage = 1
 
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="."]
