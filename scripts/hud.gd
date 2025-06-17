@@ -3,7 +3,13 @@ extends CanvasLayer
 func _ready() -> void:
 	$Control/InfoText.text = ""
 
+func activate_finish_screen():
+	$Control/Finishscreen.activate()
+
 func _process(_delta: float) -> void:
+	if $Control/Finishscreen.visible:
+		return
+	
 	# Open pause menu for lawn
 	if Input.is_action_just_pressed("ui_cancel") and $/root/Main.lawn_loaded:
 		toggle_lawn_pause_menu()

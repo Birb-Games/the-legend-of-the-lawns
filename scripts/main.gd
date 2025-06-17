@@ -10,6 +10,10 @@ var money: int = 0
 # What day it currently is
 # Should be used for determining difficulty as well
 var current_day: int = 1
+var current_wage: int = 0
+
+func update_wage() -> void:
+	money += current_wage
 
 func _process(_delta: float) -> void:
 	update_hud()
@@ -34,6 +38,7 @@ func return_to_neighborhood() -> void:
 		add_child(neighborhood)
 	$Player/WaterGun.hide()
 	player.position = player_pos
+	current_wage = 0
 	player.dir = "down"
 	lawn_loaded = false
 

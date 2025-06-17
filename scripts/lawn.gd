@@ -65,6 +65,11 @@ func water_gun_interaction():
 		drop_water_gun()
 
 func _process(_delta: float) -> void:
+	if cut_grass_tiles >= total_grass_tiles:
+		get_tree().paused = true
+		$/root/Main/HUD.activate_finish_screen()
+		return
+	
 	water_gun_interaction()
 	
 	# Handle lawn mower interactin

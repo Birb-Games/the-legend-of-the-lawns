@@ -30,3 +30,4 @@ func _on_accept_pressed() -> void:
 	hide_menu()
 	current_neighbor.hide()
 	$/root/Main.load_lawn(current_neighbor.lawn_template)
+	$/root/Main.current_wage = current_neighbor.wage
