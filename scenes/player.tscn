@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene load_steps=38 format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player.gd" id="1_g2els"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cqowbl67yjalq" path="res://scripts/water_gun.gd" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c782i0j0kkyib" path="res://assets/textures/watergun.png" id="4_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://btspvfcbp648g" path="res://assets/textures/circle_particle.png" id="7_fjrip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_3vyb7")
@@ -224,13 +225,23 @@ size = Vector2(12, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(18, 20)
 
+[sub_resource type="Curve" id="Curve_fjrip"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.764706, 0.719101), -0.548545, -0.548545, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_smehm"]
+curve = SubResource("Curve_fjrip")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qhqgy"]
 particle_flag_disable_z = true
-spread = 3.0
-initial_velocity_min = 50.0
-initial_velocity_max = 500.0
+inherit_velocity_ratio = 0.5
+spread = 2.0
+initial_velocity_min = 200.0
+initial_velocity_max = 350.0
 gravity = Vector3(0, 0, 0)
-scale_max = 2.0
+scale_min = 0.05
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_smehm")
 color = Color(0.054902, 0.529412, 0.8, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_gun") groups=["player"]]
@@ -270,8 +281,9 @@ script = ExtResource("4_qlg0r")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="WaterGun"]
 position = Vector2(18, 0)
-amount = 50
-lifetime = 0.25
+amount = 100
+texture = ExtResource("7_fjrip")
+lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_qhqgy")
 
 [node name="RayCast2D" type="RayCast2D" parent="WaterGun"]
