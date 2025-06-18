@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c8jx2be4cfkb8" path="res://scenes/hud.tscn" id="4_jyhfs"]
 
 [sub_resource type="Gradient" id="Gradient_jyhfs"]
-offsets = PackedFloat32Array(0, 0.517241, 1)
-colors = PackedColorArray(1, 0, 0, 1, 0.979986, 0.512847, 0, 1, 0.968627, 0.803922, 0, 1)
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jyhfs")
