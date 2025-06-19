@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var progress_bar_gradient: Gradient
+
 func _ready() -> void:
 	$Control/InfoText.text = ""
 
@@ -31,6 +33,7 @@ func update_progress_bar(percent: float) -> void:
 	else:
 		$Control/ProgressBar.show()
 		$Control/ProgressBar.size.x = percent * $Control/ProgressBar/ProgressBackground.size.x
+		$Control/ProgressBar.color = progress_bar_gradient.sample(percent)
 		$Control/ProgressBar/ProgressBarPercent.text = str(int(percent * 100)) + "%"
 
 func update_day_counter(days: int):
