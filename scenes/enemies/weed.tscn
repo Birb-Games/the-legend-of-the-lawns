@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bhnk8apyedtit"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_f2hbu"]
+[ext_resource type="Texture2D" uid="uid://cf1sp2ca8nk66" path="res://assets/textures/enemies/weed1.png" id="1_m1ou3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37qs1"]
+size = Vector2(14, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2hbu"]
+atlas = ExtResource("1_m1ou3")
+region = Rect2(0, 0, 14, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5vux"]
+atlas = ExtResource("1_m1ou3")
+region = Rect2(14, 0, 14, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfolx"]
+atlas = ExtResource("1_m1ou3")
+region = Rect2(28, 0, 14, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gohqb"]
+atlas = ExtResource("1_m1ou3")
+region = Rect2(42, 0, 14, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqtah"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2hbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5vux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfolx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gohqb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Weed" type="StaticBody2D" groups=["lawn_obstacle"]]
+scale = Vector2(0.75, 0.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_37qs1")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 9.5)
+scale = Vector2(0.25, 0.179487)
+texture = ExtResource("1_f2hbu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oqtah")
+autoplay = "default"

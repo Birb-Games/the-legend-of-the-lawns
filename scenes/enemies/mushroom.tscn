@@ -1,0 +1,145 @@
+[gd_scene load_steps=18 format=3 uid="uid://bfrhyuagid5eh"]
+
+[ext_resource type="Texture2D" uid="uid://d3su425r62amf" path="res://assets/textures/enemies/weed3.png" id="1_2wybx"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_uk2no"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62b6c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wybx"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(0, 38, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70lkm"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(15, 38, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0rkr"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(30, 38, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tde2d"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(0, 19, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_525w4"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(15, 19, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kdgg"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(30, 19, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk2no"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(0, 0, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1calh"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(15, 0, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubc2v"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(30, 0, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14jr1"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(15, 0, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpm4c"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(0, 57, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqul3"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(15, 57, 15, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tgey"]
+atlas = ExtResource("1_2wybx")
+region = Rect2(30, 57, 15, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_70lkm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wybx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70lkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0rkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70lkm")
+}],
+"loop": true,
+"name": &"down",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tde2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_525w4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kdgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_525w4")
+}],
+"loop": true,
+"name": &"left",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk2no")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1calh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubc2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14jr1")
+}],
+"loop": true,
+"name": &"right",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpm4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqul3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tgey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqul3")
+}],
+"loop": true,
+"name": &"up",
+"speed": 4.0
+}]
+
+[node name="Mushroom" type="StaticBody2D" groups=["lawn_obstacle"]]
+scale = Vector2(0.75, 0.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_62b6c")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 9.33333)
+scale = Vector2(0.416667, 0.371795)
+texture = ExtResource("1_uk2no")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_70lkm")
+animation = &"down"
+autoplay = "down"
