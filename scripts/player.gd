@@ -15,6 +15,32 @@ var pulling: bool = false
 var can_talk_to_neighbor: bool = false
 var can_pick_up_water_gun: bool = false
 
+const MAX_HEALTH: int = 50
+var health: int = MAX_HEALTH
+# For displaying a red flash whenever the player takes damage
+const DAMAGE_COOLDOWN: float = 1.25
+var damage_timer: float = 0.0
+
+# Returns a value between 0.0 and 1.0
+func get_hp_perc() -> float:
+	if health <= 0:
+		return 0.0
+	return float(health) / float(MAX_HEALTH)
+
+func reset_health() -> void:
+	health = MAX_HEALTH
+	damage_timer = 0.0
+
+# Apply damage to the player using this function
+func damage(amt: int) -> void:
+	health -= amt
+	health = max(health, 0)
+	damage_timer = DAMAGE_COOLDOWN
+
+# Returns a value between 0.0 and 1.0
+func get_damage_timer_perc() -> float:
+	return damage_timer / DAMAGE_COOLDOWN
+
 func get_dir_vec() -> Vector2:
 	match dir:
 		"left":
@@ -59,13 +85,22 @@ func can_pull() -> bool:
 	var same_direction: bool = dot_prod > 0.8
 	return same_direction and $InteractZone.can_pull
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	visible = health > 0
+	if health <= 0:
+		return
+	
 	set_animation()
+	
+	damage_timer -= delta
 
 func currently_pulling() -> bool:
 	return Input.is_action_pressed("interact") and can_pull()
 
 func _physics_process(_delta: float):
+	if health <= 0:
+		return
+	
 	velocity = Vector2.ZERO
 
 	# movement

@@ -2,7 +2,7 @@ extends RigidBody2D
 
 var dir: String = "left"
 var intersecting_player: bool = false
-@onready var player: CharacterBody2D = $/root/Main/Player
+@onready var player: Player = $/root/Main/Player
 var default_layer: int
 var stuck_in_wall = false
 var can_push = true
@@ -70,6 +70,10 @@ func set_animation():
 	$AnimatedSprite2D.animation = dir
 
 func _process(delta: float) -> void:
+	if player.health <= 0:
+		linear_velocity = Vector2.ZERO
+		return
+	
 	if stuck_in_wall or can_push:
 		collision_layer |= 1
 	else:

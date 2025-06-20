@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8jx2be4cfkb8"]
+[gd_scene load_steps=10 format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/hud.gd" id="1_oo0fn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cxb6mmn3hbetq" path="res://assets/textures/npc_profile_placeholder.png" id="4_6fi6k"]
 [ext_resource type="Script" uid="uid://yh7qqp21ebil" path="res://scripts/pause_menu.gd" id="5_uo2fv"]
 [ext_resource type="PackedScene" uid="uid://dnqh6jeh6decu" path="res://scenes/finishscreen.tscn" id="6_047uy"]
+[ext_resource type="PackedScene" uid="uid://bbaa6s8vockj8" path="res://scenes/failscreen.tscn" id="7_5pdws"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
 bg_color = Color(0.762404, 0.762404, 0.762404, 1)
@@ -67,6 +68,41 @@ offset_bottom = -5.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 text = "Lawn Progress"
+
+[node name="HealthBar" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 91.0
+offset_right = 96.0
+offset_bottom = 107.0
+color = Color(0.878431, 0.0745098, 0.254902, 1)
+
+[node name="HealthPercent" type="Label" parent="Control/HealthBar"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 1.0
+offset_right = 110.0
+offset_bottom = 24.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 22
+text = "100%"
+
+[node name="HealthBackground" type="ColorRect" parent="Control/HealthBar"]
+z_index = -1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 16.0
+color = Color(0.552956, 0.552956, 0.552956, 1)
+
+[node name="Label" type="Label" parent="Control/HealthBar"]
+layout_mode = 0
+offset_top = -17.0
+offset_right = 125.0
+offset_bottom = -5.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ahhtf")
+text = "Health"
 
 [node name="NeighborMenu" type="Panel" parent="Control"]
 layout_mode = 0
@@ -236,6 +272,17 @@ horizontal_alignment = 1
 [node name="Finishscreen" parent="Control" instance=ExtResource("6_047uy")]
 visible = false
 layout_mode = 1
+
+[node name="Failscreen" parent="Control" instance=ExtResource("7_5pdws")]
+visible = false
+layout_mode = 1
+
+[node name="DamageFlash" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 0, 0, 0.501961)
 
 [connection signal="pressed" from="Control/NeighborMenu/VBoxContainer/HBoxContainer/Leave" to="Control/NeighborMenu" method="_on_leave_pressed"]
 [connection signal="pressed" from="Control/NeighborMenu/VBoxContainer/HBoxContainer/Accept" to="Control/NeighborMenu" method="_on_accept_pressed"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhnk8apyedtit"]
+[gd_scene load_steps=11 format=3 uid="uid://bhnk8apyedtit"]
 
+[ext_resource type="Script" uid="uid://p2qq0tajr612" path="res://scripts/enemies/weed.gd" id="1_d5vux"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_f2hbu"]
 [ext_resource type="Texture2D" uid="uid://cf1sp2ca8nk66" path="res://assets/textures/enemies/weed1.png" id="1_m1ou3"]
 
@@ -42,8 +43,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_f2hbu"]
+radius = 10.7692
+
 [node name="Weed" type="Area2D"]
 scale = Vector2(0.65, 0.65)
+script = ExtResource("1_d5vux")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.1667)
@@ -58,3 +63,12 @@ texture = ExtResource("1_f2hbu")
 position = Vector2(0, -10.6667)
 sprite_frames = SubResource("SpriteFrames_oqtah")
 autoplay = "default"
+
+[node name="BiteRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BiteRadius"]
+position = Vector2(0, -6.15385)
+shape = SubResource("CircleShape2D_f2hbu")
+
+[connection signal="body_entered" from="BiteRadius" to="." method="_on_bite_radius_body_entered"]
+[connection signal="body_exited" from="BiteRadius" to="." method="_on_bite_radius_body_exited"]

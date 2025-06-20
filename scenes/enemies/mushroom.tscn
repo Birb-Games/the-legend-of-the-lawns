@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfrhyuagid5eh"]
+[gd_scene load_steps=19 format=3 uid="uid://bfrhyuagid5eh"]
 
+[ext_resource type="Script" uid="uid://dvwu3xh8hrman" path="res://scripts/enemies/mushroom.gd" id="1_1calh"]
 [ext_resource type="Texture2D" uid="uid://d3su425r62amf" path="res://assets/textures/enemies/weed3.png" id="1_2wybx"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_uk2no"]
 
@@ -130,6 +131,7 @@ animations = [{
 
 [node name="Mushroom" type="Area2D"]
 scale = Vector2(0.65, 0.65)
+script = ExtResource("1_1calh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.6667)

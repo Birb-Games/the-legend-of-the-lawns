@@ -34,7 +34,7 @@ func get_enemy_count() -> int:
 func get_enemy_weights() -> Array[float]:
 	match difficulty:
 		0:
-			return [ 3.0, 1.0, 1.0 ]
+			return [ 6.0, 3.0, 1.0 ]
 		1:
 			return [ 2.0, 1.0, 1.0 ]
 		_:
