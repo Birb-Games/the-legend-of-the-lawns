@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxgj76gitliya"]
+
+[ext_resource type="Script" uid="uid://dkr8c4yfj3ywc" path="res://scripts/enemies/enemyspawner.gd" id="1_27y88"]
+[ext_resource type="PackedScene" uid="uid://bhnk8apyedtit" path="res://scenes/enemies/weed.tscn" id="2_6fcck"]
+[ext_resource type="PackedScene" uid="uid://fqhlxrgabgqv" path="res://scenes/enemies/thornweed.tscn" id="3_2meu0"]
+[ext_resource type="PackedScene" uid="uid://bfrhyuagid5eh" path="res://scenes/enemies/mushroom.tscn" id="4_84gii"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6fcck"]
+radius = 80.0
+
+[node name="Enemyspawner" type="Node2D"]
+script = ExtResource("1_27y88")
+enemies = [ExtResource("2_6fcck"), ExtResource("3_2meu0"), ExtResource("4_84gii")]
+
+[node name="Area2D" type="Area2D" parent="."]
+editor_description = "Does nothing, only for editor use - shows the maximum points at which enemies can be spawned so as to avoid having enemies being spawned in strange places."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6fcck")

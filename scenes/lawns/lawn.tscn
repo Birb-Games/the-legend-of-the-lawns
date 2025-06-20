@@ -23,3 +23,5 @@ position = Vector2(-16, 0)
 
 [node name="WaterGun" parent="." instance=ExtResource("4_p5gcc")]
 position = Vector2(1.66893e-06, -24)
+
+[node name="Spawners" type="Node2D" parent="."]
