@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bfrhyuagid5eh"]
+[gd_scene load_steps=20 format=3 uid="uid://bfrhyuagid5eh"]
 
 [ext_resource type="Script" uid="uid://dvwu3xh8hrman" path="res://scripts/enemies/mushroom.gd" id="1_1calh"]
 [ext_resource type="Texture2D" uid="uid://d3su425r62amf" path="res://assets/textures/enemies/weed3.png" id="1_2wybx"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_uk2no"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="4_ubc2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62b6c"]
 
@@ -147,3 +148,7 @@ position = Vector2(0, -10.6667)
 sprite_frames = SubResource("SpriteFrames_70lkm")
 animation = &"down"
 autoplay = "down"
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("4_ubc2v")]
+position = Vector2(0, -10.7692)
+scale = Vector2(1.2, 1.2)
