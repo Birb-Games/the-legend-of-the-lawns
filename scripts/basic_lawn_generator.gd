@@ -35,9 +35,11 @@ func prune_hedges() -> void:
 			# Decide which hedge tile based on neighbors
 			# https://cdn.discordapp.com/attachments/1380235298599997480/1385342556291727601/hedges.png?ex=6855b84b&is=685466cb&hm=1ce057dfcd703d0d262e3a652fc8465ab4b266b588788eb5d955de270a6d4897&
 			match neighbors:
+				# No direct neighbors
 				[false, false, false, false, _, _, _, _]:
 					set_cell(tile, 0, Vector2i(1, 2), 0)
-				
+
+				# One direct neighbor
 				[true, false, false, false, _, _, _, _]:
 					set_cell(tile, 0, Vector2i(2, 2), 1)
 				[false, true, false, false, _, _, _, _]:
@@ -46,7 +48,8 @@ func prune_hedges() -> void:
 					set_cell(tile, 0, Vector2i(2, 2), 3)
 				[false, false, false, true, _, _, _, _]:
 					set_cell(tile, 0, Vector2i(2, 2), 2)
-				
+
+				# Two direct neighbors
 				[false, true, false, true, _, _, _, false]:
 					set_cell(tile, 0, Vector2i(3, 2), 0)
 				[false, true, true, false, _, _, false, _]:
@@ -70,6 +73,7 @@ func prune_hedges() -> void:
 				[false, false, true, true, _, _, _, _]:
 					set_cell(tile, 0, Vector2i(4, 2), 0)
 				
+				# Three direct neighbors
 				[false, true, true, true, _, _, false, false]:
 					set_cell(tile, 0, Vector2i(5, 2), 0)
 				[true, false, true, true, false, false, _, _]:
@@ -104,7 +108,8 @@ func prune_hedges() -> void:
 					set_cell(tile, 0, Vector2i(4, 1), 2)
 				[true, true, true, false, true, _, true, _]:
 					set_cell(tile, 0, Vector2i(4, 1), 3)
-
+				
+				# Four direct neighbors
 				[true, true, true, true, false, false, false, false]:
 					set_cell(tile, 0, Vector2i(7, 2), 0)
 				
