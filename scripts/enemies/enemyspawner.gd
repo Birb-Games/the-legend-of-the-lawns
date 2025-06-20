@@ -58,12 +58,12 @@ func get_rand_enemy_ind(weights: Array[float]) -> int:
 	return max(len(weights) - 1, 0)
 
 func gen_enemy_positions(count: int) -> Array[Vector2]:
-	var radius = 32.0 + count * 4.0
+	var radius = 20.0 + count * 4.0
 	var start_angle = randf() * PI * 2.0
 	var positions: Array[Vector2] = []
 	for i in range(count):
 		var angle = start_angle + i * 2.0 * PI / count
-		var dist = radius - 20.0 * randf()
+		var dist = radius - 10.0 * randf()
 		var x = cos(angle) * dist
 		var y = sin(angle) * dist
 		positions.append(Vector2(x, y))

@@ -245,27 +245,26 @@ scale_curve = SubResource("CurveTexture_smehm")
 color = Color(0.054902, 0.529412, 0.8, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_gun") groups=["player"]]
-z_index = 2
 script = ExtResource("1_g2els")
 water_gun = NodePath("WaterGun")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(0, 11)
 scale = Vector2(0.365385, 0.365385)
 texture = ExtResource("4_dqkch")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0, -12)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_g2els")
 animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="InteractZone" type="Area2D" parent="."]
+position = Vector2(0, -13)
 collision_mask = 3
 script = ExtResource("3_qhqgy")
 
@@ -274,12 +273,13 @@ position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="WaterGun" type="Sprite2D" parent="."]
-position = Vector2(8, 1)
+position = Vector2(8, -9)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("4_tuyoq")
 script = ExtResource("4_qlg0r")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="WaterGun"]
+z_index = 1
 position = Vector2(18, 0)
 amount = 100
 texture = ExtResource("7_fjrip")

@@ -65,17 +65,19 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="ThornWeed" type="StaticBody2D" groups=["lawn_obstacle"]]
+[node name="ThornWeed" type="Area2D"]
 scale = Vector2(0.75, 0.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_hlolw")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(0, 9.33333)
+position = Vector2(0, 1.33332)
 scale = Vector2(0.5, 0.410256)
 texture = ExtResource("1_w4wb1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_a8atb")
 autoplay = "default"

@@ -54,7 +54,7 @@ func can_pull() -> bool:
 		return false
 
 	# Pull lawnmower with player
-	var dot_prod = (position - lawnmower.position).normalized().dot(velocity.normalized())
+	var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(velocity.normalized())
 	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
 	var same_direction: bool = dot_prod > 0.8
 	return same_direction and $InteractZone.can_pull
@@ -118,3 +118,7 @@ func enable_water_gun():
 
 func disable_water_gun():
 	$WaterGun.hide()
+
+# Returns global position of the animated sprite
+func get_sprite_pos():
+	return $AnimatedSprite2D.position + position

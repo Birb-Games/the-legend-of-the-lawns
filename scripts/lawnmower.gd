@@ -106,3 +106,7 @@ func rect():
 	var r = $CollisionShape2D.shape.get_rect()
 	r.position += position
 	return r
+
+# Returns global position of the shadow
+func get_sprite_pos() -> Vector2:
+	return position + $AnimatedSprite2D.position

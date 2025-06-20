@@ -128,18 +128,20 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Mushroom" type="StaticBody2D" groups=["lawn_obstacle"]]
-scale = Vector2(0.75, 0.75)
+[node name="Mushroom" type="Area2D"]
+scale = Vector2(0.65, 0.65)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10.6667)
 shape = SubResource("RectangleShape2D_62b6c")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(0, 9.33333)
+position = Vector2(0, -1.33335)
 scale = Vector2(0.416667, 0.410256)
 texture = ExtResource("1_uk2no")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10.6667)
 sprite_frames = SubResource("SpriteFrames_70lkm")
 animation = &"down"
 autoplay = "down"

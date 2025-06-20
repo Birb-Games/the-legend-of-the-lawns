@@ -54,7 +54,7 @@ func drop_water_gun():
 	if !player.get_node("WaterGun").visible:
 		return
 	if Input.is_action_just_pressed("interact"):
-		water_gun_item.position = player.position + Vector2(0.0, 8.0)
+		water_gun_item.position = player.get_sprite_pos() + Vector2(0.0, 12.0)
 		add_child(water_gun_item)
 		player.disable_water_gun()
 
@@ -79,7 +79,7 @@ func _process(_delta: float) -> void:
 	
 	# Mow the lawn
 	var tile_sz = float($TileMapLayer.tile_set.tile_size.x)
-	var lawnmower_pos = lawnmower.position / tile_sz - Vector2(0.5, 0.5)
+	var lawnmower_pos = lawnmower.get_sprite_pos() / tile_sz - Vector2(0.5, 0.5)
 	var positions = []
 	for dx in range(-1, 2):
 		for dy in range(-1, 2):

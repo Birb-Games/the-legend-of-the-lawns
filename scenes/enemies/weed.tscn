@@ -42,18 +42,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Weed" type="StaticBody2D" groups=["lawn_obstacle"]]
-scale = Vector2(0.75, 0.75)
+[node name="Weed" type="Area2D"]
+scale = Vector2(0.65, 0.65)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, -10.1667)
 shape = SubResource("RectangleShape2D_37qs1")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(-9.53674e-07, 9.5)
+position = Vector2(-9.53674e-07, -1.16667)
 scale = Vector2(0.25, 0.179487)
 texture = ExtResource("1_f2hbu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10.6667)
 sprite_frames = SubResource("SpriteFrames_oqtah")
 autoplay = "default"
