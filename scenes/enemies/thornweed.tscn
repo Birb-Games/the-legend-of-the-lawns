@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://fqhlxrgabgqv"]
+[gd_scene load_steps=14 format=3 uid="uid://fqhlxrgabgqv"]
 
 [ext_resource type="Texture2D" uid="uid://t6y1l4osuoqg" path="res://assets/textures/enemies/weed2.png" id="1_a8atb"]
 [ext_resource type="Script" uid="uid://b32y243vvarwd" path="res://scripts/enemies/thornweed.gd" id="1_sx5o7"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_w4wb1"]
+[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/thornbullet.tscn" id="2_f2frt"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="4_yhrat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hlolw"]
@@ -70,6 +71,7 @@ animations = [{
 [node name="ThornWeed" type="Area2D"]
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_sx5o7")
+bullet_scene = ExtResource("2_f2frt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -90,3 +92,6 @@ position = Vector2(0, -8)
 scale = Vector2(1.4, 1.4)
 damage_amt = 4
 attack_cooldown = 1.0
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -8)

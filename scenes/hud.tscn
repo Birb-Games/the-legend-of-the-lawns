@@ -222,6 +222,13 @@ theme_override_font_sizes/font_size = 24
 text = "Day 1"
 horizontal_alignment = 2
 
+[node name="DamageFlash" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 0, 0, 0.501961)
+
 [node name="PauseMenu" type="ColorRect" parent="Control"]
 visible = false
 layout_mode = 0
@@ -276,13 +283,6 @@ layout_mode = 1
 [node name="Failscreen" parent="Control" instance=ExtResource("7_5pdws")]
 visible = false
 layout_mode = 1
-
-[node name="DamageFlash" type="ColorRect" parent="Control"]
-visible = false
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(1, 0, 0, 0.501961)
 
 [connection signal="pressed" from="Control/NeighborMenu/VBoxContainer/HBoxContainer/Leave" to="Control/NeighborMenu" method="_on_leave_pressed"]
 [connection signal="pressed" from="Control/NeighborMenu/VBoxContainer/HBoxContainer/Accept" to="Control/NeighborMenu" method="_on_accept_pressed"]

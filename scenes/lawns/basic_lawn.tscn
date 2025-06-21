@@ -29,11 +29,9 @@ position = Vector2(125, -160)
 
 [node name="Enemyspawner4" parent="Spawners" index="3" instance=ExtResource("2_x1smj")]
 position = Vector2(250, 0)
-spawn_count = 5
 
 [node name="Enemyspawner5" parent="Spawners" index="4" instance=ExtResource("2_x1smj")]
 position = Vector2(-250, 0)
-spawn_count = 5
 
 [node name="Enemyspawner6" parent="Spawners" index="5" instance=ExtResource("2_x1smj")]
 position = Vector2(-125, -160)
