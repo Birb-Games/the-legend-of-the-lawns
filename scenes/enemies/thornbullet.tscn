@@ -31,4 +31,5 @@ shape = SubResource("RectangleShape2D_3qx4r")
 
 [node name="GPUParticles2D" parent="." index="2"]
 texture = ExtResource("3_xakhk")
+lifetime = 0.8
 process_material = SubResource("ParticleProcessMaterial_3qx4r")

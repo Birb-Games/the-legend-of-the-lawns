@@ -19,6 +19,12 @@ func activate_fail_screen() -> bool:
 	return true
 
 func _process(_delta: float) -> void:
+	# Toggle the mouse cursor
+	if get_tree().paused:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	
 	if $Control/Finishscreen.visible or $Control/Failscreen.visible:
 		return
 	
@@ -26,15 +32,19 @@ func _process(_delta: float) -> void:
 		return
 	
 	# Open pause menu for lawn
-	if Input.is_action_just_pressed("ui_cancel") and $/root/Main.lawn_loaded:
-		toggle_lawn_pause_menu()
+	if Input.is_action_just_pressed("ui_cancel"):
+		toggle_pause_menu()
 
 # used for pop up messages to provide information to the player
 func update_info_text(text: String) -> void:
 	$Control/InfoText.text = text
 
-func toggle_lawn_pause_menu():
+func toggle_pause_menu():
 	$Control/PauseMenu.visible = !$Control/PauseMenu.visible
+	# Show buttons that appear only on the lawn
+	if $Control/PauseMenu.visible:
+		$Control/PauseMenu/Label.visible = $/root/Main.lawn_loaded
+		$Control/PauseMenu/HBoxContainer.visible = $/root/Main.lawn_loaded
 	get_tree().paused = $Control/PauseMenu.visible
 
 # updates progress bar based on the given percent (0.0 to 1.0)

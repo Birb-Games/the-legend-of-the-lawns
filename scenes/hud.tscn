@@ -239,9 +239,9 @@ script = ExtResource("5_uo2fv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/PauseMenu"]
 layout_mode = 0
-offset_top = 295.0
+offset_top = 369.0
 offset_right = 1152.0
-offset_bottom = 369.0
+offset_bottom = 443.0
 alignment = 1
 
 [node name="Yes" type="Button" parent="Control/PauseMenu/HBoxContainer"]
@@ -263,17 +263,35 @@ theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 32
 text = "No"
 
-[node name="Label" type="Label" parent="Control/PauseMenu"]
+[node name="Title" type="Label" parent="Control/PauseMenu"]
 layout_mode = 0
-offset_top = 145.0
+offset_top = 113.0
 offset_right = 1152.0
-offset_bottom = 263.0
+offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 64
+text = "[PAUSED]"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Control/PauseMenu"]
+offset_top = 219.0
+offset_right = 1152.0
+offset_bottom = 344.0
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 40
-text = "[PAUSED]
+text = "
 Are you sure you want to quit this lawn?
 
 Your progress will be lost."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/PauseMenu"]
+offset_top = 171.0
+offset_right = 1152.0
+offset_bottom = 194.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 32
+text = "[press ESC to unpause]"
 horizontal_alignment = 1
 
 [node name="Finishscreen" parent="Control" instance=ExtResource("6_047uy")]

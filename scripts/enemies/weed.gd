@@ -8,8 +8,29 @@ const MAX_SHOOT_DISTANCE: float = 96.0
 @export var bullet_scene: PackedScene
 var shoot_timer: float = 0.0
 
+const MAX_HEALTH: int = 10
+var health: int = MAX_HEALTH
+
+func explode() -> void:
+	var offset = randf() * 2.0 * PI
+	for i in range(5):
+		var angle = offset + i * 2.0 * PI / 5.0
+		var dir = Vector2(cos(angle), sin(angle))
+		var bullet = bullet_scene.instantiate()
+		bullet.position = $BulletSpawnPoint.global_position + dir * 4.0
+		bullet.dir = dir
+		$/root/Main/Lawn.add_child(bullet)
+		shoot_timer = BULLET_COOLDOWN
+	queue_free()
+
 func _process(delta: float) -> void:
+	if health <= 0:
+		explode()
+		return
+	
 	shoot_timer -= delta
+	
+	$Healthbar.update_bar(health, MAX_HEALTH)
 	
 	var dist = (global_position - player.position).length()
 	if shoot_timer < 0.0 and dist < MAX_SHOOT_DISTANCE and player.health > 0:
@@ -22,3 +43,9 @@ func _process(delta: float) -> void:
 		bullet.dir = dir
 		$/root/Main/Lawn.add_child(bullet)
 		shoot_timer = BULLET_COOLDOWN
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is PlayerBullet:
+		area.explode()
+		health -= 1
+		health = max(health, 0)

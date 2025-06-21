@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv3lwtiudcy5r"]
+
+[ext_resource type="Script" uid="uid://wmaknj4th5ji" path="res://scripts/enemies/healthbar.gd" id="1_hbmly"]
+
+[sub_resource type="Gradient" id="Gradient_hbmly"]
+offsets = PackedFloat32Array(0, 0.511848, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1)
+
+[node name="Healthbar" type="ColorRect"]
+offset_left = -7.0
+offset_top = -1.0
+offset_right = 7.0
+offset_bottom = 1.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_hbmly")
+health_gradient = SubResource("Gradient_hbmly")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 2.0
+color = Color(0, 1, 0, 1)

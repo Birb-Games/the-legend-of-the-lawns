@@ -15,10 +15,16 @@ var current_wage: int = 0
 func update_wage() -> void:
 	money += current_wage
 
+func _ready() -> void:
+	# Keep cursor in window - this is to prevent the mouse cursor from accidentally
+	# leaving when shooting enemies
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
 func _process(_delta: float) -> void:
 	update_hud()
 
 func load_lawn(lawn_template: PackedScene) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood
 	remove_child(neighborhood)
 	# Load lawn
@@ -32,6 +38,7 @@ func load_lawn(lawn_template: PackedScene) -> void:
 	lawn_loaded = true
 
 func return_to_neighborhood() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	player.reset_health()
 	if get_node("Lawn"):
 		get_node("Lawn").queue_free()
