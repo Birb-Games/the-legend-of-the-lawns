@@ -1,21 +1,23 @@
 extends TileMapLayer
 
+var test: Node2D
+
 func _ready() -> void:
 	for hedge_generation_point in $HedgeGenerationPoints.get_children():
-		generate_hedge(hedge_generation_point.position / 16)
+		generate_hedge(hedge_generation_point)
 	
 	prune_hedges()
 	
-func generate_hedge(centerpoint: Vector2i) -> void:
+func generate_hedge(generation_point: Node2D) -> void:
 	# Create rectangle
 	var hedge: TileMapPattern = TileMapPattern.new()
-	var size: Vector2i = Vector2i(randi_range(1, 5), randi_range(1, 5))
+	var size: Vector2i = Vector2i(randi_range(generation_point.min_size.x, generation_point.max_size.x), randi_range(generation_point.min_size.y, generation_point.max_size.y))
 	for i in range(size.x):
 		for j in range(size.y):
 			hedge.set_cell(Vector2i(i, j), 0, Vector2i(5, 1), 0)
 
 	# Place in lawn
-	set_pattern(centerpoint - (hedge.get_size() / 2), hedge)
+	set_pattern(Vector2i(generation_point.position / 16) - (hedge.get_size() / 2), hedge)
 
 # Give hedges their proper edges
 func prune_hedges() -> void:
@@ -33,7 +35,6 @@ func prune_hedges() -> void:
 			neighbors[7] = is_hedge(get_cell_atlas_coords(tile + Vector2i(1, 1)))   # Bottom Right
 
 			# Decide which hedge tile based on neighbors
-			# https://cdn.discordapp.com/attachments/1380235298599997480/1385342556291727601/hedges.png?ex=6855b84b&is=685466cb&hm=1ce057dfcd703d0d262e3a652fc8465ab4b266b588788eb5d955de270a6d4897&
 			match neighbors:
 				# No direct neighbors
 				[false, false, false, false, _, _, _, _]:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://cd2hhn1vl0cq4"]
+[gd_scene load_steps=4 format=4 uid="uid://cd2hhn1vl0cq4"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_c02vb"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_x1smj"]
+[ext_resource type="PackedScene" uid="uid://ctbigrpm1s7xa" path="res://scenes/hedge_generation_point.tscn" id="3_iyt1j"]
 
 [node name="Lawn" instance=ExtResource("1_c02vb")]
 
@@ -11,17 +12,25 @@ script = ExtResource("2_x1smj")
 
 [node name="HedgeGenerationPoints" type="Node2D" parent="TileMapLayer" index="0"]
 
-[node name="Point" type="Node2D" parent="TileMapLayer/HedgeGenerationPoints" index="0"]
+[node name="HedgeGenerationPoint" parent="TileMapLayer/HedgeGenerationPoints" index="0" instance=ExtResource("3_iyt1j")]
 position = Vector2(-80, 80)
+min_size = Vector2i(1, 1)
+max_size = Vector2i(3, 5)
 
-[node name="Point1" type="Node2D" parent="TileMapLayer/HedgeGenerationPoints" index="1"]
+[node name="HedgeGenerationPoint2" parent="TileMapLayer/HedgeGenerationPoints" index="1" instance=ExtResource("3_iyt1j")]
 position = Vector2(80, 80)
+min_size = Vector2i(1, 2)
+max_size = Vector2i(2, 4)
 
-[node name="Point2" type="Node2D" parent="TileMapLayer/HedgeGenerationPoints" index="2"]
+[node name="HedgeGenerationPoint3" parent="TileMapLayer/HedgeGenerationPoints" index="2" instance=ExtResource("3_iyt1j")]
 position = Vector2(-80, -80)
+min_size = Vector2i(1, 1)
+max_size = Vector2i(2, 5)
 
-[node name="Point3" type="Node2D" parent="TileMapLayer/HedgeGenerationPoints" index="3"]
+[node name="HedgeGenerationPoint4" parent="TileMapLayer/HedgeGenerationPoints" index="3" instance=ExtResource("3_iyt1j")]
 position = Vector2(80, -80)
+min_size = Vector2i(1, 1)
+max_size = Vector2i(2, 5)
 
 [node name="PlayerSpawn" parent="." index="1"]
 position = Vector2(0, 21)
