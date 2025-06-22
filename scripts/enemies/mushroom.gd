@@ -46,7 +46,19 @@ func explode() -> void:
 		shoot_timer = BULLET_COOLDOWN
 	queue_free()
 
+var target_scale: float
+func _ready() -> void:
+	$Healthbar.hide()
+	target_scale = scale.x
+	scale = Vector2.ZERO
+
 func _process(delta: float) -> void:
+	if scale.x < target_scale:
+		scale.x += 2.0 * delta
+		scale.x = min(scale.x, target_scale)
+		scale.y = scale.x
+		return
+	
 	if health <= 0:
 		explode()
 		return
@@ -63,6 +75,9 @@ func _process(delta: float) -> void:
 		shoot_timer = BULLET_COOLDOWN
 
 func _on_area_entered(area: Area2D) -> void:
+	if scale.x < target_scale:
+		return
+	
 	if area is PlayerBullet:
 		if randi() % 2 == 0:
 			call_deferred("shoot")
