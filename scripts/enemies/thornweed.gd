@@ -27,7 +27,7 @@ func shoot() -> void:
 	# Shoot 3 bullets
 	for i in range(-1, 2):
 		var bullet = bullet_scene.instantiate()
-		var angle = (player.position - global_position).angle() + float(i) * PI / 15.0
+		var angle = (player.position - global_position).angle() + float(i) * PI / 6.0
 		var dir = Vector2(cos(angle), sin(angle))
 		bullet.position = $BulletSpawnPoint.global_position
 		bullet.dir = dir
