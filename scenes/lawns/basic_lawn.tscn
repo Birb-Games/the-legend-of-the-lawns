@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://cd2hhn1vl0cq4"]
+[gd_scene load_steps=3 format=4 uid="uid://cd2hhn1vl0cq4"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_c02vb"]
+[ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/enemyspawner.tscn" id="2_x1smj"]
 
 [node name="Lawn" instance=ExtResource("1_c02vb")]
 
@@ -11,7 +12,27 @@ tile_map_data = PackedByteArray("AAD2//b/AAABAAAAAAD2//f/AAABAAAAAAD2//j/AAABAAA
 position = Vector2(0, 21)
 
 [node name="Lawnmower" parent="." index="2"]
-position = Vector2(0, 0)
+position = Vector2(0, 5)
 
 [node name="WaterGun" parent="." index="3"]
 position = Vector2(0, 42)
+
+[node name="Enemyspawner" parent="Spawners" index="0" instance=ExtResource("2_x1smj")]
+position = Vector2(-125, 160)
+
+[node name="Enemyspawner2" parent="Spawners" index="1" instance=ExtResource("2_x1smj")]
+position = Vector2(125, 160)
+spawn_count = 3
+
+[node name="Enemyspawner3" parent="Spawners" index="2" instance=ExtResource("2_x1smj")]
+position = Vector2(125, -160)
+
+[node name="Enemyspawner4" parent="Spawners" index="3" instance=ExtResource("2_x1smj")]
+position = Vector2(250, 0)
+
+[node name="Enemyspawner5" parent="Spawners" index="4" instance=ExtResource("2_x1smj")]
+position = Vector2(-250, 0)
+
+[node name="Enemyspawner6" parent="Spawners" index="5" instance=ExtResource("2_x1smj")]
+position = Vector2(-125, -160)
+spawn_count = 3

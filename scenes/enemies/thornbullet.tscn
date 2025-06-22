@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtfabyqtkdwdj"]
+
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/seedbullet.tscn" id="1_3qx4r"]
+[ext_resource type="Texture2D" uid="uid://duskpr1rha5hw" path="res://assets/textures/enemies/thornbullet.png" id="2_xakhk"]
+[ext_resource type="Texture2D" uid="uid://cekmcpfq5k843" path="res://assets/textures/enemies/thornbullet_rotated.png" id="3_xakhk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qx4r"]
+size = Vector2(4, 4)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3qx4r"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+radial_velocity_min = 45.0
+radial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.25
+anim_speed_min = 0.5
+anim_speed_max = 0.5
+
+[node name="Thornbullet" instance=ExtResource("1_3qx4r")]
+speed = 110.0
+damage_amt = 2
+directional = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_xakhk")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_3qx4r")
+
+[node name="GPUParticles2D" parent="." index="2"]
+texture = ExtResource("3_xakhk")
+lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_3qx4r")

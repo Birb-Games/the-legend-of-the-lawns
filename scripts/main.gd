@@ -15,10 +15,16 @@ var current_wage: int = 0
 func update_wage() -> void:
 	money += current_wage
 
+func _ready() -> void:
+	# Keep cursor in window - this is to prevent the mouse cursor from accidentally
+	# leaving when shooting enemies
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
 func _process(_delta: float) -> void:
 	update_hud()
 
 func load_lawn(lawn_template: PackedScene) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood
 	remove_child(neighborhood)
 	# Load lawn
@@ -32,6 +38,8 @@ func load_lawn(lawn_template: PackedScene) -> void:
 	lawn_loaded = true
 
 func return_to_neighborhood() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	player.reset_health()
 	if get_node("Lawn"):
 		get_node("Lawn").queue_free()
 	if !neighborhood.is_inside_tree():
@@ -55,6 +63,7 @@ func update_hud_lawn():
 		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
 	
 	$HUD.update_progress_bar($Lawn.get_perc_cut())
+	$HUD.update_health_bar($Player.get_hp_perc())
 
 func update_hud_neighborhood():
 	if $Player.can_talk_to_neighbor:
@@ -66,6 +75,7 @@ func update_hud_neighborhood():
 	$HUD/Control/InfoText.visible = !$HUD/Control/NeighborMenu.visible
 	
 	$HUD.update_progress_bar(-1.0) # -1.0 hides the progress bar
+	$HUD.update_health_bar(-1.0)
 
 func update_hud():
 	if lawn_loaded:
@@ -75,3 +85,9 @@ func update_hud():
 	
 	$HUD.update_day_counter(current_day)
 	$HUD.update_money_counter(money)
+	if player.health > 0:
+		$HUD.update_damage_flash(player.get_damage_timer_perc())
+	else:
+		# Hide the damage flash when the player lost all health to avoid
+		# having it cover up the fail screen
+		$HUD.update_damage_flash(-1.0)

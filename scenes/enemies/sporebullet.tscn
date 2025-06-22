@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dle1nhc76n43p"]
+
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/seedbullet.tscn" id="1_0q5ia"]
+[ext_resource type="Texture2D" uid="uid://d10tw1xn60n48" path="res://assets/textures/enemies/sporebullet.png" id="2_gaxo7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0q5ia"]
+radius = 3.16228
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0q5ia"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+radial_velocity_min = 30.0
+radial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.13
+scale_max = 0.13
+anim_speed_min = 0.5
+anim_speed_max = 0.5
+
+[node name="Sporebullet" instance=ExtResource("1_0q5ia")]
+speed = 120.0
+rotation_speed = 360.0
+damage_amt = 5
+lifetime = 3.0
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gaxo7")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_0q5ia")
+
+[node name="GPUParticles2D" parent="." index="2"]
+texture = ExtResource("2_gaxo7")
+process_material = SubResource("ParticleProcessMaterial_0q5ia")

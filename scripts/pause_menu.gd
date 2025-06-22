@@ -9,3 +9,4 @@ func _on_yes_pressed() -> void:
 	get_tree().paused = false
 	# Return to neighborhood
 	$/root/Main.return_to_neighborhood()
+	$/root/Main.current_day += 1
