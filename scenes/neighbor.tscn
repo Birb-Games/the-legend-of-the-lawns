@@ -71,21 +71,23 @@ animations = [{
 size = Vector2(18, 42)
 
 [node name="Neighbor" type="AnimatedSprite2D" groups=["neighbor"]]
-z_index = 1
+y_sort_enabled = true
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_k1hep")
 animation = &"neighbor_bob"
+offset = Vector2(0, -20)
 script = ExtResource("1_k1hep")
 lawn_template = ExtResource("3_x7cql")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_nrakx")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, 19)
+position = Vector2(0, -1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_dsynj")
 
