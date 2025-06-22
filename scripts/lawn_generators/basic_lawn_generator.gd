@@ -9,6 +9,9 @@ func _ready() -> void:
 	prune_hedges()
 	
 func generate_hedge(generation_point: Node2D) -> void:
+	if randf() > generation_point.generation_chance:
+		return
+	
 	# Create rectangle
 	var hedge: TileMapPattern = TileMapPattern.new()
 	var size: Vector2i = Vector2i(randi_range(generation_point.min_size.x, generation_point.max_size.x), randi_range(generation_point.min_size.y, generation_point.max_size.y))
