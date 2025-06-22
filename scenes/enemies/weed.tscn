@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://bhnk8apyedtit"]
+
+[ext_resource type="Script" uid="uid://p2qq0tajr612" path="res://scripts/enemies/weed.gd" id="1_d5vux"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_f2hbu"]
+[ext_resource type="Texture2D" uid="uid://cf1sp2ca8nk66" path="res://assets/textures/enemies/weed1.png" id="1_m1ou3"]
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/seedbullet.tscn" id="2_gohqb"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="4_pfolx"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="6_oqtah"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37qs1"]
+size = Vector2(14, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2hbu"]
+atlas = ExtResource("1_m1ou3")
+region = Rect2(0, 0, 14, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5vux"]
+atlas = ExtResource("1_m1ou3")
+region = Rect2(14, 0, 14, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfolx"]
+atlas = ExtResource("1_m1ou3")
+region = Rect2(28, 0, 14, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gohqb"]
+atlas = ExtResource("1_m1ou3")
+region = Rect2(42, 0, 14, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqtah"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2hbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5vux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfolx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gohqb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Weed" type="Area2D"]
+scale = Vector2(0.65, 0.65)
+script = ExtResource("1_d5vux")
+bullet_scene = ExtResource("2_gohqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10.1667)
+shape = SubResource("RectangleShape2D_37qs1")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -1.16667)
+scale = Vector2(0.25, 0.179487)
+texture = ExtResource("1_f2hbu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10.6667)
+sprite_frames = SubResource("SpriteFrames_oqtah")
+autoplay = "default"
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("4_pfolx")]
+position = Vector2(0, -9.23077)
+scale = Vector2(1.1, 1.1)
+damage_amt = 2
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -13.8462)
+
+[node name="Healthbar" parent="." instance=ExtResource("6_oqtah")]
+offset_top = -22.5385
+offset_bottom = -20.5385
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

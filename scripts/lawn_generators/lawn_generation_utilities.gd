@@ -2,12 +2,33 @@ extends Node
 class_name LawnGenerationUtilities
 
 # Used for neighbor checking
-const DIRECTIONS: Array = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT,
-	Vector2i(-1, -1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(1, 1)]
+const DIRECTIONS: Array = [
+	Vector2i.UP, 
+	Vector2i.DOWN, 
+	Vector2i.LEFT, 
+	Vector2i.RIGHT,
+	Vector2i(-1, -1), 
+	Vector2i(1, -1), 
+	Vector2i(-1, 1), 
+	Vector2i(1, 1),
+]
 
-const HEDGE_TILES: Array = [Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1),
-	Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2),
-	Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3)]
+const HEDGE_TILES: Array = [
+	Vector2i(3, 1), 
+	Vector2i(4, 1), 
+	Vector2i(5, 1), 
+	Vector2i(6, 1),
+	Vector2i(1, 2), 
+	Vector2i(2, 2), 
+	Vector2i(3, 2), 
+	Vector2i(4, 2), 
+	Vector2i(5, 2), 
+	Vector2i(6, 2), 
+	Vector2i(7, 2),
+	Vector2i(0, 3), 
+	Vector2i(1, 3), 
+	Vector2i(2, 3),
+]
 
 # Give hedges their proper edges
 static func prune_hedges(tileMapLayer: TileMapLayer) -> void:

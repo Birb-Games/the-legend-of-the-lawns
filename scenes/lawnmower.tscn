@@ -43,10 +43,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf4ts"]
-size = Vector2(16, 14)
+size = Vector2(16, 13)
 
 [node name="Lawnmower" type="RigidBody2D" groups=["lawnmower"]]
-z_index = 1
 collision_layer = 6
 gravity_scale = 0.0
 lock_rotation = true
@@ -55,6 +54,7 @@ max_contacts_reported = 16
 script = ExtResource("1_a44u4")
 
 [node name="Shadows" type="Node2D" parent="."]
+position = Vector2(0, -7)
 
 [node name="ShadowRight" type="Sprite2D" parent="Shadows"]
 visible = false
@@ -81,11 +81,13 @@ scale = Vector2(0.382304, 0.923077)
 texture = ExtResource("3_vbbpe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
 scale = Vector2(0.941176, 0.941176)
 sprite_frames = SubResource("SpriteFrames_8t1u5")
 animation = &"left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_pf4ts")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

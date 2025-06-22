@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://cuwajf6p2vxkf"]
+
+[ext_resource type="Texture2D" uid="uid://y5u8hufuopu8" path="res://assets/textures/enemies/flower2.png" id="1_0k7a1"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_q44w2"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="3_u1a5l"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="4_d6c6e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hgx1"]
+size = Vector2(12, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q44w2"]
+atlas = ExtResource("1_0k7a1")
+region = Rect2(0, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1a5l"]
+atlas = ExtResource("1_0k7a1")
+region = Rect2(14, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6c6e"]
+atlas = ExtResource("1_0k7a1")
+region = Rect2(28, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2k4l"]
+atlas = ExtResource("1_0k7a1")
+region = Rect2(42, 0, 14, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mfb15"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q44w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1a5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6c6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2k4l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Redflower" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_8hgx1")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -1.16667)
+scale = Vector2(0.25, 0.179487)
+texture = ExtResource("1_q44w2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_mfb15")
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("3_u1a5l")]
+position = Vector2(0, -11)
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="Healthbar" parent="." instance=ExtResource("4_d6c6e")]
+offset_top = -23.0
+offset_bottom = -21.0

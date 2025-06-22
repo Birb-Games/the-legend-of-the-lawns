@@ -1,35 +1,47 @@
 extends Sprite2D
 
-@onready var particles: GPUParticles2D = $GPUParticles2D
-@onready var raycast: RayCast2D = $RayCast2D
+# @onready var particles: GPUParticles2D = $GPUParticles2D
+# @onready var raycast: RayCast2D = $RayCast2D
 
-var radius = position.x
-var size = scale.x
+@onready var radius = (position - get_parent().get_node("AnimatedSprite2D").position).length()
+var size = scale.y
+
+@export var bullet_scene: PackedScene
+var SHOOT_COOLDOWN: float = 0.25
+var shoot_timer: float = 0.0
 
 func _ready() -> void:
 	hide()
 
-# For debug purposes,
-# outputs the object that the water gun is hitting
-func debug_output_target() -> void:
-	if Input.is_action_pressed("shoot") and raycast.is_colliding():
-		print("Water gun is hitting: ", raycast.get_collider().name)
-
 func update_transform() -> void:
-	position = (get_global_mouse_position() - get_parent().position).normalized() * radius
-	rotation = (get_global_mouse_position() - get_parent().position).normalized().angle()
+	var player_pos = get_parent().get_node("AnimatedSprite2D").position
+	var global_player_pos = get_parent().position + player_pos
+	position = (get_global_mouse_position() - global_player_pos).normalized() * radius + player_pos
+	rotation = (get_global_mouse_position() - global_player_pos).normalized().angle()
 	if abs(rotation) < PI / 2:
 		scale.y = size
 	else:
 		scale.y = -size
 
-func _process(_delta: float) -> void:
-	particles.emitting = visible
-	raycast.enabled = visible
+func _process(delta: float) -> void:
+	# particles.emitting = visible
+	# raycast.enabled = visible
 	
-	if visible:
-		update_transform()
-		var shooting = Input.is_action_pressed("shoot")
-		particles.emitting = shooting
-		raycast.enabled = shooting
-		debug_output_target()
+	shoot_timer -= delta
+	
+	if !visible:
+		return
+		
+	update_transform()
+	
+	if shoot_timer <= 0.0 and Input.is_action_pressed("shoot_primary"):
+		var bullet = bullet_scene.instantiate()
+		bullet.dir = Vector2(cos(rotation), sin(rotation))
+		bullet.position = $BulletSpawnPoint.global_position
+		$/root/Main/Lawn.add_child(bullet)
+		shoot_timer = SHOOT_COOLDOWN
+		return
+	
+	# var shooting = Input.is_action_pressed("shoot_secondary")
+	# particles.emitting = shooting
+	# raycast.enabled = shooting
