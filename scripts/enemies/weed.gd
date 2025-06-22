@@ -6,7 +6,7 @@ const BULLET_COOLDOWN: float = 4.5
 const MAX_SHOOT_DISTANCE: float = 96.0
 
 @export var bullet_scene: PackedScene
-var shoot_timer: float = 0.0
+var shoot_timer: float = BULLET_COOLDOWN
 
 const MAX_HEALTH: int = 10
 var health: int = MAX_HEALTH

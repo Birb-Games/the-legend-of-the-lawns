@@ -2,10 +2,15 @@ extends Node2D
 
 @export var enemies: Array[PackedScene]
 @export var difficulty: int = 0
-@export var enemy_probability: float = 1.0
 # Set this to 0 if you want a random number of enemies
 # This should probably be a value <= 7
 @export var spawn_count: int = 0
+var can_spawn: bool = true
+# Set this to a value > 0.0 if you want enemies to potentially pre-generate
+# Set it to 1 if you want enemies to spawn immediately
+# Note that if the value is greater than 0.0, then it will not spawn enemies
+# when the lawn mower gets within the "Activation Zone"
+@export var spawn_probability: float = 0.0
 
 # Weights of enemy counts
 func get_enemy_count() -> int:
@@ -76,14 +81,14 @@ func spawn_single_type(count: int) -> void:
 	
 	if count == 1:
 		var enemy = enemies[index].instantiate()
-		add_child(enemy)
+		$Enemies.call_deferred("add_child", enemy)
 		return
 	
 	var positions = gen_enemy_positions(count)
 	for i in range(count):
 		var enemy = enemies[index].instantiate()
 		enemy.position = positions[i]
-		add_child(enemy)
+		$Enemies.call_deferred("add_child", enemy)
 
 # Spawns multiple types of enemies
 func spawn_rand_types(count: int) -> void:
@@ -94,10 +99,13 @@ func spawn_rand_types(count: int) -> void:
 		var index = get_rand_enemy_ind(weights)
 		var enemy = enemies[index].instantiate()
 		enemy.position = positions[i]
-		add_child(enemy)
+		$Enemies.call_deferred("add_child", enemy)
 
-func _ready() -> void:
-	if randf() > enemy_probability:
+func spawn() -> void:
+	if !can_spawn:
+		return
+	
+	if $Enemies.get_child_count() > 0:
 		return
 	
 	var enemy_count = spawn_count
@@ -112,3 +120,16 @@ func _ready() -> void:
 		spawn_single_type(enemy_count)
 	else:
 		spawn_rand_types(enemy_count)
+
+func _ready() -> void:
+	if randf() > spawn_probability:
+		if spawn_probability > 0.0:
+			can_spawn = false
+		return
+	spawn()
+	can_spawn = false
+
+func _on_activation_zone_body_entered(body: Node2D) -> void:
+	if body.is_in_group("lawnmower"):
+		spawn()
+		can_spawn = false
