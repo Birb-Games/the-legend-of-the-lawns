@@ -108,7 +108,8 @@ func is_stuck() -> bool:
 
 func rect():
 	var r = $CollisionShape2D.shape.get_rect()
-	r.position += position
+	r.position += get_sprite_pos()
+	r.size *= 1.05
 	return r
 
 # Returns global position of the shadow

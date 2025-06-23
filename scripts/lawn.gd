@@ -25,12 +25,7 @@ func mow_tile(pos: Vector2i):
 
 func destroy_hedge(pos: Vector2i):
 	var cell_atlas = $TileMapLayer.get_cell_atlas_coords(pos)
-	var hedges = [Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
-	var found = false
-	for hedge in hedges:
-		if cell_atlas == hedge:
-			found = true
-	if !found:
+	if !LawnGenerationUtilities.is_hedge(cell_atlas):
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 2), 0)
 
@@ -72,7 +67,7 @@ func _process(_delta: float) -> void:
 	
 	water_gun_interaction()
 	
-	# Handle lawn mower interactin
+	# Handle lawn mower interaction
 	# if the water gun is picked up (not inside the tree),
 	# then do not allow the mower to be pushed
 	$Lawnmower.can_push = !water_gun_item.is_inside_tree()

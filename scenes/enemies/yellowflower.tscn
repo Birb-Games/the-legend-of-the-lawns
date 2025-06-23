@@ -1,9 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://kai60sy8qsix"]
+[gd_scene load_steps=19 format=3 uid="uid://kai60sy8qsix"]
 
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_6wda8"]
+[ext_resource type="Script" uid="uid://baexw2k0p7iea" path="res://scripts/enemies/yellowflower.gd" id="1_laaae"]
 [ext_resource type="Texture2D" uid="uid://31svn2gchyy2" path="res://assets/textures/enemies/flower1.png" id="1_p20xk"]
+[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/thornbullet.tscn" id="2_s7thy"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="3_4jv5a"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="4_4gi0e"]
+[ext_resource type="Texture2D" uid="uid://dseuw5y7iibxp" path="res://assets/textures/enemies/flower1_stunned.png" id="5_q4o2l"]
+[ext_resource type="PackedScene" uid="uid://b73kqhktknig" path="res://scenes/stun_particles.tscn" id="7_v3rwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kafab"]
 size = Vector2(12, 20)
@@ -24,6 +28,22 @@ region = Rect2(28, 0, 14, 20)
 atlas = ExtResource("1_p20xk")
 region = Rect2(42, 0, 14, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc2lr"]
+atlas = ExtResource("5_q4o2l")
+region = Rect2(0, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3cfw"]
+atlas = ExtResource("5_q4o2l")
+region = Rect2(14, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gef0y"]
+atlas = ExtResource("5_q4o2l")
+region = Rect2(28, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkioa"]
+atlas = ExtResource("5_q4o2l")
+region = Rect2(42, 0, 14, 20)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7thy"]
 animations = [{
 "frames": [{
@@ -42,10 +62,30 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hc2lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3cfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gef0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkioa")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 3.0
 }]
 
 [node name="Yellowflower" type="Area2D"]
 scale = Vector2(0.75, 0.75)
+collision_mask = 5
+script = ExtResource("1_laaae")
+bullet_scene = ExtResource("2_s7thy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)
@@ -59,6 +99,7 @@ texture = ExtResource("1_6wda8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_s7thy")
+autoplay = "default"
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("3_4jv5a")]
 position = Vector2(0, -11)
@@ -69,3 +110,10 @@ position = Vector2(0, -15)
 [node name="Healthbar" parent="." instance=ExtResource("4_4gi0e")]
 offset_top = -24.0
 offset_bottom = -22.0
+
+[node name="StunParticles" parent="." instance=ExtResource("7_v3rwy")]
+position = Vector2(0, -24)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
