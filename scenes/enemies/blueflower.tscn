@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://1fh3tiwr4hty"]
+[gd_scene load_steps=20 format=3 uid="uid://1fh3tiwr4hty"]
 
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_8pltn"]
 [ext_resource type="Script" uid="uid://du4et2to7bk2c" path="res://scripts/enemies/blueflower.gd" id="1_w6ifc"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dle1nhc76n43p" path="res://scenes/enemies/sporebullet.tscn" id="3_m8m4i"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="3_w2npi"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="4_p01mu"]
+[ext_resource type="Texture2D" uid="uid://doenufbaj2b8r" path="res://assets/textures/enemies/flower3_stunned.png" id="6_50qnh"]
+[ext_resource type="PackedScene" uid="uid://b73kqhktknig" path="res://scenes/stun_particles.tscn" id="8_jjidf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rmm5g"]
 size = Vector2(10.6667, 19.3333)
@@ -27,6 +29,22 @@ region = Rect2(28, 0, 14, 20)
 atlas = ExtResource("2_7h8xd")
 region = Rect2(42, 0, 14, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ofj8"]
+atlas = ExtResource("6_50qnh")
+region = Rect2(0, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35pos"]
+atlas = ExtResource("6_50qnh")
+region = Rect2(14, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nyer"]
+atlas = ExtResource("6_50qnh")
+region = Rect2(28, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvcwv"]
+atlas = ExtResource("6_50qnh")
+region = Rect2(42, 0, 14, 20)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_m8m4i"]
 animations = [{
 "frames": [{
@@ -45,6 +63,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ofj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35pos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nyer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvcwv")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 5.0
 }]
 
 [node name="Blueflower" type="Area2D"]
@@ -76,6 +111,9 @@ position = Vector2(0, -10.6667)
 [node name="Healthbar" parent="." instance=ExtResource("4_p01mu")]
 offset_top = -23.6667
 offset_bottom = -21.6667
+
+[node name="StunParticles" parent="." instance=ExtResource("8_jjidf")]
+position = Vector2(0, -24)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

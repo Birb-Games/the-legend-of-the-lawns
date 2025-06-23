@@ -13,6 +13,12 @@ const BULLET_SPEED: float = 100.0
 var inside_lawnmower: bool = false
 const LAWNMOWER_DAMAGE_COOLDOWN: float = 1.0
 var lawnmower_damage_timer: float = 0.0
+const STUN_AMT: float = 15.0
+var stun_timer: float = 0.0
+
+func _ready() -> void:
+	$StunParticles.emitting = false
+	$StunParticles.hide()
 
 func explode() -> void:
 	var offset = randf() * 2.0 * PI
@@ -26,6 +32,9 @@ func explode() -> void:
 	queue_free()
 
 func shoot() -> void:
+	if player.health <= 0:
+		return
+	
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = $BulletSpawnPoint.global_position
 	bullet.damage_amt = BULLET_DAMAGE
@@ -36,9 +45,20 @@ func shoot() -> void:
 func _process(delta: float) -> void:
 	$Healthbar.update_bar(health, MAX_HEALTH)
 	
-	shoot_timer -= delta
+	if stun_timer > 0.0:
+		stun_timer -= delta
+		$StunParticles.emitting = true
+		$StunParticles.show()
+		$AnimatedSprite2D.animation = "stunned"
+	else:
+		$StunParticles.emitting = false
+		$StunParticles.hide()
+		$AnimatedSprite2D.animation = "default"
+	
+	if stun_timer <= 0.0:
+		shoot_timer -= delta
 	var dist = (player.get_sprite_pos() - $BulletSpawnPoint.global_position).length()
-	if dist < SHOOT_RANGE and shoot_timer <= 0.0:
+	if dist < SHOOT_RANGE and shoot_timer <= 0.0 and stun_timer <= 0.0:
 		shoot()
 		shoot_timer = SHOOT_COOLDOWN
 	
@@ -47,15 +67,21 @@ func _process(delta: float) -> void:
 		health -= 1
 		health = max(health, 0)
 		lawnmower_damage_timer = LAWNMOWER_DAMAGE_COOLDOWN
+		stun()
 	
 	if health <= 0:
 		explode()
+
+func stun() -> void:
+	stun_timer += STUN_AMT
+	stun_timer = max(stun_timer, STUN_AMT)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet:
 		area.explode()
 		health -= 1
 		health = max(health, 0)
+		stun()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("lawnmower"):

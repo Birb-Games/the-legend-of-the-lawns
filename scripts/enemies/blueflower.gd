@@ -2,6 +2,9 @@ extends Area2D
 
 @onready var player: Player = $/root/Main/Player
 
+@export var thorn_bullet: PackedScene
+@export var spore_bullet: PackedScene
+
 const MAX_HEALTH: int = 6
 var health: int = MAX_HEALTH
 const SHOOT_COOLDOWN: float = 6.0
@@ -11,9 +14,12 @@ const BULLET_SPEED: float = 70.0
 var inside_lawnmower: bool = false
 const LAWNMOWER_DAMAGE_COOLDOWN: float = 1.0
 var lawnmower_damage_timer: float = 0.0
+const STUN_AMT: float = 12.0
+var stun_timer: float = 0.0
 
-@export var thorn_bullet: PackedScene
-@export var spore_bullet: PackedScene
+func _ready() -> void:
+	$StunParticles.hide()
+	$StunParticles.emitting = false
 
 func rand_bullet() -> Node:
 	if randi() % 3 == 0:
@@ -32,6 +38,9 @@ func explode() -> void:
 	queue_free()
 
 func shoot() -> void:
+	if player.health <= 0:
+		return
+	
 	var offset = randf() * 2.0 * PI
 	# Shoot 3 bullets at once
 	for i in range(0, 6):
@@ -45,9 +54,20 @@ func shoot() -> void:
 func _process(delta: float) -> void:
 	$Healthbar.update_bar(health, MAX_HEALTH)
 	
-	shoot_timer -= delta
+	if stun_timer > 0.0:
+		stun_timer -= delta
+		$StunParticles.emitting = true
+		$StunParticles.show()
+		$AnimatedSprite2D.animation = "stunned"
+	else:
+		$StunParticles.emitting = false
+		$StunParticles.hide()
+		$AnimatedSprite2D.animation = "default"
+	
+	if stun_timer <= 0.0:
+		shoot_timer -= delta
 	var dist = (player.get_sprite_pos() - $BulletSpawnPoint.global_position).length()
-	if dist < SHOOT_RANGE and shoot_timer <= 0.0:
+	if dist < SHOOT_RANGE and shoot_timer <= 0.0 and stun_timer <= 0.0:
 		shoot()
 		shoot_timer = SHOOT_COOLDOWN
 	
@@ -56,15 +76,21 @@ func _process(delta: float) -> void:
 		health -= 1
 		health = max(health, 0)
 		lawnmower_damage_timer = LAWNMOWER_DAMAGE_COOLDOWN
+		stun()
 	
 	if health <= 0:
 		explode()
+
+func stun() -> void:
+	stun_timer += STUN_AMT
+	stun_timer = max(stun_timer, STUN_AMT)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet:
 		area.explode()
 		health -= 1
 		health = max(health, 0)
+		stun()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("lawnmower"):
