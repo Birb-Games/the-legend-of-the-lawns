@@ -10,6 +10,14 @@ var shoot_timer: float = BULLET_COOLDOWN
 
 const MAX_HEALTH: int = 16
 var health: int = MAX_HEALTH
+# Whether the enemy is engaged in fighting the player (the player shot at the enemy)
+var engaged: bool = false
+
+func player_in_range() -> bool:
+	var dist = (global_position - player.position).length()
+	if engaged:
+		return dist < MAX_SHOOT_DISTANCE * 2.0
+	return dist < MAX_SHOOT_DISTANCE
 
 func get_dir() -> String:
 	var diff = player.get_sprite_pos() - global_position
@@ -68,8 +76,7 @@ func _process(delta: float) -> void:
 	
 	shoot_timer -= delta
 	
-	var dist = (global_position - player.position).length()
-	if shoot_timer < 0.0 and dist < MAX_SHOOT_DISTANCE and player.health > 0:
+	if shoot_timer < 0.0 and player_in_range() and player.health > 0:
 		shoot()
 		shoot_timer = BULLET_COOLDOWN
 
@@ -78,6 +85,8 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	if area is PlayerBullet:
+		engaged = true
+		# Retaliate!
 		if randi() % 2 == 0:
 			call_deferred("shoot")
 		health -= 1

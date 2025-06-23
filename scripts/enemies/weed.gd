@@ -10,6 +10,14 @@ var shoot_timer: float = 0.0
 
 const MAX_HEALTH: int = 10
 var health: int = MAX_HEALTH
+# Whether the enemy is engaged in fighting the player (the player shot at the enemy)
+var engaged: bool = false
+
+func player_in_range() -> bool:
+	var dist = (global_position - player.position).length()
+	if engaged:
+		return dist < MAX_SHOOT_DISTANCE * 2.0
+	return dist < MAX_SHOOT_DISTANCE
 
 func explode() -> void:
 	var offset = randf() * 2.0 * PI
@@ -43,8 +51,7 @@ func _process(delta: float) -> void:
 	
 	$Healthbar.update_bar(health, MAX_HEALTH)
 	
-	var dist = (global_position - player.position).length()
-	if shoot_timer < 0.0 and dist < MAX_SHOOT_DISTANCE and player.health > 0:
+	if shoot_timer < 0.0 and player_in_range() and player.health > 0:
 		var bullet = bullet_scene.instantiate()
 		# Some inaccuracy
 		var rand_angle = randf() * PI / 3.0 - PI / 6.0
@@ -60,6 +67,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	if area is PlayerBullet:
+		engaged = true
 		area.explode()
 		health -= 1
 		health = max(health, 0)
