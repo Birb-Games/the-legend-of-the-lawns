@@ -42,7 +42,6 @@ func explode() -> void:
 		bullet.position = $BulletSpawnPoint.global_position + dir * 4.0
 		bullet.dir = dir
 		$/root/Main/Lawn.add_child(bullet)
-		shoot_timer = BULLET_COOLDOWN
 	queue_free()
 
 var target_scale: float

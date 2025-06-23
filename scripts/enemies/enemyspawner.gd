@@ -12,79 +12,17 @@ var can_spawn: bool = true
 # when the lawn mower gets within the "Activation Zone"
 @export var spawn_probability: float = 0.0
 
-# Weights of enemy counts
-func get_enemy_count() -> int:
-	var counts = []
-	match difficulty:
-		0:
-			counts = [ 3, 1, 1 ]
-		1:
-			counts = [ 3, 3, 1 ]
-		2:
-			counts = [ 5, 3, 1 ]
-		3:
-			counts = [ 5, 3, 3, 3 ]
-		4:
-			counts = [ 5, 3 ]
-		5:
-			counts = [ 5, 5, 3 ]
-		6:
-			counts = [ 7, 5, 3 ]
-		_:
-			counts = [ 7, 5 ]
-	
-	return counts[randi() % len(counts)]
-
-# Doesn't have to add to 1.0, weighted proportionally
-func get_enemy_weights() -> Array[float]:
-	match difficulty:
-		0:
-			return [ 6.0, 3.0, 1.0 ]
-		1:
-			return [ 2.0, 1.0, 1.0 ]
-		_:
-			return [ 1.0, 1.0, 1.0 ]
-
-func get_rand_enemy_ind(weights: Array[float]) -> int:
-	var total = 0.0
-	for w in weights:
-		total += w
-	if total == 0.0:
-		return 0
-	
-	var val = randf()
-	var current_total = 0.0
-	for i in range(len(weights)):
-		var weight = weights[i] / total
-		if val >= current_total and val < current_total + weight:
-			return i
-		current_total += weight
-	
-	return max(len(weights) - 1, 0)
-
-func gen_enemy_positions(count: int) -> Array[Vector2]:
-	var radius = 20.0 + count * 4.0
-	var start_angle = randf() * PI * 2.0
-	var positions: Array[Vector2] = []
-	for i in range(count):
-		var angle = start_angle + i * 2.0 * PI / count
-		var dist = radius - 10.0 * randf()
-		var x = cos(angle) * dist
-		var y = sin(angle) * dist
-		positions.append(Vector2(x, y))
-	return positions
-
 # Spawns only one type of enemy
 func spawn_single_type(count: int) -> void:
-	var weights = get_enemy_weights()
-	var index = get_rand_enemy_ind(weights)
+	var weights = Spawning.get_weights(Spawning.WEED_WEIGHT_TABLE, difficulty)
+	var index = Spawning.get_rand_ind(weights)
 	
 	if count == 1:
 		var enemy = enemies[index].instantiate()
 		$Enemies.call_deferred("add_child", enemy)
 		return
 	
-	var positions = gen_enemy_positions(count)
+	var positions = Spawning.gen_enemy_positions_circle(count, 20.0, 4.0, 10.0)
 	for i in range(count):
 		var enemy = enemies[index].instantiate()
 		enemy.position = positions[i]
@@ -92,11 +30,10 @@ func spawn_single_type(count: int) -> void:
 
 # Spawns multiple types of enemies
 func spawn_rand_types(count: int) -> void:
-	var weights = get_enemy_weights()
-	
-	var positions = gen_enemy_positions(count)
+	var weights = Spawning.get_weights(Spawning.WEED_WEIGHT_TABLE, difficulty)
+	var positions = Spawning.gen_enemy_positions_circle(count, 20.0, 4.0, 10.0)
 	for i in range(count):
-		var index = get_rand_enemy_ind(weights)
+		var index = Spawning.get_rand_ind(weights)
 		var enemy = enemies[index].instantiate()
 		enemy.position = positions[i]
 		$Enemies.call_deferred("add_child", enemy)
@@ -110,7 +47,7 @@ func spawn() -> void:
 	
 	var enemy_count = spawn_count
 	if enemy_count == 0:
-		enemy_count = get_enemy_count()
+		enemy_count = Spawning.gen_rand_count(Spawning.WEED_COUNT_TABLE, difficulty)
 	
 	if enemy_count == 1:
 		spawn_single_type(1)

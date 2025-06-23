@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuwajf6p2vxkf"]
+[gd_scene load_steps=13 format=3 uid="uid://cuwajf6p2vxkf"]
 
 [ext_resource type="Texture2D" uid="uid://y5u8hufuopu8" path="res://assets/textures/enemies/flower2.png" id="1_0k7a1"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_q44w2"]
+[ext_resource type="Script" uid="uid://clcatlrogls0q" path="res://scripts/enemies/redflower.gd" id="1_w2k4l"]
+[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/thornbullet.tscn" id="2_mfb15"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="3_u1a5l"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="4_d6c6e"]
 
@@ -46,6 +48,9 @@ animations = [{
 
 [node name="Redflower" type="Area2D"]
 scale = Vector2(0.75, 0.75)
+collision_mask = 5
+script = ExtResource("1_w2k4l")
+bullet_scene = ExtResource("2_mfb15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.5)
@@ -59,6 +64,7 @@ texture = ExtResource("1_q44w2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_mfb15")
+autoplay = "default"
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("3_u1a5l")]
 position = Vector2(0, -11)
@@ -69,3 +75,7 @@ position = Vector2(0, -15)
 [node name="Healthbar" parent="." instance=ExtResource("4_d6c6e")]
 offset_top = -23.0
 offset_bottom = -21.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
