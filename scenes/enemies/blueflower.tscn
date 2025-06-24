@@ -99,7 +99,7 @@ scale = Vector2(0.25, 0.179487)
 texture = ExtResource("1_8pltn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -10.6667)
+position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_m8m4i")
 autoplay = "default"
 
