@@ -1,3 +1,5 @@
+class_name Main
+
 extends Node2D
 
 @onready var neighborhood: Node2D = $Neighborhood

@@ -45,24 +45,19 @@ y_sort_enabled = true
 position = Vector2(328, -155)
 display_name = "Neighbor Bob"
 lawn_template = ExtResource("3_xlwpo")
-possible_dialog = PackedStringArray("Oh, you want to mow my lawn? I suppose it is a bit overgrown...", "My lawn needs to be mowed today but I\'m too lazy.")
-wage = 1
 
 [node name="NeighborJim" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-312, -155)
 animation = &"neighbor_jim"
 display_name = "Neighbor Jim"
 lawn_template = ExtResource("3_xlwpo")
-possible_dialog = PackedStringArray("Oh, you want to mow my lawn? I suppose it is a bit overgrown...", "My lawn needs to be mowed today but I\'m too lazy.")
-wage = 1
 
 [node name="NeighborNancy" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(648, -155)
 animation = &"neighbor_nancy"
 display_name = "Neighbor Nancy"
 lawn_template = ExtResource("3_xlwpo")
-possible_dialog = PackedStringArray("Oh, you want to mow my lawn? I suppose it is a bit overgrown...", "My lawn needs to be mowed today but I\'m too lazy.")
-wage = 1
+start_day = 3
 
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="."]
 

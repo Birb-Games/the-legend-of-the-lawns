@@ -1,4 +1,4 @@
-extends ColorRect
+extends Control
 
 func _on_no_pressed() -> void:
 	hide()

@@ -33,7 +33,12 @@ func _process(_delta: float) -> void:
 	
 	# Open pause menu for lawn
 	if Input.is_action_just_pressed("ui_cancel"):
-		toggle_pause_menu()
+		if $Control/NeighborMenu.visible:
+			# Exit out of neighbor menu
+			$Control/NeighborMenu.hide()
+			$Control/NeighborMenu.hide_neighbor()
+		else:
+			toggle_pause_menu()
 
 # used for pop up messages to provide information to the player
 func update_info_text(text: String) -> void:
