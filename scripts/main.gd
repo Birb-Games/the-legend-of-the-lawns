@@ -25,6 +25,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	update_hud()
 
+func advance_day():
+	neighborhood.update_neighbors()
+	current_day += 1
+
 func load_lawn(lawn_template: PackedScene) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood

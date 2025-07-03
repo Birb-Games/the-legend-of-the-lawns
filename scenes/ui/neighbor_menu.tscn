@@ -27,6 +27,7 @@ grow_vertical = 2
 script = ExtResource("1_qr3ex")
 
 [node name="Menu" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 46.0
 offset_top = 381.0
 offset_right = 1108.0

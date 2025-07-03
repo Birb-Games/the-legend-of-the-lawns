@@ -33,9 +33,25 @@ func _ready() -> void:
 func unavailable() -> bool:
 	return $/root/Main.current_day < start_day
 
+# Returns true if the mow cool down is above 0
+func reject() -> bool:
+	return mow_cooldown > 0
+
+func set_cooldown() -> void:
+	mow_cooldown = mowing_frequency
+
+func update_cooldown() -> void:
+	mow_cooldown -= 1
+	mow_cooldown = max(mow_cooldown, 0)
+
 func generate_dialog():
 	if unavailable():
 		current_dialog = unavailable_msg
+		return
+	if reject():
+		if len(reject_dialog) == 0:
+			return
+		current_dialog = reject_dialog[randi() % len(reject_dialog)]
 		return
 	if len(possible_dialog) == 0:
 		return

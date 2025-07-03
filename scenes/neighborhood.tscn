@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://dhd8ttlwqnlj1"]
+[gd_scene load_steps=8 format=4 uid="uid://dhd8ttlwqnlj1"]
 
+[ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
 [ext_resource type="PackedScene" uid="uid://bmfatvi0c60nn" path="res://scenes/neighbor.tscn" id="3_tqujx"]
 [ext_resource type="PackedScene" uid="uid://cd2hhn1vl0cq4" path="res://scenes/lawns/basic_lawn.tscn" id="3_xlwpo"]
@@ -15,6 +16,7 @@ distance = -736.0
 
 [node name="Neighborhood" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_fyy05")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 editor_description = "Placeholder level for testinng.

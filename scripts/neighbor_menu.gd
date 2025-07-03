@@ -25,10 +25,20 @@ func reset_buttons() -> void:
 static func format_wage(wage: int) -> String:
 	return "I will pay you <$%d> to mow my lawn." % wage
 
-func set_menu_unavailable(neighbor: NeighborNPC):
+func set_menu_unavailable(neighbor: NeighborNPC) -> void:
 	$Menu/VBoxContainer/Name.text = ""
 	$Menu/VBoxContainer/Wage.text = ""
 	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
+	buttons[0].show()
+	buttons[0].text = "Leave"
+	buttons[0].connect("pressed", on_leave_pressed)
+	show()
+
+func set_menu_reject(neighbor: NeighborNPC) -> void:
+	$Menu/VBoxContainer/Name.text = neighbor.display_name
+	$Menu/VBoxContainer/Wage.text = ""
+	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
+
 	buttons[0].show()
 	buttons[0].text = "Leave"
 	buttons[0].connect("pressed", on_leave_pressed)
@@ -39,6 +49,10 @@ func set_menu(neighbor: NeighborNPC) -> void:
 
 	if neighbor.unavailable():
 		set_menu_unavailable(neighbor)
+		return
+	
+	if neighbor.reject():
+		set_menu_reject(neighbor)
 		return
 	
 	$Menu/VBoxContainer/Name.text = neighbor.display_name

@@ -93,3 +93,6 @@ func update_damage_flash(perc: float) -> void:
 	$Control/DamageFlash.show()
 	var alpha = int(perc * 128.0)
 	$Control/DamageFlash.color = Color8(255, 0, 0, alpha)
+
+func get_current_neighbor() -> NeighborNPC:
+	return $Control/NeighborMenu.current_neighbor
