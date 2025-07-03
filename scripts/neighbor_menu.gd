@@ -44,15 +44,36 @@ func set_menu_reject(neighbor: NeighborNPC) -> void:
 	buttons[0].connect("pressed", on_leave_pressed)
 	show()
 
+func advance_first_dialog():
+	current_neighbor.first_time = false
+	current_neighbor.current_dialog = current_neighbor.first_job_offer
+	set_menu(current_neighbor)
+
+func set_menu_first(neighbor: NeighborNPC) -> void:
+	$Menu/VBoxContainer/Name.text = neighbor.display_name
+	$Menu/VBoxContainer/Wage.text = ""
+	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
+
+	buttons[0].show()
+	buttons[0].text = neighbor.player_dialog
+	buttons[0].connect("pressed", advance_first_dialog)
+	show()
+
 func set_menu(neighbor: NeighborNPC) -> void:
 	reset_buttons()
 
+	current_neighbor = neighbor
+	
 	if neighbor.unavailable():
 		set_menu_unavailable(neighbor)
 		return
 	
 	if neighbor.reject():
 		set_menu_reject(neighbor)
+		return
+
+	if neighbor.first_time:
+		set_menu_first(neighbor)
 		return
 	
 	$Menu/VBoxContainer/Name.text = neighbor.display_name
@@ -67,7 +88,6 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	buttons[1].text = "Deal!"
 	buttons[1].connect("pressed", on_accept_pressed)
 	
-	current_neighbor = neighbor
 	show()
 
 func on_leave_pressed() -> void:

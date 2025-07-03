@@ -20,6 +20,10 @@ var player_in_area: bool = false
 # When the neighbor will be first available
 @export var start_day: int = 0
 @export_multiline var unavailable_msg: String = "The door is locked..."
+@export_multiline var first_dialog: String = "Hello!"
+@export_multiline var player_dialog: String = "I'm here to mow your lawn!"
+@export_multiline var first_job_offer: String = "I suppose I could use some help with mowing my lawn today..."
+var first_time: bool = true
 # How frequently they need their lawn mowed
 @export var mowing_frequency: int = 1
 var mow_cooldown: int = 0
@@ -45,6 +49,7 @@ func update_cooldown() -> void:
 	mow_cooldown = max(mow_cooldown, 0)
 
 func generate_dialog():
+	current_dialog = ""
 	if unavailable():
 		current_dialog = unavailable_msg
 		return
@@ -52,7 +57,11 @@ func generate_dialog():
 		if len(reject_dialog) == 0:
 			return
 		current_dialog = reject_dialog[randi() % len(reject_dialog)]
+		return	
+	if first_time:
+		current_dialog = first_dialog
 		return
+	
 	if len(possible_dialog) == 0:
 		return
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
