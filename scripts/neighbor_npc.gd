@@ -12,6 +12,8 @@ var player_in_area: bool = false
 @export var display_name: String = "Neighbor"
 @export var lawn_template: PackedScene
 @export var wage: int = 10
+@export var wage_change: int = 0
+@export var max_wage = 20
 # When the neighbor will be first available
 @export var start_day: int = 0
 # How frequently they need their lawn mowed
@@ -30,6 +32,7 @@ var player_in_area: bool = false
 @export_multiline var player_dialog: String = "I'm here to mow your lawn!"
 @export_multiline var first_job_offer: String = "I suppose I could use some help with mowing my lawn today..."
 var first_time: bool = true
+var difficulty: int = 0
 var mow_cooldown: int = 0
 
 var current_dialog: String = ""
@@ -77,6 +80,10 @@ func _process(_delta: float) -> void:
 		if !unavailable():
 			show()
 		$/root/Main/HUD.set_neighbor_menu(self)
+
+func change_wage() -> void:
+	wage += wage_change
+	wage = clamp(wage, 1, max_wage)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:

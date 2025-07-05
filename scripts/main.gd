@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 func advance_day():
 	neighborhood.update_neighbors()
 	current_day += 1
+	$HUD/Control/TransitionRect.start_animation()
 
 func load_lawn(lawn_template: PackedScene) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED

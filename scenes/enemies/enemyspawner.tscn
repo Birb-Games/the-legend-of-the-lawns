@@ -23,5 +23,6 @@ shape = SubResource("CircleShape2D_6fcck")
 [node name="Marker2D" type="Marker2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [connection signal="body_entered" from="ActivationZone" to="." method="_on_activation_zone_body_entered"]
