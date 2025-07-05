@@ -86,6 +86,9 @@ func set_neighbor_menu(neighbor: NeighborNPC) -> void:
 func set_npc_menu(npc: NPC) -> void:
 	$Control/NeighborMenu.set_npc_menu(npc)
 
+func set_skip_day_menu() -> void:
+	$Control/NeighborMenu.set_skip_day_menu()
+
 func hide_neighbor_menu() -> void:
 	$Control/NeighborMenu.hide_menu()
 

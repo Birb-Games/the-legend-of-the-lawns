@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dhd8ttlwqnlj1"]
+[gd_scene load_steps=14 format=4 uid="uid://dhd8ttlwqnlj1"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/yellowflower.tscn" id="5_d4j3b"]
 [ext_resource type="PackedScene" uid="uid://cuwajf6p2vxkf" path="res://scenes/enemies/redflower.tscn" id="6_pmd5m"]
 [ext_resource type="PackedScene" uid="uid://bhnk8apyedtit" path="res://scenes/enemies/weed.tscn" id="7_wnnnr"]
+[ext_resource type="Script" uid="uid://c8mw4mf3wdang" path="res://scripts/skip_day.gd" id="10_35gpm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlwpo"]
 normal = Vector2(1, 0)
@@ -17,6 +18,9 @@ distance = -544.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fyy05"]
 normal = Vector2(-1, 0)
 distance = -736.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnnnr"]
+size = Vector2(17, 42)
 
 [node name="Neighborhood" type="Node2D"]
 y_sort_enabled = true
@@ -52,7 +56,7 @@ position = Vector2(-133, -134)
 display_name = "Dad"
 first_dialog = "Could it wait champ? I'm pulling out the weeds right now. Be careful, the weeds have been... extra difficult recently for some reason."
 player_dialog = "Can we PLEASE get the new Swapdeck?"
-possible_dialog = ["No son, if you want that new console you're going to have to work for it.", "Champ, all good things in life come from hard work. Go mow some lawns if you want to buy that new Swapthingy console.", "Son, not right now. If you want that Swatchdeck game thing you're going to have to work for the money. Go mow some of the neighbors's lawns if you want the cash.", "If you want something, you should put in the sweat to get it. I suggest mowing the neighbor's lawn - it builds character.", "We already got you that Birb Run (PLAY NOW! https://nullptr-error.itch.io/birb-run) game for your birthday, you're going to get the money for that console on your own. I mowed lawns as a kid when I needed some cash."]
+possible_dialog = ["No son, if you want that new console you're going to have to work for it.", "Champ, all good things in life come from hard work. Go mow some lawns if you want to buy that new Swapthingy console.", "Son, not right now. If you want that Swatchdeck game thing you're going to have to work for the money. Go mow some of the neighbors's lawns if you want the cash.", "If you want something, you should put in the sweat to get it. I suggest mowing the neighbor's lawn - it builds character.", "We already got you that Birb Run (PLAY NOW! https://nullptr-error.itch.io/birb-run) game for your birthday, you're going to have to get the money for that console on your own. I mowed lawns as a kid when I needed some cash."]
 
 [node name="Mom" parent="NPCs" instance=ExtResource("4_dcvy4")]
 position = Vector2(47, -103)
@@ -111,3 +115,13 @@ shape = SubResource("WorldBoundaryShape2D_xlwpo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWorldBoundary"]
 shape = SubResource("WorldBoundaryShape2D_fyy05")
+
+[node name="SkipDay" type="Area2D" parent="."]
+script = ExtResource("10_35gpm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkipDay"]
+position = Vector2(8.5, -174)
+shape = SubResource("RectangleShape2D_wnnnr")
+
+[connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
+[connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

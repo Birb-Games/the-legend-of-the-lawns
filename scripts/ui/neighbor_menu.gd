@@ -117,6 +117,36 @@ func set_npc_menu(npc: NPC) -> void:
 
 	show()
 
+func skip_day():
+	var main: Main = $/root/Main
+	main.advance_day()
+	var player: Player = $/root/Main/Player
+	player.dir = "down"
+	player.position = main.player_pos
+	hide()
+
+func set_skip_day_menu() -> void:
+	current_npc = null
+	current_neighbor = null
+	reset_buttons()
+	$Menu/VBoxContainer/Wage.hide()
+
+	$Menu/VBoxContainer/Name.text = "Your House"
+	$Menu/VBoxContainer/Wage.text = ""
+	$Menu/VBoxContainer/Description.text = """
+Are you sure you want to go inside and play games on itch.io for the rest of the day?
+"""
+	
+	buttons[0].show()
+	buttons[0].text = "No, I should mow a lawn."
+	buttons[0].connect("pressed", on_leave_pressed)
+
+	buttons[1].show()
+	buttons[1].text = "Yes (skip day)"
+	buttons[1].connect("pressed", skip_day)
+
+	show()
+
 func on_leave_pressed() -> void:
 	hide()
 	hide_neighbor()
