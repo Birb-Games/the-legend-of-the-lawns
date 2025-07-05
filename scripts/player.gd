@@ -12,7 +12,7 @@ var speed: float = NORMAL_SPEED
 
 var dir: String = "down"
 var pulling: bool = false
-var can_talk_to_neighbor: bool = false
+var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 
 const MAX_HEALTH: int = 50

@@ -72,11 +72,7 @@ func update_hud_lawn():
 	$HUD.update_health_bar($Player.get_hp_perc())
 
 func update_hud_neighborhood():
-	if $Player.can_talk_to_neighbor:
-		$HUD.update_info_text("Press [SPACE] to knock on door.")
-	else:
-		$HUD.update_info_text("")
-	
+	$HUD.update_info_text($Player.interact_text)	
 	# hide info text if talking to a neighbor
 	$HUD/Control/InfoText.visible = !$HUD/Control/NeighborMenu.visible
 	

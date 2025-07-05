@@ -3,6 +3,9 @@ extends FlowerEnemy
 @export var bullet_scene: PackedScene
 
 func shoot() -> void:
+	if !$/root/Main.lawn_loaded:
+		return
+
 	if player.health <= 0:
 		return
 	

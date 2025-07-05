@@ -1,3 +1,8 @@
+# To avoid confusion,
+# "NeighborNPC" refers to npcs that will give the player the opportunity to mow
+# their yard while "NPC" refers to generic chracters that the player can talk
+# to but can not take a job from.
+
 class_name NeighborNPC
 
 extends AnimatedSprite2D
@@ -6,6 +11,13 @@ var player_in_area: bool = false
 
 @export var display_name: String = "Neighbor"
 @export var lawn_template: PackedScene
+@export var wage: int = 10
+# When the neighbor will be first available
+@export var start_day: int = 0
+# How frequently they need their lawn mowed
+@export var mowing_frequency: int = 1
+
+@export_group("Dialog")
 @export_multiline var possible_dialog: PackedStringArray = [
 	"Oh, you want to mow my lawn? I suppose it is a bit overgrown...",
 	"My lawn needs to be mowed today but I'm too lazy.",
@@ -13,19 +25,11 @@ var player_in_area: bool = false
 @export_multiline var reject_dialog: PackedStringArray = [
 	"Sorry, my lawn doesn't need to be mowed today.",
 ]
-# the range in which the wage for the player is generated
-# as the game progresses, these likely should increase but that can be dealt
-# with later
-@export var wage: int = 10
-# When the neighbor will be first available
-@export var start_day: int = 0
 @export_multiline var unavailable_msg: String = "The door is locked..."
 @export_multiline var first_dialog: String = "Hello!"
 @export_multiline var player_dialog: String = "I'm here to mow your lawn!"
 @export_multiline var first_job_offer: String = "I suppose I could use some help with mowing my lawn today..."
 var first_time: bool = true
-# How frequently they need their lawn mowed
-@export var mowing_frequency: int = 1
 var mow_cooldown: int = 0
 
 var current_dialog: String = ""
@@ -77,9 +81,10 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_in_area = true
-		body.can_talk_to_neighbor = true
+		body.interact_text = "Press [SPACE] to knock on door."
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
-		player_in_area = false
-		body.can_talk_to_neighbor = false
+		player_in_area = false	
+		body.interact_text = ""
+

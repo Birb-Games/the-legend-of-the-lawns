@@ -78,10 +78,13 @@ func update_day_counter(days: int):
 	$Control/DayLabel.text = "Day %d" % days
 
 func update_money_counter(money: int):
-	$Control/MoneyLabel.text = "$%d/500" % money
+	$Control/MoneyLabel.text = "$%d" % money
 
-func set_neighbor_menu(neighbor: AnimatedSprite2D) -> void:
+func set_neighbor_menu(neighbor: NeighborNPC) -> void:
 	$Control/NeighborMenu.set_menu(neighbor)
+
+func set_npc_menu(npc: NPC) -> void:
+	$Control/NeighborMenu.set_npc_menu(npc)
 
 func hide_neighbor_menu() -> void:
 	$Control/NeighborMenu.hide_menu()

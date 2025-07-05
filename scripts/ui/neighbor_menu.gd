@@ -1,6 +1,7 @@
 extends Control 
 
 var current_neighbor: NeighborNPC
+var current_npc: NPC
 
 @onready var buttons: Array[Button] = [
 	$Menu/VBoxContainer/HBoxContainer/Button1,
@@ -61,6 +62,7 @@ func set_menu_first(neighbor: NeighborNPC) -> void:
 
 func set_menu(neighbor: NeighborNPC) -> void:
 	reset_buttons()
+	$Menu/VBoxContainer/Wage.show()
 
 	current_neighbor = neighbor
 	
@@ -88,6 +90,31 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	buttons[1].text = "Deal!"
 	buttons[1].connect("pressed", on_accept_pressed)
 	
+	show()
+
+func advance_first_dialog_npc():
+	current_npc.first_time = false
+	current_npc.generate_dialog()
+	set_npc_menu(current_npc)
+
+func set_npc_menu(npc: NPC) -> void:
+	reset_buttons()
+	$Menu/VBoxContainer/Wage.hide()
+
+	current_npc = npc
+	$Menu/VBoxContainer/Name.text = npc.display_name
+	$Menu/VBoxContainer/Wage.text = ""
+	$Menu/VBoxContainer/Description.text = npc.current_dialog
+
+	buttons[0].show()
+
+	if !npc.first_time:
+		buttons[0].text = "Leave"
+		buttons[0].connect("pressed", on_leave_pressed)
+	else:
+		buttons[0].text = npc.player_dialog
+		buttons[0].connect("pressed", advance_first_dialog_npc)
+
 	show()
 
 func on_leave_pressed() -> void:
