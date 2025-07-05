@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dq8tglr0iktqf"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_0gm1x"]
-[ext_resource type="Script" uid="uid://hn6dknq2w4cs" path="res://scripts/neighbor_menu.gd" id="1_qr3ex"]
+[ext_resource type="Script" uid="uid://hn6dknq2w4cs" path="res://scripts/ui/neighbor_menu.gd" id="1_qr3ex"]
 [ext_resource type="Texture2D" uid="uid://cxb6mmn3hbetq" path="res://assets/textures/npc_profile_placeholder.png" id="2_qr3ex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj2yp"]

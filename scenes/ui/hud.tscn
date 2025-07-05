@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
-[ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/hud.gd" id="1_oo0fn"]
+[ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/ui/hud.gd" id="1_oo0fn"]
 [ext_resource type="PackedScene" uid="uid://bt7cyrrey8yth" path="res://scenes/ui/pause_menu.tscn" id="4_047uy"]
 [ext_resource type="PackedScene" uid="uid://dq8tglr0iktqf" path="res://scenes/ui/neighbor_menu.tscn" id="6_5pdws"]
-[ext_resource type="PackedScene" uid="uid://dnqh6jeh6decu" path="res://scenes/finishscreen.tscn" id="6_047uy"]
-[ext_resource type="PackedScene" uid="uid://bbaa6s8vockj8" path="res://scenes/failscreen.tscn" id="7_5pdws"]
+[ext_resource type="PackedScene" uid="uid://dnqh6jeh6decu" path="res://scenes/ui/finishscreen.tscn" id="6_047uy"]
+[ext_resource type="PackedScene" uid="uid://bbaa6s8vockj8" path="res://scenes/ui/failscreen.tscn" id="7_5pdws"]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
