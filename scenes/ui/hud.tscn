@@ -159,6 +159,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("7_gss2c")
 
 [node name="Label" type="Label" parent="Control/TransitionRect"]
+layout_mode = 0
 offset_top = 225.0
 offset_right = 1152.0
 offset_bottom = 360.0
