@@ -47,6 +47,7 @@ func _on_return_pressed() -> void:
 	get_tree().paused = false
 	hide()
 	var main: Main = $/root/Main
+	main.lawns_mowed += 1
 	main.update_wage()
 	main.advance_day()
 	main.return_to_neighborhood()

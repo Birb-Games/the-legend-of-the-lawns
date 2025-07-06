@@ -12,6 +12,8 @@ var money: int = 0
 # What day it currently is
 # Should be used for determining difficulty as well
 var current_day: int = 1
+# How many lawns the player mowed
+var lawns_mowed: int = 0
 var current_wage: int = 0
 
 func update_wage() -> void:
@@ -75,7 +77,7 @@ func update_hud_lawn():
 func update_hud_neighborhood():
 	$HUD.update_info_text($Player.interact_text)	
 	# hide info text if talking to a neighbor
-	$HUD/Control/InfoText.visible = !$HUD/Control/NeighborMenu.visible
+	$HUD/Control/InfoText.visible = !$HUD/Control/NPCMenu.visible
 	
 	$HUD.update_progress_bar(-1.0) # -1.0 hides the progress bar
 	$HUD.update_health_bar(-1.0)
@@ -88,6 +90,7 @@ func update_hud():
 	
 	$HUD.update_day_counter(current_day)
 	$HUD.update_money_counter(money)
+	$HUD.update_lawn_counter(lawns_mowed)
 	if player.health > 0:
 		$HUD.update_damage_flash(player.get_damage_timer_perc())
 	else:

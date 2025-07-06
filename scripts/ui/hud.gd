@@ -5,7 +5,7 @@ extends CanvasLayer
 func _ready() -> void:
 	$Control/InfoText.text = ""
 
-func activate_finish_screen():
+func activate_finish_screen() -> void:
 	$Control/Finishscreen.activate()
 
 # Returns if the fail screen was activated
@@ -33,10 +33,10 @@ func _process(_delta: float) -> void:
 	
 	# Open pause menu for lawn
 	if Input.is_action_just_pressed("ui_cancel"):
-		if $Control/NeighborMenu.visible:
+		if $Control/NPCMenu.visible:
 			# Exit out of neighbor menu
-			$Control/NeighborMenu.hide()
-			$Control/NeighborMenu.hide_neighbor()
+			$Control/NPCMenu.hide()
+			$Control/NPCMenu.hide_neighbor()
 		else:
 			toggle_pause_menu()
 
@@ -74,23 +74,32 @@ func update_health_bar(percent: float) -> void:
 	$Control/HealthBar.size.x = percent * $Control/HealthBar/HealthBackground.size.x
 	$Control/HealthBar/HealthPercent.text = str(int(percent * 100)) + "%"
 
-func update_day_counter(days: int):
+func update_day_counter(days: int) -> void:
 	$Control/DayLabel.text = "Day %d" % days
 
-func update_money_counter(money: int):
+func update_money_counter(money: int) -> void:
 	$Control/MoneyLabel.text = "$%d" % money
 
+func update_lawn_counter(lawns_mowed: int) -> void:
+	var text: String
+	if lawns_mowed == 1:
+		text = "Mowed 1 Lawn"
+	else:
+		text = "Mowed %d Lawns" % lawns_mowed
+	
+	$Control/LawnCounter.text = text
+
 func set_neighbor_menu(neighbor: NeighborNPC) -> void:
-	$Control/NeighborMenu.set_menu(neighbor)
+	$Control/NPCMenu.set_menu(neighbor)
 
 func set_npc_menu(npc: NPC) -> void:
-	$Control/NeighborMenu.set_npc_menu(npc)
+	$Control/NPCMenu.set_npc_menu(npc)
 
 func set_skip_day_menu() -> void:
-	$Control/NeighborMenu.set_skip_day_menu()
+	$Control/NPCMenu.set_skip_day_menu()
 
 func hide_neighbor_menu() -> void:
-	$Control/NeighborMenu.hide_menu()
+	$Control/NPCMenu.hide_menu()
 
 func update_damage_flash(perc: float) -> void:
 	if perc <= 0.0:
@@ -101,4 +110,4 @@ func update_damage_flash(perc: float) -> void:
 	$Control/DamageFlash.color = Color8(255, 0, 0, alpha)
 
 func get_current_neighbor() -> NeighborNPC:
-	return $Control/NeighborMenu.current_neighbor
+	return $Control/NPCMenu.current_neighbor

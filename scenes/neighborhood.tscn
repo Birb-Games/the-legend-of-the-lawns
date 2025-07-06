@@ -91,7 +91,6 @@ y_sort_enabled = true
 [node name="NeighborBob" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(328, -155)
 display_name = "Neighbor Bob"
-lawn_template = ExtResource("3_xlwpo")
 
 [node name="NeighborJim" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-312, -155)
@@ -104,7 +103,7 @@ position = Vector2(648, -155)
 animation = &"neighbor_nancy"
 display_name = "Neighbor Nancy"
 lawn_template = ExtResource("3_xlwpo")
-start_day = 3
+min_lawns_mowed = 2
 
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="Neighbors"]
 
