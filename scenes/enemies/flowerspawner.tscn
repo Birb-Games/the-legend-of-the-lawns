@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1fh3tiwr4hty" path="res://scenes/enemies/blueflower.tscn" id="4_a51to"]
 
 [node name="Flowerspawner" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ar240")
 enemies = Array[PackedScene]([ExtResource("2_odxxy"), ExtResource("3_4v7xc"), ExtResource("4_a51to")])
 

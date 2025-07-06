@@ -9,6 +9,9 @@ func rand_bullet() -> Node:
 	return thorn_bullet.instantiate()
 
 func shoot() -> void:
+	if !$/root/Main.lawn_loaded:
+		return
+
 	if player.health <= 0:
 		return
 	

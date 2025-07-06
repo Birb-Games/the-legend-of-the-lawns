@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://g5qtancilglp"]
+
+[ext_resource type="Texture2D" uid="uid://bq125ravxla2y" path="res://assets/textures/neighbors/dad.png" id="1_abqhh"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_nh2m4"]
+[ext_resource type="Texture2D" uid="uid://bf6s87rxw88ot" path="res://assets/textures/neighbors/mom.png" id="2_7n8xq"]
+[ext_resource type="Script" uid="uid://8ydcu6g7fdhb" path="res://scripts/npc.gd" id="2_rv78h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv78h"]
+atlas = ExtResource("1_abqhh")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n8xq"]
+atlas = ExtResource("1_abqhh")
+region = Rect2(18, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wlns"]
+atlas = ExtResource("2_7n8xq")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl2vt"]
+atlas = ExtResource("2_7n8xq")
+region = Rect2(18, 0, 18, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tcuxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv78h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n8xq")
+}],
+"loop": true,
+"name": &"dad",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wlns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl2vt")
+}],
+"loop": true,
+"name": &"mom",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcuxl"]
+size = Vector2(18.6667, 42.6667)
+
+[node name="Npc" type="AnimatedSprite2D"]
+y_sort_enabled = true
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_tcuxl")
+animation = &"dad"
+offset = Vector2(0, -20)
+script = ExtResource("2_rv78h")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_tcuxl")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nh2m4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

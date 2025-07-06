@@ -59,10 +59,11 @@ func spawn() -> void:
 		spawn_rand_types(enemy_count)
 
 func _ready() -> void:
+	difficulty += $/root/Main/HUD.get_current_neighbor().difficulty
 	if randf() > spawn_probability:
 		if spawn_probability > 0.0:
 			can_spawn = false
-		return
+		return	
 	spawn()
 	can_spawn = false
 

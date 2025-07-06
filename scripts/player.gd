@@ -12,7 +12,7 @@ var speed: float = NORMAL_SPEED
 
 var dir: String = "down"
 var pulling: bool = false
-var can_talk_to_neighbor: bool = false
+var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 
 const MAX_HEALTH: int = 50
@@ -104,7 +104,7 @@ func _physics_process(_delta: float):
 	velocity = Vector2.ZERO
 
 	# movement
-	if !$/root/Main/HUD/Control/NeighborMenu.visible: #don't move when menu open
+	if !$/root/Main/HUD/Control/NPCMenu.visible: #don't move when menu open
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1.0
 		if Input.is_action_pressed("move_down"):

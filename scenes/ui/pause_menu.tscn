@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt7cyrrey8yth"]
+
+[ext_resource type="Script" uid="uid://yh7qqp21ebil" path="res://scripts/ui/pause_menu.gd" id="1_0lmf7"]
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="2_f6eus"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0lmf7")
+
+[node name="PauseMenu" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0846899, 0.0846899, 0.0846899, 0.501961)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 369.0
+offset_right = 1152.0
+offset_bottom = 443.0
+alignment = 1
+
+[node name="Yes" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 32
+text = "Yes"
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="No" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 32
+text = "No"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_top = 113.0
+offset_right = 1152.0
+offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 64
+text = "[PAUSED]"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 219.0
+offset_right = 1152.0
+offset_bottom = 344.0
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 40
+text = "
+Are you sure you want to quit this lawn?
+
+Your progress will be lost."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_top = 171.0
+offset_right = 1152.0
+offset_bottom = 194.0
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 32
+text = "[press ESC to unpause]"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="HBoxContainer/No" to="." method="_on_no_pressed"]

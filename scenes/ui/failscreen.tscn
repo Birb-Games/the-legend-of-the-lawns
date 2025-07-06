@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bbaa6s8vockj8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_2pdhm"]
-[ext_resource type="Script" uid="uid://bpksrk35onpgr" path="res://scripts/failscreen.gd" id="1_s13x8"]
+[ext_resource type="Script" uid="uid://bpksrk35onpgr" path="res://scripts/ui/failscreen.gd" id="1_s13x8"]
 [ext_resource type="PackedScene" uid="uid://cc6ie7e2e5mfg" path="res://scenes/knockedout.tscn" id="2_3i01h"]
 
 [node name="Failscreen" type="Control"]

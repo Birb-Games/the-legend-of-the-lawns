@@ -19,7 +19,7 @@ func _on_return_pressed() -> void:
 		knocked_out_sprite.queue_free()
 		knocked_out_sprite = null
 	get_tree().paused = false
-	var main = $/root/Main
-	main.current_day += 1
+	var main: Main = $/root/Main
+	main.advance_day()
 	main.return_to_neighborhood()
 	hide()

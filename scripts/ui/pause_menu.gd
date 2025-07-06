@@ -1,4 +1,4 @@
-extends ColorRect
+extends Control
 
 func _on_no_pressed() -> void:
 	hide()
@@ -8,5 +8,7 @@ func _on_yes_pressed() -> void:
 	hide()
 	get_tree().paused = false
 	# Return to neighborhood
-	$/root/Main.return_to_neighborhood()
-	$/root/Main.current_day += 1
+	var main: Main = $/root/Main
+	main.return_to_neighborhood()	
+	main.advance_day()
+

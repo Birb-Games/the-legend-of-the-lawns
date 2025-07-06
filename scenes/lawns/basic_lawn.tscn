@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://cd2hhn1vl0cq4"]
+[gd_scene load_steps=6 format=4 uid="uid://cd2hhn1vl0cq4"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_c02vb"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_d3ggf"]
 [ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/enemyspawner.tscn" id="2_x1smj"]
 [ext_resource type="PackedScene" uid="uid://ctbigrpm1s7xa" path="res://scenes/hedge_generation_point.tscn" id="3_iyt1j"]
 [ext_resource type="PackedScene" uid="uid://cedaoxv5oda2b" path="res://scenes/enemies/flowerspawner.tscn" id="5_7oiaq"]
-[ext_resource type="PackedScene" uid="uid://cuwajf6p2vxkf" path="res://scenes/enemies/redflower.tscn" id="6_7d81m"]
-[ext_resource type="PackedScene" uid="uid://1fh3tiwr4hty" path="res://scenes/enemies/blueflower.tscn" id="7_qou5g"]
 
 [node name="Lawn" instance=ExtResource("1_c02vb")]
 
@@ -44,12 +42,6 @@ position = Vector2(0, 5)
 
 [node name="WaterGun" parent="." index="3"]
 position = Vector2(0, 42)
-
-[node name="Redflower" parent="." index="4" instance=ExtResource("6_7d81m")]
-position = Vector2(-240, 167)
-
-[node name="Blueflower" parent="." index="5" instance=ExtResource("7_qou5g")]
-position = Vector2(240, 167)
 
 [node name="Enemyspawner" parent="Spawners" index="0" instance=ExtResource("2_x1smj")]
 position = Vector2(-125, 160)

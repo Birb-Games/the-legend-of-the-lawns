@@ -33,10 +33,17 @@ func explode() -> void:
 var target_scale: float
 func _ready() -> void:
 	$Healthbar.hide()
+
+	if !$/root/Main.lawn_loaded:
+		return
+
 	target_scale = scale.x
 	scale = Vector2.ZERO
 
 func _process(delta: float) -> void:
+	if !$/root/Main.lawn_loaded:
+		return
+
 	if scale.x < target_scale:
 		scale.x += 2.0 * delta
 		scale.x = min(scale.x, target_scale)

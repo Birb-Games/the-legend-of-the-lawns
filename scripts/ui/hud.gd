@@ -5,7 +5,7 @@ extends CanvasLayer
 func _ready() -> void:
 	$Control/InfoText.text = ""
 
-func activate_finish_screen():
+func activate_finish_screen() -> void:
 	$Control/Finishscreen.activate()
 
 # Returns if the fail screen was activated
@@ -33,7 +33,12 @@ func _process(_delta: float) -> void:
 	
 	# Open pause menu for lawn
 	if Input.is_action_just_pressed("ui_cancel"):
-		toggle_pause_menu()
+		if $Control/NPCMenu.visible:
+			# Exit out of neighbor menu
+			$Control/NPCMenu.hide()
+			$Control/NPCMenu.hide_neighbor()
+		else:
+			toggle_pause_menu()
 
 # used for pop up messages to provide information to the player
 func update_info_text(text: String) -> void:
@@ -69,17 +74,32 @@ func update_health_bar(percent: float) -> void:
 	$Control/HealthBar.size.x = percent * $Control/HealthBar/HealthBackground.size.x
 	$Control/HealthBar/HealthPercent.text = str(int(percent * 100)) + "%"
 
-func update_day_counter(days: int):
+func update_day_counter(days: int) -> void:
 	$Control/DayLabel.text = "Day %d" % days
 
-func update_money_counter(money: int):
-	$Control/MoneyLabel.text = "$%d/500" % money
+func update_money_counter(money: int) -> void:
+	$Control/MoneyLabel.text = "$%d" % money
 
-func set_neighbor_menu(neighbor: AnimatedSprite2D) -> void:
-	$Control/NeighborMenu.set_menu(neighbor)
+func update_lawn_counter(lawns_mowed: int) -> void:
+	var text: String
+	if lawns_mowed == 1:
+		text = "Mowed 1 Lawn"
+	else:
+		text = "Mowed %d Lawns" % lawns_mowed
+	
+	$Control/LawnCounter.text = text
+
+func set_neighbor_menu(neighbor: NeighborNPC) -> void:
+	$Control/NPCMenu.set_menu(neighbor)
+
+func set_npc_menu(npc: NPC) -> void:
+	$Control/NPCMenu.set_npc_menu(npc)
+
+func set_skip_day_menu() -> void:
+	$Control/NPCMenu.set_skip_day_menu()
 
 func hide_neighbor_menu() -> void:
-	$Control/NeighborMenu.hide_menu()
+	$Control/NPCMenu.hide_menu()
 
 func update_damage_flash(perc: float) -> void:
 	if perc <= 0.0:
@@ -88,3 +108,6 @@ func update_damage_flash(perc: float) -> void:
 	$Control/DamageFlash.show()
 	var alpha = int(perc * 128.0)
 	$Control/DamageFlash.color = Color8(255, 0, 0, alpha)
+
+func get_current_neighbor() -> NeighborNPC:
+	return $Control/NPCMenu.current_neighbor

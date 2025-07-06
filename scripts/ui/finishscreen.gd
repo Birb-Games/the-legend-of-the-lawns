@@ -46,7 +46,12 @@ func _process(delta: float) -> void:
 func _on_return_pressed() -> void:
 	get_tree().paused = false
 	hide()
-	var main = $/root/Main
+	var main: Main = $/root/Main
+	main.lawns_mowed += 1
 	main.update_wage()
-	main.current_day += 1
+	main.advance_day()
 	main.return_to_neighborhood()
+	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor()
+	current_neighbor.difficulty += 1
+	current_neighbor.change_wage()
+	current_neighbor.set_cooldown()

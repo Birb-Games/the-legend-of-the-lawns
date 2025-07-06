@@ -1,0 +1,127 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq8tglr0iktqf"]
+
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_0gm1x"]
+[ext_resource type="Script" uid="uid://hn6dknq2w4cs" path="res://scripts/ui/npc_menu.gd" id="1_qr3ex"]
+[ext_resource type="Texture2D" uid="uid://cxb6mmn3hbetq" path="res://assets/textures/npc_profile_placeholder.png" id="2_qr3ex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj2yp"]
+bg_color = Color(0.762404, 0.762404, 0.762404, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="NPCMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qr3ex")
+
+[node name="Menu" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 381.0
+offset_right = 1108.0
+offset_bottom = 623.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uj2yp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = 19.0
+offset_right = -271.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0gm1x")
+theme_override_font_sizes/font_size = 40
+text = "Name"
+
+[node name="Description" type="Label" parent="Menu/VBoxContainer"]
+custom_minimum_size = Vector2(750, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0gm1x")
+theme_override_font_sizes/font_size = 28
+text = "Description
+"
+autowrap_mode = 3
+
+[node name="Wage" type="Label" parent="Menu/VBoxContainer"]
+custom_minimum_size = Vector2(750, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0gm1x")
+theme_override_font_sizes/font_size = 32
+text = "$0"
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button1" type="Button" parent="Menu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0gm1x")
+theme_override_font_sizes/font_size = 32
+text = "Option 1"
+
+[node name="Panel" type="Panel" parent="Menu/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Menu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0gm1x")
+theme_override_font_sizes/font_size = 32
+text = "Option 2"
+
+[node name="Panel2" type="Panel" parent="Menu/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Menu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0gm1x")
+theme_override_font_sizes/font_size = 32
+text = "Option 3"
+
+[node name="Panel3" type="Panel" parent="Menu/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="Menu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0gm1x")
+theme_override_font_sizes/font_size = 32
+text = "Option 4"
+
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+visible = false
+layout_mode = 0
+offset_left = 825.0
+offset_top = 32.0
+offset_right = 1005.0
+offset_bottom = 212.0
+texture = ExtResource("2_qr3ex")

@@ -37,6 +37,8 @@ func spawn_rand_types(count: int) -> void:
 func _ready() -> void:
 	if randf() > spawn_probability:
 		return
+
+	difficulty += $/root/Main/HUD.get_current_neighbor().difficulty
 	
 	var count = spawn_count
 	if count == 0:

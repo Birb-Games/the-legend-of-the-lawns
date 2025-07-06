@@ -9,6 +9,10 @@ var can_attack_player: bool = false
 var attack_timer: float = 0.0
 
 func _process(delta: float) -> void:
+	# Ignore if the lawn is not loaded
+	if !$/root/Main.lawn_loaded:
+		return
+
 	attack_timer -= delta
 	# Attempt to bite player
 	if can_attack_player and attack_timer <= 0.0:
