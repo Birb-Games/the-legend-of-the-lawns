@@ -44,7 +44,10 @@ func start_showing_menu():
 		$Stats/HedgePenalty.show()
 		$Stats/HedgePenalty.text = "Hedge Penalty: -$%d" % hedge_penalty
 	
-	#$Stats/TimeBonus.text = "Time Bonus: $%d" % main.time_bonus
+	# Time bonus, currently a reciprocal function
+	var time_bonus: int = roundi(120.0 / $/root/Main/HUD.time_elapsed)
+	$Stats/TimeBonus.text = "Time Bonus: $%d" % time_bonus
+	current_wage_modifier += time_bonus
 
 	$Stats/Earned.text = "Earned: $%d" % (main.current_wage + current_wage_modifier)
 

@@ -2,6 +2,8 @@ extends CanvasLayer
 
 @export var progress_bar_gradient: Gradient
 
+var time_elapsed: float = 0.0
+
 func _ready() -> void:
 	$Control/InfoText.text = ""
 
@@ -74,6 +76,15 @@ func update_health_bar(percent: float) -> void:
 	$Control/HealthBar.size.x = percent * $Control/HealthBar/HealthBackground.size.x
 	$Control/HealthBar/HealthPercent.text = str(int(percent * 100)) + "%"
 
+func update_timer(delta: float) -> void:
+	$Control/Timer.show()
+	$Control/Timer.text = num_as_time_string(time_elapsed)
+	time_elapsed += delta
+
+func hide_timer() -> void:
+	time_elapsed = 0.0
+	$Control/Timer.hide()
+
 func update_day_counter(days: int) -> void:
 	$Control/DayLabel.text = "Day %d" % days
 
@@ -111,3 +122,10 @@ func update_damage_flash(perc: float) -> void:
 
 func get_current_neighbor() -> NeighborNPC:
 	return $Control/NPCMenu.current_neighbor
+
+# Formats a number in seconds as a time string in the format "MM:SS"
+func num_as_time_string(num: float) -> String:
+	var t = floori(num)
+	var minutes: int = int(t / 60)
+	var seconds: int = int(t % 60)
+	return "%02d:%02d" % [minutes, seconds]
