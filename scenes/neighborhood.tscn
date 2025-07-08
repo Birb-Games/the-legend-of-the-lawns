@@ -91,12 +91,15 @@ y_sort_enabled = true
 [node name="NeighborBob" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(328, -155)
 display_name = "Neighbor Bob"
+hedge_penalty = 3
 
 [node name="NeighborJim" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-312, -155)
 animation = &"neighbor_jim"
 display_name = "Neighbor Jim"
 lawn_template = ExtResource("3_xlwpo")
+flower_penalty = 1
+hedge_penalty = 3
 
 [node name="NeighborNancy" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(648, -155)
@@ -104,6 +107,8 @@ animation = &"neighbor_nancy"
 display_name = "Neighbor Nancy"
 lawn_template = ExtResource("3_xlwpo")
 min_lawns_mowed = 2
+flower_penalty = 2
+hedge_penalty = 2
 
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="Neighbors"]
 

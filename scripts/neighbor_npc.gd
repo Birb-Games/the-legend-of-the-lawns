@@ -14,10 +14,14 @@ var player_in_area: bool = false
 @export var wage: int = 10
 @export var wage_change: int = 0
 @export var max_wage = 20
-# How many lawns the player has to mow before unlocking this neighbor
+## How many lawns the player has to mow before unlocking this neighbor
 @export var min_lawns_mowed: int = 0
-# How frequently they need their lawn mowed
+## How frequently they need their lawn mowed
 @export var mowing_frequency: int = 1
+## How much they remove from the player's wage when they destroy each flower
+@export var flower_penalty: int = 0
+## How much they remove from the player's wage when they destroy each hedge
+@export var hedge_penalty: int = 0
 
 @export_group("Dialog")
 @export_multiline var possible_dialog: PackedStringArray = [

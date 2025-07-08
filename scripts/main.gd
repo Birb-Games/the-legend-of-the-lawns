@@ -16,8 +16,9 @@ var current_day: int = 1
 var lawns_mowed: int = 0
 var current_wage: int = 0
 
-func update_wage() -> void:
-	money += current_wage
+# Update the money based on the current wage and the modifier (penalties and bonuses)
+func update_money(modifier: int) -> void:
+	money += current_wage + modifier
 
 func _ready() -> void:
 	# Keep cursor in window - this is to prevent the mouse cursor from accidentally

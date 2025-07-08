@@ -6,6 +6,9 @@ extends Node2D
 var total_grass_tiles: int
 var cut_grass_tiles: int = 0
 
+# Keep track of the number of flowers destroyed for the penalty
+var flowers_destroyed: int = 0
+
 func _ready() -> void:
 	total_grass_tiles = 0
 	for cell in $TileMapLayer.get_used_cells():

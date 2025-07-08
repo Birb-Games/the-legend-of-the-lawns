@@ -54,28 +54,63 @@ Neighborhood"
 
 [node name="Stats" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_top = 213.0
+offset_top = 175.0
 offset_right = 1152.0
-offset_bottom = 474.0
+offset_bottom = 495.0
 
 [node name="Wage" type="Label" parent="Stats"]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_m00dn")
 theme_override_font_sizes/font_size = 48
-text = "Earned $0"
+text = "Wage: $0"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="Stats"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 24)
+[node name="FlowerPenalty" type="Label" parent="Stats"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 40
+text = "Flower Penalty: -$0"
+horizontal_alignment = 1
+
+[node name="HedgePenalty" type="Label" parent="Stats"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 40
+text = "Hedge Penalty: -$0"
+horizontal_alignment = 1
+
+[node name="TimeBonus" type="Label" parent="Stats"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 40
+text = "Time Bonus: +$0"
+horizontal_alignment = 1
+
+[node name="Earned" type="Label" parent="Stats"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 48
+text = "Earned: $0"
+horizontal_alignment = 1
 
 [node name="Total" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 56
 text = "Total: $0"
 horizontal_alignment = 1
 
