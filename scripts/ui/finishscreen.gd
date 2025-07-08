@@ -31,17 +31,21 @@ func start_showing_menu():
 	var flower_penalty: int = $/root/Main/Lawn.flowers_destroyed * $/root/Main/HUD.get_current_neighbor().flower_penalty
 	if flower_penalty == 0:
 		$Stats/FlowerPenalty.hide()
+		$Stats/FlowerCommentText.hide()
 	else:
 		current_wage_modifier -= flower_penalty
 		$Stats/FlowerPenalty.show()
+		$Stats/FlowerCommentText.show()
 		$Stats/FlowerPenalty.text = "Flower Penalty: -$%d" % flower_penalty
 	
 	var hedge_penalty: int = calculate_hedge_penalty()
 	if hedge_penalty == 0:
 		$Stats/HedgePenalty.hide()
+		$Stats/HedgeCommentText.hide()
 	else:
 		current_wage_modifier -= hedge_penalty
 		$Stats/HedgePenalty.show()
+		$Stats/HedgeCommentText.show()
 		$Stats/HedgePenalty.text = "Hedge Penalty: -$%d" % hedge_penalty
 	
 	# Time bonus, currently a reciprocal function

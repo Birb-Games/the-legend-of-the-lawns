@@ -59,7 +59,7 @@ offset_right = 1152.0
 offset_bottom = 505.0
 
 [node name="Wage" type="Label" parent="Stats"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_m00dn")
@@ -68,31 +68,47 @@ text = "Wage: $0"
 horizontal_alignment = 1
 
 [node name="FlowerPenalty" type="Label" parent="Stats"]
-custom_minimum_size = Vector2(0, 74)
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = 6
 theme_override_fonts/font = ExtResource("2_m00dn")
 theme_override_font_sizes/font_size = 36
-text = "Flower Penalty: -$0
-My poor flowers!!!"
+text = "Flower Penalty: -$0"
+horizontal_alignment = 1
+
+[node name="FlowerCommentText" type="Label" parent="Stats"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 36
+text = "My poor flowers!!!"
 horizontal_alignment = 1
 
 [node name="HedgePenalty" type="Label" parent="Stats"]
-custom_minimum_size = Vector2(0, 74)
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = 6
 theme_override_fonts/font = ExtResource("2_m00dn")
 theme_override_font_sizes/font_size = 36
-text = "Hedge Penalty: -$0
-My hedges are ruined..."
+text = "Hedge Penalty: -$0"
+horizontal_alignment = 1
+
+[node name="HedgeCommentText" type="Label" parent="Stats"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 36
+text = "My hedges are ruined..."
 horizontal_alignment = 1
 
 [node name="TimeBonus" type="Label" parent="Stats"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -102,7 +118,7 @@ text = "Time Bonus: +$0"
 horizontal_alignment = 1
 
 [node name="Earned" type="Label" parent="Stats"]
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_m00dn")
