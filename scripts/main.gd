@@ -18,7 +18,7 @@ var current_wage: int = 0
 
 # Update the money based on the current wage and the modifier (penalties and bonuses)
 func update_money(modifier: int) -> void:
-	money += current_wage + modifier
+	money += max(current_wage + modifier, 0)
 
 func _ready() -> void:
 	# Keep cursor in window - this is to prevent the mouse cursor from accidentally

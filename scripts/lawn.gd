@@ -3,6 +3,10 @@ extends Node2D
 @onready var lawnmower: RigidBody2D = $Lawnmower
 @onready var water_gun_item: StaticBody2D = $WaterGun
 
+# In seconds, if the player mows the lawn in under this amount of time then
+# they get a time bonus
+@export var time_limit: float = 120.0;
+
 var total_grass_tiles: int
 var cut_grass_tiles: int = 0
 
