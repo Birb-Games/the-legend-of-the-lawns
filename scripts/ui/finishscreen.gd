@@ -26,7 +26,7 @@ func start_showing_menu():
 	title_speed = START_SPEED
 	update_title = true
 	var main = $/root/Main
-	$Stats/Wage.text = "Wage $%d" % main.current_wage
+	$Stats/Wage.text = "Wage: $%d" % main.current_wage
 
 	var flower_penalty: int = $/root/Main/Lawn.flowers_destroyed * $/root/Main/HUD.get_current_neighbor().flower_penalty
 	if flower_penalty == 0:
@@ -50,10 +50,13 @@ func start_showing_menu():
 	
 	# Time bonus, currently a reciprocal function
 	var time_bonus: int = roundi(120.0 / $/root/Main/HUD.time_elapsed)
-	$Stats/TimeBonus.text = "Time Bonus: $%d" % time_bonus
+	if time_bonus > 0:
+		$Stats/TimeBonus.text = "Time Bonus: $%d" % time_bonus
+	else:
+		$Stats/TimeBonus.text = ""
 	current_wage_modifier += time_bonus
 
-	$Stats/Earned.text = "Earned: $%d" % (main.current_wage + current_wage_modifier)
+	$Stats/Earned.text = "Earned $%d" % (main.current_wage + current_wage_modifier)
 
 	$Stats/Total.text = "Total: $%d" % (main.money + main.current_wage + current_wage_modifier)
 
