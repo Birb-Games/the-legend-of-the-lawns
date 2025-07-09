@@ -57,6 +57,7 @@ func explode(bullet_scene: PackedScene, count: int, spawn: Vector2) -> void:
 		bullet.dir = dir
 		$/root/Main/Lawn.add_child(bullet)
 	$/root/Main/Lawn.flowers_destroyed += 1
+	PenaltyParticle.emit_penalty($/root/Main/HUD.get_current_neighbor().flower_penalty, spawn, $/root/Main/Lawn)
 	queue_free()
 
 func apply_lawnmower_damage(delta: float) -> void:
