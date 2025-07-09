@@ -36,7 +36,8 @@ func start_showing_menu():
 	labels_to_show.push_back([$Stats/Wage])
 	$Stats/Wage.text = "Wage: $%d" % main.current_wage
 
-	var flower_penalty: int = $/root/Main/Lawn.flowers_destroyed * $/root/Main/HUD.get_current_neighbor().flower_penalty
+	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor();
+	var flower_penalty: int = $/root/Main/Lawn.flowers_destroyed * current_neighbor.flower_penalty
 	$Stats/FlowerPenalty.hide()
 	$Stats/FlowerCommentText.hide()
 	if flower_penalty > 0:
@@ -52,14 +53,28 @@ func start_showing_menu():
 		labels_to_show.push_back([$Stats/HedgePenalty, $Stats/HedgeCommentText])
 		$Stats/HedgePenalty.text = "Hedge Penalty: -$%d" % hedge_penalty
 	
-	# Time bonus, currently a reciprocal function
 	var time_limit = $/root/Main/Lawn.time_limit
-	var time_bonus: int = floori(time_limit / $/root/Main/HUD.time_elapsed)
+	var time_bonus: int = 0
+	# Calculate the time bonus
+	if $/root/Main/HUD.time_elapsed < time_limit:
+		# if we were able to complete it within the time limit,
+		# give the player the base bonus
+		time_bonus += current_neighbor.bonus_base
+		
+		# add an extra bonus for finishing a lawn in a shorter period of time
+		var perc = $/root/Main/HUD.time_elapsed / time_limit
+		# If done in less than half the time of the bonus time limit, then give
+		# the max bonus. Decrease the bonus if it takes longer
+		var extra = max(1.0 - max(perc - 0.5, 0.0) * 2.0, 0.0)
+		extra *= (current_neighbor.max_bonus - current_neighbor.bonus_base)
+		time_bonus += floori(extra)
+	time_bonus = min(time_bonus, current_neighbor.max_bonus)
+	current_wage_modifier += time_bonus
+
 	$Stats/TimeBonus.hide()
 	if time_bonus > 0:
 		$Stats/TimeBonus.text = "Time Bonus: $%d" % time_bonus
 		labels_to_show.push_back([$Stats/TimeBonus])
-	current_wage_modifier += time_bonus
 
 	# Payment
 	var payment = max(main.current_wage + current_wage_modifier, 0)
