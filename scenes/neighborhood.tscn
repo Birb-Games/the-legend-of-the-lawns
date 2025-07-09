@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dhd8ttlwqnlj1"]
+[gd_scene load_steps=15 format=4 uid="uid://dhd8ttlwqnlj1"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/yellowflower.tscn" id="5_d4j3b"]
 [ext_resource type="PackedScene" uid="uid://cuwajf6p2vxkf" path="res://scenes/enemies/redflower.tscn" id="6_pmd5m"]
 [ext_resource type="PackedScene" uid="uid://bhnk8apyedtit" path="res://scenes/enemies/weed.tscn" id="7_wnnnr"]
+[ext_resource type="PackedScene" uid="uid://dpa88af6o4cu7" path="res://scenes/lawns/test_lawn.tscn" id="9_c4pas"]
 [ext_resource type="Script" uid="uid://c8mw4mf3wdang" path="res://scripts/skip_day.gd" id="10_35gpm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlwpo"]
@@ -91,6 +92,8 @@ y_sort_enabled = true
 [node name="NeighborBob" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(328, -155)
 display_name = "Neighbor Bob"
+lawn_template = ExtResource("9_c4pas")
+flower_penalty = 1
 hedge_penalty = 3
 
 [node name="NeighborJim" parent="Neighbors" instance=ExtResource("3_tqujx")]
