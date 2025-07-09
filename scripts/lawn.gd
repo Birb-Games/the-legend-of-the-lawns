@@ -31,6 +31,7 @@ func destroy_hedge(pos: Vector2i):
 	if !LawnGenerationUtilities.is_hedge(cell_atlas):
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 2), 0)
+	PenaltyParticle.emit_penalty($/root/Main/HUD.get_current_neighbor().hedge_penalty, pos * $TileMapLayer.tile_set.tile_size, $/root/Main/Lawn)
 
 # Have the player pick up the water gun
 func pickup_water_gun():
