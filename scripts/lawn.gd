@@ -3,8 +3,15 @@ extends Node2D
 @onready var lawnmower: RigidBody2D = $Lawnmower
 @onready var water_gun_item: StaticBody2D = $WaterGun
 
+# In seconds, if the player mows the lawn in under this amount of time then
+# they get a time bonus
+@export var time_limit: float = 120.0;
+
 var total_grass_tiles: int
 var cut_grass_tiles: int = 0
+
+# Keep track of the number of flowers destroyed for the penalty
+var flowers_destroyed: int = 0
 
 func _ready() -> void:
 	total_grass_tiles = 0
@@ -28,6 +35,10 @@ func destroy_hedge(pos: Vector2i):
 	if !LawnGenerationUtilities.is_hedge(cell_atlas):
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 2), 0)
+	PenaltyParticle.emit_penalty(
+		$/root/Main/HUD.get_current_neighbor().hedge_penalty, 
+		pos * $TileMapLayer.tile_set.tile_size, $/root/Main/Lawn
+	)
 
 # Have the player pick up the water gun
 func pickup_water_gun():

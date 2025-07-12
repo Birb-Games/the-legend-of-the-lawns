@@ -90,6 +90,29 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 text = "Health"
 
+[node name="Timer" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 116.0
+offset_right = 113.0
+offset_bottom = 138.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 30
+text = "00:00"
+
+[node name="Bonus" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 142.0
+offset_right = 159.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 20
+text = "BONUS: 00:00"
+
 [node name="NPCMenu" parent="Control" instance=ExtResource("6_5pdws")]
 visible = false
 layout_mode = 1

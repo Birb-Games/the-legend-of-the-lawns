@@ -16,16 +16,17 @@ var current_day: int = 1
 var lawns_mowed: int = 0
 var current_wage: int = 0
 
-func update_wage() -> void:
-	money += current_wage
+# Update the money based on the current wage and the modifier (penalties and bonuses)
+func update_money(modifier: int) -> void:
+	money += max(current_wage + modifier, 0)
 
 func _ready() -> void:
 	# Keep cursor in window - this is to prevent the mouse cursor from accidentally
 	# leaving when shooting enemies
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
-func _process(_delta: float) -> void:
-	update_hud()
+func _process(delta: float) -> void:
+	update_hud(delta)
 
 func advance_day():
 	neighborhood.update_neighbors()
@@ -59,7 +60,7 @@ func return_to_neighborhood() -> void:
 	player.dir = "down"
 	lawn_loaded = false
 
-func update_hud_lawn():
+func update_hud_lawn(delta: float):
 	$HUD/Control/InfoText.show()
 	$HUD.update_info_text("")
 	if $Player/WaterGun.visible and $Player.in_lawnmower_range():
@@ -73,6 +74,7 @@ func update_hud_lawn():
 	
 	$HUD.update_progress_bar($Lawn.get_perc_cut())
 	$HUD.update_health_bar($Player.get_hp_perc())
+	$HUD.update_timer(delta)
 
 func update_hud_neighborhood():
 	$HUD.update_info_text($Player.interact_text)	
@@ -81,10 +83,11 @@ func update_hud_neighborhood():
 	
 	$HUD.update_progress_bar(-1.0) # -1.0 hides the progress bar
 	$HUD.update_health_bar(-1.0)
+	$HUD.hide_timer()
 
-func update_hud():
+func update_hud(delta: float):
 	if lawn_loaded:
-		update_hud_lawn()
+		update_hud_lawn(delta)
 	else:
 		update_hud_neighborhood()
 	
