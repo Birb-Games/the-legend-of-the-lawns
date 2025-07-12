@@ -25,6 +25,7 @@ confused with *League of Legends*. On second thought, just go with LotL.
 ## Credits
 
 Nullptr Error (JLi69)
+
 gldeA
 
 See `assets/credits.txt` for third party artwork/resources used.
