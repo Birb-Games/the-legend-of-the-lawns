@@ -67,6 +67,15 @@ player_dialog = "Can we PLEASE get-"
 possible_dialog = ["Not now, sweetie, I'm busy gardening.", "Sweetie, can it please wait? I'm watering the flowers right now.", "Taking care of these flowers is difficult,
 I need to concentrate right now. Could you talk to me later?", "Are you asking about the Swapdeck again? We've told you, you're going to have to earn the money yourself if you want it."]
 
+[node name="Spotty" parent="NPCs" instance=ExtResource("4_dcvy4")]
+position = Vector2(106, -101)
+animation = &"spotty"
+display_name = "Spotty the dog"
+first_dialog = "*sniff* *sniff*
+Arf! Arf!"
+player_dialog = "Hey there boy!"
+possible_dialog = ["Arf! Arf!", "*sniff* *sniff*", "Bark! Bark!", "*pant* *pant* *pant*"]
+
 [node name="Decorations" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -92,16 +101,34 @@ y_sort_enabled = true
 position = Vector2(216, -155)
 display_name = "Neighbor Bob"
 lawn_template = ExtResource("3_xlwpo")
+mowing_frequency = 2
+wage = 5
+wage_change = -2
+bonus_base = 1
+max_bonus = 3
 flower_penalty = 1
-hedge_penalty = 3
+hedge_penalty = 1
+first_dialog = "Hello, are you my neighbor's kid? Do you need anything?
+By the way, if you're here to sell me that new high-powered weed killer, I'm not interested."
+first_job_offer = "Okay good, you're not a door-to-door salesman.
+Well then, I suppose I could use some help with mowing my lawn today..."
 
 [node name="NeighborJim" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-232, -155)
 animation = &"neighbor_jim"
 display_name = "Neighbor Jim"
 lawn_template = ExtResource("3_xlwpo")
+mowing_frequency = 2
+wage = 5
+wage_change = -2
+bonus_base = 1
+max_bonus = 3
 flower_penalty = 1
-hedge_penalty = 3
+hedge_penalty = 1
+first_dialog = "Hey, aren't you my neighbor's kid? Do you need something?
+You better not be trying to sell me insurance..."
+first_job_offer = "Oh good, you're not selling me insurance.
+Well then, I suppose I could use some help with mowing my lawn today..."
 
 [node name="NeighborNancy" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(488, -155)
@@ -109,8 +136,18 @@ animation = &"neighbor_nancy"
 display_name = "Neighbor Nancy"
 lawn_template = ExtResource("3_xlwpo")
 min_lawns_mowed = 2
+mowing_frequency = 2
+wage_change = -3
+bonus_base = 1
+max_bonus = 4
 flower_penalty = 2
-hedge_penalty = 2
+hedge_penalty = 1
+reject_dialog = ["Sorry, my lawn was just mowed.", "Do you need anything?
+Oh, sorry, my lawn doesn't need to be mowed today.", "Hi, sorry but can it wait? I'm currently gardening right now."]
+unavailable_msg = "The door is locked...
+There's a note: \"I'm on vacation right now, please come back later! Thank you!\""
+first_dialog = "Hi! You're my neighbor's kid, right? Do you need anything?"
+first_job_offer = "Oh, thank you! My lawn does need a trim - I just got back from a vacation to Aldoria and I don't feel like mowing my lawn. My flowers haven't been watered so they're a little upset right now..."
 
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="."]
 

@@ -11,15 +11,17 @@ var player_in_area: bool = false
 
 @export var display_name: String = "Neighbor"
 @export var lawn_template: PackedScene
+## How many lawns the player has to mow before unlocking this neighbor
+@export var min_lawns_mowed: int = 0
+## How frequently they need their lawn mowed
+@export var mowing_frequency: int = 1
+
+@export_group("Wage Info")
 @export var wage: int = 10
 @export var wage_change: int = 0
 @export var max_wage: int = 20
 @export var bonus_base: int = 2
 @export var max_bonus: int = 5
-## How many lawns the player has to mow before unlocking this neighbor
-@export var min_lawns_mowed: int = 0
-## How frequently they need their lawn mowed
-@export var mowing_frequency: int = 1
 ## How much they remove from the player's wage when they destroy each flower
 @export var flower_penalty: int = 0
 ## How much they remove from the player's wage when they destroy each hedge
