@@ -202,6 +202,10 @@ texture = ExtResource("1_l70by")
 6:3/3 = 3
 6:3/3/flip_h = true
 6:3/3/flip_v = true
+7:3/0 = 0
+7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [resource]
 physics_layer_0/collision_layer = 7
