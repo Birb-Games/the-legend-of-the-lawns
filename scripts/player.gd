@@ -15,7 +15,7 @@ var pulling: bool = false
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 
-const MAX_HEALTH: int = 50
+const MAX_HEALTH: int = 80
 var health: int = MAX_HEALTH
 # For displaying a red flash whenever the player takes damage
 const DAMAGE_COOLDOWN: float = 1.25

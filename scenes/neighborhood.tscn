@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
 [ext_resource type="PackedScene" uid="uid://bmfatvi0c60nn" path="res://scenes/neighbor.tscn" id="3_tqujx"]
-[ext_resource type="PackedScene" uid="uid://cd2hhn1vl0cq4" path="res://scenes/lawns/basic_lawn.tscn" id="3_xlwpo"]
 [ext_resource type="PackedScene" uid="uid://g5qtancilglp" path="res://scenes/npc.tscn" id="4_dcvy4"]
 [ext_resource type="PackedScene" uid="uid://d2n3adgv6jdyy" path="res://scenes/house.tscn" id="4_xlwpo"]
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/yellowflower.tscn" id="5_d4j3b"]
@@ -12,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bxviaoyrpxe6c" path="res://scenes/lawns/bob_lawn.tscn" id="9_c4pas"]
 [ext_resource type="Script" uid="uid://c8mw4mf3wdang" path="res://scripts/skip_day.gd" id="10_35gpm"]
 [ext_resource type="PackedScene" uid="uid://bkn3rcq86gyqb" path="res://scenes/lawns/jim_lawn.tscn" id="10_e6rtj"]
+[ext_resource type="PackedScene" uid="uid://br74t0xmwoiyq" path="res://scenes/lawns/nancy_lawn.tscn" id="11_e6rtj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlwpo"]
 normal = Vector2(1, 0)
@@ -136,7 +136,7 @@ Well then, I suppose I could use some help with mowing my lawn today..."
 position = Vector2(488, -155)
 animation = &"neighbor_nancy"
 display_name = "Neighbor Nancy"
-lawn_template = ExtResource("3_xlwpo")
+lawn_template = ExtResource("11_e6rtj")
 min_lawns_mowed = 2
 mowing_frequency = 2
 wage_change = -3
