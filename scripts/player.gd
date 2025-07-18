@@ -14,6 +14,7 @@ var dir: String = "down"
 var pulling: bool = false
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
+var holding_lawnmower: bool = false
 
 const MAX_HEALTH: int = 80
 var health: int = MAX_HEALTH
@@ -79,10 +80,13 @@ func can_pull() -> bool:
 	if $WaterGun.visible:
 		return false
 
+	var vel = Vector2.ZERO
+	if velocity.length() > 0.0:
+		vel = velocity.normalized()
 	# Pull lawnmower with player
-	var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(velocity.normalized())
+	var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(vel)
 	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
-	var same_direction: bool = dot_prod > 0.8
+	var same_direction: bool = dot_prod > 0.7
 	return same_direction and $InteractZone.can_pull
 
 func _process(delta: float) -> void:
@@ -95,7 +99,7 @@ func _process(delta: float) -> void:
 	damage_timer -= delta
 
 func currently_pulling() -> bool:
-	return Input.is_action_pressed("interact") and can_pull()
+	return holding_lawnmower and can_pull()
 
 func _physics_process(_delta: float):
 	if health <= 0:
@@ -123,11 +127,20 @@ func _physics_process(_delta: float):
 	if velocity.length() > 0.0:
 		velocity /= velocity.length()
 	velocity *= speed
+
+	if Input.is_action_just_pressed("interact") and in_lawnmower_range():
+		holding_lawnmower = !holding_lawnmower
+	elif !in_lawnmower_range():
+		holding_lawnmower = false
+	elif velocity.length() > 0.0 and mower_exists():
+		var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(velocity.normalized())
+		if dot_prod < 0.0:
+			holding_lawnmower = false
 	
 	if currently_pulling():
 		lawnmower.linear_velocity = velocity
 		pulling = true
-	elif (Input.is_action_just_released("interact") and can_pull()) or !can_pull():
+	elif !can_pull():
 		if mower_exists():
 			lawnmower.linear_velocity = Vector2.ZERO
 		pulling = false
