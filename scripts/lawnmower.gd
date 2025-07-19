@@ -26,6 +26,9 @@ func get_dir_vec() -> Vector2:
 	return Vector2.ZERO
 
 func set_direction() -> void:
+	if player.velocity.length() == 0.0:
+		return
+
 	var player_hitbox: CollisionShape2D = $/root/Main/Player/CollisionShape2D
 	var player_rect: Rect2 = player_hitbox.shape.get_rect()
 	player_rect.position += player.position
@@ -34,8 +37,8 @@ func set_direction() -> void:
 
 	var top = hitbox_rect.position.y
 	var bot = hitbox_rect.position.y
-	var left = hitbox_rect.position.x - hitbox_rect.size.x / 2.0
-	var right = hitbox_rect.position.x + hitbox_rect.size.x / 2.0
+	var left = hitbox_rect.position.x - hitbox_rect.size.x / (2.0 * scale.x)
+	var right = hitbox_rect.position.x + hitbox_rect.size.x / (2.0 * scale.x)
 	if player_rect.position.x <= left:
 		dir = "right"
 	elif player_rect.position.x >= right:
@@ -44,6 +47,15 @@ func set_direction() -> void:
 		dir = "down"
 	elif player_rect.position.y >= bot:
 		dir = "up"
+
+	if player.velocity.x == 0.0 and player.velocity.y > 0.0:
+		dir = "down"
+	elif player.velocity.x == 0.0 and player.velocity.y < 0.0:
+		dir = "up"
+	elif player.velocity.y == 0.0 and player.velocity.x > 0.0:
+		dir = "right"
+	elif player.velocity.y == 0.0 and player.velocity.x < 0.0:
+		dir = "left"
 
 func set_direction_holding() -> void:
 	var diff = (position - player.position).normalized()
