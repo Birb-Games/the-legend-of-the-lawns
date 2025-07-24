@@ -8,6 +8,8 @@ var intersecting_player: bool = false
 var default_layer: int
 var stuck_in_wall = false
 var can_push = true
+var goal_point: Vector2 = position #The point that the mower is trying to reach, usually directly in front of the player
+const SPEED: float = 60.0
 
 func _ready() -> void:
 	$Shadows/ShadowLeft.show()
@@ -25,7 +27,7 @@ func get_dir_vec() -> Vector2:
 			return Vector2.UP
 	return Vector2.ZERO
 
-func set_direction() -> void:
+func set_direction_from_collision() -> void:
 	if player.velocity.length() == 0.0:
 		return
 
@@ -57,25 +59,11 @@ func set_direction() -> void:
 	elif player.velocity.y == 0.0 and player.velocity.x < 0.0:
 		dir = "left"
 
-func set_direction_holding() -> void:
-	var diff = (position - player.position).normalized()
-
-	if abs(diff.x) < abs(diff.y):
-		if diff.y > 0.0:
-			dir = "down"
-		else:
-			dir = "up"
-	else:
-		if diff.x > 0.0:
-			dir = "right"
-		else:
-			dir = "left"
-
 func set_animation() -> void:
-	if player.currently_pulling():
-		set_direction_holding()
+	if player.holding_lawnmower:
+		dir = player.dir
 	elif intersecting_player:
-		set_direction()
+		set_direction_from_collision()
 	
 	# Set shadows
 	for shadow in $Shadows.get_children():
@@ -98,16 +86,23 @@ func _process(delta: float) -> void:
 		linear_velocity = Vector2.ZERO
 		return
 	
-	if stuck_in_wall or can_push:
+	if stuck_in_wall:
 		collision_layer |= 1
 	else:
 		collision_layer = default_layer
 	
 	set_animation()
+
+	if !player.holding_lawnmower:
+		goal_point = position
+
 	# push the player back if they aren't moving
 	if intersecting_player and player.velocity.length() == 0.0:
 		var diff = (position - player.position).normalized()
 		player.position -= diff * delta * 8.0
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	state.linear_velocity = (goal_point - position).limit_length() * SPEED
 
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("player"):
@@ -139,3 +134,6 @@ func rect():
 # Returns global position of the shadow
 func get_sprite_pos() -> Vector2:
 	return position + $AnimatedSprite2D.position
+
+func set_goal_position(pos: Vector2) -> void:
+	goal_point = pos

@@ -6,12 +6,12 @@ const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
 @onready var lawnmower: RigidBody2D = get_node_or_null(LAWNMOWER_PATH)
 @export var water_gun: Sprite2D
 
-const NORMAL_SPEED: float = 60.0
-const PULL_SPEED: float = NORMAL_SPEED / 4.0
-var speed: float = NORMAL_SPEED
+const SPEED: float = 60.0
+# const PULL_SPEED: float = SPEED / 4.0
+# var speed: float = SPEED
 
 var dir: String = "down"
-var pulling: bool = false
+# var pulling: bool = false
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var holding_lawnmower: bool = false
@@ -55,14 +55,13 @@ func get_dir_vec() -> Vector2:
 	return Vector2.ZERO
 
 func set_animation():
-	if (velocity.y < 0.0 and !pulling) or (velocity.y > 0.0 and pulling):
+	if velocity.y < 0.0:
 		dir = "up"
-	elif (velocity.y > 0.0 and !pulling) or (velocity.y < 0.0 and pulling):
+	elif velocity.y > 0.0:
 		dir = "down"
-	
-	if (velocity.x < 0.0 and !pulling) or (velocity.x > 0.0 and pulling):
+	elif velocity.x < 0.0:
 		dir = "left"
-	elif (velocity.x > 0.0 and !pulling) or (velocity.x < 0.0 and pulling):
+	elif velocity.x > 0.0:
 		dir = "right"
 	
 	var state = "walk"
@@ -72,22 +71,24 @@ func set_animation():
 	$AnimatedSprite2D.animation = animation
 
 func in_lawnmower_range():
-	return $InteractZone.can_pull
+	return $InteractZone.mower_in_range
 	
-func can_pull() -> bool:
-	if !mower_exists():
-		return false
-	if $WaterGun.visible:
-		return false
+# func can_pull() -> bool:
+# 	return false
 
-	var vel = Vector2.ZERO
-	if velocity.length() > 0.0:
-		vel = velocity.normalized()
-	# Pull lawnmower with player
-	var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(vel)
-	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
-	var same_direction: bool = dot_prod > 0.7
-	return same_direction and $InteractZone.can_pull
+# 	if !mower_exists():
+# 		return false
+# 	if $WaterGun.visible:
+# 		return false
+
+# 	var vel = velocity.normalized()
+	
+# 	# Pull lawnmower with player
+# 	var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(vel)
+
+# 	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
+# 	var same_direction: bool = dot_prod > 0.7
+# 	return same_direction and in_lawnmower_range()
 
 func _process(delta: float) -> void:
 	visible = health > 0
@@ -98,8 +99,8 @@ func _process(delta: float) -> void:
 	
 	damage_timer -= delta
 
-func currently_pulling() -> bool:
-	return holding_lawnmower and can_pull()
+# func currently_pulling() -> bool:
+# 	return holding_lawnmower and can_pull()
 
 func _physics_process(_delta: float):
 	if health <= 0:
@@ -118,34 +119,37 @@ func _physics_process(_delta: float):
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1.0
 	
-	if currently_pulling():
-		speed = PULL_SPEED
-	else:
-		speed = NORMAL_SPEED
+	# if currently_pulling():
+	# 	speed = PULL_SPEED
+	# else:
+	# 	speed = SPEED
 	
 	# Normalize player velocity
-	if velocity.length() > 0.0:
-		velocity /= velocity.length()
-	velocity *= speed
+	velocity = velocity.normalized() * SPEED
 
 	if Input.is_action_just_pressed("interact") and in_lawnmower_range():
+		mower_exists()
 		holding_lawnmower = !holding_lawnmower
 	elif !in_lawnmower_range():
 		holding_lawnmower = false
-	elif velocity.length() > 0.0 and mower_exists():
-		var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(velocity.normalized())
-		if dot_prod < 0.0:
-			holding_lawnmower = false
 	
-	if currently_pulling():
-		lawnmower.linear_velocity = velocity
-		pulling = true
-	elif !can_pull():
-		if mower_exists():
-			lawnmower.linear_velocity = Vector2.ZERO
-		pulling = false
-	else:
-		pulling = false
+	if holding_lawnmower:
+		lawnmower.set_goal_position(position + (get_dir_vec() * 12.0))
+
+	# elif velocity.length() > 0.0 and mower_exists():
+	# 	var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(velocity.normalized())
+	# 	if dot_prod < 0.0:
+	# 		holding_lawnmower = false
+	
+	# if currently_pulling():
+	# 	lawnmower.linear_velocity = velocity #TODO: Reimplement to prevent pushing the mower through walls
+	# 	pulling = true
+	# elif !can_pull():
+	# 	if mower_exists():
+	# 		lawnmower.linear_velocity = Vector2.ZERO
+	# 	pulling = false
+	# else:
+	# 	pulling = false
 
 	move_and_slide()
 

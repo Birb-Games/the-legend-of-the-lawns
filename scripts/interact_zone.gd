@@ -2,15 +2,15 @@
 
 extends Area2D
 
-var can_pull: bool
+var mower_in_range: bool
 
 func _ready() -> void:
-	can_pull = false
+	mower_in_range = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("lawnmower"):
-		can_pull = true
+		mower_in_range = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("lawnmower"):
-		can_pull = false
+		mower_in_range = false
