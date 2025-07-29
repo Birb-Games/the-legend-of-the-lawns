@@ -9,7 +9,7 @@ var default_layer: int
 var stuck_in_wall = false
 var can_push = true
 var goal_point: Vector2 = position #The point that the mower is trying to reach, usually directly in front of the player
-const SPEED: float = 60.0
+const SPEED: float = 120.0
 
 func _ready() -> void:
 	$Shadows/ShadowLeft.show()

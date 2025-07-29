@@ -128,10 +128,18 @@ func _physics_process(_delta: float):
 	velocity = velocity.normalized() * SPEED
 
 	if Input.is_action_just_pressed("interact") and in_lawnmower_range():
-		mower_exists()
 		holding_lawnmower = !holding_lawnmower
+		if mower_exists():
+			if holding_lawnmower:
+				lawnmower.collision_mask &= 0b0 # Allow the lawnmower to pass through the player
+			else:
+				lawnmower.collision_mask |= 0b1 # Allow the player to push the lawnmower again
 	elif !in_lawnmower_range():
 		holding_lawnmower = false
+		if mower_exists():
+			lawnmower.collision_mask |= 0b1 # Allow the player to push the lawnmower again
+
+
 	
 	if holding_lawnmower:
 		lawnmower.set_goal_position(position + (get_dir_vec() * 12.0))
