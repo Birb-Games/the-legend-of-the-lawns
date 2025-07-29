@@ -102,7 +102,9 @@ func _process(delta: float) -> void:
 		player.position -= diff * delta * 8.0
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	state.linear_velocity = (goal_point - position).limit_length() * SPEED
+	var dir_vec: Vector2 = (goal_point - position).normalized()
+	var speed: float = minf((goal_point - position).length() * (goal_point - position).length() * SPEED, SPEED)
+	state.linear_velocity = dir_vec * speed
 
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("player"):
