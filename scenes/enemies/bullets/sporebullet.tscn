@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dle1nhc76n43p"]
 
-[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/seedbullet.tscn" id="1_0q5ia"]
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seedbullet.tscn" id="1_0q5ia"]
 [ext_resource type="Texture2D" uid="uid://d10tw1xn60n48" path="res://assets/textures/enemies/sporebullet.png" id="2_gaxo7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0q5ia"]

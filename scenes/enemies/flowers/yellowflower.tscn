@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://kai60sy8qsix"]
 
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_6wda8"]
-[ext_resource type="Script" uid="uid://baexw2k0p7iea" path="res://scripts/enemies/yellowflower.gd" id="1_laaae"]
+[ext_resource type="Script" uid="uid://baexw2k0p7iea" path="res://scripts/enemies/flowers/yellowflower.gd" id="1_laaae"]
 [ext_resource type="Texture2D" uid="uid://31svn2gchyy2" path="res://assets/textures/enemies/flower1.png" id="1_p20xk"]
-[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/thornbullet.tscn" id="2_s7thy"]
+[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/bullets/thornbullet.tscn" id="2_s7thy"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="3_4jv5a"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="4_4gi0e"]
 [ext_resource type="Texture2D" uid="uid://dseuw5y7iibxp" path="res://assets/textures/enemies/flower1_stunned.png" id="5_q4o2l"]

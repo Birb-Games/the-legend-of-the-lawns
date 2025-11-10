@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://fqhlxrgabgqv"]
 
 [ext_resource type="Texture2D" uid="uid://t6y1l4osuoqg" path="res://assets/textures/enemies/weed2.png" id="1_a8atb"]
-[ext_resource type="Script" uid="uid://b32y243vvarwd" path="res://scripts/enemies/thornweed.gd" id="1_sx5o7"]
+[ext_resource type="Script" uid="uid://b32y243vvarwd" path="res://scripts/enemies/weeds/thornweed.gd" id="1_sx5o7"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_w4wb1"]
-[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/thornbullet.tscn" id="2_f2frt"]
+[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/bullets/thornbullet.tscn" id="2_f2frt"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="4_yhrat"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="6_agoda"]
 
@@ -73,6 +73,10 @@ animations = [{
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_sx5o7")
 bullet_scene = ExtResource("2_f2frt")
+bullet_cooldown = 2.5
+max_shoot_distance = 112.0
+explosion_bullet_count = 8
+max_health = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -102,3 +106,4 @@ offset_top = -22.3333
 offset_bottom = -20.3333
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="hit" from="." to="." method="_on_hit"]
