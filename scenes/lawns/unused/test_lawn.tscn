@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=4 uid="uid://dpa88af6o4cu7"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_ftld5"]
-[ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellowflower.tscn" id="2_rg8jm"]
+[ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellow_flower.tscn" id="2_rg8jm"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_wvh0u"]
-[ext_resource type="PackedScene" uid="uid://cuwajf6p2vxkf" path="res://scenes/enemies/flowers/redflower.tscn" id="4_4dqeu"]
+[ext_resource type="PackedScene" uid="uid://cuwajf6p2vxkf" path="res://scenes/enemies/flowers/red_flower.tscn" id="4_4dqeu"]
 [ext_resource type="PackedScene" uid="uid://bhnk8apyedtit" path="res://scenes/enemies/weeds/weed.tscn" id="4_7cgbf"]
 [ext_resource type="PackedScene" uid="uid://fqhlxrgabgqv" path="res://scenes/enemies/weeds/thornweed.tscn" id="5_lbura"]
 [ext_resource type="PackedScene" uid="uid://bfrhyuagid5eh" path="res://scenes/enemies/weeds/mushroom.tscn" id="6_4dqeu"]
-[ext_resource type="PackedScene" uid="uid://1fh3tiwr4hty" path="res://scenes/enemies/flowers/blueflower.tscn" id="7_lbura"]
+[ext_resource type="PackedScene" uid="uid://1fh3tiwr4hty" path="res://scenes/enemies/flowers/blue_flower.tscn" id="7_lbura"]
 
 [node name="Lawn" instance=ExtResource("1_ftld5")]
 

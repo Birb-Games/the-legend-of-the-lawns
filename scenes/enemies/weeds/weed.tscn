@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://p2qq0tajr612" path="res://scripts/enemies/weeds/weed.gd" id="1_d5vux"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_f2hbu"]
-[ext_resource type="Texture2D" uid="uid://cf1sp2ca8nk66" path="res://assets/textures/enemies/weed1.png" id="1_m1ou3"]
-[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seedbullet.tscn" id="2_gohqb"]
-[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="4_pfolx"]
+[ext_resource type="Texture2D" uid="uid://cf1sp2ca8nk66" path="res://assets/textures/enemies/weeds/weed1.png" id="1_m1ou3"]
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="2_gohqb"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="4_pfolx"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="6_oqtah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37qs1"]

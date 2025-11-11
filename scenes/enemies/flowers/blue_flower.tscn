@@ -1,0 +1,126 @@
+[gd_scene load_steps=20 format=3 uid="uid://1fh3tiwr4hty"]
+
+[ext_resource type="Script" uid="uid://du4et2to7bk2c" path="res://scripts/enemies/flowers/blue_flower.gd" id="1_qca2c"]
+[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/bullets/thorn_bullet.tscn" id="2_q3i0f"]
+[ext_resource type="PackedScene" uid="uid://dle1nhc76n43p" path="res://scenes/enemies/bullets/spore_bullet.tscn" id="3_5ye2o"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="4_wiwcy"]
+[ext_resource type="Texture2D" uid="uid://bw6ubv06nooj2" path="res://assets/textures/enemies/flowers/flower3.png" id="5_361x7"]
+[ext_resource type="Texture2D" uid="uid://doenufbaj2b8r" path="res://assets/textures/enemies/flowers/flower3_stunned.png" id="6_h5tek"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="7_eul5i"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="8_r62hj"]
+[ext_resource type="PackedScene" uid="uid://b73kqhktknig" path="res://scenes/particles/stun_particles.tscn" id="9_141dj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmm5g"]
+size = Vector2(10.6667, 19.3333)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2npi"]
+atlas = ExtResource("5_361x7")
+region = Rect2(0, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p01mu"]
+atlas = ExtResource("5_361x7")
+region = Rect2(14, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6ifc"]
+atlas = ExtResource("5_361x7")
+region = Rect2(28, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh7oj"]
+atlas = ExtResource("5_361x7")
+region = Rect2(42, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ofj8"]
+atlas = ExtResource("6_h5tek")
+region = Rect2(0, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35pos"]
+atlas = ExtResource("6_h5tek")
+region = Rect2(14, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nyer"]
+atlas = ExtResource("6_h5tek")
+region = Rect2(28, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvcwv"]
+atlas = ExtResource("6_h5tek")
+region = Rect2(42, 0, 14, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m8m4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2npi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p01mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6ifc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh7oj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ofj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35pos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nyer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvcwv")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 5.0
+}]
+
+[node name="Blueflower" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+collision_mask = 5
+script = ExtResource("1_qca2c")
+thorn_bullet = ExtResource("2_q3i0f")
+spore_bullet = ExtResource("3_5ye2o")
+max_health = 6
+shoot_cooldown = 6.0
+shoot_range = 132.0
+bullet_speed = 70.0
+stun_amt = 12.0
+explosion_bullet_count = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10.3333)
+shape = SubResource("RectangleShape2D_rmm5g")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -1.16667)
+scale = Vector2(0.25, 0.179487)
+texture = ExtResource("4_wiwcy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_m8m4i")
+autoplay = "default"
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("7_eul5i")]
+position = Vector2(0, -10.6667)
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+
+[node name="Healthbar" parent="." instance=ExtResource("8_r62hj")]
+offset_top = -23.6667
+offset_bottom = -21.6667
+
+[node name="StunParticles" parent="." instance=ExtResource("9_141dj")]
+position = Vector2(0, -24)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
