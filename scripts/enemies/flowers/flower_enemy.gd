@@ -1,3 +1,5 @@
+# This is the class that flower enemies will inherit from
+
 class_name FlowerEnemy
 
 extends Area2D
@@ -10,6 +12,8 @@ extends Area2D
 @export var bullet_speed: float = 100.0
 @export var stun_amt: float = 1.0
 @export var bullet_damage: int = 1
+@export var explosion_bullet_count: int = 5
+@export var bullet_scene: PackedScene
 
 @onready var health: int = max_health
 var shoot_timer: float = 0.0
@@ -18,6 +22,8 @@ const LAWNMOWER_DAMAGE_COOLDOWN: float = 1.0
 var lawnmower_damage_timer: float = 0.0
 var stun_timer: float = 0.0
 
+# Stuns the flower, this is triggered whenever the flower is hit by a bullet
+# When the flower is stunned it can not attack
 func stun() -> void:
 	stun_timer += stun_amt
 	stun_timer = max(stun_timer, stun_amt)
@@ -41,18 +47,22 @@ func update_stun_timer(delta: float) -> void:
 		stun_particles.hide()
 		sprite.animation = "default"
 
+# Returns if the flower is stunned
 func stunned() -> bool:
 	return stun_timer > 0.0
 
+# Returns if the flower is dead (health <= 0)
 func dead() -> bool:
-	return health <= 0.0
+	return health <= 0
 
-func explode(bullet_scene: PackedScene, count: int, spawn: Vector2) -> void:
+# The flower explodes upon death
+func explode(bullet_template: PackedScene) -> void:
+	var spawn = $BulletSpawnPoint.global_position
 	var offset = randf() * 2.0 * PI
-	for i in range(count):
-		var angle = offset + i * 2.0 * PI / float(count)
+	for i in range(explosion_bullet_count):
+		var angle = offset + i * 2.0 * PI / float(explosion_bullet_count)
 		var dir = Vector2(cos(angle), sin(angle))
-		var bullet = bullet_scene.instantiate()
+		var bullet = bullet_template.instantiate()
 		bullet.position = spawn + dir * 4.0
 		bullet.dir = dir
 		$/root/Main/Lawn.add_child(bullet)
@@ -68,18 +78,39 @@ func apply_lawnmower_damage(delta: float) -> void:
 		lawnmower_damage_timer = LAWNMOWER_DAMAGE_COOLDOWN
 		stun()
 
+func can_shoot() -> bool:
+	# Lawn is not loaded, do not shoot
+	if !$/root/Main.lawn_loaded:
+		return false
+
+	# Player is dead, do not shoot
+	if player.health <= 0:
+		return false
+
+	return true
+
+func shoot_bullet(bullet_template: PackedScene, angle: float) -> void:
+	var bullet = bullet_template.instantiate()
+	bullet.global_position = $BulletSpawnPoint.global_position
+	bullet.damage_amt = bullet_damage
+	bullet.speed = bullet_speed
+	bullet.dir = Vector2(cos(angle), sin(angle))
+	$/root/Main/Lawn.add_child(bullet)
+
 func shoot() -> void:
 	pass
 
-func update_shooting(delta: float, spawn: Vector2) -> void:
+func update_shooting(delta: float) -> void:
 	if !stunned():
 		shoot_timer -= delta
+	var spawn = $BulletSpawnPoint.global_position
 	var dist = (player.get_sprite_pos() - spawn).length()
 	if dist < shoot_range and shoot_timer <= 0.0 and !stunned():
-		shoot()
+		if can_shoot():
+			shoot()
 		shoot_timer = shoot_cooldown
 
-func update(delta: float, bullet_spawn_pos: Vector2):
+func update(delta: float):
 	# Update health bar
 	var healthbar = get_node_or_null("Healthbar")
 	if healthbar != null:
@@ -87,5 +118,27 @@ func update(delta: float, bullet_spawn_pos: Vector2):
 
 	update_stun_timer(delta)
 	# Shoot bullets
-	update_shooting(delta, bullet_spawn_pos)
+	update_shooting(delta)
 	apply_lawnmower_damage(delta)
+
+func _process(delta: float) -> void:
+	update(delta)
+	
+	if dead():
+		explode(bullet_scene)
+
+func _on_area_entered(area: Area2D) -> void:
+	# Handle getting hit by a bullet
+	if area is PlayerBullet:
+		area.explode()
+		health -= 1
+		health = max(health, 0)
+		stun()
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("lawnmower"):
+		inside_lawnmower = true
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("lawnmower"):
+		inside_lawnmower = false

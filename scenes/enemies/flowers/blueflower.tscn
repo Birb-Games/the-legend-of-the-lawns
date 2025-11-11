@@ -93,6 +93,7 @@ shoot_cooldown = 6.0
 shoot_range = 132.0
 bullet_speed = 70.0
 stun_amt = 12.0
+explosion_bullet_count = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.3333)

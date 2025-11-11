@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://dpa88af6o4cu7"]
+[gd_scene load_steps=9 format=4 uid="uid://dpa88af6o4cu7"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_ftld5"]
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellowflower.tscn" id="2_rg8jm"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_wvh0u"]
+[ext_resource type="PackedScene" uid="uid://cuwajf6p2vxkf" path="res://scenes/enemies/flowers/redflower.tscn" id="4_4dqeu"]
 [ext_resource type="PackedScene" uid="uid://bhnk8apyedtit" path="res://scenes/enemies/weeds/weed.tscn" id="4_7cgbf"]
 [ext_resource type="PackedScene" uid="uid://fqhlxrgabgqv" path="res://scenes/enemies/weeds/thornweed.tscn" id="5_lbura"]
 [ext_resource type="PackedScene" uid="uid://bfrhyuagid5eh" path="res://scenes/enemies/weeds/mushroom.tscn" id="6_4dqeu"]
+[ext_resource type="PackedScene" uid="uid://1fh3tiwr4hty" path="res://scenes/enemies/flowers/blueflower.tscn" id="7_lbura"]
 
 [node name="Lawn" instance=ExtResource("1_ftld5")]
 
@@ -16,16 +18,19 @@ script = ExtResource("2_wvh0u")
 [node name="HedgeGenerationPoints" type="Node2D" parent="TileMapLayer" index="0"]
 
 [node name="Yellowflower" parent="." index="5" instance=ExtResource("2_rg8jm")]
-position = Vector2(76, -121)
+position = Vector2(67, -111)
 
-[node name="Yellowflower2" parent="." index="6" instance=ExtResource("2_rg8jm")]
-position = Vector2(126.00001, -110)
+[node name="Redflower" parent="." index="6" instance=ExtResource("4_4dqeu")]
+position = Vector2(97, -107)
 
-[node name="Weed" parent="." index="7" instance=ExtResource("4_7cgbf")]
+[node name="Blueflower" parent="." index="7" instance=ExtResource("7_lbura")]
+position = Vector2(128, -111)
+
+[node name="Weed" parent="." index="8" instance=ExtResource("4_7cgbf")]
 position = Vector2(-127, -115)
 
-[node name="ThornWeed" parent="." index="8" instance=ExtResource("5_lbura")]
+[node name="ThornWeed" parent="." index="9" instance=ExtResource("5_lbura")]
 position = Vector2(-100, -117)
 
-[node name="Mushroom" parent="." index="9" instance=ExtResource("6_4dqeu")]
+[node name="Mushroom" parent="." index="10" instance=ExtResource("6_4dqeu")]
 position = Vector2(-71, -116)
