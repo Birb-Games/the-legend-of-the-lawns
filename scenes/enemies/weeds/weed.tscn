@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://bhnk8apyedtit"]
 
-[ext_resource type="Script" uid="uid://p2qq0tajr612" path="res://scripts/enemies/weed.gd" id="1_d5vux"]
+[ext_resource type="Script" uid="uid://p2qq0tajr612" path="res://scripts/enemies/weeds/weed.gd" id="1_d5vux"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_f2hbu"]
 [ext_resource type="Texture2D" uid="uid://cf1sp2ca8nk66" path="res://assets/textures/enemies/weed1.png" id="1_m1ou3"]
-[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/seedbullet.tscn" id="2_gohqb"]
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seedbullet.tscn" id="2_gohqb"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contactdamagezone.tscn" id="4_pfolx"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="6_oqtah"]
 
@@ -50,6 +50,9 @@ animations = [{
 scale = Vector2(0.65, 0.65)
 script = ExtResource("1_d5vux")
 bullet_scene = ExtResource("2_gohqb")
+bullet_cooldown = 4.5
+max_shoot_distance = 96.0
+max_health = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.1667)

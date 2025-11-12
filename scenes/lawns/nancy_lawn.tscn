@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_43aim"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_ekw4y"]
 [ext_resource type="PackedScene" uid="uid://ctbigrpm1s7xa" path="res://scenes/hedge_generation_point.tscn" id="3_3bguf"]
-[ext_resource type="PackedScene" uid="uid://cedaoxv5oda2b" path="res://scenes/enemies/flowerspawner.tscn" id="4_5hk2q"]
-[ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/enemyspawner.tscn" id="5_6io3f"]
+[ext_resource type="PackedScene" uid="uid://cedaoxv5oda2b" path="res://scenes/enemies/flowers/flowerspawner.tscn" id="4_5hk2q"]
+[ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/weeds/enemyspawner.tscn" id="5_6io3f"]
 
 [node name="Lawn" instance=ExtResource("1_43aim")]
 time_limit = 360.0

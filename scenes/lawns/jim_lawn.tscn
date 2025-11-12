@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=4 uid="uid://bkn3rcq86gyqb"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_vk44d"]
-[ext_resource type="PackedScene" uid="uid://cedaoxv5oda2b" path="res://scenes/enemies/flowerspawner.tscn" id="2_0p748"]
+[ext_resource type="PackedScene" uid="uid://cedaoxv5oda2b" path="res://scenes/enemies/flowers/flowerspawner.tscn" id="2_0p748"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_qgi47"]
 [ext_resource type="PackedScene" uid="uid://ctbigrpm1s7xa" path="res://scenes/hedge_generation_point.tscn" id="3_mpyd3"]
-[ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/enemyspawner.tscn" id="5_4rlai"]
+[ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/weeds/enemyspawner.tscn" id="5_4rlai"]
 
 [node name="Lawn" instance=ExtResource("1_vk44d")]
 time_limit = 240.0
