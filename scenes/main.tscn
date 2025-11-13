@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://deycsrxnsbm3q"]
 
-[ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/main.gd" id="1_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://dhd8ttlwqnlj1" path="res://scenes/neighborhood.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://8t3kf3315lkx" path="res://scenes/neighborhood/neighborhood.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://c8jx2be4cfkb8" path="res://scenes/ui/hud.tscn" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://bqis403nmimnk" path="res://scenes/penalty_particle.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://bqis403nmimnk" path="res://scenes/particles/penalty_particle.tscn" id="5_tbgi4"]
 
 [sub_resource type="Gradient" id="Gradient_jyhfs"]
 offsets = PackedFloat32Array(0, 0.7, 1)

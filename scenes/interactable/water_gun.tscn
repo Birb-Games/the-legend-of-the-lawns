@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://5004ltphju6p"]
+
+[ext_resource type="Texture2D" uid="uid://c782i0j0kkyib" path="res://assets/textures/player/water_gun.png" id="1_t5yov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtwjw"]
+size = Vector2(30, 16.4605)
+
+[node name="StaticBody2D" type="StaticBody2D" groups=["water_gun_item"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -0.307178
+scale = Vector2(0.45, 0.45)
+shape = SubResource("RectangleShape2D_qtwjw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.307178
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("1_t5yov")

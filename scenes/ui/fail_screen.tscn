@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbaa6s8vockj8"]
+
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_2pdhm"]
+[ext_resource type="Script" uid="uid://bpksrk35onpgr" path="res://scripts/ui/fail_screen.gd" id="1_s13x8"]
+[ext_resource type="PackedScene" uid="uid://cc6ie7e2e5mfg" path="res://scenes/player/knocked_out.tscn" id="2_3i01h"]
+
+[node name="Failscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s13x8")
+knocked_out = ExtResource("2_3i01h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 0, 0, 0.627451)
+
+[node name="Title" type="Label" parent="."]
+offset_top = 47.0
+offset_right = 1152.0
+offset_bottom = 123.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_2pdhm")
+theme_override_font_sizes/font_size = 64
+text = "Lawn Failed!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="."]
+offset_top = 146.0
+offset_right = 1152.0
+offset_bottom = 251.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_2pdhm")
+theme_override_font_sizes/font_size = 32
+text = "Welp, you're not getting paid for this...
+
+Go back to the neighborhood and try again."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_top = 498.0
+offset_right = 1152.0
+offset_bottom = 572.0
+alignment = 1
+
+[node name="Return" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2pdhm")
+theme_override_font_sizes/font_size = 32
+text = "Return to 
+Neighborhood"
+
+[connection signal="pressed" from="HBoxContainer/Return" to="." method="_on_return_pressed"]
