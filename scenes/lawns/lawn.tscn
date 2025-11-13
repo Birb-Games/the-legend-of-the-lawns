@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=4 uid="uid://dxpn5t34f6wkw"]
 
-[ext_resource type="Script" uid="uid://cex6xa5f02ubi" path="res://scripts/lawn.gd" id="1_eudnv"]
+[ext_resource type="Script" uid="uid://cex6xa5f02ubi" path="res://scripts/scene_control/lawn.gd" id="1_eudnv"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_fe7f8"]
-[ext_resource type="PackedScene" uid="uid://dyquswmvbbgde" path="res://scenes/lawnmower.tscn" id="3_fe7f8"]
-[ext_resource type="PackedScene" uid="uid://5004ltphju6p" path="res://scenes/water_gun.tscn" id="4_p5gcc"]
+[ext_resource type="PackedScene" uid="uid://dyquswmvbbgde" path="res://scenes/interactable/lawn_mower.tscn" id="3_fe7f8"]
+[ext_resource type="PackedScene" uid="uid://5004ltphju6p" path="res://scenes/interactable/water_gun.tscn" id="4_p5gcc"]
 
 [node name="Lawn" type="Node2D"]
 y_sort_enabled = true

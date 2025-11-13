@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctbigrpm1s7xa"]
+
+[ext_resource type="Script" uid="uid://eg12dqr84i5" path="res://scripts/lawn_generators/generation_features/hedge_generation_point.gd" id="1_ug5eh"]
+
+[node name="HedgeGenerationPoint" type="Node2D"]
+script = ExtResource("1_ug5eh")
+
+[node name="Marker2D" type="Marker2D" parent="."]

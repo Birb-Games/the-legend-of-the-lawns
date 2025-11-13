@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cc6ie7e2e5mfg"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_p58sx"]
+[ext_resource type="Texture2D" uid="uid://cj5uhfe7gif6i" path="res://assets/textures/player/knocked_out.png" id="2_pkqmm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("2_pkqmm")
+region = Rect2(0, 0, 30, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
+atlas = ExtResource("2_pkqmm")
+region = Rect2(30, 0, 30, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt7fs"]
+atlas = ExtResource("2_pkqmm")
+region = Rect2(60, 0, 30, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
+atlas = ExtResource("2_pkqmm")
+region = Rect2(90, 0, 30, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5cs2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf23h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt7fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqfne")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Knockedout" type="Node2D"]
+
+[node name="Shadow2" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, -2.4375)
+scale = Vector2(0.8125, 0.836538)
+texture = ExtResource("1_p58sx")
+
+[node name="KnockedOut" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_w5cs2")
+autoplay = "default"

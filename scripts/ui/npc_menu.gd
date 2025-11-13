@@ -49,7 +49,7 @@ func set_menu_reject(neighbor: NeighborNPC) -> void:
 	buttons[0].connect("pressed", on_leave_pressed)
 	show()
 
-func advance_first_dialog():
+func advance_first_dialog() -> void:
 	current_neighbor.first_time = false
 	current_neighbor.current_dialog = current_neighbor.first_job_offer
 	set_menu(current_neighbor)
@@ -96,7 +96,7 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	
 	show()
 
-func advance_first_dialog_npc():
+func advance_first_dialog_npc() -> void:
 	current_npc.first_time = false
 	current_npc.generate_dialog()
 	set_npc_menu(current_npc)
@@ -121,7 +121,7 @@ func set_npc_menu(npc: NPC) -> void:
 
 	show()
 
-func skip_day():
+func skip_day() -> void:
 	var main: Main = $/root/Main
 	main.advance_day()
 	var player: Player = $/root/Main/Player

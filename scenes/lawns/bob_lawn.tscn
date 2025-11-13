@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_hrwp2"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_agv7o"]
-[ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/weeds/enemyspawner.tscn" id="4_hcbpq"]
+[ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/weeds/enemy_spawner.tscn" id="4_hcbpq"]
 
 [node name="Lawn" instance=ExtResource("1_hrwp2")]
 time_limit = 240.0
