@@ -18,7 +18,7 @@ func shoot() -> void:
 		var offset = float(i) * PI / 6.0
 		shoot_bullet(offset)
 
-func _on_hit():
+func _on_hit() -> void:
 	# Retaliate!
 	if randi() % 3 == 0:
 		call_deferred("shoot")

@@ -16,7 +16,7 @@ var label_display_timer: float = LABEL_DISPLAY_DELAY
 const DELAY: float = 1.0
 var timer: float = 0.0
 
-func activate():
+func activate() -> void:
 	timer = DELAY
 	show()
 	$TileMapLayer.hide()
@@ -26,7 +26,7 @@ func activate():
 	update_title = false
 	current_wage_modifier = 0
 	
-func start_showing_menu():
+func start_showing_menu() -> void:
 	label_display_timer = LABEL_DISPLAY_DELAY / 2.0
 	$TileMapLayer.show()
 	title_speed = START_SPEED
@@ -129,7 +129,7 @@ func _on_return_pressed() -> void:
 	current_neighbor.change_wage()
 	current_neighbor.set_cooldown()
 
-func calculate_hedge_penalty():
+func calculate_hedge_penalty() -> int:
 	var tileMapLayer: TileMapLayer = $/root/Main/Lawn/TileMapLayer
 	var destroyed_hedges: int = 0
 	for tile in tileMapLayer.get_used_cells():

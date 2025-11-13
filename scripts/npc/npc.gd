@@ -26,7 +26,7 @@ func _ready() -> void:
 
 	play(animation)
 
-func generate_dialog():
+func generate_dialog() -> void:
 	current_dialog = ""
 	if first_time:
 		current_dialog = first_dialog

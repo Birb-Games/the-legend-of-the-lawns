@@ -28,7 +28,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	update_hud(delta)
 
-func advance_day():
+func advance_day() -> void:
 	neighborhood.update_neighbors()
 	current_day += 1
 	$HUD/Control/TransitionRect.start_animation()
@@ -60,7 +60,7 @@ func return_to_neighborhood() -> void:
 	player.dir = "down"
 	lawn_loaded = false
 
-func update_hud_lawn(delta: float):
+func update_hud_lawn(delta: float) -> void:
 	$HUD/Control/InfoText.show()
 	$HUD.update_info_text("")
 	if $Player/WaterGun.visible and $Player.in_lawnmower_range():
@@ -83,7 +83,7 @@ Walk forward to push the lawn mower.
 	$HUD.update_health_bar($Player.get_hp_perc())
 	$HUD.update_timer(delta)
 
-func update_hud_neighborhood():
+func update_hud_neighborhood() -> void:
 	$HUD.update_info_text($Player.interact_text)	
 	# hide info text if talking to a neighbor
 	$HUD/Control/InfoText.visible = !$HUD/Control/NPCMenu.visible
@@ -92,7 +92,7 @@ func update_hud_neighborhood():
 	$HUD.update_health_bar(-1.0)
 	$HUD.hide_timer()
 
-func update_hud(delta: float):
+func update_hud(delta: float) -> void:
 	if lawn_loaded:
 		update_hud_lawn(delta)
 	else:

@@ -63,7 +63,7 @@ func update_cooldown() -> void:
 	mow_cooldown -= 1
 	mow_cooldown = max(mow_cooldown, 0)
 
-func generate_dialog():
+func generate_dialog() -> void:
 	current_dialog = ""
 	if unavailable():
 		current_dialog = unavailable_msg

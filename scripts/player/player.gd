@@ -54,7 +54,7 @@ func get_dir_vec() -> Vector2:
 			return Vector2.UP
 	return Vector2.ZERO
 
-func set_animation():
+func set_animation() -> void:
 	if (velocity.y < 0.0 and !pulling) or (velocity.y > 0.0 and pulling):
 		dir = "up"
 	elif (velocity.y > 0.0 and !pulling) or (velocity.y < 0.0 and pulling):
@@ -71,7 +71,7 @@ func set_animation():
 	var animation = state + "_" + dir
 	$AnimatedSprite2D.animation = animation
 
-func in_lawnmower_range():
+func in_lawnmower_range() -> bool:
 	return $InteractZone.can_pull
 	
 func can_pull() -> bool:
@@ -101,7 +101,7 @@ func _process(delta: float) -> void:
 func currently_pulling() -> bool:
 	return holding_lawnmower and can_pull()
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 	if health <= 0:
 		return
 	
@@ -161,12 +161,12 @@ func _on_interact_zone_body_exited(body: Node2D) -> void:
 	if body.is_in_group("water_gun_item"):
 		can_pick_up_water_gun = false
 
-func enable_water_gun():
+func enable_water_gun() -> void:
 	$WaterGun.show()
 
-func disable_water_gun():
+func disable_water_gun() -> void:
 	$WaterGun.hide()
 
 # Returns global position of the animated sprite
-func get_sprite_pos():
+func get_sprite_pos() -> Vector2:
 	return $AnimatedSprite2D.position + position

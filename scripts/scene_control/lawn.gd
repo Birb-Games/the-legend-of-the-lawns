@@ -19,18 +19,18 @@ func _ready() -> void:
 		if $TileMapLayer.get_cell_atlas_coords(cell) == Vector2i(1, 0):
 			total_grass_tiles += 1
 
-func get_perc_cut():
+func get_perc_cut() -> float:
 	return float(cut_grass_tiles) / float(total_grass_tiles)
 
 # Mows a grass tile
-func mow_tile(pos: Vector2i):
+func mow_tile(pos: Vector2i) -> void:
 	var cell_atlas = $TileMapLayer.get_cell_atlas_coords(pos)
 	if cell_atlas != Vector2i(1, 0):
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 0), 0)
 	cut_grass_tiles += 1
 
-func destroy_hedge(pos: Vector2i):
+func destroy_hedge(pos: Vector2i) -> void:
 	var cell_atlas = $TileMapLayer.get_cell_atlas_coords(pos)
 	if !LawnGenerationUtilities.is_hedge(cell_atlas):
 		return
@@ -41,7 +41,7 @@ func destroy_hedge(pos: Vector2i):
 	)
 
 # Have the player pick up the water gun
-func pickup_water_gun():
+func pickup_water_gun() -> void:
 	if !water_gun_item.is_inside_tree():
 		return
 	var player = get_node_or_null("/root/Main/Player")
@@ -53,7 +53,7 @@ func pickup_water_gun():
 		remove_child(water_gun_item)
 		player.enable_water_gun()
 
-func drop_water_gun():
+func drop_water_gun() -> void:
 	var player = get_node_or_null("/root/Main/Player")
 	if player == null:
 		return
@@ -64,7 +64,7 @@ func drop_water_gun():
 		add_child(water_gun_item)
 		player.disable_water_gun()
 
-func water_gun_interaction():
+func water_gun_interaction() -> void:
 	if water_gun_item.is_inside_tree():
 		pickup_water_gun()
 	else:

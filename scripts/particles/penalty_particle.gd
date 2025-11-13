@@ -29,6 +29,8 @@ func activate(penalty: int) -> void:
 	emitting = true
 
 func _ready() -> void:
+	# if this is the first instance of the particle, set the text to be a
+	# blank string and activate the particle effect
 	if first_instance:
 		emitting = true
 		$SubViewport/Label.text = ""
@@ -37,4 +39,5 @@ func _process(_delta: float) -> void:
 	if emitting:
 		has_emitted = true
 	elif has_emitted:
+		# Particle is done emitting, delete it
 		queue_free()

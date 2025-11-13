@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 func update_info_text(text: String) -> void:
 	$Control/InfoText.text = text
 
-func toggle_pause_menu():
+func toggle_pause_menu() -> void:
 	$Control/PauseMenu.visible = !$Control/PauseMenu.visible
 	# Show buttons that appear only on the lawn
 	if $Control/PauseMenu.visible:

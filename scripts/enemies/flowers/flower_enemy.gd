@@ -110,7 +110,7 @@ func update_shooting(delta: float) -> void:
 			shoot()
 		shoot_timer = shoot_cooldown
 
-func update(delta: float):
+func update(delta: float) -> void:
 	# Update health bar
 	var healthbar = get_node_or_null("Healthbar")
 	if healthbar != null:

@@ -130,7 +130,7 @@ func _on_body_entered(body: Node) -> void:
 func is_stuck() -> bool:
 	return collision_layer & 1 != 0
 
-func rect():
+func rect() -> Rect2:
 	var r = $CollisionShape2D.shape.get_rect()
 	r.position += get_sprite_pos()
 	r.size *= 1.05
