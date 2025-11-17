@@ -3,10 +3,12 @@ class_name Player
 extends CharacterBody2D
 
 const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
-@onready var lawnmower: RigidBody2D = get_node_or_null(LAWNMOWER_PATH)
+@onready var lawnmower: Lawnmower = get_node_or_null(LAWNMOWER_PATH)
+@onready var default_sprite_pos: Vector2 = $AnimatedSprite2D.position
 @export var water_gun: Sprite2D
 
 const NORMAL_SPEED: float = 60.0
+const LAWN_MOWER_SPEED: float = NORMAL_SPEED * 0.75
 const PULL_SPEED: float = NORMAL_SPEED / 4.0
 var speed: float = NORMAL_SPEED
 
@@ -14,13 +16,16 @@ var dir: String = "down"
 var pulling: bool = false
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
-var holding_lawnmower: bool = false
+var can_pick_up_lawnmower: bool = false
 
 const MAX_HEALTH: int = 80
 var health: int = MAX_HEALTH
 # For displaying a red flash whenever the player takes damage
 const DAMAGE_COOLDOWN: float = 1.25
 var damage_timer: float = 0.0
+
+func _ready() -> void:
+	$Lawnmower.hide()
 
 # Returns a value between 0.0 and 1.0
 func get_hp_perc() -> float:
@@ -71,38 +76,106 @@ func set_animation() -> void:
 	var animation = state + "_" + dir
 	$AnimatedSprite2D.animation = animation
 
-func in_lawnmower_range() -> bool:
-	return $InteractZone.can_pull
-	
-func can_pull() -> bool:
-	if !mower_exists():
-		return false
-	if $WaterGun.visible:
-		return false
+func get_lawn_mower_dir_offset() -> Vector2:
+	match dir:
+		"left":
+			return -(get_dir_vec() * 12.0 + Vector2(0, -5.5))
+		"right":
+			return -(get_dir_vec() * 12.0 + Vector2(0, -5.5))
+		"down":
+			return -get_dir_vec()
+		"up":
+			return -get_dir_vec() * 15.0
+	return Vector2.ZERO
 
-	var vel = Vector2.ZERO
-	if velocity.length() > 0.0:
-		vel = velocity.normalized()
-	# Pull lawnmower with player
-	var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(vel)
-	# Compare the velocity direction with the angle to the lawnmower's position, if moving directly away from mower, it can be pulled
-	var same_direction: bool = dot_prod > 0.7
-	return same_direction and $InteractZone.can_pull
+func update_lawn_mower() -> void:
+	$AnimatedSprite2D.position = default_sprite_pos
+	if !lawn_mower_active():
+		return
+
+	$Lawnmower.animation = dir
+
+	# Set the position of the lawn mower
+	$AnimatedSprite2D.position += get_lawn_mower_dir_offset()	
+	
+	# Set the z index of the lawn mower
+	if dir == "up":
+		$Lawnmower.z_index = -1
+	else:
+		$Lawnmower.z_index = 0
+
+	# Set the shadow of the lawn mower
+	for shadow in $Lawnmower/Shadows.get_children():
+		shadow.hide()
+
+	match dir:
+		"left":
+			$Lawnmower/Shadows/ShadowLeft.show()
+		"right":
+			$Lawnmower/Shadows/ShadowRight.show()
+		"down":
+			$Lawnmower/Shadows/ShadowDown.show()
+		"up":
+			$Lawnmower/Shadows/ShadowUp.show()
+
+# Returns the global position of the lawn mower
+func get_lawn_mower_position() -> Vector2:
+	return $Lawnmower.global_position
+
+# Returns true if the player 'dropped' the lawn mower, false otherwise
+func drop_lawn_mower() -> bool:
+	if !lawn_mower_active():
+		return false
+	if Input.is_action_just_pressed("interact") or health <= 0:
+		lawnmower.position = global_position + $Lawnmower.position + Vector2(0.0, 7.0)
+		lawnmower.show()
+		match dir:
+			"left", "right":
+				lawnmower.dir = dir
+			_:
+				if randi() % 2 == 0:
+					lawnmower.dir = "left"
+				else:
+					lawnmower.dir = "right"
+		$Lawnmower.hide()
+		return true
+	return false
 
 func _process(delta: float) -> void:
 	visible = health > 0
 	if health <= 0:
 		return
-	
+
+	$CollisionShape2D.disabled = lawn_mower_active()
+	$LawnmowerHitbox.disabled = !lawn_mower_active()
+
+	# Attempt to pick up lawn mower
+	var dropped: bool = false
+	if mower_exists():
+		dropped = drop_lawn_mower()
+	if mower_exists() and !$WaterGun.visible and !dropped:
+		if can_pick_up_lawnmower and lawnmower.visible and Input.is_action_just_pressed("interact"):
+			lawnmower.hide()
+			$Lawnmower.show()
+
+	# Update lawn mower
+	update_lawn_mower()
+
+	# Set speed
+	if lawn_mower_active():
+		speed = LAWN_MOWER_SPEED
+	else:
+		speed = NORMAL_SPEED
+
 	set_animation()
 	
 	damage_timer -= delta
 
-func currently_pulling() -> bool:
-	return holding_lawnmower and can_pull()
-
 func _physics_process(_delta: float) -> void:
 	if health <= 0:
+		if lawn_mower_active():
+			drop_lawn_mower()
+		$WaterGun.hide()
 		return
 	
 	velocity = Vector2.ZERO
@@ -118,34 +191,10 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1.0
 	
-	if currently_pulling():
-		speed = PULL_SPEED
-	else:
-		speed = NORMAL_SPEED
-	
 	# Normalize player velocity
 	if velocity.length() > 0.0:
 		velocity /= velocity.length()
 	velocity *= speed
-
-	if Input.is_action_just_pressed("interact") and in_lawnmower_range():
-		holding_lawnmower = !holding_lawnmower
-	elif !in_lawnmower_range():
-		holding_lawnmower = false
-	elif velocity.length() > 0.0 and mower_exists():
-		var dot_prod = (position - lawnmower.get_sprite_pos()).normalized().dot(velocity.normalized())
-		if dot_prod < 0.0:
-			holding_lawnmower = false
-	
-	if currently_pulling():
-		lawnmower.linear_velocity = velocity
-		pulling = true
-	elif !can_pull():
-		if mower_exists():
-			lawnmower.linear_velocity = Vector2.ZERO
-		pulling = false
-	else:
-		pulling = false
 
 	move_and_slide()
 
@@ -156,10 +205,14 @@ func mower_exists() -> bool:
 func _on_interact_zone_body_entered(body: Node2D) -> void:
 	if body.is_in_group("water_gun_item"):
 		can_pick_up_water_gun = true
+	if body.is_in_group("lawnmower"):
+		can_pick_up_lawnmower = true
 
 func _on_interact_zone_body_exited(body: Node2D) -> void:
 	if body.is_in_group("water_gun_item"):
 		can_pick_up_water_gun = false
+	if body.is_in_group("lawnmower"):
+		can_pick_up_lawnmower = false
 
 func enable_water_gun() -> void:
 	$WaterGun.show()
@@ -167,6 +220,15 @@ func enable_water_gun() -> void:
 func disable_water_gun() -> void:
 	$WaterGun.hide()
 
+func lawn_mower_active() -> bool:
+	return $Lawnmower.visible
+
 # Returns global position of the animated sprite
 func get_sprite_pos() -> Vector2:
 	return $AnimatedSprite2D.position + position
+
+func get_lawn_mower_rect() -> Rect2:
+	var r = $Lawnmower/Area2D/CollisionShape2D.shape.get_rect()
+	r.position = $Lawnmower/Area2D.global_position
+	r.size *= 1.05
+	return r

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var lawnmower: RigidBody2D = $Lawnmower
+@onready var lawnmower: Lawnmower = $Lawnmower
 @onready var water_gun_item: StaticBody2D = $WaterGun
 
 # In seconds, if the player mows the lawn in under this amount of time then
@@ -44,17 +44,17 @@ func destroy_hedge(pos: Vector2i) -> void:
 func pickup_water_gun() -> void:
 	if !water_gun_item.is_inside_tree():
 		return
-	var player = get_node_or_null("/root/Main/Player")
+	var player: Player = get_node_or_null("/root/Main/Player")
 	if player == null:
 		return
 	if !player.can_pick_up_water_gun:
 		return
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and !player.lawn_mower_active():
 		remove_child(water_gun_item)
 		player.enable_water_gun()
 
 func drop_water_gun() -> void:
-	var player = get_node_or_null("/root/Main/Player")
+	var player: Player = get_node_or_null("/root/Main/Player")
 	if player == null:
 		return
 	if !player.get_node("WaterGun").visible:
@@ -77,15 +77,17 @@ func _process(_delta: float) -> void:
 		return
 	
 	water_gun_interaction()
-	
-	# Handle lawn mower interaction
-	# if the water gun is picked up (not inside the tree),
-	# then do not allow the mower to be pushed
-	$Lawnmower.can_push = !water_gun_item.is_inside_tree()
-	
+
+	var player: Player = get_node_or_null("/root/Main/Player")
+	if player == null:
+		return
+
+	if !player.lawn_mower_active():
+		return
+
 	# Mow the lawn
 	var tile_sz = float($TileMapLayer.tile_set.tile_size.x)
-	var lawnmower_pos = lawnmower.get_sprite_pos() / tile_sz - Vector2(0.5, 0.5)
+	var lawnmower_pos = player.get_lawn_mower_position() / tile_sz - Vector2(0.5, 0.5)
 	var positions = []
 	for dx in range(-1, 2):
 		for dy in range(-1, 2):
@@ -98,9 +100,10 @@ func _process(_delta: float) -> void:
 
 	# destroy hedges
 	positions = []
-	var mower_rect = lawnmower.rect()
+	var mower_rect = player.get_lawn_mower_rect()
 	mower_rect.size /= tile_sz
 	mower_rect.position /= tile_sz
+	mower_rect.position -= Vector2(0.5, 0.5)
 	for dx in range(-1, 2):
 		for dy in range(-1, 2):
 			var tile_rect = Rect2(

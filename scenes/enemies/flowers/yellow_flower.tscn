@@ -85,11 +85,11 @@ animations = [{
 scale = Vector2(0.75, 0.75)
 collision_mask = 5
 script = ExtResource("1_laaae")
-bullet_scene = ExtResource("2_s7thy")
 max_health = 4
 shoot_cooldown = 2.5
 stun_amt = 15.0
 bullet_damage = 5
+bullet_scene = ExtResource("2_s7thy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)
