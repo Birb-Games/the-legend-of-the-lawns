@@ -287,10 +287,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je7p5"]
-size = Vector2(16, 13)
+size = Vector2(16, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fm80t"]
-size = Vector2(14, 9)
+size = Vector2(14, 13)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_gun") groups=["player"]]
 script = ExtResource("1_g2els")
@@ -310,6 +310,7 @@ scale = Vector2(0.48718, 0.48718)
 texture = ExtResource("4_dqkch")
 
 [node name="InteractZone" type="Area2D" parent="AnimatedSprite2D"]
+visible = false
 position = Vector2(0, -1.333334)
 scale = Vector2(1.3333334, 1.3333334)
 collision_mask = 3
@@ -358,8 +359,9 @@ collide_with_areas = true
 position = Vector2(17.1428, 0)
 
 [node name="Lawnmower" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_h17s1")
-animation = &"left"
+animation = &"down"
 autoplay = "down"
 
 [node name="Shadows" type="Node2D" parent="Lawnmower"]
@@ -374,7 +376,7 @@ texture = ExtResource("4_dqkch")
 [node name="ShadowDown" type="Sprite2D" parent="Lawnmower/Shadows"]
 visible = false
 z_index = -1
-position = Vector2(0, 5)
+position = Vector2(0, 4)
 scale = Vector2(0.40625, 1)
 texture = ExtResource("4_dqkch")
 
@@ -388,7 +390,7 @@ texture = ExtResource("4_dqkch")
 [node name="ShadowUp" type="Sprite2D" parent="Lawnmower/Shadows"]
 visible = false
 z_index = -1
-position = Vector2(0, -5)
+position = Vector2(0, -3)
 scale = Vector2(0.40625, 1)
 texture = ExtResource("4_dqkch")
 
@@ -396,11 +398,11 @@ texture = ExtResource("4_dqkch")
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lawnmower/Area2D"]
-position = Vector2(0, 0.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_je7p5")
 
 [node name="LawnmowerHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_fm80t")
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]

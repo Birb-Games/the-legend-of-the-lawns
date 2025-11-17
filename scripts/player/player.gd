@@ -76,20 +76,34 @@ func set_animation() -> void:
 	var animation = state + "_" + dir
 	$AnimatedSprite2D.animation = animation
 
+func set_lawn_mower_pos() -> void:
+	if !lawn_mower_active():
+		$Lawnmower.position = Vector2(0.0, -7.0)
+		return
+
+	match dir:
+		"left", "right":
+			$Lawnmower.position = Vector2(0.0, -7.0)
+		"down":
+			$Lawnmower.position = Vector2(0.0, -8.0)
+		"up":
+			$Lawnmower.position = Vector2(0.0, -12.0)
+
 func get_lawn_mower_dir_offset() -> Vector2:
 	match dir:
 		"left":
-			return -(get_dir_vec() * 12.0 + Vector2(0, -5.5))
+			return -(get_dir_vec() * 12.0 + Vector2(0.0, -7.0)) + $Lawnmower.position
 		"right":
-			return -(get_dir_vec() * 12.0 + Vector2(0, -5.5))
+			return -(get_dir_vec() * 12.0 + Vector2(0.0, -7.0)) + $Lawnmower.position
 		"down":
-			return -get_dir_vec()
+			return $Lawnmower.position + Vector2(0.0, 2.0)
 		"up":
-			return -get_dir_vec() * 15.0
+			return -get_dir_vec() * 12.0 + $Lawnmower.position
 	return Vector2.ZERO
 
 func update_lawn_mower() -> void:
 	$AnimatedSprite2D.position = default_sprite_pos
+	set_lawn_mower_pos()
 	if !lawn_mower_active():
 		return
 
@@ -127,7 +141,8 @@ func drop_lawn_mower() -> bool:
 	if !lawn_mower_active():
 		return false
 	if Input.is_action_just_pressed("interact") or health <= 0:
-		lawnmower.position = global_position + $Lawnmower.position + Vector2(0.0, 7.0)
+		lawnmower.position = global_position + $Lawnmower.position
+		lawnmower.position.y -= $Lawnmower.position.y
 		lawnmower.show()
 		match dir:
 			"left", "right":
