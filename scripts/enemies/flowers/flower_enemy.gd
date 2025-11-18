@@ -17,7 +17,6 @@ extends Area2D
 
 @onready var health: int = max_health
 var shoot_timer: float = 0.0
-var inside_lawnmower: bool = false
 const LAWNMOWER_DAMAGE_COOLDOWN: float = 1.0
 var lawnmower_damage_timer: float = 0.0
 var stun_timer: float = 0.0
@@ -70,9 +69,34 @@ func explode(bullet_template: PackedScene) -> void:
 	PenaltyParticle.emit_penalty($/root/Main/HUD.get_current_neighbor().flower_penalty, spawn, $/root/Main/Lawn)
 	queue_free()
 
+func inside_lawn_mower() -> bool:
+	var dist: float
+	var y_dist: float
+
+	var lawn_mower: Lawnmower = get_node_or_null("/root/Main/Lawn/Lawnmower")
+	if lawn_mower != null and lawn_mower.visible:
+		var lawn_mower_rect: Rect2 = lawn_mower.rect()
+		lawn_mower_rect.position = lawn_mower.global_position
+		lawn_mower_rect.position.y += lawn_mower_rect.size.y / 4.0
+		dist = global_position.distance_to(lawn_mower_rect.position)
+		y_dist = lawn_mower_rect.position.y - global_position.y
+		if dist < 8.0 and y_dist < 6.0:
+			return true
+	
+	var player_lawn_mower_rect: Rect2 = player.get_lawn_mower_rect()
+	player_lawn_mower_rect.position.y += player_lawn_mower_rect.size.y / 4.0
+	dist = global_position.distance_to(player_lawn_mower_rect.position)
+	y_dist = player_lawn_mower_rect.position.y - global_position.y
+	if dist < 8.0 and y_dist < 6.0:
+		var player_lawn_mower: Node2D = player.get_node_or_null("Lawnmower")
+		if player_lawn_mower != null and player_lawn_mower.visible:
+			return true
+	
+	return false
+
 func apply_lawnmower_damage(delta: float) -> void:
 	lawnmower_damage_timer -= delta
-	if lawnmower_damage_timer <= 0.0 and inside_lawnmower:
+	if lawnmower_damage_timer <= 0.0 and inside_lawn_mower():
 		health -= 1
 		health = max(health, 0)
 		lawnmower_damage_timer = LAWNMOWER_DAMAGE_COOLDOWN
@@ -134,11 +158,3 @@ func _on_area_entered(area: Area2D) -> void:
 		health -= 1
 		health = max(health, 0)
 		stun()
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("lawnmower"):
-		inside_lawnmower = true
-
-func _on_body_exited(body: Node2D) -> void:
-	if body.is_in_group("lawnmower"):
-		inside_lawnmower = false

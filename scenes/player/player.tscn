@@ -359,6 +359,7 @@ collide_with_areas = true
 position = Vector2(17.1428, 0)
 
 [node name="Lawnmower" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_h17s1")
 animation = &"down"
