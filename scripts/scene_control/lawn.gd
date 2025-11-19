@@ -30,15 +30,18 @@ func mow_tile(pos: Vector2i) -> void:
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 0), 0)
 	cut_grass_tiles += 1
 
-func destroy_hedge(pos: Vector2i) -> void:
+# Returns true if a hedge has been destroyed, false otherwise
+func destroy_hedge(pos: Vector2i) -> bool:
 	var cell_atlas = $TileMapLayer.get_cell_atlas_coords(pos)
 	if !LawnGenerationUtilities.is_hedge(cell_atlas):
-		return
+		# No hedge
+		return false
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 2), 0)
 	PenaltyParticle.emit_penalty(
 		$/root/Main/HUD.get_current_neighbor().hedge_penalty, 
 		pos * $TileMapLayer.tile_set.tile_size, $/root/Main/Lawn
 	)
+	return true
 
 # Have the player pick up the water gun
 func pickup_water_gun() -> void:
@@ -116,8 +119,10 @@ func _process(_delta: float) -> void:
 				continue
 			var p = Vector2i(round(lawnmower_pos.x) + dx, round(lawnmower_pos.y) + dy)
 			positions.push_back(p)
-	for pos in positions:
-		destroy_hedge(pos)
+	if player.lawn_mower_active():
+		for pos in positions:
+			if destroy_hedge(pos):
+				player.activate_hedge_timer()
 
 func get_spawn() -> Vector2:
 	return $PlayerSpawn.position

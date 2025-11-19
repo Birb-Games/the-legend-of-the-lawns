@@ -85,12 +85,12 @@ animations = [{
 scale = Vector2(0.75, 0.75)
 collision_mask = 5
 script = ExtResource("1_w2k4l")
-bullet_scene = ExtResource("2_mfb15")
 max_health = 4
 shoot_cooldown = 4.5
 bullet_speed = 80.0
 stun_amt = 15.0
 bullet_damage = 6
+bullet_scene = ExtResource("2_mfb15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.5)
@@ -120,5 +120,3 @@ offset_bottom = -21.0
 position = Vector2(0, -25.3333)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -9,7 +9,7 @@ const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
 
 const NORMAL_SPEED: float = 60.0
 const LAWN_MOWER_SPEED: float = NORMAL_SPEED * 0.75
-const PULL_SPEED: float = NORMAL_SPEED / 4.0
+const HEDGE_COLLISION_SPEED: float = NORMAL_SPEED * 0.07
 var speed: float = NORMAL_SPEED
 
 var dir: String = "down"
@@ -23,6 +23,10 @@ var health: int = MAX_HEALTH
 # For displaying a red flash whenever the player takes damage
 const DAMAGE_COOLDOWN: float = 1.25
 var damage_timer: float = 0.0
+# If this is above 0, then that means that the player hit a hedge with a lawn
+# mower and should be slowed down
+var hedge_collision_timer: float = 0.0
+const HEDGE_TIMER: float = 0.3
 
 func _ready() -> void:
 	$Lawnmower.hide()
@@ -36,6 +40,9 @@ func get_hp_perc() -> float:
 func reset_health() -> void:
 	health = MAX_HEALTH
 	damage_timer = 0.0
+
+func activate_hedge_timer() -> void:
+	hedge_collision_timer = HEDGE_TIMER
 
 # Apply damage to the player using this function
 func damage(amt: int) -> void:
@@ -177,7 +184,9 @@ func _process(delta: float) -> void:
 	update_lawn_mower()
 
 	# Set speed
-	if lawn_mower_active():
+	if lawn_mower_active() and hedge_collision_timer > 0.0:
+		speed = HEDGE_COLLISION_SPEED
+	elif lawn_mower_active():
 		speed = LAWN_MOWER_SPEED
 	else:
 		speed = NORMAL_SPEED
@@ -185,6 +194,9 @@ func _process(delta: float) -> void:
 	set_animation()
 	
 	damage_timer -= delta
+	damage_timer = max(damage_timer, 0.0)
+	hedge_collision_timer -= delta
+	hedge_collision_timer = max(hedge_collision_timer, 0.0)
 
 func _physics_process(_delta: float) -> void:
 	if health <= 0:
@@ -193,7 +205,7 @@ func _physics_process(_delta: float) -> void:
 		$WaterGun.hide()
 		return
 	
-	velocity = Vector2.ZERO
+	velocity = Vector2.ZERO	
 
 	# movement
 	if !$/root/Main/HUD/Control/NPCMenu.visible: #don't move when menu open
