@@ -255,7 +255,7 @@ func get_sprite_pos() -> Vector2:
 	return $AnimatedSprite2D.position + position
 
 func get_lawn_mower_rect() -> Rect2:
-	var r = $Lawnmower/Area2D/CollisionShape2D.shape.get_rect()
+	var r: Rect2 = $Lawnmower/Area2D/CollisionShape2D.shape.get_rect()
 	r.position = $Lawnmower/Area2D.global_position
 	r.size *= 1.05
 	return r

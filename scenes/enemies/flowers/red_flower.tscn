@@ -107,7 +107,7 @@ sprite_frames = SubResource("SpriteFrames_mfb15")
 autoplay = "default"
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("3_u1a5l")]
-position = Vector2(0, -11)
+position = Vector2(0, -7.0000024)
 
 [node name="BulletSpawnPoint" type="Node2D" parent="."]
 position = Vector2(0, -15)
