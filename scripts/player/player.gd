@@ -89,8 +89,10 @@ func set_lawn_mower_pos() -> void:
 		return
 
 	match dir:
-		"left", "right":
-			$Lawnmower.position = Vector2(0.0, -7.0)
+		"left":
+			$Lawnmower.position = Vector2(-2.5, -7.0)
+		"right":
+			$Lawnmower.position = Vector2(2.5, -7.0)
 		"down":
 			$Lawnmower.position = Vector2(0.0, -8.0)
 		"up":
@@ -99,9 +101,9 @@ func set_lawn_mower_pos() -> void:
 func get_lawn_mower_dir_offset() -> Vector2:
 	match dir:
 		"left":
-			return -(get_dir_vec() * 12.0 + Vector2(0.0, -7.0)) + $Lawnmower.position
+			return -(get_dir_vec() * 12.0 + Vector2(0.5, -7.0)) + $Lawnmower.position
 		"right":
-			return -(get_dir_vec() * 12.0 + Vector2(0.0, -7.0)) + $Lawnmower.position
+			return -(get_dir_vec() * 12.0 + Vector2(-0.5, -7.0)) + $Lawnmower.position
 		"down":
 			return $Lawnmower.position + Vector2(0.0, 2.0)
 		"up":
