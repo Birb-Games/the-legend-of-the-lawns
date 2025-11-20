@@ -172,6 +172,7 @@ func _process(delta: float) -> void:
 
 	$CollisionShape2D.disabled = lawn_mower_active()
 	$LawnmowerHitbox.disabled = !lawn_mower_active()
+	$LawnmowerUpHitbox.disabled = !(lawn_mower_active() and dir == "up")
 
 	# Attempt to pick up lawn mower
 	var dropped: bool = false
@@ -259,5 +260,7 @@ func get_sprite_pos() -> Vector2:
 func get_lawn_mower_rect() -> Rect2:
 	var r: Rect2 = $Lawnmower/Area2D/CollisionShape2D.shape.get_rect()
 	r.position = $Lawnmower/Area2D.global_position
+	if lawn_mower_active() and dir == "up":
+		r.position.y -= 3.1
 	r.size *= 1.05
 	return r
