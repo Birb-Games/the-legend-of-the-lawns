@@ -152,6 +152,8 @@ func drop_lawn_mower() -> bool:
 	if Input.is_action_just_pressed("interact") or health <= 0:
 		lawnmower.position = global_position + $Lawnmower.position
 		lawnmower.position.y -= $Lawnmower.position.y
+		if dir == "up":
+			lawnmower.position.y -= 6.0
 		lawnmower.show()
 		match dir:
 			"left", "right":
@@ -162,6 +164,7 @@ func drop_lawn_mower() -> bool:
 				else:
 					lawnmower.dir = "right"
 		$Lawnmower.hide()
+		position = global_position + get_lawn_mower_dir_offset()
 		return true
 	return false
 
@@ -180,8 +183,11 @@ func _process(delta: float) -> void:
 		dropped = drop_lawn_mower()
 	if mower_exists() and !$WaterGun.visible and !dropped:
 		if can_pick_up_lawnmower and lawnmower.visible and Input.is_action_just_pressed("interact"):
+			position -= get_lawn_mower_dir_offset()	
 			lawnmower.hide()
 			$Lawnmower.show()
+			set_lawn_mower_pos()
+			position -= $Lawnmower.position - Vector2(0.0, -7.0)
 
 	# Update lawn mower
 	update_lawn_mower()
