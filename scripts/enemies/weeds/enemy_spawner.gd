@@ -68,6 +68,7 @@ func _ready() -> void:
 	can_spawn = false
 
 func _on_activation_zone_body_entered(body: Node2D) -> void:
-	if body.is_in_group("lawnmower"):
-		spawn()
-		can_spawn = false
+	if body is Player:
+		if body.lawn_mower_active():
+			spawn()
+			can_spawn = false

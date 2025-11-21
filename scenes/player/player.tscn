@@ -1,13 +1,16 @@
-[gd_scene load_steps=40 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene load_steps=47 format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://lbqtf4xbeym" path="res://scripts/interactable/interact_zone.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cqowbl67yjalq" path="res://scripts/player/water_gun.gd" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c782i0j0kkyib" path="res://assets/textures/player/water_gun.png" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://btspvfcbp648g" path="res://assets/textures/particles/circle_particle.png" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://b4a5sdixx0fuv" path="res://scenes/player/bullet.tscn" id="7_smehm"]
+[ext_resource type="Texture2D" uid="uid://b616wmusrsdro" path="res://assets/textures/lawn_mower/lawnmower_down.png" id="9_5gtgg"]
+[ext_resource type="Texture2D" uid="uid://bmjen6ijdt3ve" path="res://assets/textures/lawn_mower/lawnmower_left.png" id="10_h17s1"]
+[ext_resource type="Texture2D" uid="uid://c1g0o7hvk8qyj" path="res://assets/textures/lawn_mower/lawnmower_right.png" id="11_fm80t"]
+[ext_resource type="Texture2D" uid="uid://bbgs3sb6qmbh1" path="res://assets/textures/lawn_mower/lawnmower_up.png" id="12_gx1jg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_3vyb7")
@@ -220,11 +223,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(12, 12)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(18, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
+size = Vector2(10, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(12, 8)
 
 [sub_resource type="Curve" id="Curve_fjrip"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.764706, 0.719101), -0.548545, -0.548545, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -245,16 +251,53 @@ scale_max = 0.2
 scale_curve = SubResource("CurveTexture_smehm")
 color = Color(0.054902, 0.529412, 0.8, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(10, 23)
+[sub_resource type="SpriteFrames" id="SpriteFrames_h17s1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_5gtgg")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_h17s1")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_fm80t")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_gx1jg")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je7p5"]
+size = Vector2(16, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm80t"]
+size = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx1jg"]
+size = Vector2(14, 11)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_gun") groups=["player"]]
 script = ExtResource("1_g2els")
 water_gun = NodePath("WaterGun")
-
-[node name="Shadow" type="Sprite2D" parent="."]
-scale = Vector2(0.365385, 0.365385)
-texture = ExtResource("4_dqkch")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -263,18 +306,33 @@ sprite_frames = SubResource("SpriteFrames_g2els")
 animation = &"idle_down"
 autoplay = "idle_down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_g2els")
+[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D"]
+z_index = -1
+position = Vector2(0, 16)
+scale = Vector2(0.48718, 0.48718)
+texture = ExtResource("4_dqkch")
 
-[node name="InteractZone" type="Area2D" parent="."]
-position = Vector2(0, -13)
+[node name="InteractZone" type="Area2D" parent="AnimatedSprite2D"]
+visible = false
+position = Vector2(0, -1.333334)
+scale = Vector2(1.3333334, 1.3333334)
 collision_mask = 3
-script = ExtResource("3_qhqgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/InteractZone"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="PlayerHitbox" type="Area2D" parent="AnimatedSprite2D" groups=["player_hitbox"]]
+position = Vector2(0, 16)
+scale = Vector2(1.3333334, 1.3333334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/PlayerHitbox"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_fjrip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_g2els")
 
 [node name="WaterGun" type="Sprite2D" parent="."]
 position = Vector2(8, -9)
@@ -303,13 +361,59 @@ collide_with_areas = true
 [node name="BulletSpawnPoint" type="Node2D" parent="WaterGun"]
 position = Vector2(17.1428, 0)
 
-[node name="PlayerHitbox" type="Area2D" parent="." groups=["player_hitbox"]]
+[node name="Lawnmower" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_h17s1")
+animation = &"down"
+autoplay = "down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
-position = Vector2(0, -11.5)
-shape = SubResource("RectangleShape2D_fjrip")
+[node name="Shadows" type="Node2D" parent="Lawnmower"]
 
-[connection signal="body_entered" from="InteractZone" to="." method="_on_interact_zone_body_entered"]
-[connection signal="body_entered" from="InteractZone" to="InteractZone" method="_on_body_entered"]
-[connection signal="body_exited" from="InteractZone" to="." method="_on_interact_zone_body_exited"]
-[connection signal="body_exited" from="InteractZone" to="InteractZone" method="_on_body_exited"]
+[node name="ShadowLeft" type="Sprite2D" parent="Lawnmower/Shadows"]
+visible = false
+z_index = -1
+position = Vector2(-3.5, 6)
+scale = Vector2(0.40625, 0.461538)
+texture = ExtResource("4_dqkch")
+
+[node name="ShadowDown" type="Sprite2D" parent="Lawnmower/Shadows"]
+visible = false
+z_index = -1
+position = Vector2(0, 4)
+scale = Vector2(0.40625, 1)
+texture = ExtResource("4_dqkch")
+
+[node name="ShadowRight" type="Sprite2D" parent="Lawnmower/Shadows"]
+visible = false
+z_index = -1
+position = Vector2(3.5, 6)
+scale = Vector2(0.40625, 0.461538)
+texture = ExtResource("4_dqkch")
+
+[node name="ShadowUp" type="Sprite2D" parent="Lawnmower/Shadows"]
+visible = false
+z_index = -1
+position = Vector2(0, -3)
+scale = Vector2(0.40625, 1)
+texture = ExtResource("4_dqkch")
+
+[node name="Area2D" type="Area2D" parent="Lawnmower"]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lawnmower/Area2D"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_je7p5")
+
+[node name="LawnmowerHitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_fm80t")
+
+[node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -17.5)
+shape = SubResource("RectangleShape2D_gx1jg")
+
+[connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]
+[connection signal="body_exited" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_exited"]

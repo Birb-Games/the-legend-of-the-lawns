@@ -52,7 +52,6 @@ script = ExtResource("1_d5vux")
 bullet_scene = ExtResource("2_gohqb")
 bullet_cooldown = 4.5
 max_shoot_distance = 96.0
-max_health = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.1667)
@@ -69,7 +68,7 @@ sprite_frames = SubResource("SpriteFrames_oqtah")
 autoplay = "default"
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("4_pfolx")]
-position = Vector2(0, -9.23077)
+position = Vector2(0, -4.615385)
 scale = Vector2(1.1, 1.1)
 damage_amt = 2
 

@@ -93,7 +93,7 @@ sprite_frames = SubResource("SpriteFrames_a8atb")
 autoplay = "default"
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("4_yhrat")]
-position = Vector2(0, -8)
+position = Vector2(0, -3.999999)
 scale = Vector2(1.4, 1.4)
 damage_amt = 4
 attack_cooldown = 1.0

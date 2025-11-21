@@ -9,6 +9,7 @@ func _on_yes_pressed() -> void:
 	get_tree().paused = false
 	# Return to neighborhood
 	var main: Main = $/root/Main
-	main.return_to_neighborhood()	
+	main.return_to_neighborhood()
 	main.advance_day()
+	$/root/Main/Player/Lawnmower.hide()
 

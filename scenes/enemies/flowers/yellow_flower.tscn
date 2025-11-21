@@ -85,11 +85,11 @@ animations = [{
 scale = Vector2(0.75, 0.75)
 collision_mask = 5
 script = ExtResource("1_laaae")
-bullet_scene = ExtResource("2_s7thy")
 max_health = 4
 shoot_cooldown = 2.5
 stun_amt = 15.0
 bullet_damage = 5
+bullet_scene = ExtResource("2_s7thy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)
@@ -106,7 +106,7 @@ sprite_frames = SubResource("SpriteFrames_s7thy")
 autoplay = "default"
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("3_4jv5a")]
-position = Vector2(0, -11)
+position = Vector2(0, -7.000002)
 
 [node name="BulletSpawnPoint" type="Node2D" parent="."]
 position = Vector2(0, -15)
@@ -119,5 +119,3 @@ offset_bottom = -22.0
 position = Vector2(0, -24)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

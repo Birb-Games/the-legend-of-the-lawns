@@ -63,19 +63,14 @@ func return_to_neighborhood() -> void:
 func update_hud_lawn(delta: float) -> void:
 	$HUD/Control/InfoText.show()
 	$HUD.update_info_text("")
-	if $Player/WaterGun.visible and $Player.in_lawnmower_range():
+	if $Player/WaterGun.visible and $Player.can_pick_up_lawnmower:
 		$HUD.update_info_text("You can not move the lawn mower while holding a water gun.")
+	elif $Player/Lawnmower.visible:
+		$HUD.update_info_text("Press [SPACE] to let go of the lawn mower.")
+	elif $Player.can_pick_up_lawnmower and $Lawn/Lawnmower.visible:
+		$HUD.update_info_text("Press [SPACE] to begin mowing!")
 	elif $Player/WaterGun.visible:
-		$HUD.update_info_text("Press [SPACE] to drop water gun.")	
-	elif $Player.holding_lawnmower:
-		$HUD.update_info_text("Press [SPACE] to release the lawn mower.")
-	elif $Player.in_lawnmower_range() and $Lawn/Lawnmower.is_stuck():
-		$HUD.update_info_text("Lawn mower is stuck!\nPress [SPACE] and then walk backwards to pull lawn mower.\n")
-	elif $Player.in_lawnmower_range():
-		$HUD.update_info_text("""
-Press [SPACE] and then walk backwards to pull lawn mower.
-Walk forward to push the lawn mower.
-""")
+		$HUD.update_info_text("Press [SPACE] to drop water gun.")
 	elif $Player.can_pick_up_water_gun:
 		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
 	
