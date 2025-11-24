@@ -17,6 +17,8 @@ var pulling: bool = false
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var can_pick_up_lawnmower: bool = false
+# Whether the player just dropped the lawn mower
+var dropped: bool = false
 
 const MAX_HEALTH: int = 80
 var health: int = MAX_HEALTH
@@ -171,16 +173,20 @@ func drop_lawn_mower() -> bool:
 func _process(delta: float) -> void:
 	visible = health > 0
 	if health <= 0:
+		if lawn_mower_active():
+			drop_lawn_mower()
+		$WaterGun.hide()
 		return
 
 	$CollisionShape2D.disabled = lawn_mower_active()
 	$LawnmowerHitbox.disabled = !lawn_mower_active()
 	$LawnmowerUpHitbox.disabled = !(lawn_mower_active() and dir == "up")
 
-	# Attempt to pick up lawn mower
-	var dropped: bool = false
+	# Drop lawn mower
+	dropped = false
 	if mower_exists():
 		dropped = drop_lawn_mower()
+	# Attempt to pick up lawn mower
 	if mower_exists() and !$WaterGun.visible and !dropped:
 		if can_pick_up_lawnmower and lawnmower.visible and Input.is_action_just_pressed("interact"):
 			position -= get_lawn_mower_dir_offset()	
@@ -207,13 +213,7 @@ func _process(delta: float) -> void:
 	hedge_collision_timer -= delta
 	hedge_collision_timer = max(hedge_collision_timer, 0.0)
 
-func _physics_process(_delta: float) -> void:
-	if health <= 0:
-		if lawn_mower_active():
-			drop_lawn_mower()
-		$WaterGun.hide()
-		return
-	
+func _physics_process(_delta: float) -> void:	
 	velocity = Vector2.ZERO	
 
 	# movement
@@ -231,8 +231,13 @@ func _physics_process(_delta: float) -> void:
 	if velocity.length() > 0.0:
 		velocity /= velocity.length()
 	velocity *= speed
-
+	
+	var prev_position: Vector2 = position
 	move_and_slide()
+	# if we just dropped the lawn mower, then move the lawn mower along with the
+	# player if the player is moving/just got pushed via a collision with a wall.
+	if dropped:
+		lawnmower.position += (position - prev_position)
 
 func mower_exists() -> bool:
 	lawnmower = get_node_or_null(LAWNMOWER_PATH)
