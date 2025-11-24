@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene load_steps=48 format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b616wmusrsdro" path="res://assets/textures/lawn_mower/lawnmower_down.png" id="9_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://bmjen6ijdt3ve" path="res://assets/textures/lawn_mower/lawnmower_left.png" id="10_h17s1"]
 [ext_resource type="Texture2D" uid="uid://c1g0o7hvk8qyj" path="res://assets/textures/lawn_mower/lawnmower_right.png" id="11_fm80t"]
+[ext_resource type="Script" uid="uid://7l7duh8pmwvx" path="res://scripts/player/up_collision_checker.gd" id="12_fm80t"]
 [ext_resource type="Texture2D" uid="uid://bbgs3sb6qmbh1" path="res://assets/textures/lawn_mower/lawnmower_up.png" id="12_gx1jg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
@@ -415,5 +416,14 @@ visible = false
 position = Vector2(0, -17.5)
 shape = SubResource("RectangleShape2D_gx1jg")
 
+[node name="UpCollisionChecker" type="Area2D" parent="."]
+script = ExtResource("12_fm80t")
+
+[node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="UpCollisionChecker"]
+position = Vector2(0, -17.5)
+shape = SubResource("RectangleShape2D_gx1jg")
+
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_exited"]
+[connection signal="body_entered" from="UpCollisionChecker" to="UpCollisionChecker" method="_on_body_entered"]
+[connection signal="body_exited" from="UpCollisionChecker" to="UpCollisionChecker" method="_on_body_exited"]

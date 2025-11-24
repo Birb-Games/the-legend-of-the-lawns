@@ -27,6 +27,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	update_hud(delta)
+		
+	# Reenable camera position smoothing if it was disabled
+	if !$Player/Camera2D.position_smoothing_enabled:
+		$Player/Camera2D.position_smoothing_enabled = true
 
 func advance_day() -> void:
 	neighborhood.update_neighbors()
@@ -46,6 +50,9 @@ func load_lawn(lawn_template: PackedScene) -> void:
 	player.dir = "down"
 	# Set lawn loaded flag
 	lawn_loaded = true
+	# Disable camera position smoothing for a frame so that we do not have any 
+	# strange sudden camera movements when we are going into a lawn
+	$Player/Camera2D.position_smoothing_enabled = false
 
 func return_to_neighborhood() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -59,6 +66,9 @@ func return_to_neighborhood() -> void:
 	current_wage = 0
 	player.dir = "down"
 	lawn_loaded = false
+	# Disable camera position smoothing for a frame so that we do not have any 
+	# strange sudden camera movements when we are returning to the neighborhood
+	$Player/Camera2D.position_smoothing_enabled = false
 
 func update_hud_lawn(delta: float) -> void:
 	$HUD/Control/InfoText.show()
