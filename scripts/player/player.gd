@@ -13,10 +13,12 @@ const HEDGE_COLLISION_SPEED: float = NORMAL_SPEED * 0.07
 var speed: float = NORMAL_SPEED
 
 var dir: String = "down"
-var pulling: bool = false
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var can_pick_up_lawnmower: bool = false
+# The target velocity of the player based on the controls the player is pressing,
+# this might not be equal to `velocity` since the player may be walking into a wall
+var target_velocity: Vector2 = Vector2.ZERO
 # Whether the player just dropped the lawn mower
 var dropped: bool = false
 
@@ -69,14 +71,14 @@ func get_dir_vec() -> Vector2:
 	return Vector2.ZERO
 
 func set_animation() -> void:
-	if (velocity.y < 0.0 and !pulling) or (velocity.y > 0.0 and pulling):
+	if target_velocity.y < 0.0:
 		dir = "up"
-	elif (velocity.y > 0.0 and !pulling) or (velocity.y < 0.0 and pulling):
+	elif target_velocity.y > 0.0:
 		dir = "down"
 	
-	if (velocity.x < 0.0 and !pulling) or (velocity.x > 0.0 and pulling):
+	if target_velocity.x < 0.0:
 		dir = "left"
-	elif (velocity.x > 0.0 and !pulling) or (velocity.x < 0.0 and pulling):
+	elif target_velocity.x > 0.0:
 		dir = "right"
 	
 	var state = "walk"
@@ -231,6 +233,7 @@ func _physics_process(_delta: float) -> void:
 	if velocity.length() > 0.0:
 		velocity /= velocity.length()
 	velocity *= speed
+	target_velocity = velocity
 	
 	var prev_position: Vector2 = position
 	move_and_slide()
