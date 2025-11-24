@@ -229,6 +229,10 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1.0
 	
+	if velocity.x == 0.0 and velocity.y < 0.0:
+		if $UpCollisionChecker.colliding() and lawn_mower_active():
+			velocity.y = 0.0
+	
 	# Normalize player velocity
 	if velocity.length() > 0.0:
 		velocity /= velocity.length()
