@@ -215,7 +215,10 @@ func _process(delta: float) -> void:
 	hedge_collision_timer -= delta
 	hedge_collision_timer = max(hedge_collision_timer, 0.0)
 
-func _physics_process(_delta: float) -> void:	
+func _physics_process(_delta: float) -> void:
+	if health <= 0:
+		return
+
 	velocity = Vector2.ZERO	
 
 	# movement
