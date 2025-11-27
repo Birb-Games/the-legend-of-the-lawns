@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://8t3kf3315lkx"]
+[gd_scene load_steps=17 format=4 uid="uid://8t3kf3315lkx"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/scene_control/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c8mw4mf3wdang" path="res://scripts/interactable/skip_day.gd" id="10_35gpm"]
 [ext_resource type="PackedScene" uid="uid://bkn3rcq86gyqb" path="res://scenes/lawns/jim_lawn.tscn" id="10_e6rtj"]
 [ext_resource type="PackedScene" uid="uid://br74t0xmwoiyq" path="res://scenes/lawns/nancy_lawn.tscn" id="11_e6rtj"]
+[ext_resource type="PackedScene" uid="uid://dpa88af6o4cu7" path="res://scenes/lawns/unused/test_lawn.tscn" id="12_u28t5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlwpo"]
 normal = Vector2(1, 0)
@@ -150,6 +151,14 @@ unavailable_msg = "The door is locked...
 There's a note: \"I'm on vacation right now, please come back later! Thank you!\""
 first_dialog = "Hi! You're my neighbor's kid, right? Do you need anything?"
 first_job_offer = "Oh, thank you! My lawn does need a trim - I just got back from a vacation to Aldoria and I don't feel like mowing my lawn. My flowers haven't been watered so they're a little upset right now..."
+
+[node name="TestNeighbor" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(-74, -117)
+display_name = "Mr. Test"
+always_visible = true
+disabled = true
+lawn_template = ExtResource("12_u28t5")
+interact_text = "TEST LAWN"
 
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="."]
 

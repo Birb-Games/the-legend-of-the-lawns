@@ -11,7 +11,7 @@ var current_npc: NPC
 ]
 
 func hide_neighbor() -> void:
-	if current_neighbor != null:
+	if current_neighbor != null and !current_neighbor.always_visible:
 		current_neighbor.hide()
 
 func reset_buttons() -> void:

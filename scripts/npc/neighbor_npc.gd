@@ -10,6 +10,8 @@ extends AnimatedSprite2D
 var player_in_area: bool = false
 
 @export var display_name: String = "Neighbor"
+@export var always_visible: bool = false
+@export var disabled: bool = false
 @export var lawn_template: PackedScene
 ## How many lawns the player has to mow before unlocking this neighbor
 @export var min_lawns_mowed: int = 0
@@ -28,6 +30,7 @@ var player_in_area: bool = false
 @export var hedge_penalty: int = 0
 
 @export_group("Dialog")
+@export_multiline var interact_text: String = "Press [SPACE] to knock on door."
 @export_multiline var possible_dialog: PackedStringArray = [
 	"Oh, you want to mow my lawn? I suppose it is a bit overgrown...",
 	"My lawn needs to be mowed today but I'm too lazy.",
@@ -46,6 +49,7 @@ var mow_cooldown: int = 0
 var current_dialog: String = ""
 
 func _ready() -> void:
+	$Area2D/CollisionShape2D.disabled = disabled
 	hide()
 	play(animation)
 
@@ -82,12 +86,17 @@ func generate_dialog() -> void:
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 
 func _process(_delta: float) -> void:
+	if disabled:
+		return
+
 	# Have the player interact with the neighbor
-	if Input.is_action_just_pressed("interact") and player_in_area and !visible:
+	if Input.is_action_just_pressed("interact") and player_in_area and (!visible or always_visible):
 		generate_dialog()
 		if !unavailable():
 			show()
 		$/root/Main/HUD.set_neighbor_menu(self)
+	if always_visible:
+		show()
 
 func change_wage() -> void:
 	wage += wage_change
@@ -96,7 +105,7 @@ func change_wage() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_in_area = true
-		body.interact_text = "Press [SPACE] to knock on door."
+		body.interact_text = interact_text
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
