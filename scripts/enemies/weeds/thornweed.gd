@@ -1,3 +1,5 @@
+class_name Thornweed
+
 extends WeedEnemy
 
 func get_animation() -> String:

@@ -44,7 +44,7 @@ z_index = -1
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 16.0
-color = Color(0.552956, 0.552956, 0.552956, 1)
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
 [node name="Label" type="Label" parent="Control/ProgressBar"]
 layout_mode = 0
@@ -79,7 +79,7 @@ z_index = -1
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 16.0
-color = Color(0.552956, 0.552956, 0.552956, 1)
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
 [node name="Label" type="Label" parent="Control/HealthBar"]
 layout_mode = 0
@@ -120,7 +120,7 @@ visible = false
 layout_mode = 1
 
 [node name="InfoText" type="Label" parent="Control"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 1.0
 offset_top = 563.0
 offset_right = 1152.0
