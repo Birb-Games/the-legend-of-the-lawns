@@ -1,3 +1,5 @@
+class_name Mushroom
+
 extends WeedEnemy
 
 func get_animation() -> String:

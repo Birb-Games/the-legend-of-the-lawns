@@ -1,3 +1,5 @@
+class_name Lawn
+
 extends Node2D
 
 @onready var lawnmower: Lawnmower = $Lawnmower

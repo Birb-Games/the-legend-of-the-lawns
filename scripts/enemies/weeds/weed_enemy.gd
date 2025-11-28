@@ -80,6 +80,9 @@ func _on_area_entered(area: Area2D) -> void:
 		health -= 1
 		health = max(health, 0)
 
+func bullet_spawn_point() -> Vector2:
+	return $BulletSpawnPoint.global_position
+
 # Shoots a bullet in the direction of the player, it can also have an offset
 # from being directly shot at the player.
 func shoot_bullet(offset: float = 0.0) -> void:
