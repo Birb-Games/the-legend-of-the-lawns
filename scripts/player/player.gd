@@ -285,3 +285,12 @@ func get_lawn_mower_rect() -> Rect2:
 		r.position.y -= 3.1
 	r.size *= 1.05
 	return r
+
+func get_tile_position() -> Vector2i:
+	var lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		return Vector2i(0, 0)
+	var pos: Vector2 = global_position
+	if lawn_mower_active():
+		pos += get_lawn_mower_dir_offset()
+	return Vector2i(floor(pos.x / lawn.tile_size.x), floor(pos.y / lawn.tile_size.y))
