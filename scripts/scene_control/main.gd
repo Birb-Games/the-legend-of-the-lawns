@@ -40,14 +40,15 @@ func advance_day() -> void:
 func load_lawn(lawn_template: PackedScene) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood
-	remove_child(neighborhood)
+	remove_child(neighborhood)	
 	# Load lawn
-	var lawn = lawn_template.instantiate()
+	var lawn: Lawn = lawn_template.instantiate()	
 	lawn.name = "Lawn"
-	add_child(lawn)
+	add_child(lawn)	
 	# Set player position and direction
 	player.position = lawn.get_spawn()
 	player.dir = "down"
+	lawn.update_enemy_pathfinding()
 	# Set lawn loaded flag
 	lawn_loaded = true
 	# Disable camera position smoothing for a frame so that we do not have any 

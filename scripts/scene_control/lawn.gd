@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var lawnmower: Lawnmower = $Lawnmower
 @onready var water_gun_item: StaticBody2D = $WaterGun
+@onready var tile_size: Vector2
 
 # In seconds, if the player mows the lawn in under this amount of time then
 # they get a time bonus
@@ -15,11 +16,49 @@ var cut_grass_tiles: int = 0
 # Keep track of the number of flowers destroyed for the penalty
 var flowers_destroyed: int = 0
 
+var astar_grid: AStarGrid2D
+# Whether we should update the A* grid
+var update_astar_grid: bool = false
+const ASTAR_UPDATE_INTERVAL: float = 1.0
+var astar_update_timer: float = ASTAR_UPDATE_INTERVAL
+
 func _ready() -> void:
+	tile_size = $TileMapLayer.tile_set.tile_size
+
 	total_grass_tiles = 0
+	var used_rect: Rect2i = Rect2i(0, 0, 0, 0)
+	var first: bool = true
 	for cell in $TileMapLayer.get_used_cells():
+		if first:
+			used_rect.position = cell
+			used_rect.end = cell
+			first = false
+		else:
+			used_rect.position.x = min(used_rect.position.x, cell.x)
+			used_rect.position.y = min(used_rect.position.y, cell.y)
+			used_rect.end.x = max(used_rect.end.x, cell.x)
+			used_rect.end.y = max(used_rect.end.y, cell.y)
 		if $TileMapLayer.get_cell_atlas_coords(cell) == Vector2i(1, 0):
 			total_grass_tiles += 1
+	
+	# Initialize the A* Grid
+	astar_grid = AStarGrid2D.new()
+	astar_grid.region = used_rect
+	var tile_set: TileSet = $TileMapLayer.tile_set
+	astar_grid.cell_size = tile_set.tile_size
+	astar_grid.update()
+	for cell in $TileMapLayer.get_used_cells():
+		var tile_data: TileData = $TileMapLayer.get_cell_tile_data(cell)
+		# Check if the tile has any polygons representing its collision, 
+		# if it does, then mark it as a solid tile
+		if tile_data and tile_data.get_collision_polygons_count(0) > 0:
+			astar_grid.set_point_solid(cell)
+	astar_grid.update()
+
+func update_enemy_pathfinding() -> void:
+	for child in $MobileEnemies.get_children():
+		if child is MobileEnemy:	
+			child.update_path()
 
 func get_perc_cut() -> float:
 	return float(cut_grass_tiles) / float(total_grass_tiles)
@@ -75,7 +114,7 @@ func water_gun_interaction() -> void:
 	else:
 		drop_water_gun()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if cut_grass_tiles >= total_grass_tiles:
 		get_tree().paused = true
 		$/root/Main/HUD.activate_finish_screen()
@@ -124,7 +163,18 @@ func _process(_delta: float) -> void:
 	if player.lawn_mower_active():
 		for pos in positions:
 			if destroy_hedge(pos):
+				update_astar_grid = true
+				astar_grid.set_point_solid(pos, false)
 				player.activate_hedge_timer()
+	
+	astar_update_timer -= delta
+	if astar_update_timer <= 0.0:
+		if update_astar_grid:
+			astar_grid.update()
+			update_enemy_pathfinding()
+			update_astar_grid = false
+			print("Updated pathfinding grid for lawn.")
+		astar_update_timer = ASTAR_UPDATE_INTERVAL
 
 func get_spawn() -> Vector2:
 	return $PlayerSpawn.position

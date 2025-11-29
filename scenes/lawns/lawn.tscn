@@ -25,3 +25,5 @@ position = Vector2(1.66893e-06, -24)
 
 [node name="Spawners" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="MobileEnemies" type="Node2D" parent="."]
