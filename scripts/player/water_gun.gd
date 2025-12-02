@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 		return
 		
 	update_transform()
-	
+
 	if shoot_timer <= 0.0 and Input.is_action_pressed("shoot_primary"):
 		var bullet = bullet_scene.instantiate()
 		bullet.dir = Vector2(cos(rotation), sin(rotation))

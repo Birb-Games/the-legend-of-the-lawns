@@ -128,6 +128,7 @@ func _on_return_pressed() -> void:
 	current_neighbor.difficulty += 1
 	current_neighbor.change_wage()
 	current_neighbor.set_cooldown()
+	$/root/Main/Player/Lawnmower.hide()
 
 func calculate_hedge_penalty() -> int:
 	var tileMapLayer: TileMapLayer = $/root/Main/Lawn/TileMapLayer

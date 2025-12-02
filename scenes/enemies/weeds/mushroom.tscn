@@ -157,7 +157,7 @@ animation = &"down"
 autoplay = "down"
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("4_ubc2v")]
-position = Vector2(0, -10.7692)
+position = Vector2(0, -6.153814)
 scale = Vector2(1.2, 1.2)
 
 [node name="BulletSpawnPoint" type="Node2D" parent="."]

@@ -27,6 +27,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	update_hud(delta)
+		
+	# Reenable camera position smoothing if it was disabled
+	if !$Player/Camera2D.position_smoothing_enabled:
+		$Player/Camera2D.position_smoothing_enabled = true
 
 func advance_day() -> void:
 	neighborhood.update_neighbors()
@@ -46,6 +50,9 @@ func load_lawn(lawn_template: PackedScene) -> void:
 	player.dir = "down"
 	# Set lawn loaded flag
 	lawn_loaded = true
+	# Disable camera position smoothing for a frame so that we do not have any 
+	# strange sudden camera movements when we are going into a lawn
+	$Player/Camera2D.position_smoothing_enabled = false
 
 func return_to_neighborhood() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -59,23 +66,27 @@ func return_to_neighborhood() -> void:
 	current_wage = 0
 	player.dir = "down"
 	lawn_loaded = false
+	# Disable camera position smoothing for a frame so that we do not have any 
+	# strange sudden camera movements when we are returning to the neighborhood
+	$Player/Camera2D.position_smoothing_enabled = false
 
 func update_hud_lawn(delta: float) -> void:
 	$HUD/Control/InfoText.show()
 	$HUD.update_info_text("")
-	if $Player/WaterGun.visible and $Player.in_lawnmower_range():
+	if $Player/WaterGun.visible and $Player.can_pick_up_lawnmower:
 		$HUD.update_info_text("You can not move the lawn mower while holding a water gun.")
+	elif $Player/Lawnmower.visible:
+		if $Player.too_close_to_drop_mower():
+			$HUD.update_info_text("You are standing too close to something to release the mower.")
+		else:
+			$HUD.update_info_text("Press [SPACE] to let go of the lawn mower.")
+	elif $Player.can_pick_up_lawnmower and $Lawn/Lawnmower.visible:
+		if $Player/PickupCollisionChecker.colliding():
+			$HUD.update_info_text("You are standing too close to something to start mowing.")
+		else:
+			$HUD.update_info_text("Press [SPACE] to begin mowing!")
 	elif $Player/WaterGun.visible:
-		$HUD.update_info_text("Press [SPACE] to drop water gun.")	
-	elif $Player.holding_lawnmower:
-		$HUD.update_info_text("Press [SPACE] to release the lawn mower.")
-	elif $Player.in_lawnmower_range() and $Lawn/Lawnmower.is_stuck():
-		$HUD.update_info_text("Lawn mower is stuck!\nPress [SPACE] and then walk backwards to pull lawn mower.\n")
-	elif $Player.in_lawnmower_range():
-		$HUD.update_info_text("""
-Press [SPACE] and then walk backwards to pull lawn mower.
-Walk forward to push the lawn mower.
-""")
+		$HUD.update_info_text("Press [SPACE] to drop water gun.")
 	elif $Player.can_pick_up_water_gun:
 		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
 	

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var lawnmower: RigidBody2D = $Lawnmower
+@onready var lawnmower: Lawnmower = $Lawnmower
 @onready var water_gun_item: StaticBody2D = $WaterGun
 
 # In seconds, if the player mows the lawn in under this amount of time then
@@ -30,31 +30,34 @@ func mow_tile(pos: Vector2i) -> void:
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 0), 0)
 	cut_grass_tiles += 1
 
-func destroy_hedge(pos: Vector2i) -> void:
+# Returns true if a hedge has been destroyed, false otherwise
+func destroy_hedge(pos: Vector2i) -> bool:
 	var cell_atlas = $TileMapLayer.get_cell_atlas_coords(pos)
 	if !LawnGenerationUtilities.is_hedge(cell_atlas):
-		return
+		# No hedge
+		return false
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 2), 0)
 	PenaltyParticle.emit_penalty(
 		$/root/Main/HUD.get_current_neighbor().hedge_penalty, 
 		pos * $TileMapLayer.tile_set.tile_size, $/root/Main/Lawn
 	)
+	return true
 
 # Have the player pick up the water gun
 func pickup_water_gun() -> void:
 	if !water_gun_item.is_inside_tree():
 		return
-	var player = get_node_or_null("/root/Main/Player")
+	var player: Player = get_node_or_null("/root/Main/Player")
 	if player == null:
 		return
 	if !player.can_pick_up_water_gun:
 		return
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and !player.lawn_mower_active():
 		remove_child(water_gun_item)
 		player.enable_water_gun()
 
 func drop_water_gun() -> void:
-	var player = get_node_or_null("/root/Main/Player")
+	var player: Player = get_node_or_null("/root/Main/Player")
 	if player == null:
 		return
 	if !player.get_node("WaterGun").visible:
@@ -77,44 +80,38 @@ func _process(_delta: float) -> void:
 		return
 	
 	water_gun_interaction()
-	
-	# Handle lawn mower interaction
-	# if the water gun is picked up (not inside the tree),
-	# then do not allow the mower to be pushed
-	$Lawnmower.can_push = !water_gun_item.is_inside_tree()
-	
-	# Mow the lawn
+
+	var player: Player = get_node_or_null("/root/Main/Player")
+	if player == null:
+		return
+
+	if !player.lawn_mower_active():
+		return
+
 	var tile_sz = float($TileMapLayer.tile_set.tile_size.x)
-	var lawnmower_pos = lawnmower.get_sprite_pos() / tile_sz - Vector2(0.5, 0.5)
-	var positions = []
-	for dx in range(-1, 2):
-		for dy in range(-1, 2):
-			var x = lawnmower_pos.x + 0.25 * dx
-			var y = lawnmower_pos.y + 0.25 * dy
-			var p = Vector2i(round(x), round(y))
+	var mower_rect = player.get_lawn_mower_rect()
+	mower_rect.size /= tile_sz
+	mower_rect.position /= tile_sz
+
+	var positions = []	
+	for dx in range(-2, 2 + 1):
+		for dy in range(-2, 2 + 1):
+			var x: int = floor(mower_rect.position.x) + dx
+			var y: int = floor(mower_rect.position.y) + dy
+			var tile_rect = Rect2(x, y, 1.0, 1.0)
+			if !tile_rect.intersects(mower_rect):
+				continue
+			var p = Vector2i(x, y)
 			positions.push_back(p)
+
 	for pos in positions:
 		mow_tile(pos)
 
-	# destroy hedges
-	positions = []
-	var mower_rect = lawnmower.rect()
-	mower_rect.size /= tile_sz
-	mower_rect.position /= tile_sz
-	for dx in range(-1, 2):
-		for dy in range(-1, 2):
-			var tile_rect = Rect2(
-				round(lawnmower_pos.x) + dx,
-				round(lawnmower_pos.y) + dy,
-				1.0,
-				1.0,
-			)
-			if !tile_rect.intersects(mower_rect):
-				continue
-			var p = Vector2i(round(lawnmower_pos.x) + dx, round(lawnmower_pos.y) + dy)
-			positions.push_back(p)
-	for pos in positions:
-		destroy_hedge(pos)
+	# destroy hedges	
+	if player.lawn_mower_active():
+		for pos in positions:
+			if destroy_hedge(pos):
+				player.activate_hedge_timer()
 
 func get_spawn() -> Vector2:
 	return $PlayerSpawn.position
