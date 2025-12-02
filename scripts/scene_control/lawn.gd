@@ -129,37 +129,26 @@ func _process(delta: float) -> void:
 	if !player.lawn_mower_active():
 		return
 
-	# Mow the lawn
 	var tile_sz = float($TileMapLayer.tile_set.tile_size.x)
-	var lawnmower_pos = player.get_lawn_mower_position() / tile_sz - Vector2(0.5, 0.5)
-	var positions = []
-	for dx in range(-1, 2):
-		for dy in range(-1, 2):
-			var x = lawnmower_pos.x + 0.25 * dx
-			var y = lawnmower_pos.y + 0.25 * dy
-			var p = Vector2i(round(x), round(y))
-			positions.push_back(p)
-	for pos in positions:
-		mow_tile(pos)
-
-	# destroy hedges
-	positions = []
 	var mower_rect = player.get_lawn_mower_rect()
 	mower_rect.size /= tile_sz
 	mower_rect.position /= tile_sz
-	mower_rect.position -= Vector2(0.5, 0.5)
-	for dx in range(-1, 2):
-		for dy in range(-1, 2):
-			var tile_rect = Rect2(
-				round(lawnmower_pos.x) + dx,
-				round(lawnmower_pos.y) + dy,
-				1.0,
-				1.0,
-			)
+
+	var positions = []	
+	for dx in range(-2, 2 + 1):
+		for dy in range(-2, 2 + 1):
+			var x: int = floor(mower_rect.position.x) + dx
+			var y: int = floor(mower_rect.position.y) + dy
+			var tile_rect = Rect2(x, y, 1.0, 1.0)
 			if !tile_rect.intersects(mower_rect):
 				continue
-			var p = Vector2i(round(lawnmower_pos.x) + dx, round(lawnmower_pos.y) + dy)
+			var p = Vector2i(x, y)
 			positions.push_back(p)
+
+	for pos in positions:
+		mow_tile(pos)
+
+	# destroy hedges	
 	if player.lawn_mower_active():
 		for pos in positions:
 			if destroy_hedge(pos):

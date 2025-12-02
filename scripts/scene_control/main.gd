@@ -77,9 +77,15 @@ func update_hud_lawn(delta: float) -> void:
 	if $Player/WaterGun.visible and $Player.can_pick_up_lawnmower:
 		$HUD.update_info_text("You can not move the lawn mower while holding a water gun.")
 	elif $Player/Lawnmower.visible:
-		$HUD.update_info_text("Press [SPACE] to let go of the lawn mower.")
+		if $Player.too_close_to_drop_mower():
+			$HUD.update_info_text("You are standing too close to something to release the mower.")
+		else:
+			$HUD.update_info_text("Press [SPACE] to let go of the lawn mower.")
 	elif $Player.can_pick_up_lawnmower and $Lawn/Lawnmower.visible:
-		$HUD.update_info_text("Press [SPACE] to begin mowing!")
+		if $Player/PickupCollisionChecker.colliding():
+			$HUD.update_info_text("You are standing too close to something to start mowing.")
+		else:
+			$HUD.update_info_text("Press [SPACE] to begin mowing!")
 	elif $Player/WaterGun.visible:
 		$HUD.update_info_text("Press [SPACE] to drop water gun.")
 	elif $Player.can_pick_up_water_gun:
