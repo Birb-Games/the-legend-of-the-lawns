@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://drt2vf3441uh5"]
+
+[ext_resource type="Texture2D" uid="uid://b616wmusrsdro" path="res://assets/textures/lawn_mower/lawnmower_down.png" id="1_v2q6m"]
+[ext_resource type="Texture2D" uid="uid://bmjen6ijdt3ve" path="res://assets/textures/lawn_mower/lawnmower_left.png" id="2_86wxn"]
+[ext_resource type="Texture2D" uid="uid://c1g0o7hvk8qyj" path="res://assets/textures/lawn_mower/lawnmower_right.png" id="3_0o2yt"]
+[ext_resource type="Texture2D" uid="uid://bbgs3sb6qmbh1" path="res://assets/textures/lawn_mower/lawnmower_up.png" id="4_ykiad"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="5_qagj1"]
+[ext_resource type="Script" uid="uid://7l7duh8pmwvx" path="res://scripts/player/tile_map_collision_checker.gd" id="6_86wxn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h17s1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v2q6m")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_86wxn")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0o2yt")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ykiad")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je7p5"]
+size = Vector2(12, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2q6m"]
+size = Vector2(12, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86wxn"]
+size = Vector2(6, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0o2yt"]
+size = Vector2(6, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykiad"]
+size = Vector2(24, 24)
+
+[node name="Lawnmower" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_h17s1")
+animation = &"left"
+autoplay = "down"
+
+[node name="Shadows" type="Node2D" parent="."]
+
+[node name="ShadowLeft" type="Sprite2D" parent="Shadows"]
+visible = false
+z_index = -1
+position = Vector2(-3.5, 6)
+scale = Vector2(0.40625, 0.461538)
+texture = ExtResource("5_qagj1")
+
+[node name="ShadowDown" type="Sprite2D" parent="Shadows"]
+visible = false
+z_index = -1
+position = Vector2(0, 4)
+scale = Vector2(0.40625, 1)
+texture = ExtResource("5_qagj1")
+
+[node name="ShadowRight" type="Sprite2D" parent="Shadows"]
+visible = false
+z_index = -1
+position = Vector2(3.5, 6)
+scale = Vector2(0.40625, 0.461538)
+texture = ExtResource("5_qagj1")
+
+[node name="ShadowUp" type="Sprite2D" parent="Shadows"]
+visible = false
+z_index = -1
+position = Vector2(0, -3)
+scale = Vector2(0.40625, 1)
+texture = ExtResource("5_qagj1")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+
+[node name="Down" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_je7p5")
+
+[node name="Up" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_v2q6m")
+
+[node name="Left" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 3)
+shape = SubResource("RectangleShape2D_86wxn")
+
+[node name="Right" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 3)
+shape = SubResource("RectangleShape2D_0o2yt")
+
+[node name="CollisionChecker" type="Area2D" parent="."]
+script = ExtResource("6_86wxn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionChecker"]
+shape = SubResource("RectangleShape2D_ykiad")
+
+[connection signal="body_entered" from="CollisionChecker" to="CollisionChecker" method="_on_body_entered"]
+[connection signal="body_exited" from="CollisionChecker" to="CollisionChecker" method="_on_body_exited"]
