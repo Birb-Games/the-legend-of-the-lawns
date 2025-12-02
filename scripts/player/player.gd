@@ -116,6 +116,7 @@ func get_lawn_mower_dir_offset() -> Vector2:
 
 func update_lawn_mower() -> void:
 	$AnimatedSprite2D.position = default_sprite_pos
+	$ReleaseCollisionChecker.position = Vector2(0.0, 0.0)
 	set_lawn_mower_pos()
 	if !lawn_mower_active():
 		return
@@ -123,7 +124,8 @@ func update_lawn_mower() -> void:
 	$Lawnmower.animation = dir
 
 	# Set the position of the lawn mower
-	$AnimatedSprite2D.position += get_lawn_mower_dir_offset()	
+	$AnimatedSprite2D.position += get_lawn_mower_dir_offset()
+	$ReleaseCollisionChecker.position += get_lawn_mower_dir_offset()
 	
 	# Set the z index of the lawn mower
 	if dir == "up":
@@ -149,9 +151,40 @@ func update_lawn_mower() -> void:
 func get_lawn_mower_position() -> Vector2:
 	return $Lawnmower.global_position
 
+func pick_up_lawn_mower() -> void:
+	if $WaterGun.visible:
+		return
+
+	if !can_pick_up_lawnmower:
+		return
+
+	if !lawnmower.visible:
+		return
+
+	if $PickupCollisionChecker.colliding():
+		return
+
+	if Input.is_action_just_pressed("interact"):
+		position -= get_lawn_mower_dir_offset()	
+		lawnmower.hide()
+		$Lawnmower.show()
+		set_lawn_mower_pos()
+		position -= $Lawnmower.position - Vector2(0.0, -7.0)
+	
+func too_close_to_drop_mower() -> bool:
+	if $Lawnmower/CollisionChecker.colliding():
+		return true
+	if $ReleaseCollisionChecker.colliding():
+		return true
+	return false
+
 # Returns true if the player 'dropped' the lawn mower, false otherwise
 func drop_lawn_mower() -> bool:
 	if !lawn_mower_active():
+		return false
+	if $ReleaseCollisionChecker.colliding():
+		return false
+	if $Lawnmower/CollisionChecker.colliding():
 		return false
 	if Input.is_action_just_pressed("interact") or health <= 0:
 		lawnmower.position = global_position + $Lawnmower.position
@@ -183,19 +216,16 @@ func _process(delta: float) -> void:
 	$CollisionShape2D.disabled = lawn_mower_active()
 	$LawnmowerHitbox.disabled = !lawn_mower_active()
 	$LawnmowerUpHitbox.disabled = !(lawn_mower_active() and dir == "up")
+	$PickupCollisionChecker/LawnmowerUpHitbox.disabled = (dir == "up")
+	$PickupCollisionChecker.position = -get_lawn_mower_dir_offset()
 
 	# Drop lawn mower
 	dropped = false
 	if mower_exists():
 		dropped = drop_lawn_mower()
 	# Attempt to pick up lawn mower
-	if mower_exists() and !$WaterGun.visible and !dropped:
-		if can_pick_up_lawnmower and lawnmower.visible and Input.is_action_just_pressed("interact"):
-			position -= get_lawn_mower_dir_offset()	
-			lawnmower.hide()
-			$Lawnmower.show()
-			set_lawn_mower_pos()
-			position -= $Lawnmower.position - Vector2(0.0, -7.0)
+	if mower_exists() and !dropped:
+		pick_up_lawn_mower()
 
 	# Update lawn mower
 	update_lawn_mower()
@@ -242,12 +272,12 @@ func _physics_process(_delta: float) -> void:
 	velocity *= speed
 	target_velocity = velocity
 	
-	var prev_position: Vector2 = position
+	var prev_position: Vector2 = global_position 
 	move_and_slide()
 	# if we just dropped the lawn mower, then move the lawn mower along with the
 	# player if the player is moving/just got pushed via a collision with a wall.
 	if dropped:
-		lawnmower.position += (position - prev_position)
+		lawnmower.position += (global_position - prev_position)
 
 func mower_exists() -> bool:
 	lawnmower = get_node_or_null(LAWNMOWER_PATH)
@@ -279,9 +309,19 @@ func get_sprite_pos() -> Vector2:
 	return $AnimatedSprite2D.position + position
 
 func get_lawn_mower_rect() -> Rect2:
-	var r: Rect2 = $Lawnmower/Area2D/CollisionShape2D.shape.get_rect()
-	r.position = $Lawnmower/Area2D.global_position
-	if lawn_mower_active() and dir == "up":
-		r.position.y -= 3.1
-	r.size *= 1.05
+	var r: Rect2 = Rect2(0, 0, 0, 0)
+	var collision: CollisionShape2D
+	match dir:
+		"up":
+			collision = $Lawnmower/Area2D/Up
+		"down":
+			collision = $Lawnmower/Area2D/Down
+		"right":
+			collision = $Lawnmower/Area2D/Right
+		"left":
+			collision = $Lawnmower/Area2D/Left
+		_:
+			return r
+	r = collision.shape.get_rect()
+	r.position = collision.global_position - r.size / 2.0
 	return r
