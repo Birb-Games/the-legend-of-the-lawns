@@ -10,7 +10,6 @@ var lawn_loaded: bool = false
 # How much money the player currently has
 var money: int = 0
 # What day it currently is
-# Should be used for determining difficulty as well
 var current_day: int = 1
 # How many lawns the player mowed
 var lawns_mowed: int = 0
@@ -91,8 +90,11 @@ func update_hud_lawn(delta: float) -> void:
 	elif $Player.can_pick_up_water_gun:
 		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
 	
-	$HUD.update_progress_bar($Lawn.get_perc_cut())
-	$HUD.update_health_bar($Player.get_hp_perc())
+	if $Player.health > 0:
+		$HUD.update_progress_bar($Lawn.get_perc_cut(), $Lawn.weeds_killed, $Lawn.total_weeds)
+	else:
+		$HUD/Control/ProgressBar.hide()
+	$HUD.update_health_bar($Player.health, $Player.max_health)
 	$HUD.update_timer(delta)
 
 func update_hud_neighborhood() -> void:
@@ -100,8 +102,8 @@ func update_hud_neighborhood() -> void:
 	# hide info text if talking to a neighbor
 	$HUD/Control/InfoText.visible = !$HUD/Control/NPCMenu.visible
 	
-	$HUD.update_progress_bar(-1.0) # -1.0 hides the progress bar
-	$HUD.update_health_bar(-1.0)
+	$HUD.update_progress_bar(-1.0, 0, 0) # -1.0 hides the progress bar
+	$HUD.update_health_bar(0, 0)
 	$HUD.hide_timer()
 
 func update_hud(delta: float) -> void:
@@ -109,10 +111,13 @@ func update_hud(delta: float) -> void:
 		update_hud_lawn(delta)
 	else:
 		update_hud_neighborhood()
-	
-	$HUD.update_day_counter(current_day)
-	$HUD.update_money_counter(money)
-	$HUD.update_lawn_counter(lawns_mowed)
+
+	if lawn_loaded:
+		$HUD.hide_neighborhood_hud()
+	else:
+		$HUD.update_day_counter(current_day)
+		$HUD.update_money_counter(money)
+		$HUD.update_lawn_counter(lawns_mowed)
 	if player.health > 0:
 		$HUD.update_damage_flash(player.get_damage_timer_perc())
 	else:

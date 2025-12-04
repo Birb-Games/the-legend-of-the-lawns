@@ -22,8 +22,8 @@ var target_velocity: Vector2 = Vector2.ZERO
 # Whether the player just dropped the lawn mower
 var dropped: bool = false
 
-const MAX_HEALTH: int = 80
-var health: int = MAX_HEALTH
+var max_health: int = 80
+var health: int = max_health
 # For displaying a red flash whenever the player takes damage
 const DAMAGE_COOLDOWN: float = 1.25
 var damage_timer: float = 0.0
@@ -39,10 +39,10 @@ func _ready() -> void:
 func get_hp_perc() -> float:
 	if health <= 0:
 		return 0.0
-	return float(health) / float(MAX_HEALTH)
+	return float(health) / float(max_health)
 
 func reset_health() -> void:
-	health = MAX_HEALTH
+	health = max_health
 	damage_timer = 0.0
 
 func activate_hedge_timer() -> void:

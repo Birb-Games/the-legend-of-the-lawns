@@ -125,7 +125,6 @@ func _on_return_pressed() -> void:
 	main.advance_day()
 	main.return_to_neighborhood()
 	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor()
-	current_neighbor.difficulty += 1
 	current_neighbor.change_wage()
 	current_neighbor.set_cooldown()
 	$/root/Main/Player/Lawnmower.hide()

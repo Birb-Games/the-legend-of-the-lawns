@@ -121,6 +121,7 @@ position = Vector2(-232, -155)
 animation = &"neighbor_jim"
 display_name = "Neighbor Jim"
 lawn_template = ExtResource("10_e6rtj")
+min_lawns_mowed = 1
 mowing_frequency = 2
 wage = 5
 wage_change = -2
@@ -128,6 +129,8 @@ bonus_base = 1
 max_bonus = 4
 flower_penalty = 1
 hedge_penalty = 1
+unavailable_msg = "The door is locked...
+There is a note on the door: \"I am at the office right now, come back later. Unless you're an insurance salesman - then scram.\""
 first_dialog = "Hey, aren't you my neighbor's kid? Do you need something?
 You better not be trying to sell me insurance..."
 first_job_offer = "Oh good, you're not selling me insurance.

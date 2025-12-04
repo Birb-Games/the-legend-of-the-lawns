@@ -38,6 +38,10 @@ func _ready() -> void:
 	if !$/root/Main.lawn_loaded:
 		return
 
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn:
+		lawn.total_weeds += 1
+
 	scale = Vector2.ZERO
 
 func player_in_range() -> bool:
@@ -57,6 +61,9 @@ func explode() -> void:
 		bullet.position = $BulletSpawnPoint.global_position + dir * 4.0
 		bullet.dir = dir
 		$/root/Main/Lawn.add_child(bullet)
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn:
+		lawn.weeds_killed += 1
 	queue_free()
 
 # controls the growing animation for the enemy

@@ -10,17 +10,24 @@ extends Node2D
 # they get a time bonus
 @export var time_limit: float = 120.0;
 
+@export var difficulty: int = 0
+
 var total_grass_tiles: int
 var cut_grass_tiles: int = 0
 
 # Keep track of the number of flowers destroyed for the penalty
 var flowers_destroyed: int = 0
 
+var weeds_killed: int = 0
+var total_weeds: int = 0
+
 var astar_grid: AStarGrid2D
 # Whether we should update the A* grid
 var update_astar_grid: bool = false
 const ASTAR_UPDATE_INTERVAL: float = 1.0
 var astar_update_timer: float = ASTAR_UPDATE_INTERVAL
+
+var finish_timer: float = 1.0
 
 func _ready() -> void:
 	tile_size = $TileMapLayer.tile_set.tile_size
@@ -114,8 +121,15 @@ func water_gun_interaction() -> void:
 	else:
 		drop_water_gun()
 
+func lawn_completed() -> bool:
+	return cut_grass_tiles >= total_grass_tiles and weeds_killed >= total_weeds
+
 func _process(delta: float) -> void:
-	if cut_grass_tiles >= total_grass_tiles:
+	if lawn_completed():
+		finish_timer -= delta
+		finish_timer = max(finish_timer, 0.0)
+
+	if lawn_completed() and finish_timer <= 0.0:
 		get_tree().paused = true
 		$/root/Main/HUD.activate_finish_screen()
 		return

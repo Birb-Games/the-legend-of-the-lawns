@@ -43,7 +43,6 @@ var player_in_area: bool = false
 @export_multiline var player_dialog: String = "I'm here to mow your lawn!"
 @export_multiline var first_job_offer: String = "I suppose I could use some help with mowing my lawn today..."
 var first_time: bool = true
-var difficulty: int = 0
 var mow_cooldown: int = 0
 
 var current_dialog: String = ""
