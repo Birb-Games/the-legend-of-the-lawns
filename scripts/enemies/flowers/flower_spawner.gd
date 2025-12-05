@@ -2,7 +2,7 @@ extends Node2D
 
 @export var difficulty: int = 0
 # Set this to 0 if you want a random number of enemies
-@export var spawn_count: int = 0
+@export var spawn_count: int = 1
 @export var spawn_probability: float = 1.0
 
 # Spawns multiple types of enemies
@@ -28,7 +28,4 @@ func _ready() -> void:
 	if randf() > spawn_probability:
 		return
 
-	if spawn_count == 0:
-		spawn_count = Spawning.get_rand_weed_count(difficulty)
-	
 	spawn()

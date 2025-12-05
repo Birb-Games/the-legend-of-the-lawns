@@ -11,13 +11,18 @@ class SpawnEntry:
 static var weed_enemies: Dictionary = {
 	"weed" : preload("uid://bhnk8apyedtit"),
 	"mini_thornweed" : preload("uid://bpn14mbnmv14h"),
-	"thornweed": preload("uid://fqhlxrgabgqv")
+	"thornweed": preload("uid://fqhlxrgabgqv"),
+	"mushroom" : preload("uid://bfrhyuagid5eh"),
 }
 
 static var flower_enemies: Dictionary = {
 	"yellow" : preload("uid://kai60sy8qsix"),
 	"red" : preload("uid://cuwajf6p2vxkf"),
 	"blue" : preload("uid://1fh3tiwr4hty")
+}
+
+static var mobile_enemies: Dictionary = {
+	"shrub_demon" : preload("uid://d1jwu43vb0643"),
 }
 
 static var weed_spawn_table: Dictionary = {
@@ -36,12 +41,28 @@ static var weed_spawn_table: Dictionary = {
 		SpawnEntry.new("mini_thornweed", 3.0), 
 		SpawnEntry.new("thornweed", 2.0) 
 	],
+
+	"medium+" : [
+		SpawnEntry.new("weed", 3.0),
+		SpawnEntry.new("mini_thornweed", 3.0), 
+		SpawnEntry.new("thornweed", 2.0),
+		SpawnEntry.new("mushroom", 2.0), 
+	],
+
+	"medium++" : [
+		SpawnEntry.new("weed", 1.0),
+		SpawnEntry.new("mini_thornweed", 1.0), 
+		SpawnEntry.new("thornweed", 1.0),
+		SpawnEntry.new("mushroom", 1.0), 
+	]
 }
 
 static var weed_count_table: Dictionary = {
 	"easy" : [ 3, 1 ],
 	"easy+" : [ 3, 3, 1 ],
-	"medium" : [ 3, 3, 1 ]
+	"medium" : [ 3, 3, 1 ],
+	"medium+" : [ 3 ],
+	"medium++" : [ 4, 3, 3 ],
 }
 
 static var flower_spawn_table: Dictionary = {
@@ -56,13 +77,46 @@ static var flower_spawn_table: Dictionary = {
 	"medium" : [
 		SpawnEntry.new("yellow", 2.0), 
 		SpawnEntry.new("red", 1.0)
+	],
+
+	"medium+" : [
+		SpawnEntry.new("yellow", 2.0), 
+		SpawnEntry.new("red", 1.0)
+	],
+
+	"medium++" : [
+		SpawnEntry.new("yellow", 3.0), 
+		SpawnEntry.new("red", 2.0)
 	]
 }
 
-static var flower_count_table: Dictionary = {
-	"easy" : [ 3, 1, 1 ],
-	"easy+" : [ 3, 3, 1 ],
-	"medium" : [ 3, 3, 1 ]
+static var mob_spawn_table: Dictionary = {
+	"easy" : [],
+
+	"easy+" : [ SpawnEntry.new("shrub_demon", 1.0) ],
+
+	"medium" : [ SpawnEntry.new("shrub_demon", 1.0) ],
+
+	"medium+" : [ SpawnEntry.new("shrub_demon", 1.0) ],
+
+	# TODO: add fungal baby enemy
+	"medium++" : [ SpawnEntry.new("shrub_demon", 1.0) ]
+}
+
+static var mob_count_table: Dictionary = {
+	"easy" : {},
+	"easy+" : { 
+		"shrub_demon" : [ 3, 2, 1 ]
+	},
+	"medium" : { 
+		"shrub_demon" : [ 4, 3, 2 ] 
+	},
+	"medium+" : { 
+		"shrub_demon": [ 4, 4, 3, 3, 2 ] 
+	},
+	"medium++" : { 
+		"shrub_demon": [ 4, 3, 3 ] 
+	},
 }
 
 static func int_difficulty_to_string(difficulty: int) -> String:
@@ -123,14 +177,35 @@ static func instantiate_weed(id: String) -> WeedEnemy:
 static func get_flower_spawn_weights(difficulty: int) -> Array:
 	return flower_spawn_table[int_difficulty_to_string(difficulty)]
 
-static func get_rand_flower_count(difficulty: int) -> int:
-	var counts: Array = flower_count_table[int_difficulty_to_string(difficulty)]
+static func instantiate_flower(id: String) -> FlowerEnemy:
+	return flower_enemies[id].instantiate()
+
+# Returns the mob spawn weights with the entry "random" potentially included
+# "random" means a collection of mobile enemies can be spawned, not just one type
+static func get_mob_spawn_weights_random(difficulty: int) -> Array:
+	return mob_spawn_table[int_difficulty_to_string(difficulty)]
+
+static func get_mob_spawn_weights(difficulty: int) -> Array:
+	var ret = []
+	var weights = mob_spawn_table[int_difficulty_to_string(difficulty)]
+	for entry in weights:
+		if entry is SpawnEntry:
+			if entry.name == "random":
+				continue
+		ret.push_back(entry)
+	return ret
+
+static func instantiate_mob(id: String) -> MobileEnemy:
+	return mobile_enemies[id].instantiate()
+
+static func get_rand_mob_count(difficulty: int, id: String) -> int:
+	var count_table: Dictionary = mob_count_table[int_difficulty_to_string(difficulty)]
+	if count_table.is_empty():
+		return 0
+	var counts: Array = count_table[id]
 	if counts.is_empty():
 		return 0
 	return counts[randi() % len(counts)]
-
-static func instantiate_flower(id: String) -> FlowerEnemy:
-	return flower_enemies[id].instantiate()
 
 # Generates the enemy positions in a circle
 # Parameters:

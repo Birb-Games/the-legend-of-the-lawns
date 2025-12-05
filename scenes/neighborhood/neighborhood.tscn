@@ -143,10 +143,11 @@ display_name = "Neighbor Nancy"
 lawn_template = ExtResource("11_e6rtj")
 min_lawns_mowed = 2
 mowing_frequency = 2
+wage = 8
 wage_change = -3
 bonus_base = 1
-max_bonus = 6
-flower_penalty = 2
+max_bonus = 4
+flower_penalty = 3
 hedge_penalty = 1
 reject_dialog = ["Sorry, my lawn was just mowed.", "Do you need anything?
 Oh, sorry, my lawn doesn't need to be mowed today.", "Hi, sorry but can it wait? I'm currently gardening right now."]
