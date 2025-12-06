@@ -17,6 +17,8 @@ const DELAY: float = 1.0
 var timer: float = 0.0
 
 func activate() -> void:
+	if $/root/Main/Player.health <= 0:
+		return
 	timer = DELAY
 	show()
 	$TileMapLayer.hide()

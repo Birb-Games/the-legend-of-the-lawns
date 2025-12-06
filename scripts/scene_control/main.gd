@@ -3,7 +3,7 @@ class_name Main
 extends Node2D
 
 @onready var neighborhood: Node2D = $Neighborhood
-@onready var player: CharacterBody2D = $Player
+@onready var player: Player = $Player
 @onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
 
@@ -71,7 +71,7 @@ func return_to_neighborhood() -> void:
 	$Player/Camera2D.position_smoothing_enabled = false
 
 func update_hud_lawn(delta: float) -> void:
-	$HUD/Control/InfoText.show()
+	$HUD/Control/InfoText.visible = player.health > 0
 	$HUD.update_info_text("")
 	if $Player/WaterGun.visible and $Player.can_pick_up_lawnmower:
 		$HUD.update_info_text("You can not move the lawn mower while holding a water gun.")

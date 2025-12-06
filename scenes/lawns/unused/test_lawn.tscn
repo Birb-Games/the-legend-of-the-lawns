@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://dpa88af6o4cu7"]
+[gd_scene load_steps=14 format=4 uid="uid://dpa88af6o4cu7"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_ftld5"]
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellow_flower.tscn" id="2_rg8jm"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_wvh0u"]
+[ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/weeds/enemy_spawner.tscn" id="3_lod07"]
 [ext_resource type="PackedScene" uid="uid://cuwajf6p2vxkf" path="res://scenes/enemies/flowers/red_flower.tscn" id="4_4dqeu"]
 [ext_resource type="PackedScene" uid="uid://bhnk8apyedtit" path="res://scenes/enemies/weeds/weed.tscn" id="4_7cgbf"]
 [ext_resource type="PackedScene" uid="uid://fqhlxrgabgqv" path="res://scenes/enemies/weeds/thornweed.tscn" id="5_lbura"]
@@ -20,6 +21,12 @@ tile_map_data = PackedByteArray("AAD2//b/AAAHAAEAAAD2//f/AAAHAAEAAAD2//j/AAAHAAE
 script = ExtResource("2_wvh0u")
 
 [node name="HedgeGenerationPoints" type="Node2D" parent="TileMapLayer" index="0"]
+
+[node name="Enemyspawner" parent="Spawners" index="0" instance=ExtResource("3_lod07")]
+position = Vector2(75, 0)
+spawn_count = 1
+possible_enemies = Array[PackedScene]([ExtResource("10_thw3f"), ExtResource("11_0qfnh")])
+trigger_upon_lawn_completion = true
 
 [node name="Weed" parent="." index="5" instance=ExtResource("4_7cgbf")]
 position = Vector2(131, -131)
@@ -47,9 +54,6 @@ position = Vector2(-95, -324)
 
 [node name="SuperShroom" parent="." index="13" instance=ExtResource("11_0qfnh")]
 position = Vector2(105, -307)
-
-[node name="MobileEnemies" parent="." index="14"]
-y_sort_enabled = true
 
 [node name="ShrubDemon" parent="MobileEnemies" index="0" instance=ExtResource("12_rr38k")]
 position = Vector2(-101, -73)

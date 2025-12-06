@@ -64,7 +64,7 @@ func update_progress_bar(percent: float, weeds_killed: int, total_weeds: int) ->
 	$Control/ProgressBar.show()
 	$Control/ProgressBar.size.x = percent * $Control/ProgressBar/ProgressBackground.size.x
 	$Control/ProgressBar.color = progress_bar_gradient.sample(percent)
-	if percent < 1.0:
+	if percent < 1.0 or weeds_killed >= total_weeds:
 		$Control/ProgressBar/ProgressBarPercent.text = "Lawn Mowed: %d%%" % int(percent * 100)
 	else:
 		$Control/ProgressBar/ProgressBarPercent.text = "Kill Weeds: %d/%d" % [ weeds_killed, total_weeds ]

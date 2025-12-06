@@ -125,7 +125,9 @@ func lawn_completed() -> bool:
 	return cut_grass_tiles >= total_grass_tiles and weeds_killed >= total_weeds
 
 func _process(delta: float) -> void:
-	if lawn_completed():
+	var player: Player = get_node_or_null("/root/Main/Player")
+
+	if lawn_completed() and player != null and player.health > 0:
 		finish_timer -= delta
 		finish_timer = max(finish_timer, 0.0)
 
@@ -136,7 +138,6 @@ func _process(delta: float) -> void:
 	
 	water_gun_interaction()
 
-	var player: Player = get_node_or_null("/root/Main/Player")
 	if player == null:
 		return
 

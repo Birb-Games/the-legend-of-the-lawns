@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://deieyv2snbfnr"]
 
-[ext_resource type="Script" uid="uid://x87cvap23wts" path="res://scripts/enemies/weeds/super_shroom.gd" id="1_8fxkp"]
+[ext_resource type="Script" path="res://scripts/enemies/weeds/super_shroom.gd" id="1_8fxkp"]
 [ext_resource type="Texture2D" uid="uid://xa7pwl66ri8u" path="res://assets/textures/enemies/weeds/super_shroom.png" id="1_l8jun"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_vdapv"]
 [ext_resource type="PackedScene" uid="uid://dle1nhc76n43p" path="res://scenes/enemies/bullets/spore_bullet.tscn" id="2_a2jif"]
@@ -137,6 +137,8 @@ bullet_cooldown = 1.75
 max_shoot_distance = 200.0
 explosion_bullet_count = 12
 max_health = 40
+boss = true
+grow_delay = 0.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12.75)

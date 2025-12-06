@@ -7,6 +7,7 @@ var can_spawn: bool = true
 # Set the enemies here if you want to change what types of enemies this spawner
 # will spawn
 @export var possible_enemies: Array[PackedScene]
+@export var trigger_upon_lawn_completion: bool = false
 
 func spawn() -> void:
 	if !can_spawn:
@@ -40,8 +41,15 @@ func _ready() -> void:
 	if spawn_count == 0:
 		spawn_count = Spawning.get_rand_weed_count(difficulty)
 
+func _process(_delta: float) -> void:
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn != null and trigger_upon_lawn_completion:
+		if lawn.cut_grass_tiles == lawn.total_grass_tiles and can_spawn:
+			spawn()
+			can_spawn = false
+
 func _on_activation_zone_body_entered(body: Node2D) -> void:
 	if body is Player:
-		if body.lawn_mower_active():
+		if body.lawn_mower_active() and !trigger_upon_lawn_completion:
 			spawn()
 			can_spawn = false

@@ -18,6 +18,8 @@ extends Area2D
 # The number of bullets the enemy fires out upon death
 @export var explosion_bullet_count: int = 5
 @export var max_health: int = 10
+@export var boss: bool = false
+@export var grow_delay: float = 0.0
 
 @onready var health: int = max_health 
 @onready var shoot_timer: float = bullet_cooldown
@@ -41,6 +43,11 @@ func _ready() -> void:
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
 	if lawn:
 		lawn.total_weeds += 1
+
+	# Add some screenshake to the camera
+	var camera: GameCamera = $/root/Main/Player/Camera2D
+	if boss:
+		camera.add_trauma(1.0)
 
 	scale = Vector2.ZERO
 
@@ -69,6 +76,10 @@ func explode() -> void:
 # controls the growing animation for the enemy
 # returns true if the animation is running, returns false otherwise
 func update_growing_animation(delta: float) -> bool:
+	if grow_delay > 0.0:
+		grow_delay -= delta
+		return true
+	
 	if scale.x < target_scale:
 		scale.x += 2.0 * delta
 		scale.x = min(scale.x, target_scale)
