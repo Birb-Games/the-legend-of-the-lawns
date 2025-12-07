@@ -10,6 +10,7 @@ var shoot_mode: String = "circle"
 const UPDATE_SHOOT_MODE_INTERVAL: float = 6.0
 var update_shoot_mode_timer: float = UPDATE_SHOOT_MODE_INTERVAL
 @onready var bullet_queue: BulletQueue = BulletQueue.new()
+@onready var initial_bullet_cooldown: float = bullet_cooldown
 
 func get_random_shoot_mode() -> String:
 	if len(POSSIBLE_SHOOT_MODES) == 0:
@@ -63,6 +64,9 @@ func _process(delta: float) -> void:
 	if update_shoot_mode_timer < 0.0:
 		shoot_mode = get_random_shoot_mode()
 		update_shoot_mode_timer = UPDATE_SHOOT_MODE_INTERVAL
+	
+	if health < int(float(max_health) / 2.0) and bullet_cooldown > 0.2 * initial_bullet_cooldown:
+		bullet_cooldown = 0.2 * initial_bullet_cooldown
 
 	super._process(delta)
 	if $/root/Main.lawn_loaded:

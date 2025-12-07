@@ -64,6 +64,37 @@ func set_menu_first(neighbor: NeighborNPC) -> void:
 	buttons[0].connect("pressed", advance_first_dialog)
 	show()
 
+func set_menu_limit_reached(neighbor: NeighborNPC) -> void:
+	$Menu/VBoxContainer/Name.text = neighbor.display_name
+	$Menu/VBoxContainer/Wage.text = ""
+	$Menu/VBoxContainer/Description.text = """You have reached the limit on the number of times you can mow this lawn and still get paid.
+You can replay it if you want though, you'll just earn $0."""	
+	
+	buttons[0].show()
+	buttons[0].text = "Leave"
+	buttons[0].connect("pressed", on_leave_pressed)
+
+	buttons[1].show()
+	buttons[1].text = "Okay"
+	buttons[1].connect("pressed", advance_limit_reached_dialog)
+
+	show()
+
+func set_mowing_menu(neighbor: NeighborNPC) -> void:
+	$Menu/VBoxContainer/Name.text = neighbor.display_name
+	$Menu/VBoxContainer/Wage.text = format_wage(neighbor.wage) 
+	$Menu/VBoxContainer/Description.text = neighbor.current_dialog	
+	
+	buttons[0].show()
+	buttons[0].text = "Nah"
+	buttons[0].connect("pressed", on_leave_pressed)
+	
+	buttons[1].show()
+	buttons[1].text = "Deal!"
+	buttons[1].connect("pressed", on_accept_pressed)
+	
+	show()
+
 func set_menu(neighbor: NeighborNPC) -> void:
 	reset_buttons()
 	$Menu/VBoxContainer/Wage.show()
@@ -81,25 +112,22 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	if neighbor.first_time:
 		set_menu_first(neighbor)
 		return
+
+	if neighbor.mowing_limit_reached():
+		set_menu_limit_reached(neighbor)
+		return
 	
-	$Menu/VBoxContainer/Name.text = neighbor.display_name
-	$Menu/VBoxContainer/Wage.text = format_wage(neighbor.wage)
-	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
-	
-	buttons[0].show()
-	buttons[0].text = "Nah"
-	buttons[0].connect("pressed", on_leave_pressed)
-	
-	buttons[1].show()
-	buttons[1].text = "Deal!"
-	buttons[1].connect("pressed", on_accept_pressed)
-	
-	show()
+	set_mowing_menu(neighbor)
 
 func advance_first_dialog_npc() -> void:
 	current_npc.first_time = false
 	current_npc.generate_dialog()
 	set_npc_menu(current_npc)
+
+func advance_limit_reached_dialog() -> void:
+	current_neighbor.generate_dialog()
+	reset_buttons()
+	set_mowing_menu(current_neighbor)
 
 func set_npc_menu(npc: NPC) -> void:
 	reset_buttons()

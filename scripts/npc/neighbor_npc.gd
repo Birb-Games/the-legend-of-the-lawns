@@ -17,6 +17,10 @@ var player_in_area: bool = false
 @export var min_lawns_mowed: int = 0
 ## How frequently they need their lawn mowed
 @export var mowing_frequency: int = 1
+# The maximum number of times the player can mow the lawn and get paid
+# (they can replay the lawn afterward but will not receive any money)
+@export var mowing_limit: int = 0
+var times_mowed: int = 0
 
 @export_group("Wage Info")
 @export var wage: int = 10
@@ -57,6 +61,8 @@ func unavailable() -> bool:
 
 # Returns true if the mow cool down is above 0
 func reject() -> bool:
+	if mowing_limit_reached():
+		return false
 	return mow_cooldown > 0
 
 func set_cooldown() -> void:
@@ -97,7 +103,15 @@ func _process(_delta: float) -> void:
 	if always_visible:
 		show()
 
+func mowing_limit_reached() -> bool:
+	return mowing_limit > 0 and times_mowed >= mowing_limit
+
 func change_wage() -> void:
+	if mowing_limit_reached():
+		wage = 0
+		bonus_base = 0
+		max_bonus = 0
+		return
 	wage += wage_change
 	wage = clamp(wage, 1, max_wage)
 
