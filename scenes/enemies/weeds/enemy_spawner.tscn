@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxgj76gitliya"]
+[gd_scene load_steps=3 format=3 uid="uid://bxgj76gitliya"]
 
 [ext_resource type="Script" uid="uid://dkr8c4yfj3ywc" path="res://scripts/enemies/weeds/enemy_spawner.gd" id="1_27y88"]
-[ext_resource type="PackedScene" uid="uid://bhnk8apyedtit" path="res://scenes/enemies/weeds/weed.tscn" id="2_6fcck"]
-[ext_resource type="PackedScene" uid="uid://fqhlxrgabgqv" path="res://scenes/enemies/weeds/thornweed.tscn" id="3_2meu0"]
-[ext_resource type="PackedScene" uid="uid://bfrhyuagid5eh" path="res://scenes/enemies/weeds/mushroom.tscn" id="4_84gii"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6fcck"]
 radius = 60.0
@@ -11,7 +8,6 @@ radius = 60.0
 [node name="Enemyspawner" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_27y88")
-enemies = Array[PackedScene]([ExtResource("2_6fcck"), ExtResource("3_2meu0"), ExtResource("4_84gii")])
 
 [node name="ActivationZone" type="Area2D" parent="."]
 collision_layer = 0

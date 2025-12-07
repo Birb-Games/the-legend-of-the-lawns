@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3 uid="uid://bpn14mbnmv14h"]
+
+[ext_resource type="Script" uid="uid://n8oaahbtkoxm" path="res://scripts/enemies/weeds/mini_thornweed.gd" id="1_50lqy"]
+[ext_resource type="Texture2D" uid="uid://qmunfcgwekg" path="res://assets/textures/enemies/weeds/mini_thornweed.png" id="1_85gqd"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_vwgfe"]
+[ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/bullets/thorn_bullet.tscn" id="2_vooa8"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="3_d3c7d"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="4_wsu2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sm6or"]
+size = Vector2(16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwgfe"]
+atlas = ExtResource("1_85gqd")
+region = Rect2(0, 0, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3c7d"]
+atlas = ExtResource("1_85gqd")
+region = Rect2(16, 0, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50lqy"]
+atlas = ExtResource("1_85gqd")
+region = Rect2(0, 30, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vooa8"]
+atlas = ExtResource("1_85gqd")
+region = Rect2(16, 30, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p88lx"]
+atlas = ExtResource("1_85gqd")
+region = Rect2(0, 15, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge7eu"]
+atlas = ExtResource("1_85gqd")
+region = Rect2(16, 15, 16, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sm6or"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwgfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3c7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50lqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vooa8")
+}],
+"loop": true,
+"name": &"left",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p88lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge7eu")
+}],
+"loop": true,
+"name": &"right",
+"speed": 2.0
+}]
+
+[node name="MiniThornweed" type="Area2D"]
+scale = Vector2(0.9, 0.9)
+script = ExtResource("1_50lqy")
+bullet_scene = ExtResource("2_vooa8")
+bullet_cooldown = 3.0
+explosion_bullet_count = 6
+max_health = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_sm6or")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.24999999, 0.23076925)
+texture = ExtResource("1_vwgfe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7.5)
+sprite_frames = SubResource("SpriteFrames_sm6or")
+autoplay = "default"
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("3_d3c7d")]
+position = Vector2(0, -3.9999995)
+scale = Vector2(0.8, 0.8)
+damage_amt = 2
+attack_cooldown = 1.0
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="Healthbar" parent="." instance=ExtResource("4_wsu2l")]
+offset_left = -6.0
+offset_top = -17.778
+offset_right = 8.0
+offset_bottom = -15.778
+scale = Vector2(0.8, 0.8)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="hit" from="." to="." method="_on_hit"]

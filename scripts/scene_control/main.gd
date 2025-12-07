@@ -3,14 +3,13 @@ class_name Main
 extends Node2D
 
 @onready var neighborhood: Node2D = $Neighborhood
-@onready var player: CharacterBody2D = $Player
+@onready var player: Player = $Player
 @onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
 
 # How much money the player currently has
 var money: int = 0
 # What day it currently is
-# Should be used for determining difficulty as well
 var current_day: int = 1
 # How many lawns the player mowed
 var lawns_mowed: int = 0
@@ -40,14 +39,15 @@ func advance_day() -> void:
 func load_lawn(lawn_template: PackedScene) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood
-	remove_child(neighborhood)
+	remove_child(neighborhood)	
 	# Load lawn
-	var lawn = lawn_template.instantiate()
+	var lawn: Lawn = lawn_template.instantiate()	
 	lawn.name = "Lawn"
-	add_child(lawn)
+	add_child(lawn)	
 	# Set player position and direction
 	player.position = lawn.get_spawn()
 	player.dir = "down"
+	lawn.update_enemy_pathfinding()
 	# Set lawn loaded flag
 	lawn_loaded = true
 	# Disable camera position smoothing for a frame so that we do not have any 
@@ -71,7 +71,7 @@ func return_to_neighborhood() -> void:
 	$Player/Camera2D.position_smoothing_enabled = false
 
 func update_hud_lawn(delta: float) -> void:
-	$HUD/Control/InfoText.show()
+	$HUD/Control/InfoText.visible = player.health > 0
 	$HUD.update_info_text("")
 	if $Player/WaterGun.visible and $Player.can_pick_up_lawnmower:
 		$HUD.update_info_text("You can not move the lawn mower while holding a water gun.")
@@ -90,8 +90,11 @@ func update_hud_lawn(delta: float) -> void:
 	elif $Player.can_pick_up_water_gun:
 		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
 	
-	$HUD.update_progress_bar($Lawn.get_perc_cut())
-	$HUD.update_health_bar($Player.get_hp_perc())
+	if $Player.health > 0:
+		$HUD.update_progress_bar($Lawn.get_perc_cut(), $Lawn.weeds_killed, $Lawn.total_weeds)
+	else:
+		$HUD/Control/ProgressBar.hide()
+	$HUD.update_health_bar($Player.health, $Player.max_health)
 	$HUD.update_timer(delta)
 
 func update_hud_neighborhood() -> void:
@@ -99,8 +102,8 @@ func update_hud_neighborhood() -> void:
 	# hide info text if talking to a neighbor
 	$HUD/Control/InfoText.visible = !$HUD/Control/NPCMenu.visible
 	
-	$HUD.update_progress_bar(-1.0) # -1.0 hides the progress bar
-	$HUD.update_health_bar(-1.0)
+	$HUD.update_progress_bar(-1.0, 0, 0) # -1.0 hides the progress bar
+	$HUD.update_health_bar(0, 0)
 	$HUD.hide_timer()
 
 func update_hud(delta: float) -> void:
@@ -108,10 +111,13 @@ func update_hud(delta: float) -> void:
 		update_hud_lawn(delta)
 	else:
 		update_hud_neighborhood()
-	
-	$HUD.update_day_counter(current_day)
-	$HUD.update_money_counter(money)
-	$HUD.update_lawn_counter(lawns_mowed)
+
+	if lawn_loaded:
+		$HUD.hide_neighborhood_hud()
+	else:
+		$HUD.update_day_counter(current_day)
+		$HUD.update_money_counter(money)
+		$HUD.update_lawn_counter(lawns_mowed)
 	if player.health > 0:
 		$HUD.update_damage_flash(player.get_damage_timer_perc())
 	else:

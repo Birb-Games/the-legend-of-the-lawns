@@ -15,11 +15,13 @@ script = ExtResource("1_s13x8")
 knocked_out = ExtResource("2_3i01h")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(1, 0, 0, 0.627451)
 
 [node name="Title" type="Label" parent="."]
+layout_mode = 0
 offset_top = 47.0
 offset_right = 1152.0
 offset_bottom = 123.0
@@ -31,6 +33,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Subtitle" type="Label" parent="."]
+layout_mode = 0
 offset_top = 146.0
 offset_right = 1152.0
 offset_bottom = 251.0
@@ -44,6 +47,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_top = 498.0
 offset_right = 1152.0
 offset_bottom = 572.0

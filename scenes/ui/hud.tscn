@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8jx2be4cfkb8"]
+[gd_scene load_steps=10 format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/ui/hud.gd" id="1_oo0fn"]
@@ -9,9 +9,13 @@
 [ext_resource type="Script" uid="uid://cysslxg82gi06" path="res://scripts/ui/transition_rect.gd" id="7_gss2c"]
 [ext_resource type="FontFile" uid="uid://b3j21gnxq1jn1" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Bold.ttf" id="8_h022r"]
 
+[sub_resource type="Gradient" id="Gradient_h022r"]
+colors = PackedColorArray(0, 0.30980393, 0.1882353, 1, 0.12156863, 0.6901961, 0.13725491, 1)
+
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_oo0fn")
+progress_bar_gradient = SubResource("Gradient_h022r")
 
 [node name="Control" type="Control" parent="."]
 z_index = 100
@@ -22,80 +26,60 @@ offset_bottom = 647.0
 
 [node name="ProgressBar" type="ColorRect" parent="Control"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 48.0
-offset_right = 32.0
-offset_bottom = 64.0
-color = Color(0.967307, 0.804114, 0, 1)
+offset_left = 417.0
+offset_top = 600.0
+offset_right = 737.0
+offset_bottom = 620.0
+color = Color(0.12156863, 0.6901961, 0.13725491, 1)
 
 [node name="ProgressBarPercent" type="Label" parent="Control/ProgressBar"]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 1.0
-offset_right = 110.0
-offset_bottom = 24.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+offset_top = 2.0
+offset_right = 320.0
+offset_bottom = 19.0
 theme_override_fonts/font = ExtResource("1_ahhtf")
-theme_override_font_sizes/font_size = 22
-text = "0%"
+theme_override_font_sizes/font_size = 20
+text = "Lawn Progress: 0%"
+horizontal_alignment = 1
 
 [node name="ProgressBackground" type="ColorRect" parent="Control/ProgressBar"]
 z_index = -1
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 16.0
-color = Color(0.552956, 0.552956, 0.552956, 1)
-
-[node name="Label" type="Label" parent="Control/ProgressBar"]
-layout_mode = 0
-offset_top = -17.0
-offset_right = 125.0
-offset_bottom = -5.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_ahhtf")
-text = "Lawn Progress"
+offset_right = 320.0
+offset_bottom = 20.0
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
 [node name="HealthBar" type="ColorRect" parent="Control"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 91.0
-offset_right = 96.0
-offset_bottom = 107.0
+offset_left = 417.0
+offset_top = 572.0
+offset_right = 737.0
+offset_bottom = 596.0
 color = Color(0.878431, 0.0745098, 0.254902, 1)
 
 [node name="HealthPercent" type="Label" parent="Control/HealthBar"]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 1.0
-offset_right = 110.0
+offset_top = 4.0
+offset_right = 320.0
 offset_bottom = 24.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
-theme_override_font_sizes/font_size = 22
-text = "100%"
+theme_override_font_sizes/font_size = 20
+text = "HP: 0/0"
+horizontal_alignment = 1
 
 [node name="HealthBackground" type="ColorRect" parent="Control/HealthBar"]
 z_index = -1
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 16.0
-color = Color(0.552956, 0.552956, 0.552956, 1)
-
-[node name="Label" type="Label" parent="Control/HealthBar"]
-layout_mode = 0
-offset_top = -17.0
-offset_right = 125.0
-offset_bottom = -5.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_ahhtf")
-text = "Health"
+offset_right = 320.0
+offset_bottom = 24.0
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
 [node name="Timer" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 116.0
-offset_right = 113.0
-offset_bottom = 138.0
+offset_left = 36.0
+offset_top = 32.0
+offset_right = 117.0
+offset_bottom = 54.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 30
@@ -103,10 +87,10 @@ text = "00:00"
 
 [node name="Bonus" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 142.0
-offset_right = 159.0
-offset_bottom = 164.0
+offset_left = 36.0
+offset_top = 58.0
+offset_right = 188.0
+offset_bottom = 80.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 0.501961, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -120,11 +104,11 @@ visible = false
 layout_mode = 1
 
 [node name="InfoText" type="Label" parent="Control"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 1.0
-offset_top = 563.0
+offset_top = 514.0
 offset_right = 1152.0
-offset_bottom = 638.0
+offset_bottom = 571.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 24

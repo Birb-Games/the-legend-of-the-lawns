@@ -1,0 +1,103 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1jwu43vb0643"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_6un11"]
+[ext_resource type="Texture2D" uid="uid://dnej8kq61ui5y" path="res://assets/textures/enemies/mobile/shrub_demon.png" id="1_c55my"]
+[ext_resource type="Script" uid="uid://c5qg308x7fofw" path="res://scripts/enemies/mobile/shrub_demon.gd" id="1_qy5a7"]
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="2_rvk7m"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="3_52238"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="5_7t4r1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cieq"]
+size = Vector2(8.888889, 10.000004)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6un11"]
+atlas = ExtResource("1_c55my")
+region = Rect2(0, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52238"]
+atlas = ExtResource("1_c55my")
+region = Rect2(18, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qy5a7"]
+atlas = ExtResource("1_c55my")
+region = Rect2(36, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t4r1"]
+atlas = ExtResource("1_c55my")
+region = Rect2(54, 0, 18, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rvk7m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6un11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52238")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qy5a7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t4r1")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t4r1"]
+size = Vector2(12.500002, 12.499999)
+
+[node name="ShrubDemon" type="CharacterBody2D"]
+scale = Vector2(0.8, 0.8)
+collision_layer = 0
+collision_mask = 4
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_qy5a7")
+speed = 36.0
+max_chase_distance = 140.0
+bullet_scene = ExtResource("2_rvk7m")
+bullet_cooldown = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.999998)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_3cieq")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.375, 0.30769232)
+texture = ExtResource("1_6un11")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_rvk7m")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("3_52238")]
+position = Vector2(0, -4.1388884)
+scale = Vector2(1.5, 1.5)
+damage_amt = 3
+attack_cooldown = 0.5
+
+[node name="Healthbar" parent="." instance=ExtResource("5_7t4r1")]
+offset_top = -16.000002
+offset_bottom = -14.000002
+
+[node name="BulletHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2(-2.9802317e-07, -6.249999)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_7t4r1")
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
