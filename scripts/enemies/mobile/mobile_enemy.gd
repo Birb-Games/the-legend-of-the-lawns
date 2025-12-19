@@ -17,7 +17,7 @@ extends CharacterBody2D
 var path: PackedVector2Array = []
 var current_path_index: int = 0
 const ARRIVE_DISTANCE: float = 8.0
-var current_player_tile_pos: Vector2i
+var target_tile_pos: Vector2i
 
 const UPDATE_PATH_INTERVAL: float = 0.25
 var update_path_timer: float = UPDATE_PATH_INTERVAL
@@ -35,7 +35,7 @@ func get_tile_pos() -> Vector2i:
 	)
 
 func update_path() -> void:
-	current_player_tile_pos = player.get_tile_position()
+	target_tile_pos = player.get_tile_position()
 	path = lawn.astar_grid.get_point_path(get_tile_pos(), player.get_tile_position())
 	var offsets: Array[Vector2] = []
 	for i in range(len(path)):
@@ -101,10 +101,15 @@ func explode() -> void:
 # Shoots a bullet in the direction of the player, it can also have an offset
 # from being directly shot at the player.
 func shoot_bullet(offset: float = 0.0) -> void:
+	if bullet_scene == null:
+		return
+	var spawn_point: Node2D = get_node_or_null("BulletSpawnPoint")
+	if spawn_point == null:
+		return
 	var bullet: EnemyBullet = bullet_scene.instantiate()
 	var angle = (player.position - global_position).angle() + offset
 	var dir = Vector2(cos(angle), sin(angle))
-	bullet.position = $BulletSpawnPoint.global_position + dir * 4.0
+	bullet.position = spawn_point.global_position + dir * 4.0
 	bullet.dir = dir
 	bullet.speed += speed
 	lawn.add_child(bullet)
@@ -132,6 +137,18 @@ func update_shooting(delta: float) -> void:
 	shoot()
 	shoot_timer = bullet_cooldown
 
+# Returns true if the path was updated
+func handle_path_update(delta: float) -> bool:
+	if player.get_tile_position() != target_tile_pos:
+		update_path_timer -= delta
+	else:
+		update_path_timer = UPDATE_PATH_INTERVAL
+	if update_path_timer <= 0.0:
+		update_path_timer = UPDATE_PATH_INTERVAL
+		update_path()
+		return true
+	return false
+
 func _process(delta: float) -> void:
 	$AnimatedSprite2D.animation = get_animation()	
 	$Healthbar.update_bar(health, max_health)
@@ -144,14 +161,7 @@ func _process(delta: float) -> void:
 	if player.health <= 0.0:
 		return
 	
-	if player.get_tile_position() != current_player_tile_pos:
-		update_path_timer -= delta
-	else:
-		update_path_timer = UPDATE_PATH_INTERVAL
-	if update_path_timer <= 0.0:
-		update_path_timer = UPDATE_PATH_INTERVAL
-		update_path()
-	
+	handle_path_update(delta)	
 	update_shooting(delta)
 
 func _physics_process(_delta: float) -> void:
