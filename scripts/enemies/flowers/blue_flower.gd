@@ -15,7 +15,7 @@ func rand_bullet() -> PackedScene:
 
 func shoot() -> void:
 	var offset = randf() * 2.0 * PI
-	# Shoot 6 bullets at once
-	for i in range(0, 6):
+	var bullet_count: int = randi() % 3 + 4
+	for i in range(0, bullet_count):
 		var bullet = rand_bullet()
-		shoot_bullet(bullet, offset + i * 2.0 * PI / 6.0)
+		shoot_bullet(bullet, offset + i * 2.0 * PI / bullet_count)

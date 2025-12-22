@@ -1,3 +1,5 @@
+class_name EnemyBullet
+
 extends Area2D
 
 @export var speed: float = 0.0

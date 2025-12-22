@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://8t3kf3315lkx"]
+[gd_scene load_steps=17 format=4 uid="uid://8t3kf3315lkx"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/scene_control/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c8mw4mf3wdang" path="res://scripts/interactable/skip_day.gd" id="10_35gpm"]
 [ext_resource type="PackedScene" uid="uid://bkn3rcq86gyqb" path="res://scenes/lawns/jim_lawn.tscn" id="10_e6rtj"]
 [ext_resource type="PackedScene" uid="uid://br74t0xmwoiyq" path="res://scenes/lawns/nancy_lawn.tscn" id="11_e6rtj"]
+[ext_resource type="PackedScene" uid="uid://dpa88af6o4cu7" path="res://scenes/lawns/unused/test_lawn.tscn" id="12_u28t5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlwpo"]
 normal = Vector2(1, 0)
@@ -104,6 +105,7 @@ position = Vector2(216, -155)
 display_name = "Neighbor Bob"
 lawn_template = ExtResource("9_c4pas")
 mowing_frequency = 2
+mowing_limit = 3
 wage = 5
 wage_change = -2
 bonus_base = 1
@@ -120,13 +122,17 @@ position = Vector2(-232, -155)
 animation = &"neighbor_jim"
 display_name = "Neighbor Jim"
 lawn_template = ExtResource("10_e6rtj")
+min_lawns_mowed = 1
 mowing_frequency = 2
+mowing_limit = 3
 wage = 5
 wage_change = -2
 bonus_base = 1
 max_bonus = 4
 flower_penalty = 1
 hedge_penalty = 1
+unavailable_msg = "The door is locked...
+There is a note on the door: \"I am at the office right now, come back later. Unless you're an insurance salesman - then scram.\""
 first_dialog = "Hey, aren't you my neighbor's kid? Do you need something?
 You better not be trying to sell me insurance..."
 first_job_offer = "Oh good, you're not selling me insurance.
@@ -139,10 +145,12 @@ display_name = "Neighbor Nancy"
 lawn_template = ExtResource("11_e6rtj")
 min_lawns_mowed = 2
 mowing_frequency = 2
+mowing_limit = 4
+wage = 8
 wage_change = -3
 bonus_base = 1
-max_bonus = 6
-flower_penalty = 2
+max_bonus = 4
+flower_penalty = 3
 hedge_penalty = 1
 reject_dialog = ["Sorry, my lawn was just mowed.", "Do you need anything?
 Oh, sorry, my lawn doesn't need to be mowed today.", "Hi, sorry but can it wait? I'm currently gardening right now."]
@@ -150,6 +158,14 @@ unavailable_msg = "The door is locked...
 There's a note: \"I'm on vacation right now, please come back later! Thank you!\""
 first_dialog = "Hi! You're my neighbor's kid, right? Do you need anything?"
 first_job_offer = "Oh, thank you! My lawn does need a trim - I just got back from a vacation to Aldoria and I don't feel like mowing my lawn. My flowers haven't been watered so they're a little upset right now..."
+
+[node name="TestNeighbor" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(-74, -117)
+display_name = "Mr. Test"
+always_visible = true
+disabled = true
+lawn_template = ExtResource("12_u28t5")
+interact_text = "TEST LAWN"
 
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="."]
 

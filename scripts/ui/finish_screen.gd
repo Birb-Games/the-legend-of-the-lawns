@@ -17,6 +17,8 @@ const DELAY: float = 1.0
 var timer: float = 0.0
 
 func activate() -> void:
+	if $/root/Main/Player.health <= 0:
+		return
 	timer = DELAY
 	show()
 	$TileMapLayer.hide()
@@ -120,13 +122,15 @@ func _on_return_pressed() -> void:
 	get_tree().paused = false
 	hide()
 	var main: Main = $/root/Main
+	var prev_money: int = main.money
 	main.lawns_mowed += 1
 	main.update_money(current_wage_modifier)
 	main.advance_day()
 	main.return_to_neighborhood()
 	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor()
-	current_neighbor.difficulty += 1
-	current_neighbor.change_wage()
+	if main.money > prev_money:
+		current_neighbor.times_mowed += 1
+		current_neighbor.change_wage()
 	current_neighbor.set_cooldown()
 	$/root/Main/Player/Lawnmower.hide()
 

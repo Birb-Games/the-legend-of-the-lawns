@@ -10,11 +10,17 @@ extends AnimatedSprite2D
 var player_in_area: bool = false
 
 @export var display_name: String = "Neighbor"
+@export var always_visible: bool = false
+@export var disabled: bool = false
 @export var lawn_template: PackedScene
 ## How many lawns the player has to mow before unlocking this neighbor
 @export var min_lawns_mowed: int = 0
 ## How frequently they need their lawn mowed
 @export var mowing_frequency: int = 1
+# The maximum number of times the player can mow the lawn and get paid
+# (they can replay the lawn afterward but will not receive any money)
+@export var mowing_limit: int = 0
+var times_mowed: int = 0
 
 @export_group("Wage Info")
 @export var wage: int = 10
@@ -28,6 +34,7 @@ var player_in_area: bool = false
 @export var hedge_penalty: int = 0
 
 @export_group("Dialog")
+@export_multiline var interact_text: String = "Press [SPACE] to knock on door."
 @export_multiline var possible_dialog: PackedStringArray = [
 	"Oh, you want to mow my lawn? I suppose it is a bit overgrown...",
 	"My lawn needs to be mowed today but I'm too lazy.",
@@ -40,12 +47,12 @@ var player_in_area: bool = false
 @export_multiline var player_dialog: String = "I'm here to mow your lawn!"
 @export_multiline var first_job_offer: String = "I suppose I could use some help with mowing my lawn today..."
 var first_time: bool = true
-var difficulty: int = 0
 var mow_cooldown: int = 0
 
 var current_dialog: String = ""
 
 func _ready() -> void:
+	$Area2D/CollisionShape2D.disabled = disabled
 	hide()
 	play(animation)
 
@@ -54,6 +61,8 @@ func unavailable() -> bool:
 
 # Returns true if the mow cool down is above 0
 func reject() -> bool:
+	if mowing_limit_reached():
+		return false
 	return mow_cooldown > 0
 
 func set_cooldown() -> void:
@@ -82,21 +91,34 @@ func generate_dialog() -> void:
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 
 func _process(_delta: float) -> void:
+	if disabled:
+		return
+
 	# Have the player interact with the neighbor
-	if Input.is_action_just_pressed("interact") and player_in_area and !visible:
+	if Input.is_action_just_pressed("interact") and player_in_area and (!visible or always_visible):
 		generate_dialog()
 		if !unavailable():
 			show()
 		$/root/Main/HUD.set_neighbor_menu(self)
+	if always_visible:
+		show()
+
+func mowing_limit_reached() -> bool:
+	return mowing_limit > 0 and times_mowed >= mowing_limit
 
 func change_wage() -> void:
+	if mowing_limit_reached():
+		wage = 0
+		bonus_base = 0
+		max_bonus = 0
+		return
 	wage += wage_change
 	wage = clamp(wage, 1, max_wage)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_in_area = true
-		body.interact_text = "Press [SPACE] to knock on door."
+		body.interact_text = interact_text
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:

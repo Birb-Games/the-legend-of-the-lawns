@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bahsn1h2r3uad"
-path="res://.godot/imported/killer_rabbit_idle.png-ed519759bf7b3d57ab243fc90aa1c415.ctex"
+uid="uid://dmsuwb7pw653f"
+path="res://.godot/imported/placeholder_enemy.png-9008cd4f61a668bcbcb766857971ef48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/enemies/mobile/killer_rabbit_idle.png"
-dest_files=["res://.godot/imported/killer_rabbit_idle.png-ed519759bf7b3d57ab243fc90aa1c415.ctex"]
+source_file="res://assets/textures/enemies/mobile/placeholder_enemy.png"
+dest_files=["res://.godot/imported/placeholder_enemy.png-9008cd4f61a668bcbcb766857971ef48.ctex"]
 
 [params]
 

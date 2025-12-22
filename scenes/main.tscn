@@ -3,12 +3,9 @@
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://8t3kf3315lkx" path="res://scenes/neighborhood/neighborhood.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://dhbjfonhpgftv" path="res://scripts/player/camera.gd" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c8jx2be4cfkb8" path="res://scenes/ui/hud.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bqis403nmimnk" path="res://scenes/particles/penalty_particle.tscn" id="5_tbgi4"]
-
-[sub_resource type="Gradient" id="Gradient_jyhfs"]
-offsets = PackedFloat32Array(0, 0.7, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("SubViewport")
@@ -24,11 +21,11 @@ position = Vector2(8, -135)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
+script = ExtResource("3_tefeu")
 
 [node name="Neighborhood" parent="." instance=ExtResource("3_sugp2")]
 
 [node name="HUD" parent="." instance=ExtResource("4_jyhfs")]
-progress_bar_gradient = SubResource("Gradient_jyhfs")
 
 [node name="PenaltyParticle" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(8, -120)

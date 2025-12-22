@@ -55,7 +55,7 @@ func toggle_pause_menu() -> void:
 	get_tree().paused = $Control/PauseMenu.visible
 
 # updates progress bar based on the given percent (0.0 to 1.0)
-func update_progress_bar(percent: float) -> void:
+func update_progress_bar(percent: float, weeds_killed: int, total_weeds: int) -> void:
 	# used for the neighborhood
 	if percent < 0.0:
 		$Control/ProgressBar.hide()
@@ -64,17 +64,21 @@ func update_progress_bar(percent: float) -> void:
 	$Control/ProgressBar.show()
 	$Control/ProgressBar.size.x = percent * $Control/ProgressBar/ProgressBackground.size.x
 	$Control/ProgressBar.color = progress_bar_gradient.sample(percent)
-	$Control/ProgressBar/ProgressBarPercent.text = str(int(percent * 100)) + "%"
+	if percent < 1.0 or weeds_killed >= total_weeds:
+		$Control/ProgressBar/ProgressBarPercent.text = "Lawn Mowed: %d%%" % int(percent * 100)
+	else:
+		$Control/ProgressBar/ProgressBarPercent.text = "Kill Weeds: %d/%d" % [ weeds_killed, total_weeds ]
 
 # Similar as update_progress_bar but with the health bar
-func update_health_bar(percent: float) -> void:
-	if percent < 0.0:
+func update_health_bar(health: int, max_health: int) -> void:
+	if max_health == 0 or health == 0:
 		$Control/HealthBar.hide()
 		return
 	
 	$Control/HealthBar.show()
+	var percent: float = float(health) / float(max_health)
 	$Control/HealthBar.size.x = percent * $Control/HealthBar/HealthBackground.size.x
-	$Control/HealthBar/HealthPercent.text = str(int(percent * 100)) + "%"
+	$Control/HealthBar/HealthPercent.text = "HP: %d/%d" % [health, max_health] 
 
 func update_timer(delta: float) -> void:
 	$Control/Timer.show()
@@ -89,13 +93,21 @@ func hide_timer() -> void:
 	$Control/Timer.hide()
 	$Control/Bonus.hide()
 
+func hide_neighborhood_hud() -> void:
+	$Control/DayLabel.hide()
+	$Control/MoneyLabel.hide()
+	$Control/LawnCounter.hide()
+
 func update_day_counter(days: int) -> void:
+	$Control/DayLabel.show()
 	$Control/DayLabel.text = "Day %d" % days
 
 func update_money_counter(money: int) -> void:
+	$Control/MoneyLabel.show()
 	$Control/MoneyLabel.text = "$%d" % money
 
 func update_lawn_counter(lawns_mowed: int) -> void:
+	$Control/LawnCounter.show()
 	var text: String
 	if lawns_mowed == 1:
 		text = "Mowed 1 Lawn"
