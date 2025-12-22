@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8jx2be4cfkb8"]
+[gd_scene load_steps=11 format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/ui/hud.gd" id="1_oo0fn"]
+[ext_resource type="PackedScene" uid="uid://cenxxd8t4m6fq" path="res://scenes/ui/main_menu.tscn" id="2_4jqwt"]
 [ext_resource type="PackedScene" uid="uid://bt7cyrrey8yth" path="res://scenes/ui/pause_menu.tscn" id="4_047uy"]
 [ext_resource type="PackedScene" uid="uid://dq8tglr0iktqf" path="res://scenes/ui/npc_menu.tscn" id="6_5pdws"]
 [ext_resource type="PackedScene" uid="uid://dnqh6jeh6decu" path="res://scenes/ui/finish_screen.tscn" id="6_047uy"]
@@ -16,6 +17,9 @@ colors = PackedColorArray(0, 0.30980393, 0.1882353, 1, 0.12156863, 0.6901961, 0.
 process_mode = 3
 script = ExtResource("1_oo0fn")
 progress_bar_gradient = SubResource("Gradient_h022r")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_4jqwt")]
+visible = false
 
 [node name="Control" type="Control" parent="."]
 z_index = 100

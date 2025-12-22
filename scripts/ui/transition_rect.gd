@@ -2,9 +2,6 @@ extends ColorRect
 
 var time_passed: float = 0.0
 
-func _ready() -> void:
-	start_animation()
-
 func _process(delta: float) -> void:
 	if color.a <= 0.02:
 		hide()

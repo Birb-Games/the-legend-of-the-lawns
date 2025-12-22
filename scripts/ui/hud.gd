@@ -21,6 +21,14 @@ func activate_fail_screen() -> bool:
 	return true
 
 func _process(_delta: float) -> void:
+	if $MainMenu.visible:
+		get_tree().paused = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		$Control.hide()
+		return
+	
+	$Control.show()
+
 	# Toggle the mouse cursor
 	if get_tree().paused:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
