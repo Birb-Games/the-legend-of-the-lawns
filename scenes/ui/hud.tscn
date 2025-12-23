@@ -85,6 +85,7 @@ offset_top = 32.0
 offset_right = 117.0
 offset_bottom = 54.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 30
 text = "00:00"
@@ -114,6 +115,7 @@ offset_top = 514.0
 offset_right = 1152.0
 offset_bottom = 571.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 24
 text = "Info Text"
@@ -122,14 +124,15 @@ vertical_alignment = 1
 
 [node name="MoneyLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 848.0
+offset_left = 562.0
 offset_top = 29.0
 offset_right = 1123.0
 offset_bottom = 52.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 32
-text = "$0"
+text = "Name $0"
 horizontal_alignment = 2
 
 [node name="DayLabel" type="Label" parent="Control"]
@@ -139,6 +142,7 @@ offset_top = 57.0
 offset_right = 1123.0
 offset_bottom = 75.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 24
 text = "Day 1"
@@ -151,6 +155,7 @@ offset_top = 78.0
 offset_right = 1123.0
 offset_bottom = 96.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 24
 text = "Mowed 0 Lawns"
@@ -166,14 +171,17 @@ color = Color(1, 0, 0, 0.501961)
 [node name="PauseMenu" parent="Control" instance=ExtResource("4_047uy")]
 visible = false
 layout_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="Finishscreen" parent="Control" instance=ExtResource("6_047uy")]
 visible = false
 layout_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="Failscreen" parent="Control" instance=ExtResource("7_5pdws")]
 visible = false
 layout_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="TransitionRect" type="ColorRect" parent="Control"]
 visible = false
@@ -182,6 +190,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("7_gss2c")
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="Control/TransitionRect"]
 layout_mode = 0
@@ -192,4 +201,15 @@ theme_override_fonts/font = ExtResource("8_h022r")
 theme_override_font_sizes/font_size = 80
 text = "Day 1"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveIndicator" type="Label" parent="Control/TransitionRect"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 609.0
+offset_right = 219.0
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("8_h022r")
+theme_override_font_sizes/font_size = 20
+text = "Progress Saved."
 vertical_alignment = 1

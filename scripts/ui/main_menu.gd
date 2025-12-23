@@ -13,7 +13,6 @@ func _ready() -> void:
 	
 	# TODO: implement a save system
 	$Buttons/Continue.disabled = true
-	$Buttons/Load.disabled = true
 
 func _process(delta: float) -> void:
 	if !visible:
@@ -34,6 +33,7 @@ func _on_credits_pressed() -> void:
 	$Credits.show()
 
 func _on_new_game_pressed() -> void:
-	get_tree().paused = false
-	$/root/Main/HUD/Control/TransitionRect.start_animation()
-	hide()
+	$CreateNewSave.activate()
+
+func _on_load_pressed() -> void:
+	$LoadScreen.activate()

@@ -110,9 +110,12 @@ func update_day_counter(days: int) -> void:
 	$Control/DayLabel.show()
 	$Control/DayLabel.text = "Day %d" % days
 
-func update_money_counter(money: int) -> void:
+func update_money_counter(player_name: String, money: int) -> void:
 	$Control/MoneyLabel.show()
-	$Control/MoneyLabel.text = "$%d" % money
+	var formatted_name = player_name
+	if player_name.length() > 12:
+		formatted_name = player_name.substr(0, 12) + "..."
+	$Control/MoneyLabel.text = "%s $%d" % [ formatted_name, money ]
 
 func update_lawn_counter(lawns_mowed: int) -> void:
 	$Control/LawnCounter.show()

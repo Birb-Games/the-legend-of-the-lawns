@@ -7,6 +7,9 @@ extends Node2D
 @onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
 
+var player_name: String = ""
+var save_path: String = ""
+
 # How much money the player currently has
 var money: int = 0
 # What day it currently is
@@ -24,6 +27,15 @@ func _ready() -> void:
 	# leaving when shooting enemies
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
+	# Create the save directory
+	if !DirAccess.dir_exists_absolute("user://saves"):
+		var dir = DirAccess.open("user://")
+		if dir:
+			dir.make_dir("saves")
+			print("Created save dir!")
+		else:
+			printerr("Failed to create save directory!")
+
 func _process(delta: float) -> void:
 	update_hud(delta)
 		
@@ -35,6 +47,7 @@ func advance_day() -> void:
 	neighborhood.update_neighbors()
 	current_day += 1
 	$HUD/Control/TransitionRect.start_animation()
+	save_progress()
 
 func load_lawn(lawn_template: PackedScene) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -57,7 +70,7 @@ func load_lawn(lawn_template: PackedScene) -> void:
 func return_to_neighborhood() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	player.reset_health()
-	if get_node("Lawn"):
+	if get_node_or_null("Lawn"):
 		get_node("Lawn").queue_free()
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
@@ -116,7 +129,7 @@ func update_hud(delta: float) -> void:
 		$HUD.hide_neighborhood_hud()
 	else:
 		$HUD.update_day_counter(current_day)
-		$HUD.update_money_counter(money)
+		$HUD.update_money_counter(player_name, money)
 		$HUD.update_lawn_counter(lawns_mowed)
 	if player.health > 0:
 		$HUD.update_damage_flash(player.get_damage_timer_perc())
@@ -124,3 +137,73 @@ func update_hud(delta: float) -> void:
 		# Hide the damage flash when the player lost all health to avoid
 		# having it cover up the fail screen
 		$HUD.update_damage_flash(-1.0)
+
+func reset() -> void:
+	return_to_neighborhood()
+	money = 0
+	current_day = 1
+	lawns_mowed = 0
+
+func save() -> Dictionary:
+	return {
+		"money" : money,
+		"current_day" : current_day,
+		"lawns_mowed": lawns_mowed,
+		"player_name" : player_name
+	}
+
+func save_progress() -> void:
+	print("Attempting to save progress to: ", save_path)
+	var save_file = FileAccess.open(save_path, FileAccess.WRITE)
+	
+	if !save_file:
+		printerr("Error: could not save, can not open: ", save_path)
+		return
+
+	# Store the main data
+	var main_json = JSON.stringify(save())
+	save_file.store_line(main_json)
+
+	# Store the player data
+	var player_json = JSON.stringify(player.save())
+	save_file.store_line(player_json)
+
+func load_save() -> bool:
+	var save_file = FileAccess.open(save_path, FileAccess.READ)
+
+	if !save_file:
+		printerr("Error: could not load save, can not open: ", save_path)
+		return false
+
+	# Load the first line (player name, money, current day, etc.)
+	var line = save_file.get_line()
+	var json = JSON.new()
+	var parse_result = json.parse(line)
+	if parse_result != OK:
+		printerr("Error loading:")
+		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
+		return false	
+	var data = json.data
+	player_name = data["player_name"]
+	if player_name.is_empty():
+		player_name = "Billy"
+	money = max(data["money"], 0)
+	current_day = max(data["current_day"], 1)
+	lawns_mowed = max(data["lawns_mowed"], 0)
+
+	# Load player stats
+	line = save_file.get_line()
+	json = JSON.new()
+	parse_result = json.parse(line)
+	if parse_result != OK:
+		printerr("Error loading player:")
+		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
+		# Set the player defaults
+		player.max_health = 80
+	else:
+		data = json.data
+		player.max_health = max(data["max_health"], 1)
+
+	# Load neighborhood
+
+	return true

@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 
 	var t = max(time_passed - 1.0, 0.0)
 	$Label.modulate.a = clamp(1.0 - t * t, 0.0, 1.0)
+	$SaveIndicator.modulate.a = clamp(1.0 - t * t, 0.0, 1.0)
 
 func start_animation() -> void:
 	$Label.modulate = Color.WHITE
