@@ -3,6 +3,7 @@ extends Control
 func activate() -> void:
 	show()
 	$Name/Error.text = ""
+	$Name/TextEdit.text = ""
 
 func _on_back_pressed() -> void:
 	hide()
