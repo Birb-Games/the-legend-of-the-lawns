@@ -125,3 +125,18 @@ func _on_body_exited(body: Node2D) -> void:
 		player_in_area = false	
 		body.interact_text = ""
 
+func save() -> Dictionary:
+	return {
+		"path" : get_path(),
+		"times_mowed" : times_mowed,
+		"wage" : wage,
+		"first_time" : first_time,
+		"mow_cooldown" : mow_cooldown,
+	}
+
+func load_from(data: Dictionary) -> void:
+	times_mowed = data["times_mowed"]
+	wage = data["wage"]
+	first_time = data["first_time"]
+	mow_cooldown = data["mow_cooldown"]
+
