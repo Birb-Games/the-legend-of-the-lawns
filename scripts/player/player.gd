@@ -334,3 +334,9 @@ func get_tile_position() -> Vector2i:
 	if lawn_mower_active():
 		pos += get_lawn_mower_dir_offset()
 	return Vector2i(floor(pos.x / lawn.tile_size.x), floor(pos.y / lawn.tile_size.y))
+
+func save() -> Dictionary:
+	var data = {
+		"max_health" : max_health,
+	}
+	return data

@@ -21,6 +21,14 @@ func activate_fail_screen() -> bool:
 	return true
 
 func _process(_delta: float) -> void:
+	if $MainMenu.visible:
+		get_tree().paused = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		$Control.hide()
+		return
+	
+	$Control.show()
+
 	# Toggle the mouse cursor
 	if get_tree().paused:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -35,6 +43,7 @@ func _process(_delta: float) -> void:
 	
 	# Open pause menu for lawn
 	if Input.is_action_just_pressed("ui_cancel"):
+		$Control/TransitionRect.end_transition()
 		if $Control/NPCMenu.visible:
 			# Exit out of neighbor menu
 			$Control/NPCMenu.hide()
@@ -52,6 +61,8 @@ func toggle_pause_menu() -> void:
 	if $Control/PauseMenu.visible:
 		$Control/PauseMenu/Label.visible = $/root/Main.lawn_loaded
 		$Control/PauseMenu/HBoxContainer.visible = $/root/Main.lawn_loaded
+		$Control/PauseMenu/Note.visible = !$/root/Main.lawn_loaded
+		$Control/PauseMenu/MainMenu.visible = !$/root/Main.lawn_loaded
 	get_tree().paused = $Control/PauseMenu.visible
 
 # updates progress bar based on the given percent (0.0 to 1.0)
@@ -102,9 +113,12 @@ func update_day_counter(days: int) -> void:
 	$Control/DayLabel.show()
 	$Control/DayLabel.text = "Day %d" % days
 
-func update_money_counter(money: int) -> void:
+func update_money_counter(player_name: String, money: int) -> void:
 	$Control/MoneyLabel.show()
-	$Control/MoneyLabel.text = "$%d" % money
+	var formatted_name = player_name
+	if player_name.length() > 12:
+		formatted_name = player_name.substr(0, 12) + "..."
+	$Control/MoneyLabel.text = "%s $%d" % [ formatted_name, money ]
 
 func update_lawn_counter(lawns_mowed: int) -> void:
 	$Control/LawnCounter.show()

@@ -11,5 +11,11 @@ func _on_yes_pressed() -> void:
 	var main: Main = $/root/Main
 	main.return_to_neighborhood()
 	main.advance_day()
+	main.save_progress()
 	$/root/Main/Player/Lawnmower.hide()
+
+func _on_main_menu_pressed() -> void:
+	$/root/Main/HUD/MainMenu.show()
+	$/root/Main.reset()
+	hide()
 

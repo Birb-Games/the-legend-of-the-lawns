@@ -152,6 +152,7 @@ func set_npc_menu(npc: NPC) -> void:
 func skip_day() -> void:
 	var main: Main = $/root/Main
 	main.advance_day()
+	main.save_progress()
 	var player: Player = $/root/Main/Player
 	player.dir = "down"
 	player.position = main.player_pos

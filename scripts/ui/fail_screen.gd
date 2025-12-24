@@ -22,4 +22,5 @@ func _on_return_pressed() -> void:
 	var main: Main = $/root/Main
 	main.advance_day()
 	main.return_to_neighborhood()
+	main.save_progress()
 	hide()
