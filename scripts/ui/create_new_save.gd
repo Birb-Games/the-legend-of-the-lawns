@@ -42,4 +42,7 @@ func _on_start_pressed() -> void:
 	var save_path: String = Save.get_save_path(player_name, id)
 	print("Saving to: ", save_path)
 	main.save_path = save_path
-	main.save_progress()	
+	main.save_progress()
+
+	main.update_continue_save()
+

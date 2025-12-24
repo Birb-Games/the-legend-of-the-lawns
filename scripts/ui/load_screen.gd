@@ -87,6 +87,10 @@ func _on_yes_pressed() -> void:
 		return
 
 	DirAccess.remove_absolute(path)
+	var main: Main = $/root/Main
+	if main.continue_save == path:
+		main.save_path = ""
+		main.update_continue_save()
 
 	activate()
 

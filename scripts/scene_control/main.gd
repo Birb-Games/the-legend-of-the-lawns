@@ -10,6 +10,7 @@ var lawn_loaded: bool = false
 
 var player_name: String = ""
 var save_path: String = ""
+var continue_save: String = ""
 
 # How much money the player currently has
 var money: int = 0
@@ -36,6 +37,10 @@ func _ready() -> void:
 			print("Created save dir!")
 		else:
 			printerr("Failed to create save directory!")
+	
+	var file = FileAccess.open("user://continue", FileAccess.READ)
+	if file != null:
+		continue_save = file.get_line()
 
 func _process(delta: float) -> void:
 	update_hud(delta)
@@ -230,5 +235,13 @@ func load_save() -> bool:
 			if node != null and node.has_method("load_from"):
 				node.load_from(json.data)
 		line = save_file.get_line()
-
+	
+	update_continue_save()
 	return true
+
+func update_continue_save() -> void:
+	continue_save = save_path
+	# Save the current save
+	var file = FileAccess.open("user://continue", FileAccess.WRITE)
+	if file != null:
+		file.store_line(continue_save)

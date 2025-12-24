@@ -9,10 +9,7 @@ const SUBTITLE_MAX_SCALE: float = 1.05
 func _ready() -> void:
 	show()
 	if OS.get_name() == "Web":
-		$Buttons/Quit.hide()
-	
-	# TODO: implement a save system
-	$Buttons/Continue.disabled = true
+		$Buttons/Quit.hide()	
 
 func _process(delta: float) -> void:
 	if !visible:
@@ -26,6 +23,9 @@ func _process(delta: float) -> void:
 	$Title/SubtitleParent.scale.x = clamp($Title/SubtitleParent.scale.x, SUBTITLE_MIN_SCALE, SUBTITLE_MAX_SCALE)
 	$Title/SubtitleParent.scale.y = $Title/SubtitleParent.scale.x
 
+	var main: Main = $/root/Main
+	$Buttons/Continue.disabled = main.continue_save.is_empty()
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
@@ -37,3 +37,16 @@ func _on_new_game_pressed() -> void:
 
 func _on_load_pressed() -> void:
 	$LoadScreen.activate()
+
+func _on_continue_pressed() -> void:
+	var main: Main = $/root/Main
+	main.save_path = main.continue_save
+	main.reset()
+	if !main.load_save():
+		main.save_path = ""
+		main.update_continue_save()
+		return
+	hide()
+	get_tree().paused = false
+	$/root/Main/HUD/Control/TransitionRect.start_animation()
+

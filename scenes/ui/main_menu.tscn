@@ -123,6 +123,7 @@ visible = false
 z_index = 1
 layout_mode = 1
 
+[connection signal="pressed" from="Buttons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Buttons/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="Buttons/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Buttons/Credits" to="." method="_on_credits_pressed"]
