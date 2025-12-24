@@ -14,3 +14,8 @@ func _on_yes_pressed() -> void:
 	main.save_progress()
 	$/root/Main/Player/Lawnmower.hide()
 
+func _on_main_menu_pressed() -> void:
+	$/root/Main/HUD/MainMenu.show()
+	$/root/Main.reset()
+	hide()
+

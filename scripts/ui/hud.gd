@@ -43,6 +43,7 @@ func _process(_delta: float) -> void:
 	
 	# Open pause menu for lawn
 	if Input.is_action_just_pressed("ui_cancel"):
+		$Control/TransitionRect.end_transition()
 		if $Control/NPCMenu.visible:
 			# Exit out of neighbor menu
 			$Control/NPCMenu.hide()
@@ -60,6 +61,8 @@ func toggle_pause_menu() -> void:
 	if $Control/PauseMenu.visible:
 		$Control/PauseMenu/Label.visible = $/root/Main.lawn_loaded
 		$Control/PauseMenu/HBoxContainer.visible = $/root/Main.lawn_loaded
+		$Control/PauseMenu/Note.visible = !$/root/Main.lawn_loaded
+		$Control/PauseMenu/MainMenu.visible = !$/root/Main.lawn_loaded
 	get_tree().paused = $Control/PauseMenu.visible
 
 # updates progress bar based on the given percent (0.0 to 1.0)

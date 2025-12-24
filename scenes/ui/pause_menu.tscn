@@ -19,6 +19,7 @@ offset_bottom = 648.0
 color = Color(0.0846899, 0.0846899, 0.0846899, 0.501961)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_top = 369.0
 offset_right = 1152.0
@@ -59,6 +60,7 @@ text = "[PAUSED]"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_top = 219.0
 offset_right = 1152.0
@@ -89,5 +91,39 @@ theme_override_font_sizes/font_size = 32
 text = "[press ESC to unpause]"
 horizontal_alignment = 1
 
+[node name="Note" type="Label" parent="."]
+layout_mode = 0
+offset_top = 315.0
+offset_right = 1152.0
+offset_bottom = 354.0
+theme_override_colors/font_shadow_color = Color(0.50140655, 0.5014065, 0.5014065, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 24
+text = "NOTE: exiting to main menu will reset progress
+back to the beginning of the day."
+horizontal_alignment = 1
+
+[node name="MainMenu" type="Button" parent="."]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = 45.0
+offset_right = 190.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_f6eus")
+theme_override_font_sizes/font_size = 32
+text = "Exit to Main Menu"
+
 [connection signal="pressed" from="HBoxContainer/Yes" to="." method="_on_yes_pressed"]
 [connection signal="pressed" from="HBoxContainer/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
