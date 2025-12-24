@@ -2,6 +2,7 @@ class_name Main
 
 extends Node2D
 
+@onready var neighborhood_scene: PackedScene = preload("uid://8t3kf3315lkx")
 @onready var neighborhood: Node2D = $Neighborhood
 @onready var player: Player = $Player
 @onready var player_pos: Vector2 = $Player.position
@@ -47,7 +48,6 @@ func advance_day() -> void:
 	neighborhood.update_neighbors()
 	current_day += 1
 	$HUD/Control/TransitionRect.start_animation()
-	save_progress()
 
 func load_lawn(lawn_template: PackedScene) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -139,6 +139,12 @@ func update_hud(delta: float) -> void:
 		$HUD.update_damage_flash(-1.0)
 
 func reset() -> void:
+	# Reset neighborhood
+	neighborhood = null
+	$Neighborhood.free()
+	add_child(neighborhood_scene.instantiate())
+	neighborhood = $Neighborhood
+
 	return_to_neighborhood()
 	money = 0
 	current_day = 1
@@ -167,6 +173,12 @@ func save_progress() -> void:
 	# Store the player data
 	var player_json = JSON.stringify(player.save())
 	save_file.store_line(player_json)
+
+	# Store the neighborhood data
+	var neighborhood_data = neighborhood.save()
+	for data in neighborhood_data:
+		var json = JSON.stringify(data)
+		save_file.store_line(json)
 
 func load_save() -> bool:
 	var save_file = FileAccess.open(save_path, FileAccess.READ)
@@ -205,5 +217,18 @@ func load_save() -> bool:
 		player.max_health = max(data["max_health"], 1)
 
 	# Load neighborhood
+	line = save_file.get_line()
+	while !line.is_empty():
+		json = JSON.new()
+		parse_result = json.parse(line)
+		if parse_result != OK:
+			printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
+		elif "path" in json.data:
+			var path = json.data["path"]
+			print("Loaded ", path)
+			var node = get_node_or_null(path)
+			if node != null and node.has_method("load_from"):
+				node.load_from(json.data)
+		line = save_file.get_line()
 
 	return true

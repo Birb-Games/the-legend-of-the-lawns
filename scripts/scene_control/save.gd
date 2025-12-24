@@ -46,6 +46,8 @@ static func get_save_entries() -> Array:
 			var parse_result = json.parse(line)
 			if parse_result != OK:
 				printerr("JSON parse error: ", json.get_error_message(), " in ", file_name)
+				saves.push_back(entry)
+				file_name = dir.get_next()
 				continue
 			var display_data = json.data
 

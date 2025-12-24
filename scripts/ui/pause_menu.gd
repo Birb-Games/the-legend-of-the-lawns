@@ -11,5 +11,6 @@ func _on_yes_pressed() -> void:
 	var main: Main = $/root/Main
 	main.return_to_neighborhood()
 	main.advance_day()
+	main.save_progress()
 	$/root/Main/Player/Lawnmower.hide()
 
