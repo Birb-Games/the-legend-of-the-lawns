@@ -8,6 +8,7 @@ func _ready() -> void:
 	$ScrollContainer/Saves.custom_minimum_size = Vector2($ScrollContainer.size.x - 8.0, 0.0)
 
 func clear_save_list() -> void:
+	selected = -1
 	for child in $ScrollContainer/Saves.get_children():
 		child.queue_free()
 
