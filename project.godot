@@ -13,7 +13,7 @@ config_version=5
 config/name="The Legend of the Lawns"
 run/main_scene="uid://deycsrxnsbm3q"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dr2ho07mprhhv"
 
 [display]
 
