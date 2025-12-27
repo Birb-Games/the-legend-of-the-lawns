@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://wek4awlida0"]
+
+[ext_resource type="Texture2D" uid="uid://ciupel8rppbu6" path="res://assets/textures/houses/brick_house.png" id="1_jutko"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jutko"]
+size = Vector2(157.33334, 162.66667)
+
+[node name="BrickHouse" type="Sprite2D"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_jutko")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2.6226044e-06, 18.666668)
+shape = SubResource("RectangleShape2D_jutko")
