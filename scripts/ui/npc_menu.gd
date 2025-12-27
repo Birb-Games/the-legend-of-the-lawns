@@ -187,5 +187,6 @@ func on_leave_pressed() -> void:
 func on_accept_pressed() -> void:
 	hide()
 	hide_neighbor()
-	$/root/Main.load_lawn(current_neighbor.lawn_template)
+	var difficulty = min(current_neighbor.times_mowed, current_neighbor.mowing_limit)
+	$/root/Main.load_lawn(current_neighbor.lawn_template, difficulty)
 	$/root/Main.current_wage = current_neighbor.wage

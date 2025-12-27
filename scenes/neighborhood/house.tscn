@@ -2,16 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://dbw2fq54hmvw6" path="res://assets/textures/houses/house.png" id="1_d7po0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7po0"]
-size = Vector2(220, 161.33354)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esgri"]
+size = Vector2(204, 53.333336)
 
-[node name="House" type="Sprite2D"]
-z_index = -1
+[node name="House" type="Node2D"]
 scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
 texture = ExtResource("1_d7po0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-0.666667, 19.333433)
-shape = SubResource("RectangleShape2D_d7po0")
+position = Vector2(0, -26.666668)
+shape = SubResource("RectangleShape2D_esgri")

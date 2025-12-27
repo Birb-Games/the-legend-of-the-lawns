@@ -3,15 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://cwrbxjdihtgj" path="res://assets/textures/houses/store.png" id="1_d1mgn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1mgn"]
-size = Vector2(220, 211.33334)
+size = Vector2(204, 54.666668)
 
-[node name="Store" type="Sprite2D"]
-z_index = -1
+[node name="Store" type="Node2D"]
 scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -110)
 texture = ExtResource("1_d1mgn")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 4.333332)
+position = Vector2(0, -27.333334)
 shape = SubResource("RectangleShape2D_d1mgn")
