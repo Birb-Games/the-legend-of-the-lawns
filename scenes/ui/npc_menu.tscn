@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq8tglr0iktqf"]
+[gd_scene load_steps=4 format=3 uid="uid://dq8tglr0iktqf"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_0gm1x"]
 [ext_resource type="Script" uid="uid://hn6dknq2w4cs" path="res://scripts/ui/npc_menu.gd" id="1_qr3ex"]
-[ext_resource type="Texture2D" uid="uid://cxb6mmn3hbetq" path="res://assets/textures/npcs/profiles/npc_profile_placeholder.png" id="2_qr3ex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj2yp"]
 bg_color = Color(0.762404, 0.762404, 0.762404, 1)
@@ -41,7 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 41.0
 offset_top = 19.0
-offset_right = -271.0
+offset_right = -35.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -55,7 +54,7 @@ theme_override_font_sizes/font_size = 40
 text = "Name"
 
 [node name="Description" type="Label" parent="Menu/VBoxContainer"]
-custom_minimum_size = Vector2(750, 80)
+custom_minimum_size = Vector2(1000, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -66,7 +65,7 @@ text = "Description
 autowrap_mode = 3
 
 [node name="Wage" type="Label" parent="Menu/VBoxContainer"]
-custom_minimum_size = Vector2(750, 24)
+custom_minimum_size = Vector2(1000, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -124,4 +123,3 @@ offset_left = 825.0
 offset_top = 32.0
 offset_right = 1005.0
 offset_bottom = 212.0
-texture = ExtResource("2_qr3ex")
