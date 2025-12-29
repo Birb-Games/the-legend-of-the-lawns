@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b32ibsy1iagox"]
+[gd_scene load_steps=30 format=3 uid="uid://b32ibsy1iagox"]
 
 [ext_resource type="Script" uid="uid://byy7pmegiokpj" path="res://scripts/enemies/mobile/killer_rabbit.gd" id="1_bu858"]
 [ext_resource type="PackedScene" uid="uid://diwrxq5bcgtyl" path="res://scenes/particles/blood_particles.tscn" id="2_26bvs"]
@@ -6,8 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="3_738o7"]
 [ext_resource type="Texture2D" uid="uid://c0d5m8onpctec" path="res://assets/textures/enemies/mobile/killer_rabbit.png" id="3_bu858"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="4_n4dd6"]
+[ext_resource type="Texture2D" uid="uid://dw8l6w5uje4ue" path="res://assets/textures/enemies/mobile/rabbit_spawn_animation.png" id="5_hkqrf"]
 [ext_resource type="PackedScene" uid="uid://b73kqhktknig" path="res://scenes/particles/stun_particles.tscn" id="6_re68s"]
 [ext_resource type="PackedScene" uid="uid://7fhs15wchrkt" path="res://scenes/particles/anger_particles.tscn" id="7_xo21h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdi7u"]
+atlas = ExtResource("3_bu858")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ociu6"]
+atlas = ExtResource("3_bu858")
+region = Rect2(42, 22, 21, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_re68s"]
 atlas = ExtResource("3_bu858")
@@ -37,6 +46,30 @@ region = Rect2(0, 22, 21, 22)
 atlas = ExtResource("3_bu858")
 region = Rect2(21, 22, 21, 22)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kd2pj"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wy7w"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(21, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7fxt"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(42, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i3vf"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(63, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv5cl"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(84, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_104hk"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(105, 0, 21, 22)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_djrar"]
 atlas = ExtResource("3_bu858")
 region = Rect2(0, 44, 21, 22)
@@ -47,6 +80,17 @@ region = Rect2(21, 44, 21, 22)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_738o7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdi7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ociu6")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 4.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_re68s")
@@ -62,7 +106,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -77,6 +121,29 @@ animations = [{
 "loop": true,
 "name": &"running",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kd2pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wy7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7fxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i3vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv5cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_104hk")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -105,6 +172,7 @@ blood_particles_scene = ExtResource("2_26bvs")
 speed = 85.0
 max_health = 18
 explosion_bullet_count = 0
+spawn_animation_time = 1.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 scale = Vector2(0.5625, 0.53846157)
@@ -114,7 +182,7 @@ texture = ExtResource("3_738o7")
 position = Vector2(0, -9.5)
 scale = Vector2(0.875, 0.875)
 sprite_frames = SubResource("SpriteFrames_738o7")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="Healthbar" parent="." instance=ExtResource("2_nr2qv")]

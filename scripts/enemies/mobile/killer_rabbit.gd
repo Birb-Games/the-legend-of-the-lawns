@@ -11,6 +11,10 @@ var stun_timer: float = 0.0
 var hit_timer: float = 0.0
 var anger_timer: float = 0.0
 
+func _ready() -> void:
+	super._ready()
+	$AnimatedSprite2D.animation = "spawn"
+
 func gen_time_before_pause() -> float:
 	return randf_range(3.0, 5.0)
 
@@ -27,9 +31,13 @@ func calculate_velocity() -> Vector2:
 	return vel
 
 func get_animation() -> String:
+	if spawn_timer > 0.1:
+		return "spawn"
 	if stun_timer > 0.0:
 		return "stunned"
 	if velocity.length() == 0.0:
+		if $ContactDamageZone.can_attack_player():
+			return "attack"
 		return "idle"
 	return "running"
 
@@ -53,6 +61,10 @@ func handle_path_update(delta: float) -> bool:
 	return updated
 
 func _process(delta: float) -> void:
+	if spawn_timer > 0.0:
+		spawn_timer -= delta
+		return
+
 	stun_timer -= delta
 	stun_timer = max(stun_timer, 0.0)
 	# Show stun particles
