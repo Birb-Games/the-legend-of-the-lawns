@@ -6,8 +6,12 @@ extends Area2D
 # In seconds
 @export var attack_cooldown: float = 1.75
 var attack_timer: float = 0.0
+var disabled: bool = false
 
 func can_attack_player() -> bool:
+	if disabled:
+		return false
+
 	var player_pos: Vector2 = player.global_position
 	if player.lawn_mower_active():
 		player_pos += player.get_lawn_mower_dir_offset()

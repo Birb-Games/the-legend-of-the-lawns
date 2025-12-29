@@ -172,7 +172,6 @@ blood_particles_scene = ExtResource("2_26bvs")
 speed = 85.0
 max_health = 18
 explosion_bullet_count = 0
-spawn_animation_time = 1.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 scale = Vector2(0.5625, 0.53846157)
@@ -182,7 +181,7 @@ texture = ExtResource("3_738o7")
 position = Vector2(0, -9.5)
 scale = Vector2(0.875, 0.875)
 sprite_frames = SubResource("SpriteFrames_738o7")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Healthbar" parent="." instance=ExtResource("2_nr2qv")]

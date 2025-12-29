@@ -1,14 +1,27 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1jwu43vb0643"]
+[gd_scene load_steps=24 format=3 uid="uid://d1jwu43vb0643"]
 
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_6un11"]
 [ext_resource type="Texture2D" uid="uid://dnej8kq61ui5y" path="res://assets/textures/enemies/mobile/shrub_demon.png" id="1_c55my"]
 [ext_resource type="Script" uid="uid://c5qg308x7fofw" path="res://scripts/enemies/mobile/shrub_demon.gd" id="1_qy5a7"]
 [ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="2_rvk7m"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="3_52238"]
+[ext_resource type="Texture2D" uid="uid://du1pu6xhgg2mu" path="res://assets/textures/enemies/mobile/shrub_demon_spawn_animation.png" id="5_3cieq"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="5_7t4r1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cieq"]
 size = Vector2(8.888889, 10.000004)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cieq"]
+atlas = ExtResource("1_c55my")
+region = Rect2(0, 16, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybfm1"]
+atlas = ExtResource("1_c55my")
+region = Rect2(18, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em0lx"]
+atlas = ExtResource("1_c55my")
+region = Rect2(18, 16, 18, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6un11"]
 atlas = ExtResource("1_c55my")
@@ -17,6 +30,30 @@ region = Rect2(0, 0, 18, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_52238"]
 atlas = ExtResource("1_c55my")
 region = Rect2(18, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr3mi"]
+atlas = ExtResource("5_3cieq")
+region = Rect2(0, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmc7c"]
+atlas = ExtResource("5_3cieq")
+region = Rect2(18, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7n23"]
+atlas = ExtResource("5_3cieq")
+region = Rect2(36, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aya0t"]
+atlas = ExtResource("5_3cieq")
+region = Rect2(54, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0wny"]
+atlas = ExtResource("5_3cieq")
+region = Rect2(72, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6ss8"]
+atlas = ExtResource("5_3cieq")
+region = Rect2(90, 0, 18, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qy5a7"]
 atlas = ExtResource("1_c55my")
@@ -30,6 +67,23 @@ region = Rect2(54, 0, 18, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3cieq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybfm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em0lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybfm1")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6un11")
 }, {
 "duration": 1.0,
@@ -38,6 +92,29 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr3mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmc7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7n23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aya0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0wny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6ss8")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -73,6 +150,11 @@ shape = SubResource("RectangleShape2D_3cieq")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 scale = Vector2(0.375, 0.30769232)
+texture = ExtResource("1_6un11")
+
+[node name="SpawnShadow" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.62, 0.306)
 texture = ExtResource("1_6un11")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

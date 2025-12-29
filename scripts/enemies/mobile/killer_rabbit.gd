@@ -113,7 +113,7 @@ func _process(delta: float) -> void:
 	var diff = player.global_position - global_position
 	if diff.length() > 0.0:
 		diff = diff.normalized()
-	$ContactDamageZone.position = default_contact_damage_pos + diff * 8.0
+	$ContactDamageZone.position = default_contact_damage_pos + diff * 6.0
 
 	if idle_timer > 0.0:
 		idle_timer -= delta
@@ -135,6 +135,7 @@ func _on_hit() -> void:
 		anger_timer = 7.0
 		time_before_pause = gen_time_before_pause()
 		$StunParticles.restart()
+		$AngerParticles.emitting = false
 		$AngerParticles.restart()
 	if stun_timer <= 0.01:
 		hit_timer = 0.4

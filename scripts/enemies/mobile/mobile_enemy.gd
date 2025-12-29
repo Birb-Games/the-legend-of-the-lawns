@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var max_chase_distance: float = 200.0
 @export var max_health: int = 10
 @export var explosion_bullet_count: int = 5
-@export var spawn_animation_time: float = 2.0
+@export var spawn_animation_time: float = 1.0
 @export var bullet_scene: PackedScene
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
@@ -155,6 +155,7 @@ func handle_path_update(delta: float) -> bool:
 	return false
 
 func _process(delta: float) -> void:
+	$ContactDamageZone.disabled = spawn_timer > 0.0
 	if spawn_timer > 0.0:
 		spawn_timer -= delta
 		return
