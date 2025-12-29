@@ -1,5 +1,6 @@
 extends MobileEnemy
 
+@export var blood_particles_scene: PackedScene
 @onready var default_contact_damage_pos: Vector2 = $ContactDamageZone.position
 var idle_timer: float = 0.0
 @onready var time_before_pause: float = gen_time_before_pause()
@@ -31,6 +32,12 @@ func get_animation() -> String:
 	if velocity.length() == 0.0:
 		return "idle"
 	return "running"
+
+func explode() -> void:
+	var blood_particles: GPUParticles2D = blood_particles_scene.instantiate()
+	blood_particles.global_position = global_position + Vector2(0.0, -10.0)
+	$/root/Main/Lawn.add_child(blood_particles)
+	queue_free()
 
 func handle_path_update(delta: float) -> bool:
 	if idle_timer > 0.0:

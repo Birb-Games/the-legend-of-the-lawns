@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://b32ibsy1iagox"]
+[gd_scene load_steps=21 format=3 uid="uid://b32ibsy1iagox"]
 
 [ext_resource type="Script" uid="uid://byy7pmegiokpj" path="res://scripts/enemies/mobile/killer_rabbit.gd" id="1_bu858"]
+[ext_resource type="PackedScene" uid="uid://diwrxq5bcgtyl" path="res://scenes/particles/blood_particles.tscn" id="2_26bvs"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="2_nr2qv"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="3_738o7"]
 [ext_resource type="Texture2D" uid="uid://c0d5m8onpctec" path="res://assets/textures/enemies/mobile/killer_rabbit.png" id="3_bu858"]
@@ -100,6 +101,7 @@ scale = Vector2(0.75, 0.75)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_bu858")
+blood_particles_scene = ExtResource("2_26bvs")
 speed = 85.0
 max_health = 18
 explosion_bullet_count = 0
