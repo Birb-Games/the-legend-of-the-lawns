@@ -51,6 +51,8 @@ func activate_hedge_timer() -> void:
 
 # Apply damage to the player using this function
 func damage(amt: int) -> void:
+	if amt <= 0:
+		return
 	health -= amt
 	health = max(health, 0)
 	damage_timer = DAMAGE_COOLDOWN

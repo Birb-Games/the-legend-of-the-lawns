@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b73kqhktknig"]
 
 [ext_resource type="Texture2D" uid="uid://b7tan7jwmqbar" path="res://assets/textures/particles/stun_particle.png" id="1_c0f38"]
-[ext_resource type="Script" uid="uid://u5axychnxsj" path="res://scripts/particles/stun_particles.gd" id="2_0oxns"]
+[ext_resource type="Script" uid="uid://u5axychnxsj" path="res://scripts/particles/particles.gd" id="2_0oxns"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c0f38"]
 particle_flag_disable_z = true

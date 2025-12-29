@@ -171,9 +171,12 @@ func _physics_process(_delta: float) -> void:
 func get_animation() -> String:
 	return "default"
 
+func damage(amt: int) -> void:
+	hit.emit()
+	health -= amt
+	health = max(health, 0)
+
 func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 	if body is PlayerBullet:
-		hit.emit()
 		body.explode()
-		health -= 1
-		health = max(health, 0)
+		damage(1)
