@@ -118,7 +118,7 @@ func update_hud_lawn(delta: float) -> void:
 	$HUD.update_timer(delta)
 
 func update_hud_neighborhood() -> void:
-	$HUD.update_info_text($Player.interact_text)	
+	$HUD.update_info_text($Player.interact_text)
 	# hide info text if talking to a neighbor
 	$HUD/Control/InfoText.visible = !$HUD/Control/NPCMenu.visible
 	

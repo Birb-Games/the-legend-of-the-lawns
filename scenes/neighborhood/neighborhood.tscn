@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://8t3kf3315lkx"]
+[gd_scene load_steps=26 format=4 uid="uid://8t3kf3315lkx"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/scene_control/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cuajr6kbdphpb" path="res://scenes/neighborhood/arch.tscn" id="11_bpn1c"]
 [ext_resource type="PackedScene" uid="uid://br74t0xmwoiyq" path="res://scenes/lawns/nancy_lawn.tscn" id="11_e6rtj"]
 [ext_resource type="PackedScene" uid="uid://dpa88af6o4cu7" path="res://scenes/lawns/unused/test_lawn.tscn" id="12_u28t5"]
+[ext_resource type="PackedScene" uid="uid://1fi7xb3mewly" path="res://scenes/neighborhood/bus_stop.tscn" id="21_pqaru"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlwpo"]
 normal = Vector2(1, 0)
@@ -233,6 +234,39 @@ always_visible = true
 disabled = true
 lawn_template = ExtResource("12_u28t5")
 interact_text = "TEST LAWN"
+
+[node name="FastTravel" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Home" parent="FastTravel" node_paths=PackedStringArray("connections") instance=ExtResource("21_pqaru")]
+position = Vector2(24, -42)
+display_name = "Home"
+connections = [NodePath("../Store"), NodePath("../SouthStreet"), NodePath("../NorthStreet")]
+
+[node name="SouthStreet" parent="FastTravel" node_paths=PackedStringArray("connections") instance=ExtResource("21_pqaru")]
+position = Vector2(600, 341)
+display_name = "South St."
+connections = [NodePath("../Home"), NodePath("../Store"), NodePath("../SouthStreetEnd")]
+
+[node name="SouthStreetEnd" parent="FastTravel" node_paths=PackedStringArray("connections") instance=ExtResource("21_pqaru")]
+position = Vector2(-216, 341)
+display_name = "South St. End"
+connections = [NodePath("../Store"), NodePath("../SouthStreet")]
+
+[node name="Store" parent="FastTravel" node_paths=PackedStringArray("connections") instance=ExtResource("21_pqaru")]
+position = Vector2(952, -43)
+display_name = "Store"
+connections = [NodePath("../Home"), NodePath("../SouthStreet"), NodePath("../NorthStreet")]
+
+[node name="NorthStreet" parent="FastTravel" node_paths=PackedStringArray("connections") instance=ExtResource("21_pqaru")]
+position = Vector2(600, -347)
+display_name = "North St."
+connections = [NodePath("../Home"), NodePath("../Store"), NodePath("../NorthStreetEnd")]
+
+[node name="NorthStreetEnd" parent="FastTravel" node_paths=PackedStringArray("connections") instance=ExtResource("21_pqaru")]
+position = Vector2(24, -427)
+display_name = "North St. End"
+connections = [NodePath("../Store"), NodePath("../NorthStreet")]
 
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="."]
 

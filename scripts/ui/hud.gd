@@ -136,6 +136,9 @@ func set_neighbor_menu(neighbor: NeighborNPC) -> void:
 func set_npc_menu(npc: NPC) -> void:
 	$Control/NPCMenu.set_npc_menu(npc)
 
+func set_bus_menu(bus_stop: BusStop) -> void:
+	$Control/NPCMenu.set_bus_menu(bus_stop)
+
 func set_skip_day_menu() -> void:
 	$Control/NPCMenu.set_skip_day_menu()
 
