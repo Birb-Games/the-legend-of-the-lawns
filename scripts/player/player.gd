@@ -16,6 +16,7 @@ var dir: String = "down"
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var can_pick_up_lawnmower: bool = false
+var can_use_bus_stop: bool = false
 # The target velocity of the player based on the controls the player is pressing,
 # this might not be equal to `velocity` since the player may be walking into a wall
 var target_velocity: Vector2 = Vector2.ZERO
@@ -50,6 +51,8 @@ func activate_hedge_timer() -> void:
 
 # Apply damage to the player using this function
 func damage(amt: int) -> void:
+	if amt <= 0:
+		return
 	health -= amt
 	health = max(health, 0)
 	damage_timer = DAMAGE_COOLDOWN
@@ -237,7 +240,7 @@ func _process(delta: float) -> void:
 		speed = LAWN_MOWER_SPEED
 	else:
 		speed = NORMAL_SPEED
-
+	
 	set_animation()
 	
 	damage_timer -= delta
@@ -288,12 +291,16 @@ func _on_interact_zone_body_entered(body: Node2D) -> void:
 		can_pick_up_water_gun = true
 	if body.is_in_group("lawnmower"):
 		can_pick_up_lawnmower = true
+	if body.is_in_group("bus_stop"):
+		can_use_bus_stop = true
 
 func _on_interact_zone_body_exited(body: Node2D) -> void:
 	if body.is_in_group("water_gun_item"):
 		can_pick_up_water_gun = false
 	if body.is_in_group("lawnmower"):
 		can_pick_up_lawnmower = false
+	if body.is_in_group("bus_stop"):
+		can_use_bus_stop = false
 
 func enable_water_gun() -> void:
 	$WaterGun.show()
@@ -334,3 +341,9 @@ func get_tile_position() -> Vector2i:
 	if lawn_mower_active():
 		pos += get_lawn_mower_dir_offset()
 	return Vector2i(floor(pos.x / lawn.tile_size.x), floor(pos.y / lawn.tile_size.y))
+
+func save() -> Dictionary:
+	var data = {
+		"max_health" : max_health,
+	}
+	return data

@@ -19,6 +19,8 @@ var player_in_area: bool = false
 @export var mowing_frequency: int = 1
 # The maximum number of times the player can mow the lawn and get paid
 # (they can replay the lawn afterward but will not receive any money)
+# Set this value to 0 if you want to allow the player to mow the lawn an
+# unlimited number of times.
 @export var mowing_limit: int = 0
 var times_mowed: int = 0
 
@@ -124,4 +126,19 @@ func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_area = false	
 		body.interact_text = ""
+
+func save() -> Dictionary:
+	return {
+		"path" : get_path(),
+		"times_mowed" : times_mowed,
+		"wage" : wage,
+		"first_time" : first_time,
+		"mow_cooldown" : mow_cooldown,
+	}
+
+func load_from(data: Dictionary) -> void:
+	times_mowed = data["times_mowed"]
+	wage = data["wage"]
+	first_time = data["first_time"]
+	mow_cooldown = data["mow_cooldown"]
 

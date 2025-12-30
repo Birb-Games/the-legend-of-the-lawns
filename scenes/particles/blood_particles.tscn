@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://diwrxq5bcgtyl"]
+
+[ext_resource type="Texture2D" uid="uid://btspvfcbp648g" path="res://assets/textures/particles/circle_particle.png" id="1_xv2uh"]
+[ext_resource type="Script" uid="uid://biobcr36guyl1" path="res://scripts/particles/one_shot_particles.gd" id="2_ntwx8"]
+
+[sub_resource type="Curve" id="Curve_xv2uh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.49074072, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ntwx8"]
+curve = SubResource("Curve_xv2uh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xv2uh"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+angle_min = 90.000015
+angle_max = 90.000015
+radial_velocity_min = 59.999977
+radial_velocity_max = 74.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.59999996
+scale_curve = SubResource("CurveTexture_ntwx8")
+color = Color(1, 0.13333334, 0.06666667, 1)
+
+[node name="BloodParticles" type="GPUParticles2D"]
+z_index = 2
+emitting = false
+amount = 40
+texture = ExtResource("1_xv2uh")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_xv2uh")
+script = ExtResource("2_ntwx8")

@@ -149,9 +149,52 @@ func set_npc_menu(npc: NPC) -> void:
 
 	show()
 
+func set_bus_menu(bus_stop: BusStop) -> void:
+	reset_buttons()
+
+	$Menu/VBoxContainer/Name.text = "Bus Stop (%s)" % bus_stop.display_name
+	var main: Main = $/root/Main
+	if main.lawns_mowed >= 3:
+		$Menu/VBoxContainer/Description.text = "Select your desired destination."
+	else:	
+		$Menu/VBoxContainer/Description.text = "You need to mow at least 3 lawns before you can use the bus!"
+	$Menu/VBoxContainer/Wage.text = ""
+
+	buttons[0].text = "Leave"
+	buttons[0].connect("pressed", on_leave_pressed)
+	buttons[0].show()
+
+	show()
+
+	if main.lawns_mowed < 3:
+		return
+
+	var index = 1
+	for stop: BusStop in bus_stop.connections:
+		if index >= len(buttons):
+			break
+		buttons[index].text = stop.display_name
+		buttons[index].connect(
+			"pressed", 
+			func() -> void:
+				# Teleport the player to the appropriate bus stop
+				var player: Player = $/root/Main/Player
+				player.position = stop.position + Vector2(16.0, 6.0)
+				player.dir = "down"
+				player.can_use_bus_stop = true
+				# Activate transition animation
+				$/root/Main/HUD/Control/TransitionRect.start_bus_animation()
+				$/root/Main/Player/Camera2D.position_smoothing_enabled = false
+				# 'Leave' the menu
+				on_leave_pressed()
+		)
+		buttons[index].show()
+		index += 1
+
 func skip_day() -> void:
 	var main: Main = $/root/Main
 	main.advance_day()
+	main.save_progress()
 	var player: Player = $/root/Main/Player
 	player.dir = "down"
 	player.position = main.player_pos
@@ -186,5 +229,8 @@ func on_leave_pressed() -> void:
 func on_accept_pressed() -> void:
 	hide()
 	hide_neighbor()
-	$/root/Main.load_lawn(current_neighbor.lawn_template)
+	var difficulty = current_neighbor.times_mowed
+	if current_neighbor.mowing_limit > 0:
+		difficulty = min(difficulty, current_neighbor.mowing_limit)
+	$/root/Main.load_lawn(current_neighbor.lawn_template, difficulty)
 	$/root/Main.current_wage = current_neighbor.wage

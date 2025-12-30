@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var max_chase_distance: float = 200.0
 @export var max_health: int = 10
 @export var explosion_bullet_count: int = 5
+@export var spawn_animation_time: float = 1.0
 @export var bullet_scene: PackedScene
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
@@ -18,6 +19,7 @@ var path: PackedVector2Array = []
 var current_path_index: int = 0
 const ARRIVE_DISTANCE: float = 8.0
 var target_tile_pos: Vector2i
+@onready var spawn_timer: float = spawn_animation_time
 
 const UPDATE_PATH_INTERVAL: float = 0.25
 var update_path_timer: float = UPDATE_PATH_INTERVAL
@@ -63,6 +65,9 @@ func can_chase_player() -> bool:
 	return player_dist <= max_chase_distance and player_dist >= min_chase_distance
 
 func calculate_velocity() -> Vector2:
+	if spawn_timer > 0.0:
+		return Vector2.ZERO
+
 	var vel: Vector2 = Vector2.ZERO
 
 	if !can_chase_player():
@@ -150,7 +155,14 @@ func handle_path_update(delta: float) -> bool:
 	return false
 
 func _process(delta: float) -> void:
-	$AnimatedSprite2D.animation = get_animation()	
+	$ContactDamageZone.disabled = spawn_timer > 0.0
+	if spawn_timer > 0.0:
+		spawn_timer -= delta
+		return
+
+	$AnimatedSprite2D.animation = get_animation()
+	if !$AnimatedSprite2D.is_playing():
+		$AnimatedSprite2D.play($AnimatedSprite2D.animation)
 	$Healthbar.update_bar(health, max_health)
 
 	if health <= 0:
@@ -171,9 +183,15 @@ func _physics_process(_delta: float) -> void:
 func get_animation() -> String:
 	return "default"
 
+func damage(amt: int) -> void:
+	if spawn_timer > 0.0:
+		return
+
+	hit.emit()
+	health -= amt
+	health = max(health, 0)
+
 func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 	if body is PlayerBullet:
-		hit.emit()
 		body.explode()
-		health -= 1
-		health = max(health, 0)
+		damage(1)

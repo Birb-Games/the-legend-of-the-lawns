@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://1fi7xb3mewly"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_fe71k"]
+[ext_resource type="Script" uid="uid://dqsgg6xlw6ugd" path="res://scripts/player/bus_stop.gd" id="1_gwmhi"]
+[ext_resource type="Texture2D" uid="uid://csp5qqlgkfxas" path="res://assets/textures/houses/bus_stop.png" id="1_i45yy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fe71k"]
+size = Vector2(18, 35)
+
+[node name="Area2D" type="Area2D" groups=["bus_stop"]]
+script = ExtResource("1_gwmhi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17.5)
+shape = SubResource("RectangleShape2D_fe71k")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.3125, 0.30769232)
+texture = ExtResource("1_fe71k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+texture = ExtResource("1_i45yy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

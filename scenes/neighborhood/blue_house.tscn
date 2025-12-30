@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://qluu363gehss"]
+
+[ext_resource type="Texture2D" uid="uid://bvur34nhsh7yj" path="res://assets/textures/houses/blue_house.png" id="1_6kqmn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kqmn"]
+size = Vector2(141.33334, 54.66667)
+
+[node name="BlueHouse" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
+texture = ExtResource("1_6kqmn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -27.333334)
+shape = SubResource("RectangleShape2D_6kqmn")

@@ -51,3 +51,12 @@ func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_area = false	
 		body.interact_text = ""
+
+func save() -> Dictionary:
+	return {
+		"path" : get_path(),
+		"first_time" : first_time,
+	}
+
+func load_from(data: Dictionary) -> void:
+	first_time = data["first_time"]

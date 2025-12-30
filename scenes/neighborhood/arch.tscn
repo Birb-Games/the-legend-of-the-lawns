@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuajr6kbdphpb"]
+
+[ext_resource type="Texture2D" uid="uid://dtt8o4twxac6h" path="res://assets/textures/houses/arch.png" id="1_1t0ve"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="2_vd4bk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1t0ve"]
+size = Vector2(23.000002, 6.666666)
+
+[node name="Arch" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -61.999985)
+texture = ExtResource("1_1t0ve")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-37, -1.3330002)
+scale = Vector2(0.89583325, 1)
+texture = ExtResource("2_vd4bk")
+
+[node name="Shadow2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(37, -1.3330002)
+scale = Vector2(0.9375, 1)
+texture = ExtResource("2_vd4bk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -16.000008)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-36.833336, 12.666667)
+shape = SubResource("RectangleShape2D_1t0ve")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(36.833, 12.667)
+shape = SubResource("RectangleShape2D_1t0ve")

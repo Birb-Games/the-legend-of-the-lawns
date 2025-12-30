@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c86vkdvor1ouv"]
+
+[ext_resource type="Texture2D" uid="uid://x5jg5yf0jwnj" path="res://assets/textures/houses/mcmoneypants_mansion.png" id="1_tpeig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpeig"]
+size = Vector2(464, 80)
+
+[node name="McmoneypantsMansion" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -141)
+texture = ExtResource("1_tpeig")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_tpeig")

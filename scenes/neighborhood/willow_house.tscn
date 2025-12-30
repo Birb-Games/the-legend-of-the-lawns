@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgw4yg1b1l2w2"]
+
+[ext_resource type="Texture2D" uid="uid://jrq3mxe8gtmj" path="res://assets/textures/houses/willow_house.png" id="1_rithb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rithb"]
+size = Vector2(140, 52)
+
+[node name="WillowHouse" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
+texture = ExtResource("1_rithb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_rithb")

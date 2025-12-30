@@ -4,6 +4,10 @@ extends MobileEnemy
 
 var idle_timer: float = 0.0
 
+func _ready() -> void:
+	super._ready()
+	$AnimatedSprite2D.animation = "spawn"
+
 func in_shooting_range() -> bool:
 	var player_dist: float = (player.global_position - global_position).length()
 	return player_dist < max_chase_distance * 0.7 and player_dist > min_chase_distance
@@ -20,12 +24,20 @@ func calculate_velocity() -> Vector2:
 	return super.calculate_velocity()
 
 func get_animation() -> String:
-	if calculate_velocity().length() > 0.0:
+	if spawn_timer > 0.0:
+		return "spawn"
+
+	if calculate_velocity().length() > 0.0:	
 		return "walking"
 	else:
+		if $ContactDamageZone.can_attack_player():
+			return "attack"
 		return "idle"
 
 func _process(delta: float) -> void:
+	$Shadow.visible = spawn_timer <= 0.0
+	$SpawnShadow.visible = !$Shadow.visible
+
 	super._process(delta)
 	var diff = player.global_position - global_position
 	if diff.length() > 0.0:
