@@ -22,10 +22,7 @@ func _process(delta: float) -> void:
 	if !$/root/Main.lawn_loaded:
 		return
 
-	if can_attack_player():
-		attack_timer -= delta
-	else:
-		attack_timer = attack_cooldown
+	attack_timer -= delta
 	# Attempt to bite player
 	if can_attack_player() and attack_timer <= 0.0:
 		player.damage(damage_amt)

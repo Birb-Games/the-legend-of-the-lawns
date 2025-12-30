@@ -8,6 +8,7 @@
 radius = 2.23607
 
 [node name="Seedbullet" type="Area2D"]
+z_index = 1
 script = ExtResource("1_hofq5")
 speed = 48.0
 rotation_speed = 600.0

@@ -193,7 +193,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, -7)
 scale = Vector2(1.5, 1.5)
 damage_amt = 3
-attack_cooldown = 0.75
+attack_cooldown = 0.5
 
 [node name="BulletHitbox" type="Area2D" parent="."]
 
