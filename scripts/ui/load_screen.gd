@@ -102,11 +102,12 @@ func _on_play_pressed() -> void:
 	hide()
 	var main_menu = get_parent()
 	main_menu.hide()
+	var selected_index: int = selected
 	clear_save_list()
 
 	get_tree().paused = false
 	var main: Main = $/root/Main
-	main.save_path = entries[selected].get_path()
+	main.save_path = entries[selected_index].get_path()
 	main.reset()
 	if !main.load_save():
 		get_tree().paused = true
