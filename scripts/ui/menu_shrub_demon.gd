@@ -7,6 +7,7 @@ const MARGIN: float = 128.0
 func _ready() -> void:
 	$Healthbar.hide()
 	$AnimatedSprite2D.animation = "walking"
+	$SpawnShadow.hide()
 	reset()
 
 func reset() -> void:

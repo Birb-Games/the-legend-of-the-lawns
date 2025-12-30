@@ -1,24 +1,160 @@
-[gd_scene load_steps=10 format=3 uid="uid://b32ibsy1iagox"]
+[gd_scene load_steps=30 format=3 uid="uid://b32ibsy1iagox"]
 
 [ext_resource type="Script" uid="uid://byy7pmegiokpj" path="res://scripts/enemies/mobile/killer_rabbit.gd" id="1_bu858"]
-[ext_resource type="Texture2D" uid="uid://dmsuwb7pw653f" path="res://assets/textures/enemies/mobile/placeholder_enemy.png" id="1_muw52"]
+[ext_resource type="PackedScene" uid="uid://diwrxq5bcgtyl" path="res://scenes/particles/blood_particles.tscn" id="2_26bvs"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="2_nr2qv"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="3_738o7"]
+[ext_resource type="Texture2D" uid="uid://c0d5m8onpctec" path="res://assets/textures/enemies/mobile/killer_rabbit.png" id="3_bu858"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="4_n4dd6"]
+[ext_resource type="Texture2D" uid="uid://dw8l6w5uje4ue" path="res://assets/textures/enemies/mobile/rabbit_spawn_animation.png" id="5_hkqrf"]
+[ext_resource type="PackedScene" uid="uid://b73kqhktknig" path="res://scenes/particles/stun_particles.tscn" id="6_re68s"]
+[ext_resource type="PackedScene" uid="uid://7fhs15wchrkt" path="res://scenes/particles/anger_particles.tscn" id="7_xo21h"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nr2qv"]
-atlas = ExtResource("1_muw52")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdi7u"]
+atlas = ExtResource("3_bu858")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ociu6"]
+atlas = ExtResource("3_bu858")
+region = Rect2(42, 22, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re68s"]
+atlas = ExtResource("3_bu858")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo21h"]
+atlas = ExtResource("3_bu858")
+region = Rect2(21, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26bvs"]
+atlas = ExtResource("3_bu858")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkqrf"]
+atlas = ExtResource("3_bu858")
+region = Rect2(42, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu858"]
+atlas = ExtResource("3_bu858")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vk3j"]
+atlas = ExtResource("3_bu858")
+region = Rect2(0, 22, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va78l"]
+atlas = ExtResource("3_bu858")
+region = Rect2(21, 22, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kd2pj"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wy7w"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(21, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7fxt"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(42, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i3vf"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(63, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv5cl"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(84, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_104hk"]
+atlas = ExtResource("5_hkqrf")
+region = Rect2(105, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djrar"]
+atlas = ExtResource("3_bu858")
+region = Rect2(0, 44, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkghv"]
+atlas = ExtResource("3_bu858")
+region = Rect2(21, 44, 21, 22)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_738o7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nr2qv")
+"texture": SubResource("AtlasTexture_pdi7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ociu6")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re68s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo21h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26bvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkqrf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu858")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vk3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va78l")
+}],
+"loop": true,
+"name": &"running",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kd2pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wy7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7fxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i3vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv5cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_104hk")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djrar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkghv")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4dd6"]
@@ -28,10 +164,11 @@ size = Vector2(15.000007, 13.750006)
 size = Vector2(10.0000105, 6.2500114)
 
 [node name="KillerRabbit" type="CharacterBody2D"]
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.75, 0.75)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_bu858")
+blood_particles_scene = ExtResource("2_26bvs")
 speed = 85.0
 max_health = 18
 explosion_bullet_count = 0
@@ -41,13 +178,15 @@ scale = Vector2(0.5625, 0.53846157)
 texture = ExtResource("3_738o7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -7.0000005)
+position = Vector2(0, -9.5)
 scale = Vector2(0.875, 0.875)
 sprite_frames = SubResource("SpriteFrames_738o7")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Healthbar" parent="." instance=ExtResource("2_nr2qv")]
-offset_top = -17.0
-offset_bottom = -15.0
+offset_top = -22.0
+offset_bottom = -20.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("4_n4dd6")]
@@ -68,4 +207,13 @@ position = Vector2(7.450577e-08, -3.1249974)
 scale = Vector2(0.9999986, 0.9999986)
 shape = SubResource("RectangleShape2D_42wqo")
 
+[node name="StunParticles" parent="." instance=ExtResource("6_re68s")]
+visible = false
+position = Vector2(4, -18.666672)
+
+[node name="AngerParticles" parent="." instance=ExtResource("7_xo21h")]
+visible = false
+position = Vector2(4, -14.666664)
+
+[connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]

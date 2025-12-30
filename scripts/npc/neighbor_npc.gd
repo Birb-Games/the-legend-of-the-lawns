@@ -19,6 +19,8 @@ var player_in_area: bool = false
 @export var mowing_frequency: int = 1
 # The maximum number of times the player can mow the lawn and get paid
 # (they can replay the lawn afterward but will not receive any money)
+# Set this value to 0 if you want to allow the player to mow the lawn an
+# unlimited number of times.
 @export var mowing_limit: int = 0
 var times_mowed: int = 0
 

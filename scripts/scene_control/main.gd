@@ -54,12 +54,14 @@ func advance_day() -> void:
 	current_day += 1
 	$HUD/Control/TransitionRect.start_animation()
 
-func load_lawn(lawn_template: PackedScene) -> void:
+func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood
 	remove_child(neighborhood)	
 	# Load lawn
-	var lawn: Lawn = lawn_template.instantiate()	
+	var lawn: Lawn = lawn_template.instantiate()
+	lawn.difficulty += difficulty_level
+	lawn.difficulty = clamp(lawn.difficulty, 0, 8)
 	lawn.name = "Lawn"
 	add_child(lawn)	
 	# Set player position and direction
@@ -116,7 +118,7 @@ func update_hud_lawn(delta: float) -> void:
 	$HUD.update_timer(delta)
 
 func update_hud_neighborhood() -> void:
-	$HUD.update_info_text($Player.interact_text)	
+	$HUD.update_info_text($Player.interact_text)
 	# hide info text if talking to a neighbor
 	$HUD/Control/InfoText.visible = !$HUD/Control/NPCMenu.visible
 	
