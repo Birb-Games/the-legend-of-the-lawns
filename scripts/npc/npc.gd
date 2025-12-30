@@ -37,8 +37,9 @@ func generate_dialog() -> void:
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 
 func _process(_delta: float) -> void:
+	var menu_visible = $/root/Main/HUD/Control/NPCMenu.visible
 	# Have the player interact with the neighbor
-	if Input.is_action_just_pressed("interact") and player_in_area:
+	if Input.is_action_just_pressed("interact") and player_in_area and !menu_visible:
 		generate_dialog()
 		$/root/Main/HUD.set_npc_menu(self)
 

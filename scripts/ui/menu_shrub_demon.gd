@@ -8,6 +8,7 @@ func _ready() -> void:
 	$Healthbar.hide()
 	$AnimatedSprite2D.animation = "walking"
 	$SpawnShadow.hide()
+	$ContactDamageZone.disabled = true
 	reset()
 
 func reset() -> void:

@@ -10,6 +10,8 @@ var stun_timer: float = 0.0
 @onready var damage_amt: int = $ContactDamageZone.damage_amt
 var hit_timer: float = 0.0
 var anger_timer: float = 0.0
+const CHANGE_DIR_INTERVAL: float = 0.1
+var change_dir_timer: float = 0.0
 
 func _ready() -> void:
 	super._ready()
@@ -60,6 +62,28 @@ func handle_path_update(delta: float) -> bool:
 		time_before_pause = gen_time_before_pause()
 	return updated
 
+func set_dir_left() -> void:
+	$AnimatedSprite2D.flip_h = true
+	$StunParticles.position.x = -stun_particle_pos_x
+	$AngerParticles.position.x = -anger_particle_pos_x
+
+func set_dir_right() -> void:
+	$AnimatedSprite2D.flip_h = false
+	$StunParticles.position.x = stun_particle_pos_x
+	$AngerParticles.position.x = anger_particle_pos_x
+
+func set_sprite_dir() -> void:
+	if player.global_position.x < global_position.x - 8.0:
+		set_dir_left()
+	elif player.global_position.x > global_position.x + 8.0:
+		set_dir_right()
+
+	var vel = calculate_velocity()
+	if vel.length() > 0.0 and vel.normalized().dot(Vector2.LEFT) > 0.25:
+		set_dir_left()
+	elif vel.length() > 0.0 and vel.normalized().dot(Vector2.RIGHT) > 0.25:
+		set_dir_right()	
+
 func _process(delta: float) -> void:
 	if spawn_timer > 0.0:
 		spawn_timer -= delta
@@ -94,14 +118,10 @@ func _process(delta: float) -> void:
 	anger_timer = max(anger_timer, 0.0)
 
 	# Set direction of rabbit
-	if velocity.dot(Vector2.LEFT) > 0.1:
-		$AnimatedSprite2D.flip_h = true
-		$StunParticles.position.x = -stun_particle_pos_x
-		$AngerParticles.position.x = -anger_particle_pos_x
-	elif velocity.dot(Vector2.RIGHT) > 0.1:
-		$AnimatedSprite2D.flip_h = false
-		$StunParticles.position.x = stun_particle_pos_x
-		$AngerParticles.position.x = anger_particle_pos_x
+	change_dir_timer -= delta
+	if change_dir_timer < 0.0:
+		set_sprite_dir()
+		change_dir_timer = CHANGE_DIR_INTERVAL
 
 	if idle_timer <= 0.0 and anger_timer <= 0.0:
 		time_before_pause -= delta
@@ -134,8 +154,5 @@ func _on_hit() -> void:
 		stun_timer = 7.0 + randf_range(0.0, 3.0)
 		anger_timer = 7.0
 		time_before_pause = gen_time_before_pause()
-		$StunParticles.restart()
-		$AngerParticles.emitting = false
-		$AngerParticles.restart()
 	if stun_timer <= 0.01:
 		hit_timer = 0.4
