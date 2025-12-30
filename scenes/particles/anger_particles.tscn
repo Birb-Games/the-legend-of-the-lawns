@@ -24,5 +24,6 @@ scale_max = 0.59999996
 [node name="AngerParticles" type="GPUParticles2D"]
 texture = ExtResource("1_yrj2j")
 lifetime = 0.8
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_xil5k")
 script = ExtResource("2_xil5k")

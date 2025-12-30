@@ -27,5 +27,6 @@ amount = 6
 texture = ExtResource("1_c0f38")
 lifetime = 4.0
 explosiveness = 0.8
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_c0f38")
 script = ExtResource("2_0oxns")

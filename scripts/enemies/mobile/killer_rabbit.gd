@@ -151,7 +151,6 @@ func _on_hit() -> void:
 		anger_timer = 7.0
 		time_before_pause = gen_time_before_pause()
 		$StunParticles.restart()
-		$AngerParticles.emitting = false
 		$AngerParticles.restart()
 	if stun_timer <= 0.01:
 		hit_timer = 0.4
