@@ -60,6 +60,29 @@ func handle_path_update(delta: float) -> bool:
 		time_before_pause = gen_time_before_pause()
 	return updated
 
+func set_dir_left() -> void:
+	$AnimatedSprite2D.flip_h = true
+	$StunParticles.position.x = -stun_particle_pos_x
+	$AngerParticles.position.x = -anger_particle_pos_x
+
+func set_dir_right() -> void:
+	$AnimatedSprite2D.flip_h = false
+	$StunParticles.position.x = stun_particle_pos_x
+	$AngerParticles.position.x = anger_particle_pos_x
+
+func set_sprite_dir() -> void:
+	if velocity.length() <= 0.01:
+		return
+
+	if velocity.normalized().dot(Vector2.LEFT) > 0.2:
+		set_dir_left()
+	elif velocity.normalized().dot(Vector2.RIGHT) > 0.2:
+		set_dir_right()
+	elif player.global_position.x < global_position.x - 4.0:
+		set_dir_left()
+	elif player.global_position.x > global_position.x + 4.0:
+		set_dir_right()
+
 func _process(delta: float) -> void:
 	if spawn_timer > 0.0:
 		spawn_timer -= delta
@@ -94,14 +117,7 @@ func _process(delta: float) -> void:
 	anger_timer = max(anger_timer, 0.0)
 
 	# Set direction of rabbit
-	if velocity.dot(Vector2.LEFT) > 0.1:
-		$AnimatedSprite2D.flip_h = true
-		$StunParticles.position.x = -stun_particle_pos_x
-		$AngerParticles.position.x = -anger_particle_pos_x
-	elif velocity.dot(Vector2.RIGHT) > 0.1:
-		$AnimatedSprite2D.flip_h = false
-		$StunParticles.position.x = stun_particle_pos_x
-		$AngerParticles.position.x = anger_particle_pos_x
+	set_sprite_dir()
 
 	if idle_timer <= 0.0 and anger_timer <= 0.0:
 		time_before_pause -= delta

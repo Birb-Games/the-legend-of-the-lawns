@@ -15,14 +15,17 @@ func can_attack_player() -> bool:
 	var player_pos: Vector2 = player.global_position
 	if player.lawn_mower_active():
 		player_pos += player.get_lawn_mower_dir_offset()
-	return global_position.distance_to(player_pos) < $CollisionShape2D.shape.radius
+	return global_position.distance_to(player_pos) < $CollisionShape2D.shape.radius * global_scale.x
 
 func _process(delta: float) -> void:
 	# Ignore if the lawn is not loaded
 	if !$/root/Main.lawn_loaded:
 		return
 
-	attack_timer -= delta
+	if can_attack_player():
+		attack_timer -= delta
+	else:
+		attack_timer = attack_cooldown
 	# Attempt to bite player
 	if can_attack_player() and attack_timer <= 0.0:
 		player.damage(damage_amt)
