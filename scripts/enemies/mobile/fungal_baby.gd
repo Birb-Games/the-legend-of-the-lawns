@@ -5,6 +5,7 @@ const POWER: float = 2.0
 const EXPLOSION_TIME: float = 2.0
 var explosion_timer: float = 0.0
 @export var explosion_flash_gradient: Gradient
+@export var explosion_scene: PackedScene
 var start_explosion_timer: bool = false
 # How long we pause for f we are hit
 const STOP_TIME: float = 0.5
@@ -21,6 +22,14 @@ func get_animation() -> String:
 	if velocity.length() == 0.0:
 		return "idle"
 	return "running"
+
+func explode() -> void:
+	var explosion: GPUParticles2D = explosion_scene.instantiate()
+	explosion.position = position
+	explosion.modulate = Color.MAGENTA
+	explosion.scale *= 0.3
+	$/root/Main/Lawn.add_child(explosion)
+	super.explode()
 
 func in_shooting_range() -> bool:
 	var player_dist: float = (player.global_position - global_position).length()
@@ -96,4 +105,3 @@ func _on_hit() -> void:
 		hit_timer = STOP_TIME * 0.5 + IMMUNITY_TIME
 	else:
 		hit_timer = STOP_TIME + IMMUNITY_TIME
-

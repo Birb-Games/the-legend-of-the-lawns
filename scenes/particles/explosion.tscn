@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://e6kb8yfp0yjr"]
+
+[ext_resource type="Texture2D" uid="uid://btspvfcbp648g" path="res://assets/textures/particles/circle_particle.png" id="1_3sqip"]
+[ext_resource type="Script" uid="uid://biobcr36guyl1" path="res://scripts/particles/one_shot_particles.gd" id="2_3ajkw"]
+
+[sub_resource type="Curve" id="Curve_3ajkw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4753086, 0.99198514), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uommb"]
+curve = SubResource("Curve_3ajkw")
+
+[sub_resource type="Gradient" id="Gradient_3ajkw"]
+offsets = PackedFloat32Array(0, 0.52684563, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uommb"]
+gradient = SubResource("Gradient_3ajkw")
+
+[sub_resource type="Curve" id="Curve_3sqip"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.71913576, 1), -22.228148, -22.228148, 0, 0, Vector2(0.7685186, 0.19112158), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3ajkw"]
+curve = SubResource("Curve_3sqip")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3sqip"]
+particle_flag_disable_z = true
+angular_velocity_min = 179.99998
+angular_velocity_max = 359.99997
+radial_velocity_min = 239.99997
+radial_velocity_max = 255.99997
+gravity = Vector3(0, 0, 0)
+scale_min = 0.39999998
+scale_curve = SubResource("CurveTexture_3ajkw")
+color_ramp = SubResource("GradientTexture1D_uommb")
+alpha_curve = SubResource("CurveTexture_uommb")
+hue_variation_min = -0.020000022
+hue_variation_max = 0.019999977
+
+[node name="Explosion" type="GPUParticles2D"]
+modulate = Color(1, 0.2627451, 0, 1)
+z_index = 1
+emitting = false
+amount = 64
+texture = ExtResource("1_3sqip")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.7
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_3sqip")
+script = ExtResource("2_3ajkw")

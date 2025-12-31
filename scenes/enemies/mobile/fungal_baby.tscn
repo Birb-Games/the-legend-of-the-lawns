@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://b1shkd3nhlmls"]
+[gd_scene load_steps=25 format=3 uid="uid://b1shkd3nhlmls"]
 
 [ext_resource type="Texture2D" uid="uid://c3twwpqwkgu2u" path="res://assets/textures/enemies/mobile/fungal_baby.png" id="1_a084a"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_od5hv"]
 [ext_resource type="Script" uid="uid://n85lgv2if883" path="res://scripts/enemies/mobile/fungal_baby.gd" id="1_wp067"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="2_fe1kk"]
 [ext_resource type="PackedScene" uid="uid://dle1nhc76n43p" path="res://scenes/enemies/bullets/spore_bullet.tscn" id="2_oe85s"]
 [ext_resource type="Texture2D" uid="uid://b48xkwccihkwu" path="res://assets/textures/enemies/mobile/fungal_baby_spawn_animation.png" id="3_wdrxr"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="4_7xnw5"]
@@ -128,6 +129,7 @@ collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_wp067")
 explosion_flash_gradient = SubResource("Gradient_oe85s")
+explosion_scene = ExtResource("2_fe1kk")
 speed = 96.0
 max_chase_distance = 500.0
 max_health = 5
