@@ -1,11 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmfatvi0c60nn"]
+[gd_scene load_steps=30 format=3 uid="uid://bmfatvi0c60nn"]
 
 [ext_resource type="Texture2D" uid="uid://di85fhpd0nqap" path="res://assets/textures/npcs/neighbors/neighbor_bob.png" id="1_8cdwt"]
+[ext_resource type="Texture2D" uid="uid://c8063uw57s5x4" path="res://assets/textures/npcs/neighbors/mr_mcmoneypants.png" id="1_h1x1f"]
 [ext_resource type="Script" uid="uid://b63obvvd24phb" path="res://scripts/npc/neighbor_npc.gd" id="1_k1hep"]
 [ext_resource type="Texture2D" uid="uid://daifonter45fp" path="res://assets/textures/npcs/neighbors/neighbor_jim.png" id="2_485io"]
+[ext_resource type="Texture2D" uid="uid://dnc8hawtp3q3j" path="res://assets/textures/npcs/neighbors/neighbor_emily.png" id="2_lr5lu"]
+[ext_resource type="Texture2D" uid="uid://r06hxpw0ckfg" path="res://assets/textures/npcs/neighbors/mrs_poofball.png" id="2_scknv"]
 [ext_resource type="Texture2D" uid="uid://bpcyg23gnnwt" path="res://assets/textures/npcs/neighbors/neighbor_nancy.png" id="3_0a34w"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="3_dsynj"]
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="3_x7cql"]
+[ext_resource type="Texture2D" uid="uid://u2oc48mbh1tr" path="res://assets/textures/npcs/neighbors/willow.png" id="5_p4boy"]
+[ext_resource type="Texture2D" uid="uid://bt5oo0k01vimf" path="res://assets/textures/npcs/neighbors/neighbor_hunter.png" id="5_sp0st"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otypm"]
+atlas = ExtResource("1_h1x1f")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je3uq"]
+atlas = ExtResource("1_h1x1f")
+region = Rect2(18, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb8xo"]
+atlas = ExtResource("2_scknv")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsxi4"]
+atlas = ExtResource("2_scknv")
+region = Rect2(18, 0, 18, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsynj"]
 atlas = ExtResource("1_8cdwt")
@@ -13,6 +34,22 @@ region = Rect2(0, 0, 18, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7cql"]
 atlas = ExtResource("1_8cdwt")
+region = Rect2(18, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4boy"]
+atlas = ExtResource("2_lr5lu")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1x1f"]
+atlas = ExtResource("2_lr5lu")
+region = Rect2(18, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvqom"]
+atlas = ExtResource("5_sp0st")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hytdr"]
+atlas = ExtResource("5_sp0st")
 region = Rect2(18, 0, 18, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0a34w"]
@@ -31,8 +68,38 @@ region = Rect2(0, 0, 18, 40)
 atlas = ExtResource("3_0a34w")
 region = Rect2(18, 0, 18, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_scknv"]
+atlas = ExtResource("5_p4boy")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp0st"]
+atlas = ExtResource("5_p4boy")
+region = Rect2(18, 0, 18, 40)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_k1hep"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otypm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_je3uq")
+}],
+"loop": true,
+"name": &"mr_mcmoneypants",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb8xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsxi4")
+}],
+"loop": true,
+"name": &"mrs_poofball",
+"speed": 2.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dsynj")
@@ -42,6 +109,28 @@ animations = [{
 }],
 "loop": true,
 "name": &"neighbor_bob",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4boy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1x1f")
+}],
+"loop": true,
+"name": &"neighbor_emily",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvqom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hytdr")
+}],
+"loop": true,
+"name": &"neighbor_hunter",
 "speed": 2.0
 }, {
 "frames": [{
@@ -64,6 +153,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"neighbor_nancy",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scknv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp0st")
+}],
+"loop": true,
+"name": &"willow",
 "speed": 2.0
 }]
 
