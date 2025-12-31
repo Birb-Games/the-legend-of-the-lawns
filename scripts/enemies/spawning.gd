@@ -87,6 +87,29 @@ static var flower_spawn_table: Dictionary = {
 	"medium++" : [
 		SpawnEntry.new("yellow", 3.0), 
 		SpawnEntry.new("red", 2.0)
+	],
+
+	"hard" : [
+		SpawnEntry.new("yellow", 1.0), 
+		SpawnEntry.new("red", 1.0)
+	],
+
+	"hard+" : [
+		SpawnEntry.new("yellow", 2.0), 
+		SpawnEntry.new("red", 3.0),
+		SpawnEntry.new("blue", 1.0)
+	],
+
+	"hard++" : [
+		SpawnEntry.new("yellow", 2.0), 
+		SpawnEntry.new("red", 3.0),
+		SpawnEntry.new("blue", 2.0)
+	],
+
+	"hard+++" : [
+		SpawnEntry.new("yellow", 1.0), 
+		SpawnEntry.new("red", 2.0),
+		SpawnEntry.new("blue", 3.0)
 	]
 }
 
