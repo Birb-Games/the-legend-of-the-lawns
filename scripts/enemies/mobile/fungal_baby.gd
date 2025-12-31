@@ -8,8 +8,8 @@ var explosion_timer: float = 0.0
 @export var explosion_scene: PackedScene
 var start_explosion_timer: bool = false
 # How long we pause for f we are hit
-const STOP_TIME: float = 0.5
-const IMMUNITY_TIME: float = 0.75
+const STOP_TIME: float = 0.6
+const IMMUNITY_TIME: float = 0.25
 var hit_timer: float = 0.0
 
 func _ready() -> void:
@@ -36,7 +36,7 @@ func in_shooting_range() -> bool:
 	return player_dist < 160.0 and player_dist > 50.0
 
 func shoot() -> void:
-	if randi() % 3 == 0:
+	if randi() % 3 != 0:
 		return
 	super.shoot()
 
