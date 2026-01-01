@@ -222,6 +222,14 @@ position = Vector2(466.00003, 295)
 [node name="Neighbors" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="TestNeighbor" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(-74, -117)
+display_name = "Mr. Test"
+always_visible = true
+disabled = true
+lawn_template = ExtResource("12_u28t5")
+interact_text = "TEST LAWN"
+
 [node name="NeighborBob" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(216, -155)
 display_name = "Neighbor Bob"
@@ -279,14 +287,6 @@ There's a note: \"I'm on vacation right now, please come back later! Thank you!\
 first_dialog = "Hi! You're my neighbor's kid, right? Do you need anything?"
 first_job_offer = "Oh, thank you! My lawn does need a trim - I just got back from a vacation to Aldoria and I don't feel like mowing my lawn. My flowers haven't been watered so they're a little upset right now..."
 
-[node name="TestNeighbor" parent="Neighbors" instance=ExtResource("3_tqujx")]
-position = Vector2(-74, -117)
-display_name = "Mr. Test"
-always_visible = true
-disabled = true
-lawn_template = ExtResource("12_u28t5")
-interact_text = "TEST LAWN"
-
 [node name="NeighborEmily" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(488, 229.00002)
 animation = &"neighbor_emily"
@@ -332,6 +332,57 @@ animation = &"neighbor_hunter"
 [node name="Poofball" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(504, -540)
 animation = &"mrs_poofball"
+
+[node name="NeighborJames" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(344, 229.00002)
+animation = &"neighbor_james"
+
+[node name="NeighborPaul" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(72, 229)
+animation = &"neighbor_paul"
+
+[node name="NeighborChloe" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(840, 229.00002)
+animation = &"neighbor_chloe"
+
+[node name="NeighborGeorge" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(1112, 229.00002)
+animation = &"neighbor_george"
+
+[node name="NeighborTam" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(-152, 229.00002)
+animation = &"neighbor_tam"
+
+[node name="NeighborRob" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(-280, 229)
+
+[node name="Alien" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(-424.00003, 229.00002)
+animation = &"alien"
+
+[node name="NeighborNicole" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(648, -539)
+animation = &"neighbor_nicole"
+
+[node name="NeighborMalcom" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(360, -539)
+animation = &"neighbor_malcom"
+
+[node name="Bugman" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(1112, -539)
+animation = &"bugman"
+
+[node name="MrTie" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(232.00002, -539)
+animation = &"mr_tie"
+
+[node name="Cyborg" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(-8, -539)
+animation = &"cyborg"
+
+[node name="NeighborHelen" parent="Neighbors" instance=ExtResource("3_tqujx")]
+position = Vector2(888, -539)
+animation = &"neighbor_helen"
 
 [node name="FastTravel" type="Node2D" parent="."]
 y_sort_enabled = true
