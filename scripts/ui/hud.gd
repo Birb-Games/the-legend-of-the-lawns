@@ -162,3 +162,9 @@ func num_as_time_string(num: float) -> String:
 	var minutes: int = int(floori(t / 60.0))
 	var seconds: int = int(t % 60)
 	return "%02d:%02d" % [minutes, seconds]
+
+func npc_menu_open() -> bool:
+	return $Control/NPCMenu.visible
+
+func quest_screen_open() -> bool:
+	return $Control/QuestScreen/InfoScreen.visible

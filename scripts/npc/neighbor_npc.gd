@@ -13,8 +13,6 @@ var player_in_area: bool = false
 @export var always_visible: bool = false
 @export var disabled: bool = false
 @export var lawn_template: PackedScene
-## How many lawns the player has to mow before unlocking this neighbor
-@export var min_lawns_mowed: int = 0
 ## How frequently they need their lawn mowed
 @export var mowing_frequency: int = 1
 # The maximum number of times the player can mow the lawn and get paid
@@ -23,6 +21,7 @@ var player_in_area: bool = false
 # unlimited number of times.
 @export var mowing_limit: int = 0
 var times_mowed: int = 0
+@export var level: int = -1
 
 @export_group("Wage Info")
 @export var wage: int = 10
@@ -59,7 +58,7 @@ func _ready() -> void:
 	play(animation)
 
 func unavailable() -> bool:
-	return $/root/Main.lawns_mowed < min_lawns_mowed
+	return $/root/Main.current_level < level 
 
 # Returns true if the mow cool down is above 0
 func reject() -> bool:

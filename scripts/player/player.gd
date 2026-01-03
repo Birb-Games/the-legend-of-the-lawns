@@ -255,7 +255,8 @@ func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO	
 
 	# movement
-	if !$/root/Main/HUD/Control/NPCMenu.visible: #don't move when menu open
+	# don't move when menu is open
+	if !$/root/Main/HUD.npc_menu_open() and !$/root/Main/HUD.quest_screen_open(): 
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1.0
 		if Input.is_action_pressed("move_down"):

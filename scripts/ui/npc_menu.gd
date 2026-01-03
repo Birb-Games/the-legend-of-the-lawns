@@ -28,11 +28,7 @@ static func format_wage(wage: int) -> String:
 
 func set_menu_unavailable(neighbor: NeighborNPC) -> void:
 	$Menu/VBoxContainer/Name.text = "???"
-	var lawns_left = neighbor.min_lawns_mowed - $/root/Main.lawns_mowed
-	if lawns_left == 1:
-		$Menu/VBoxContainer/Wage.text = "Mow <1> more lawn, then come back."
-	elif lawns_left > 1:
-		$Menu/VBoxContainer/Wage.text = "Mow <%d> more lawns, then come back." % lawns_left
+	$Menu/VBoxContainer/Wage.text = ""
 	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
 	buttons[0].show()
 	buttons[0].text = "Leave"

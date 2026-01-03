@@ -20,6 +20,8 @@ var current_day: int = 1
 var lawns_mowed: int = 0
 var current_wage: int = 0
 
+var current_level: int = 0
+
 # Update the money based on the current wage and the modifier (penalties and bonuses)
 func update_money(modifier: int) -> void:
 	money += max(current_wage + modifier, 0)
@@ -120,7 +122,7 @@ func update_hud_lawn(delta: float) -> void:
 func update_hud_neighborhood() -> void:
 	$HUD.update_info_text($Player.interact_text)
 	# hide info text if talking to a neighbor
-	$HUD/Control/InfoText.visible = !$HUD/Control/NPCMenu.visible
+	$HUD/Control/InfoText.visible = !$HUD.npc_menu_open() and !$HUD.quest_screen_open()
 	
 	$HUD.update_progress_bar(-1.0, 0, 0) # -1.0 hides the progress bar
 	$HUD.update_health_bar(0, 0)
@@ -133,6 +135,8 @@ func update_hud(delta: float) -> void:
 		update_hud_neighborhood()
 
 	if lawn_loaded:
+		$HUD.hide_neighborhood_hud()
+	elif !lawn_loaded and $HUD.quest_screen_open():
 		$HUD.hide_neighborhood_hud()
 	else:
 		$HUD.update_day_counter(current_day)
@@ -156,13 +160,15 @@ func reset() -> void:
 	money = 0
 	current_day = 1
 	lawns_mowed = 0
+	current_level = 0
 
 func save() -> Dictionary:
 	return {
 		"money" : money,
 		"current_day" : current_day,
 		"lawns_mowed": lawns_mowed,
-		"player_name" : player_name
+		"player_name" : player_name,
+		"current_level" : current_level
 	}
 
 func save_progress() -> void:
@@ -206,9 +212,10 @@ func load_save() -> bool:
 	player_name = data["player_name"]
 	if player_name.is_empty():
 		player_name = "Billy"
-	money = max(data["money"], 0)
-	current_day = max(data["current_day"], 1)
-	lawns_mowed = max(data["lawns_mowed"], 0)
+	money = max(Save.get_val(data, "money", 0), 0)
+	current_day = max(Save.get_val(data, "current_day", 1), 1)
+	lawns_mowed = max(Save.get_val(data, "lawns_mowed", 0), 0)
+	current_level = max(Save.get_val(data, "current_level", 0), 0)
 
 	# Load player stats
 	line = save_file.get_line()

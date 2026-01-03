@@ -32,7 +32,6 @@ func _on_start_pressed() -> void:
 	var lowercase: String = player_name.to_lower()
 	if lowercase == "elon musk" or lowercase == "jeff bezos" or lowercase == "bill gates":
 		main.money = 9999999999
-		main.lawns_mowed = 999
 	
 	$/root/Main/HUD/Control/TransitionRect.start_animation()
 	

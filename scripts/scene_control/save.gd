@@ -60,3 +60,9 @@ static func get_save_entries() -> Array:
 			saves.push_back(entry)
 		file_name = dir.get_next()
 	return saves
+
+# Can return any type
+static func get_val(data: Dictionary, key: String, default = null):
+	if key in data:
+		return data[key]
+	return default
