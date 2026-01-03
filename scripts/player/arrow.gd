@@ -1,5 +1,6 @@
 extends Sprite2D
 
+@export var ignore_if_invisible: bool = false
 @export var point_to: NodePath
 @export var min_dist: float = 0.0
 @export var max_dist: float = 640.0
@@ -15,6 +16,11 @@ func _process(_delta: float) -> void:
 	if target_node == null:
 		hide()
 		return
+
+	if target_node is Node2D:
+		if !target_node.visible and ignore_if_invisible:
+			hide()
+			return
 
 	var parent_pos: Vector2 = global_position - position + Vector2(0.0, y_offset)
 	var diff: Vector2 = target_node.global_position - parent_pos
