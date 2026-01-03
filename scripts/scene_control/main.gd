@@ -52,7 +52,6 @@ func _process(delta: float) -> void:
 		$Player/Camera2D.position_smoothing_enabled = true
 
 func advance_day() -> void:
-	neighborhood.update_neighbors()
 	current_day += 1
 	$HUD/Control/TransitionRect.start_animation()
 

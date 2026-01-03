@@ -131,7 +131,6 @@ func _on_return_pressed() -> void:
 	if main.money > prev_money:
 		current_neighbor.times_mowed += 1
 		current_neighbor.change_wage()
-	current_neighbor.set_cooldown()
 	$/root/Main/Player/Lawnmower.hide()
 	main.save_progress()
 

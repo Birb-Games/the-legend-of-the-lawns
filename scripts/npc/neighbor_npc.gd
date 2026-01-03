@@ -13,8 +13,6 @@ var player_in_area: bool = false
 @export var always_visible: bool = false
 @export var disabled: bool = false
 @export var lawn_template: PackedScene
-## How frequently they need their lawn mowed
-@export var mowing_frequency: int = 1
 # The maximum number of times the player can mow the lawn and get paid
 # (they can replay the lawn afterward but will not receive any money)
 # Set this value to 0 if you want to allow the player to mow the lawn an
@@ -48,7 +46,6 @@ var times_mowed: int = 0
 @export_multiline var player_dialog: String = "I'm here to mow your lawn!"
 @export_multiline var first_job_offer: String = "I suppose I could use some help with mowing my lawn today..."
 var first_time: bool = true
-var mow_cooldown: int = 0
 
 var current_dialog: String = ""
 
@@ -60,29 +57,11 @@ func _ready() -> void:
 func unavailable() -> bool:
 	return $/root/Main.current_level < level 
 
-# Returns true if the mow cool down is above 0
-func reject() -> bool:
-	if mowing_limit_reached():
-		return false
-	return mow_cooldown > 0
-
-func set_cooldown() -> void:
-	mow_cooldown = mowing_frequency
-
-func update_cooldown() -> void:
-	mow_cooldown -= 1
-	mow_cooldown = max(mow_cooldown, 0)
-
 func generate_dialog() -> void:
 	current_dialog = ""
 	if unavailable():
 		current_dialog = unavailable_msg
 		return
-	if reject():
-		if len(reject_dialog) == 0:
-			return
-		current_dialog = reject_dialog[randi() % len(reject_dialog)]
-		return	
 	if first_time:
 		current_dialog = first_dialog
 		return
@@ -132,12 +111,10 @@ func save() -> Dictionary:
 		"times_mowed" : times_mowed,
 		"wage" : wage,
 		"first_time" : first_time,
-		"mow_cooldown" : mow_cooldown,
 	}
 
 func load_from(data: Dictionary) -> void:
 	times_mowed = data["times_mowed"]
 	wage = data["wage"]
 	first_time = data["first_time"]
-	mow_cooldown = data["mow_cooldown"]
 

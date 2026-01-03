@@ -100,10 +100,6 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	if neighbor.unavailable():
 		set_menu_unavailable(neighbor)
 		return
-	
-	if neighbor.reject():
-		set_menu_reject(neighbor)
-		return
 
 	if neighbor.first_time:
 		set_menu_first(neighbor)
