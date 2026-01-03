@@ -84,6 +84,7 @@ func return_to_neighborhood() -> void:
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
 	$Player/WaterGun.hide()
+	$Player/NeighborArrow.point_to = ""
 	player.position = player_pos
 	current_wage = 0
 	player.dir = "down"
@@ -161,6 +162,8 @@ func reset() -> void:
 	current_day = 1
 	lawns_mowed = 0
 	current_level = 0
+	player.reset()
+	$/root/Main/HUD/Control/QuestScreen.reset()
 
 func save() -> Dictionary:
 	return {
@@ -221,11 +224,11 @@ func load_save() -> bool:
 	line = save_file.get_line()
 	json = JSON.new()
 	parse_result = json.parse(line)
+	# Set the player defaults
+	player.reset()
 	if parse_result != OK:
 		printerr("Error loading player:")
 		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
-		# Set the player defaults
-		player.max_health = 80
 	else:
 		data = json.data
 		player.max_health = max(data["max_health"], 1)

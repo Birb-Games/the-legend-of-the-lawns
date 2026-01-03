@@ -38,11 +38,13 @@ func select_button(index: int) -> void:
 	# Deselect the current neighbor if we clicked the same button
 	if index == selected:
 		selected = -1
+		$/root/Main/Player/NeighborArrow.point_to = ""
 		return
 	# Set the new selected neighbor
 	if index >= 0 and index < buttons.size():
 		selected = index
 		buttons[selected].text = " >" + buttons[selected].text
+		$/root/Main/Player/NeighborArrow.point_to = neighbor_paths[selected]
 
 func add_neighbor_buttons(
 	parent: Node,
@@ -176,4 +178,10 @@ func _on_reward_button_pressed() -> void:
 	current_quest.reward.give.call(main)
 	main.current_level += 1
 	selected = -1
+	$/root/Main/Player/NeighborArrow.point_to = ""
 	activate()
+
+func reset() -> void:
+	buttons.clear()
+	neighbor_paths.clear()
+	selected = -1

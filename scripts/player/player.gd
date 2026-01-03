@@ -348,3 +348,7 @@ func save() -> Dictionary:
 		"max_health" : max_health,
 	}
 	return data
+
+func reset() -> void:
+	$NeighborArrow.point_to = ""
+	max_health = 80
