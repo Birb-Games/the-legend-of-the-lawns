@@ -23,7 +23,6 @@ var times_mowed: int = 0
 
 @export_group("Wage Info")
 @export var wage: int = 10
-@export var wage_change: int = 0
 @export var max_wage: int = 20
 @export var bonus_base: int = 2
 @export var max_bonus: int = 5
@@ -91,9 +90,6 @@ func change_wage() -> void:
 		wage = 0
 		bonus_base = 0
 		max_bonus = 0
-		return
-	wage += wage_change
-	wage = clamp(wage, 1, max_wage)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
