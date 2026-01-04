@@ -146,10 +146,10 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 
 	$Menu/VBoxContainer/Name.text = "Bus Stop (%s)" % bus_stop.display_name
 	var main: Main = $/root/Main
-	if main.lawns_mowed >= 3:
+	if main.current_level >= 3:
 		$Menu/VBoxContainer/Description.text = "Select your desired destination."
 	else:	
-		$Menu/VBoxContainer/Description.text = "You need to mow at least 3 lawns before you can use the bus!"
+		$Menu/VBoxContainer/Description.text = "You need a bus pass before you can ride the bus!"
 	$Menu/VBoxContainer/Wage.text = ""
 
 	buttons[0].text = "Leave"

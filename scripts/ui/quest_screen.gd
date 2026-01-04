@@ -3,6 +3,7 @@ extends Control
 var buttons: Array[Button] = []
 var neighbor_paths: Array[NodePath] = []
 var selected: int = -1
+var opened: bool = false
 
 func _ready() -> void:
 	$InfoScreen.hide()
@@ -61,13 +62,17 @@ func add_neighbor_buttons(
 	spacing.custom_minimum_size = Vector2(0.0, 2.0)
 	parent.add_child(spacing)
 
+	var main: Main = $/root/Main
 	var index = start_index
 	for neighbor: NeighborNPC in neighbors:
 		var button: Button = $TemplateButton.duplicate()
 		button.show()
 		button.text = " %s" % neighbor.display_name
+		if neighbor.level < main.current_level and neighbor.mowing_limit > 0:
+			var times_mowed = min(neighbor.times_mowed, neighbor.mowing_limit)
+			button.text += " [%d/%d]" % [ times_mowed, neighbor.mowing_limit ]
 		if add_done_label and neighbor.times_mowed > 0:
-			button.text += " (DONE)"
+			button.text += " (DONE)"	
 		if selected == index:
 			button.text = " >" + button.text
 		button.custom_minimum_size.x = $InfoScreen/QuestBox.size.x - 24.0
@@ -85,6 +90,7 @@ func add_neighbor_buttons(
 	return index
 
 func activate() -> void:
+	opened = true
 	$InfoScreen.show()
 	buttons.clear()
 	neighbor_paths.clear()
@@ -163,12 +169,24 @@ func _process(_delta: float) -> void:
 		$InfoScreen.hide()
 		return
 	else:
-		show()
+		show()	
 
 	if Input.is_action_just_pressed("toggle_quest_screen"):
 		toggle()
 	if Input.is_action_just_pressed("ui_cancel"):
 		$InfoScreen.hide()
+	
+	if !visible:
+		return
+
+	var completed: bool = false
+	var current_quest: Quest = Quest.get_quest(main.current_level)
+	if current_quest:
+		completed = current_quest.completed(main, get_current_neighbors())
+	if (completed or (!opened and main.current_day == 1)) and !$InfoScreen.visible:
+		$Alert.show()
+	else:
+		$Alert.hide()
 
 func _on_reward_button_pressed() -> void:
 	var main: Main = $/root/Main
@@ -185,3 +203,4 @@ func reset() -> void:
 	buttons.clear()
 	neighbor_paths.clear()
 	selected = -1
+	opened = false
