@@ -43,6 +43,7 @@ func _ready() -> void:
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
 	if lawn:
 		lawn.total_weeds += 1
+		lawn.weeds.push_back(get_path())
 
 	# Add some screenshake to the camera
 	var camera: GameCamera = $/root/Main/Player/Camera2D

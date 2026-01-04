@@ -216,6 +216,9 @@ func _process(delta: float) -> void:
 		$WaterGun.hide()
 		return
 
+	update_enemy_arrow()
+	update_lawn_mower_arrow()
+
 	$CollisionShape2D.disabled = lawn_mower_active()
 	$LawnmowerHitbox.disabled = !lawn_mower_active()
 	$LawnmowerUpHitbox.disabled = !(lawn_mower_active() and dir == "up")
@@ -352,3 +355,35 @@ func save() -> Dictionary:
 func reset() -> void:
 	$NeighborArrow.point_to = ""
 	max_health = 80
+
+func update_enemy_arrow() -> void:
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		$EnemyArrow.point_to = ""
+		return
+
+	if lawn.cut_grass_tiles < lawn.total_grass_tiles:
+		$EnemyArrow.point_to = ""
+		return
+
+	$EnemyArrow.point_to = ""
+	var min_dist: float = -1.0
+	for path: NodePath in lawn.weeds:
+		var weed: WeedEnemy = get_node_or_null(path)
+		if weed == null:
+			continue
+		var dist: float = (weed.global_position - global_position).length()
+		if dist < min_dist or min_dist < 0.0:
+			$EnemyArrow.point_to = path
+			min_dist = dist
+
+func update_lawn_mower_arrow() -> void:
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		return
+
+	if lawn.cut_grass_tiles < lawn.total_grass_tiles:
+		$LawnmowerArrow.point_to = "/root/Main/Lawn/Lawnmower"
+		return
+
+	$LawnmowerArrow.point_to = ""

@@ -11,6 +11,10 @@ const MIN_MULTIPLIER = 0.5
 const MAX_MULTIPLIER = 1.25
 
 func _process(_delta: float) -> void:
+	if point_to.is_empty():
+		hide()
+		return
+
 	var target_node: Node = get_node_or_null(point_to)
 	# If the target node doesn't exist, hide the arrow
 	if target_node == null:

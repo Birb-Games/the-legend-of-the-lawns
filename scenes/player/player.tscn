@@ -367,12 +367,12 @@ position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_gx1jg")
 
 [node name="NeighborArrow" parent="." instance=ExtResource("10_h17s1")]
-modulate = Color(1, 1, 0, 1)
+modulate = Color(1, 1, 0, 0.627451)
 position = Vector2(29, -11)
 min_dist = 32.0
 
 [node name="LawnmowerArrow" parent="." instance=ExtResource("10_h17s1")]
-modulate = Color(1, 0.25882354, 0.2, 0.627451)
+modulate = Color(1, 0.25882354, 0.2, 0.5019608)
 position = Vector2(29, -11)
 scale = Vector2(0.25, 0.25)
 ignore_if_invisible = true
@@ -381,11 +381,19 @@ min_dist = 64.0
 max_dist = 1600.0
 
 [node name="WatergunArrow" parent="." instance=ExtResource("10_h17s1")]
-modulate = Color(0.32156864, 0.5529412, 1, 0.627451)
+modulate = Color(0.32156864, 0.5529412, 1, 0.5019608)
 position = Vector2(35, -11)
 scale = Vector2(0.25, 0.25)
 ignore_if_invisible = true
 point_to = NodePath("/root/Main/Lawn/WaterGun")
+min_dist = 64.0
+max_dist = 1600.0
+
+[node name="EnemyArrow" parent="." instance=ExtResource("10_h17s1")]
+modulate = Color(0.16862746, 0.6901961, 0, 0.5019608)
+position = Vector2(29, -11)
+scale = Vector2(0.25, 0.25)
+ignore_if_invisible = true
 min_dist = 64.0
 max_dist = 1600.0
 

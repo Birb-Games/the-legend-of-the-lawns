@@ -105,12 +105,11 @@ func save() -> Dictionary:
 	return {
 		"path" : get_path(),
 		"times_mowed" : times_mowed,
-		"wage" : wage,
 		"first_time" : first_time,
 	}
 
 func load_from(data: Dictionary) -> void:
 	times_mowed = data["times_mowed"]
-	wage = data["wage"]
 	first_time = data["first_time"]
+	change_wage()
 

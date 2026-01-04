@@ -41,13 +41,15 @@ func _process(_delta: float) -> void:
 	if activate_fail_screen():
 		return
 	
-	# Open pause menu for lawn
+	# Open pause menu
 	if Input.is_action_just_pressed("ui_cancel"):
 		$Control/TransitionRect.end_transition()
-		if $Control/NPCMenu.visible:
+		if npc_menu_open():
 			# Exit out of neighbor menu
 			$Control/NPCMenu.hide()
 			$Control/NPCMenu.hide_neighbor()
+		elif quest_screen_open():
+			$Control/QuestScreen/InfoScreen.hide()
 		else:
 			toggle_pause_menu()
 
