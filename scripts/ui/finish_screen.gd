@@ -130,7 +130,6 @@ func _on_return_pressed() -> void:
 	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor()
 	if main.money > prev_money:
 		current_neighbor.times_mowed += 1
-		current_neighbor.change_wage()
 	$/root/Main/Player/Lawnmower.hide()
 	main.save_progress()
 

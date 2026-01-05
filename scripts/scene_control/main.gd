@@ -211,9 +211,7 @@ func load_save() -> bool:
 		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
 		return false	
 	var data = json.data
-	player_name = data["player_name"]
-	if player_name.is_empty():
-		player_name = "Billy"
+	player_name = Save.get_val(data, "player_name", "Billy")
 	money = max(Save.get_val(data, "money", 0), 0)
 	current_day = max(Save.get_val(data, "current_day", 1), 1)
 	lawns_mowed = max(Save.get_val(data, "lawns_mowed", 0), 0)
@@ -230,7 +228,7 @@ func load_save() -> bool:
 		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
 	else:
 		data = json.data
-		player.max_health = max(data["max_health"], 1)
+		player.max_health = max(Save.get_val(data, "max_health", 80), 1)
 
 	# Load neighborhood
 	line = save_file.get_line()

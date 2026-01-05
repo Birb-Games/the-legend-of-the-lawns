@@ -13,11 +13,7 @@ var player_in_area: bool = false
 @export var always_visible: bool = false
 @export var disabled: bool = false
 @export var lawn_template: PackedScene
-# The maximum number of times the player can mow the lawn and get paid
-# (they can replay the lawn afterward but will not receive any money)
-# Set this value to 0 if you want to allow the player to mow the lawn an
-# unlimited number of times.
-@export var mowing_limit: int = 0
+@export var max_difficulty: int = 0
 var times_mowed: int = 0
 @export var level: int = -1
 
@@ -82,15 +78,6 @@ func _process(_delta: float) -> void:
 	if always_visible:
 		show()
 
-func mowing_limit_reached() -> bool:
-	return mowing_limit > 0 and times_mowed >= mowing_limit
-
-func change_wage() -> void:
-	if mowing_limit_reached():
-		wage = 0
-		bonus_base = 0
-		max_bonus = 0
-
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_in_area = true
@@ -109,7 +96,5 @@ func save() -> Dictionary:
 	}
 
 func load_from(data: Dictionary) -> void:
-	times_mowed = data["times_mowed"]
-	first_time = data["first_time"]
-	change_wage()
-
+	times_mowed = Save.get_val(data, "times_mowed", 0)
+	first_time = Save.get_val(data, "first_time", true)

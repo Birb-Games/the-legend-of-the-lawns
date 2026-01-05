@@ -60,4 +60,4 @@ func save() -> Dictionary:
 	}
 
 func load_from(data: Dictionary) -> void:
-	first_time = data["first_time"]
+	first_time = Save.get_val(data, "first_time", true)

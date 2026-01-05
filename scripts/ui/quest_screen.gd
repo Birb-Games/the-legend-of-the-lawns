@@ -62,15 +62,11 @@ func add_neighbor_buttons(
 	spacing.custom_minimum_size = Vector2(0.0, 2.0)
 	parent.add_child(spacing)
 
-	var main: Main = $/root/Main
 	var index = start_index
 	for neighbor: NeighborNPC in neighbors:
 		var button: Button = $TemplateButton.duplicate()
 		button.show()
 		button.text = " %s" % neighbor.display_name
-		if neighbor.level < main.current_level and neighbor.mowing_limit > 0:
-			var times_mowed = min(neighbor.times_mowed, neighbor.mowing_limit)
-			button.text += " [%d/%d]" % [ times_mowed, neighbor.mowing_limit ]
 		if add_done_label and neighbor.times_mowed > 0:
 			button.text += " (DONE)"	
 		if selected == index:
