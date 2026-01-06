@@ -12,9 +12,13 @@ var player_in_area: bool = false
 @export var display_name: String = "Neighbor"
 @export var always_visible: bool = false
 @export var disabled: bool = false
+@export var is_test: bool = false
 @export var lawn_template: PackedScene
 @export var max_difficulty: int = 0
 var times_mowed: int = 0
+# The player has to mow this many lawns before this neighbor is available again
+# on the job board
+var cooldown: int = 0
 @export var level: int = -1
 
 @export_group("Wage Info")
@@ -54,7 +58,7 @@ func unavailable() -> bool:
 
 func reject() -> bool:
 	var main: Main = $/root/Main
-	return times_mowed > 0 and !(name in main.job_list)
+	return times_mowed > 0 and !(name in main.job_list) and !is_test
 
 func generate_dialog() -> void:
 	current_dialog = ""
@@ -102,6 +106,7 @@ func save() -> Dictionary:
 		"path" : get_path(),
 		"times_mowed" : times_mowed,
 		"first_time" : first_time,
+		"cooldown" : cooldown
 	}
 
 func load_from(data: Dictionary) -> void:

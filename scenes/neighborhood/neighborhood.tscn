@@ -231,6 +231,7 @@ position = Vector2(-74, -117)
 display_name = "Mr. Test"
 always_visible = true
 disabled = true
+is_test = true
 lawn_template = ExtResource("12_u28t5")
 interact_text = "TEST LAWN"
 

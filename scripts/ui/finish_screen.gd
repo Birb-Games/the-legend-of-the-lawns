@@ -126,9 +126,15 @@ func _on_return_pressed() -> void:
 	main.lawns_mowed += 1
 	main.update_money(current_wage_modifier)
 	main.advance_day()
+	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor()	
+	if current_neighbor.name in main.job_list:
+		main.job_list.erase(current_neighbor.name)
 	main.return_to_neighborhood()
-	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor()
-	main.job_list.erase(current_neighbor.name)
+	# Update other neighbors's cooldowns
+	main.neighborhood.update_neighbors()
+	# Set the neighbor cooldown
+	current_neighbor.cooldown = randi_range(1, 4)
+	$/root/Main/Neighborhood/JobBoard.generate_job()
 	if main.money > prev_money:
 		current_neighbor.times_mowed += 1
 	$/root/Main/Player/Lawnmower.hide()

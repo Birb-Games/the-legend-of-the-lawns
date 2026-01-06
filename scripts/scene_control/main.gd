@@ -3,7 +3,7 @@ class_name Main
 extends Node2D
 
 @onready var neighborhood_scene: PackedScene = preload("uid://8t3kf3315lkx")
-@onready var neighborhood: Node2D = $Neighborhood
+@onready var neighborhood: Neighborhood = $Neighborhood
 @onready var player: Player = $Player
 @onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
@@ -181,7 +181,8 @@ func save() -> Dictionary:
 		"current_day" : current_day,
 		"lawns_mowed": lawns_mowed,
 		"player_name" : player_name,
-		"current_level" : current_level
+		"current_level" : current_level,
+		"jobs" : get_job_list_str()
 	}
 
 func save_progress() -> void:
@@ -206,6 +207,13 @@ func save_progress() -> void:
 		var json = JSON.stringify(data)
 		save_file.store_line(json)
 
+func get_job_list_str() -> String:
+	var job_list_str: String = ""
+	for key: String in job_list.keys():
+		var job: Job = job_list[key]
+		job_list_str += "%s|" % job.to_json_str(key)
+	return job_list_str
+
 func load_save() -> bool:
 	var save_file = FileAccess.open(save_path, FileAccess.READ)
 
@@ -227,6 +235,7 @@ func load_save() -> bool:
 	current_day = max(Save.get_val(data, "current_day", 1), 1)
 	lawns_mowed = max(Save.get_val(data, "lawns_mowed", 0), 0)
 	current_level = max(Save.get_val(data, "current_level", 0), 0)
+	job_list = Job.parse_job_list(Save.get_val(data, "jobs", ""))
 
 	# Load player stats
 	line = save_file.get_line()
