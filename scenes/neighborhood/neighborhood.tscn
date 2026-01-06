@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://8t3kf3315lkx"]
+[gd_scene load_steps=38 format=4 uid="uid://8t3kf3315lkx"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/scene_control/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cnccoqerc1v07" path="res://assets/textures/npcs/hats/tophat.png" id="22_k0lcp"]
 [ext_resource type="PackedScene" uid="uid://ptblx0eoqvua" path="res://scenes/lawns/nancy_lawn.tscn" id="24_xefxb"]
 [ext_resource type="PackedScene" uid="uid://bkn3rcq86gyqb" path="res://scenes/lawns/chloe_lawn.tscn" id="25_62p1y"]
+[ext_resource type="PackedScene" uid="uid://d32yummmyhpuj" path="res://scenes/neighborhood/job_board.tscn" id="28_wj70i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -430,6 +431,9 @@ script = ExtResource("10_35gpm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SkipDay"]
 position = Vector2(8.5, -174)
 shape = SubResource("RectangleShape2D_wnnnr")
+
+[node name="JobBoard" parent="." instance=ExtResource("28_wj70i")]
+position = Vector2(904, -59.000004)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

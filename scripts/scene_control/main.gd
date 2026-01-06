@@ -19,8 +19,9 @@ var current_day: int = 1
 # How many lawns the player mowed
 var lawns_mowed: int = 0
 var current_wage: int = 0
-
 var current_level: int = 0
+# Key: node path, Value: Job info 
+var job_list: Dictionary = {}
 
 # Update the money based on the current wage and the modifier (penalties and bonuses)
 func update_money(modifier: int) -> void:
@@ -54,6 +55,13 @@ func _process(delta: float) -> void:
 func advance_day() -> void:
 	current_day += 1
 	$HUD/Control/TransitionRect.start_animation()
+	for key: String in job_list.keys():
+		var job: Job = job_list[key]
+		job.update()
+	for key: String in job_list.keys():
+		var job: Job = job_list[key]
+		if job.days_left <= 0:
+			job_list.erase(key)
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -82,6 +90,7 @@ func return_to_neighborhood() -> void:
 		get_node("Lawn").queue_free()
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
+	$Neighborhood/JobBoard.generate_job()
 	$Player/WaterGun.hide()
 	$Player/NeighborArrow.point_to = ""
 	player.position = player_pos
@@ -155,6 +164,7 @@ func reset() -> void:
 	$Neighborhood.free()
 	add_child(neighborhood_scene.instantiate())
 	neighborhood = $Neighborhood
+	job_list.clear()
 
 	return_to_neighborhood()
 	money = 0
@@ -163,6 +173,7 @@ func reset() -> void:
 	current_level = 0
 	player.reset()
 	$/root/Main/HUD/Control/QuestScreen.reset()
+	$Neighborhood/JobBoard.generate_job()
 
 func save() -> Dictionary:
 	return {
@@ -246,6 +257,7 @@ func load_save() -> bool:
 		line = save_file.get_line()
 	
 	update_continue_save()
+	$Neighborhood/JobBoard.generate_job()
 	return true
 
 func update_continue_save() -> void:

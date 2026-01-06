@@ -39,7 +39,6 @@ func set_menu_reject(neighbor: NeighborNPC) -> void:
 	$Menu/VBoxContainer/Name.text = neighbor.display_name
 	$Menu/VBoxContainer/Wage.text = ""
 	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
-
 	buttons[0].show()
 	buttons[0].text = "Leave"
 	buttons[0].connect("pressed", on_leave_pressed)
@@ -83,6 +82,10 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	
 	if neighbor.unavailable():
 		set_menu_unavailable(neighbor)
+		return
+
+	if neighbor.reject():
+		set_menu_reject(neighbor)
 		return
 
 	if neighbor.first_time:
@@ -133,7 +136,7 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 
 	show()
 
-	if main.lawns_mowed < 3:
+	if main.current_level < 3:
 		return
 
 	var index = 1
@@ -157,6 +160,28 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 		)
 		buttons[index].show()
 		index += 1
+
+func set_job_board_menu(job_board: JobBoard) -> void:
+	reset_buttons()
+
+	$Menu/VBoxContainer/Name.text = "Job Board"
+	if job_board.current_job == null:
+		$Menu/VBoxContainer/Description.text = "No lawn mowing jobs are currently available."
+		$Menu/VBoxContainer/Wage.text = ""
+	else:
+		var neighbor: NeighborNPC = get_node_or_null(job_board.current_job.neighbor_path)
+		$Menu/VBoxContainer/Description.text = job_board.current_job.get_message(neighbor)
+		$Menu/VBoxContainer/Wage.text = "Job added to journal!"
+		var main: Main = $/root/Main
+		if neighbor:
+			main.job_list[neighbor.name] = job_board.current_job
+		job_board.current_job = null
+
+	buttons[0].text = "Okay"
+	buttons[0].connect("pressed", on_leave_pressed)
+	buttons[0].show()
+
+	show()
 
 func skip_day() -> void:
 	var main: Main = $/root/Main

@@ -20,17 +20,14 @@ func get_current_neighbors() -> Array:
 				neighbors.push_back(neighbor)
 	return neighbors
 
-func get_prev_neighbors() -> Array:
+func get_jobs() -> Array:
 	var neighbors: Array = []
 	var main: Main = $/root/Main
-	for neighbor in $/root/Main/Neighborhood/Neighbors.get_children():
-		if neighbor is NeighborNPC:
-			if neighbor.level < 0:
-				continue
-			if neighbor.disabled:
-				continue
-			if neighbor.level < main.current_level:
-				neighbors.push_back(neighbor)
+	for job: Job in main.job_list.values():
+		var neighbor: NeighborNPC = get_node_or_null(job.neighbor_path)
+		if neighbor == null:
+			continue
+		neighbors.push_back(neighbor)
 	return neighbors
 
 func select_button(index: int) -> void:
@@ -50,8 +47,8 @@ func select_button(index: int) -> void:
 func add_neighbor_buttons(
 	parent: Node,
 	neighbors: Array,
+	button_texts: Array[String],
 	start_index: int = 0,
-	add_done_label: bool = false
 ) -> int:
 	# Clear previous children
 	for child in parent.get_children():
@@ -66,9 +63,7 @@ func add_neighbor_buttons(
 	for neighbor: NeighborNPC in neighbors:
 		var button: Button = $TemplateButton.duplicate()
 		button.show()
-		button.text = " %s" % neighbor.display_name
-		if add_done_label and neighbor.times_mowed > 0:
-			button.text += " (DONE)"	
+		button.text = button_texts[index - start_index] 
 		if selected == index:
 			button.text = " >" + button.text
 		button.custom_minimum_size.x = $InfoScreen/QuestBox.size.x - 24.0
@@ -85,6 +80,27 @@ func add_neighbor_buttons(
 	parent.add_child(spacing.duplicate())
 	return index
 
+func get_job_button_text() -> Array[String]:
+	var button_texts: Array[String] = []	
+	var main: Main = $/root/Main
+	for job: Job in main.job_list.values():
+		var neighbor: NeighborNPC = get_node_or_null(job.neighbor_path)
+		if neighbor == null:
+			button_texts.push_back("")
+			continue
+		var text: String = " %s (%d days left)" % [neighbor.display_name, job.days_left]
+		button_texts.push_back(text)
+	return button_texts
+
+func get_quest_button_text(neighbors: Array) -> Array[String]:
+	var button_texts: Array[String] = []	
+	for neighbor: NeighborNPC in neighbors:
+		var text: String = " %s" % neighbor.display_name
+		if neighbor.times_mowed > 0:
+			text += " (DONE)"
+		button_texts.push_back(text)
+	return button_texts
+
 func activate() -> void:
 	opened = true
 	$InfoScreen.show()
@@ -92,11 +108,13 @@ func activate() -> void:
 	neighbor_paths.clear()
 
 	var main: Main = $/root/Main
+	var button_texts: Array[String]
 	# Create the list of lawns the player has previously mowed
-	var prev_neighbors = get_prev_neighbors()
-	$InfoScreen/QuestBox/PrevLawnsLabel.visible = !prev_neighbors.is_empty()
-	$InfoScreen/QuestBox/PrevLawns.visible = !prev_neighbors.is_empty()
-	var index = add_neighbor_buttons($InfoScreen/QuestBox/PrevLawns/List, prev_neighbors, 0)
+	var jobs = get_jobs()
+	$InfoScreen/QuestBox/JobLabel.visible = !jobs.is_empty()
+	$InfoScreen/QuestBox/JobLawns.visible = !jobs.is_empty()
+	button_texts = get_job_button_text()
+	var index = add_neighbor_buttons($InfoScreen/QuestBox/JobLawns/List, jobs, button_texts)
 
 	# Set up player stats
 	$InfoScreen/Stats/StatsText.text = ""
@@ -127,7 +145,8 @@ func activate() -> void:
 	else:
 		$InfoScreen/QuestBox/MowingGoal.text = " - Mow lawns:"
 	$InfoScreen/QuestBox/Lawns.visible = !current_neighbors.is_empty()
-	add_neighbor_buttons($InfoScreen/QuestBox/Lawns/List, current_neighbors, index, true)
+	button_texts = get_quest_button_text(current_neighbors)
+	add_neighbor_buttons($InfoScreen/QuestBox/Lawns/List, current_neighbors, button_texts, index)
 	var button_sz: float = $TemplateButton.custom_minimum_size.y + 4.0
 	var height: float = 12.0 + len(current_neighbors) * button_sz
 	var max_height: float = 12.0 + 3.0 * button_sz

@@ -141,6 +141,9 @@ func set_npc_menu(npc: NPC) -> void:
 func set_bus_menu(bus_stop: BusStop) -> void:
 	$Control/NPCMenu.set_bus_menu(bus_stop)
 
+func set_job_board_menu(job_board: JobBoard) -> void:
+	$Control/NPCMenu.set_job_board_menu(job_board)
+
 func set_skip_day_menu() -> void:
 	$Control/NPCMenu.set_skip_day_menu()
 

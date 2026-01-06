@@ -128,6 +128,7 @@ func _on_return_pressed() -> void:
 	main.advance_day()
 	main.return_to_neighborhood()
 	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor()
+	main.job_list.erase(current_neighbor.name)
 	if main.money > prev_money:
 		current_neighbor.times_mowed += 1
 	$/root/Main/Player/Lawnmower.hide()

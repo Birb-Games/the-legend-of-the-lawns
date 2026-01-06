@@ -52,10 +52,19 @@ func _ready() -> void:
 func unavailable() -> bool:
 	return $/root/Main.current_level < level 
 
+func reject() -> bool:
+	var main: Main = $/root/Main
+	return times_mowed > 0 and !(name in main.job_list)
+
 func generate_dialog() -> void:
 	current_dialog = ""
 	if unavailable():
 		current_dialog = unavailable_msg
+		return
+	if reject():
+		if len(reject_dialog) == 0:
+			return
+		current_dialog = reject_dialog[randi() % len(reject_dialog)]
 		return
 	if first_time:
 		current_dialog = first_dialog

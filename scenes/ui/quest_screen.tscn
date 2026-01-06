@@ -158,17 +158,17 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="PrevLawnsLabel" type="Label" parent="InfoScreen/QuestBox"]
+[node name="JobLabel" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_44lm1")
 theme_override_font_sizes/font_size = 20
-text = "Completed Lawns:"
+text = "Jobs:"
 
-[node name="PrevLawns" type="ScrollContainer" parent="InfoScreen/QuestBox"]
+[node name="JobLawns" type="ScrollContainer" parent="InfoScreen/QuestBox"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 
-[node name="List" type="VBoxContainer" parent="InfoScreen/QuestBox/PrevLawns"]
+[node name="List" type="VBoxContainer" parent="InfoScreen/QuestBox/JobLawns"]
 layout_mode = 2
 size_flags_horizontal = 6
 
