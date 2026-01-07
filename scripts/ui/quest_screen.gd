@@ -158,7 +158,7 @@ func activate() -> void:
 		$InfoScreen/QuestBox/Goals.add_child(goal_label)
 	if current_quest.completed(main):
 		var label: Label = $InfoScreen/QuestBox/MowingGoal.duplicate()
-		label.text = "All TO-DOs completed!"
+		label.text = "TO-DO list completed!"
 		$InfoScreen/QuestBox/Goals.add_child(label)
 		$InfoScreen/QuestBox/RewardLabel2.show()
 	else:

@@ -305,6 +305,7 @@ first_job_offer = "Oh, okay. Well then, I suppose I could use some help with my 
 [node name="Willow" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(1064, -155)
 animation = &"willow"
+display_name = "Willow"
 
 [node name="Hat" type="AnimatedSprite2D" parent="Neighbors/Willow"]
 z_index = 1
@@ -315,6 +316,7 @@ autoplay = "default"
 [node name="McMoneyPants" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-296, -523)
 animation = &"mr_mcmoneypants"
+display_name = "Mr. McMoneyPants"
 
 [node name="Hat" type="AnimatedSprite2D" parent="Neighbors/McMoneyPants"]
 z_index = 1
@@ -325,63 +327,78 @@ autoplay = "default"
 [node name="NeighborHunter" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(200.00002, 229.00002)
 animation = &"neighbor_hunter"
+display_name = "Neighbor Hunter"
 
 [node name="Poofball" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(504, -540)
 animation = &"mrs_poofball"
+display_name = "Mrs. Poofball"
 
 [node name="NeighborJames" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(488, 229)
 animation = &"neighbor_james"
+display_name = "Neighbor James"
 lawn_template = ExtResource("11_e6rtj")
 
 [node name="NeighborPaul" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(72, 229)
 animation = &"neighbor_paul"
+display_name = "Neighbor Paul"
 
 [node name="NeighborChloe" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(840, 229.00002)
 animation = &"neighbor_chloe"
+display_name = "Neighbor Chloe"
 lawn_template = ExtResource("25_62p1y")
 
 [node name="NeighborGeorge" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(1112, 229.00002)
 animation = &"neighbor_george"
+display_name = "Neighbor George"
 
 [node name="NeighborTam" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-152, 229.00002)
 animation = &"neighbor_tam"
+display_name = "Neighbor Tam"
 
 [node name="NeighborRob" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-280, 229)
+display_name = "Neighbor Rob"
 
 [node name="Alien" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-424.00003, 229.00002)
 animation = &"alien"
+display_name = "Alien"
 
 [node name="NeighborNicole" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(648, -539)
 animation = &"neighbor_nicole"
+display_name = "Neighbor Nicole"
 
 [node name="NeighborMalcom" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(360, -539)
 animation = &"neighbor_malcom"
+display_name = "Neighbor Malcom"
 
 [node name="Bugman" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(1112, -539)
 animation = &"bugman"
+display_name = "Bugman"
 
 [node name="MrTie" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(232.00002, -539)
 animation = &"mr_tie"
+display_name = "Mr. Tie"
 
 [node name="Cyborg" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-8, -539)
 animation = &"cyborg"
+display_name = "Cyborg"
 
 [node name="NeighborHelen" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(888, -539)
 animation = &"neighbor_helen"
+display_name = "Neighbor Helen"
 
 [node name="FastTravel" type="Node2D" parent="."]
 y_sort_enabled = true
