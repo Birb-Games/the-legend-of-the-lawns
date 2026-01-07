@@ -33,17 +33,13 @@ var cooldown: int = 0
 
 @export_group("Dialog")
 @export_multiline var interact_text: String = "Press [SPACE] to knock on door."
-@export_multiline var possible_dialog: PackedStringArray = [
-	"Oh, you want to mow my lawn? I suppose it is a bit overgrown...",
-	"My lawn needs to be mowed today but I'm too lazy.",
-]
-@export_multiline var reject_dialog: PackedStringArray = [
-	"Sorry, my lawn doesn't need to be mowed today.",
-]
-@export_multiline var unavailable_msg: String = "The door is locked..."
-@export_multiline var first_dialog: String = "Hello!"
-@export_multiline var player_dialog: String = "I'm here to mow your lawn!"
-@export_multiline var first_job_offer: String = "I suppose I could use some help with mowing my lawn today..."
+var possible_dialog: PackedStringArray = Dialog.DEFAULT_POSSIBLE_DIALOG
+var reject_dialog: PackedStringArray = Dialog.DEFAULT_REJECT_DIALOG
+var unavailable_msg: String = Dialog.DEFAULT_UNAVAILABLE_MSG
+var first_dialog: PackedStringArray = Dialog.DEFAULT_FIRST_DIALOG
+var player_dialog: PackedStringArray = Dialog.DEFAULT_PLAYER_DIALOG
+var first_job_offer: String = Dialog.DEFAULT_FIRST_JOB_OFFER
+@export var dialog_json: JSON
 var first_time: bool = true
 
 var current_dialog: String = ""
@@ -52,6 +48,7 @@ func _ready() -> void:
 	$Area2D/CollisionShape2D.disabled = disabled
 	hide()
 	play(animation)
+	Dialog.set_neighbor_dialog_from_json(self, dialog_json)
 
 func unavailable() -> bool:
 	return $/root/Main.current_level < level 
@@ -66,15 +63,14 @@ func generate_dialog() -> void:
 		current_dialog = unavailable_msg
 		return
 	if reject():
-		if len(reject_dialog) == 0:
+		if reject_dialog.is_empty():
 			return
 		current_dialog = reject_dialog[randi() % len(reject_dialog)]
 		return
-	if first_time:
-		current_dialog = first_dialog
+	if first_time and !first_dialog.is_empty():
 		return
 	
-	if len(possible_dialog) == 0:
+	if possible_dialog.is_empty():
 		return
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 

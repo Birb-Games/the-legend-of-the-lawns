@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://8t3kf3315lkx"]
+[gd_scene load_steps=46 format=4 uid="uid://8t3kf3315lkx"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/scene_control/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -20,13 +20,21 @@
 [ext_resource type="PackedScene" uid="uid://cuajr6kbdphpb" path="res://scenes/neighborhood/arch.tscn" id="11_bpn1c"]
 [ext_resource type="PackedScene" uid="uid://br74t0xmwoiyq" path="res://scenes/lawns/james_lawn.tscn" id="11_e6rtj"]
 [ext_resource type="PackedScene" uid="uid://dpa88af6o4cu7" path="res://scenes/lawns/unused/test_lawn.tscn" id="12_u28t5"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/dad_dialog.json" id="13_cvosm"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/mom_dialog.json" id="14_ixbld"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/spotty_dialog.json" id="15_4u6tr"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/test_dialog.json" id="18_bmbxr"]
 [ext_resource type="PackedScene" uid="uid://dl4gikurgk4pb" path="res://scenes/lawns/jim_lawn.tscn" id="19_dys3o"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/bob_dialog.json" id="20_bmbxr"]
 [ext_resource type="Texture2D" uid="uid://db3c1j4jldunq" path="res://assets/textures/npcs/hats/witchhat.png" id="21_6hoof"]
 [ext_resource type="PackedScene" uid="uid://hxirrs1or5r8" path="res://scenes/lawns/emily_lawn.tscn" id="21_dys3o"]
 [ext_resource type="PackedScene" uid="uid://1fi7xb3mewly" path="res://scenes/neighborhood/bus_stop.tscn" id="21_pqaru"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/jim_dialog.json" id="22_7273a"]
 [ext_resource type="Texture2D" uid="uid://cnccoqerc1v07" path="res://assets/textures/npcs/hats/tophat.png" id="22_k0lcp"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/nancy_dialog.json" id="24_nofqt"]
 [ext_resource type="PackedScene" uid="uid://ptblx0eoqvua" path="res://scenes/lawns/nancy_lawn.tscn" id="24_xefxb"]
 [ext_resource type="PackedScene" uid="uid://bkn3rcq86gyqb" path="res://scenes/lawns/chloe_lawn.tscn" id="25_62p1y"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/emily_dialog.json" id="26_yfbpo"]
 [ext_resource type="PackedScene" uid="uid://d32yummmyhpuj" path="res://scenes/neighborhood/job_board.tscn" id="28_wj70i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
@@ -177,27 +185,19 @@ y_sort_enabled = true
 [node name="Dad" parent="NPCs" instance=ExtResource("4_dcvy4")]
 position = Vector2(-133, -134)
 display_name = "Dad"
-first_dialog = "Could it wait champ? I'm pulling out the weeds right now. Be careful, the weeds have been... extra difficult recently for some reason."
-player_dialog = "Can we PLEASE get the new Swapdeck?"
-possible_dialog = ["No son, if you want that new console you're going to have to work for it.", "Champ, all good things in life come from hard work. Go mow some lawns if you want to buy that new Swapthingy console.", "Son, not right now. If you want that Swatchdeck game thing you're going to have to work for the money. Go mow some of the neighbors's lawns if you want the cash.", "If you want something, you should put in the sweat to get it. I suggest mowing the neighbor's lawn - it builds character.", "We already got you that Birb Run game for your birthday, you're going to have to get the money for that console on your own. I mowed lawns as a kid when I needed some cash."]
+dialog_json = ExtResource("13_cvosm")
 
 [node name="Mom" parent="NPCs" instance=ExtResource("4_dcvy4")]
 position = Vector2(47, -103)
 animation = &"mom"
 display_name = "Mom"
-first_dialog = "Be careful sweetie, flowers can be... fussy when they're angry. They're hard to take care of but I'd be really upset if they were killed."
-player_dialog = "Can we PLEASE get-"
-possible_dialog = ["Not now, sweetie, I'm busy gardening.", "Sweetie, can it please wait? I'm watering the flowers right now.", "Taking care of these flowers is difficult,
-I need to concentrate right now. Could you talk to me later?", "Are you asking about the Swapdeck again? We've told you, you're going to have to earn the money yourself if you want it."]
+dialog_json = ExtResource("14_ixbld")
 
 [node name="Spotty" parent="NPCs" instance=ExtResource("4_dcvy4")]
 position = Vector2(106, -101)
 animation = &"spotty"
 display_name = "Spotty the dog"
-first_dialog = "*sniff* *sniff*
-Arf! Arf!"
-player_dialog = "Hey there boy!"
-possible_dialog = ["Arf! Arf!", "*sniff* *sniff*", "Bark! Bark!", "*pant* *pant* *pant*"]
+dialog_json = ExtResource("15_4u6tr")
 
 [node name="Decorations" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -234,6 +234,7 @@ disabled = true
 is_test = true
 lawn_template = ExtResource("12_u28t5")
 interact_text = "TEST LAWN"
+dialog_json = ExtResource("18_bmbxr")
 
 [node name="NeighborBob" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(216, -155)
@@ -246,10 +247,7 @@ bonus_base = 1
 max_bonus = 4
 flower_penalty = 1
 hedge_penalty = 1
-first_dialog = "Hello, are you my neighbor's kid? Do you need anything?
-By the way, if you're here to sell me that new high-powered weed killer, I'm not interested."
-first_job_offer = "Okay good, you're not a door-to-door salesman.
-Well then, I suppose I could use some help with mowing my lawn today..."
+dialog_json = ExtResource("20_bmbxr")
 
 [node name="NeighborJim" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(-232, -155)
@@ -263,12 +261,7 @@ bonus_base = 1
 max_bonus = 4
 flower_penalty = 1
 hedge_penalty = 1
-unavailable_msg = "The door is locked...
-There is a note on the door: \"I am at the office right now, come back later. Unless you're an insurance salesman - then scram.\""
-first_dialog = "Hey, aren't you my neighbor's kid? Do you need something?
-You better not be trying to sell me insurance..."
-first_job_offer = "Oh good, you're not selling me insurance.
-Well then, I suppose I could use some help with mowing my lawn today..."
+dialog_json = ExtResource("22_7273a")
 
 [node name="NeighborNancy" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(488, -155)
@@ -282,10 +275,7 @@ bonus_base = 1
 max_bonus = 4
 flower_penalty = 3
 hedge_penalty = 1
-unavailable_msg = "The door is locked...
-There's a note: \"I'm on vacation right now, please come back later! Thank you!\""
-first_dialog = "Hi! You're my neighbor's kid, right? Do you need anything?"
-first_job_offer = "Oh, thank you! My lawn does need a trim - I just got back from a vacation to Aldoria and I don't feel like mowing my lawn. My flowers haven't been watered so they're a little upset right now..."
+dialog_json = ExtResource("24_nofqt")
 
 [node name="NeighborEmily" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(344, 229)
@@ -297,10 +287,7 @@ bonus_base = 1
 max_bonus = 6
 flower_penalty = 3
 hedge_penalty = 2
-unavailable_msg = "The door is locked...
-There's a note: \"I'm out shopping right now, will be back soon!\""
-first_dialog = "Oh, uhm, hello. Do I know you?"
-first_job_offer = "Oh, okay. Well then, I suppose I could use some help with my lawn today. Just be careful around my flower garden."
+dialog_json = ExtResource("26_yfbpo")
 
 [node name="Willow" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(1064, -155)

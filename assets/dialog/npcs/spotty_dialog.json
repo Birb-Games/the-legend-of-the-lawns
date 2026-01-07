@@ -1,0 +1,18 @@
+{
+	"first_dialog": [
+		"*sniff* *sniff*\nArf! Arf!",
+		"Bark! Bark!",
+	],
+
+	"player_dialog": [
+		"Hey there boy!",
+		"Good dog!",
+	],
+
+	"possible_dialog": [
+		"Arf! Arf!", 
+		"*sniff* *sniff*", 
+		"Bark! Bark!", 
+		"*pant* *pant* *pant*",
+	]
+}

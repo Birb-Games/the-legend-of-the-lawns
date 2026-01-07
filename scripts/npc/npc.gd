@@ -12,27 +12,28 @@ extends AnimatedSprite2D
 @export var first_time: bool = true
 
 @export_group("Dialog")
-@export_multiline var first_dialog: String = "Hello!"
-@export_multiline var player_dialog: String = "Hello!"
-@export_multiline var possible_dialog: PackedStringArray = []
+var first_dialog: PackedStringArray = [ "Hello!" ]
+var player_dialog: PackedStringArray = [ "Hello!" ]
+var possible_dialog: PackedStringArray = []
 @export_multiline var interact_text = ""
+@export var dialog_json: JSON
 
 var current_dialog: String = ""
 var player_in_area: bool = false
 
 func _ready() -> void:
-	if len(interact_text) == 0:
+	if interact_text.is_empty():
 		interact_text = "talk to %s" % display_name
 
 	play(animation)
+	Dialog.set_npc_dialog_from_json(self, dialog_json)
 
 func generate_dialog() -> void:
 	current_dialog = ""
-	if first_time:
-		current_dialog = first_dialog
+	if first_time and !first_dialog.is_empty():
 		return
 	
-	if len(possible_dialog) == 0:
+	if possible_dialog.is_empty():
 		return
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 

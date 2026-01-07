@@ -1,0 +1,18 @@
+{
+	"first_dialog": [
+		"Could it wait champ? I'm pulling out the weeds right now. Be careful, the weeds have been... extra difficult recently for some reason.",
+		"We just talked about this, we already got you that Birb Run game for your birthday, you're going to have to get the money for that console on your own. I mowed lawns as a kid when I needed some cash."
+	],
+
+	"player_dialog": [
+		"Can we PLEASE get the new Swapdeck?",
+		"Ugh, fine."
+	],
+
+	"possible_dialog": [
+		"No son, if you want that new console you're going to have to work for it.", 
+		"Champ, all good things in life come from hard work. Go mow some lawns if you want to buy that new Swapthingy console.", 
+		"Son, not right now. If you want that Swatchdeck game thing you're going to have to work for the money. Go mow some of the neighbors's lawns if you want the cash.",
+		"If you want something, you should put in the sweat to get it. I suggest mowing the neighbor's lawn - it builds character.", 
+	]
+}

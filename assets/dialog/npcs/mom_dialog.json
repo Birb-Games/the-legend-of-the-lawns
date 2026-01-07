@@ -1,0 +1,18 @@
+{
+	"first_dialog": [
+		"Be careful sweetie, flowers can be... fussy when they're angry. They're hard to take care of but I'd be really upset if they died. They're still recovering from when you shot them with your water gun.",
+		"Can it wait? I need to get back to gardening.",
+	],
+
+	"player_dialog": [
+		"Can we PLEASE get-",
+		"Never mind.",
+	],
+
+	"possible_dialog": [
+		"Not now, sweetie, I'm busy gardening.", 
+		"Sweetie, can it please wait? I'm watering the flowers right now.", 
+		"Taking care of these flowers is difficult, I need to concentrate right now. Could you talk to me later?", 
+		"Are you asking about the Swapdeck again? We've told you, you're going to have to earn the money yourself if you want it.",
+	]
+}
