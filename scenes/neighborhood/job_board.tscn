@@ -1,11 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://d32yummmyhpuj"]
+[gd_scene load_steps=11 format=3 uid="uid://d32yummmyhpuj"]
 
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_2d61f"]
 [ext_resource type="Script" uid="uid://bqsx6gqpyi3ma" path="res://scripts/interactable/job_board.gd" id="1_hggwc"]
 [ext_resource type="Texture2D" uid="uid://cj41wridn4hq7" path="res://assets/textures/job_board.png" id="1_rtq55"]
+[ext_resource type="Texture2D" uid="uid://cpcb8pfd0nn0x" path="res://assets/textures/alert.png" id="4_j22rn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkwf6"]
 size = Vector2(56, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05uri"]
+atlas = ExtResource("4_j22rn")
+region = Rect2(0, 24, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxvnm"]
+atlas = ExtResource("4_j22rn")
+region = Rect2(18, 24, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae85b"]
+atlas = ExtResource("4_j22rn")
+region = Rect2(36, 24, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7877"]
+atlas = ExtResource("4_j22rn")
+region = Rect2(54, 24, 18, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uwjom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05uri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxvnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae85b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7877")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [node name="JobBoard" type="Area2D"]
 scale = Vector2(0.75, 0.75)
@@ -28,6 +65,13 @@ texture = ExtResource("1_rtq55")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_tkwf6")
+
+[node name="Alert" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.7058824)
+z_index = 2
+position = Vector2(0, -76.00001)
+sprite_frames = SubResource("SpriteFrames_uwjom")
+autoplay = "default"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

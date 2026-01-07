@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://1fi7xb3mewly"]
 
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_fe71k"]
-[ext_resource type="Script" uid="uid://dqsgg6xlw6ugd" path="res://scripts/player/bus_stop.gd" id="1_gwmhi"]
+[ext_resource type="Script" uid="uid://dqsgg6xlw6ugd" path="res://scripts/interactable/bus_stop.gd" id="1_gwmhi"]
 [ext_resource type="Texture2D" uid="uid://csp5qqlgkfxas" path="res://assets/textures/houses/bus_stop.png" id="1_i45yy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe71k"]

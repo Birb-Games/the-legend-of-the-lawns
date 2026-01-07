@@ -133,8 +133,8 @@ func _on_return_pressed() -> void:
 	# Update other neighbors's cooldowns
 	main.neighborhood.update_neighbors()
 	# Set the neighbor cooldown
-	current_neighbor.cooldown = randi_range(1, 4)
-	$/root/Main/Neighborhood/JobBoard.generate_job()
+	current_neighbor.cooldown = randi_range(1, 3)
+	$/root/Main/Neighborhood/JobBoard.update()
 	if main.money > prev_money:
 		current_neighbor.times_mowed += 1
 	$/root/Main/Player/Lawnmower.hide()

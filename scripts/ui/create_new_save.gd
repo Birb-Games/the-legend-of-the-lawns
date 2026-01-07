@@ -34,6 +34,7 @@ func _on_start_pressed() -> void:
 		main.money = 9999999999
 	
 	$/root/Main/HUD/Control/TransitionRect.start_animation()
+	$/root/Main/HUD/Control/QuestScreen.show_alert = true
 	
 	print("Created new save: \"%s\"" % player_name)
 	var id: int = 0

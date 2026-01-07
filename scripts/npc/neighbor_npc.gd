@@ -112,3 +112,4 @@ func save() -> Dictionary:
 func load_from(data: Dictionary) -> void:
 	times_mowed = Save.get_val(data, "times_mowed", 0)
 	first_time = Save.get_val(data, "first_time", true)
+	cooldown = Save.get_val(data, "cooldown", 0)

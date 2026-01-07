@@ -27,11 +27,11 @@ static func completed_neighbors(neighbors: Array) -> bool:
 			return false
 	return true
 
-func completed(main: Main, neighbors: Array) -> bool:
+func completed(main: Main) -> bool:
 	for goal: Goal in goals:
 		if !goal.completed.call(main):
 			return false
-	return completed_neighbors(neighbors)
+	return completed_neighbors(main.get_current_neighbors())
 
 func give_reward(main: Main) -> void:
 	reward.give.call(main)
@@ -63,7 +63,7 @@ static var list: Array[Quest] = [
 	# Quest 3
 	Quest.new(
 		Reward.new(
-			"$3 + Bus Pass", 
+			"$3", 
 			func(main: Main) -> void: main.money += 3
 		),
 		[]

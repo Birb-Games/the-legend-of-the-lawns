@@ -62,6 +62,7 @@ func advance_day() -> void:
 		var job: Job = job_list[key]
 		if job.days_left <= 0:
 			job_list.erase(key)
+	$HUD/Control/QuestScreen.show_alert = false
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -90,7 +91,7 @@ func return_to_neighborhood() -> void:
 		get_node("Lawn").queue_free()
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
-	$Neighborhood/JobBoard.generate_job()
+	$Neighborhood/JobBoard.update()
 	$Player/WaterGun.hide()
 	$Player/NeighborArrow.point_to = ""
 	player.position = player_pos
@@ -173,7 +174,7 @@ func reset() -> void:
 	current_level = 0
 	player.reset()
 	$/root/Main/HUD/Control/QuestScreen.reset()
-	$Neighborhood/JobBoard.generate_job()
+	$Neighborhood/JobBoard.update()
 
 func save() -> Dictionary:
 	return {
@@ -233,6 +234,7 @@ func load_save() -> bool:
 	player_name = Save.get_val(data, "player_name", "Billy")
 	money = max(Save.get_val(data, "money", 0), 0)
 	current_day = max(Save.get_val(data, "current_day", 1), 1)
+	$HUD/Control/QuestScreen.show_alert = (current_day == 1)
 	lawns_mowed = max(Save.get_val(data, "lawns_mowed", 0), 0)
 	current_level = max(Save.get_val(data, "current_level", 0), 0)
 	job_list = Job.parse_job_list(Save.get_val(data, "jobs", ""))
@@ -266,7 +268,7 @@ func load_save() -> bool:
 		line = save_file.get_line()
 	
 	update_continue_save()
-	$Neighborhood/JobBoard.generate_job()
+	$Neighborhood/JobBoard.update()
 	return true
 
 func update_continue_save() -> void:
@@ -275,3 +277,22 @@ func update_continue_save() -> void:
 	var file = FileAccess.open("user://continue", FileAccess.WRITE)
 	if file != null:
 		file.store_line(continue_save)
+
+func advance_quest() -> void:
+	var current_quest: Quest = Quest.get_quest(current_level)
+	if current_quest == null:
+		return
+	current_quest.reward.give.call(self)
+	current_level += 1
+	$HUD/Control/QuestScreen.selected = -1
+	$Player/NeighborArrow.point_to = ""
+
+func get_current_neighbors() -> Array:
+	var neighbors: Array = []
+	for neighbor in $Neighborhood/Neighbors.get_children():
+		if neighbor is NeighborNPC:
+			if neighbor.disabled:
+				continue
+			if neighbor.level == current_level:
+				neighbors.push_back(neighbor)
+	return neighbors

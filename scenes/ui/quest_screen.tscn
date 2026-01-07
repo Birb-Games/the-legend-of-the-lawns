@@ -111,8 +111,8 @@ offset_bottom = 512.0
 [node name="TODO" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_44lm1")
-theme_override_font_sizes/font_size = 30
-text = "TODO"
+theme_override_font_sizes/font_size = 32
+text = "TO-DO:"
 
 [node name="Spacing" type="ColorRect" parent="InfoScreen/QuestBox"]
 custom_minimum_size = Vector2(0, 16)
@@ -137,23 +137,24 @@ theme_override_constants/separation = 4
 [node name="Goals" type="VBoxContainer" parent="InfoScreen/QuestBox"]
 layout_mode = 2
 
-[node name="Reward" type="HBoxContainer" parent="InfoScreen/QuestBox"]
+[node name="Spacing2" type="ColorRect" parent="InfoScreen/QuestBox"]
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
+color = Color(1, 1, 1, 0)
 
-[node name="Label" type="Label" parent="InfoScreen/QuestBox/Reward"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ckwhv")
-theme_override_font_sizes/font_size = 22
-text = "Reward:"
-
-[node name="RewardButton" type="Button" parent="InfoScreen/QuestBox/Reward"]
-custom_minimum_size = Vector2(0, 32)
+[node name="RewardLabel" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 24
-text = "Claim Reward"
+text = "Reward:"
 
-[node name="Spacing2" type="ColorRect" parent="InfoScreen/QuestBox"]
+[node name="RewardLabel2" type="Label" parent="InfoScreen/QuestBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckwhv")
+theme_override_font_sizes/font_size = 18
+text = "Go to the job board by the store to claim rewards!"
+
+[node name="Spacing3" type="ColorRect" parent="InfoScreen/QuestBox"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
@@ -203,4 +204,3 @@ text = "[TEMPLATE BUTTON]"
 alignment = 0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="InfoScreen/QuestBox/Reward/RewardButton" to="." method="_on_reward_button_pressed"]

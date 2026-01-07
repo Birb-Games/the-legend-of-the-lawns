@@ -123,11 +123,7 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 	reset_buttons()
 
 	$Menu/VBoxContainer/Name.text = "Bus Stop (%s)" % bus_stop.display_name
-	var main: Main = $/root/Main
-	if main.current_level >= 3:
-		$Menu/VBoxContainer/Description.text = "Select your desired destination."
-	else:	
-		$Menu/VBoxContainer/Description.text = "You need a bus pass before you can ride the bus!"
+	$Menu/VBoxContainer/Description.text = "Select your desired destination."
 	$Menu/VBoxContainer/Wage.text = ""
 
 	buttons[0].text = "Leave"
@@ -135,9 +131,6 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 	buttons[0].show()
 
 	show()
-
-	if main.current_level < 3:
-		return
 
 	var index = 1
 	for stop: BusStop in bus_stop.connections:
@@ -151,7 +144,6 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 				var player: Player = $/root/Main/Player
 				player.position = stop.position + Vector2(16.0, 6.0)
 				player.dir = "down"
-				player.can_use_bus_stop = true
 				# Activate transition animation
 				$/root/Main/HUD/Control/TransitionRect.start_bus_animation()
 				$/root/Main/Player/Camera2D.position_smoothing_enabled = false
@@ -163,29 +155,44 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 
 func set_job_board_menu(job_board: JobBoard) -> void:
 	reset_buttons()
-
 	$Menu/VBoxContainer/Name.text = "Job Board"
-	if job_board.current_job == null:
-		$Menu/VBoxContainer/Description.text = "No lawn mowing jobs are currently available."
-		$Menu/VBoxContainer/Wage.text = ""
-	else:
-		var neighbor: NeighborNPC = get_node_or_null(job_board.current_job.neighbor_path)
-		$Menu/VBoxContainer/Description.text = job_board.current_job.get_message(neighbor)
-		$Menu/VBoxContainer/Wage.text = "Job added to journal!"
-		var main: Main = $/root/Main
-		if neighbor:
-			main.job_list[neighbor.name] = job_board.current_job
-		job_board.current_job = null
 
 	buttons[0].text = "Okay"
 	buttons[0].connect("pressed", on_leave_pressed)
 	buttons[0].show()
+
+	var main: Main = $/root/Main
+	var current_quest: Quest = Quest.get_quest(main.current_level)
+	if current_quest and current_quest.completed(main):
+		$Menu/VBoxContainer/Description.text = "TO-DO list completed, reward claimed! (%s)" % current_quest.reward.description
+		main.advance_quest()
+		job_board.current_job = null
+		if Quest.get_quest(main.current_level):
+			$Menu/VBoxContainer/Wage.text = "New TO-DOs added to journal!"
+			$/root/Main/HUD/Control/QuestScreen.show_alert = true
+		else:
+			$Menu/VBoxContainer/Wage.text = ""
+		show()
+		return
+
+	if job_board.current_job == null:
+		$Menu/VBoxContainer/Description.text = "No lawn mowing jobs are currently available."
+		$Menu/VBoxContainer/Wage.text = "Come back later!"
+	else:
+		var neighbor: NeighborNPC = get_node_or_null(job_board.current_job.neighbor_path)
+		$Menu/VBoxContainer/Description.text = job_board.current_job.get_message(neighbor)
+		$Menu/VBoxContainer/Wage.text = "Job added to journal!"
+		$/root/Main/HUD/Control/QuestScreen.show_alert = true
+		if neighbor:
+			main.job_list[neighbor.name] = job_board.current_job
+		job_board.generate_job()
 
 	show()
 
 func skip_day() -> void:
 	var main: Main = $/root/Main
 	main.advance_day()
+	$/root/Main/Neighborhood/JobBoard.update()
 	main.save_progress()
 	var player: Player = $/root/Main/Player
 	player.dir = "down"

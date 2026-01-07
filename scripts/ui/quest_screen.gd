@@ -3,22 +3,11 @@ extends Control
 var buttons: Array[Button] = []
 var neighbor_paths: Array[NodePath] = []
 var selected: int = -1
-var opened: bool = false
+var show_alert: bool = true
 
 func _ready() -> void:
 	$InfoScreen.hide()
 	$TemplateButton.hide()
-
-func get_current_neighbors() -> Array:
-	var neighbors: Array = []
-	var main: Main = $/root/Main
-	for neighbor in $/root/Main/Neighborhood/Neighbors.get_children():
-		if neighbor is NeighborNPC:
-			if neighbor.disabled:
-				continue
-			if neighbor.level == main.current_level:
-				neighbors.push_back(neighbor)
-	return neighbors
 
 func get_jobs() -> Array:
 	var neighbors: Array = []
@@ -106,7 +95,7 @@ func get_quest_button_text(neighbors: Array) -> Array[String]:
 	return button_texts
 
 func activate() -> void:
-	opened = true
+	show_alert = false
 	$InfoScreen.show()
 	buttons.clear()
 	neighbor_paths.clear()
@@ -131,18 +120,19 @@ func activate() -> void:
 	if current_quest == null:
 		$InfoScreen/QuestBox/TODO.hide()
 		$InfoScreen/QuestBox/Spacing.hide()
-		$InfoScreen/QuestBox/Reward.hide()
+		$InfoScreen/QuestBox/RewardLabel.hide()
 		$InfoScreen/QuestBox/Goals.hide()
 		$InfoScreen/QuestBox/MowingGoal.hide()
 		$InfoScreen/QuestBox/Lawns.hide()
+		$InfoScreen/QuestBox/RewardLabel2.hide()
 		return
 	$InfoScreen/QuestBox/TODO.show()
 	$InfoScreen/QuestBox/Spacing.show()
-	$InfoScreen/QuestBox/Reward.show()
+	$InfoScreen/QuestBox/RewardLabel.show()
 	$InfoScreen/QuestBox/Goals.show()
 
 	# Create the list of lawns that the player has to mow right now
-	var current_neighbors = get_current_neighbors()
+	var current_neighbors = main.get_current_neighbors()
 	$InfoScreen/QuestBox/MowingGoal.visible = !current_neighbors.is_empty()
 	if Quest.completed_neighbors(current_neighbors):
 		$InfoScreen/QuestBox/MowingGoal.text = " - Mow lawns: (DONE)"
@@ -166,10 +156,16 @@ func activate() -> void:
 		if goal.completed.call(main):
 			goal_label.text += " (DONE)"
 		$InfoScreen/QuestBox/Goals.add_child(goal_label)
+	if current_quest.completed(main):
+		var label: Label = $InfoScreen/QuestBox/MowingGoal.duplicate()
+		label.text = "All TO-DOs completed!"
+		$InfoScreen/QuestBox/Goals.add_child(label)
+		$InfoScreen/QuestBox/RewardLabel2.show()
+	else:
+		$InfoScreen/QuestBox/RewardLabel2.hide()
 
 	# Set up reward button
-	$InfoScreen/QuestBox/Reward/RewardButton.text = " %s " % current_quest.reward.description
-	$InfoScreen/QuestBox/Reward/RewardButton.disabled = !current_quest.completed(main, current_neighbors)	
+	$InfoScreen/QuestBox/RewardLabel.text = "Reward: %s" % current_quest.reward.description
 
 # Toggle the visibility of the screen
 func toggle() -> void:
@@ -198,28 +194,17 @@ func _process(_delta: float) -> void:
 	if !visible:
 		return
 
-	var completed: bool = false
-	var current_quest: Quest = Quest.get_quest(main.current_level)
-	if current_quest:
-		completed = current_quest.completed(main, get_current_neighbors())
-	if (completed or (!opened and main.current_day == 1)) and !$InfoScreen.visible:
-		$Alert.show()
-	else:
-		$Alert.hide()
+	$Alert.visible = show_alert
 
-func _on_reward_button_pressed() -> void:
-	var main: Main = $/root/Main
 	var current_quest: Quest = Quest.get_quest(main.current_level)
-	if current_quest == null:
-		return
-	current_quest.reward.give.call(main)
-	main.current_level += 1
-	selected = -1
-	$/root/Main/Player/NeighborArrow.point_to = ""
-	activate()
+	if current_quest and current_quest.completed(main):
+		$Alert.show()
+
+	if $InfoScreen.visible:
+		$Alert.hide()
 
 func reset() -> void:
 	buttons.clear()
 	neighbor_paths.clear()
 	selected = -1
-	opened = false
+	show_alert = false
