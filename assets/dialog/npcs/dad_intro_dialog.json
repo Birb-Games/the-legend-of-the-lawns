@@ -1,0 +1,29 @@
+{
+	"first_dialog": [
+		"Oh, hey there kiddo, do you need anything? Also, can this be quick, you're kind of blocking the football game.\n(You can decide what type of football he's watching.)",
+		"Okay...? And?",
+		"Son, those are a lot of words that I don't understand.",
+		"...",
+		"Champ, the answer is no. We're not going to buy every new console that comes out. Besides, we just got you a game for your birthday, maybe wait until next year.",
+		"Begging isn't going to work.",
+		"The answer is still no.",
+		"Okay, this is getting annoying. Back in my day if I wanted something I had to work for it and earn every cent. I used to mow lawns, maybe Neighbor Bob needs his grass cut today.",
+		"What was that?",
+		"Anyway, consider spending some time outdoors instead of playing video games all day. It builds character. Maybe even give the lawn mowing idea shot."
+	],
+	"player_dialog": [
+		"Did you hear, the Swapdeck 2 just came out!",
+		"It has 12 GB of RAM and can run 4K games at 60 FPS!",
+		"It's a huge step up from the previous generation!",
+		"So... can we *please* get it?",
+		"What?! Aw man, *please*?",
+		"PLEASE?",
+		"please???",
+		"okay boomer",
+		"Nothing.",
+		"*sigh*"
+	],
+	"possible_dialog": [
+		"*He's too busy watching the football game.*"
+	]
+}

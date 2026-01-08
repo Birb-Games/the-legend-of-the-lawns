@@ -97,6 +97,7 @@ func get_quest_button_text(neighbors: Array) -> Array[String]:
 func activate() -> void:
 	show_alert = false
 	$InfoScreen.show()
+	$InfoScreen/QuestBox/StartGameLabel.hide()
 	buttons.clear()
 	neighbor_paths.clear()
 
@@ -161,11 +162,16 @@ func activate() -> void:
 		label.text = "TO-DO list completed!"
 		$InfoScreen/QuestBox/Goals.add_child(label)
 		$InfoScreen/QuestBox/RewardLabel2.show()
+		if main.current_level == 0:
+			$InfoScreen/QuestBox/StartGameLabel.show()
 	else:
 		$InfoScreen/QuestBox/RewardLabel2.hide()
 
 	# Set up reward button
 	$InfoScreen/QuestBox/RewardLabel.text = "Reward: %s" % current_quest.reward.description
+	if current_quest.reward.description.is_empty():
+		$InfoScreen/QuestBox/RewardLabel.hide()
+		$InfoScreen/QuestBox/RewardLabel2.hide()	
 
 # Toggle the visibility of the screen
 func toggle() -> void:

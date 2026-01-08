@@ -1,25 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://pff21d58ll8s"]
+[gd_scene load_steps=4 format=3 uid="uid://pff21d58ll8s"]
 
 [ext_resource type="Script" uid="uid://dtewnap25u14a" path="res://scripts/interactable/door.gd" id="1_gg805"]
 [ext_resource type="Texture2D" uid="uid://dgekj7x3ncajo" path="res://assets/textures/houses/door.png" id="1_nkkm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkkm8"]
 size = Vector2(24, 57.333336)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gg805"]
-atlas = ExtResource("1_nkkm8")
-region = Rect2(0, 0, 24, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ycvye"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gg805")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="Door" type="Area2D"]
 scale = Vector2(0.75, 0.75)
@@ -29,9 +14,9 @@ script = ExtResource("1_gg805")
 position = Vector2(0, -19.333332)
 shape = SubResource("RectangleShape2D_nkkm8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -24)
-sprite_frames = SubResource("SpriteFrames_ycvye")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -23.999996)
+texture = ExtResource("1_nkkm8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://8t3kf3315lkx"]
+[gd_scene load_steps=56 format=4 uid="uid://8t3kf3315lkx"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/scene_control/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -37,10 +37,14 @@
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/emily_dialog.json" id="26_yfbpo"]
 [ext_resource type="PackedScene" uid="uid://d32yummmyhpuj" path="res://scenes/neighborhood/job_board.tscn" id="28_wj70i"]
 [ext_resource type="PackedScene" uid="uid://pff21d58ll8s" path="res://scenes/interactable/door.tscn" id="37_kcquo"]
+[ext_resource type="Texture2D" uid="uid://brunwv4cwnhk8" path="res://assets/textures/decorations/photo.png" id="38_00oce"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/dad_intro_dialog.json" id="38_8tbsa"]
 [ext_resource type="Texture2D" uid="uid://dwm571dc4civd" path="res://assets/textures/decorations/control_poster.png" id="38_ad8ph"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/mom_intro_dialog.json" id="39_78k8p"]
 [ext_resource type="Texture2D" uid="uid://cg7h2eha218hg" path="res://assets/textures/decorations/birb_run_poster.png" id="39_f70if"]
 [ext_resource type="Texture2D" uid="uid://bva25eo4vevtm" path="res://assets/textures/decorations/bed.png" id="40_tr241"]
 [ext_resource type="Texture2D" uid="uid://mhf7o0ftg6r7" path="res://assets/textures/decorations/window.png" id="41_iequl"]
+[ext_resource type="Texture2D" uid="uid://jpv0e5id5kg4" path="res://assets/textures/decorations/painting.png" id="43_lygeb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -250,7 +254,7 @@ position = Vector2(216, -155)
 display_name = "Neighbor Bob"
 lawn_template = ExtResource("9_c4pas")
 max_difficulty = 3
-level = 0
+level = 1
 wage = 3
 bonus_base = 1
 max_bonus = 4
@@ -264,7 +268,7 @@ animation = &"neighbor_jim"
 display_name = "Neighbor Jim"
 lawn_template = ExtResource("19_dys3o")
 max_difficulty = 3
-level = 1
+level = 2
 wage = 4
 bonus_base = 1
 max_bonus = 4
@@ -278,7 +282,7 @@ animation = &"neighbor_nancy"
 display_name = "Neighbor Nancy"
 lawn_template = ExtResource("24_xefxb")
 max_difficulty = 4
-level = 2
+level = 3
 wage = 5
 bonus_base = 1
 max_bonus = 4
@@ -466,18 +470,23 @@ position = Vector2(402.664, -899.1067)
 [node name="Door2" parent="Intro" node_paths=PackedStringArray("go_to") instance=ExtResource("37_kcquo")]
 position = Vector2(600, -1104)
 interact_text = "Go Outside"
+unavailable_msg = "Talk to your parents before going outside!"
 go_to = NodePath("../Outside")
+min_level = 1
+quest_door = true
 
 [node name="DadIntro" parent="Intro" instance=ExtResource("4_dcvy4")]
 position = Vector2(586.5454, -939.81805)
 display_name = "Dad"
 interact_text = "to beg for a Swapdeck"
+dialog_json = ExtResource("38_8tbsa")
 
 [node name="MomIntro" parent="Intro" instance=ExtResource("4_dcvy4")]
 position = Vector2(737.9617, -956.64465)
 animation = &"mom"
 display_name = "Mom"
 interact_text = "to beg for a Swapdeck"
+dialog_json = ExtResource("39_78k8p")
 
 [node name="ControlPoster" type="Sprite2D" parent="Intro"]
 position = Vector2(-11, -989)
@@ -505,10 +514,20 @@ metadata/_edit_lock_ = true
 [node name="Outside" type="Marker2D" parent="Intro"]
 position = Vector2(7.7065125, -145.43259)
 
-[node name="Sprite2D" type="Sprite2D" parent="Intro"]
+[node name="Window" type="Sprite2D" parent="Intro"]
 position = Vector2(664.00006, -1073.0001)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("41_iequl")
+
+[node name="Photo" type="Sprite2D" parent="Intro"]
+position = Vector2(536, -1072)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("38_00oce")
+
+[node name="Painting" type="Sprite2D" parent="Intro"]
+position = Vector2(760, -1044)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("43_lygeb")
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

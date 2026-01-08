@@ -40,8 +40,30 @@ func _init(quest_reward: Reward, goal_list: Array) -> void:
 	reward = quest_reward
 	goals = goal_list
 
+static func talked_to_npc(main: Main, path: String) -> bool:
+	var npc: NPC = main.neighborhood.get_node(path)
+	return !npc.first_time
+
 # List of quests
 static var list: Array[Quest] = [
+	# Quest 0
+	Quest.new(
+		Reward.new(
+			"", 
+			func(_main: Main) -> void: pass
+		),
+		[
+			Goal.new(
+				"Ask Mom if you can get the new Swapdeck.", 
+				func(main: Main) -> bool: return talked_to_npc(main, "Intro/MomIntro")
+			),
+			Goal.new(
+				"Ask Dad if you can get the new Swapdeck.", 
+				func(main: Main) -> bool: return talked_to_npc(main, "Intro/DadIntro")
+			),
+		]
+	),
+
 	# Quest 1
 	Quest.new(
 		Reward.new(

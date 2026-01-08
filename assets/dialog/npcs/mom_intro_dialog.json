@@ -1,0 +1,27 @@
+{
+	"first_dialog": [
+		"Hey there sweetie, everything okay? I'm a little busy now, I've got to do some experiments on these plants right now for the botany lab.",
+		"Uhm, I don't know. Maybe ask your dad?",
+		"Well then, I don't think we can get the new Swapdeck right now. We just got you that \"Birb Run\" game for your birthday.",
+		"Begging won't get you anywhere.",
+		"Money doesn't grow on trees. Well, except for that one critically endangered species of tree with golden fruit. But no, we are getting the Swapdeck.",
+		"We can talk about getting the Swapdeck for your next birthday or for the Winter Festival.",
+		"No it's not. Your other option is to earn the money yourself. Who knows, it might be a great learning experience.",
+		"Well yeah, mowing lawns is a pretty good idea. I hear lawn care businesses are booming on the stock market right now.",
+		"If it's any help, maybe you can try mowing Neighbor Bob's lawn? I think he'll appreciate it. Besides, spending time outside will be good for you."
+	],
+	"player_dialog": [
+		"The Swapdeck 2 just released, can we please get it?",
+		"He's too busy watching football.",
+		"Aw man, please?",
+		"PLEASE?",
+		"Please, please, please?",
+		"Awwww, but that's like forever!",
+		"What am I even supposed to do? Mow lawns?!",
+		"*sigh* Never mind.",
+		"okay..."
+	],
+	"possible_dialog": [
+		"*She's too busy studying her plants.*"
+	]
+}
