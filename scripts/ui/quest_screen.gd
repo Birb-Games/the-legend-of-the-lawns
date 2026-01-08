@@ -184,6 +184,10 @@ func _on_button_pressed() -> void:
 	toggle()
 
 func _process(_delta: float) -> void:
+	var intro = get_node_or_null("/root/Main/HUD/Control/IntroWebsite")
+	if intro:
+		return
+
 	var main: Main = $/root/Main
 	if main.lawn_loaded or $/root/Main/HUD.npc_menu_open():
 		hide()

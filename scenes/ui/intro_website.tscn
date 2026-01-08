@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dut28yubgmt4n"]
+
+[ext_resource type="Script" uid="uid://7efy817dyerq" path="res://scripts/ui/intro_website.gd" id="1_kxau4"]
+[ext_resource type="Texture2D" uid="uid://w0l16bs8fgln" path="res://assets/textures/ui/website.png" id="1_x8xgb"]
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="2_xrvfk"]
+
+[node name="IntroWebsite" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kxau4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("1_x8xgb")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 979.0
+offset_top = 580.0
+offset_right = 1128.0
+offset_bottom = 630.0
+theme_override_fonts/font = ExtResource("2_xrvfk")
+theme_override_font_sizes/font_size = 36
+text = "Close"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -40,6 +40,10 @@ func _process(_delta: float) -> void:
 	
 	if activate_fail_screen():
 		return
+
+	var intro = get_node_or_null("Control/IntroWebsite")
+	if intro:
+		return
 	
 	# Open pause menu
 	if Input.is_action_just_pressed("ui_cancel"):

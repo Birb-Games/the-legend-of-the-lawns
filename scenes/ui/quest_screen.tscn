@@ -159,7 +159,7 @@ text = "Go to the job board by the store to claim rewards!"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 18
-text = "Go outside and start the game!"
+text = "Go outside and start mowing lawns!"
 
 [node name="Spacing3" type="ColorRect" parent="InfoScreen/QuestBox"]
 custom_minimum_size = Vector2(0, 16)
