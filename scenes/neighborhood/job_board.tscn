@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_2d61f"]
 [ext_resource type="Script" uid="uid://bqsx6gqpyi3ma" path="res://scripts/interactable/job_board.gd" id="1_hggwc"]
-[ext_resource type="Texture2D" uid="uid://cj41wridn4hq7" path="res://assets/textures/job_board.png" id="1_rtq55"]
-[ext_resource type="Texture2D" uid="uid://cpcb8pfd0nn0x" path="res://assets/textures/alert.png" id="4_j22rn"]
+[ext_resource type="Texture2D" uid="uid://cj41wridn4hq7" path="res://assets/textures/decorations/job_board.png" id="1_rtq55"]
+[ext_resource type="Texture2D" uid="uid://cpcb8pfd0nn0x" path="res://assets/textures/ui/alert.png" id="4_j22rn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkwf6"]
 size = Vector2(56, 28)

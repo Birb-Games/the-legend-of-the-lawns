@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://botrxsvwyqq4u" path="res://scripts/ui/main_menu.gd" id="1_m1kxf"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="1_sl1te"]
-[ext_resource type="Texture2D" uid="uid://c4cnmykq1b2n1" path="res://assets/textures/title.png" id="2_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://c4cnmykq1b2n1" path="res://assets/textures/ui/title.png" id="2_fe2o3"]
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="3_1g8jr"]
 [ext_resource type="PackedScene" uid="uid://d1jwu43vb0643" path="res://scenes/enemies/mobile/shrub_demon.tscn" id="3_wb0q5"]
 [ext_resource type="Script" uid="uid://ddbojoc57qcsg" path="res://scripts/ui/menu_shrub_demon.gd" id="4_q85j6"]

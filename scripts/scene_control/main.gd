@@ -251,6 +251,9 @@ func load_save() -> bool:
 	else:
 		data = json.data
 		player.max_health = max(Save.get_val(data, "max_health", 80), 1)
+	
+	if current_day == 1:
+		player.global_position = $/root/Main/Neighborhood/Intro/PlayerStart.global_position
 
 	# Load neighborhood
 	line = save_file.get_line()

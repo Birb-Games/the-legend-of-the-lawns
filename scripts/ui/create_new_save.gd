@@ -45,5 +45,7 @@ func _on_start_pressed() -> void:
 	main.save_path = save_path
 	main.save_progress()
 
+	main.player.global_position = $/root/Main/Neighborhood/Intro/PlayerStart.global_position
+
 	main.update_continue_save()
 

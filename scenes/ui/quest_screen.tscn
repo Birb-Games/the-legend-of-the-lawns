@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bdg7dq32jr7oy" path="res://scripts/ui/quest_screen.gd" id="1_sfubm"]
 [ext_resource type="FontFile" uid="uid://b3j21gnxq1jn1" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Bold.ttf" id="2_44lm1"]
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="2_ckwhv"]
-[ext_resource type="Texture2D" uid="uid://chuon6gf7xcyh" path="res://assets/textures/journal.png" id="2_mpbqu"]
-[ext_resource type="Texture2D" uid="uid://cpcb8pfd0nn0x" path="res://assets/textures/alert.png" id="3_kwmku"]
+[ext_resource type="Texture2D" uid="uid://chuon6gf7xcyh" path="res://assets/textures/ui/journal.png" id="2_mpbqu"]
+[ext_resource type="Texture2D" uid="uid://cpcb8pfd0nn0x" path="res://assets/textures/ui/alert.png" id="3_kwmku"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpbqu"]
 content_margin_left = 4.0
