@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://e44sam5dbx4w"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_1y1qe"]
+[ext_resource type="Texture2D" uid="uid://c77scyo7e20da" path="res://assets/textures/decorations/potted_plant1.png" id="1_ob1d0"]
+
+[node name="PottedPlant1" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.41666666, 0.41025642)
+texture = ExtResource("1_1y1qe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -20.5)
+texture = ExtResource("1_ob1d0")

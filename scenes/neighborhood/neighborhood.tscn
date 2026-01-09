@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://8t3kf3315lkx"]
+[gd_scene load_steps=66 format=4 uid="uid://8t3kf3315lkx"]
 
 [ext_resource type="Script" uid="uid://cja8fxguvtehn" path="res://scripts/scene_control/neighborhood.gd" id="1_fyy05"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_tqujx"]
@@ -45,6 +45,11 @@
 [ext_resource type="Texture2D" uid="uid://bva25eo4vevtm" path="res://assets/textures/decorations/bed.png" id="40_tr241"]
 [ext_resource type="Texture2D" uid="uid://mhf7o0ftg6r7" path="res://assets/textures/decorations/window.png" id="41_iequl"]
 [ext_resource type="Texture2D" uid="uid://jpv0e5id5kg4" path="res://assets/textures/decorations/painting.png" id="43_lygeb"]
+[ext_resource type="Texture2D" uid="uid://8ie1qtueenbu" path="res://assets/textures/decorations/couch.png" id="46_5t5wj"]
+[ext_resource type="Texture2D" uid="uid://bitp3yjqk5gj7" path="res://assets/textures/decorations/tv.png" id="47_mdxjr"]
+[ext_resource type="PackedScene" uid="uid://e44sam5dbx4w" path="res://scenes/decorations/potted_plant1.tscn" id="48_0l5da"]
+[ext_resource type="PackedScene" uid="uid://giinl7cmkx52" path="res://scenes/decorations/potted_plant2.tscn" id="49_6sx2y"]
+[ext_resource type="PackedScene" uid="uid://uh2q8jylpyj2" path="res://scenes/decorations/potted_plant3.tscn" id="50_s3i68"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -103,6 +108,34 @@ size = Vector2(17, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr241"]
 size = Vector2(29, 41.99997)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78k8p"]
+size = Vector2(52.99997, 13.175415)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l5da"]
+atlas = ExtResource("47_mdxjr")
+region = Rect2(0, 0, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sx2y"]
+atlas = ExtResource("47_mdxjr")
+region = Rect2(47, 0, 47, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3i68"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l5da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sx2y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5t5wj"]
+size = Vector2(45, 15.000015)
 
 [node name="Neighborhood" type="Node2D"]
 y_sort_enabled = true
@@ -476,13 +509,13 @@ min_level = 1
 quest_door = true
 
 [node name="DadIntro" parent="Intro" instance=ExtResource("4_dcvy4")]
-position = Vector2(586.5454, -939.81805)
+position = Vector2(601, -955.818)
 display_name = "Dad"
 interact_text = "to beg for a Swapdeck"
 dialog_json = ExtResource("38_8tbsa")
 
 [node name="MomIntro" parent="Intro" instance=ExtResource("4_dcvy4")]
-position = Vector2(737.9617, -956.64465)
+position = Vector2(751, -947.00006)
 animation = &"mom"
 display_name = "Mom"
 interact_text = "to beg for a Swapdeck"
@@ -528,6 +561,57 @@ texture = ExtResource("38_00oce")
 position = Vector2(760, -1044)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("43_lygeb")
+
+[node name="Couch" type="StaticBody2D" parent="Intro"]
+position = Vector2(601.00006, -959.877)
+scale = Vector2(1.25, 1.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Intro/Couch"]
+position = Vector2(0, -15.199951)
+texture = ExtResource("46_5t5wj")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Couch"]
+position = Vector2(0, -7.199951)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_78k8p")
+metadata/_edit_lock_ = true
+
+[node name="TV" type="StaticBody2D" parent="Intro"]
+position = Vector2(601, -890.41394)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Intro/TV"]
+position = Vector2(0, -22)
+sprite_frames = SubResource("SpriteFrames_s3i68")
+autoplay = "default"
+frame_progress = 0.5844325
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/TV"]
+position = Vector2(-0.0034179688, -7.0857544)
+shape = SubResource("RectangleShape2D_5t5wj")
+metadata/_edit_lock_ = true
+
+[node name="PottedPlant1" parent="Intro" instance=ExtResource("48_0l5da")]
+position = Vector2(786, -961)
+
+[node name="PottedPlant2" parent="Intro" instance=ExtResource("48_0l5da")]
+position = Vector2(717, -949)
+
+[node name="PottedPlant3" parent="Intro" instance=ExtResource("49_6sx2y")]
+position = Vector2(773.00006, -942.00006)
+
+[node name="PottedPlant4" parent="Intro" instance=ExtResource("49_6sx2y")]
+position = Vector2(723.00006, -927.00006)
+
+[node name="PottedPlant5" parent="Intro" instance=ExtResource("49_6sx2y")]
+position = Vector2(759.00006, -969.00006)
+
+[node name="PottedPlant6" parent="Intro" instance=ExtResource("50_s3i68")]
+position = Vector2(733, -941.00006)
+
+[node name="PottedPlant7" parent="Intro" instance=ExtResource("50_s3i68")]
+position = Vector2(790.00006, -930)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

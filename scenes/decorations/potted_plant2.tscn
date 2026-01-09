@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://giinl7cmkx52"]
+
+[ext_resource type="PackedScene" uid="uid://e44sam5dbx4w" path="res://scenes/decorations/potted_plant1.tscn" id="1_q03eb"]
+[ext_resource type="Texture2D" uid="uid://cxkk3w3px7jdd" path="res://assets/textures/decorations/potted_plant2.png" id="2_t14et"]
+
+[node name="PottedPlant2" instance=ExtResource("1_q03eb")]
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -8.5)
+texture = ExtResource("2_t14et")
