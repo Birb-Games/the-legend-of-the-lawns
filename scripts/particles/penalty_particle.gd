@@ -19,6 +19,8 @@ static var particle_scene: PackedScene = preload("uid://bqis403nmimnk")
 # Constructs a penalty particle at the given position with the specified amount.
 # Requires parent because get_node does not work in static functions.
 static func emit_penalty(penalty: int, placement_position: Vector2, parent: Node) -> void:
+	if penalty <= 0:
+		return
 	var penalty_particle: PenaltyParticle = particle_scene.instantiate()
 	penalty_particle.position = placement_position
 	penalty_particle.activate(penalty)

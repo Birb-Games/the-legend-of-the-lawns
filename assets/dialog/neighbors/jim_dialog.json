@@ -1,0 +1,9 @@
+{
+	"unavailable_msg": "The door is locked...\nThere is a note on the door: \"I am at the office right now, come back later. Unless you're an insurance salesman - then scram.\"",
+
+	"first_dialog": [
+		"Hey, aren't you my neighbor's kid? Do you need something? You better not be trying to sell me insurance...",
+	],
+
+	"first_job_offer": "Oh good, you're not selling me insurance. Well then, I suppose I could use some help with mowing my lawn today...",
+}

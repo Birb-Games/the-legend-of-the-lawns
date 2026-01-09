@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4cnmykq1b2n1"
-path="res://.godot/imported/title.png-81e99d3c910542a81dea8430ca7caf86.ctex"
+uid="uid://bbmfaewycp5te"
+path="res://.godot/imported/neighbor_tam.png-26a7c4cf2de2653bfe727c3db78c9d13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/title.png"
-dest_files=["res://.godot/imported/title.png-81e99d3c910542a81dea8430ca7caf86.ctex"]
+source_file="res://assets/textures/npcs/neighbors/neighbor_tam.png"
+dest_files=["res://.godot/imported/neighbor_tam.png-26a7c4cf2de2653bfe727c3db78c9d13.ctex"]
 
 [params]
 

@@ -1,20 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq8tglr0iktqf"]
+[gd_scene load_steps=5 format=3 uid="uid://dq8tglr0iktqf"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_0gm1x"]
 [ext_resource type="Script" uid="uid://hn6dknq2w4cs" path="res://scripts/ui/npc_menu.gd" id="1_qr3ex"]
+[ext_resource type="Texture2D" uid="uid://h67fxseof4y6" path="res://assets/textures/ui/dialog_box.png" id="2_lykgq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj2yp"]
-bg_color = Color(0.762404, 0.762404, 0.762404, 1)
-border_width_left = 16
-border_width_top = 16
-border_width_right = 16
-border_width_bottom = 16
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hv45n"]
+texture = ExtResource("2_lykgq")
+expand_margin_left = 14.0
+expand_margin_top = 14.0
+expand_margin_right = 14.0
+expand_margin_bottom = 20.0
 
 [node name="NPCMenu" type="Control"]
 layout_mode = 3
@@ -27,20 +22,20 @@ script = ExtResource("1_qr3ex")
 
 [node name="Menu" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 381.0
-offset_right = 1108.0
-offset_bottom = 623.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_uj2yp")
+offset_left = 31.0
+offset_top = 374.0
+offset_right = 1123.0
+offset_bottom = 614.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_hv45n")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 41.0
+offset_left = 54.0
 offset_top = 19.0
-offset_right = -35.0
+offset_right = -48.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -54,7 +49,7 @@ theme_override_font_sizes/font_size = 40
 text = "Name"
 
 [node name="Description" type="Label" parent="Menu/VBoxContainer"]
-custom_minimum_size = Vector2(1000, 80)
+custom_minimum_size = Vector2(1000, 72)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)

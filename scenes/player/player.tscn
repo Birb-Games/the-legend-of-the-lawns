@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene load_steps=45 format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://btspvfcbp648g" path="res://assets/textures/particles/circle_particle.png" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://b4a5sdixx0fuv" path="res://scenes/player/bullet.tscn" id="7_smehm"]
 [ext_resource type="PackedScene" uid="uid://drt2vf3441uh5" path="res://scenes/player/player_lawn_mower.tscn" id="8_5gtgg"]
+[ext_resource type="PackedScene" uid="uid://dqsubbouvo8c1" path="res://scenes/player/arrow.tscn" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://7l7duh8pmwvx" path="res://scripts/player/tile_map_collision_checker.gd" id="12_fm80t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
@@ -364,6 +365,37 @@ shape = SubResource("RectangleShape2D_fm80t")
 [node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="PickupCollisionChecker"]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_gx1jg")
+
+[node name="NeighborArrow" parent="." instance=ExtResource("10_h17s1")]
+modulate = Color(1, 1, 0, 0.627451)
+position = Vector2(29, -11)
+min_dist = 32.0
+
+[node name="LawnmowerArrow" parent="." instance=ExtResource("10_h17s1")]
+modulate = Color(1, 0.25882354, 0.2, 0.5019608)
+position = Vector2(29, -11)
+scale = Vector2(0.25, 0.25)
+ignore_if_invisible = true
+point_to = NodePath("/root/Main/Lawn/Lawnmower")
+min_dist = 64.0
+max_dist = 1600.0
+
+[node name="WatergunArrow" parent="." instance=ExtResource("10_h17s1")]
+modulate = Color(0.32156864, 0.5529412, 1, 0.5019608)
+position = Vector2(35, -11)
+scale = Vector2(0.25, 0.25)
+ignore_if_invisible = true
+point_to = NodePath("/root/Main/Lawn/WaterGun")
+min_dist = 64.0
+max_dist = 1600.0
+
+[node name="EnemyArrow" parent="." instance=ExtResource("10_h17s1")]
+modulate = Color(0.16862746, 0.6901961, 0, 0.5019608)
+position = Vector2(29, -11)
+scale = Vector2(0.25, 0.25)
+ignore_if_invisible = true
+min_dist = 64.0
+max_dist = 1600.0
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_exited"]

@@ -1,5 +1,7 @@
 extends Control
 
+@export var intro: PackedScene
+
 func activate() -> void:
 	show()
 	$Name/Error.text = ""
@@ -32,9 +34,11 @@ func _on_start_pressed() -> void:
 	var lowercase: String = player_name.to_lower()
 	if lowercase == "elon musk" or lowercase == "jeff bezos" or lowercase == "bill gates":
 		main.money = 9999999999
-		main.lawns_mowed = 999
 	
-	$/root/Main/HUD/Control/TransitionRect.start_animation()
+	# $/root/Main/HUD/Control/TransitionRect.start_animation()
+	$/root/Main/HUD/Control.add_child(intro.instantiate())
+	get_tree().paused = true
+	$/root/Main/HUD/Control/QuestScreen.show_alert = true
 	
 	print("Created new save: \"%s\"" % player_name)
 	var id: int = 0
@@ -44,6 +48,8 @@ func _on_start_pressed() -> void:
 	print("Saving to: ", save_path)
 	main.save_path = save_path
 	main.save_progress()
+
+	main.player.global_position = $/root/Main/Neighborhood/Intro/PlayerStart.global_position
 
 	main.update_continue_save()
 

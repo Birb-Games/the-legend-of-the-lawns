@@ -1,0 +1,9 @@
+{	
+	"unavailable_msg": "The door is locked...\nThere's a note: \"I'm on vacation right now, please come back later! Thank you!\"",
+
+	"first_dialog": [
+		"Hi! You're my neighbor's kid, right? Do you need anything?",
+	],
+
+	"first_job_offer": "Oh, thank you! My lawn does need a trim - I just got back from a vacation to Aldoria and I don't feel like mowing my lawn. My flowers haven't been watered so they're a little upset right now..."
+}

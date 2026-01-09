@@ -1,0 +1,213 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8cv1f5uxjd26"]
+
+[ext_resource type="Script" uid="uid://bdg7dq32jr7oy" path="res://scripts/ui/quest_screen.gd" id="1_sfubm"]
+[ext_resource type="FontFile" uid="uid://b3j21gnxq1jn1" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Bold.ttf" id="2_44lm1"]
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="2_ckwhv"]
+[ext_resource type="Texture2D" uid="uid://chuon6gf7xcyh" path="res://assets/textures/ui/journal.png" id="2_mpbqu"]
+[ext_resource type="Texture2D" uid="uid://cpcb8pfd0nn0x" path="res://assets/textures/ui/alert.png" id="3_kwmku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpbqu"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwmku"]
+atlas = ExtResource("3_kwmku")
+region = Rect2(0, 0, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeve6"]
+atlas = ExtResource("3_kwmku")
+region = Rect2(18, 0, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83kc6"]
+atlas = ExtResource("3_kwmku")
+region = Rect2(36, 0, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf7ir"]
+atlas = ExtResource("3_kwmku")
+region = Rect2(54, 0, 18, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wf7ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwmku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeve6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83kc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf7ir")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="QuestScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sfubm")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 15.0
+offset_right = 92.0
+offset_bottom = 73.0
+tooltip_text = "Journal"
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_mpbqu")
+icon = ExtResource("2_mpbqu")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Alert" type="AnimatedSprite2D" parent="."]
+position = Vector2(57, 99)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wf7ir")
+autoplay = "default"
+
+[node name="InfoScreen" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -524.0
+offset_top = -236.0
+offset_right = 524.0
+offset_bottom = 276.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestBox" type="VBoxContainer" parent="InfoScreen"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 528.0
+offset_bottom = 512.0
+
+[node name="TODO" type="Label" parent="InfoScreen/QuestBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_44lm1")
+theme_override_font_sizes/font_size = 32
+text = "TO-DO:"
+
+[node name="Spacing" type="ColorRect" parent="InfoScreen/QuestBox"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="MowingGoal" type="Label" parent="InfoScreen/QuestBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckwhv")
+theme_override_font_sizes/font_size = 20
+text = " - Mow lawns:"
+
+[node name="Lawns" type="ScrollContainer" parent="InfoScreen/QuestBox"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="InfoScreen/QuestBox/Lawns"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 4
+
+[node name="Goals" type="VBoxContainer" parent="InfoScreen/QuestBox"]
+layout_mode = 2
+
+[node name="Spacing2" type="ColorRect" parent="InfoScreen/QuestBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="RewardLabel" type="Label" parent="InfoScreen/QuestBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckwhv")
+theme_override_font_sizes/font_size = 24
+text = "Reward:"
+
+[node name="RewardLabel2" type="Label" parent="InfoScreen/QuestBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckwhv")
+theme_override_font_sizes/font_size = 18
+text = "Go to the job board by the store to claim rewards!"
+
+[node name="StartGameLabel" type="Label" parent="InfoScreen/QuestBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckwhv")
+theme_override_font_sizes/font_size = 18
+text = "Go outside and start mowing lawns!"
+
+[node name="Spacing3" type="ColorRect" parent="InfoScreen/QuestBox"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="JobLabel" type="Label" parent="InfoScreen/QuestBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_44lm1")
+theme_override_font_sizes/font_size = 20
+text = "Jobs:"
+
+[node name="JobLawns" type="ScrollContainer" parent="InfoScreen/QuestBox"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="InfoScreen/QuestBox/JobLawns"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Stats" type="VBoxContainer" parent="InfoScreen"]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 6.0
+offset_right = 1038.0
+offset_bottom = 493.0
+
+[node name="Label" type="Label" parent="InfoScreen/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_44lm1")
+theme_override_font_sizes/font_size = 36
+text = "Stats"
+
+[node name="StatsText" type="Label" parent="InfoScreen/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckwhv")
+theme_override_font_sizes/font_size = 24
+text = "-"
+text_overrun_behavior = 3
+
+[node name="TemplateButton" type="Button" parent="."]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("2_ckwhv")
+theme_override_font_sizes/font_size = 20
+text = "[TEMPLATE BUTTON]"
+alignment = 0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

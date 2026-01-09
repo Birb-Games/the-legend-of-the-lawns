@@ -16,7 +16,6 @@ var dir: String = "down"
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var can_pick_up_lawnmower: bool = false
-var can_use_bus_stop: bool = false
 # The target velocity of the player based on the controls the player is pressing,
 # this might not be equal to `velocity` since the player may be walking into a wall
 var target_velocity: Vector2 = Vector2.ZERO
@@ -216,6 +215,9 @@ func _process(delta: float) -> void:
 		$WaterGun.hide()
 		return
 
+	update_enemy_arrow()
+	update_lawn_mower_arrow()
+
 	$CollisionShape2D.disabled = lawn_mower_active()
 	$LawnmowerHitbox.disabled = !lawn_mower_active()
 	$LawnmowerUpHitbox.disabled = !(lawn_mower_active() and dir == "up")
@@ -255,7 +257,8 @@ func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO	
 
 	# movement
-	if !$/root/Main/HUD/Control/NPCMenu.visible: #don't move when menu open
+	# don't move when menu is open
+	if !$/root/Main/HUD.npc_menu_open() and !$/root/Main/HUD.quest_screen_open(): 
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1.0
 		if Input.is_action_pressed("move_down"):
@@ -291,16 +294,12 @@ func _on_interact_zone_body_entered(body: Node2D) -> void:
 		can_pick_up_water_gun = true
 	if body.is_in_group("lawnmower"):
 		can_pick_up_lawnmower = true
-	if body.is_in_group("bus_stop"):
-		can_use_bus_stop = true
 
 func _on_interact_zone_body_exited(body: Node2D) -> void:
 	if body.is_in_group("water_gun_item"):
 		can_pick_up_water_gun = false
 	if body.is_in_group("lawnmower"):
 		can_pick_up_lawnmower = false
-	if body.is_in_group("bus_stop"):
-		can_use_bus_stop = false
 
 func enable_water_gun() -> void:
 	$WaterGun.show()
@@ -347,3 +346,39 @@ func save() -> Dictionary:
 		"max_health" : max_health,
 	}
 	return data
+
+func reset() -> void:
+	$NeighborArrow.point_to = ""
+	max_health = 80
+
+func update_enemy_arrow() -> void:
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		$EnemyArrow.point_to = ""
+		return
+
+	if lawn.cut_grass_tiles < lawn.total_grass_tiles:
+		$EnemyArrow.point_to = ""
+		return
+
+	$EnemyArrow.point_to = ""
+	var min_dist: float = -1.0
+	for path: NodePath in lawn.weeds:
+		var weed: WeedEnemy = get_node_or_null(path)
+		if weed == null:
+			continue
+		var dist: float = (weed.global_position - global_position).length()
+		if dist < min_dist or min_dist < 0.0:
+			$EnemyArrow.point_to = path
+			min_dist = dist
+
+func update_lawn_mower_arrow() -> void:
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		return
+
+	if lawn.cut_grass_tiles < lawn.total_grass_tiles:
+		$LawnmowerArrow.point_to = "/root/Main/Lawn/Lawnmower"
+		return
+
+	$LawnmowerArrow.point_to = ""

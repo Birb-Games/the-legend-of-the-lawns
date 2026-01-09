@@ -1,10 +1,11 @@
 extends Node2D
 
-# Run this at the end of the day
+class_name Neighborhood
+
 func update_neighbors() -> void:
-	for neighbor in $Neighbors.get_children():
-		if neighbor is NeighborNPC:
-			neighbor.update_cooldown()
+	for neighbor: NeighborNPC in $Neighbors.get_children():
+		neighbor.cooldown -= 1
+		neighbor.cooldown = max(neighbor.cooldown, 0)
 
 func save() -> Array:
 	var data = []

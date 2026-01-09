@@ -40,14 +40,20 @@ func _process(_delta: float) -> void:
 	
 	if activate_fail_screen():
 		return
+
+	var intro = get_node_or_null("Control/IntroWebsite")
+	if intro:
+		return
 	
-	# Open pause menu for lawn
+	# Open pause menu
 	if Input.is_action_just_pressed("ui_cancel"):
 		$Control/TransitionRect.end_transition()
-		if $Control/NPCMenu.visible:
+		if npc_menu_open():
 			# Exit out of neighbor menu
 			$Control/NPCMenu.hide()
 			$Control/NPCMenu.hide_neighbor()
+		elif quest_screen_open():
+			$Control/QuestScreen/InfoScreen.hide()
 		else:
 			toggle_pause_menu()
 
@@ -139,6 +145,9 @@ func set_npc_menu(npc: NPC) -> void:
 func set_bus_menu(bus_stop: BusStop) -> void:
 	$Control/NPCMenu.set_bus_menu(bus_stop)
 
+func set_job_board_menu(job_board: JobBoard) -> void:
+	$Control/NPCMenu.set_job_board_menu(job_board)
+
 func set_skip_day_menu() -> void:
 	$Control/NPCMenu.set_skip_day_menu()
 
@@ -162,3 +171,9 @@ func num_as_time_string(num: float) -> String:
 	var minutes: int = int(floori(t / 60.0))
 	var seconds: int = int(t % 60)
 	return "%02d:%02d" % [minutes, seconds]
+
+func npc_menu_open() -> bool:
+	return $Control/NPCMenu.visible
+
+func quest_screen_open() -> bool:
+	return $Control/QuestScreen/InfoScreen.visible

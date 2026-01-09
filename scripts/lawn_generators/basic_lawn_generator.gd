@@ -1,8 +1,10 @@
 extends TileMapLayer
 
 func _ready() -> void:
-	for hedge_generation_point in $HedgeGenerationPoints.get_children():
-		generate_hedge(hedge_generation_point)
+	var hedge_generation_points: Node2D = get_node_or_null("HedgeGenerationPoints")
+	if hedge_generation_points:
+		for hedge_generation_point in hedge_generation_points.get_children():
+			generate_hedge(hedge_generation_point)
 	
 	LawnGenerationUtilities.prune_hedges(self)
 

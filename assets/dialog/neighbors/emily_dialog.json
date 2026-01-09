@@ -1,0 +1,9 @@
+{
+	"unavailable_msg": "The door is locked...\nThere's a note: \"I'm out shopping right now, will be back soon!\"",
+
+	"first_dialog": [
+		"Oh, uhm, hello. Do I know you?"
+	],
+
+	"first_job_offer": "Oh, okay. Well then, I suppose I could use some help with my lawn today. Just be careful around my flower garden."
+}

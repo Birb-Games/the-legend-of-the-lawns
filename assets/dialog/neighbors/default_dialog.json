@@ -1,0 +1,17 @@
+{
+	"possible_dialog": [
+		"Oh, you want to mow my lawn? I suppose it is a bit overgrown...",
+		"My lawn needs to be mowed today but I'm too lazy."
+	],
+	"reject_dialog": [
+		"Sorry, my lawn doesn't need to be mowed today."
+	],
+	"unavailable_msg": "The door is locked...",
+	"first_dialog": [
+		"Hello!"
+	],
+	"player_dialog": [
+		"I'm here to mow your lawn!"
+	],
+	"first_job_offer": "I suppose I could use some help with mowing my lawn today..."
+}

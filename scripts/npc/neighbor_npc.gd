@@ -12,21 +12,17 @@ var player_in_area: bool = false
 @export var display_name: String = "Neighbor"
 @export var always_visible: bool = false
 @export var disabled: bool = false
+@export var is_test: bool = false
 @export var lawn_template: PackedScene
-## How many lawns the player has to mow before unlocking this neighbor
-@export var min_lawns_mowed: int = 0
-## How frequently they need their lawn mowed
-@export var mowing_frequency: int = 1
-# The maximum number of times the player can mow the lawn and get paid
-# (they can replay the lawn afterward but will not receive any money)
-# Set this value to 0 if you want to allow the player to mow the lawn an
-# unlimited number of times.
-@export var mowing_limit: int = 0
+@export var max_difficulty: int = 0
 var times_mowed: int = 0
+# The player has to mow this many lawns before this neighbor is available again
+# on the job board
+var cooldown: int = 0
+@export var level: int = -1
 
 @export_group("Wage Info")
 @export var wage: int = 10
-@export var wage_change: int = 0
 @export var max_wage: int = 20
 @export var bonus_base: int = 2
 @export var max_bonus: int = 5
@@ -37,19 +33,14 @@ var times_mowed: int = 0
 
 @export_group("Dialog")
 @export_multiline var interact_text: String = "Press [SPACE] to knock on door."
-@export_multiline var possible_dialog: PackedStringArray = [
-	"Oh, you want to mow my lawn? I suppose it is a bit overgrown...",
-	"My lawn needs to be mowed today but I'm too lazy.",
-]
-@export_multiline var reject_dialog: PackedStringArray = [
-	"Sorry, my lawn doesn't need to be mowed today.",
-]
-@export_multiline var unavailable_msg: String = "The door is locked..."
-@export_multiline var first_dialog: String = "Hello!"
-@export_multiline var player_dialog: String = "I'm here to mow your lawn!"
-@export_multiline var first_job_offer: String = "I suppose I could use some help with mowing my lawn today..."
+var possible_dialog: PackedStringArray = Dialog.DEFAULT_POSSIBLE_DIALOG
+var reject_dialog: PackedStringArray = Dialog.DEFAULT_REJECT_DIALOG
+var unavailable_msg: String = Dialog.DEFAULT_UNAVAILABLE_MSG
+var first_dialog: PackedStringArray = Dialog.DEFAULT_FIRST_DIALOG
+var player_dialog: PackedStringArray = Dialog.DEFAULT_PLAYER_DIALOG
+var first_job_offer: String = Dialog.DEFAULT_FIRST_JOB_OFFER
+@export var dialog_json: JSON
 var first_time: bool = true
-var mow_cooldown: int = 0
 
 var current_dialog: String = ""
 
@@ -57,22 +48,14 @@ func _ready() -> void:
 	$Area2D/CollisionShape2D.disabled = disabled
 	hide()
 	play(animation)
+	Dialog.set_neighbor_dialog_from_json(self, dialog_json)
 
 func unavailable() -> bool:
-	return $/root/Main.lawns_mowed < min_lawns_mowed
+	return $/root/Main.current_level < level 
 
-# Returns true if the mow cool down is above 0
 func reject() -> bool:
-	if mowing_limit_reached():
-		return false
-	return mow_cooldown > 0
-
-func set_cooldown() -> void:
-	mow_cooldown = mowing_frequency
-
-func update_cooldown() -> void:
-	mow_cooldown -= 1
-	mow_cooldown = max(mow_cooldown, 0)
+	var main: Main = $/root/Main
+	return times_mowed > 0 and !(name in main.job_list) and !is_test
 
 func generate_dialog() -> void:
 	current_dialog = ""
@@ -80,15 +63,14 @@ func generate_dialog() -> void:
 		current_dialog = unavailable_msg
 		return
 	if reject():
-		if len(reject_dialog) == 0:
+		if reject_dialog.is_empty():
 			return
 		current_dialog = reject_dialog[randi() % len(reject_dialog)]
-		return	
-	if first_time:
-		current_dialog = first_dialog
+		return
+	if first_time and !first_dialog.is_empty():
 		return
 	
-	if len(possible_dialog) == 0:
+	if possible_dialog.is_empty():
 		return
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 
@@ -105,18 +87,6 @@ func _process(_delta: float) -> void:
 	if always_visible:
 		show()
 
-func mowing_limit_reached() -> bool:
-	return mowing_limit > 0 and times_mowed >= mowing_limit
-
-func change_wage() -> void:
-	if mowing_limit_reached():
-		wage = 0
-		bonus_base = 0
-		max_bonus = 0
-		return
-	wage += wage_change
-	wage = clamp(wage, 1, max_wage)
-
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_in_area = true
@@ -131,14 +101,11 @@ func save() -> Dictionary:
 	return {
 		"path" : get_path(),
 		"times_mowed" : times_mowed,
-		"wage" : wage,
 		"first_time" : first_time,
-		"mow_cooldown" : mow_cooldown,
+		"cooldown" : cooldown
 	}
 
 func load_from(data: Dictionary) -> void:
-	times_mowed = data["times_mowed"]
-	wage = data["wage"]
-	first_time = data["first_time"]
-	mow_cooldown = data["mow_cooldown"]
-
+	times_mowed = Save.get_val(data, "times_mowed", 0)
+	first_time = Save.get_val(data, "first_time", true)
+	cooldown = Save.get_val(data, "cooldown", 0)

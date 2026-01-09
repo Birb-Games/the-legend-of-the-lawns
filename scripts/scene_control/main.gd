@@ -3,7 +3,7 @@ class_name Main
 extends Node2D
 
 @onready var neighborhood_scene: PackedScene = preload("uid://8t3kf3315lkx")
-@onready var neighborhood: Node2D = $Neighborhood
+@onready var neighborhood: Neighborhood = $Neighborhood
 @onready var player: Player = $Player
 @onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
@@ -19,6 +19,9 @@ var current_day: int = 1
 # How many lawns the player mowed
 var lawns_mowed: int = 0
 var current_wage: int = 0
+var current_level: int = 0
+# Key: node path, Value: Job info 
+var job_list: Dictionary = {}
 
 # Update the money based on the current wage and the modifier (penalties and bonuses)
 func update_money(modifier: int) -> void:
@@ -50,9 +53,16 @@ func _process(delta: float) -> void:
 		$Player/Camera2D.position_smoothing_enabled = true
 
 func advance_day() -> void:
-	neighborhood.update_neighbors()
 	current_day += 1
 	$HUD/Control/TransitionRect.start_animation()
+	for key: String in job_list.keys():
+		var job: Job = job_list[key]
+		job.update()
+	for key: String in job_list.keys():
+		var job: Job = job_list[key]
+		if job.days_left <= 0:
+			job_list.erase(key)
+	$HUD/Control/QuestScreen.show_alert = false
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -81,7 +91,9 @@ func return_to_neighborhood() -> void:
 		get_node("Lawn").queue_free()
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
+	$Neighborhood/JobBoard.update()
 	$Player/WaterGun.hide()
+	$Player/NeighborArrow.point_to = ""
 	player.position = player_pos
 	current_wage = 0
 	player.dir = "down"
@@ -120,7 +132,7 @@ func update_hud_lawn(delta: float) -> void:
 func update_hud_neighborhood() -> void:
 	$HUD.update_info_text($Player.interact_text)
 	# hide info text if talking to a neighbor
-	$HUD/Control/InfoText.visible = !$HUD/Control/NPCMenu.visible
+	$HUD/Control/InfoText.visible = !$HUD.npc_menu_open() and !$HUD.quest_screen_open()
 	
 	$HUD.update_progress_bar(-1.0, 0, 0) # -1.0 hides the progress bar
 	$HUD.update_health_bar(0, 0)
@@ -133,6 +145,8 @@ func update_hud(delta: float) -> void:
 		update_hud_neighborhood()
 
 	if lawn_loaded:
+		$HUD.hide_neighborhood_hud()
+	elif !lawn_loaded and $HUD.quest_screen_open():
 		$HUD.hide_neighborhood_hud()
 	else:
 		$HUD.update_day_counter(current_day)
@@ -151,18 +165,25 @@ func reset() -> void:
 	$Neighborhood.free()
 	add_child(neighborhood_scene.instantiate())
 	neighborhood = $Neighborhood
+	job_list.clear()
 
 	return_to_neighborhood()
 	money = 0
 	current_day = 1
 	lawns_mowed = 0
+	current_level = 0
+	player.reset()
+	$/root/Main/HUD/Control/QuestScreen.reset()
+	$Neighborhood/JobBoard.update()
 
 func save() -> Dictionary:
 	return {
 		"money" : money,
 		"current_day" : current_day,
 		"lawns_mowed": lawns_mowed,
-		"player_name" : player_name
+		"player_name" : player_name,
+		"current_level" : current_level,
+		"jobs" : get_job_list_str()
 	}
 
 func save_progress() -> void:
@@ -187,6 +208,13 @@ func save_progress() -> void:
 		var json = JSON.stringify(data)
 		save_file.store_line(json)
 
+func get_job_list_str() -> String:
+	var job_list_str: String = ""
+	for key: String in job_list.keys():
+		var job: Job = job_list[key]
+		job_list_str += "%s|" % job.to_json_str(key)
+	return job_list_str
+
 func load_save() -> bool:
 	var save_file = FileAccess.open(save_path, FileAccess.READ)
 
@@ -203,25 +231,29 @@ func load_save() -> bool:
 		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
 		return false	
 	var data = json.data
-	player_name = data["player_name"]
-	if player_name.is_empty():
-		player_name = "Billy"
-	money = max(data["money"], 0)
-	current_day = max(data["current_day"], 1)
-	lawns_mowed = max(data["lawns_mowed"], 0)
+	player_name = Save.get_val(data, "player_name", "Billy")
+	money = max(Save.get_val(data, "money", 0), 0)
+	current_day = max(Save.get_val(data, "current_day", 1), 1)
+	$HUD/Control/QuestScreen.show_alert = (current_day == 1)
+	lawns_mowed = max(Save.get_val(data, "lawns_mowed", 0), 0)
+	current_level = max(Save.get_val(data, "current_level", 0), 0)
+	job_list = Job.parse_job_list(Save.get_val(data, "jobs", ""))
 
 	# Load player stats
 	line = save_file.get_line()
 	json = JSON.new()
 	parse_result = json.parse(line)
+	# Set the player defaults
+	player.reset()
 	if parse_result != OK:
 		printerr("Error loading player:")
 		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
-		# Set the player defaults
-		player.max_health = 80
 	else:
 		data = json.data
-		player.max_health = max(data["max_health"], 1)
+		player.max_health = max(Save.get_val(data, "max_health", 80), 1)
+	
+	if current_day == 1:
+		player.global_position = $/root/Main/Neighborhood/Intro/PlayerStart.global_position
 
 	# Load neighborhood
 	line = save_file.get_line()
@@ -239,6 +271,7 @@ func load_save() -> bool:
 		line = save_file.get_line()
 	
 	update_continue_save()
+	$Neighborhood/JobBoard.update()
 	return true
 
 func update_continue_save() -> void:
@@ -247,3 +280,22 @@ func update_continue_save() -> void:
 	var file = FileAccess.open("user://continue", FileAccess.WRITE)
 	if file != null:
 		file.store_line(continue_save)
+
+func advance_quest() -> void:
+	var current_quest: Quest = Quest.get_quest(current_level)
+	if current_quest == null:
+		return
+	current_quest.reward.give.call(self)
+	current_level += 1
+	$HUD/Control/QuestScreen.selected = -1
+	$Player/NeighborArrow.point_to = ""
+
+func get_current_neighbors() -> Array:
+	var neighbors: Array = []
+	for neighbor in $Neighborhood/Neighbors.get_children():
+		if neighbor is NeighborNPC:
+			if neighbor.disabled:
+				continue
+			if neighbor.level == current_level:
+				neighbors.push_back(neighbor)
+	return neighbors

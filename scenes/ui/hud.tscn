@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8jx2be4cfkb8"]
+[gd_scene load_steps=12 format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/ui/hud.gd" id="1_oo0fn"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbaa6s8vockj8" path="res://scenes/ui/fail_screen.tscn" id="7_5pdws"]
 [ext_resource type="Script" uid="uid://cysslxg82gi06" path="res://scripts/ui/transition_rect.gd" id="7_gss2c"]
 [ext_resource type="FontFile" uid="uid://b3j21gnxq1jn1" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Bold.ttf" id="8_h022r"]
+[ext_resource type="PackedScene" uid="uid://b8cv1f5uxjd26" path="res://scenes/ui/quest_screen.tscn" id="10_kicr4"]
 
 [sub_resource type="Gradient" id="Gradient_h022r"]
 colors = PackedColorArray(0, 0.30980393, 0.1882353, 1, 0.12156863, 0.6901961, 0.13725491, 1)
@@ -31,20 +32,29 @@ offset_bottom = 647.0
 [node name="ProgressBar" type="ColorRect" parent="Control"]
 layout_mode = 0
 offset_left = 417.0
-offset_top = 600.0
+offset_top = 605.0
 offset_right = 737.0
-offset_bottom = 620.0
+offset_bottom = 625.0
 color = Color(0.12156863, 0.6901961, 0.13725491, 1)
 
 [node name="ProgressBarPercent" type="Label" parent="Control/ProgressBar"]
 layout_mode = 0
-offset_top = 2.0
+offset_top = 3.0
 offset_right = 320.0
-offset_bottom = 19.0
+offset_bottom = 20.0
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 20
 text = "Lawn Progress: 0%"
 horizontal_alignment = 1
+
+[node name="Outline" type="ColorRect" parent="Control/ProgressBar"]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 323.0
+offset_bottom = 23.0
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
 [node name="ProgressBackground" type="ColorRect" parent="Control/ProgressBar"]
 z_index = -1
@@ -66,10 +76,20 @@ layout_mode = 0
 offset_top = 4.0
 offset_right = 320.0
 offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 20
 text = "HP: 0/0"
 horizontal_alignment = 1
+
+[node name="Outline" type="ColorRect" parent="Control/HealthBar"]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 323.0
+offset_bottom = 27.0
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
 [node name="HealthBackground" type="ColorRect" parent="Control/HealthBar"]
 z_index = -1
@@ -160,6 +180,10 @@ theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 24
 text = "Mowed 0 Lawns"
 horizontal_alignment = 2
+
+[node name="QuestScreen" parent="Control" instance=ExtResource("10_kicr4")]
+visible = false
+layout_mode = 1
 
 [node name="DamageFlash" type="ColorRect" parent="Control"]
 visible = false

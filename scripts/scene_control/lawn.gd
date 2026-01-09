@@ -20,6 +20,7 @@ var flowers_destroyed: int = 0
 
 var weeds_killed: int = 0
 var total_weeds: int = 0
+var weeds: Array[NodePath]
 
 var astar_grid: AStarGrid2D
 # Whether we should update the A* grid

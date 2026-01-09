@@ -26,60 +26,56 @@ func reset_buttons() -> void:
 static func format_wage(wage: int) -> String:
 	return "I will pay you <$%d> to mow my lawn." % wage
 
+# This is the message displayed if the neighbor is not unlocked yet.
 func set_menu_unavailable(neighbor: NeighborNPC) -> void:
 	$Menu/VBoxContainer/Name.text = "???"
-	var lawns_left = neighbor.min_lawns_mowed - $/root/Main.lawns_mowed
-	if lawns_left == 1:
-		$Menu/VBoxContainer/Wage.text = "Mow <1> more lawn, then come back."
-	elif lawns_left > 1:
-		$Menu/VBoxContainer/Wage.text = "Mow <%d> more lawns, then come back." % lawns_left
+	$Menu/VBoxContainer/Wage.text = ""
 	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
 	buttons[0].show()
 	buttons[0].text = "Leave"
 	buttons[0].connect("pressed", on_leave_pressed)
 	show()
 
+# This is the message displayed if the neighbor does not need their lawn mowed.
 func set_menu_reject(neighbor: NeighborNPC) -> void:
 	$Menu/VBoxContainer/Name.text = neighbor.display_name
 	$Menu/VBoxContainer/Wage.text = ""
 	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
-
 	buttons[0].show()
 	buttons[0].text = "Leave"
 	buttons[0].connect("pressed", on_leave_pressed)
 	show()
 
-func advance_first_dialog() -> void:
+# Advances the initial conversation the player has with the neighbor.
+func advance_first_dialog(neighbor: NeighborNPC, index: int) -> void:
+	if index + 1 < len(current_neighbor.first_dialog):
+		reset_buttons()
+		set_menu_first(neighbor, index + 1)
+		return
 	current_neighbor.first_time = false
 	current_neighbor.current_dialog = current_neighbor.first_job_offer
 	set_menu(current_neighbor)
 
-func set_menu_first(neighbor: NeighborNPC) -> void:
+# This displays the conversation that the player has with the neighbor npc
+# when they first meet them.
+func set_menu_first(neighbor: NeighborNPC, index: int) -> void:
 	$Menu/VBoxContainer/Name.text = neighbor.display_name
 	$Menu/VBoxContainer/Wage.text = ""
-	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
+	$Menu/VBoxContainer/Description.text = neighbor.first_dialog[index]
 
 	buttons[0].show()
-	buttons[0].text = neighbor.player_dialog
-	buttons[0].connect("pressed", advance_first_dialog)
+	if index < len(neighbor.player_dialog):
+		buttons[0].text = neighbor.player_dialog[index]
+	else:
+		buttons[0].text = "Okay"
+	buttons[0].connect(
+		"pressed", 
+		func() -> void: 
+			advance_first_dialog(neighbor, index)
+	)
 	show()
 
-func set_menu_limit_reached(neighbor: NeighborNPC) -> void:
-	$Menu/VBoxContainer/Name.text = neighbor.display_name
-	$Menu/VBoxContainer/Wage.text = ""
-	$Menu/VBoxContainer/Description.text = """You have reached the limit on the number of times you can mow this lawn and still get paid.
-You can replay it if you want though, you'll just earn $0."""	
-	
-	buttons[0].show()
-	buttons[0].text = "Leave"
-	buttons[0].connect("pressed", on_leave_pressed)
-
-	buttons[1].show()
-	buttons[1].text = "Okay"
-	buttons[1].connect("pressed", advance_limit_reached_dialog)
-
-	show()
-
+# This is the menu displayed if the player can mow the neighbor's lawn.
 func set_mowing_menu(neighbor: NeighborNPC) -> void:
 	$Menu/VBoxContainer/Name.text = neighbor.display_name
 	$Menu/VBoxContainer/Wage.text = format_wage(neighbor.wage) 
@@ -104,30 +100,35 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	if neighbor.unavailable():
 		set_menu_unavailable(neighbor)
 		return
-	
+
 	if neighbor.reject():
 		set_menu_reject(neighbor)
 		return
 
-	if neighbor.first_time:
-		set_menu_first(neighbor)
+	if neighbor.first_time and !neighbor.first_dialog.is_empty():
+		set_menu_first(neighbor, 0)
 		return
 
-	if neighbor.mowing_limit_reached():
-		set_menu_limit_reached(neighbor)
-		return
-	
 	set_mowing_menu(neighbor)
 
-func advance_first_dialog_npc() -> void:
-	current_npc.first_time = false
-	current_npc.generate_dialog()
-	set_npc_menu(current_npc)
-
-func advance_limit_reached_dialog() -> void:
-	current_neighbor.generate_dialog()
-	reset_buttons()
-	set_mowing_menu(current_neighbor)
+func set_menu_first_npc(npc: NPC, index: int) -> void:
+	$Menu/VBoxContainer/Description.text = npc.first_dialog[index]
+	if index < len(npc.player_dialog):
+		buttons[0].text = npc.player_dialog[index]
+	else:
+		buttons[0].text = "Okay"
+	if index < len(npc.first_dialog) - 1:
+		buttons[0].connect(
+			"pressed",
+			func() -> void:
+				reset_buttons()
+				set_menu_first_npc(npc, index + 1)
+		)
+	else:
+		npc.first_time = false
+		buttons[0].connect("pressed", on_leave_pressed)
+	buttons[0].show()
+	show()
 
 func set_npc_menu(npc: NPC) -> void:
 	reset_buttons()
@@ -140,12 +141,11 @@ func set_npc_menu(npc: NPC) -> void:
 
 	buttons[0].show()
 
-	if !npc.first_time:
+	if npc.first_time and !npc.first_dialog.is_empty():
+		set_menu_first_npc(npc, 0)
+	else:
 		buttons[0].text = "Leave"
 		buttons[0].connect("pressed", on_leave_pressed)
-	else:
-		buttons[0].text = npc.player_dialog
-		buttons[0].connect("pressed", advance_first_dialog_npc)
 
 	show()
 
@@ -153,11 +153,7 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 	reset_buttons()
 
 	$Menu/VBoxContainer/Name.text = "Bus Stop (%s)" % bus_stop.display_name
-	var main: Main = $/root/Main
-	if main.lawns_mowed >= 3:
-		$Menu/VBoxContainer/Description.text = "Select your desired destination."
-	else:	
-		$Menu/VBoxContainer/Description.text = "You need to mow at least 3 lawns before you can use the bus!"
+	$Menu/VBoxContainer/Description.text = "Select your desired destination."
 	$Menu/VBoxContainer/Wage.text = ""
 
 	buttons[0].text = "Leave"
@@ -165,9 +161,6 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 	buttons[0].show()
 
 	show()
-
-	if main.lawns_mowed < 3:
-		return
 
 	var index = 1
 	for stop: BusStop in bus_stop.connections:
@@ -181,7 +174,6 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 				var player: Player = $/root/Main/Player
 				player.position = stop.position + Vector2(16.0, 6.0)
 				player.dir = "down"
-				player.can_use_bus_stop = true
 				# Activate transition animation
 				$/root/Main/HUD/Control/TransitionRect.start_bus_animation()
 				$/root/Main/Player/Camera2D.position_smoothing_enabled = false
@@ -191,9 +183,46 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 		buttons[index].show()
 		index += 1
 
+func set_job_board_menu(job_board: JobBoard) -> void:
+	reset_buttons()
+	$Menu/VBoxContainer/Name.text = "Job Board"
+
+	buttons[0].text = "Okay"
+	buttons[0].connect("pressed", on_leave_pressed)
+	buttons[0].show()
+
+	var main: Main = $/root/Main
+	var current_quest: Quest = Quest.get_quest(main.current_level)
+	if current_quest and current_quest.completed(main):
+		$Menu/VBoxContainer/Description.text = "TO-DO list completed, reward claimed! (%s)" % current_quest.reward.description
+		main.advance_quest()
+		job_board.current_job = null
+		if Quest.get_quest(main.current_level):
+			$Menu/VBoxContainer/Wage.text = "New TO-DOs added to journal!"
+			$/root/Main/HUD/Control/QuestScreen.show_alert = true
+		else:
+			$Menu/VBoxContainer/Wage.text = ""
+		show()
+		return
+
+	if job_board.current_job == null:
+		$Menu/VBoxContainer/Description.text = "No lawn mowing jobs are currently available."
+		$Menu/VBoxContainer/Wage.text = "Come back later!"
+	else:
+		var neighbor: NeighborNPC = get_node_or_null(job_board.current_job.neighbor_path)
+		$Menu/VBoxContainer/Description.text = job_board.current_job.get_message(neighbor)
+		$Menu/VBoxContainer/Wage.text = "Job added to journal!"
+		$/root/Main/HUD/Control/QuestScreen.show_alert = true
+		if neighbor:
+			main.job_list[neighbor.name] = job_board.current_job
+		job_board.generate_job()
+
+	show()
+
 func skip_day() -> void:
 	var main: Main = $/root/Main
 	main.advance_day()
+	$/root/Main/Neighborhood/JobBoard.update()
 	main.save_progress()
 	var player: Player = $/root/Main/Player
 	player.dir = "down"
@@ -230,7 +259,7 @@ func on_accept_pressed() -> void:
 	hide()
 	hide_neighbor()
 	var difficulty = current_neighbor.times_mowed
-	if current_neighbor.mowing_limit > 0:
-		difficulty = min(difficulty, current_neighbor.mowing_limit)
+	if current_neighbor.max_difficulty > 0:
+		difficulty = min(difficulty, current_neighbor.max_difficulty)
 	$/root/Main.load_lawn(current_neighbor.lawn_template, difficulty)
 	$/root/Main.current_wage = current_neighbor.wage

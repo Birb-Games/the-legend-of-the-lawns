@@ -51,12 +51,16 @@ static func get_save_entries() -> Array:
 				continue
 			var display_data = json.data
 
-			entry.player_name = display_data["player_name"]
-			if entry.player_name.is_empty():
-				entry.player_name = "Billy"
-			entry.money = max(display_data["money"], 0)
-			entry.current_day = max(display_data["current_day"], 1)
+			entry.player_name = Save.get_val(display_data, "player_name", "Billy")
+			entry.money = max(Save.get_val(display_data, "money", 0), 0)
+			entry.current_day = max(Save.get_val(display_data, "current_day", 1), 1)
 			
 			saves.push_back(entry)
 		file_name = dir.get_next()
 	return saves
+
+# Can return any type
+static func get_val(data: Dictionary, key: String, default = null):
+	if key in data:
+		return data[key]
+	return default
