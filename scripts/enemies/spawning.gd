@@ -61,9 +61,18 @@ static var weed_spawn_table: Dictionary = {
 
 	"hard" : [
 		SpawnEntry.new("weed", 2.0),
-		SpawnEntry.new("thornweed", 4.0),
+		SpawnEntry.new("mini_thornweed", 1.0), 
+		SpawnEntry.new("thornweed", 3.0),
 		SpawnEntry.new("mushroom", 3.0),
 		SpawnEntry.new("fungal_mother", 1.0),
+	],
+
+	"hard+" : [
+		SpawnEntry.new("weed", 1.0),
+		SpawnEntry.new("mini_thornweed", 2.0), 
+		SpawnEntry.new("thornweed", 6.0),
+		SpawnEntry.new("mushroom", 5.0),
+		SpawnEntry.new("fungal_mother", 2.0),
 	]
 }
 
@@ -73,7 +82,8 @@ static var weed_count_table: Dictionary = {
 	"medium" : [ 3, 3, 1 ],
 	"medium+" : [ 3 ],
 	"medium++" : [ 4, 3, 3 ],
-	"hard" : [ 5, 4, 4, 3, 3, 3 ]
+	"hard" : [ 5, 4, 4, 3, 3, 3 ],
+	"hard+" : [ 5, 4, 4, 3, 3, 3 ]
 }
 
 static var flower_spawn_table: Dictionary = {
@@ -139,7 +149,14 @@ static var mob_spawn_table: Dictionary = {
 	],
 
 	"hard" : [ 
-		SpawnEntry.new("shrub_demon", 3.0), 
+		SpawnEntry.new("shrub_demon", 2.0), 
+		SpawnEntry.new("fungal_baby", 1.0),
+		SpawnEntry.new("killer_rabbit", 1.0),
+	],
+	
+	# TODO: add wasp enemy
+	"hard+" : [ 
+		SpawnEntry.new("shrub_demon", 1.0), 
 		SpawnEntry.new("fungal_baby", 1.0),
 		SpawnEntry.new("killer_rabbit", 1.0),
 	]
@@ -165,6 +182,12 @@ static var mob_count_table: Dictionary = {
 		"fungal_baby" : [ 4, 3, 3, 2, 2, 1 ],
 		"killer_rabbit" : [ 3, 2, 2, 1 ],
 		"random" : [ 4, 3, 3 ]
+	},
+	"hard+" : {
+		"shrub_demon" : [ 6, 5, 4, 4 ],
+		"fungal_baby" : [ 5, 4, 4, 3, 3, 2, 1 ],
+		"killer_rabbit" : [ 4, 3, 3, 2, 2 ],
+		"random" : [ 7, 6, 5, 4, 4, 3, 3 ]
 	},
 }
 
