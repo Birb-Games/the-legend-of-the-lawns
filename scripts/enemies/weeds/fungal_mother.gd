@@ -31,26 +31,14 @@ func spawn_babies(lower: int, upper: int) -> void:
 		return
 
 	for i in range(count):
-		# Spawn a fungal baby
-		var fungal_baby: MobileEnemy = fungal_baby_scene.instantiate()
-		var dist: float = randf_range(MIN_SPAWN_DIST, MAX_SPAWN_DIST)
-		var angle: float = randf_range(0.0, 2.0 * PI)
-		var offset: Vector2 = Vector2(cos(angle) * lawn.tile_size.x, sin(angle) * lawn.tile_size.y) * dist
-		var pos: Vector2 = global_position + offset
-		var tile_pos: Vector2i = Vector2i(
-			int(floor(pos.x / lawn.tile_size.x)),
-			int(floor(pos.y / lawn.tile_size.y))
+		Spawning.spawn_around_point(
+			lawn,
+			lawn.get_node("MobileEnemies"),
+			global_position,
+			fungal_baby_scene,
+			MIN_SPAWN_DIST, 
+			MAX_SPAWN_DIST,
 		)
-		var tile: Vector2i = lawn.get_tile(tile_pos.x, tile_pos.y)
-		# Fungal babies can only spawn on grass tiles
-		if !LawnGenerationUtilities.is_grass(tile) and !LawnGenerationUtilities.is_cut_grass(tile):
-			continue
-		# Spawn the fungal baby centered on the tile
-		fungal_baby.global_position = Vector2(
-			(tile_pos.x + 0.5) * lawn.tile_size.y, 
-			(tile_pos.y + 0.5) * lawn.tile_size.y
-		)
-		lawn.get_node("MobileEnemies").add_child(fungal_baby)
 
 func explode() -> void:
 	super.explode()

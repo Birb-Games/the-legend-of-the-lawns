@@ -183,6 +183,24 @@ func _physics_process(_delta: float) -> void:
 func get_animation() -> String:
 	return "default"
 
+func set_dir_left() -> void:
+	$AnimatedSprite2D.flip_h = true
+
+func set_dir_right() -> void:
+	$AnimatedSprite2D.flip_h = false
+
+func set_sprite_dir() -> void:
+	if player.global_position.x < global_position.x - 8.0:
+		set_dir_left()
+	elif player.global_position.x > global_position.x + 8.0:
+		set_dir_right()
+
+	var vel = calculate_velocity()
+	if vel.length() > 0.0 and vel.normalized().dot(Vector2.LEFT) > 0.25:
+		set_dir_left()
+	elif vel.length() > 0.0 and vel.normalized().dot(Vector2.RIGHT) > 0.25:
+		set_dir_right()
+
 func damage(amt: int) -> void:
 	if spawn_timer > 0.0:
 		return
@@ -193,5 +211,7 @@ func damage(amt: int) -> void:
 
 func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 	if body is PlayerBullet:
+		if !body.active():
+			return
 		body.explode()
 		damage(1)

@@ -302,3 +302,51 @@ static func gen_enemy_positions_circle(
 		var y = sin(angle) * dist
 		positions.append(Vector2(x, y))
 	return positions
+
+# distances are in tile units
+# returns true if an enemy was successfull spawned, false otherwise
+static func spawn_around_point(
+	lawn: Lawn,
+	parent: Node,
+	position: Vector2,
+	scene: PackedScene,
+	min_dist: float,
+	max_dist: float,
+) -> bool:
+	if lawn == null:
+		return false
+
+	var node: Node2D = scene.instantiate()
+	var dist: float = randf_range(min_dist, max_dist)
+	var angle: float = randf_range(0.0, 2.0 * PI)
+	var offset: Vector2 = Vector2(cos(angle) * lawn.tile_size.x, sin(angle) * lawn.tile_size.y) * dist
+	var pos: Vector2 = position + offset
+	var tile_pos: Vector2i = Vector2i(
+		int(floor(pos.x / lawn.tile_size.x)),
+		int(floor(pos.y / lawn.tile_size.y))
+	)
+	var tile: Vector2i = lawn.get_tile(tile_pos.x, tile_pos.y)
+	# Fungal babies can only spawn on grass tiles
+	if !LawnGenerationUtilities.is_grass(tile) and !LawnGenerationUtilities.is_cut_grass(tile):
+		return false
+	# Spawn the fungal baby centered on the tile
+	node.global_position = Vector2(
+		(tile_pos.x + 0.5) * lawn.tile_size.y, 
+		(tile_pos.y + 0.5) * lawn.tile_size.y
+	)
+	parent.add_child(node)
+	return true
+
+static func try_spawning_around_point(
+	lawn: Lawn,
+	parent: Node,
+	position: Vector2,
+	scene: PackedScene,
+	min_dist: float,
+	max_dist: float,
+	tries: int
+) -> void:
+	for i in range(tries):
+		var res: bool = spawn_around_point(lawn, parent, position, scene, min_dist, max_dist)
+		if res:
+			return

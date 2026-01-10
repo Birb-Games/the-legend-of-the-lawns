@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=4 uid="uid://dxpn5t34f6wkw"]
+[gd_scene load_steps=6 format=4 uid="uid://dxpn5t34f6wkw"]
 
 [ext_resource type="Script" uid="uid://cex6xa5f02ubi" path="res://scripts/scene_control/lawn.gd" id="1_eudnv"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="2_fe7f8"]
+[ext_resource type="PackedScene" uid="uid://crnj1ljbpuy2m" path="res://scenes/enemies/mobile/tomato_boy.tscn" id="2_ghuan"]
 [ext_resource type="PackedScene" uid="uid://dyquswmvbbgde" path="res://scenes/interactable/lawn_mower.tscn" id="3_fe7f8"]
 [ext_resource type="PackedScene" uid="uid://5004ltphju6p" path="res://scenes/interactable/water_gun.tscn" id="4_p5gcc"]
 
 [node name="Lawn" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_eudnv")
+tomato_boy_scene = ExtResource("2_ghuan")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["lawn_obstacle"]]
 z_index = -3

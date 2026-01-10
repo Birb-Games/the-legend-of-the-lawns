@@ -28,6 +28,10 @@ var update_astar_grid: bool = false
 const ASTAR_UPDATE_INTERVAL: float = 1.0
 var astar_update_timer: float = ASTAR_UPDATE_INTERVAL
 
+# Enemy spawning
+@export var tomato_boy_scene: PackedScene
+@onready var tomato_boy_spawn_timer = randf_range(45.0, 90.0)
+
 var finish_timer: float = 1.0
 
 func _ready() -> void:
@@ -128,8 +132,30 @@ func water_gun_interaction() -> void:
 func lawn_completed() -> bool:
 	return cut_grass_tiles >= total_grass_tiles and weeds_killed >= total_weeds
 
+func spawn_enemies(delta: float) -> void:
+	var player: Player = get_node_or_null("/root/Main/Player")
+
+	if tomato_boy_scene:
+		tomato_boy_spawn_timer -= delta
+	if tomato_boy_spawn_timer < 0.0 and randi() % 2 == 0:
+		Spawning.try_spawning_around_point(
+			self, 
+			$MobileEnemies,
+			player.global_position, 
+			tomato_boy_scene,
+			4.0,
+			16.0,
+			3
+		)
+	if tomato_boy_spawn_timer < 0.0:
+		tomato_boy_spawn_timer = randf_range(45.0, 90.0)
+
+
 func _process(delta: float) -> void:
 	var player: Player = get_node_or_null("/root/Main/Player")
+
+	if player == null:
+		return
 
 	if lawn_completed() and player != null and player.health > 0:
 		finish_timer -= delta
@@ -139,11 +165,9 @@ func _process(delta: float) -> void:
 		get_tree().paused = true
 		$/root/Main/HUD.activate_finish_screen()
 		return
-	
-	water_gun_interaction()
 
-	if player == null:
-		return
+	spawn_enemies(delta)
+	water_gun_interaction()
 
 	if !player.lawn_mower_active():
 		return
