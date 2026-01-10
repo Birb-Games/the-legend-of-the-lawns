@@ -137,7 +137,7 @@ func spawn_enemies(delta: float) -> void:
 
 	if tomato_boy_scene:
 		tomato_boy_spawn_timer -= delta
-	if tomato_boy_spawn_timer < 0.0 and randi() % 2 == 0:
+	if tomato_boy_spawn_timer < 0.0 and randi() % 3 == 0:
 		Spawning.try_spawning_around_point(
 			self, 
 			$MobileEnemies,
@@ -148,7 +148,7 @@ func spawn_enemies(delta: float) -> void:
 			3
 		)
 	if tomato_boy_spawn_timer < 0.0:
-		tomato_boy_spawn_timer = randf_range(45.0, 90.0)
+		tomato_boy_spawn_timer = randf_range(45.0, 120.0)
 
 
 func _process(delta: float) -> void:
