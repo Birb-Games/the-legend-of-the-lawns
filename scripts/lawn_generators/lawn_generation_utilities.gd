@@ -171,3 +171,7 @@ static func is_hedge(atlas_coords: Vector2i) -> bool:
 # Check if the tile is a grass tile
 static func is_grass(atlas_coords: Vector2i) -> bool:
 	return atlas_coords == Vector2i(1, 0)
+
+# Check if the tile is a grass tile
+static func is_cut_grass(atlas_coords: Vector2i) -> bool:
+	return atlas_coords == Vector2i(0, 0)

@@ -63,6 +63,9 @@ func _ready() -> void:
 			astar_grid.set_point_solid(cell)
 	astar_grid.update()
 
+func get_tile(x: int, y: int) -> Vector2i:
+	return $TileMapLayer.get_cell_atlas_coords(Vector2i(x, y))
+
 func update_enemy_pathfinding() -> void:
 	for child in $MobileEnemies.get_children():
 		if child is MobileEnemy:	

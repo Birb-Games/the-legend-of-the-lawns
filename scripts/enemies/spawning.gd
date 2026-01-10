@@ -13,6 +13,7 @@ static var weed_enemies: Dictionary = {
 	"mini_thornweed" : preload("uid://bpn14mbnmv14h"),
 	"thornweed": preload("uid://fqhlxrgabgqv"),
 	"mushroom" : preload("uid://bfrhyuagid5eh"),
+	"fungal_mother" : preload("uid://b60yupijenmi2")
 }
 
 static var flower_enemies: Dictionary = {
@@ -24,6 +25,7 @@ static var flower_enemies: Dictionary = {
 static var mobile_enemies: Dictionary = {
 	"shrub_demon" : preload("uid://d1jwu43vb0643"),
 	"fungal_baby" : preload("uid://b1shkd3nhlmls"),
+	"killer_rabbit" : preload("uid://b32ibsy1iagox"),
 }
 
 static var weed_spawn_table: Dictionary = {
@@ -55,6 +57,13 @@ static var weed_spawn_table: Dictionary = {
 		SpawnEntry.new("mini_thornweed", 1.0), 
 		SpawnEntry.new("thornweed", 1.0),
 		SpawnEntry.new("mushroom", 1.0), 
+	],
+
+	"hard" : [
+		SpawnEntry.new("weed", 2.0),
+		SpawnEntry.new("thornweed", 4.0),
+		SpawnEntry.new("mushroom", 3.0),
+		SpawnEntry.new("fungal_mother", 1.0),
 	]
 }
 
@@ -64,6 +73,7 @@ static var weed_count_table: Dictionary = {
 	"medium" : [ 3, 3, 1 ],
 	"medium+" : [ 3 ],
 	"medium++" : [ 4, 3, 3 ],
+	"hard" : [ 5, 4, 4, 3, 3, 3 ]
 }
 
 static var flower_spawn_table: Dictionary = {
@@ -126,6 +136,12 @@ static var mob_spawn_table: Dictionary = {
 	"medium++" : [ 
 		SpawnEntry.new("shrub_demon", 3.0), 
 		SpawnEntry.new("fungal_baby", 1.0) 
+	],
+
+	"hard" : [ 
+		SpawnEntry.new("shrub_demon", 3.0), 
+		SpawnEntry.new("fungal_baby", 1.0),
+		SpawnEntry.new("killer_rabbit", 1.0),
 	]
 }
 
@@ -138,11 +154,17 @@ static var mob_count_table: Dictionary = {
 		"shrub_demon" : [ 4, 3, 2 ] 
 	},
 	"medium+" : { 
-		"shrub_demon": [ 4, 4, 3, 3, 2 ] 
+		"shrub_demon" : [ 4, 4, 3, 3, 2 ] 
 	},
 	"medium++" : { 
-		"shrub_demon": [ 4, 3, 3 ],
+		"shrub_demon" : [ 4, 3, 3 ],
 		"fungal_baby" : [ 3, 2, 2, 1 ]
+	},
+	"hard" : {
+		"shrub_demon" : [ 6, 5, 4, 4, 4, 3, 3 ],
+		"fungal_baby" : [ 4, 3, 3, 2, 2, 1 ],
+		"killer_rabbit" : [ 3, 2, 2, 1 ],
+		"random" : [ 4, 3, 3 ]
 	},
 }
 

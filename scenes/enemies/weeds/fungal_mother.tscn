@@ -1,0 +1,159 @@
+[gd_scene load_steps=22 format=3 uid="uid://b60yupijenmi2"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_1vqx6"]
+[ext_resource type="Script" uid="uid://b5yev4utgyplb" path="res://scripts/enemies/weeds/fungal_mother.gd" id="1_qusam"]
+[ext_resource type="Texture2D" uid="uid://yhoe0cekyuqu" path="res://assets/textures/enemies/weeds/fungal_mother.png" id="1_xdfbl"]
+[ext_resource type="PackedScene" uid="uid://b1shkd3nhlmls" path="res://scenes/enemies/mobile/fungal_baby.tscn" id="2_1qnks"]
+[ext_resource type="PackedScene" uid="uid://dle1nhc76n43p" path="res://scenes/enemies/bullets/spore_bullet.tscn" id="2_jdys8"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="3_3606t"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="4_i36cd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt0u8"]
+size = Vector2(16, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vqx6"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(0, 0, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i36cd"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(36, 0, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qusam"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(18, 0, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdys8"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(0, 24, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qnks"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(36, 24, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0ma0"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(18, 24, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqnu0"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(0, 48, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2ash"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(36, 48, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi0qx"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(18, 48, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_camd3"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(0, 72, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfihk"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(36, 72, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fbs1"]
+atlas = ExtResource("1_xdfbl")
+region = Rect2(18, 72, 18, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pt0u8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vqx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i36cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qusam")
+}],
+"loop": true,
+"name": &"down",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdys8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qnks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0ma0")
+}],
+"loop": true,
+"name": &"left",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqnu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2ash")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi0qx")
+}],
+"loop": true,
+"name": &"right",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_camd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfihk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fbs1")
+}],
+"loop": true,
+"name": &"up",
+"speed": 3.0
+}]
+
+[node name="FungalMother" type="Area2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_qusam")
+fungal_baby_scene = ExtResource("2_1qnks")
+bullet_scene = ExtResource("2_jdys8")
+bullet_cooldown = 1.5
+max_shoot_distance = 144.0
+explosion_bullet_count = 8
+max_health = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_pt0u8")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.4375, 0.30769232)
+texture = ExtResource("1_1vqx6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_pt0u8")
+animation = &"down"
+autoplay = "down"
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("3_3606t")]
+position = Vector2(0, -4.75)
+scale = Vector2(1.25, 1.25)
+damage_amt = 2
+attack_cooldown = 1.25
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -14)
+
+[node name="Healthbar" parent="." instance=ExtResource("4_i36cd")]
+offset_top = -27.0
+offset_bottom = -25.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="hit" from="." to="." method="_on_hit"]
