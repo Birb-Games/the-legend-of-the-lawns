@@ -124,7 +124,7 @@ size = Vector2(7.499999, 5)
 size = Vector2(13.333332, 18.333332)
 
 [node name="FungalBaby" type="CharacterBody2D"]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.6, 0.6)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_wp067")

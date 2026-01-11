@@ -229,7 +229,7 @@ func spawn_enemies(delta: float) -> void:
 			spawn_mobs(player.global_position)
 		if randi() % 2 == 0:
 			mob_spawn_frequency *= DIFFICULTY_SPEED
-			mob_spawn_frequency = max(mob_spawn_frequency, 6.0)
+			mob_spawn_frequency = max(mob_spawn_frequency, 9.0)
 		mob_spawn_timer = mob_spawn_frequency * randf_range(1.0, 1.5) + randf()
 
 	# Spawn weed enemies
@@ -238,7 +238,7 @@ func spawn_enemies(delta: float) -> void:
 		if randi() % 3 != 0:
 			spawn_weeds(player.global_position)
 		weed_spawn_frequency *= DIFFICULTY_SPEED
-		weed_spawn_frequency = max(weed_spawn_frequency, 3.0)
+		weed_spawn_frequency = max(weed_spawn_frequency, 5.0)
 		weed_spawn_timer = weed_spawn_frequency * randf_range(1.0, 1.5) + randf()
 
 func _process(delta: float) -> void:

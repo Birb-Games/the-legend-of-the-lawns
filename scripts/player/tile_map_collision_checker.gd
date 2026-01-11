@@ -20,10 +20,10 @@ func colliding() -> bool:
 	return intersection_count > 0
 
 func _on_body_exited(body: Node2D) -> void:
-	if body is TileMapLayer:
+	if body is TileMapLayer or body is StaticBody2D:
 		intersection_count -= 1
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is TileMapLayer:
+	if body is TileMapLayer or body is StaticBody2D:
 		intersection_count += 1
 

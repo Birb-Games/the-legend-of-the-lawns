@@ -130,7 +130,7 @@ animations = [{
 }]
 
 [node name="SuperShroom" type="Area2D"]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_8fxkp")
 bullet_scene = ExtResource("2_a2jif")
 bullet_cooldown = 1.75

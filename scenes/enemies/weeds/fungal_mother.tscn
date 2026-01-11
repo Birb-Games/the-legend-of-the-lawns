@@ -119,7 +119,7 @@ animations = [{
 }]
 
 [node name="FungalMother" type="Area2D"]
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_qusam")
 fungal_baby_scene = ExtResource("2_1qnks")
 bullet_scene = ExtResource("2_jdys8")

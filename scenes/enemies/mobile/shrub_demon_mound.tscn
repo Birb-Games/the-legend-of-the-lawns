@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://boiyvtxjuw0rf"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_amq3e"]
+[ext_resource type="Texture2D" uid="uid://rvrociy1ongs" path="res://assets/textures/enemies/shrub_demon_mound.png" id="1_g1n3m"]
+[ext_resource type="Script" uid="uid://dhwrouhln0bys" path="res://scripts/enemies/nest.gd" id="1_kafba"]
+[ext_resource type="PackedScene" uid="uid://d1jwu43vb0643" path="res://scenes/enemies/mobile/shrub_demon.tscn" id="2_vdwki"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="3_gcbgq"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="5_j0rdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amq3e"]
+size = Vector2(30, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdwki"]
+size = Vector2(34, 11)
+
+[node name="ShrubDemonMound" type="Area2D"]
+script = ExtResource("1_kafba")
+to_spawn = ExtResource("2_vdwki")
+explosion_scene = ExtResource("3_gcbgq")
+explosion_color = Color(0, 0.5411765, 0.11764706, 1)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(1, 0.7692308)
+texture = ExtResource("1_amq3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_g1n3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_amq3e")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_vdwki")
+
+[node name="Healthbar" parent="." instance=ExtResource("5_j0rdn")]
+offset_top = -28.0
+offset_bottom = -26.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
