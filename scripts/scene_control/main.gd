@@ -51,6 +51,11 @@ func _process(delta: float) -> void:
 	# Reenable camera position smoothing if it was disabled
 	if !$Player/Camera2D.position_smoothing_enabled:
 		$Player/Camera2D.position_smoothing_enabled = true
+	
+	# Hide player lawn mower & water gun if we are in the neighborhood
+	if neighborhood.is_inside_tree():
+		$Player/Lawnmower.hide()
+		$Player/WaterGun.hide()
 
 func advance_day() -> void:
 	current_day += 1
@@ -92,6 +97,7 @@ func return_to_neighborhood() -> void:
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
 	$Neighborhood/JobBoard.update()
+	$Player/Lawnmower.hide()
 	$Player/WaterGun.hide()
 	$Player/NeighborArrow.point_to = ""
 	player.position = player_pos

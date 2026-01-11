@@ -246,6 +246,9 @@ static func get_rand_weed_count(difficulty: int) -> int:
 static func instantiate_weed(id: String) -> WeedEnemy:
 	return weed_enemies[id].instantiate()
 
+static func get_weed_scene(id: String) -> PackedScene:
+	return weed_enemies[id]
+
 static func get_flower_spawn_weights(difficulty: int) -> Array:
 	return flower_spawn_table[int_difficulty_to_string(difficulty)]
 
@@ -269,6 +272,9 @@ static func get_mob_spawn_weights(difficulty: int) -> Array:
 
 static func instantiate_mob(id: String) -> MobileEnemy:
 	return mobile_enemies[id].instantiate()
+
+static func get_mob_scene(id: String) -> PackedScene:
+	return mobile_enemies[id]
 
 static func get_rand_mob_count(difficulty: int, id: String) -> int:
 	var count_table: Dictionary = mob_count_table[int_difficulty_to_string(difficulty)]
@@ -312,6 +318,7 @@ static func spawn_around_point(
 	scene: PackedScene,
 	min_dist: float,
 	max_dist: float,
+	rand_offset: float = 0.0,
 ) -> bool:
 	if lawn == null:
 		return false
@@ -325,15 +332,24 @@ static func spawn_around_point(
 		int(floor(pos.x / lawn.tile_size.x)),
 		int(floor(pos.y / lawn.tile_size.y))
 	)
-	var tile: Vector2i = lawn.get_tile(tile_pos.x, tile_pos.y)
-	# Fungal babies can only spawn on grass tiles
-	if !LawnGenerationUtilities.is_grass(tile) and !LawnGenerationUtilities.is_cut_grass(tile):
-		return false
-	# Spawn the fungal baby centered on the tile
+	# Make sure all the surrounding tiles are grass
+	for dx in range(-1, 2):
+		for dy in range(-1, 2):
+			if abs(dx) == 1 and abs(dy) == 1:
+				continue
+			var tile: Vector2i = lawn.get_tile(tile_pos.x + dx, tile_pos.y + dy)
+			if !LawnGenerationUtilities.is_grass(tile) and !LawnGenerationUtilities.is_cut_grass(tile):
+				return false
+	# Spawn the object centered on the tile
 	node.global_position = Vector2(
-		(tile_pos.x + 0.5) * lawn.tile_size.y, 
+		(tile_pos.x + 0.5) * lawn.tile_size.x, 
 		(tile_pos.y + 0.5) * lawn.tile_size.y
 	)
+	# Add any offset
+	var rand_offset_vec: Vector2 = Vector2(randf() - 0.5, randf() - 0.5) * rand_offset * 2.0
+	rand_offset_vec.x *= lawn.tile_size.x
+	rand_offset_vec.y *= lawn.tile_size.y
+	node.global_position += rand_offset_vec
 	parent.add_child(node)
 	return true
 
@@ -344,9 +360,10 @@ static func try_spawning_around_point(
 	scene: PackedScene,
 	min_dist: float,
 	max_dist: float,
-	tries: int
+	tries: int,
+	rand_offset: float = 0.0
 ) -> void:
 	for i in range(tries):
-		var res: bool = spawn_around_point(lawn, parent, position, scene, min_dist, max_dist)
+		var res: bool = spawn_around_point(lawn, parent, position, scene, min_dist, max_dist, rand_offset)
 		if res:
 			return

@@ -31,6 +31,14 @@ var astar_update_timer: float = ASTAR_UPDATE_INTERVAL
 # Enemy spawning
 @export var tomato_boy_scene: PackedScene
 @onready var tomato_boy_spawn_timer = randf_range(45.0, 90.0)
+# How much to increase the speed of spawning enemies
+const DIFFICULTY_SPEED: float = 0.95
+@export var max_weeds: int = 20
+@export var max_mobs: int = 20
+@onready var weed_spawn_timer: float = max(24.0 * pow(DIFFICULTY_SPEED, difficulty), 10.0)
+@onready var weed_spawn_frequency: float = max(20.0 * pow(DIFFICULTY_SPEED, difficulty), 10.0)
+@onready var mob_spawn_timer: float = max(32.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
+@onready var mob_spawn_frequency: float = max(32.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
 
 var finish_timer: float = 1.0
 
@@ -132,9 +140,70 @@ func water_gun_interaction() -> void:
 func lawn_completed() -> bool:
 	return cut_grass_tiles >= total_grass_tiles and weeds_killed >= total_weeds
 
+func spawn_weeds(pos: Vector2) -> void:
+	var weights = Spawning.get_weed_spawn_weights(max(difficulty - 1, 0))
+	
+	if weights.is_empty():
+		return
+
+	if $Weeds.get_child_count() >= max_weeds:
+		return
+
+	var spawn_count = Spawning.get_rand_weed_count(max(difficulty - 1, 0))
+	for i in range(spawn_count):
+		var enemy_id: String = Spawning.get_rand(weights)
+		if enemy_id.is_empty():
+			continue
+		Spawning.try_spawning_around_point(
+			self,
+			$Weeds,
+			pos,
+			Spawning.get_weed_scene(enemy_id),
+			3.0,
+			8.0,
+			2,
+			0.2
+		)
+
+func spawn_mobs(pos: Vector2) -> void:	
+	var weights = Spawning.get_mob_spawn_weights(difficulty)
+	if weights.is_empty():
+		return
+
+	if $MobileEnemies.get_child_count() >= max_mobs:
+		return
+
+	var enemy_id: String = Spawning.get_rand(weights)
+	var spawn_count = Spawning.get_rand_mob_count(max(difficulty - 1, 0), enemy_id)
+	if enemy_id == "random":
+		weights = Spawning.get_mob_spawn_weights(max(difficulty - 1, 0))
+		for i in range(spawn_count):
+			enemy_id = Spawning.get_rand(weights)
+			if enemy_id.is_empty():
+				continue
+			Spawning.spawn_around_point(
+				self,
+				$MobileEnemies,
+				pos,
+				Spawning.get_mob_scene(enemy_id),
+				4.0,
+				12.0
+			)
+	elif !enemy_id.is_empty():
+		for i in range(spawn_count):
+			Spawning.spawn_around_point(
+				self,
+				$MobileEnemies,
+				pos,
+				Spawning.get_mob_scene(enemy_id),
+				4.0,
+				12.0
+			)
+
 func spawn_enemies(delta: float) -> void:
 	var player: Player = get_node_or_null("/root/Main/Player")
 
+	# Spawn tomato boy
 	if tomato_boy_scene:
 		tomato_boy_spawn_timer -= delta
 	if tomato_boy_spawn_timer < 0.0 and randi() % 3 == 0:
@@ -145,11 +214,32 @@ func spawn_enemies(delta: float) -> void:
 			tomato_boy_scene,
 			4.0,
 			16.0,
-			3
+			3,
 		)
 	if tomato_boy_spawn_timer < 0.0:
 		tomato_boy_spawn_timer = randf_range(45.0, 120.0)
+	
+	if cut_grass_tiles >= total_grass_tiles:
+		return
+	
+	# Spawn mobile enemies
+	mob_spawn_timer -= delta
+	if mob_spawn_timer <= 0.0:
+		if randi() % 3 != 0:
+			spawn_mobs(player.global_position)
+		if randi() % 2 == 0:
+			mob_spawn_frequency *= DIFFICULTY_SPEED
+			mob_spawn_frequency = max(mob_spawn_frequency, 6.0)
+		mob_spawn_timer = mob_spawn_frequency * randf_range(1.0, 1.5) + randf()
 
+	# Spawn weed enemies
+	weed_spawn_timer -= delta
+	if weed_spawn_timer <= 0.0:
+		if randi() % 3 != 0:
+			spawn_weeds(player.global_position)
+		weed_spawn_frequency *= DIFFICULTY_SPEED
+		weed_spawn_frequency = max(weed_spawn_frequency, 3.0)
+		weed_spawn_timer = weed_spawn_frequency * randf_range(1.0, 1.5) + randf()
 
 func _process(delta: float) -> void:
 	var player: Player = get_node_or_null("/root/Main/Player")
@@ -166,7 +256,8 @@ func _process(delta: float) -> void:
 		$/root/Main/HUD.activate_finish_screen()
 		return
 
-	spawn_enemies(delta)
+	if player.health > 0:
+		spawn_enemies(delta)
 	water_gun_interaction()
 
 	if !player.lawn_mower_active():

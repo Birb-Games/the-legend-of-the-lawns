@@ -33,3 +33,6 @@ metadata/_edit_lock_ = true
 [node name="MobileEnemies" type="Node2D" parent="."]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
+
+[node name="Weeds" type="Node2D" parent="."]
+y_sort_enabled = true
