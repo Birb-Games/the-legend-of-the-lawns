@@ -39,6 +39,8 @@ const DIFFICULTY_SPEED: float = 0.95
 @onready var weed_spawn_frequency: float = max(20.0 * pow(DIFFICULTY_SPEED, difficulty), 10.0)
 @onready var mob_spawn_timer: float = max(32.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
 @onready var mob_spawn_frequency: float = max(32.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
+# Valid tiles that enemies  can spawn on
+var valid_spawn_tiles: Dictionary
 
 var finish_timer: float = 1.0
 
@@ -46,21 +48,25 @@ func _ready() -> void:
 	tile_size = $TileMapLayer.tile_set.tile_size
 
 	total_grass_tiles = 0
-	var used_rect: Rect2i = Rect2i(0, 0, 0, 0)
+	var top_left: Vector2i = Vector2i.ZERO
+	var bottom_right: Vector2i = Vector2i.ZERO
 	var first: bool = true
 	for cell in $TileMapLayer.get_used_cells():
+		valid_spawn_tiles[cell] = true
 		if first:
-			used_rect.position = cell
-			used_rect.end = cell
+			top_left = cell
+			bottom_right = cell
 			first = false
 		else:
-			used_rect.position.x = min(used_rect.position.x, cell.x)
-			used_rect.position.y = min(used_rect.position.y, cell.y)
-			used_rect.end.x = max(used_rect.end.x, cell.x)
-			used_rect.end.y = max(used_rect.end.y, cell.y)
-		if $TileMapLayer.get_cell_atlas_coords(cell) == Vector2i(1, 0):
+			top_left.x = min(top_left.x, cell.x)
+			top_left.y = min(top_left.y, cell.y)
+			bottom_right.x = max(bottom_right.x, cell.x)
+			bottom_right.y = max(bottom_right.y, cell.y)
+		if LawnGenerationUtilities.is_grass($TileMapLayer.get_cell_atlas_coords(cell)):
 			total_grass_tiles += 1
-	
+	bottom_right += Vector2i(1, 1)
+	var used_rect: Rect2i = Rect2i(top_left, bottom_right - top_left)
+
 	# Initialize the A* Grid
 	astar_grid = AStarGrid2D.new()
 	astar_grid.region = used_rect
@@ -69,14 +75,20 @@ func _ready() -> void:
 	astar_grid.update()
 	for cell in $TileMapLayer.get_used_cells():
 		var tile_data: TileData = $TileMapLayer.get_cell_tile_data(cell)
+		if tile_data == null:
+			continue
 		# Check if the tile has any polygons representing its collision, 
 		# if it does, then mark it as a solid tile
-		if tile_data and tile_data.get_collision_polygons_count(0) > 0:
+		if tile_data.get_collision_polygons_count(0) > 0:
 			astar_grid.set_point_solid(cell)
-	astar_grid.update()
+
+	LawnGenerationUtilities.set_outline($TileMapLayer, LawnGenerationUtilities.GRASS, 10)
 
 func get_tile(x: int, y: int) -> Vector2i:
 	return $TileMapLayer.get_cell_atlas_coords(Vector2i(x, y))
+
+func is_valid_spawn_tile(x: int, y: int) -> bool:
+	return Vector2i(x, y) in valid_spawn_tiles
 
 func update_enemy_pathfinding() -> void:
 	for child in $MobileEnemies.get_children():
@@ -293,7 +305,6 @@ func _process(delta: float) -> void:
 	astar_update_timer -= delta
 	if astar_update_timer <= 0.0:
 		if update_astar_grid:
-			astar_grid.update()
 			update_enemy_pathfinding()
 			update_astar_grid = false
 			print("Updated pathfinding grid for lawn.")

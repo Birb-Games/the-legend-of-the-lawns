@@ -7,6 +7,9 @@ var change_dir_timer: float = 0.0
 var idle_timer: float = 0.0
 var time_until_idle: float = randf_range(4.0, 8.0)
 
+func in_shooting_range() -> bool:
+	return (player.global_position - global_position).length() < max_chase_distance
+
 func _ready() -> void:
 	$AnimatedSprite2D.animation = "spawn"
 	super._ready()

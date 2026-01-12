@@ -332,6 +332,8 @@ static func spawn_around_point(
 		int(floor(pos.x / lawn.tile_size.x)),
 		int(floor(pos.y / lawn.tile_size.y))
 	)
+	if !lawn.is_valid_spawn_tile(tile_pos.x, tile_pos.y):
+		return false
 	# Make sure all the surrounding tiles are grass
 	for dx in range(-1, 2):
 		for dy in range(-1, 2):

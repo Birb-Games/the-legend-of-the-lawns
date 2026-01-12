@@ -34,6 +34,34 @@ const HEDGE_TILES: Array = [
 # (this points to an interior tile that should not be at the edge of a hedge
 # formation, but the function `prune_hedges` should be able to fix this)
 const HEDGE: Vector2i = Vector2i(5, 1)
+# Coordinates for the uncut grass tile
+const GRASS: Vector2i = Vector2i(1, 0)
+# Coordinates for the cut grass tile
+const CUT_GRASS: Vector2i = Vector2i(0, 0)
+
+# Surrounds all tiles with a tile so that if the player goes to the edge, they
+# will see this tile
+static func set_outline(tilemap: TileMapLayer, tile: Vector2i, outline_width: int) -> void:
+	var top_left: Vector2i
+	var bottom_right: Vector2i
+	var used_tiles = tilemap.get_used_cells()	
+	if used_tiles.is_empty():
+		return
+
+	top_left = used_tiles[0]
+	bottom_right = used_tiles[0]
+	for coord: Vector2i in used_tiles:
+		top_left.x = min(top_left.x, coord.x)
+		top_left.y = min(top_left.y, coord.y)
+		bottom_right.x = max(bottom_right.x, coord.x)
+		bottom_right.y = max(bottom_right.y, coord.y)
+	
+	for x in range(top_left.x - outline_width, bottom_right.x + outline_width + 1):
+		for y in range(top_left.y - outline_width, bottom_right.y + outline_width + 1):
+			var coord: Vector2i = Vector2i(x, y)
+			if tilemap.get_cell_atlas_coords(coord) != Vector2i(-1, -1):
+				continue
+			tilemap.set_cell(coord, 0, tile)
 
 # Give hedges their proper edges
 static func prune_hedges(tilemap: TileMapLayer) -> void:
@@ -170,8 +198,8 @@ static func is_hedge(atlas_coords: Vector2i) -> bool:
 
 # Check if the tile is a grass tile
 static func is_grass(atlas_coords: Vector2i) -> bool:
-	return atlas_coords == Vector2i(1, 0)
+	return atlas_coords == GRASS
 
 # Check if the tile is a grass tile
 static func is_cut_grass(atlas_coords: Vector2i) -> bool:
-	return atlas_coords == Vector2i(0, 0)
+	return atlas_coords == CUT_GRASS
