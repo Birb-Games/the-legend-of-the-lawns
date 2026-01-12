@@ -1,5 +1,7 @@
 extends MobileEnemy
 
+class_name Wasp
+
 @export var blood_scene: PackedScene
 @onready var default_contact_damage_pos: Vector2 = $ContactDamageZone.position
 const CHANGE_DIR_INTERVAL: float = 0.1
