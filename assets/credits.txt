@@ -3,6 +3,8 @@ CREDITS
 
 Programming: Nullptr Error, gldeA
 
+Art: Nullptr Error, Bridget Wu
+
 THIRD PARTY ARTWORK/RESOURCES USED:
 -----------------------------------
 

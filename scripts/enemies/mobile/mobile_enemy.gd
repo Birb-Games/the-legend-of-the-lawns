@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
+@export var immune_to_friendly_fire: bool = false
 @onready var shoot_timer: float = bullet_cooldown
 @onready var health = max_health
 var path: PackedVector2Array = []
@@ -215,3 +216,9 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 			return
 		body.explode()
 		damage(1)
+	elif body is EnemyBullet:
+		if !body.active():
+			return
+		if !immune_to_friendly_fire and body.is_in_group("friendly_fire"):
+			body.explode()
+			damage(body.damage_amt)

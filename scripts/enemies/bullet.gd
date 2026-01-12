@@ -23,6 +23,9 @@ func explode() -> void:
 	$Sprite2D.hide()
 	$GPUParticles2D.emitting = true
 
+func active() -> bool:
+	return $Sprite2D.visible
+
 func _process(delta: float) -> void:
 	timer -= delta
 	if timer < 0.0:

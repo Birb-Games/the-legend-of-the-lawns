@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dpa88af6o4cu7"]
+[gd_scene load_steps=17 format=4 uid="uid://dpa88af6o4cu7"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_ftld5"]
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellow_flower.tscn" id="2_rg8jm"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://d1jwu43vb0643" path="res://scenes/enemies/mobile/shrub_demon.tscn" id="12_rr38k"]
 [ext_resource type="PackedScene" uid="uid://b32ibsy1iagox" path="res://scenes/enemies/mobile/killer_rabbit.tscn" id="14_npovt"]
 [ext_resource type="PackedScene" uid="uid://boiyvtxjuw0rf" path="res://scenes/enemies/mobile/shrub_demon_mound.tscn" id="16_qj5sc"]
+[ext_resource type="PackedScene" uid="uid://c0pplynlnjxjg" path="res://scenes/enemies/mobile/wasp.tscn" id="16_quhsh"]
 
 [node name="TestLawn" instance=ExtResource("1_ftld5")]
 max_weeds = 0
@@ -62,6 +63,9 @@ position = Vector2(-385.99997, 2.999999)
 
 [node name="KillerRabbit" parent="MobileEnemies" index="1" instance=ExtResource("14_npovt")]
 position = Vector2(-8, -361)
+
+[node name="Wasp" parent="MobileEnemies" index="2" instance=ExtResource("16_quhsh")]
+position = Vector2(-97, -73)
 
 [node name="ShrubDemonMound" parent="." index="16" instance=ExtResource("16_qj5sc")]
 position = Vector2(88, 107)

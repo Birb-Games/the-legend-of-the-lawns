@@ -44,6 +44,9 @@ func _process(delta: float) -> void:
 		explode()
 		return
 
+	if player.health <= 0:
+		return
+
 	if player_in_range():
 		spawn_timer -= delta
 	
