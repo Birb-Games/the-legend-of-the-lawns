@@ -1,0 +1,209 @@
+[gd_scene load_steps=30 format=3 uid="uid://bimysgpu6br62"]
+
+[ext_resource type="Script" uid="uid://b5b1uo0jxdh35" path="res://scripts/enemies/mobile/worm.gd" id="1_6jxv1"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_21ylj"]
+[ext_resource type="Texture2D" uid="uid://du7l22g8mqdm6" path="res://assets/textures/enemies/mobile/worm.png" id="1_ksd2p"]
+[ext_resource type="PackedScene" uid="uid://ic2en422yqlv" path="res://scenes/enemies/bullets/acid_bullet.tscn" id="2_5gyxc"]
+[ext_resource type="Texture2D" uid="uid://bdthjiw54lud7" path="res://assets/textures/enemies/mobile/worm_spawning_animation.png" id="3_pcbkm"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="5_gu4sv"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="6_ik3ri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wt4s"]
+size = Vector2(24, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pad8"]
+atlas = ExtResource("1_ksd2p")
+region = Rect2(0, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3ugx"]
+atlas = ExtResource("1_ksd2p")
+region = Rect2(35, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqeys"]
+atlas = ExtResource("1_ksd2p")
+region = Rect2(70, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaclg"]
+atlas = ExtResource("1_ksd2p")
+region = Rect2(105, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik3ri"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(245, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gyxc"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(210, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jauu6"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(175, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfr0m"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(140, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fefva"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(105, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bopnj"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(70, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmvet"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(35, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au15s"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(0, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h21sq"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(0, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jtjq"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(35, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qpul"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(70, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y8mc"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(105, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtvvb"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(140, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioyhm"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(175, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an6vl"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(210, 0, 35, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvsju"]
+atlas = ExtResource("3_pcbkm")
+region = Rect2(245, 0, 35, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4wt4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pad8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3ugx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqeys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaclg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik3ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gyxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jauu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfr0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fefva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bopnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmvet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au15s")
+}],
+"loop": false,
+"name": &"despawn",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h21sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jtjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qpul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5y8mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtvvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioyhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an6vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvsju")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 8.0
+}]
+
+[node name="Worm" type="Area2D"]
+script = ExtResource("1_6jxv1")
+bullet_scene = ExtResource("2_5gyxc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_4wt4s")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 0.5000001)
+scale = Vector2(1.1250001, 0.6923077)
+texture = ExtResource("1_21ylj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -17.5)
+sprite_frames = SubResource("SpriteFrames_4wt4s")
+autoplay = "default"
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("5_gu4sv")]
+visible = false
+position = Vector2(0, -6)
+scale = Vector2(2.5, 2)
+damage_amt = 5
+attack_cooldown = 1.0
+
+[node name="Healthbar" parent="." instance=ExtResource("6_ik3ri")]
+offset_left = -10.0
+offset_top = -43.0
+offset_right = 4.0
+offset_bottom = -41.0
+scale = Vector2(1.4, 1.4)
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -29)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
