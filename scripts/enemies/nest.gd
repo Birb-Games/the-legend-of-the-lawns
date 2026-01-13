@@ -2,6 +2,8 @@
 
 extends Area2D
 
+class_name Nest
+
 @export var to_spawn: PackedScene
 @export var explosion_scene: PackedScene
 @export var min_spawn_time: float = 5.0
@@ -31,7 +33,7 @@ func player_in_range() -> bool:
 func explode() -> void:
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
 	var explosion: GPUParticles2D = explosion_scene.instantiate()
-	explosion.global_position = global_position
+	explosion.global_position = $Sprite2D.global_position
 	explosion.scale *= 0.5
 	explosion.modulate = explosion_color
 	lawn.add_child(explosion)

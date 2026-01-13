@@ -45,7 +45,7 @@ func get_animation() -> String:
 
 func explode() -> void:
 	var blood_particles: GPUParticles2D = blood_particles_scene.instantiate()
-	blood_particles.global_position = global_position + Vector2(0.0, -10.0)
+	blood_particles.global_position = $AnimatedSprite2D.global_position
 	$/root/Main/Lawn.add_child(blood_particles)
 	queue_free()
 

@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func explode() -> void:
 	var blood: GPUParticles2D = blood_scene.instantiate()
-	blood.global_position = global_position
+	blood.global_position = $AnimatedSprite2D.global_position
 	blood.scale *= 1.25
 	$/root/Main/Lawn.add_child(blood)
 	queue_free()

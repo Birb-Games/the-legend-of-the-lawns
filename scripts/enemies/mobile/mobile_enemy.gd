@@ -129,6 +129,9 @@ func in_shooting_range() -> bool:
 	return can_chase_player()
 
 func update_shooting(delta: float) -> void:
+	if bullet_cooldown < 0.0:
+		return
+
 	shoot_timer -= delta
 
 	if player.health <= 0:

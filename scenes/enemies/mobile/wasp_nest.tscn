@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsm20lnybkim0"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_ocu5n"]
+[ext_resource type="Script" uid="uid://0admv7wxm5aw" path="res://scripts/enemies/mobile/wasp_nest.gd" id="1_q6o25"]
+[ext_resource type="Texture2D" uid="uid://b3whiobdntfeb" path="res://assets/textures/enemies/wasp_nest.png" id="1_t42xr"]
+[ext_resource type="PackedScene" uid="uid://b8lrxt2odr5gb" path="res://scenes/enemies/mobile/wasp_queen.tscn" id="2_igry7"]
+[ext_resource type="PackedScene" uid="uid://c0pplynlnjxjg" path="res://scenes/enemies/mobile/wasp.tscn" id="2_mu6a0"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="3_gqndr"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="3_k1lym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocu5n"]
+size = Vector2(22, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqndr"]
+size = Vector2(24, 11)
+
+[node name="WaspNest" type="Area2D"]
+scale = Vector2(1.25, 1.25)
+script = ExtResource("1_q6o25")
+wasp_queen_scene = ExtResource("2_igry7")
+to_spawn = ExtResource("2_mu6a0")
+explosion_scene = ExtResource("3_k1lym")
+min_spawn_time = 6.0
+initial_spawn_delay = 3.0
+max_player_dist = 150.0
+max_dist = 4.0
+max_count = 2
+spawn_probability = 0.8
+retaliate_probability = 0.4
+max_health = 16
+explosion_color = Color(0.78431374, 0.73333335, 0.65882355, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_ocu5n")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, -1.0000001)
+scale = Vector2(0.75000006, 0.6153846)
+texture = ExtResource("1_ocu5n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("1_t42xr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_gqndr")
+
+[node name="Healthbar" parent="." instance=ExtResource("3_gqndr")]
+offset_top = -25.0
+offset_bottom = -23.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -135,6 +135,7 @@ max_chase_distance = 500.0
 max_health = 5
 explosion_bullet_count = 3
 bullet_scene = ExtResource("2_oe85s")
+bullet_cooldown = -1.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 scale = Vector2(0.37500003, 0.30769232)
