@@ -82,7 +82,7 @@ func _ready() -> void:
 		if tile_data.get_collision_polygons_count(0) > 0:
 			astar_grid.set_point_solid(cell)
 
-	LawnGenerationUtilities.set_outline($TileMapLayer, LawnGenerationUtilities.GRASS, 10)
+	LawnGenerationUtilities.set_outline($TileMapLayer, LawnGenerationUtilities.GRASS, 14)
 
 func get_tile(x: int, y: int) -> Vector2i:
 	return $TileMapLayer.get_cell_atlas_coords(Vector2i(x, y))

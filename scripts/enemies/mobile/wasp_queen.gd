@@ -42,7 +42,7 @@ func set_shoot_cooldown() -> void:
 			bullet_cooldown = default_bullet_cooldown
 
 func shoot() -> void:
-	idle_timer = 0.25
+	idle_timer = 0.1
 	match shoot_mode:
 		"normal":
 			shoot_bullet()

@@ -82,6 +82,8 @@ func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	# Set player position and direction
 	player.position = lawn.get_spawn()
 	player.dir = "down"
+	$Player/Camera2D.zoom = Vector2(8.0, 8.0)
+	$HUD/Control/TransitionRect.start_bus_animation()
 	lawn.update_enemy_pathfinding()
 	# Set lawn loaded flag
 	lawn_loaded = true

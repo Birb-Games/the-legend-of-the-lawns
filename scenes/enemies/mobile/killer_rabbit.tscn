@@ -170,6 +170,7 @@ collision_mask = 4
 script = ExtResource("1_bu858")
 blood_particles_scene = ExtResource("2_26bvs")
 speed = 85.0
+max_chase_distance = 240.0
 max_health = 18
 explosion_bullet_count = 0
 
