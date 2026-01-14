@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dpa88af6o4cu7"]
+[gd_scene load_steps=16 format=4 uid="uid://dpa88af6o4cu7"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_ftld5"]
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellow_flower.tscn" id="2_rg8jm"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://deieyv2snbfnr" path="res://scenes/enemies/weeds/super_shroom.tscn" id="11_0qfnh"]
 [ext_resource type="PackedScene" uid="uid://d1jwu43vb0643" path="res://scenes/enemies/mobile/shrub_demon.tscn" id="12_rr38k"]
 [ext_resource type="PackedScene" uid="uid://b32ibsy1iagox" path="res://scenes/enemies/mobile/killer_rabbit.tscn" id="14_npovt"]
+[ext_resource type="PackedScene" uid="uid://bodmljl34l6om" path="res://scenes/lawn_features/fire.tscn" id="15_s4gf2"]
 
 [node name="TestLawn" instance=ExtResource("1_ftld5")]
 max_weeds = 0
@@ -30,7 +31,7 @@ possible_enemies = Array[PackedScene]([ExtResource("10_thw3f"), ExtResource("11_
 trigger_upon_lawn_completion = true
 
 [node name="Weed" parent="." index="5" instance=ExtResource("4_7cgbf")]
-position = Vector2(131, -131)
+position = Vector2(133, -120.00001)
 
 [node name="ThornWeed" parent="." index="6" instance=ExtResource("5_lbura")]
 position = Vector2(-390, -51)
@@ -57,7 +58,16 @@ position = Vector2(-95, -324)
 position = Vector2(105, -307)
 
 [node name="ShrubDemon" parent="MobileEnemies" index="0" instance=ExtResource("12_rr38k")]
-position = Vector2(-385.99997, 2.999999)
+position = Vector2(122.999985, 85.000015)
 
 [node name="KillerRabbit" parent="MobileEnemies" index="1" instance=ExtResource("14_npovt")]
 position = Vector2(-8, -361)
+
+[node name="Fire" parent="." index="16" instance=ExtResource("15_s4gf2")]
+position = Vector2(-11, 104)
+
+[node name="Fire2" parent="." index="17" instance=ExtResource("15_s4gf2")]
+position = Vector2(-73, 106)
+
+[node name="Weed2" parent="." index="18" instance=ExtResource("4_7cgbf")]
+position = Vector2(16.201431, 117.58342)

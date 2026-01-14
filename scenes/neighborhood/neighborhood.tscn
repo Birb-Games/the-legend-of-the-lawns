@@ -276,6 +276,8 @@ always_visible = true
 disabled = true
 is_test = true
 lawn_template = ExtResource("12_u28t5")
+flower_penalty = 1
+hedge_penalty = 1
 interact_text = "TEST LAWN"
 dialog_json = ExtResource("18_bmbxr")
 

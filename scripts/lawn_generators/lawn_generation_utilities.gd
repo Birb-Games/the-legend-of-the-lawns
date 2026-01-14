@@ -34,6 +34,8 @@ const HEDGE_TILES: Array = [
 # (this points to an interior tile that should not be at the edge of a hedge
 # formation, but the function `prune_hedges` should be able to fix this)
 const HEDGE: Vector2i = Vector2i(5, 1)
+# Destroyed hedge
+const DESTROYED_HEDGE: Vector2i = Vector2i(0, 2)
 # Coordinates for the uncut grass tile
 const GRASS: Vector2i = Vector2i(1, 0)
 # Coordinates for the cut grass tile

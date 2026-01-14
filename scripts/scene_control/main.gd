@@ -105,6 +105,7 @@ func return_to_neighborhood() -> void:
 	player.position = player_pos
 	current_wage = 0
 	player.dir = "down"
+	$Player.fire_timer = 0.0
 	lawn_loaded = false
 	# Disable camera position smoothing for a frame so that we do not have any 
 	# strange sudden camera movements when we are returning to the neighborhood
@@ -161,7 +162,10 @@ func update_hud(delta: float) -> void:
 		$HUD.update_money_counter(player_name, money)
 		$HUD.update_lawn_counter(lawns_mowed)
 	if player.health > 0:
-		$HUD.update_damage_flash(player.get_damage_timer_perc())
+		if player.fire_timer > 0.0:
+			$HUD.update_damage_flash(1.0)
+		else:
+			$HUD.update_damage_flash(player.get_damage_timer_perc())
 	else:
 		# Hide the damage flash when the player lost all health to avoid
 		# having it cover up the fail screen

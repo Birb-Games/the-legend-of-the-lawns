@@ -31,6 +31,10 @@ var damage_timer: float = 0.0
 # mower and should be slowed down
 var hedge_collision_timer: float = 0.0
 const HEDGE_TIMER: float = 0.3
+# Control whether the player is on fire or not
+var fire_timer: float = 0.0
+var fire_damage_timer: float = 0.0
+const FIRE_DAMAGE_INTERVAL: float = 0.2
 
 func _ready() -> void:
 	$Lawnmower.hide()
@@ -207,6 +211,20 @@ func drop_lawn_mower() -> bool:
 		return true
 	return false
 
+func take_fire_damage(delta: float) -> void:
+	var fire_particles: Node2D = get_node_or_null("FireParticles")
+	if fire_timer <= 0.0:
+		if fire_particles:
+			fire_particles.queue_free()
+		return
+	fire_timer = max(fire_timer - delta, 0.0)
+	if !fire_particles:
+		add_child(Fire.fire_particles.instantiate())
+	fire_damage_timer -= delta
+	if fire_damage_timer <= 0.0 or fire_timer <= 0.0:
+		fire_damage_timer = FIRE_DAMAGE_INTERVAL
+		damage(2)
+
 func _process(delta: float) -> void:
 	visible = health > 0
 	if health <= 0:
@@ -214,6 +232,8 @@ func _process(delta: float) -> void:
 			drop_lawn_mower()
 		$WaterGun.hide()
 		return
+
+	take_fire_damage(delta)
 
 	update_enemy_arrow()
 	update_lawn_mower_arrow()
@@ -350,6 +370,7 @@ func save() -> Dictionary:
 func reset() -> void:
 	$NeighborArrow.point_to = ""
 	max_health = 80
+	fire_timer = 0.0
 
 func update_enemy_arrow() -> void:
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")

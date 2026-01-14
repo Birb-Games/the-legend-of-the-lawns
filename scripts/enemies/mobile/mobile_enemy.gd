@@ -14,12 +14,18 @@ extends CharacterBody2D
 # How long it takes for the enemy to shoot a bullet (in seconds)
 @export var bullet_cooldown: float = 1.0
 @export var immune_to_friendly_fire: bool = false
+@export var immune_to_fire: bool = false
 @onready var shoot_timer: float = bullet_cooldown
 @onready var health = max_health
 var path: PackedVector2Array = []
 var current_path_index: int = 0
 const ARRIVE_DISTANCE: float = 8.0
 var target_tile_pos: Vector2i
+# Fire damage
+var fire_collision_count: int = 0
+var fire_damage_timer: float = 0.0
+var FIRE_DAMAGE_INTERVAL: float = 0.75
+var fire_time: float = 0.0
 @onready var spawn_timer: float = spawn_animation_time
 
 const UPDATE_PATH_INTERVAL: float = 0.25
@@ -158,6 +164,24 @@ func handle_path_update(delta: float) -> bool:
 		return true
 	return false
 
+func take_fire_damage(delta: float) -> void:
+	if immune_to_fire:
+		return
+	var fire_particles: Node2D = get_node_or_null("FireParticles")
+	if fire_collision_count > 0:
+		fire_time = 2.0
+	if fire_time <= 0.0:
+		if fire_particles:
+			fire_particles.queue_free()
+		return
+	fire_time -= delta
+	if fire_particles == null:
+		add_child(Fire.fire_particles.instantiate())
+	fire_damage_timer -= delta
+	if fire_damage_timer <= 0.0:
+		fire_damage_timer = FIRE_DAMAGE_INTERVAL
+		damage(1)
+
 func _process(delta: float) -> void:
 	$ContactDamageZone.disabled = spawn_timer > 0.0
 	if spawn_timer > 0.0:
@@ -179,6 +203,7 @@ func _process(delta: float) -> void:
 	
 	handle_path_update(delta)	
 	update_shooting(delta)
+	take_fire_damage(delta)
 
 func _physics_process(_delta: float) -> void:
 	velocity = calculate_velocity()
@@ -225,3 +250,9 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 		if !immune_to_friendly_fire and body.is_in_group("friendly_fire"):
 			body.explode()
 			damage(body.damage_amt)
+	elif body is Fire:
+		fire_collision_count += 1
+
+func _on_bullet_hitbox_area_exited(body: Node2D) -> void:
+	if body is Fire:
+		fire_collision_count -= 1
