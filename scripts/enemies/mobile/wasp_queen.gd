@@ -18,6 +18,8 @@ func in_shooting_range() -> bool:
 
 func _ready() -> void:
 	$AnimatedSprite2D.animation = "spawn"
+	var camera: GameCamera = $/root/Main/Player/Camera2D
+	camera.add_trauma(1.0)
 	super._ready()
 
 func explode() -> void:

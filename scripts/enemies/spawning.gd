@@ -13,7 +13,9 @@ static var weed_enemies: Dictionary = {
 	"mini_thornweed" : preload("uid://bpn14mbnmv14h"),
 	"thornweed": preload("uid://fqhlxrgabgqv"),
 	"mushroom" : preload("uid://bfrhyuagid5eh"),
-	"fungal_mother" : preload("uid://b60yupijenmi2")
+	"fungal_mother" : preload("uid://b60yupijenmi2"),
+	"super_shroom" : preload("uid://deieyv2snbfnr"),
+	"super_thornweed" : preload("uid://comqqrvdmt27s"),
 }
 
 static var flower_enemies: Dictionary = {
@@ -26,6 +28,12 @@ static var mobile_enemies: Dictionary = {
 	"shrub_demon" : preload("uid://d1jwu43vb0643"),
 	"fungal_baby" : preload("uid://b1shkd3nhlmls"),
 	"killer_rabbit" : preload("uid://b32ibsy1iagox"),
+	"wasp" : preload("uid://c0pplynlnjxjg"),
+	"wasp_queen" : preload("uid://b8lrxt2odr5gb"),
+}
+
+static var bosses : Dictionary = {
+	"wasp_queen" : true
 }
 
 static var weed_spawn_table: Dictionary = {
@@ -73,7 +81,26 @@ static var weed_spawn_table: Dictionary = {
 		SpawnEntry.new("thornweed", 6.0),
 		SpawnEntry.new("mushroom", 5.0),
 		SpawnEntry.new("fungal_mother", 2.0),
-	]
+	],
+
+	"hard++" : [
+		SpawnEntry.new("weed", 1.0),
+		SpawnEntry.new("mini_thornweed", 2.0),
+		SpawnEntry.new("thornweed", 8.0),
+		SpawnEntry.new("mushroom", 7.0),
+		SpawnEntry.new("fungal_mother", 4.0),
+		SpawnEntry.new("super_shroom", 1.0),
+		SpawnEntry.new("super_thornweed", 1.0),
+	],
+
+	"hard+++" : [
+		SpawnEntry.new("mini_thornweed", 1.0),
+		SpawnEntry.new("thornweed", 7.0),
+		SpawnEntry.new("mushroom", 7.0),
+		SpawnEntry.new("fungal_mother", 5.0),
+		SpawnEntry.new("super_shroom", 1.0),
+		SpawnEntry.new("super_thornweed", 1.0),
+	],
 }
 
 static var weed_count_table: Dictionary = {
@@ -83,7 +110,9 @@ static var weed_count_table: Dictionary = {
 	"medium+" : [ 3 ],
 	"medium++" : [ 4, 3, 3 ],
 	"hard" : [ 5, 4, 4, 3, 3, 3 ],
-	"hard+" : [ 5, 4, 4, 3, 3, 3 ]
+	"hard+" : [ 5, 4, 4, 3, 3, 3 ],
+	"hard++" : [ 5, 4, 4, 3, 3 ],
+	"hard+++" : [ 6, 5, 4, 4, 3 ],
 }
 
 static var flower_spawn_table: Dictionary = {
@@ -152,14 +181,33 @@ static var mob_spawn_table: Dictionary = {
 		SpawnEntry.new("shrub_demon", 2.0), 
 		SpawnEntry.new("fungal_baby", 1.0),
 		SpawnEntry.new("killer_rabbit", 1.0),
+		SpawnEntry.new("random", 1.0),
 	],
 	
-	# TODO: add wasp enemy
 	"hard+" : [ 
+		SpawnEntry.new("shrub_demon", 2.0), 
+		SpawnEntry.new("fungal_baby", 2.0),
+		SpawnEntry.new("killer_rabbit", 2.0),
+		SpawnEntry.new("wasp", 1.0),
+		SpawnEntry.new("random", 2.0),
+	],
+
+	"hard++" : [
 		SpawnEntry.new("shrub_demon", 1.0), 
-		SpawnEntry.new("fungal_baby", 1.0),
-		SpawnEntry.new("killer_rabbit", 1.0),
-	]
+		SpawnEntry.new("fungal_baby", 2.0),
+		SpawnEntry.new("killer_rabbit", 2.0),
+		SpawnEntry.new("wasp", 2.0),
+		SpawnEntry.new("random", 3.0),
+	],
+
+	"hard+++" : [
+		SpawnEntry.new("shrub_demon", 2.0), 
+		SpawnEntry.new("fungal_baby", 4.0),
+		SpawnEntry.new("killer_rabbit", 4.0),
+		SpawnEntry.new("wasp", 3.0),
+		SpawnEntry.new("wasp_queen", 1.0),
+		SpawnEntry.new("random", 3.0),
+	],
 }
 
 static var mob_count_table: Dictionary = {
@@ -170,7 +218,7 @@ static var mob_count_table: Dictionary = {
 	"medium" : { 
 		"shrub_demon" : [ 4, 3, 2 ] 
 	},
-	"medium+" : { 
+	"medium+" : {
 		"shrub_demon" : [ 4, 4, 3, 3, 2 ] 
 	},
 	"medium++" : { 
@@ -185,9 +233,25 @@ static var mob_count_table: Dictionary = {
 	},
 	"hard+" : {
 		"shrub_demon" : [ 6, 5, 4, 4 ],
-		"fungal_baby" : [ 5, 4, 4, 3, 3, 2, 1 ],
+		"fungal_baby" : [ 5, 4, 4, 3, 3, 2 ],
 		"killer_rabbit" : [ 4, 3, 3, 2, 2 ],
+		"wasp" : [ 4, 3, 2, 2 ],
 		"random" : [ 7, 6, 5, 4, 4, 3, 3 ]
+	},
+	"hard++" : {
+		"shrub_demon" : [ 7, 6, 5, 5, 4, 4 ],
+		"fungal_baby" : [ 6, 5, 4, 4, 3 ],
+		"killer_rabbit" : [ 4, 4, 3, 3, 2 ],
+		"wasp" : [ 5, 4, 3, 3, 2 ],
+		"random" : [ 7, 6, 5, 4, 4 ],
+	},
+	"hard+++" : {
+		"shrub_demon" : [ 9, 8, 7, 6, 5, 5, 4, 4 ],
+		"fungal_baby" : [ 6, 5, 5, 4, 4, 3 ],
+		"killer_rabbit" : [ 4, 4, 3, 3, 2 ],
+		"wasp" : [ 6, 5, 4, 4, 3, 3 ],
+		"wasp_queen" : [ 1 ],
+		"random" : [ 7, 6, 6, 5, 5, 4 ],
 	},
 }
 
@@ -265,6 +329,8 @@ static func get_mob_spawn_weights(difficulty: int) -> Array:
 	var weights = mob_spawn_table[int_difficulty_to_string(difficulty)]
 	for entry in weights:
 		if entry is SpawnEntry:
+			if entry.name in bosses:
+				continue
 			if entry.name == "random":
 				continue
 		ret.push_back(entry)
