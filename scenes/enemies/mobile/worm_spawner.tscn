@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfpal888ujrry"]
+
+[ext_resource type="Script" uid="uid://b8eij358om6m6" path="res://scripts/enemies/mobile/worm_spawner.gd" id="1_6bvmf"]
+[ext_resource type="PackedScene" uid="uid://bimysgpu6br62" path="res://scenes/enemies/mobile/worm.tscn" id="2_djbqs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l72ot"]
+radius = 60.0
+
+[node name="WormSpawner" type="Node2D"]
+script = ExtResource("1_6bvmf")
+worm_scene = ExtResource("2_djbqs")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="ActivationZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationZone"]
+shape = SubResource("CircleShape2D_l72ot")
+
+[connection signal="body_entered" from="ActivationZone" to="." method="_on_activation_zone_body_entered"]

@@ -139,7 +139,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_qy5a7")
 speed = 36.0
-max_chase_distance = 140.0
+max_chase_distance = 180.0
 bullet_scene = ExtResource("2_rvk7m")
 bullet_cooldown = 2.0
 
@@ -182,4 +182,5 @@ shape = SubResource("RectangleShape2D_7t4r1")
 
 [node name="BulletSpawnPoint" type="Node2D" parent="."]
 
+[connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]

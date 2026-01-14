@@ -3,6 +3,7 @@ extends MobileEnemy
 @onready var default_contact_damage_pos: Vector2 = $ContactDamageZone.position
 
 var idle_timer: float = 0.0
+var engaged: bool = false
 
 func _ready() -> void:
 	super._ready()
@@ -45,3 +46,8 @@ func _process(delta: float) -> void:
 	$ContactDamageZone.position = default_contact_damage_pos + diff * 8.0
 	idle_timer -= delta
 	idle_timer = max(0.0, idle_timer)
+
+func _on_hit() -> void:
+	if !engaged:
+		max_chase_distance *= 2.5
+	engaged = true

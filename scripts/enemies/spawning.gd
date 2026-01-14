@@ -13,6 +13,9 @@ static var weed_enemies: Dictionary = {
 	"mini_thornweed" : preload("uid://bpn14mbnmv14h"),
 	"thornweed": preload("uid://fqhlxrgabgqv"),
 	"mushroom" : preload("uid://bfrhyuagid5eh"),
+	"fungal_mother" : preload("uid://b60yupijenmi2"),
+	"super_shroom" : preload("uid://deieyv2snbfnr"),
+	"super_thornweed" : preload("uid://comqqrvdmt27s"),
 }
 
 static var flower_enemies: Dictionary = {
@@ -24,6 +27,13 @@ static var flower_enemies: Dictionary = {
 static var mobile_enemies: Dictionary = {
 	"shrub_demon" : preload("uid://d1jwu43vb0643"),
 	"fungal_baby" : preload("uid://b1shkd3nhlmls"),
+	"killer_rabbit" : preload("uid://b32ibsy1iagox"),
+	"wasp" : preload("uid://c0pplynlnjxjg"),
+	"wasp_queen" : preload("uid://b8lrxt2odr5gb"),
+}
+
+static var bosses : Dictionary = {
+	"wasp_queen" : true
 }
 
 static var weed_spawn_table: Dictionary = {
@@ -55,7 +65,42 @@ static var weed_spawn_table: Dictionary = {
 		SpawnEntry.new("mini_thornweed", 1.0), 
 		SpawnEntry.new("thornweed", 1.0),
 		SpawnEntry.new("mushroom", 1.0), 
-	]
+	],
+
+	"hard" : [
+		SpawnEntry.new("weed", 2.0),
+		SpawnEntry.new("mini_thornweed", 1.0), 
+		SpawnEntry.new("thornweed", 3.0),
+		SpawnEntry.new("mushroom", 3.0),
+		SpawnEntry.new("fungal_mother", 1.0),
+	],
+
+	"hard+" : [
+		SpawnEntry.new("weed", 1.0),
+		SpawnEntry.new("mini_thornweed", 2.0), 
+		SpawnEntry.new("thornweed", 6.0),
+		SpawnEntry.new("mushroom", 5.0),
+		SpawnEntry.new("fungal_mother", 2.0),
+	],
+
+	"hard++" : [
+		SpawnEntry.new("weed", 1.0),
+		SpawnEntry.new("mini_thornweed", 2.0),
+		SpawnEntry.new("thornweed", 8.0),
+		SpawnEntry.new("mushroom", 7.0),
+		SpawnEntry.new("fungal_mother", 4.0),
+		SpawnEntry.new("super_shroom", 1.0),
+		SpawnEntry.new("super_thornweed", 1.0),
+	],
+
+	"hard+++" : [
+		SpawnEntry.new("mini_thornweed", 1.0),
+		SpawnEntry.new("thornweed", 7.0),
+		SpawnEntry.new("mushroom", 7.0),
+		SpawnEntry.new("fungal_mother", 5.0),
+		SpawnEntry.new("super_shroom", 1.0),
+		SpawnEntry.new("super_thornweed", 1.0),
+	],
 }
 
 static var weed_count_table: Dictionary = {
@@ -64,6 +109,10 @@ static var weed_count_table: Dictionary = {
 	"medium" : [ 3, 3, 1 ],
 	"medium+" : [ 3 ],
 	"medium++" : [ 4, 3, 3 ],
+	"hard" : [ 5, 4, 4, 3, 3, 3 ],
+	"hard+" : [ 5, 4, 4, 3, 3, 3 ],
+	"hard++" : [ 5, 4, 4, 3, 3 ],
+	"hard+++" : [ 6, 5, 4, 4, 3 ],
 }
 
 static var flower_spawn_table: Dictionary = {
@@ -126,7 +175,39 @@ static var mob_spawn_table: Dictionary = {
 	"medium++" : [ 
 		SpawnEntry.new("shrub_demon", 3.0), 
 		SpawnEntry.new("fungal_baby", 1.0) 
-	]
+	],
+
+	"hard" : [ 
+		SpawnEntry.new("shrub_demon", 2.0), 
+		SpawnEntry.new("fungal_baby", 1.0),
+		SpawnEntry.new("killer_rabbit", 1.0),
+		SpawnEntry.new("random", 1.0),
+	],
+	
+	"hard+" : [ 
+		SpawnEntry.new("shrub_demon", 2.0), 
+		SpawnEntry.new("fungal_baby", 2.0),
+		SpawnEntry.new("killer_rabbit", 2.0),
+		SpawnEntry.new("wasp", 1.0),
+		SpawnEntry.new("random", 2.0),
+	],
+
+	"hard++" : [
+		SpawnEntry.new("shrub_demon", 1.0), 
+		SpawnEntry.new("fungal_baby", 2.0),
+		SpawnEntry.new("killer_rabbit", 2.0),
+		SpawnEntry.new("wasp", 2.0),
+		SpawnEntry.new("random", 3.0),
+	],
+
+	"hard+++" : [
+		SpawnEntry.new("shrub_demon", 2.0), 
+		SpawnEntry.new("fungal_baby", 4.0),
+		SpawnEntry.new("killer_rabbit", 4.0),
+		SpawnEntry.new("wasp", 3.0),
+		SpawnEntry.new("wasp_queen", 1.0),
+		SpawnEntry.new("random", 3.0),
+	],
 }
 
 static var mob_count_table: Dictionary = {
@@ -137,12 +218,40 @@ static var mob_count_table: Dictionary = {
 	"medium" : { 
 		"shrub_demon" : [ 4, 3, 2 ] 
 	},
-	"medium+" : { 
-		"shrub_demon": [ 4, 4, 3, 3, 2 ] 
+	"medium+" : {
+		"shrub_demon" : [ 4, 4, 3, 3, 2 ] 
 	},
 	"medium++" : { 
-		"shrub_demon": [ 4, 3, 3 ],
+		"shrub_demon" : [ 4, 3, 3 ],
 		"fungal_baby" : [ 3, 2, 2, 1 ]
+	},
+	"hard" : {
+		"shrub_demon" : [ 6, 5, 4, 4, 4, 3, 3 ],
+		"fungal_baby" : [ 4, 3, 3, 2, 2, 1 ],
+		"killer_rabbit" : [ 3, 2, 2, 1 ],
+		"random" : [ 4, 3, 3 ]
+	},
+	"hard+" : {
+		"shrub_demon" : [ 6, 5, 4, 4 ],
+		"fungal_baby" : [ 5, 4, 4, 3, 3, 2 ],
+		"killer_rabbit" : [ 4, 3, 3, 2, 2 ],
+		"wasp" : [ 4, 3, 2, 2 ],
+		"random" : [ 7, 6, 5, 4, 4, 3, 3 ]
+	},
+	"hard++" : {
+		"shrub_demon" : [ 7, 6, 5, 5, 4, 4 ],
+		"fungal_baby" : [ 6, 5, 4, 4, 3 ],
+		"killer_rabbit" : [ 4, 4, 3, 3, 2 ],
+		"wasp" : [ 5, 4, 3, 3, 2 ],
+		"random" : [ 7, 6, 5, 4, 4 ],
+	},
+	"hard+++" : {
+		"shrub_demon" : [ 9, 8, 7, 6, 5, 5, 4, 4 ],
+		"fungal_baby" : [ 6, 5, 5, 4, 4, 3 ],
+		"killer_rabbit" : [ 4, 4, 3, 3, 2 ],
+		"wasp" : [ 6, 5, 4, 4, 3, 3 ],
+		"wasp_queen" : [ 1 ],
+		"random" : [ 7, 6, 6, 5, 5, 4 ],
 	},
 }
 
@@ -201,6 +310,9 @@ static func get_rand_weed_count(difficulty: int) -> int:
 static func instantiate_weed(id: String) -> WeedEnemy:
 	return weed_enemies[id].instantiate()
 
+static func get_weed_scene(id: String) -> PackedScene:
+	return weed_enemies[id]
+
 static func get_flower_spawn_weights(difficulty: int) -> Array:
 	return flower_spawn_table[int_difficulty_to_string(difficulty)]
 
@@ -217,6 +329,8 @@ static func get_mob_spawn_weights(difficulty: int) -> Array:
 	var weights = mob_spawn_table[int_difficulty_to_string(difficulty)]
 	for entry in weights:
 		if entry is SpawnEntry:
+			if entry.name in bosses:
+				continue
 			if entry.name == "random":
 				continue
 		ret.push_back(entry)
@@ -224,6 +338,9 @@ static func get_mob_spawn_weights(difficulty: int) -> Array:
 
 static func instantiate_mob(id: String) -> MobileEnemy:
 	return mobile_enemies[id].instantiate()
+
+static func get_mob_scene(id: String) -> PackedScene:
+	return mobile_enemies[id]
 
 static func get_rand_mob_count(difficulty: int, id: String) -> int:
 	var count_table: Dictionary = mob_count_table[int_difficulty_to_string(difficulty)]
@@ -257,3 +374,64 @@ static func gen_enemy_positions_circle(
 		var y = sin(angle) * dist
 		positions.append(Vector2(x, y))
 	return positions
+
+# distances are in tile units
+# returns true if an enemy was successfull spawned, false otherwise
+static func spawn_around_point(
+	lawn: Lawn,
+	parent: Node,
+	position: Vector2,
+	scene: PackedScene,
+	min_dist: float,
+	max_dist: float,
+	rand_offset: float = 0.0,
+) -> bool:
+	if lawn == null:
+		return false
+
+	var node: Node2D = scene.instantiate()
+	var dist: float = randf_range(min_dist, max_dist)
+	var angle: float = randf_range(0.0, 2.0 * PI)
+	var offset: Vector2 = Vector2(cos(angle) * lawn.tile_size.x, sin(angle) * lawn.tile_size.y) * dist
+	var pos: Vector2 = position + offset
+	var tile_pos: Vector2i = Vector2i(
+		int(floor(pos.x / lawn.tile_size.x)),
+		int(floor(pos.y / lawn.tile_size.y))
+	)
+	if !lawn.is_valid_spawn_tile(tile_pos.x, tile_pos.y):
+		return false
+	# Make sure all the surrounding tiles are grass
+	for dx in range(-1, 2):
+		for dy in range(-1, 2):
+			if abs(dx) == 1 and abs(dy) == 1:
+				continue
+			var tile: Vector2i = lawn.get_tile(tile_pos.x + dx, tile_pos.y + dy)
+			if !LawnGenerationUtilities.is_grass(tile) and !LawnGenerationUtilities.is_cut_grass(tile):
+				return false
+	# Spawn the object centered on the tile
+	node.global_position = Vector2(
+		(tile_pos.x + 0.5) * lawn.tile_size.x, 
+		(tile_pos.y + 0.5) * lawn.tile_size.y
+	)
+	# Add any offset
+	var rand_offset_vec: Vector2 = Vector2(randf() - 0.5, randf() - 0.5) * rand_offset * 2.0
+	rand_offset_vec.x *= lawn.tile_size.x
+	rand_offset_vec.y *= lawn.tile_size.y
+	node.global_position += rand_offset_vec
+	parent.add_child(node)
+	return true
+
+static func try_spawning_around_point(
+	lawn: Lawn,
+	parent: Node,
+	position: Vector2,
+	scene: PackedScene,
+	min_dist: float,
+	max_dist: float,
+	tries: int,
+	rand_offset: float = 0.0
+) -> void:
+	for i in range(tries):
+		var res: bool = spawn_around_point(lawn, parent, position, scene, min_dist, max_dist, rand_offset)
+		if res:
+			return

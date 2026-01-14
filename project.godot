@@ -17,7 +17,8 @@ config/icon="uid://dr2ho07mprhhv"
 
 [display]
 
-window/stretch/mode="viewport"
+window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [input]
 

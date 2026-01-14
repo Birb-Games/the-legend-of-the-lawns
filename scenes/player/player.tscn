@@ -377,7 +377,7 @@ position = Vector2(29, -11)
 scale = Vector2(0.25, 0.25)
 ignore_if_invisible = true
 point_to = NodePath("/root/Main/Lawn/Lawnmower")
-min_dist = 64.0
+min_dist = 128.0
 max_dist = 1600.0
 
 [node name="WatergunArrow" parent="." instance=ExtResource("10_h17s1")]
@@ -386,7 +386,7 @@ position = Vector2(35, -11)
 scale = Vector2(0.25, 0.25)
 ignore_if_invisible = true
 point_to = NodePath("/root/Main/Lawn/WaterGun")
-min_dist = 64.0
+min_dist = 128.0
 max_dist = 1600.0
 
 [node name="EnemyArrow" parent="." instance=ExtResource("10_h17s1")]
@@ -394,7 +394,7 @@ modulate = Color(0.16862746, 0.6901961, 0, 0.5019608)
 position = Vector2(29, -11)
 scale = Vector2(0.25, 0.25)
 ignore_if_invisible = true
-min_dist = 64.0
+min_dist = 80.0
 max_dist = 1600.0
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]

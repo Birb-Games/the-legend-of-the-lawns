@@ -75,6 +75,7 @@ scale = Vector2(0.9, 0.9)
 script = ExtResource("1_50lqy")
 bullet_scene = ExtResource("2_vooa8")
 bullet_cooldown = 3.0
+max_shoot_distance = 128.0
 explosion_bullet_count = 6
 max_health = 12
 

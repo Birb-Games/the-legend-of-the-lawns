@@ -1,0 +1,219 @@
+[gd_scene load_steps=29 format=3 uid="uid://crnj1ljbpuy2m"]
+
+[ext_resource type="Texture2D" uid="uid://bulte52ba84qm" path="res://assets/textures/enemies/mobile/tomato_boy.png" id="1_84l2f"]
+[ext_resource type="Script" uid="uid://b25hgp106v8ev" path="res://scripts/enemies/mobile/tomato_boy.gd" id="1_b1yu5"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_buule"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="2_tfheh"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="3_vuec1"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="4_pqdwm"]
+[ext_resource type="Texture2D" uid="uid://ba5ex8r35mpyd" path="res://assets/textures/enemies/mobile/tomato_spawn_animation.png" id="5_wbjv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8b8uy"]
+size = Vector2(10, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vuec1"]
+size = Vector2(16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbjv5"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(105, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee0oe"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(84, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu0tr"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(63, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvdqy"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(42, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb7mv"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(21, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv061"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(0, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84l2f"]
+atlas = ExtResource("1_84l2f")
+region = Rect2(0, 19, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buule"]
+atlas = ExtResource("1_84l2f")
+region = Rect2(17, 19, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuec1"]
+atlas = ExtResource("1_84l2f")
+region = Rect2(0, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfheh"]
+atlas = ExtResource("1_84l2f")
+region = Rect2(34, 19, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1yu5"]
+atlas = ExtResource("1_84l2f")
+region = Rect2(17, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0fgu"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(0, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tub3w"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(21, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg1qd"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(42, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bn5t"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(63, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4end"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(84, 0, 21, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0tfi"]
+atlas = ExtResource("5_wbjv5")
+region = Rect2(105, 0, 21, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8b8uy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbjv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee0oe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu0tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvdqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb7mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv061")
+}],
+"loop": false,
+"name": &"despawn",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84l2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buule")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuec1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfheh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1yu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfheh")
+}],
+"loop": true,
+"name": &"running",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0fgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tub3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg1qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bn5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4end")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0tfi")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tfheh"]
+radius = 10.666667
+
+[node name="TomatoBoy" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_b1yu5")
+explosion_scene = ExtResource("2_tfheh")
+speed = 48.0
+max_chase_distance = 9999.0
+max_health = 8
+explosion_bullet_count = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_8b8uy")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.46153846)
+texture = ExtResource("1_buule")
+
+[node name="SpawnShadow" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.6666667, 0.4615385)
+texture = ExtResource("1_buule")
+
+[node name="Healthbar" parent="." instance=ExtResource("3_vuec1")]
+offset_top = -21.0
+offset_bottom = -19.0
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("4_pqdwm")]
+position = Vector2(0, -7)
+scale = Vector2(1.5, 1.5)
+
+[node name="BulletHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_vuec1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9.5)
+sprite_frames = SubResource("SpriteFrames_8b8uy")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="WallDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector"]
+position = Vector2(0, -5.3333387)
+shape = SubResource("CircleShape2D_tfheh")
+
+[connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="WallDetector" to="." method="_on_wall_detector_body_entered"]
+[connection signal="body_exited" from="WallDetector" to="." method="_on_wall_detector_body_exited"]

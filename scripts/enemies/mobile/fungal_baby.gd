@@ -24,11 +24,12 @@ func get_animation() -> String:
 	return "running"
 
 func explode() -> void:
-	var explosion: GPUParticles2D = explosion_scene.instantiate()
-	explosion.position = position
-	explosion.modulate = Color.MAGENTA
-	explosion.scale *= 0.3
-	$/root/Main/Lawn.add_child(explosion)
+	if health > 0:
+		var explosion: GPUParticles2D = explosion_scene.instantiate()
+		explosion.global_position = $AnimatedSprite2D.global_position
+		explosion.modulate = Color.MAGENTA
+		explosion.scale *= 0.3
+		$/root/Main/Lawn.add_child(explosion)
 	super.explode()
 
 func in_shooting_range() -> bool:
@@ -60,6 +61,9 @@ func set_sprite_dir() -> void:
 
 func calculate_velocity() -> Vector2:
 	if hit_timer > IMMUNITY_TIME:
+		return Vector2.ZERO
+
+	if explosion_timer >= EXPLOSION_TIME * 0.95:
 		return Vector2.ZERO
 
 	var vel = super.calculate_velocity()

@@ -6,7 +6,7 @@ extends Camera2D
 # https://kidscancode.org/godot_recipes/4.x/2d/screen_shake/index.html 
 
 const DECAY: float = 0.6
-const MAX_OFFSET: Vector2 = Vector2(12, 12)
+const MAX_OFFSET: Vector2 = Vector2(20, 20)
 const MAX_ROLL: float = 0.8
 const TRAUMA_POWER: int = 2
 var trauma: float = 0.0
@@ -25,6 +25,15 @@ func shake() -> void:
 	offset.y = MAX_OFFSET.y * amount * noise.get_noise_2d(noise.seed * 3, noise_y)
 
 func _process(delta: float) -> void:
+	var main: Main = $/root/Main
+	if main.lawn_loaded:
+		if zoom.x > 2.5:
+			zoom.x -= delta * max(zoom.x - 2.5, 0.25) * 2.0
+		zoom.x = max(zoom.x, 2.5)
+		zoom.y = zoom.x
+	else:
+		zoom = Vector2(3.5, 3.5)
+
 	if trauma > 0.0:
 		trauma = max(trauma - DECAY * delta, 0.0)
 		shake()

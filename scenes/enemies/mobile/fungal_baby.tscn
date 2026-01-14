@@ -124,7 +124,7 @@ size = Vector2(7.499999, 5)
 size = Vector2(13.333332, 18.333332)
 
 [node name="FungalBaby" type="CharacterBody2D"]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.6, 0.6)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_wp067")
@@ -135,6 +135,7 @@ max_chase_distance = 500.0
 max_health = 5
 explosion_bullet_count = 3
 bullet_scene = ExtResource("2_oe85s")
+bullet_cooldown = -1.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 scale = Vector2(0.37500003, 0.30769232)

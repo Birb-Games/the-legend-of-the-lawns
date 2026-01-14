@@ -45,7 +45,7 @@ func get_animation() -> String:
 
 func explode() -> void:
 	var blood_particles: GPUParticles2D = blood_particles_scene.instantiate()
-	blood_particles.global_position = global_position + Vector2(0.0, -10.0)
+	blood_particles.global_position = $AnimatedSprite2D.global_position
 	$/root/Main/Lawn.add_child(blood_particles)
 	queue_free()
 
@@ -70,19 +70,7 @@ func set_dir_left() -> void:
 func set_dir_right() -> void:
 	$AnimatedSprite2D.flip_h = false
 	$StunParticles.position.x = stun_particle_pos_x
-	$AngerParticles.position.x = anger_particle_pos_x
-
-func set_sprite_dir() -> void:
-	if player.global_position.x < global_position.x - 8.0:
-		set_dir_left()
-	elif player.global_position.x > global_position.x + 8.0:
-		set_dir_right()
-
-	var vel = calculate_velocity()
-	if vel.length() > 0.0 and vel.normalized().dot(Vector2.LEFT) > 0.25:
-		set_dir_left()
-	elif vel.length() > 0.0 and vel.normalized().dot(Vector2.RIGHT) > 0.25:
-		set_dir_right()	
+	$AngerParticles.position.x = anger_particle_pos_x	
 
 func _process(delta: float) -> void:
 	if spawn_timer > 0.0:

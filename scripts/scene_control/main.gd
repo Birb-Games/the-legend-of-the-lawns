@@ -51,6 +51,11 @@ func _process(delta: float) -> void:
 	# Reenable camera position smoothing if it was disabled
 	if !$Player/Camera2D.position_smoothing_enabled:
 		$Player/Camera2D.position_smoothing_enabled = true
+	
+	# Hide player lawn mower & water gun if we are in the neighborhood
+	if neighborhood.is_inside_tree():
+		$Player/Lawnmower.hide()
+		$Player/WaterGun.hide()
 
 func advance_day() -> void:
 	current_day += 1
@@ -77,6 +82,8 @@ func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	# Set player position and direction
 	player.position = lawn.get_spawn()
 	player.dir = "down"
+	$Player/Camera2D.zoom = Vector2(8.0, 8.0)
+	$HUD/Control/TransitionRect.start_bus_animation()
 	lawn.update_enemy_pathfinding()
 	# Set lawn loaded flag
 	lawn_loaded = true
@@ -92,6 +99,7 @@ func return_to_neighborhood() -> void:
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
 	$Neighborhood/JobBoard.update()
+	$Player/Lawnmower.hide()
 	$Player/WaterGun.hide()
 	$Player/NeighborArrow.point_to = ""
 	player.position = player_pos

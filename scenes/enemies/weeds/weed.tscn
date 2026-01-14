@@ -51,7 +51,7 @@ scale = Vector2(0.65, 0.65)
 script = ExtResource("1_d5vux")
 bullet_scene = ExtResource("2_gohqb")
 bullet_cooldown = 4.5
-max_shoot_distance = 96.0
+max_shoot_distance = 120.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.1667)

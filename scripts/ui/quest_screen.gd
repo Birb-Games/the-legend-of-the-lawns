@@ -79,7 +79,7 @@ func get_job_button_text() -> Array[String]:
 			continue
 		var text: String = " %s" % neighbor.display_name 
 		if job.days_left == 1:
-			text += " (1 day left!)" % job.days_left
+			text += " (1 day left!)"
 		else:
 			text += " (%d days left)" % job.days_left
 		button_texts.push_back(text)

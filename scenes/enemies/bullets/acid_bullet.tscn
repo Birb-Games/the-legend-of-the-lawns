@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ic2en422yqlv"]
+
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="1_qfnuv"]
+[ext_resource type="Texture2D" uid="uid://cy5i862fjjngs" path="res://assets/textures/enemies/bullets/acid_bullet.png" id="2_35578"]
+[ext_resource type="PackedScene" uid="uid://c0q7613dxrbbv" path="res://scenes/particles/bullet_trail.tscn" id="3_xhf8s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35578"]
+radius = 4.0
+
+[node name="Seedbullet" instance=ExtResource("1_qfnuv")]
+speed = 128.0
+damage_amt = 6
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.5019608)
+texture = ExtResource("2_35578")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_35578")
+
+[node name="GPUParticles2D" parent="." index="2"]
+self_modulate = Color(1, 1, 1, 0.7058824)
+scale = Vector2(0.75, 0.75)
+amount = 32
+texture = ExtResource("2_35578")
+local_coords = true
+
+[node name="BulletTrail" parent="." index="3" instance=ExtResource("3_xhf8s")]
+self_modulate = Color(1, 1, 1, 0.5019608)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_35578")

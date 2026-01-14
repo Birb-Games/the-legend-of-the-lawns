@@ -8,6 +8,9 @@ const SPEED: float = 140.0
 var dir: Vector2 = Vector2.ZERO
 var lifetime: float = 5.0
 
+func active() -> bool:
+	return $Sprite2D.visible
+
 func explode() -> void:
 	$Explosion.emitting = true
 	$Sprite2D.hide()

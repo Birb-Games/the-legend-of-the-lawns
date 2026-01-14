@@ -31,5 +31,6 @@ texture = ExtResource("1_xv2uh")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.8
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_xv2uh")
 script = ExtResource("2_ntwx8")
