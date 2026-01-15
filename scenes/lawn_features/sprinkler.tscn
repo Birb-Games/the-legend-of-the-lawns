@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://30584qe175b"]
+
+[ext_resource type="Script" uid="uid://bpra0wtxikqg4" path="res://scripts/lawn_features/sprinkler.gd" id="1_4vlu6"]
+[ext_resource type="Texture2D" uid="uid://qq4lr6vo0tro" path="res://assets/textures/lawn_features/sprinkler.png" id="1_m4bp1"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="2_cbp7e"]
+[ext_resource type="PackedScene" uid="uid://b4a5sdixx0fuv" path="res://scenes/player/bullet.tscn" id="2_u3m0b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbp7e"]
+size = Vector2(12, 8)
+
+[node name="Sprinkler" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4vlu6")
+bullet_scene = ExtResource("2_u3m0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_cbp7e")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.3125, 0.3076923)
+texture = ExtResource("2_cbp7e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7.5)
+texture = ExtResource("1_m4bp1")
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -10)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
