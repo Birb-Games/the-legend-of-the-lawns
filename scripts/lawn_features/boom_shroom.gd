@@ -17,6 +17,8 @@ func _process(delta: float) -> void:
 	var sample_point = (sine + 1.0) / 2.0
 	$Sprite2D.modulate = explosion_flash_gradient.sample(sample_point)
 	if explosion_timer >= 1.0:
+		var camera: GameCamera = $/root/Main/Player/Camera2D
+		camera.add_trauma(0.5)
 		# Create explosion
 		var explosion: Explosion = explosion_scene.instantiate()
 		explosion.damage = 30

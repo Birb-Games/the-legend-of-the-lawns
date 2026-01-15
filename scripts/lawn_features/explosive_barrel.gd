@@ -11,6 +11,9 @@ var pulse: float = 0.0
 func explode() -> void:	
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
 	if lawn:
+		var camera: GameCamera = $/root/Main/Player/Camera2D
+		camera.add_trauma(0.75)
+
 		var explosion: Explosion = explosion_scene.instantiate()
 		explosion.scale *= 0.4
 		explosion.can_damage_plants = true
