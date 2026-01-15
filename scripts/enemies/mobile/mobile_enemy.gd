@@ -257,6 +257,8 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 			return
 		body.get_parent().hit[get_path()] = true
 		damage(body.get_parent().calculate_damage(global_position))
+	elif body is BoomShroom:
+		body.explode_flag = true
 
 func _on_bullet_hitbox_area_exited(body: Node2D) -> void:
 	if body is Fire:

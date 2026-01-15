@@ -98,7 +98,7 @@ func explode() -> void:
 	var explosion: GPUParticles2D = explosion_scene.instantiate()
 	explosion.position = position
 	explosion.modulate = Color.RED
-	explosion.scale *= 0.4
+	explosion.scale *= 0.3
 	$/root/Main/Lawn.add_child(explosion)
 	queue_free()
 

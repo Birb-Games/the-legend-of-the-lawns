@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name ExplosiveBarrel
+
 @export var explosion_scene: PackedScene
 @export var fire_scene: PackedScene
 @onready var health: int = randi_range(3, 5)
@@ -62,3 +64,5 @@ func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 		area.explode()
 		health -= area.damage_amt
 		pulse = 1.0
+	elif area.get_parent() is Explosion:
+		health = 0

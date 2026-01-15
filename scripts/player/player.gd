@@ -220,6 +220,11 @@ func take_fire_damage(delta: float) -> void:
 	fire_timer = max(fire_timer - delta, 0.0)
 	if !fire_particles:
 		add_child(Fire.fire_particles.instantiate())
+	else:
+		if lawn_mower_active():
+			fire_particles.scale = Vector2(0.7, 0.7)
+		else:
+			fire_particles.scale = Vector2(0.5, 0.5)
 	fire_damage_timer -= delta
 	if fire_damage_timer <= 0.0 or fire_timer <= 0.0:
 		fire_damage_timer = FIRE_DAMAGE_INTERVAL
