@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://deieyv2snbfnr" path="res://scenes/enemies/weeds/super_shroom.tscn" id="11_0qfnh"]
 [ext_resource type="PackedScene" uid="uid://d1jwu43vb0643" path="res://scenes/enemies/mobile/shrub_demon.tscn" id="12_rr38k"]
 [ext_resource type="PackedScene" uid="uid://b32ibsy1iagox" path="res://scenes/enemies/mobile/killer_rabbit.tscn" id="14_npovt"]
-[ext_resource type="PackedScene" uid="uid://bodmljl34l6om" path="res://scenes/lawn_features/fire.tscn" id="15_s4gf2"]
+[ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="16_quhsh"]
 
 [node name="TestLawn" instance=ExtResource("1_ftld5")]
 max_weeds = 0
@@ -58,16 +58,22 @@ position = Vector2(-95, -324)
 position = Vector2(105, -307)
 
 [node name="ShrubDemon" parent="MobileEnemies" index="0" instance=ExtResource("12_rr38k")]
-position = Vector2(122.999985, 85.000015)
+position = Vector2(-392.99994, -0.9999924)
 
 [node name="KillerRabbit" parent="MobileEnemies" index="1" instance=ExtResource("14_npovt")]
 position = Vector2(-8, -361)
 
-[node name="Fire" parent="." index="16" instance=ExtResource("15_s4gf2")]
-position = Vector2(-11, 104)
+[node name="ShrubDemon2" parent="MobileEnemies" index="2" instance=ExtResource("12_rr38k")]
+position = Vector2(87.51693, 95.18149)
 
-[node name="Fire2" parent="." index="17" instance=ExtResource("15_s4gf2")]
-position = Vector2(-73, 106)
+[node name="ExplosiveBarrel" parent="." index="16" instance=ExtResource("16_quhsh")]
+position = Vector2(10, -40)
 
-[node name="Weed2" parent="." index="18" instance=ExtResource("4_7cgbf")]
-position = Vector2(16.201431, 117.58342)
+[node name="ExplosiveBarrel2" parent="." index="17" instance=ExtResource("16_quhsh")]
+position = Vector2(120.99999, -138)
+
+[node name="ExplosiveBarrel3" parent="." index="18" instance=ExtResource("16_quhsh")]
+position = Vector2(0, -179)
+
+[node name="ExplosiveBarrel4" parent="." index="19" instance=ExtResource("16_quhsh")]
+position = Vector2(35.08305, 78.603134)

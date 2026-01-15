@@ -24,8 +24,8 @@ func has_fuel() -> bool:
 	var lawn: Lawn = $/root/Main/Lawn
 	var tile_x: int = int(floor(global_position.x / lawn.tile_size.x))
 	var tile_y: int = int(floor(global_position.y / lawn.tile_size.y))
-	var tile_pos: Vector2i = Vector2i(tile_x, tile_y)
-	if LawnGenerationUtilities.is_hedge(tile_pos) and lifetime > 0.2:
+	var tile = lawn.get_tile(tile_x, tile_y)
+	if LawnGenerationUtilities.is_hedge(tile) and lifetime > 0.2:
 		return true
 	for body in colliding:
 		if body is WeedEnemy or body is FlowerEnemy:

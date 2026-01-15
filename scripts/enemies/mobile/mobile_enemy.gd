@@ -198,12 +198,12 @@ func _process(delta: float) -> void:
 		queue_free()
 		return
 
+	take_fire_damage(delta)
 	if player.health <= 0.0:
 		return
 	
 	handle_path_update(delta)	
 	update_shooting(delta)
-	take_fire_damage(delta)
 
 func _physics_process(_delta: float) -> void:
 	velocity = calculate_velocity()
@@ -252,6 +252,11 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 			damage(body.damage_amt)
 	elif body is Fire:
 		fire_collision_count += 1
+	elif body.get_parent() is Explosion:
+		if get_path() in body.get_parent().hit:
+			return
+		body.get_parent().hit[get_path()] = true
+		damage(body.get_parent().calculate_damage(global_position))
 
 func _on_bullet_hitbox_area_exited(body: Node2D) -> void:
 	if body is Fire:
