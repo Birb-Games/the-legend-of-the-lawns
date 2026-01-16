@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://dkuhevs5nmf32"]
+
+[ext_resource type="Texture2D" uid="uid://c8patdn3nrg7g" path="res://assets/textures/enemies/mobile/garden_gnome.png" id="1_04oy6"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_oi8p4"]
+[ext_resource type="Script" uid="uid://dux38ugw3h5dm" path="res://scripts/enemies/mobile/evil_gnome.gd" id="1_qc74p"]
+[ext_resource type="Texture2D" uid="uid://mo4cwxl62mhe" path="res://assets/textures/enemies/mobile/evil_gnome.png" id="2_ojb63"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi8p4"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(0, 0, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc74p"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(13, 0, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkbtf"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(26, 0, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojb63"]
+atlas = ExtResource("1_04oy6")
+region = Rect2(0, 0, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ynet"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(26, 27, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grx8y"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(39, 27, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baigl"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(52, 27, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jhy7"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(65, 27, 13, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7llws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi8p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc74p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkbtf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc74p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojb63")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ynet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grx8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baigl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jhy7")
+}],
+"loop": true,
+"name": &"running",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7llws"]
+size = Vector2(10, 9)
+
+[node name="EvilGnome" type="CharacterBody2D"]
+script = ExtResource("1_qc74p")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.4375, 0.30769232)
+texture = ExtResource("1_oi8p4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13.5)
+sprite_frames = SubResource("SpriteFrames_7llws")
+animation = &"inactive"
+autoplay = "inactive"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_7llws")

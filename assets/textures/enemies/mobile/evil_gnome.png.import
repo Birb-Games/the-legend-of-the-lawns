@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mo4cwxl62mhe"
-path="res://.godot/imported/gnome.png-c925fcbc47a2171e999be1a07b31cb19.ctex"
+path="res://.godot/imported/evil_gnome.png-67035a34f6f37a93eb2157b95bd87aa6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/enemies/mobile/gnome.png"
-dest_files=["res://.godot/imported/gnome.png-c925fcbc47a2171e999be1a07b31cb19.ctex"]
+source_file="res://assets/textures/enemies/mobile/evil_gnome.png"
+dest_files=["res://.godot/imported/evil_gnome.png-67035a34f6f37a93eb2157b95bd87aa6.ctex"]
 
 [params]
 

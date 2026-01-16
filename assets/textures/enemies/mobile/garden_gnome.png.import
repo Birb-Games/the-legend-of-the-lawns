@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm4vdyota3u7q"
-path="res://.godot/imported/rock.png-ca6763555086463decd856700dd8f5fe.ctex"
+uid="uid://c8patdn3nrg7g"
+path="res://.godot/imported/garden_gnome.png-bc755fea7370ea05968b7353ab4e6163.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/lawn_features/rock.png"
-dest_files=["res://.godot/imported/rock.png-ca6763555086463decd856700dd8f5fe.ctex"]
+source_file="res://assets/textures/enemies/mobile/garden_gnome.png"
+dest_files=["res://.godot/imported/garden_gnome.png-bc755fea7370ea05968b7353ab4e6163.ctex"]
 
 [params]
 
