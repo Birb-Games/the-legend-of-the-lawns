@@ -218,3 +218,4 @@ position = Vector2(4, -14.666664)
 
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="area_exited" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_exited"]

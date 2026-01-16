@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://pm6hmtrxhhca"]
+
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="1_60eew"]
+[ext_resource type="Texture2D" uid="uid://co08esimsucac" path="res://assets/textures/enemies/bullets/magic_bullet.png" id="2_fuugy"]
+[ext_resource type="PackedScene" uid="uid://c0q7613dxrbbv" path="res://scenes/particles/bullet_trail.tscn" id="3_vp56r"]
+
+[node name="MagicBullet" groups=["damage_weeds", "friendly_fire"] instance=ExtResource("1_60eew")]
+speed = 72.0
+rotation_speed = 1200.0
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 0.6117647, 1, 0.78431374)
+texture = ExtResource("2_fuugy")
+
+[node name="GPUParticles2D" parent="." index="2"]
+modulate = Color(1, 1, 1, 0.2509804)
+texture = ExtResource("2_fuugy")
+
+[node name="BulletTrail" parent="." index="3" groups=["friendly_fire"] instance=ExtResource("3_vp56r")]
+modulate = Color(1, 1, 1, 0.627451)
+texture = ExtResource("2_fuugy")

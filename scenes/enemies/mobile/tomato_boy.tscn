@@ -214,6 +214,7 @@ shape = SubResource("CircleShape2D_tfheh")
 
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="area_exited" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="WallDetector" to="." method="_on_wall_detector_body_entered"]
 [connection signal="body_exited" from="WallDetector" to="." method="_on_wall_detector_body_exited"]

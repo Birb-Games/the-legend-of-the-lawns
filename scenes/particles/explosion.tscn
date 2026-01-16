@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://e6kb8yfp0yjr"]
+[gd_scene load_steps=11 format=3 uid="uid://e6kb8yfp0yjr"]
 
 [ext_resource type="Texture2D" uid="uid://btspvfcbp648g" path="res://assets/textures/particles/circle_particle.png" id="1_3sqip"]
-[ext_resource type="Script" uid="uid://biobcr36guyl1" path="res://scripts/particles/one_shot_particles.gd" id="2_3ajkw"]
+[ext_resource type="Script" uid="uid://eswvaxkalbt0" path="res://scripts/particles/explosion.gd" id="2_3ajkw"]
 
 [sub_resource type="Curve" id="Curve_3ajkw"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4753086, 0.99198514), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -11,16 +11,16 @@ point_count = 3
 curve = SubResource("Curve_3ajkw")
 
 [sub_resource type="Gradient" id="Gradient_3ajkw"]
-offsets = PackedFloat32Array(0, 0.52684563, 1)
+offsets = PackedFloat32Array(0, 0.738255, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_uommb"]
 gradient = SubResource("Gradient_3ajkw")
 
 [sub_resource type="Curve" id="Curve_3sqip"]
-_limits = [0.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.71913576, 1), -22.228148, -22.228148, 0, 0, Vector2(0.7685186, 0.19112158), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+_limits = [0.0, 8.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3487654, 8), 0.0, 0.0, 0, 0, Vector2(0.71913576, 1), -62.82925, -62.82925, 0, 0, Vector2(0.7685186, 0.19112158), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="CurveTexture" id="CurveTexture_3ajkw"]
 curve = SubResource("Curve_3sqip")
@@ -39,8 +39,11 @@ alpha_curve = SubResource("CurveTexture_uommb")
 hue_variation_min = -0.020000022
 hue_variation_max = 0.019999977
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ajkw"]
+radius = 100.0
+
 [node name="Explosion" type="GPUParticles2D"]
-modulate = Color(1, 0.2627451, 0, 1)
+modulate = Color(1, 0.35462305, 0.19081312, 1)
 z_index = 1
 emitting = false
 amount = 64
@@ -51,3 +54,13 @@ explosiveness = 0.7
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_3sqip")
 script = ExtResource("2_3ajkw")
+
+[node name="DamageZone" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+shape = SubResource("CircleShape2D_3ajkw")
+
+[connection signal="area_entered" from="DamageZone" to="." method="_on_damage_zone_area_entered"]
+[connection signal="body_entered" from="DamageZone" to="." method="_on_damage_zone_body_entered"]

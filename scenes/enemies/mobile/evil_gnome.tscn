@@ -1,0 +1,158 @@
+[gd_scene load_steps=20 format=3 uid="uid://dkuhevs5nmf32"]
+
+[ext_resource type="Texture2D" uid="uid://c8patdn3nrg7g" path="res://assets/textures/enemies/mobile/garden_gnome.png" id="1_04oy6"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_oi8p4"]
+[ext_resource type="Script" uid="uid://dux38ugw3h5dm" path="res://scripts/enemies/mobile/evil_gnome.gd" id="1_qc74p"]
+[ext_resource type="PackedScene" uid="uid://pm6hmtrxhhca" path="res://scenes/enemies/bullets/magic_bullet.tscn" id="2_grx8y"]
+[ext_resource type="Texture2D" uid="uid://mo4cwxl62mhe" path="res://assets/textures/enemies/mobile/evil_gnome.png" id="2_ojb63"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="5_xkbtf"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="6_6ynet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi8p4"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(0, 0, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc74p"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(13, 0, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkbtf"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(26, 0, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojb63"]
+atlas = ExtResource("1_04oy6")
+region = Rect2(0, 0, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ynet"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(26, 27, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grx8y"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(39, 27, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baigl"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(52, 27, 13, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jhy7"]
+atlas = ExtResource("2_ojb63")
+region = Rect2(65, 27, 13, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7llws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi8p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc74p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkbtf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc74p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojb63")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ynet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grx8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baigl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jhy7")
+}],
+"loop": true,
+"name": &"running",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7llws"]
+size = Vector2(10, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grx8y"]
+size = Vector2(12, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grx8y"]
+radius = 22.0
+
+[node name="EvilGnome" type="CharacterBody2D"]
+scale = Vector2(0.6, 0.6)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_qc74p")
+speed = 96.0
+min_chase_distance = 0.0
+max_chase_distance = 9999.0
+max_health = 3
+explosion_bullet_count = 8
+spawn_animation_time = 0.0
+bullet_scene = ExtResource("2_grx8y")
+bullet_cooldown = 0.3
+immune_to_friendly_fire = true
+immune_to_fire = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.4375, 0.30769232)
+texture = ExtResource("1_oi8p4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13.5)
+sprite_frames = SubResource("SpriteFrames_7llws")
+animation = &"inactive"
+autoplay = "inactive"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_7llws")
+
+[node name="Healthbar" parent="." instance=ExtResource("5_xkbtf")]
+offset_left = -10.0
+offset_top = -32.0
+offset_right = 4.0
+offset_bottom = -30.0
+scale = Vector2(1.4, 1.4)
+
+[node name="ContactDamageZone" parent="." instance=ExtResource("6_6ynet")]
+position = Vector2(0, -12)
+scale = Vector2(1.5, 1.5)
+
+[node name="BulletHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_grx8y")
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, -12)
+
+[node name="WallDetector" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector"]
+position = Vector2(0, -14)
+shape = SubResource("CircleShape2D_grx8y")
+
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="body_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_body_entered"]
+[connection signal="body_entered" from="WallDetector" to="." method="_on_wall_detector_body_entered"]
+[connection signal="body_exited" from="WallDetector" to="." method="_on_wall_detector_body_exited"]

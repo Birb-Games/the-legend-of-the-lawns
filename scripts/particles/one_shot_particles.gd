@@ -1,5 +1,7 @@
 extends GPUParticles2D
 
+class_name OneShotParticles
+
 func _ready() -> void:
 	emitting = true
 

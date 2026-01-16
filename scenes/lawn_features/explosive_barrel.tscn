@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://c07jh4tyii0gs"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_djmou"]
+[ext_resource type="Script" uid="uid://cirigu23jpdv6" path="res://scripts/lawn_features/explosive_barrel.gd" id="1_xcn7v"]
+[ext_resource type="Texture2D" uid="uid://bdavhh6m2n66a" path="res://assets/textures/lawn_features/weedkiller_barrel.png" id="1_ye4i6"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="2_uxl1j"]
+[ext_resource type="Texture2D" uid="uid://dikp6dovjikhs" path="res://assets/textures/decorations/danger.png" id="3_e4nt2"]
+[ext_resource type="PackedScene" uid="uid://bodmljl34l6om" path="res://scenes/lawn_features/fire.tscn" id="3_y83q4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4nt2"]
+size = Vector2(15.000003, 21.25)
+
+[node name="ExplosiveBarrel" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_xcn7v")
+explosion_scene = ExtResource("2_uxl1j")
+fire_scene = ExtResource("3_y83q4")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, -1.5)
+scale = Vector2(0.5625, 0.61538464)
+texture = ExtResource("1_djmou")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+texture = ExtResource("1_ye4i6")
+
+[node name="Skull" type="Sprite2D" parent="."]
+position = Vector2(0, -7.333336)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_e4nt2")
+
+[node name="BulletHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2(0, -10.624998)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_e4nt2")
+
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]

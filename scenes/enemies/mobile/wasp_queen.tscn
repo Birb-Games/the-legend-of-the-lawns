@@ -262,6 +262,7 @@ max_health = 84
 explosion_bullet_count = 10
 bullet_scene = ExtResource("3_qkar4")
 bullet_cooldown = 1.0
+immune_to_fire = true
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(-0.5, -1.6666667)

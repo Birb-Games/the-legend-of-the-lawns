@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bodmljl34l6om"]
+
+[ext_resource type="PackedScene" uid="uid://dt374voqtyp4c" path="res://scenes/particles/fire_particles.tscn" id="1_ec268"]
+[ext_resource type="Script" uid="uid://btjigoqdwc7vr" path="res://scripts/lawn_features/fire.gd" id="1_r1dea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgbs2"]
+size = Vector2(26, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1dea"]
+size = Vector2(32, 25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1dea"]
+radius = 28.0
+
+[node name="Fire" type="Area2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_r1dea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_hgbs2")
+
+[node name="FireParticles" parent="." instance=ExtResource("1_ec268")]
+
+[node name="BulletHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_r1dea")
+
+[node name="CanSpreadTo" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanSpreadTo"]
+shape = SubResource("CircleShape2D_r1dea")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="area_entered" from="CanSpreadTo" to="." method="_on_can_spread_to_area_entered"]
+[connection signal="area_exited" from="CanSpreadTo" to="." method="_on_can_spread_to_area_exited"]

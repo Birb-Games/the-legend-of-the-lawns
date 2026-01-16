@@ -7,6 +7,8 @@ const SPEED: float = 140.0
 
 var dir: Vector2 = Vector2.ZERO
 var lifetime: float = 5.0
+var can_hit_player: bool = false
+var can_activate_sprinkler: bool = true
 
 func active() -> bool:
 	return $Sprite2D.visible
@@ -33,3 +35,8 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("lawn_obstacle"):
 		explode()
+	elif body is Player:
+		if can_hit_player:
+			body.damage(1)
+			body.fire_timer = 0.0
+			explode()

@@ -25,10 +25,11 @@ func get_animation() -> String:
 
 func explode() -> void:
 	if health > 0:
-		var explosion: GPUParticles2D = explosion_scene.instantiate()
+		var explosion: Explosion = explosion_scene.instantiate()
 		explosion.global_position = $AnimatedSprite2D.global_position
 		explosion.modulate = Color.MAGENTA
 		explosion.scale *= 0.3
+		explosion.damage = 40
 		$/root/Main/Lawn.add_child(explosion)
 	super.explode()
 
@@ -79,10 +80,6 @@ func _process(delta: float) -> void:
 	if explosion_timer >= EXPLOSION_TIME:
 		explosion_bullet_count *= 4
 		explode()
-		# Apply damage to the player based on how far away the player is
-		var dist = (player.global_position - global_position).length() / 16.0
-		var player_damage = max(int(floor(40.0 - dist * dist * 10.0)), 0)
-		player.damage(player_damage)
 		return
 
 	super._process(delta)

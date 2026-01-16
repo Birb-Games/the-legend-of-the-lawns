@@ -98,6 +98,11 @@ func _on_area_entered(area: Area2D) -> void:
 		area.explode()
 		health -= 1
 		health = max(health, 0)
+	elif area is EnemyBullet:
+		if area.is_in_group("damage_weeds"):
+			area.explode()
+			health -= area.damage_amt
+			health = max(health, 0)
 
 func bullet_spawn_point() -> Vector2:
 	return $BulletSpawnPoint.global_position

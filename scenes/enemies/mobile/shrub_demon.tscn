@@ -184,3 +184,4 @@ shape = SubResource("RectangleShape2D_7t4r1")
 
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="area_exited" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_exited"]

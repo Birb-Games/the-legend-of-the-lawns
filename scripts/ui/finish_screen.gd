@@ -144,6 +144,6 @@ func calculate_hedge_penalty() -> int:
 	var tileMapLayer: TileMapLayer = $/root/Main/Lawn/TileMapLayer
 	var destroyed_hedges: int = 0
 	for tile in tileMapLayer.get_used_cells():
-		if tileMapLayer.get_cell_atlas_coords(tile) == Vector2i(0, 2):
+		if tileMapLayer.get_cell_atlas_coords(tile) == LawnGenerationUtilities.DESTROYED_HEDGE:
 			destroyed_hedges += 1
 	return destroyed_hedges * $/root/Main/HUD.get_current_neighbor().hedge_penalty
