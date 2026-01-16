@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dpa88af6o4cu7"]
+[gd_scene load_steps=21 format=4 uid="uid://dpa88af6o4cu7"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_ftld5"]
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellow_flower.tscn" id="2_rg8jm"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://deieyv2snbfnr" path="res://scenes/enemies/weeds/super_shroom.tscn" id="11_0qfnh"]
 [ext_resource type="PackedScene" uid="uid://d1jwu43vb0643" path="res://scenes/enemies/mobile/shrub_demon.tscn" id="12_rr38k"]
 [ext_resource type="PackedScene" uid="uid://b32ibsy1iagox" path="res://scenes/enemies/mobile/killer_rabbit.tscn" id="14_npovt"]
+[ext_resource type="PackedScene" uid="uid://dkuhevs5nmf32" path="res://scenes/enemies/mobile/evil_gnome.tscn" id="15_y3n1o"]
 [ext_resource type="PackedScene" uid="uid://cm4b5rcedfd1n" path="res://scenes/lawn_features/boom_shroom.tscn" id="16_qj5sc"]
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="16_quhsh"]
 [ext_resource type="PackedScene" uid="uid://boiyvtxjuw0rf" path="res://scenes/enemies/mobile/shrub_demon_mound.tscn" id="19_eriig"]
@@ -64,35 +65,34 @@ position = Vector2(-382, -29.000002)
 [node name="ShrubDemon2" parent="MobileEnemies" index="2" instance=ExtResource("12_rr38k")]
 position = Vector2(92.99999, 122)
 
+[node name="EvilGnome" parent="MobileEnemies" index="3" instance=ExtResource("15_y3n1o")]
+position = Vector2(116, -132)
+
 [node name="ExplosiveBarrel" parent="." index="14" instance=ExtResource("16_quhsh")]
 position = Vector2(10, -40)
 
-[node name="ExplosiveBarrel2" parent="." index="15" instance=ExtResource("16_quhsh")]
-position = Vector2(120.99999, -138)
-
-[node name="ExplosiveBarrel3" parent="." index="16" instance=ExtResource("16_quhsh")]
+[node name="ExplosiveBarrel3" parent="." index="15" instance=ExtResource("16_quhsh")]
 position = Vector2(0, -179)
 
-[node name="ExplosiveBarrel4" parent="." index="17" instance=ExtResource("16_quhsh")]
+[node name="ExplosiveBarrel4" parent="." index="16" instance=ExtResource("16_quhsh")]
 position = Vector2(-82, 39)
 
-[node name="BoomShroom" parent="." index="18" instance=ExtResource("16_qj5sc")]
+[node name="BoomShroom" parent="." index="17" instance=ExtResource("16_qj5sc")]
 position = Vector2(-14, -50)
 scale = Vector2(0.65, 0.65)
 
-[node name="BoomShroom2" parent="." index="19" instance=ExtResource("16_qj5sc")]
-position = Vector2(107.00001, -121)
-scale = Vector2(0.65, 0.65)
-
-[node name="BoomShroom3" parent="." index="20" instance=ExtResource("16_qj5sc")]
+[node name="BoomShroom3" parent="." index="18" instance=ExtResource("16_qj5sc")]
 position = Vector2(62.000008, 85)
 scale = Vector2(0.65, 0.65)
 
-[node name="ShrubDemonMound" parent="." index="21" instance=ExtResource("19_eriig")]
+[node name="ShrubDemonMound" parent="." index="19" instance=ExtResource("19_eriig")]
 position = Vector2(-113, -316)
 
-[node name="WaspNest" parent="." index="22" instance=ExtResource("20_y3n1o")]
+[node name="WaspNest" parent="." index="20" instance=ExtResource("20_y3n1o")]
 position = Vector2(105.00001, -331)
 
-[node name="Sprinkler" parent="." index="23" instance=ExtResource("19_y3n1o")]
+[node name="Sprinkler" parent="." index="21" instance=ExtResource("19_y3n1o")]
 position = Vector2(-102, 12)
+
+[node name="Yellowflower2" parent="." index="22" instance=ExtResource("2_rg8jm")]
+position = Vector2(100.00001, -114.00001)

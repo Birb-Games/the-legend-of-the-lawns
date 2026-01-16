@@ -42,7 +42,7 @@ func _on_hit() -> void:
 		return
 	var diff = global_position - player.global_position
 	if diff.length() > 0.0:
-		current_vel = diff.normalized() * speed * 1.8
+		current_vel = diff.normalized() * speed * 2.0
 	change_vel_timer = 3.0
 	chase_player = false
 
@@ -56,7 +56,7 @@ func set_sprite_dir() -> void:
 		set_dir_left()
 
 func change_velocity() -> void:
-	change_vel_timer = randf_range(1.0, 3.0)
+	change_vel_timer = randf_range(0.5, 1.0)
 	var angle = randf_range(0.0, 2.0 * PI)
 	current_vel = Vector2(cos(angle), sin(angle)) * speed * 1.5
 
@@ -106,6 +106,13 @@ func damage(amt: int) -> void:
 	if lifetime <= 0.0:
 		return
 	super.damage(amt)
+
+func _physics_process(delta: float) -> void:
+	var prev_pos: Vector2 = global_position
+	super._physics_process(delta)
+	var diff = global_position - prev_pos
+	if diff.length() <= speed * 0.6 * delta and !can_bounce and !chase_player:
+		current_vel *= -1.0
 
 func _on_wall_detector_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
