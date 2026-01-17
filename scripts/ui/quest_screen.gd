@@ -185,7 +185,7 @@ func _on_button_pressed() -> void:
 
 func _process(_delta: float) -> void:
 	var intro = get_node_or_null("/root/Main/HUD/Control/IntroWebsite")
-	if intro:
+	if intro or $/root/Main/HUD/MainMenu.visible:
 		return
 
 	var main: Main = $/root/Main

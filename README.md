@@ -28,10 +28,12 @@ Nullptr Error (JLi69)
 
 gldeA
 
+Bridget Wu
+
 See `assets/credits.txt` for third party artwork/resources used.
 
 ## License
 
 The code for this game is licensed under the Apache 2.0 license
 
-(c) Birb Games 2025
+(c) Birb Games 2026
