@@ -21,6 +21,7 @@ var can_pick_up_lawnmower: bool = false
 var target_velocity: Vector2 = Vector2.ZERO
 # Whether the player just dropped the lawn mower
 var dropped: bool = false
+var can_move: bool = true
 
 var max_health: int = 80
 var health: int = max_health
@@ -202,6 +203,7 @@ func drop_lawn_mower() -> bool:
 	if $Lawnmower/CollisionChecker.colliding() and health > 0:
 		return false
 	if Input.is_action_just_pressed("interact") or health <= 0:
+		$/root/Main.play_sfx("TurnOffMower")
 		lawnmower.position = global_position + $Lawnmower.position
 		lawnmower.position.y -= $Lawnmower.position.y
 		if dir == "up":
@@ -293,7 +295,7 @@ func _physics_process(_delta: float) -> void:
 
 	# movement
 	# don't move when menu is open
-	if !$/root/Main/HUD.npc_menu_open() and !$/root/Main/HUD.quest_screen_open(): 
+	if !$/root/Main/HUD.npc_menu_open() and !$/root/Main/HUD.quest_screen_open() and can_move:
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1.0
 		if Input.is_action_pressed("move_down"):

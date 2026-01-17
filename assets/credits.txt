@@ -15,21 +15,38 @@ License: SIL Open Font License
 Sound effects
 -------------
 
-Title: door_knock.wav
+File: door_knock.wav
 Author: NachtmahrTV
 URL: https://freesound.org/people/NachtmahrTV/sounds/571671/
 License: CC0
 Modifications made: Added gain and cut out some parts.
 
-Title: lawn_mower_start.wav
+File: lawn_mower_start.wav
 Author: straget 
 URL: https://freesound.org/people/straget/sounds/408203/
 License: CC0
 Modifications made: Cut out end, added gain, added fade out
 
-Title: shoot.wav
+File: shoot.wav
 Author: chrisw92
 License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
 URL: https://freesound.org/people/chrisw92/sounds/179673/
 Modifications made: Cut out end, increased pitch
 
+File: splash.wav
+Author: Logicogonist 
+License: CC0
+URL: https://freesound.org/people/Logicogonist/sounds/807963/
+Modifications made: Cut out end.
+
+File: active_lawn_mower.wav
+Author: morgantj
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://freesound.org/people/morgantj/sounds/60609/
+Modifications made: Cut out parts and lowered volume.
+
+File: deactivate_mower.wav
+Author: morgantj
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://freesound.org/people/morgantj/sounds/60609/ 
+Modifications made: Same as `active_lawn_mower.wav` but added fade out.

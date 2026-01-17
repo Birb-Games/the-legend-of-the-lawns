@@ -80,6 +80,7 @@ func generate_dialog() -> void:
 func set_menu() -> void:
 	show()
 	$/root/Main/HUD.set_neighbor_menu(self)
+	$/root/Main/Player.can_move = true
 	knock_sound.disconnect("finished", set_menu)
 
 func _process(_delta: float) -> void:
@@ -93,6 +94,7 @@ func _process(_delta: float) -> void:
 			if knock_sound:
 				knock_sound.play()
 				knock_sound.connect("finished", set_menu)
+				$/root/Main/Player.can_move = false
 	if always_visible:
 		show()
 

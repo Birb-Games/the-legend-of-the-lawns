@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=14 format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -9,6 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://trd3mu3nchjb" path="res://assets/audio/sfx/door_knock.wav" id="7_o6xl0"]
 [ext_resource type="AudioStream" uid="uid://ck2rxui2enu74" path="res://assets/audio/sfx/lawn_mower_start.wav" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://c4aa8hfnsl0sq" path="res://assets/audio/sfx/shoot.wav" id="9_85g3d"]
+[ext_resource type="AudioStream" uid="uid://v1361are3mqs" path="res://assets/audio/sfx/active_lawn_mower_loop.tres" id="11_trceg"]
+[ext_resource type="Script" uid="uid://c0u4f5hjwfsrq" path="res://scripts/audio/mowing_sfx.gd" id="12_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://b5jpevrllwudi" path="res://assets/audio/sfx/deactivate_mower.wav" id="12_trceg"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("SubViewport")
@@ -46,8 +49,16 @@ stream = ExtResource("7_o6xl0")
 
 [node name="LawnMowerStart" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("8_tipki")
+volume_db = 5.0
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("9_85g3d")
 volume_db = -15.0
 pitch_scale = 2.0
+
+[node name="Mowing" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("11_trceg")
+script = ExtResource("12_eb6dy")
+
+[node name="TurnOffMower" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("12_trceg")

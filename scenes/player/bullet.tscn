@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4a5sdixx0fuv"]
+[gd_scene load_steps=7 format=3 uid="uid://b4a5sdixx0fuv"]
 
 [ext_resource type="Texture2D" uid="uid://bdsy5082txgdp" path="res://assets/textures/particles/watergun_bullet.png" id="1_mkf8s"]
 [ext_resource type="Script" uid="uid://db85mk0kbaklb" path="res://scripts/player/player_bullet.gd" id="1_y25gk"]
 [ext_resource type="PackedScene" uid="uid://c0q7613dxrbbv" path="res://scenes/particles/bullet_trail.tscn" id="3_0td6m"]
+[ext_resource type="AudioStream" uid="uid://bm124xbc5moon" path="res://assets/audio/sfx/splash.wav" id="4_oklhc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mkf8s"]
 radius = 3.0
@@ -42,5 +43,11 @@ texture = ExtResource("1_mkf8s")
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_l5glv")
+
+[node name="Splash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_oklhc")
+volume_db = -15.0
+max_distance = 400.0
+attenuation = 2.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
