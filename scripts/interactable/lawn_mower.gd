@@ -4,6 +4,7 @@ extends StaticBody2D
 
 var dir: String = "left"
 @onready var player: Player = $/root/Main/Player
+var cooldown: float = 0.0
 
 func _ready() -> void:
 	$Shadows/ShadowLeft.show()
@@ -29,8 +30,9 @@ func set_animation() -> void:
 	
 	$AnimatedSprite2D.animation = dir
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	set_animation()
+	cooldown = max(cooldown - delta, 0.0)
 
 func rect() -> Rect2:
 	var r = $CollisionShape2D.shape.get_rect()

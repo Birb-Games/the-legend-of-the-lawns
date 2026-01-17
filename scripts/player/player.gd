@@ -170,12 +170,21 @@ func pick_up_lawn_mower() -> void:
 	if $PickupCollisionChecker.colliding():
 		return
 
+	if lawnmower.cooldown > 0.0:
+		return
+
 	if Input.is_action_just_pressed("interact"):
-		position -= get_lawn_mower_dir_offset()	
+		$/root/Main.play_sfx("LawnMowerStart")
+		position -= get_lawn_mower_dir_offset()
 		lawnmower.hide()
 		$Lawnmower.show()
+		var prev_pos = lawnmower.global_position
 		set_lawn_mower_pos()
-		position -= $Lawnmower.position - Vector2(0.0, -7.0)
+		var diff = $Lawnmower.global_position - prev_pos
+		position -= diff
+		position.y += $Lawnmower.position.y
+		if dir == "up":
+			position.y += 6.0
 	
 func too_close_to_drop_mower() -> bool:
 	if $Lawnmower/CollisionChecker.colliding():
@@ -188,9 +197,9 @@ func too_close_to_drop_mower() -> bool:
 func drop_lawn_mower() -> bool:
 	if !lawn_mower_active():
 		return false
-	if $ReleaseCollisionChecker.colliding():
+	if $ReleaseCollisionChecker.colliding() and health > 0:
 		return false
-	if $Lawnmower/CollisionChecker.colliding():
+	if $Lawnmower/CollisionChecker.colliding() and health > 0:
 		return false
 	if Input.is_action_just_pressed("interact") or health <= 0:
 		lawnmower.position = global_position + $Lawnmower.position
@@ -198,6 +207,7 @@ func drop_lawn_mower() -> bool:
 		if dir == "up":
 			lawnmower.position.y -= 6.0
 		lawnmower.show()
+		lawnmower.cooldown = 0.5
 		match dir:
 			"left", "right":
 				lawnmower.dir = dir

@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 	update_transform()
 
 	if shoot_timer <= 0.0 and Input.is_action_pressed("shoot_primary"):
+		$/root/Main.play_sfx("Shoot")
 		var bullet = bullet_scene.instantiate()
 		bullet.dir = Vector2(cos(rotation), sin(rotation))
 		bullet.position = $BulletSpawnPoint.global_position

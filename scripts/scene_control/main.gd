@@ -311,3 +311,10 @@ func get_current_neighbors() -> Array:
 			if neighbor.level == current_level:
 				neighbors.push_back(neighbor)
 	return neighbors
+
+func play_sfx(id: String):
+	var sfx = get_node_or_null("Sfx/%s" % id)
+	if sfx == null:
+		return
+	if sfx is AudioStreamPlayer:
+		sfx.play()

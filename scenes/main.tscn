@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=11 format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://dhbjfonhpgftv" path="res://scripts/player/camera.gd" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c8jx2be4cfkb8" path="res://scenes/ui/hud.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bqis403nmimnk" path="res://scenes/particles/penalty_particle.tscn" id="5_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://trd3mu3nchjb" path="res://assets/audio/sfx/door_knock.wav" id="7_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://ck2rxui2enu74" path="res://assets/audio/sfx/lawn_mower_start.wav" id="8_tipki"]
+[ext_resource type="AudioStream" uid="uid://c4aa8hfnsl0sq" path="res://assets/audio/sfx/shoot.wav" id="9_85g3d"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("SubViewport")
@@ -23,6 +26,9 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("3_tefeu")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Player"]
+current = true
+
 [node name="Neighborhood" parent="." instance=ExtResource("3_sugp2")]
 metadata/_edit_lock_ = true
 
@@ -32,3 +38,16 @@ metadata/_edit_lock_ = true
 position = Vector2(8, -120)
 texture = SubResource("ViewportTexture_tefeu")
 first_instance = true
+
+[node name="Sfx" type="Node" parent="."]
+
+[node name="DoorKnock" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("7_o6xl0")
+
+[node name="LawnMowerStart" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("8_tipki")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("9_85g3d")
+volume_db = -15.0
+pitch_scale = 2.0
