@@ -50,3 +50,11 @@ Author: morgantj
 License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
 URL: https://freesound.org/people/morgantj/sounds/60609/ 
 Modifications made: Same as `active_lawn_mower.wav` but added fade out.
+
+File: hedge_destruction.wav
+Components used: "Snapping Plants" (CC0), "Crunching Leaves.wav" (CC0)
+URLs: 
+ - https://freesound.org/people/RICHERlandTV/sounds/697264/
+ - https://freesound.org/people/Chicken_Guy/sounds/536890/
+Modifications made: Cut out parts, layered "Snapping Plants" on top of 
+"Crunching Leaves.wav"

@@ -4,12 +4,11 @@ extends AudioStreamPlayer
 var timer: float = 0.0
 
 func _process(delta: float) -> void:
-	var prev_timer: float = timer
 	if player.lawn_mower_active():
 		timer += delta
 	else:
 		timer = 0.0
 		stop()
 	
-	if timer >= 1.5 and prev_timer < 1.5:
+	if timer >= 1.24 and !playing:
 		play()

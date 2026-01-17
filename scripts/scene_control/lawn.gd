@@ -299,6 +299,7 @@ func _process(delta: float) -> void:
 	if player.lawn_mower_active():
 		for pos in positions:
 			if destroy_hedge(pos):
+				$/root/Main.play_sfx("HedgeDestruction")
 				update_astar_grid = true
 				astar_grid.set_point_solid(pos, false)
 				player.activate_hedge_timer()
