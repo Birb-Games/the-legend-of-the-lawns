@@ -60,6 +60,8 @@ func damage(amt: int) -> void:
 	health -= amt
 	health = max(health, 0)
 	damage_timer = DAMAGE_COOLDOWN
+	if health > 0:
+		$/root/Main.play_sfx("Hurt", true)
 
 # Returns a value between 0.0 and 1.0
 func get_damage_timer_perc() -> float:

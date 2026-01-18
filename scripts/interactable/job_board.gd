@@ -30,7 +30,7 @@ func update() -> void:
 	generate_job()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("interact") and player_in_area:
+	if Input.is_action_just_pressed("interact") and player_in_area and !$/root/Main/HUD.npc_menu_open():
 		$/root/Main.play_sfx("Click")
 		$/root/Main/HUD.set_job_board_menu(self)
 

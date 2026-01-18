@@ -9,12 +9,17 @@ var update_title: bool = false
 # The penalties and bonuses to be added to the wage
 var current_wage_modifier: int = 0
 
-var labels_to_show = []
-const LABEL_DISPLAY_DELAY = 0.5
+var labels_to_show: Array = []
+var sfx_to_play: Array = []
+const LABEL_DISPLAY_DELAY: float = 0.5
 var label_display_timer: float = LABEL_DISPLAY_DELAY
 
 const DELAY: float = 1.0
 var timer: float = 0.0
+
+func add_labels(labels: Array, sfx_id: String) -> void:
+	labels_to_show.push_back(labels)
+	sfx_to_play.push_back(sfx_id)
 
 func activate() -> void:
 	if $/root/Main/Player.health <= 0:
@@ -35,7 +40,7 @@ func start_showing_menu() -> void:
 	update_title = true
 	var main = $/root/Main
 	$Stats/Wage.hide()
-	labels_to_show.push_back([$Stats/Wage])
+	add_labels([$Stats/Wage], "Money")
 	$Stats/Wage.text = "Wage: $%d" % main.current_wage
 
 	var current_neighbor: NeighborNPC = $/root/Main/HUD.get_current_neighbor();
@@ -44,7 +49,7 @@ func start_showing_menu() -> void:
 	$Stats/FlowerCommentText.hide()
 	if flower_penalty > 0:
 		current_wage_modifier -= flower_penalty
-		labels_to_show.push_back([$Stats/FlowerPenalty, $Stats/FlowerCommentText])
+		add_labels([$Stats/FlowerPenalty, $Stats/FlowerCommentText], "Penalty")
 		$Stats/FlowerPenalty.text = "Flower Penalty: -$%d" % flower_penalty
 	
 	var hedge_penalty: int = calculate_hedge_penalty()
@@ -52,7 +57,7 @@ func start_showing_menu() -> void:
 	$Stats/HedgeCommentText.hide()
 	if hedge_penalty > 0:
 		current_wage_modifier -= hedge_penalty
-		labels_to_show.push_back([$Stats/HedgePenalty, $Stats/HedgeCommentText])
+		add_labels([$Stats/HedgePenalty, $Stats/HedgeCommentText], "Penalty")
 		$Stats/HedgePenalty.text = "Hedge Penalty: -$%d" % hedge_penalty
 	
 	var time_limit = $/root/Main/Lawn.time_limit
@@ -76,18 +81,21 @@ func start_showing_menu() -> void:
 	$Stats/TimeBonus.hide()
 	if time_bonus > 0:
 		$Stats/TimeBonus.text = "Time Bonus: $%d" % time_bonus
-		labels_to_show.push_back([$Stats/TimeBonus])
+		add_labels([$Stats/TimeBonus], "Money")
 
 	# Payment
 	var payment = max(main.current_wage + current_wage_modifier, 0)
 	$Stats/Earned.hide()
-	labels_to_show.push_back([$Stats/Earned])
+	add_labels([$Stats/Earned], "")
 	$Stats/Earned.text = "Earned $%d" % payment
 
 	# Total
 	$Stats/Total.hide()
 	$HBoxContainer/Return.hide()
-	labels_to_show.push_back([$Stats/Total, $HBoxContainer/Return])
+	if payment > 0:
+		add_labels([$Stats/Total, $HBoxContainer/Return], "Money")
+	else:
+		add_labels([$Stats/Total, $HBoxContainer/Return], "Penalty")
 	$Stats/Total.text = "Total: $%d" % (main.money + payment)
 
 func _process(delta: float) -> void:
@@ -114,6 +122,10 @@ func _process(delta: float) -> void:
 			var top = labels_to_show.pop_front()
 			for label in top:
 				label.show()
+			if !sfx_to_play.is_empty():
+				var sfx_id: String = sfx_to_play.pop_front()
+				if !sfx_id.is_empty():
+					$/root/Main.play_sfx(sfx_id)
 			label_display_timer = LABEL_DISPLAY_DELAY
 			if len(labels_to_show) == 1:
 				label_display_timer *= 1.5
@@ -122,6 +134,7 @@ func _on_return_pressed() -> void:
 	get_tree().paused = false
 	hide()
 	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	var prev_money: int = main.money
 	main.lawns_mowed += 1
 	main.update_money(current_wage_modifier)

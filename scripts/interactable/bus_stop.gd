@@ -8,7 +8,7 @@ var player_in_area: bool = false
 @export var connections: Array[BusStop]
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("interact") and player_in_area:
+	if Input.is_action_just_pressed("interact") and player_in_area and !$/root/Main/HUD.npc_menu_open():
 		$/root/Main.play_sfx("Click")
 		$/root/Main/HUD.set_bus_menu(self)
 

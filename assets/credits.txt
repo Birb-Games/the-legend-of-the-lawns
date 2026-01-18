@@ -19,13 +19,11 @@ File: door_knock.wav
 Author: NachtmahrTV
 URL: https://freesound.org/people/NachtmahrTV/sounds/571671/
 License: CC0
-Modifications made: Added gain and cut out some parts.
 
 File: lawn_mower_start.wav
 Author: straget 
 URL: https://freesound.org/people/straget/sounds/408203/
 License: CC0
-Modifications made: Cut out end, added gain, added fade out
 
 File: shoot.wav
 Author: chrisw92
@@ -37,7 +35,6 @@ File: splash.wav
 Author: Logicogonist 
 License: CC0
 URL: https://freesound.org/people/Logicogonist/sounds/807963/
-Modifications made: Cut out end.
 
 File: active_lawn_mower.wav
 Author: morgantj
@@ -90,4 +87,19 @@ License: CC0
 File: door.wav
 Author: pagancow 
 URL: https://freesound.org/people/pagancow/sounds/15419/
+License: CC0
+
+File: penalty.wav
+Author: Andreas
+URL: https://freesound.org/people/-Andreas/sounds/648462/
+License: CC0
+
+File: wompwomp.ogg
+Author: Paloma.SSSS 
+URL: https://freesound.org/people/Paloma.SSSS/sounds/841370/
+License: CC0
+
+File: money.wav
+Author: Zott820
+URL: https://freesound.org/people/Zott820/sounds/209578/
 License: CC0
