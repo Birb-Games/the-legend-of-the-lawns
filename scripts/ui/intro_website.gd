@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	$/root/Main/HUD/Control/TransitionRect.start_animation()
+	$/root/Main.play_sfx("Click")
 	get_tree().paused = false
 	queue_free()
 

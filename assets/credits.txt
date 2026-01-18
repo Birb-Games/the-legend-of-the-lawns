@@ -76,3 +76,18 @@ URL: https://opengameart.org/content/single-and-multi-explosion
 License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
 Notes: Taken from "Single and Multi Explosion", Modifications made: Cut out 
 multi-explosion and sped up audio and converted to wav file format, added fade out.
+
+File: click.wav
+Author: Kenney (https://kenney.nl)
+URL: https://kenney.nl/assets/ui-audio
+License: CC0
+
+File: error.wav
+Author: Kenney (https://kenney.nl)
+URL: https://kenney.nl/assets/interface-sounds
+License: CC0
+
+File: door.wav
+Author: pagancow 
+URL: https://freesound.org/people/pagancow/sounds/15419/
+License: CC0

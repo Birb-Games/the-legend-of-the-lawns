@@ -5,7 +5,7 @@ var selected: int = -1
 
 func _ready() -> void:
 	$TemplateButton.hide()
-	$ScrollContainer/Saves.custom_minimum_size = Vector2($ScrollContainer.size.x - 8.0, 0.0)
+	$ScrollContainer/Saves.custom_minimum_size = Vector2($ScrollContainer.size.x - 16.0, 0.0)
 
 func clear_save_list() -> void:
 	selected = -1
@@ -13,6 +13,8 @@ func clear_save_list() -> void:
 		child.queue_free()
 
 func select(index: int) -> void:
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	print("Selected: ", entries[index].get_path())
 	if $ScrollContainer/Saves.get_child_count() > selected + 1 and selected >= 0:	
 		var button = $ScrollContainer/Saves.get_child(selected + 1)
@@ -49,9 +51,15 @@ func activate() -> void:
 		$ScrollContainer/Saves.add_child(button)
 		index += 1
 	
-	$ScrollContainer/Saves.add_child(spacing.duplicate())	
+	$ScrollContainer/Saves.add_child(spacing.duplicate())
+
+func _process(_delta: float) -> void:
+	$HBoxContainer/Play.disabled = selected < 0 or selected >= len(entries)
+	$HBoxContainer/Delete.disabled = selected < 0 or selected >= len(entries) 
 
 func _on_back_pressed() -> void:
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	clear_save_list()
 	entries.clear()
 	hide()
@@ -59,6 +67,8 @@ func _on_back_pressed() -> void:
 func _on_delete_pressed() -> void:
 	if selected < 0 or selected >= entries.size():
 		return
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	$ScrollContainer.hide()
 	$HBoxContainer.hide()
 	$Back.hide()
@@ -68,6 +78,8 @@ func _on_delete_pressed() -> void:
 	$Confirm/Message.text += "\n\nTHIS IS PERMANENT!"
 
 func _on_no_pressed() -> void:
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	$Confirm.hide()
 	$ScrollContainer.show()
 	$HBoxContainer.show()
@@ -81,14 +93,15 @@ func _on_yes_pressed() -> void:
 	
 	if selected < 0 or selected >= entries.size():
 		return
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	var path: String = entries[selected].get_path()
 
 	if path.is_empty():
 		activate()
 		return
 
-	DirAccess.remove_absolute(path)
-	var main: Main = $/root/Main
+	DirAccess.remove_absolute(path)	
 	if main.continue_save == path:
 		main.save_path = ""
 		main.update_continue_save()
@@ -98,6 +111,9 @@ func _on_yes_pressed() -> void:
 func _on_play_pressed() -> void:
 	if selected < 0 or selected >= entries.size():
 		return
+
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	
 	hide()
 	var main_menu = get_parent()
@@ -106,7 +122,6 @@ func _on_play_pressed() -> void:
 	clear_save_list()
 
 	get_tree().paused = false
-	var main: Main = $/root/Main
 	main.save_path = entries[selected_index].get_path()
 	main.reset()
 	if !main.load_save():

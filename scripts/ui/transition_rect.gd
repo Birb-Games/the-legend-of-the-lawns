@@ -23,6 +23,8 @@ func start_animation() -> void:
 	$SaveIndicator.show()
 	$Label.modulate = Color.WHITE
 	$Label.text = "Day %d" % $/root/Main.current_day
+	if $/root/Main.current_day > 1:
+		$/root/Main.play_sfx("Door")
 	time_passed = 0.0
 	show()
 	color.a = 1.0

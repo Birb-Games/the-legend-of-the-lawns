@@ -48,6 +48,7 @@ func set_menu_reject(neighbor: NeighborNPC) -> void:
 
 # Advances the initial conversation the player has with the neighbor.
 func advance_first_dialog(neighbor: NeighborNPC, index: int) -> void:
+	$/root/Main.play_sfx("Click")
 	if index + 1 < len(current_neighbor.first_dialog):
 		reset_buttons()
 		set_menu_first(neighbor, index + 1)
@@ -121,6 +122,7 @@ func set_menu_first_npc(npc: NPC, index: int) -> void:
 		buttons[0].connect(
 			"pressed",
 			func() -> void:
+				$/root/Main.play_sfx("Click")
 				reset_buttons()
 				set_menu_first_npc(npc, index + 1)
 		)
@@ -170,6 +172,7 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 		buttons[index].connect(
 			"pressed", 
 			func() -> void:
+				$/root/Main.play_sfx("Click")
 				# Teleport the player to the appropriate bus stop
 				var player: Player = $/root/Main/Player
 				player.position = stop.position + Vector2(16.0, 6.0)
@@ -221,6 +224,7 @@ func set_job_board_menu(job_board: JobBoard) -> void:
 
 func skip_day() -> void:
 	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	main.advance_day()
 	$/root/Main/Neighborhood/JobBoard.update()
 	main.save_progress()
@@ -252,10 +256,12 @@ Are you sure you want to go inside and play games on itch.io for the rest of the
 	show()
 
 func on_leave_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	hide()
 	hide_neighbor()
 
 func on_accept_pressed() -> void:
+	$/root/Main.play_sfx("Click")
 	hide()
 	hide_neighbor()
 	var difficulty = current_neighbor.times_mowed

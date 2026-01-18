@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=18 format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -14,6 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://b5jpevrllwudi" path="res://assets/audio/sfx/deactivate_mower.wav" id="12_trceg"]
 [ext_resource type="AudioStream" uid="uid://dn00p4beo0fd" path="res://assets/audio/sfx/hedge_destruction.wav" id="13_trceg"]
 [ext_resource type="AudioStream" uid="uid://bfn5ou5pgpk1x" path="res://assets/audio/sfx/water_gun.wav" id="14_a8y0u"]
+[ext_resource type="AudioStream" uid="uid://eyyq58oktsp" path="res://assets/audio/sfx/click.wav" id="15_jkv2x"]
+[ext_resource type="AudioStream" uid="uid://b64oobxayhfg4" path="res://assets/audio/sfx/door.wav" id="16_jbj1t"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("SubViewport")
@@ -23,7 +25,7 @@ y_sort_enabled = true
 script = ExtResource("1_jyhfs")
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(8, -135)
+position = Vector2(8, -142)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3.5, 3.5)
@@ -72,3 +74,10 @@ max_polyphony = 8
 
 [node name="WaterGunInteraction" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("14_a8y0u")
+
+[node name="Click" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("15_jkv2x")
+pitch_scale = 3.0
+
+[node name="Door" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("16_jbj1t")
