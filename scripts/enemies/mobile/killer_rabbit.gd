@@ -44,6 +44,7 @@ func get_animation() -> String:
 	return "running"
 
 func explode() -> void:
+	play_death_sound()
 	var blood_particles: GPUParticles2D = blood_particles_scene.instantiate()
 	blood_particles.global_position = $AnimatedSprite2D.global_position
 	$/root/Main/Lawn.add_child(blood_particles)

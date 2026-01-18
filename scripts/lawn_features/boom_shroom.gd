@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
 		explosion.can_damage_plants = true
 		explosion.scale *= 0.3
 		$/root/Main/Lawn.add_child(explosion)
+		# Play explosion sound
+		Sfx.play_at_pos(global_position, "explosion", get_node_or_null("/root/Main/Lawn"), 0.2)
 		# Add a small fire
 		var fire: Fire = fire_scene.instantiate()
 		fire.lifetime = 0.6

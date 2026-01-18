@@ -125,11 +125,11 @@ position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_7llws")
 
 [node name="Healthbar" parent="." instance=ExtResource("5_xkbtf")]
-offset_left = -10.0
-offset_top = -32.0
-offset_right = 4.0
-offset_bottom = -30.0
-scale = Vector2(1.4, 1.4)
+offset_left = -8.333332
+offset_top = -30.333328
+offset_right = 5.666668
+offset_bottom = -28.333328
+scale = Vector2(1.2, 1.2)
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("6_6ynet")]
 position = Vector2(0, -12)

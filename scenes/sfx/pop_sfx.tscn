@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://br1dxxe5eme6f"]
+
+[ext_resource type="AudioStream" uid="uid://c5fg7exeno2b6" path="res://assets/audio/sfx/pop.wav" id="1_2fymq"]
+[ext_resource type="Script" uid="uid://div1w54jyvcxl" path="res://scripts/audio/sfx.gd" id="2_njkwe"]
+
+[node name="PopSfx" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_2fymq")
+volume_db = 5.0
+autoplay = true
+script = ExtResource("2_njkwe")

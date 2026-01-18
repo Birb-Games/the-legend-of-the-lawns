@@ -61,6 +61,7 @@ func player_in_range() -> bool:
 # Upon death, an enemy might explode into a group of bullets that the player will
 # have to avoid
 func explode() -> void:
+	Sfx.play_at_pos(global_position, "pop", $/root/Main/Lawn)
 	var offset = randf() * 2.0 * PI
 	for i in range(explosion_bullet_count):
 		var angle = offset + i * 2.0 * PI / float(explosion_bullet_count)

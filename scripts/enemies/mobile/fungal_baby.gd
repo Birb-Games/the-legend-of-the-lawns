@@ -23,6 +23,12 @@ func get_animation() -> String:
 		return "idle"
 	return "running"
 
+func play_death_sound() -> void:
+	if health <= 0:
+		super.play_death_sound()
+	else:
+		Sfx.play_at_pos(global_position, "explosion", $/root/Main/Lawn, 0.2)
+
 func explode() -> void:
 	if health > 0:
 		var explosion: Explosion = explosion_scene.instantiate()

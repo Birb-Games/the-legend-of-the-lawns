@@ -58,3 +58,21 @@ URLs:
  - https://freesound.org/people/Chicken_Guy/sounds/536890/
 Modifications made: Cut out parts, layered "Snapping Plants" on top of 
 "Crunching Leaves.wav"
+
+File: water_gun.wav
+Author: jomse
+License: CC0
+URL: https://freesound.org/people/jomse/sounds/525100/
+Modifications made: Speed up audio.
+
+File: pop.wav
+Author: Vilkas_Sound 
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://freesound.org/people/Vilkas_Sound/sounds/463393/
+
+File: explosion.wav
+Author: Marcelo Fernandez (http://www.marcelofernandezmusic.com)
+URL: https://opengameart.org/content/single-and-multi-explosion
+License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Notes: Taken from "Single and Multi Explosion", Modifications made: Cut out 
+multi-explosion and sped up audio and converted to wav file format, added fade out.

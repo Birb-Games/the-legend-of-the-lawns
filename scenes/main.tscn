@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=16 format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c0u4f5hjwfsrq" path="res://scripts/audio/mowing_sfx.gd" id="12_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://b5jpevrllwudi" path="res://assets/audio/sfx/deactivate_mower.wav" id="12_trceg"]
 [ext_resource type="AudioStream" uid="uid://dn00p4beo0fd" path="res://assets/audio/sfx/hedge_destruction.wav" id="13_trceg"]
+[ext_resource type="AudioStream" uid="uid://bfn5ou5pgpk1x" path="res://assets/audio/sfx/water_gun.wav" id="14_a8y0u"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("SubViewport")
@@ -68,3 +69,6 @@ stream = ExtResource("12_trceg")
 stream = ExtResource("13_trceg")
 volume_db = 5.0
 max_polyphony = 8
+
+[node name="WaterGunInteraction" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("14_a8y0u")

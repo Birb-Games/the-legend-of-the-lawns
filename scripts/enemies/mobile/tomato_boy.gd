@@ -95,6 +95,7 @@ func _process(delta: float) -> void:
 		change_velocity()
 
 func explode() -> void:
+	play_death_sound()
 	var explosion: GPUParticles2D = explosion_scene.instantiate()
 	explosion.position = position
 	explosion.modulate = Color.RED

@@ -130,6 +130,7 @@ func pickup_water_gun() -> void:
 	if !player.can_pick_up_water_gun:
 		return
 	if Input.is_action_just_pressed("interact") and !player.lawn_mower_active():
+		$/root/Main.play_sfx("WaterGunInteraction")
 		remove_child(water_gun_item)
 		player.enable_water_gun()
 
@@ -140,6 +141,7 @@ func drop_water_gun() -> void:
 	if !player.get_node("WaterGun").visible:
 		return
 	if Input.is_action_just_pressed("interact"):
+		$/root/Main.play_sfx("WaterGunInteraction")
 		water_gun_item.position = player.get_sprite_pos() + Vector2(0.0, 12.0)
 		add_child(water_gun_item)
 		player.disable_water_gun()
