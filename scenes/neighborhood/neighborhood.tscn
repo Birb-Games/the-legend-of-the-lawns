@@ -241,6 +241,7 @@ dialog_json = ExtResource("14_ixbld")
 position = Vector2(106, -101)
 animation = &"spotty"
 display_name = "Spotty the dog"
+can_talk = false
 dialog_json = ExtResource("15_4u6tr")
 
 [node name="Decorations" type="Node2D" parent="."]

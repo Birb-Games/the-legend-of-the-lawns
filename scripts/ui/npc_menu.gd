@@ -10,6 +10,27 @@ var current_npc: NPC
 	$Menu/VBoxContainer/HBoxContainer/Button4,
 ]
 
+var description_text: String = ""
+var description_index: int = 0
+const DESCRIPTION_TIME: float = 0.5
+var wage_text: String = ""
+var wage_index: int = 0
+const WAGE_TIME: float = 0.2
+var timer: float = 0.0
+
+func set_description_text(text: String) -> void:
+	description_text = text
+	description_index = 0
+	$Menu/VBoxContainer/Description.text = ""
+
+func set_wage_text(text: String) -> void:
+	wage_text = text
+	wage_index = 0
+	$Menu/VBoxContainer/Wage.text = ""
+
+func set_menu_name(text: String) -> void:
+	$Menu/VBoxContainer/Name.text = text
+
 func hide_neighbor() -> void:
 	if current_neighbor != null and !current_neighbor.always_visible:
 		current_neighbor.hide()
@@ -28,9 +49,9 @@ static func format_wage(wage: int) -> String:
 
 # This is the message displayed if the neighbor is not unlocked yet.
 func set_menu_unavailable(neighbor: NeighborNPC) -> void:
-	$Menu/VBoxContainer/Name.text = "???"
-	$Menu/VBoxContainer/Wage.text = ""
-	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
+	set_menu_name("???")
+	set_wage_text("")
+	set_description_text(neighbor.current_dialog)
 	buttons[0].show()
 	buttons[0].text = "Leave"
 	buttons[0].connect("pressed", on_leave_pressed)
@@ -43,9 +64,9 @@ func set_menu_reject(neighbor: NeighborNPC) -> void:
 	else:
 		$/root/Main.play_sfx("MaleTalk")
 
-	$Menu/VBoxContainer/Name.text = neighbor.display_name
-	$Menu/VBoxContainer/Wage.text = ""
-	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
+	set_menu_name(neighbor.display_name)
+	set_wage_text("")
+	set_description_text(neighbor.current_dialog)
 	buttons[0].show()
 	buttons[0].text = "Leave"
 	buttons[0].connect("pressed", on_leave_pressed)
@@ -70,9 +91,9 @@ func set_menu_first(neighbor: NeighborNPC, index: int) -> void:
 	else:
 		$/root/Main.play_sfx("MaleTalk")
 
-	$Menu/VBoxContainer/Name.text = neighbor.display_name
-	$Menu/VBoxContainer/Wage.text = ""
-	$Menu/VBoxContainer/Description.text = neighbor.first_dialog[index]
+	set_menu_name(neighbor.display_name)
+	set_wage_text("")
+	set_description_text(neighbor.first_dialog[index])
 
 	buttons[0].show()
 	if index < len(neighbor.player_dialog):
@@ -93,9 +114,9 @@ func set_mowing_menu(neighbor: NeighborNPC) -> void:
 	else:
 		$/root/Main.play_sfx("MaleTalk")
 
-	$Menu/VBoxContainer/Name.text = neighbor.display_name
-	$Menu/VBoxContainer/Wage.text = format_wage(neighbor.wage) 
-	$Menu/VBoxContainer/Description.text = neighbor.current_dialog	
+	set_menu_name(neighbor.display_name)
+	set_wage_text(format_wage(neighbor.wage))
+	set_description_text(neighbor.current_dialog)
 	
 	buttons[0].show()
 	buttons[0].text = "Nah"
@@ -128,12 +149,13 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	set_mowing_menu(neighbor)
 
 func set_menu_first_npc(npc: NPC, index: int) -> void:
-	if npc.use_female_voice:
-		$/root/Main.play_sfx("FemaleTalk")
-	else:
-		$/root/Main.play_sfx("MaleTalk")
+	if npc.can_talk:
+		if npc.use_female_voice:
+			$/root/Main.play_sfx("FemaleTalk")
+		else:
+			$/root/Main.play_sfx("MaleTalk")
 
-	$Menu/VBoxContainer/Description.text = npc.first_dialog[index]
+	set_description_text(npc.first_dialog[index])
 	if index < len(npc.player_dialog):
 		buttons[0].text = npc.player_dialog[index]
 	else:
@@ -157,19 +179,20 @@ func set_npc_menu(npc: NPC) -> void:
 	$Menu/VBoxContainer/Wage.hide()
 
 	current_npc = npc
-	$Menu/VBoxContainer/Name.text = npc.display_name
-	$Menu/VBoxContainer/Wage.text = ""
-	$Menu/VBoxContainer/Description.text = npc.current_dialog
+	set_menu_name(npc.display_name)
+	set_wage_text("")
+	set_description_text(npc.current_dialog)
 
 	buttons[0].show()
 
 	if npc.first_time and !npc.first_dialog.is_empty():
 		set_menu_first_npc(npc, 0)
 	else:
-		if npc.use_female_voice:
-			$/root/Main.play_sfx("FemaleTalk")
-		else:
-			$/root/Main.play_sfx("MaleTalk")
+		if npc.can_talk:
+			if npc.use_female_voice:
+				$/root/Main.play_sfx("FemaleTalk")
+			else:
+				$/root/Main.play_sfx("MaleTalk")
 		buttons[0].text = "Leave"
 		buttons[0].connect("pressed", on_leave_pressed)
 
@@ -178,9 +201,9 @@ func set_npc_menu(npc: NPC) -> void:
 func set_bus_menu(bus_stop: BusStop) -> void:
 	reset_buttons()
 
-	$Menu/VBoxContainer/Name.text = "Bus Stop (%s)" % bus_stop.display_name
-	$Menu/VBoxContainer/Description.text = "Select your desired destination."
-	$Menu/VBoxContainer/Wage.text = ""
+	set_menu_name("Bus Stop (%s)" % bus_stop.display_name)
+	set_description_text("Select your desired destination.")
+	set_wage_text("")
 
 	buttons[0].text = "Leave"
 	buttons[0].connect("pressed", on_leave_pressed)
@@ -213,7 +236,7 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 
 func set_job_board_menu(job_board: JobBoard) -> void:
 	reset_buttons()
-	$Menu/VBoxContainer/Name.text = "Job Board"
+	set_menu_name("Job Board")
 
 	buttons[0].text = "Okay"
 	buttons[0].connect("pressed", on_leave_pressed)
@@ -222,25 +245,25 @@ func set_job_board_menu(job_board: JobBoard) -> void:
 	var main: Main = $/root/Main
 	var current_quest: Quest = Quest.get_quest(main.current_level)
 	if current_quest and current_quest.completed(main):
-		$Menu/VBoxContainer/Description.text = "TO-DO list completed, reward claimed! (%s)" % current_quest.reward.description
+		set_description_text("TO-DO list completed, reward claimed! (%s)" % current_quest.reward.description)
 		main.advance_quest()
 		job_board.current_job = null
 		main.play_sfx("Money")
 		if Quest.get_quest(main.current_level):
-			$Menu/VBoxContainer/Wage.text = "New TO-DOs added to journal!"
+			set_wage_text("New TO-DOs added to journal!")
 			$/root/Main/HUD/Control/QuestScreen.show_alert = true
 		else:
-			$Menu/VBoxContainer/Wage.text = ""
+			set_wage_text("")
 		show()
 		return
 
 	if job_board.current_job == null:
-		$Menu/VBoxContainer/Description.text = "No lawn mowing jobs are currently available."
-		$Menu/VBoxContainer/Wage.text = "Come back later!"
+		set_description_text("No lawn mowing jobs are currently available.")
+		set_wage_text("Come back later!")
 	else:
 		var neighbor: NeighborNPC = get_node_or_null(job_board.current_job.neighbor_path)
-		$Menu/VBoxContainer/Description.text = job_board.current_job.get_message(neighbor)
-		$Menu/VBoxContainer/Wage.text = "Job added to journal!"
+		set_description_text(job_board.current_job.get_message(neighbor))
+		set_wage_text("Job added to journal!")
 		$/root/Main/HUD/Control/QuestScreen.show_alert = true
 		if neighbor:
 			main.job_list[neighbor.name] = job_board.current_job
@@ -265,11 +288,11 @@ func set_skip_day_menu() -> void:
 	reset_buttons()
 	$Menu/VBoxContainer/Wage.hide()
 
-	$Menu/VBoxContainer/Name.text = "Your House"
-	$Menu/VBoxContainer/Wage.text = ""
-	$Menu/VBoxContainer/Description.text = """
+	set_menu_name("Your House")
+	set_wage_text("")
+	set_description_text("""
 Are you sure you want to go inside and play games on itch.io for the rest of the day?
-"""
+""")
 	
 	buttons[0].show()
 	buttons[0].text = "No, I should mow a lawn."
@@ -295,3 +318,21 @@ func on_accept_pressed() -> void:
 		difficulty = min(difficulty, current_neighbor.max_difficulty)
 	$/root/Main.load_lawn(current_neighbor.lawn_template, difficulty)
 	$/root/Main.current_wage = current_neighbor.wage
+
+func _process(delta: float) -> void:
+	if wage_index >= wage_text.length() and description_index >= description_text.length():
+		return
+
+	# Create a "text" scrolling effect for the description and wage
+	timer += delta
+	var step: float = min(DESCRIPTION_TIME / float(description_text.length()), 0.01)
+	while timer >= step and description_index < description_text.length():
+		$Menu/VBoxContainer/Description.text += char(description_text.unicode_at(description_index))
+		description_index += 1
+		timer -= step
+	
+	step = min(WAGE_TIME / float(wage_text.length()), 0.01)
+	while timer >= step and wage_index < wage_text.length() and description_index >= description_text.length():
+		$Menu/VBoxContainer/Wage.text += char(wage_text.unicode_at(wage_index))
+		wage_index += 1
+		timer -= step
