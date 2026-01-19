@@ -89,7 +89,7 @@ stream = ExtResource("16_jbj1t")
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("17_muem4")
-volume_db = -10.0
+volume_db = -8.0
 
 [node name="Money" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("18_dp3eg")

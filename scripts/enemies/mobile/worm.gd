@@ -11,6 +11,8 @@ const SHOOT_COOLDOWN: float = 0.25
 var shoot_timer: float  = SHOOT_COOLDOWN
 
 func _ready() -> void:
+	$RoarSfx.play()
+	$Digging.play(0.75)
 	# Add some screenshake to the camera
 	var camera: GameCamera = $/root/Main/Player/Camera2D
 	camera.add_trauma(1.0)
@@ -72,7 +74,7 @@ func _process(delta: float) -> void:
 		if scale.x <= 0.01:
 			hide()
 			shrink = false
-			if health <= 0:
+			if health <= 0 and !$RoarSfx.playing:
 				queue_free()
 	if grow:
 		scale.x += delta * 3.0
@@ -92,6 +94,8 @@ func _process(delta: float) -> void:
 		if shoot_timer <= 0.0:
 			shoot_timer = SHOOT_COOLDOWN
 			shoot()
+			if !$RoarSfx.playing and randi() % 5 == 0:
+				$RoarSfx.play()
 
 	$Healthbar.update_bar(health, max_health)
 	if $AnimatedSprite2D.animation != "default":
@@ -100,13 +104,17 @@ func _process(delta: float) -> void:
 		timer -= delta
 	if timer <= 0.0:
 		match $AnimatedSprite2D.animation:
-			"default":
+			"default":	
 				$AnimatedSprite2D.animation = "despawn"
 				$AnimatedSprite2D.play("despawn")
 				timer = randf_range(2.0, 12.0)
 				$Healthbar.hide()
 			"despawn":
 				if try_moving(3):
+					if !$RoarSfx.playing:
+						$RoarSfx.play()
+					if !$Digging.playing:
+						$Digging.play()
 					var player: Player = $/root/Main/Player
 					var lawn: Lawn = $/root/Main/Lawn
 					var camera: GameCamera = $/root/Main/Player/Camera2D
@@ -124,15 +132,17 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		var player: Player = $/root/Main/Player
 		var dist: float = (player.global_position - global_position).length()
 		if dist < 16.0:
-			player.damage(40)
+			player.damage(40)	
 		$AnimatedSprite2D.animation = "default"
 		$AnimatedSprite2D.play("default")
 	elif $AnimatedSprite2D.animation == "despawn":
-		shrink = true
+		shrink = true	
 
 func damage(amt: int) -> void:
 	if $AnimatedSprite2D.animation != "default":
 		return
+	if health <= amt and !$RoarSfx.playing:
+		$RoarSfx.play()
 	health -= amt
 	health = max(health, 0)
 

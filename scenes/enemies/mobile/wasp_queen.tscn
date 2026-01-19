@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b8lrxt2odr5gb"]
+[gd_scene load_steps=42 format=3 uid="uid://b8lrxt2odr5gb"]
 
 [ext_resource type="PackedScene" uid="uid://c0pplynlnjxjg" path="res://scenes/enemies/mobile/wasp.tscn" id="1_i3gt3"]
 [ext_resource type="Script" uid="uid://b5lfygxrxyu4k" path="res://scripts/enemies/mobile/wasp_queen.gd" id="2_1chd1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dga2jk71rxlse" path="res://scenes/enemies/bullets/super_stinger.tscn" id="3_qkar4"]
 [ext_resource type="Texture2D" uid="uid://cjbbd5aou6x5n" path="res://assets/textures/enemies/mobile/wasp_queen_spawn_animation.png" id="4_bkotm"]
 [ext_resource type="Texture2D" uid="uid://c1iyibo0ffsus" path="res://assets/textures/enemies/mobile/wasp_queen_phase2.png" id="5_otswv"]
+[ext_resource type="AudioStream" uid="uid://dcil08gymr3gr" path="res://assets/audio/sfx/digging.wav" id="7_eg8jv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkar4"]
 size = Vector2(7, 3.3333335)
@@ -279,3 +280,8 @@ offset_bottom = -27.958338
 scale = Vector2(1.5, 1.5)
 damage_amt = 12
 attack_cooldown = 1.0
+
+[node name="Digging" type="AudioStreamPlayer2D" parent="." index="8"]
+stream = ExtResource("7_eg8jv")
+max_distance = 320.0
+attenuation = 2.0

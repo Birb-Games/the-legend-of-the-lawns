@@ -19,7 +19,8 @@ func calculate_velocity() -> Vector2:
 func shoot() -> void:
 	if !active:
 		return
-
+	
+	$ShootSfx.play()
 	var count: int = randi_range(4, 7)
 	for i in range(count):
 		shoot_bullet(2.0 * PI / float(count) * float(i))

@@ -11,6 +11,14 @@ const UPDATE_SHOOT_MODE_INTERVAL: float = 6.0
 var update_shoot_mode_timer: float = UPDATE_SHOOT_MODE_INTERVAL
 @onready var bullet_queue: BulletQueue = BulletQueue.new()
 @onready var initial_bullet_cooldown: float = bullet_cooldown
+# The super shroom is paused for a bit when it is first added to the scene
+# since a digging sound has to be played before it starts growing, I guess this
+# can also create a sense of suspense as well.
+var pause_timer: float = 1.0
+
+func _ready() -> void:
+	super._ready()
+	$Digging.play()
 
 func get_random_shoot_mode() -> String:
 	if len(POSSIBLE_SHOOT_MODES) == 0:
@@ -60,6 +68,10 @@ func shoot() -> void:
 			shoot_bullet()
 
 func _process(delta: float) -> void:
+	pause_timer = max(pause_timer - delta, 0.0)
+	if pause_timer > 0.0:
+		return
+
 	update_shoot_mode_timer -= delta
 	if update_shoot_mode_timer < 0.0:
 		shoot_mode = get_random_shoot_mode()
