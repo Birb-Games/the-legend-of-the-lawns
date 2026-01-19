@@ -200,6 +200,7 @@ func set_job_board_menu(job_board: JobBoard) -> void:
 		$Menu/VBoxContainer/Description.text = "TO-DO list completed, reward claimed! (%s)" % current_quest.reward.description
 		main.advance_quest()
 		job_board.current_job = null
+		main.play_sfx("Money")
 		if Quest.get_quest(main.current_level):
 			$Menu/VBoxContainer/Wage.text = "New TO-DOs added to journal!"
 			$/root/Main/HUD/Control/QuestScreen.show_alert = true
