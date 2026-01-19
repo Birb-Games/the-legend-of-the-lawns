@@ -234,6 +234,7 @@ dialog_json = ExtResource("13_cvosm")
 position = Vector2(47, -103)
 animation = &"mom"
 display_name = "Mom"
+use_female_voice = true
 dialog_json = ExtResource("14_ixbld")
 
 [node name="Spotty" parent="NPCs" instance=ExtResource("4_dcvy4")]
@@ -320,6 +321,7 @@ bonus_base = 1
 max_bonus = 4
 flower_penalty = 3
 hedge_penalty = 1
+use_female_voice = true
 dialog_json = ExtResource("24_nofqt")
 
 [node name="NeighborEmily" parent="Neighbors" instance=ExtResource("3_tqujx")]
@@ -332,12 +334,14 @@ bonus_base = 1
 max_bonus = 6
 flower_penalty = 3
 hedge_penalty = 2
+use_female_voice = true
 dialog_json = ExtResource("26_yfbpo")
 
 [node name="Willow" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(1064, -155)
 animation = &"willow"
 display_name = "Willow"
+use_female_voice = true
 
 [node name="Hat" type="AnimatedSprite2D" parent="Neighbors/Willow"]
 z_index = 1
@@ -365,6 +369,7 @@ display_name = "Neighbor Hunter"
 position = Vector2(504, -540)
 animation = &"mrs_poofball"
 display_name = "Mrs. Poofball"
+use_female_voice = true
 
 [node name="NeighborJames" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(488, 229)
@@ -382,6 +387,7 @@ position = Vector2(840, 229.00002)
 animation = &"neighbor_chloe"
 display_name = "Neighbor Chloe"
 lawn_template = ExtResource("25_62p1y")
+use_female_voice = true
 
 [node name="NeighborGeorge" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(1112, 229.00002)
@@ -406,6 +412,7 @@ display_name = "Alien"
 position = Vector2(648, -539)
 animation = &"neighbor_nicole"
 display_name = "Neighbor Nicole"
+use_female_voice = true
 
 [node name="NeighborMalcom" parent="Neighbors" instance=ExtResource("3_tqujx")]
 position = Vector2(360, -539)
@@ -431,6 +438,7 @@ display_name = "Cyborg"
 position = Vector2(888, -539)
 animation = &"neighbor_helen"
 display_name = "Neighbor Helen"
+use_female_voice = true
 
 [node name="FastTravel" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -517,6 +525,7 @@ dialog_json = ExtResource("38_8tbsa")
 position = Vector2(751, -947.00006)
 animation = &"mom"
 display_name = "Mom"
+use_female_voice = true
 interact_text = "to beg for a Swapdeck"
 dialog_json = ExtResource("39_78k8p")
 

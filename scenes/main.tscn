@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=24 format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -19,6 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://dc7tepwlbki2l" path="res://assets/audio/sfx/hurt.wav" id="17_muem4"]
 [ext_resource type="AudioStream" uid="uid://b6bjcldtmdmtr" path="res://assets/audio/sfx/money.wav" id="18_dp3eg"]
 [ext_resource type="AudioStream" uid="uid://d1l37w4tkmqwi" path="res://assets/audio/sfx/penalty.wav" id="19_0ld40"]
+[ext_resource type="AudioStream" uid="uid://clm2iad1vjs6x" path="res://assets/audio/sfx/bus.wav" id="20_gqmmt"]
+[ext_resource type="AudioStream" uid="uid://bravg6u55evt" path="res://assets/audio/sfx/male_talk.wav" id="21_yc10j"]
+[ext_resource type="AudioStream" uid="uid://jq1xq3qronct" path="res://assets/audio/sfx/female_talk.wav" id="22_jscy8"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("SubViewport")
@@ -98,3 +101,12 @@ max_polyphony = 4
 [node name="Penalty" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("19_0ld40")
 max_polyphony = 4
+
+[node name="Bus" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("20_gqmmt")
+
+[node name="MaleTalk" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("21_yc10j")
+
+[node name="FemaleTalk" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("22_jscy8")

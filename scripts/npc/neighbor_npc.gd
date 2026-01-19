@@ -33,6 +33,7 @@ var cooldown: int = 0
 @export var hedge_penalty: int = 0
 
 @export_group("Dialog")
+@export var use_female_voice: bool = false
 @export_multiline var interact_text: String = "Press [SPACE] to knock on door."
 var possible_dialog: PackedStringArray = Dialog.DEFAULT_POSSIBLE_DIALOG
 var reject_dialog: PackedStringArray = Dialog.DEFAULT_REJECT_DIALOG

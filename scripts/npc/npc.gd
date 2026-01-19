@@ -12,6 +12,7 @@ extends AnimatedSprite2D
 @export var first_time: bool = true
 
 @export_group("Dialog")
+@export var use_female_voice: bool = false
 var first_dialog: PackedStringArray = [ "Hello!" ]
 var player_dialog: PackedStringArray = [ "Hello!" ]
 var possible_dialog: PackedStringArray = []

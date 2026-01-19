@@ -38,6 +38,11 @@ func set_menu_unavailable(neighbor: NeighborNPC) -> void:
 
 # This is the message displayed if the neighbor does not need their lawn mowed.
 func set_menu_reject(neighbor: NeighborNPC) -> void:
+	if neighbor.use_female_voice:
+		$/root/Main.play_sfx("FemaleTalk")
+	else:
+		$/root/Main.play_sfx("MaleTalk")
+
 	$Menu/VBoxContainer/Name.text = neighbor.display_name
 	$Menu/VBoxContainer/Wage.text = ""
 	$Menu/VBoxContainer/Description.text = neighbor.current_dialog
@@ -60,6 +65,11 @@ func advance_first_dialog(neighbor: NeighborNPC, index: int) -> void:
 # This displays the conversation that the player has with the neighbor npc
 # when they first meet them.
 func set_menu_first(neighbor: NeighborNPC, index: int) -> void:
+	if neighbor.use_female_voice:
+		$/root/Main.play_sfx("FemaleTalk")
+	else:
+		$/root/Main.play_sfx("MaleTalk")
+
 	$Menu/VBoxContainer/Name.text = neighbor.display_name
 	$Menu/VBoxContainer/Wage.text = ""
 	$Menu/VBoxContainer/Description.text = neighbor.first_dialog[index]
@@ -78,6 +88,11 @@ func set_menu_first(neighbor: NeighborNPC, index: int) -> void:
 
 # This is the menu displayed if the player can mow the neighbor's lawn.
 func set_mowing_menu(neighbor: NeighborNPC) -> void:
+	if neighbor.use_female_voice:
+		$/root/Main.play_sfx("FemaleTalk")
+	else:
+		$/root/Main.play_sfx("MaleTalk")
+
 	$Menu/VBoxContainer/Name.text = neighbor.display_name
 	$Menu/VBoxContainer/Wage.text = format_wage(neighbor.wage) 
 	$Menu/VBoxContainer/Description.text = neighbor.current_dialog	
@@ -102,7 +117,7 @@ func set_menu(neighbor: NeighborNPC) -> void:
 		set_menu_unavailable(neighbor)
 		return
 
-	if neighbor.reject():
+	if neighbor.reject():	
 		set_menu_reject(neighbor)
 		return
 
@@ -113,6 +128,11 @@ func set_menu(neighbor: NeighborNPC) -> void:
 	set_mowing_menu(neighbor)
 
 func set_menu_first_npc(npc: NPC, index: int) -> void:
+	if npc.use_female_voice:
+		$/root/Main.play_sfx("FemaleTalk")
+	else:
+		$/root/Main.play_sfx("MaleTalk")
+
 	$Menu/VBoxContainer/Description.text = npc.first_dialog[index]
 	if index < len(npc.player_dialog):
 		buttons[0].text = npc.player_dialog[index]
@@ -146,6 +166,10 @@ func set_npc_menu(npc: NPC) -> void:
 	if npc.first_time and !npc.first_dialog.is_empty():
 		set_menu_first_npc(npc, 0)
 	else:
+		if npc.use_female_voice:
+			$/root/Main.play_sfx("FemaleTalk")
+		else:
+			$/root/Main.play_sfx("MaleTalk")
 		buttons[0].text = "Leave"
 		buttons[0].connect("pressed", on_leave_pressed)
 
@@ -173,6 +197,7 @@ func set_bus_menu(bus_stop: BusStop) -> void:
 			"pressed", 
 			func() -> void:
 				$/root/Main.play_sfx("Click")
+				$/root/Main.play_sfx("Bus")
 				# Teleport the player to the appropriate bus stop
 				var player: Player = $/root/Main/Player
 				player.position = stop.position + Vector2(16.0, 6.0)
