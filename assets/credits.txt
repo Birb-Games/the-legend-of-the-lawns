@@ -130,3 +130,9 @@ Author: Augdog
 URL: https://freesound.org/people/Augdog/sounds/210211/
 License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
 Modifications made: Cut out parts, increased volume, increased speed and pitch. 
+
+File: open_journal.wav
+Author: Vinrax
+URL: https://opengameart.org/content/paper-pages-sounds
+License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Modifications made: Cut out parts.

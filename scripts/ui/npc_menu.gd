@@ -290,9 +290,7 @@ func set_skip_day_menu() -> void:
 
 	set_menu_name("Your House")
 	set_wage_text("")
-	set_description_text("""
-Are you sure you want to go inside and play games on itch.io for the rest of the day?
-""")
+	set_description_text("Are you sure you want to go inside and play games on itch.io for the rest of the day?")
 	
 	buttons[0].show()
 	buttons[0].text = "No, I should mow a lawn."

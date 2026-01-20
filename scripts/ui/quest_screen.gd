@@ -20,6 +20,7 @@ func get_jobs() -> Array:
 	return neighbors
 
 func select_button(index: int) -> void:
+	$/root/Main.play_sfx("Click")
 	if selected >= 0 and selected < buttons.size():
 		buttons[selected].text = buttons[selected].text.substr(2)
 	# Deselect the current neighbor if we clicked the same button
@@ -175,6 +176,7 @@ func activate() -> void:
 
 # Toggle the visibility of the screen
 func toggle() -> void:
+	$OpenSfx.play()
 	if $InfoScreen.visible:
 		$InfoScreen.hide()
 	else:
