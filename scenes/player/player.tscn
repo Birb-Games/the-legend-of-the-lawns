@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene load_steps=49 format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -9,7 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://b4a5sdixx0fuv" path="res://scenes/player/bullet.tscn" id="7_smehm"]
 [ext_resource type="PackedScene" uid="uid://drt2vf3441uh5" path="res://scenes/player/player_lawn_mower.tscn" id="8_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://dqsubbouvo8c1" path="res://scenes/player/arrow.tscn" id="10_h17s1"]
+[ext_resource type="Script" uid="uid://b2gl1xsap16ob" path="res://scripts/player/footsteps_sfx_controller.gd" id="11_je7p5"]
 [ext_resource type="Script" uid="uid://7l7duh8pmwvx" path="res://scripts/player/tile_map_collision_checker.gd" id="12_fm80t"]
+[ext_resource type="AudioStream" uid="uid://bwwwtyegcjwi" path="res://assets/audio/sfx/footsteps/footsteps_grass.wav" id="12_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://c2q15ntrokdi0" path="res://assets/audio/sfx/footsteps/footsteps.wav" id="13_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://cteg86na8iivn" path="res://assets/audio/sfx/footsteps/footsteps_wood.wav" id="14_ugbui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_3vyb7")
@@ -396,6 +400,21 @@ scale = Vector2(0.25, 0.25)
 ignore_if_invisible = true
 min_dist = 80.0
 max_dist = 1600.0
+
+[node name="Footsteps" type="Node" parent="."]
+script = ExtResource("11_je7p5")
+
+[node name="FootstepsGrass" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("12_gx1jg")
+volume_db = -15.0
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("13_gx1jg")
+volume_db = -10.0
+
+[node name="FootstepsWood" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("14_ugbui")
+volume_db = -10.0
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_exited"]
