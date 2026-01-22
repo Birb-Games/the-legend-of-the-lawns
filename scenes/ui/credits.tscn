@@ -175,7 +175,23 @@ Modifications made: Cut out parts.
 File: cut_grass.wav
 Author: DK77
 URL: https://freesound.org/people/DK77/sounds/322182/
-License: CC0"
+License: CC0
+
+File: footsteps.wav
+Author: freesound_community
+URL: https://pixabay.com/sound-effects/film-special-effects-concrete-footsteps-1-6265/
+License: Pixabay Content License (https://pixabay.com/service/license-summary/)
+
+File: footsteps_grass.wav
+Author: Fantozzi
+URL: https://opengameart.org/content/fantozzis-footsteps-grasssand-stone
+License: CC0
+
+File: footsteps_wood.wav
+Author: congusbongus
+URL: https://opengameart.org/content/footsteps-on-different-surfaces
+License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Modifications made: Added some silence at the end."
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
