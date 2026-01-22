@@ -105,6 +105,7 @@ func mow_tile(pos: Vector2i) -> void:
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 0), 0)
 	cut_grass_tiles += 1
+	$/root/Main.play_sfx("CutGrass")
 
 # Returns true if a hedge has been destroyed, false otherwise
 func destroy_hedge(pos: Vector2i) -> bool:

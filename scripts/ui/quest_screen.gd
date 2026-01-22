@@ -1,5 +1,7 @@
 extends Control
 
+class_name QuestScreen
+
 var buttons: Array[Button] = []
 var neighbor_paths: Array[NodePath] = []
 var selected: int = -1
@@ -153,6 +155,7 @@ func activate() -> void:
 		child.queue_free()
 	for goal: Quest.Goal in current_quest.goals:
 		var goal_label: Label = $InfoScreen/QuestBox/MowingGoal.duplicate()
+		goal_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 		goal_label.show()
 		goal_label.text = " - %s" % goal.description
 		if goal.completed.call(main):
@@ -172,7 +175,7 @@ func activate() -> void:
 	$InfoScreen/QuestBox/RewardLabel.text = "Reward: %s" % current_quest.reward.description
 	if current_quest.reward.description.is_empty():
 		$InfoScreen/QuestBox/RewardLabel.hide()
-		$InfoScreen/QuestBox/RewardLabel2.hide()	
+		$InfoScreen/QuestBox/RewardLabel2.hide()
 
 # Toggle the visibility of the screen
 func toggle() -> void:

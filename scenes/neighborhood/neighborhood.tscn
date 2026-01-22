@@ -217,10 +217,12 @@ position = Vector2(-8.000001, -544)
 position = Vector2(1064, -160)
 
 [node name="McmoneypantsMansion" parent="Houses" instance=ExtResource("10_qieq6")]
+y_sort_enabled = true
 position = Vector2(-296, -528)
 
-[node name="Arch" parent="Houses" instance=ExtResource("11_bpn1c")]
-position = Vector2(-296, -517)
+[node name="Arch" parent="Houses/McmoneypantsMansion" instance=ExtResource("11_bpn1c")]
+position = Vector2(0, 14.666626)
+scale = Vector2(1, 1)
 
 [node name="NPCs" type="Node2D" parent="."]
 y_sort_enabled = true

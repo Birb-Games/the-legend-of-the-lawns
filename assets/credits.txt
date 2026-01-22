@@ -136,3 +136,8 @@ Author: Vinrax
 URL: https://opengameart.org/content/paper-pages-sounds
 License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
 Modifications made: Cut out parts.
+
+File: cut_grass.wav
+Author: DK77
+URL: https://freesound.org/people/DK77/sounds/322182/
+License: CC0

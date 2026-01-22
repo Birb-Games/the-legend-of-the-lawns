@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene load_steps=25 format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://clm2iad1vjs6x" path="res://assets/audio/sfx/bus.wav" id="20_gqmmt"]
 [ext_resource type="AudioStream" uid="uid://bravg6u55evt" path="res://assets/audio/sfx/male_talk.wav" id="21_yc10j"]
 [ext_resource type="AudioStream" uid="uid://jq1xq3qronct" path="res://assets/audio/sfx/female_talk.wav" id="22_jscy8"]
+[ext_resource type="AudioStream" uid="uid://dpp6b66l37am0" path="res://assets/audio/sfx/cut_grass.wav" id="23_pm3ni"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
 viewport_path = NodePath("SubViewport")
@@ -110,3 +111,8 @@ stream = ExtResource("21_yc10j")
 
 [node name="FemaleTalk" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("22_jscy8")
+
+[node name="CutGrass" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("23_pm3ni")
+volume_db = -25.0
+max_polyphony = 16
