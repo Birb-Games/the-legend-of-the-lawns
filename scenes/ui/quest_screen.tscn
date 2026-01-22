@@ -1,10 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8cv1f5uxjd26"]
+[gd_scene load_steps=25 format=3 uid="uid://b8cv1f5uxjd26"]
 
 [ext_resource type="Script" uid="uid://bdg7dq32jr7oy" path="res://scripts/ui/quest_screen.gd" id="1_sfubm"]
 [ext_resource type="FontFile" uid="uid://b3j21gnxq1jn1" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Bold.ttf" id="2_44lm1"]
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="2_ckwhv"]
 [ext_resource type="Texture2D" uid="uid://chuon6gf7xcyh" path="res://assets/textures/ui/journal.png" id="2_mpbqu"]
 [ext_resource type="Texture2D" uid="uid://cpcb8pfd0nn0x" path="res://assets/textures/ui/alert.png" id="3_kwmku"]
+[ext_resource type="Texture2D" uid="uid://cinndraefngkm" path="res://assets/textures/ui/journal_background.png" id="4_83kc6"]
+[ext_resource type="AudioStream" uid="uid://b2br8l1cfnbd" path="res://assets/audio/sfx/open_journal.wav" id="6_jeve6"]
+[ext_resource type="Texture2D" uid="uid://cx0iva0n08uyf" path="res://assets/textures/ui/map/map_background.png" id="7_jpfx5"]
+[ext_resource type="Script" uid="uid://cq18763thuqlp" path="res://scripts/ui/map.gd" id="7_wf7ir"]
+[ext_resource type="Texture2D" uid="uid://cs7oh64dj3lso" path="res://assets/textures/ui/map/house_icon.png" id="8_q2260"]
+[ext_resource type="Texture2D" uid="uid://dkw8pf22i1s74" path="res://assets/textures/ui/map/store_icon.png" id="9_jualb"]
+[ext_resource type="Texture2D" uid="uid://vucg8f3xlfyo" path="res://assets/textures/ui/map/player_icon.png" id="10_wde8x"]
+[ext_resource type="Texture2D" uid="uid://d3exoiba5pfc" path="res://assets/textures/ui/map/circle.png" id="12_5niwt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpbqu"]
 content_margin_left = 4.0
@@ -59,6 +67,69 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf7ir"]
+texture = ExtResource("4_83kc6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5niwt"]
+texture = ExtResource("7_jpfx5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2260"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83kc6"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.3137255)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wf7ir"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
 [node name="QuestScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -95,33 +166,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -524.0
-offset_top = -236.0
-offset_right = 524.0
-offset_bottom = 276.0
+offset_left = -480.0
+offset_top = -307.2
+offset_right = 480.0
+offset_bottom = 307.2
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wf7ir")
 
 [node name="QuestBox" type="VBoxContainer" parent="InfoScreen"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 6.0
-offset_right = 528.0
-offset_bottom = 512.0
+offset_left = 49.0
+offset_top = 52.2
+offset_right = 440.0
+offset_bottom = 478.2
 
 [node name="TODO" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_44lm1")
 theme_override_font_sizes/font_size = 32
 text = "TO-DO:"
 
 [node name="Spacing" type="ColorRect" parent="InfoScreen/QuestBox"]
-custom_minimum_size = Vector2(0, 16)
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
 [node name="MowingGoal" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 20
 text = " - Mow lawns:"
@@ -138,36 +212,36 @@ theme_override_constants/separation = 4
 [node name="Goals" type="VBoxContainer" parent="InfoScreen/QuestBox"]
 layout_mode = 2
 
-[node name="Spacing2" type="ColorRect" parent="InfoScreen/QuestBox"]
-custom_minimum_size = Vector2(0, 8)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
 [node name="RewardLabel" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 24
 text = "Reward:"
 
 [node name="RewardLabel2" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 18
-text = "Go to the job board by the store to claim rewards!"
+text = "Go to the job board by the store 
+to claim rewards!"
 
 [node name="StartGameLabel" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 18
 text = "Go outside and start mowing lawns!"
 
-[node name="Spacing3" type="ColorRect" parent="InfoScreen/QuestBox"]
-custom_minimum_size = Vector2(0, 16)
+[node name="Spacing2" type="ColorRect" parent="InfoScreen/QuestBox"]
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
 [node name="JobLabel" type="Label" parent="InfoScreen/QuestBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_44lm1")
 theme_override_font_sizes/font_size = 20
 text = "Jobs:"
@@ -182,32 +256,141 @@ size_flags_horizontal = 6
 
 [node name="Stats" type="VBoxContainer" parent="InfoScreen"]
 layout_mode = 0
-offset_left = 650.0
-offset_top = 6.0
-offset_right = 1038.0
-offset_bottom = 493.0
+offset_left = 579.0
+offset_top = 48.200012
+offset_right = 900.0
+offset_bottom = 298.2
 
 [node name="Label" type="Label" parent="InfoScreen/Stats"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_44lm1")
 theme_override_font_sizes/font_size = 36
 text = "Stats"
 
+[node name="Spacing" type="ColorRect" parent="InfoScreen/Stats"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
 [node name="StatsText" type="Label" parent="InfoScreen/Stats"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "-"
 text_overrun_behavior = 3
+
+[node name="Map" type="Panel" parent="InfoScreen"]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 282.2
+offset_right = 909.0
+offset_bottom = 568.2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5niwt")
+script = ExtResource("7_wf7ir")
+
+[node name="HouseIcon" type="Sprite2D" parent="InfoScreen/Map"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_q2260")
+offset = Vector2(0, -6.5)
+
+[node name="StoreIcon" type="Sprite2D" parent="InfoScreen/Map"]
+scale = Vector2(2, 2)
+texture = ExtResource("9_jualb")
+offset = Vector2(-2, -11)
+
+[node name="PlayerIcon" type="Sprite2D" parent="InfoScreen/Map"]
+z_index = 1
+scale = Vector2(2, 2)
+texture = ExtResource("10_wde8x")
+
+[node name="Circle" type="Sprite2D" parent="InfoScreen/Map"]
+texture = ExtResource("12_5niwt")
+offset = Vector2(0, -8)
+
+[node name="Label" type="Label" parent="InfoScreen/Map"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 264.0
+offset_right = 160.0
+offset_bottom = 276.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ckwhv")
+text = "The Neighborhood"
+
+[node name="NorthStLabel" type="Label" parent="InfoScreen/Map"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 70.0
+offset_right = 154.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ckwhv")
+text = "North Street"
+
+[node name="SouthStLabel" type="Label" parent="InfoScreen/Map"]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 242.0
+offset_right = 291.0
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ckwhv")
+text = "South Street"
+
+[node name="BusStLabel" type="Label" parent="InfoScreen/Map"]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 221.0
+offset_right = 330.0
+offset_bottom = 233.0
+rotation = -1.5707964
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ckwhv")
+text = "Bus Street"
+
+[node name="BirbStLabel" type="Label" parent="InfoScreen/Map"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 159.0
+offset_right = 186.0
+offset_bottom = 171.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ckwhv")
+text = "Birb Street"
+
+[node name="Label2" type="Label" parent="InfoScreen/Map"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -34.0
+offset_right = 271.0
+offset_bottom = -7.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ckwhv")
+text = "Click on a neighbor's name for 
+directions to their house."
 
 [node name="TemplateButton" type="Button" parent="."]
 custom_minimum_size = Vector2(240, 32)
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.18359056, 0.18359044, 0.18359038, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_q2260")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_83kc6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wf7ir")
 text = "[TEMPLATE BUTTON]"
 alignment = 0
+
+[node name="OpenSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jeve6")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

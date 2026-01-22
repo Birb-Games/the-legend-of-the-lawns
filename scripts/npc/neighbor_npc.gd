@@ -20,6 +20,7 @@ var times_mowed: int = 0
 # on the job board
 var cooldown: int = 0
 @export var level: int = -1
+@export var knock_sound: AudioStreamPlayer
 
 @export_group("Wage Info")
 @export var wage: int = 10
@@ -32,6 +33,7 @@ var cooldown: int = 0
 @export var hedge_penalty: int = 0
 
 @export_group("Dialog")
+@export var use_female_voice: bool = false
 @export_multiline var interact_text: String = "Press [SPACE] to knock on door."
 var possible_dialog: PackedStringArray = Dialog.DEFAULT_POSSIBLE_DIALOG
 var reject_dialog: PackedStringArray = Dialog.DEFAULT_REJECT_DIALOG
@@ -49,6 +51,8 @@ func _ready() -> void:
 	hide()
 	play(animation)
 	Dialog.set_neighbor_dialog_from_json(self, dialog_json)
+	if knock_sound == null:
+		knock_sound = get_node_or_null("/root/Main/Sfx/DoorKnock")
 
 func unavailable() -> bool:
 	return $/root/Main.current_level < level 
@@ -74,6 +78,12 @@ func generate_dialog() -> void:
 		return
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 
+func set_menu() -> void:
+	show()
+	$/root/Main/HUD.set_neighbor_menu(self)
+	$/root/Main/Player.can_move = true
+	knock_sound.disconnect("finished", set_menu)
+
 func _process(_delta: float) -> void:
 	if disabled:
 		return
@@ -82,8 +92,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and player_in_area and (!visible or always_visible):
 		generate_dialog()
 		if !unavailable():
-			show()
-		$/root/Main/HUD.set_neighbor_menu(self)
+			if knock_sound:
+				knock_sound.play()
+				knock_sound.connect("finished", set_menu)
+				$/root/Main/Player.can_move = false
 	if always_visible:
 		show()
 

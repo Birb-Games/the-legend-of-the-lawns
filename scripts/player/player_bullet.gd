@@ -17,6 +17,7 @@ func explode() -> void:
 	$Explosion.emitting = true
 	$Sprite2D.hide()
 	$GPUParticles2D.emitting = false
+	$Splash.play()
 
 func _process(delta: float) -> void:
 	if lifetime > 0.0:
@@ -29,7 +30,7 @@ func _process(delta: float) -> void:
 		rotation += ROTATION_SPEED * delta
 	
 	# Bullet is dead if not emitting particles and not visible
-	if !$Explosion.emitting and !$Sprite2D.visible:
+	if !$Explosion.emitting and !$Sprite2D.visible and !$Splash.playing:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:

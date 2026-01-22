@@ -11,6 +11,14 @@ var shoot_mode: String = "circle"
 const UPDATE_SHOOT_MODE_INTERVAL: float = 4.0
 var update_shoot_mode_timer: float = UPDATE_SHOOT_MODE_INTERVAL
 @onready var bullet_queue: BulletQueue = BulletQueue.new()
+# The super thornweed is paused for a bit when it is first added to the scene
+# since a digging sound has to be played before it starts growing, I guess this
+# can also create a sense of suspense as well.
+var pause_timer: float = 1.0
+
+func _ready() -> void:
+	super._ready()
+	$Digging.play()
 
 func get_random_shoot_mode() -> String:
 	if health <= int(max_health / 2.0) and $Spawns.get_child_count() == 0:
@@ -77,6 +85,10 @@ func shoot() -> void:
 			shoot_bullet()
 
 func _process(delta: float) -> void:
+	pause_timer = max(pause_timer - delta, 0.0)
+	if pause_timer > 0.0:
+		return
+
 	if health <= int(max_health / 2.0) and $Spawns.get_child_count() == 0:
 		shoot_timer = 0.0
 		update_shoot_mode_timer = 0.0

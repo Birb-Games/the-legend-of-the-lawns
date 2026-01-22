@@ -12,6 +12,8 @@ extends AnimatedSprite2D
 @export var first_time: bool = true
 
 @export_group("Dialog")
+@export var use_female_voice: bool = false
+@export var can_talk: bool = true
 var first_dialog: PackedStringArray = [ "Hello!" ]
 var player_dialog: PackedStringArray = [ "Hello!" ]
 var possible_dialog: PackedStringArray = []
@@ -41,6 +43,7 @@ func _process(_delta: float) -> void:
 	var menu_visible = $/root/Main/HUD/Control/NPCMenu.visible
 	# Have the player interact with the neighbor
 	if Input.is_action_just_pressed("interact") and player_in_area and !menu_visible:
+		$/root/Main.play_sfx("Click")
 		generate_dialog()
 		$/root/Main/HUD.set_npc_menu(self)
 

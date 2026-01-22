@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbaa6s8vockj8"]
+[gd_scene load_steps=5 format=3 uid="uid://bbaa6s8vockj8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_2pdhm"]
 [ext_resource type="Script" uid="uid://bpksrk35onpgr" path="res://scripts/ui/fail_screen.gd" id="1_s13x8"]
 [ext_resource type="PackedScene" uid="uid://cc6ie7e2e5mfg" path="res://scenes/player/knocked_out.tscn" id="2_3i01h"]
+[ext_resource type="AudioStream" uid="uid://c04ioggvsjqda" path="res://assets/audio/sfx/wompwomp.ogg" id="4_vwmuy"]
 
 [node name="Failscreen" type="Control"]
 layout_mode = 3
@@ -64,5 +65,8 @@ theme_override_fonts/font = ExtResource("1_2pdhm")
 theme_override_font_sizes/font_size = 32
 text = "Return to 
 Neighborhood"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vwmuy")
 
 [connection signal="pressed" from="HBoxContainer/Return" to="." method="_on_return_pressed"]

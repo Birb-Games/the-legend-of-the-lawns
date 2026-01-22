@@ -4,6 +4,7 @@ var player_in_area: bool = false
 
 func _process(_delta: float) -> void:
 	if player_in_area and Input.is_action_just_pressed("interact"):
+		$/root/Main.play_sfx("Click")
 		$/root/Main/HUD.set_skip_day_menu()
 
 func _on_body_entered(body: Node2D) -> void:

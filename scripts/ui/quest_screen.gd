@@ -1,5 +1,7 @@
 extends Control
 
+class_name QuestScreen
+
 var buttons: Array[Button] = []
 var neighbor_paths: Array[NodePath] = []
 var selected: int = -1
@@ -20,6 +22,7 @@ func get_jobs() -> Array:
 	return neighbors
 
 func select_button(index: int) -> void:
+	$/root/Main.play_sfx("Click")
 	if selected >= 0 and selected < buttons.size():
 		buttons[selected].text = buttons[selected].text.substr(2)
 	# Deselect the current neighbor if we clicked the same button
@@ -152,6 +155,7 @@ func activate() -> void:
 		child.queue_free()
 	for goal: Quest.Goal in current_quest.goals:
 		var goal_label: Label = $InfoScreen/QuestBox/MowingGoal.duplicate()
+		goal_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 		goal_label.show()
 		goal_label.text = " - %s" % goal.description
 		if goal.completed.call(main):
@@ -171,10 +175,11 @@ func activate() -> void:
 	$InfoScreen/QuestBox/RewardLabel.text = "Reward: %s" % current_quest.reward.description
 	if current_quest.reward.description.is_empty():
 		$InfoScreen/QuestBox/RewardLabel.hide()
-		$InfoScreen/QuestBox/RewardLabel2.hide()	
+		$InfoScreen/QuestBox/RewardLabel2.hide()
 
 # Toggle the visibility of the screen
 func toggle() -> void:
+	$OpenSfx.play()
 	if $InfoScreen.visible:
 		$InfoScreen.hide()
 	else:
@@ -185,7 +190,7 @@ func _on_button_pressed() -> void:
 
 func _process(_delta: float) -> void:
 	var intro = get_node_or_null("/root/Main/HUD/Control/IntroWebsite")
-	if intro:
+	if intro or $/root/Main/HUD/MainMenu.visible:
 		return
 
 	var main: Main = $/root/Main

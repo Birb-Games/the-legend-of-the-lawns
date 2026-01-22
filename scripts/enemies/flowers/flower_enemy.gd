@@ -56,6 +56,7 @@ func dead() -> bool:
 
 # The flower explodes upon death
 func explode(bullet_template: PackedScene) -> void:
+	Sfx.play_at_pos(global_position, "pop", $/root/Main/Lawn)
 	var spawn = $BulletSpawnPoint.global_position
 	var offset = randf() * 2.0 * PI
 	for i in range(explosion_bullet_count):

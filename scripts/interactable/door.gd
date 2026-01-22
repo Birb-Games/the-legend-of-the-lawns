@@ -16,6 +16,7 @@ func _process(_delta: float) -> void:
 		if (current_quest == null or !current_quest.completed(main)) and quest_door:
 			return
 	if Input.is_action_just_pressed("interact") and player_in_area and go_to:
+		$/root/Main.play_sfx("Door")
 		if quest_door:
 			main.advance_quest()
 			$/root/Main/HUD/Control/QuestScreen.show_alert = true

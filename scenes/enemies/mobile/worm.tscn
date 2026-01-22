@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bimysgpu6br62"]
+[gd_scene load_steps=32 format=3 uid="uid://bimysgpu6br62"]
 
 [ext_resource type="Script" uid="uid://b5b1uo0jxdh35" path="res://scripts/enemies/mobile/worm.gd" id="1_6jxv1"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_21ylj"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bdthjiw54lud7" path="res://assets/textures/enemies/mobile/worm_spawning_animation.png" id="3_pcbkm"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="5_gu4sv"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="6_ik3ri"]
+[ext_resource type="AudioStream" uid="uid://cwsjr4b81fvih" path="res://assets/audio/sfx/roar.wav" id="8_jauu6"]
+[ext_resource type="AudioStream" uid="uid://dcil08gymr3gr" path="res://assets/audio/sfx/digging.wav" id="9_mfr0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wt4s"]
 size = Vector2(24, 38)
@@ -204,6 +206,17 @@ scale = Vector2(1.4, 1.4)
 
 [node name="BulletSpawnPoint" type="Node2D" parent="."]
 position = Vector2(0, -29)
+
+[node name="RoarSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jauu6")
+volume_db = 15.0
+max_distance = 600.0
+attenuation = 2.0
+
+[node name="Digging" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_mfr0m")
+max_distance = 320.0
+attenuation = 2.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

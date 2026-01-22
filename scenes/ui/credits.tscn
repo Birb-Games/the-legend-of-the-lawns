@@ -23,7 +23,7 @@ tile_set = ExtResource("1_123la")
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 61.0
-offset_top = 123.0
+offset_top = 102.0
 offset_right = 1088.0
 offset_bottom = 542.0
 theme_override_colors/font_shadow_color = Color(0.641934, 0.641934, 0.641934, 1)
@@ -45,7 +45,109 @@ THIRD PARTY ARTWORK/RESOURCES USED:
 -----------------------------------
 Font: 8BitOperator 
 by Grand Chaos Productions (http://grandchaos9000.deviantart.com)
-License: SIL Open Font License"
+License: SIL Open Font License
+
+Sound effects
+-------------
+
+File: door_knock.wav
+Author: NachtmahrTV
+URL: https://freesound.org/people/NachtmahrTV/sounds/571671/
+License: CC0
+
+File: lawn_mower_start.wav
+Author: straget 
+URL: https://freesound.org/people/straget/sounds/408203/
+License: CC0
+
+File: shoot.wav
+Author: chrisw92
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://freesound.org/people/chrisw92/sounds/179673/
+Modifications made: Cut out end, increased pitch
+
+File: splash.wav
+Author: Logicogonist 
+License: CC0
+URL: https://freesound.org/people/Logicogonist/sounds/807963/
+
+File: active_lawn_mower.wav
+Author: morgantj
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://freesound.org/people/morgantj/sounds/60609/
+Modifications made: Cut out parts and lowered volume.
+
+File: deactivate_mower.wav
+Author: morgantj
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://freesound.org/people/morgantj/sounds/60609/ 
+Modifications made: Same as `active_lawn_mower.wav` but added fade out.
+
+File: hedge_destruction.wav
+Components used: \"Snapping Plants\" (CC0), \"Crunching Leaves.wav\" (CC0)
+URLs: 
+ - https://freesound.org/people/RICHERlandTV/sounds/697264/
+ - https://freesound.org/people/Chicken_Guy/sounds/536890/
+Modifications made: Cut out parts, layered \"Snapping Plants\" on top of 
+\"Crunching Leaves.wav\"
+
+File: water_gun.wav
+Author: jomse
+License: CC0
+URL: https://freesound.org/people/jomse/sounds/525100/
+Modifications made: Speed up audio.
+
+File: pop.wav
+Author: Vilkas_Sound 
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+URL: https://freesound.org/people/Vilkas_Sound/sounds/463393/
+
+File: explosion.wav
+Author: Marcelo Fernandez (http://www.marcelofernandezmusic.com)
+URL: https://opengameart.org/content/single-and-multi-explosion
+License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Notes: Taken from \"Single and Multi Explosion\", Modifications made: Cut out 
+multi-explosion and sped up audio and converted to wav file format, added fade out.
+
+File: click.wav
+Author: Kenney (https://kenney.nl)
+URL: https://kenney.nl/assets/ui-audio
+License: CC0
+
+File: error.wav
+Author: Kenney (https://kenney.nl)
+URL: https://kenney.nl/assets/interface-sounds
+License: CC0
+
+File: door.wav
+Author: pagancow 
+URL: https://freesound.org/people/pagancow/sounds/15419/
+License: CC0
+
+File: penalty.wav
+Author: Andreas
+URL: https://freesound.org/people/-Andreas/sounds/648462/
+License: CC0
+
+File: wompwomp.ogg
+Author: Paloma.SSSS 
+URL: https://freesound.org/people/Paloma.SSSS/sounds/841370/
+License: CC0
+
+File: money.wav
+Author: Zott820
+URL: https://freesound.org/people/Zott820/sounds/209578/
+License: CC0
+
+File: roar.wav
+Author: CGEffex 
+URL: https://freesound.org/people/CGEffex/sounds/96223/
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+
+File: digging.wav
+Author: prozaciswack
+URL: https://freesound.org/people/prozaciswack/sounds/82722/
+License: CC0"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

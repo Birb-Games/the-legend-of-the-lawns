@@ -105,6 +105,7 @@ func mow_tile(pos: Vector2i) -> void:
 		return
 	$TileMapLayer.set_cell(pos, 0, Vector2i(0, 0), 0)
 	cut_grass_tiles += 1
+	$/root/Main.play_sfx("CutGrass")
 
 # Returns true if a hedge has been destroyed, false otherwise
 func destroy_hedge(pos: Vector2i) -> bool:
@@ -130,6 +131,7 @@ func pickup_water_gun() -> void:
 	if !player.can_pick_up_water_gun:
 		return
 	if Input.is_action_just_pressed("interact") and !player.lawn_mower_active():
+		$/root/Main.play_sfx("WaterGunInteraction")
 		remove_child(water_gun_item)
 		player.enable_water_gun()
 
@@ -140,6 +142,7 @@ func drop_water_gun() -> void:
 	if !player.get_node("WaterGun").visible:
 		return
 	if Input.is_action_just_pressed("interact"):
+		$/root/Main.play_sfx("WaterGunInteraction")
 		water_gun_item.position = player.get_sprite_pos() + Vector2(0.0, 12.0)
 		add_child(water_gun_item)
 		player.disable_water_gun()
@@ -299,6 +302,7 @@ func _process(delta: float) -> void:
 	if player.lawn_mower_active():
 		for pos in positions:
 			if destroy_hedge(pos):
+				$/root/Main.play_sfx("HedgeDestruction")
 				update_astar_grid = true
 				astar_grid.set_point_solid(pos, false)
 				player.activate_hedge_timer()

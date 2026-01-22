@@ -8,9 +8,11 @@ func activate() -> void:
 	$Name/TextEdit.text = ""
 
 func _on_back_pressed() -> void:
+	var main: Main = $/root/Main	
+	main.play_sfx("Click")
 	hide()
 
-func _on_start_pressed() -> void:
+func _on_start_pressed() -> void:	
 	# Make sure we have a valid name
 	var player_name: String = $Name/TextEdit.text
 	if player_name.is_empty():
@@ -20,14 +22,16 @@ func _on_start_pressed() -> void:
 	if player_name.strip_edges().is_empty():
 		printerr("Invalid name: name consists of only whitespace.")
 		$Name/Error.text = "Invalid name."
+		$ErrorSound.play()
 		return
 
+	var main: Main = $/root/Main	
+	main.play_sfx("Click")
 	get_tree().paused = false
 	hide()
 	var main_menu = get_parent()
 	main_menu.hide()
 
-	var main: Main = $/root/Main
 	main.player_name = player_name
 	main.reset()
 	# Kind of meant to be a joke/easter egg but also helpful for testing

@@ -30,16 +30,23 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_credits_pressed() -> void:
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	$Credits.show()
 
 func _on_new_game_pressed() -> void:
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	$CreateNewSave.activate()
 
 func _on_load_pressed() -> void:
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
 	$LoadScreen.activate()
 
 func _on_continue_pressed() -> void:
-	var main: Main = $/root/Main
+	var main: Main = $/root/Main	
+	main.play_sfx("Click")
 	main.save_path = main.continue_save
 	main.reset()
 	if !main.load_save():

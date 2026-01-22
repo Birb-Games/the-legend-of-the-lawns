@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkuhevs5nmf32"]
+[gd_scene load_steps=21 format=3 uid="uid://dkuhevs5nmf32"]
 
 [ext_resource type="Texture2D" uid="uid://c8patdn3nrg7g" path="res://assets/textures/enemies/mobile/garden_gnome.png" id="1_04oy6"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_oi8p4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://mo4cwxl62mhe" path="res://assets/textures/enemies/mobile/evil_gnome.png" id="2_ojb63"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="5_xkbtf"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="6_6ynet"]
+[ext_resource type="AudioStream" uid="uid://cbgqp3p60sgdl" path="res://assets/audio/sfx/gnome_shoot.wav" id="8_baigl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oi8p4"]
 atlas = ExtResource("2_ojb63")
@@ -125,11 +126,11 @@ position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_7llws")
 
 [node name="Healthbar" parent="." instance=ExtResource("5_xkbtf")]
-offset_left = -10.0
-offset_top = -32.0
-offset_right = 4.0
-offset_bottom = -30.0
-scale = Vector2(1.4, 1.4)
+offset_left = -8.333332
+offset_top = -30.333328
+offset_right = 5.666668
+offset_bottom = -28.333328
+scale = Vector2(1.2, 1.2)
 
 [node name="ContactDamageZone" parent="." instance=ExtResource("6_6ynet")]
 position = Vector2(0, -12)
@@ -151,6 +152,11 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector"]
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_grx8y")
+
+[node name="ShootSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_baigl")
+max_distance = 256.0
+attenuation = 2.0
 
 [connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
 [connection signal="body_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_body_entered"]

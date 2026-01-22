@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://dpyjde1r6kiri"]
+[gd_scene load_steps=6 format=4 uid="uid://dpyjde1r6kiri"]
 
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="1_2oqwi"]
 [ext_resource type="Script" uid="uid://ckhtf3rkfefn2" path="res://scripts/ui/create_new_save.gd" id="1_mab88"]
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="2_po6lq"]
 [ext_resource type="PackedScene" uid="uid://dut28yubgmt4n" path="res://scenes/ui/intro_website.tscn" id="2_sbwvy"]
+[ext_resource type="AudioStream" uid="uid://dach670heik2x" path="res://assets/audio/sfx/error.wav" id="5_kg8mx"]
 
 [node name="CreateNewSave" type="Control"]
 layout_mode = 3
@@ -84,6 +85,9 @@ theme_override_fonts/font = ExtResource("2_po6lq")
 theme_override_font_sizes/font_size = 24
 text = "Error"
 horizontal_alignment = 1
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kg8mx")
 
 [connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Buttons/Back" to="." method="_on_back_pressed"]

@@ -17,6 +17,7 @@ func _ready() -> void:
 	super._ready()
 
 func explode() -> void:
+	play_death_sound()
 	var blood: GPUParticles2D = blood_scene.instantiate()
 	blood.global_position = $AnimatedSprite2D.global_position
 	blood.scale *= 1.25

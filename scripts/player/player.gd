@@ -21,6 +21,7 @@ var can_pick_up_lawnmower: bool = false
 var target_velocity: Vector2 = Vector2.ZERO
 # Whether the player just dropped the lawn mower
 var dropped: bool = false
+var can_move: bool = true
 
 var max_health: int = 80
 var health: int = max_health
@@ -59,6 +60,8 @@ func damage(amt: int) -> void:
 	health -= amt
 	health = max(health, 0)
 	damage_timer = DAMAGE_COOLDOWN
+	if health > 0:
+		$/root/Main.play_sfx("Hurt", true)
 
 # Returns a value between 0.0 and 1.0
 func get_damage_timer_perc() -> float:
@@ -170,12 +173,21 @@ func pick_up_lawn_mower() -> void:
 	if $PickupCollisionChecker.colliding():
 		return
 
+	if lawnmower.cooldown > 0.0:
+		return
+
 	if Input.is_action_just_pressed("interact"):
-		position -= get_lawn_mower_dir_offset()	
+		$/root/Main.play_sfx("LawnMowerStart")
+		position -= get_lawn_mower_dir_offset()
 		lawnmower.hide()
 		$Lawnmower.show()
+		var prev_pos = lawnmower.global_position
 		set_lawn_mower_pos()
-		position -= $Lawnmower.position - Vector2(0.0, -7.0)
+		var diff = $Lawnmower.global_position - prev_pos
+		position -= diff
+		position.y += $Lawnmower.position.y
+		if dir == "up":
+			position.y += 6.0
 	
 func too_close_to_drop_mower() -> bool:
 	if $Lawnmower/CollisionChecker.colliding():
@@ -188,16 +200,18 @@ func too_close_to_drop_mower() -> bool:
 func drop_lawn_mower() -> bool:
 	if !lawn_mower_active():
 		return false
-	if $ReleaseCollisionChecker.colliding():
+	if $ReleaseCollisionChecker.colliding() and health > 0:
 		return false
-	if $Lawnmower/CollisionChecker.colliding():
+	if $Lawnmower/CollisionChecker.colliding() and health > 0:
 		return false
 	if Input.is_action_just_pressed("interact") or health <= 0:
+		$/root/Main.play_sfx("TurnOffMower")
 		lawnmower.position = global_position + $Lawnmower.position
 		lawnmower.position.y -= $Lawnmower.position.y
 		if dir == "up":
 			lawnmower.position.y -= 6.0
 		lawnmower.show()
+		lawnmower.cooldown = 0.5
 		match dir:
 			"left", "right":
 				lawnmower.dir = dir
@@ -283,7 +297,7 @@ func _physics_process(_delta: float) -> void:
 
 	# movement
 	# don't move when menu is open
-	if !$/root/Main/HUD.npc_menu_open() and !$/root/Main/HUD.quest_screen_open(): 
+	if !$/root/Main/HUD.npc_menu_open() and !$/root/Main/HUD.quest_screen_open() and can_move:
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1.0
 		if Input.is_action_pressed("move_down"):

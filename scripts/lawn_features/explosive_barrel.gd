@@ -21,6 +21,9 @@ func explode() -> void:
 		explosion.damage = 60
 		explosion.global_position = $Sprite2D.global_position
 		lawn.add_child(explosion)
+		
+		# Play explosion
+		Sfx.play_at_pos(global_position, "explosion", lawn)
 
 		# Add fire
 		var fire: Fire = fire_scene.instantiate()

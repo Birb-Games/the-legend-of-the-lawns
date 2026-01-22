@@ -17,6 +17,7 @@ func in_shooting_range() -> bool:
 	return (player.global_position - global_position).length() < max_chase_distance
 
 func _ready() -> void:
+	$Digging.play(0.8)
 	$AnimatedSprite2D.animation = "spawn"
 	var camera: GameCamera = $/root/Main/Player/Camera2D
 	camera.add_trauma(1.0)

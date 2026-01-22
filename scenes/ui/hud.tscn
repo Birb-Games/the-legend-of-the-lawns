@@ -209,6 +209,7 @@ metadata/_edit_lock_ = true
 
 [node name="TransitionRect" type="ColorRect" parent="Control"]
 visible = false
+z_index = 2
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
