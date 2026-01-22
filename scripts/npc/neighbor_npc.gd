@@ -79,7 +79,8 @@ func generate_dialog() -> void:
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 
 func set_menu() -> void:
-	show()
+	if !unavailable():
+		show()
 	$/root/Main/HUD.set_neighbor_menu(self)
 	$/root/Main/Player.can_move = true
 	knock_sound.disconnect("finished", set_menu)
@@ -91,11 +92,10 @@ func _process(_delta: float) -> void:
 	# Have the player interact with the neighbor
 	if Input.is_action_just_pressed("interact") and player_in_area and (!visible or always_visible):
 		generate_dialog()
-		if !unavailable():
-			if knock_sound:
-				knock_sound.play()
-				knock_sound.connect("finished", set_menu)
-				$/root/Main/Player.can_move = false
+		if knock_sound:
+			knock_sound.play()
+			knock_sound.connect("finished", set_menu)
+			$/root/Main/Player.can_move = false
 	if always_visible:
 		show()
 

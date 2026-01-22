@@ -147,7 +147,51 @@ License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
 File: digging.wav
 Author: prozaciswack
 URL: https://freesound.org/people/prozaciswack/sounds/82722/
-License: CC0"
+License: CC0
+
+File: bus.wav
+Author: lauramellis
+URL: https://freesound.org/people/lauramellis/sounds/263116/
+License: CC0
+
+File: male_talk.wav
+Author: pfranzen
+URL: https://freesound.org/people/pfranzen/sounds/264770/
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+Modifications made: Cut out parts, increased volume, decreased speed and pitch.
+
+File: female_talk.wav
+Author: Augdog
+URL: https://freesound.org/people/Augdog/sounds/210211/
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+Modifications made: Cut out parts, increased volume, increased speed and pitch. 
+
+File: open_journal.wav
+Author: Vinrax
+URL: https://opengameart.org/content/paper-pages-sounds
+License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Modifications made: Cut out parts.
+
+File: cut_grass.wav
+Author: DK77
+URL: https://freesound.org/people/DK77/sounds/322182/
+License: CC0
+
+File: footsteps.wav
+Author: freesound_community
+URL: https://pixabay.com/sound-effects/film-special-effects-concrete-footsteps-1-6265/
+License: Pixabay Content License (https://pixabay.com/service/license-summary/)
+
+File: footsteps_grass.wav
+Author: Fantozzi
+URL: https://opengameart.org/content/fantozzis-footsteps-grasssand-stone
+License: CC0
+
+File: footsteps_wood.wav
+Author: congusbongus
+URL: https://opengameart.org/content/footsteps-on-different-surfaces
+License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Modifications made: Added some silence at the end."
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
