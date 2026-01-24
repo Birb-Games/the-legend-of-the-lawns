@@ -28,6 +28,9 @@ func update_money(modifier: int) -> void:
 	money += max(current_wage + modifier, 0)
 
 func _ready() -> void:
+	Settings.load()
+	Settings.apply_settings()
+
 	# Keep cursor in window - this is to prevent the mouse cursor from accidentally
 	# leaving when shooting enemies
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED

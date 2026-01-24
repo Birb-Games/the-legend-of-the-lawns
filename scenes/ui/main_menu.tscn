@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cenxxd8t4m6fq"]
+[gd_scene load_steps=12 format=4 uid="uid://cenxxd8t4m6fq"]
 
 [ext_resource type="Script" uid="uid://botrxsvwyqq4u" path="res://scripts/ui/main_menu.gd" id="1_m1kxf"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="1_sl1te"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dd1bw4k33fgn0" path="res://scenes/ui/credits.tscn" id="5_x2yvf"]
 [ext_resource type="PackedScene" uid="uid://dpyjde1r6kiri" path="res://scenes/ui/create_new_save.tscn" id="6_uhagc"]
 [ext_resource type="PackedScene" uid="uid://cjn6khha0alh0" path="res://scenes/ui/load_screen.tscn" id="7_btxxm"]
+[ext_resource type="Texture2D" uid="uid://cimgjsiw0t7vs" path="res://assets/textures/ui/settings_icon.png" id="10_8g5eo"]
+[ext_resource type="PackedScene" uid="uid://0dfayhe5k248" path="res://scenes/ui/settings_screen.tscn" id="11_7suek"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -134,6 +136,16 @@ theme_override_font_sizes/font_size = 32
 text = " > Quit"
 alignment = 0
 
+[node name="Settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1058.0
+offset_top = 554.0
+offset_right = 1122.0
+offset_bottom = 618.0
+icon = ExtResource("10_8g5eo")
+icon_alignment = 1
+expand_icon = true
+
 [node name="Credits" parent="." instance=ExtResource("5_x2yvf")]
 visible = false
 z_index = 2
@@ -149,8 +161,13 @@ visible = false
 z_index = 2
 layout_mode = 1
 
+[node name="SettingsScreen" parent="." instance=ExtResource("11_7suek")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="Buttons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Buttons/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="Buttons/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]

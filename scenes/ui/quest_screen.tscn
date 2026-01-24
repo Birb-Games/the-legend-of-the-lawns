@@ -392,5 +392,6 @@ alignment = 0
 
 [node name="OpenSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_jeve6")
+bus = &"UI"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

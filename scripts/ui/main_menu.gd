@@ -57,3 +57,7 @@ func _on_continue_pressed() -> void:
 	get_tree().paused = false
 	$/root/Main/HUD/Control/TransitionRect.start_animation()
 
+func _on_settings_pressed() -> void:
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
+	$SettingsScreen.activate()

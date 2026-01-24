@@ -66,15 +66,18 @@ pitch_scale = 2.0
 [node name="LawnMowerStart" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("8_tipki")
 volume_db = -10.0
+bus = &"LawnMower"
 
 [node name="Mowing" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("11_trceg")
 volume_db = -15.0
+bus = &"LawnMower"
 script = ExtResource("12_eb6dy")
 
 [node name="TurnOffMower" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("12_trceg")
 volume_db = -15.0
+bus = &"LawnMower"
 
 [node name="HedgeDestruction" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("13_trceg")
@@ -87,6 +90,7 @@ stream = ExtResource("14_a8y0u")
 [node name="Click" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("15_jkv2x")
 pitch_scale = 3.0
+bus = &"UI"
 
 [node name="Door" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("16_jbj1t")
@@ -98,6 +102,7 @@ volume_db = -8.0
 [node name="Money" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("18_dp3eg")
 max_polyphony = 4
+bus = &"UI"
 
 [node name="Penalty" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("19_0ld40")
@@ -116,3 +121,4 @@ stream = ExtResource("22_jscy8")
 stream = ExtResource("23_pm3ni")
 volume_db = -25.0
 max_polyphony = 16
+bus = &"LawnMower"
