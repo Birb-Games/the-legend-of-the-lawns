@@ -130,7 +130,6 @@ func set_mowing_menu(neighbor: NeighborNPC) -> void:
 
 func set_menu(neighbor: NeighborNPC) -> void:
 	reset_buttons()
-	$Menu/VBoxContainer/Wage.show()
 
 	current_neighbor = neighbor
 	
@@ -176,7 +175,6 @@ func set_menu_first_npc(npc: NPC, index: int) -> void:
 
 func set_npc_menu(npc: NPC) -> void:
 	reset_buttons()
-	$Menu/VBoxContainer/Wage.hide()
 
 	current_npc = npc
 	set_menu_name(npc.display_name)
@@ -286,7 +284,6 @@ func set_skip_day_menu() -> void:
 	current_npc = null
 	current_neighbor = null
 	reset_buttons()
-	$Menu/VBoxContainer/Wage.hide()
 
 	set_menu_name("Your House")
 	set_wage_text("")
@@ -318,6 +315,11 @@ func on_accept_pressed() -> void:
 	$/root/Main.current_wage = current_neighbor.wage
 
 func _process(delta: float) -> void:
+	if $Menu/VBoxContainer/Wage.text.is_empty():
+		$Menu/VBoxContainer/Wage.hide()
+	else:
+		$Menu/VBoxContainer/Wage.show()
+
 	if wage_index >= wage_text.length() and description_index >= description_text.length():
 		return
 
