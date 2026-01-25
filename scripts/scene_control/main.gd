@@ -74,6 +74,7 @@ func advance_day() -> void:
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	player.reset_health()
+	player.status_effects.clear()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood
 	remove_child(neighborhood)
@@ -98,6 +99,7 @@ func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 func return_to_neighborhood() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	player.reset_health()
+	player.status_effects.clear()
 	if get_node_or_null("Lawn"):
 		get_node("Lawn").queue_free()
 	if !neighborhood.is_inside_tree():

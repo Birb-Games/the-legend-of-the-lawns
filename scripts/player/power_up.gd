@@ -5,6 +5,7 @@ class_name PowerUp
 static var power_up_scene: PackedScene = preload("uid://o1e8sispk3lw")
 const POWER_UP_LIST: Array[String] = [
 	"tomato",
+	"spaghetti",
 ]
 @export var power_up: String = "tomato"
 @onready var sprite_y: float = $AnimatedSprite2D.position.y
@@ -26,6 +27,9 @@ func apply_power_up(player: Player) -> bool:
 			if player.health == player.get_max_health():
 				return false
 			player.heal(20)
+		"spaghetti":
+			var prev_time: float = player.get_status_effect_time("speed")
+			player.set_status_effect_time("speed", prev_time + 30.0)
 	return true
 
 func _on_body_entered(body: Node2D) -> void:

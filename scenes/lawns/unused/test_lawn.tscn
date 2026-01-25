@@ -108,3 +108,7 @@ position = Vector2(0, 93)
 
 [node name="PowerUp" parent="." index="24" instance=ExtResource("22_221yd")]
 position = Vector2(129.65585, 85.56987)
+
+[node name="PowerUp2" parent="." index="25" instance=ExtResource("22_221yd")]
+position = Vector2(139, 98)
+power_up = "spaghetti"

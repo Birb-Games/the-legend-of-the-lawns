@@ -36,6 +36,7 @@ const HEDGE_TIMER: float = 0.3
 var fire_timer: float = 0.0
 var fire_damage_timer: float = 0.0
 const FIRE_DAMAGE_INTERVAL: float = 0.2
+var status_effects: Dictionary = {}
 
 func get_max_health() -> int:
 	match max_health_level:
@@ -256,6 +257,7 @@ func take_fire_damage(delta: float) -> void:
 		damage(2)
 
 func _process(delta: float) -> void:
+	update_status_effects(delta)
 	visible = health > 0
 	if health <= 0:
 		if lawn_mower_active():
@@ -292,6 +294,8 @@ func _process(delta: float) -> void:
 		speed = LAWN_MOWER_SPEED
 	else:
 		speed = NORMAL_SPEED
+	if get_status_effect_time("speed") > 0.0:
+		speed *= 1.5
 	
 	set_animation()
 	
@@ -325,7 +329,7 @@ func _physics_process(_delta: float) -> void:
 	# Normalize player velocity
 	if velocity.length() > 0.0:
 		velocity /= velocity.length()
-	velocity *= speed
+	velocity *= speed	
 	target_velocity = velocity
 	
 	var prev_position: Vector2 = global_position 
@@ -398,6 +402,7 @@ func save() -> Dictionary:
 	return data
 
 func reset() -> void:
+	status_effects.clear()
 	$NeighborArrow.point_to = ""
 	max_health_level = 0
 	fire_timer = 0.0
@@ -433,3 +438,23 @@ func update_lawn_mower_arrow() -> void:
 		return
 
 	$LawnmowerArrow.point_to = ""
+
+func get_status_effect_time(id: String) -> float:
+	if id in status_effects:
+		return status_effects[id]
+	return 0.0
+
+func set_status_effect_time(id: String, time: float) -> void:
+	status_effects[id] = time
+
+func update_status_effects(delta: float) -> void:
+	if health <= 0 and status_effects.size() > 0:
+		status_effects.clear()
+		return
+
+	for key in status_effects.keys():
+		var time: float = status_effects[key]
+		time -= delta
+		status_effects[key] = time
+		if status_effects[key] <= 0.0:
+			status_effects.erase(key)

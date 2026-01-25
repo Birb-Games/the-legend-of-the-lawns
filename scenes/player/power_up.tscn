@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://o1e8sispk3lw"]
+[gd_scene load_steps=9 format=3 uid="uid://o1e8sispk3lw"]
 
 [ext_resource type="Texture2D" uid="uid://df0kxpx3f4fws" path="res://assets/textures/items/power_ups/tomato.png" id="1_u5axp"]
 [ext_resource type="Script" uid="uid://5qh3tpua8p1o" path="res://scripts/player/power_up.gd" id="1_upmio"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_vdtji"]
+[ext_resource type="Texture2D" uid="uid://cdvexjqyqiwgx" path="res://assets/textures/items/power_ups/spaghetti.png" id="3_44ll4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itviv"]
 size = Vector2(18, 6.6666665)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sva4x"]
+atlas = ExtResource("3_44ll4")
+region = Rect2(0, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5axp"]
 atlas = ExtResource("1_u5axp")
@@ -13,6 +18,14 @@ region = Rect2(0, 0, 17, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_itviv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sva4x")
+}],
+"loop": true,
+"name": &"spaghetti",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u5axp")
