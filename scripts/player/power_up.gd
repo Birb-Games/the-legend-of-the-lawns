@@ -1,5 +1,8 @@
 extends Area2D
 
+class_name PowerUp
+
+static var power_up_scene: PackedScene = preload("uid://o1e8sispk3lw")
 const POWER_UP_LIST: Array[String] = [
 	"tomato",
 ]
@@ -30,3 +33,12 @@ func _on_body_entered(body: Node2D) -> void:
 		if apply_power_up(body):
 			$/root/Main.play_sfx("Eat")
 			queue_free()
+
+static func spawn(parent: Node, pos: Vector2, power_up_type: String = "") -> void:
+	var power_up_instance: PowerUp = power_up_scene.instantiate()
+	power_up_instance.position = pos
+	if power_up_type.is_empty():
+		power_up_instance.power_up = POWER_UP_LIST[randi() % len(POWER_UP_LIST)]
+	else:
+		power_up_instance.power_up = power_up_type
+	parent.add_child(power_up_instance)

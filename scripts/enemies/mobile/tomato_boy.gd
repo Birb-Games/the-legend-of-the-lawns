@@ -101,6 +101,7 @@ func explode() -> void:
 	explosion.modulate = Color.RED
 	explosion.scale *= 0.3
 	$/root/Main/Lawn.add_child(explosion)
+	PowerUp.spawn($/root/Main/Lawn, global_position)
 	queue_free()
 
 func damage(amt: int) -> void:
