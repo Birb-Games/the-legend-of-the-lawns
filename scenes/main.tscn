@@ -107,6 +107,7 @@ bus = &"UI"
 [node name="Penalty" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("19_0ld40")
 max_polyphony = 4
+bus = &"UI"
 
 [node name="Bus" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("20_gqmmt")
