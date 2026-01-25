@@ -103,6 +103,8 @@ func play_death_sound() -> void:
 # Upon death, an enemy might explode into a group of bullets that the player will
 # have to avoid
 func explode() -> void:
+	if randi() % 20 == 0:
+		PowerUp.spawn($/root/Main/Lawn, global_position)
 	play_death_sound()
 	var offset = randf() * 2.0 * PI
 	for i in range(explosion_bullet_count):

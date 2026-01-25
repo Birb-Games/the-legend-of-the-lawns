@@ -17,6 +17,8 @@ func _ready() -> void:
 	super._ready()
 
 func explode() -> void:
+	if randi() % 20 == 0:
+		PowerUp.spawn($/root/Main/Lawn, global_position)
 	play_death_sound()
 	var blood: GPUParticles2D = blood_scene.instantiate()
 	blood.global_position = $AnimatedSprite2D.global_position

@@ -44,6 +44,8 @@ func get_animation() -> String:
 	return "running"
 
 func explode() -> void:
+	if randi() % 20 == 0:
+		PowerUp.spawn($/root/Main/Lawn, global_position)
 	play_death_sound()
 	var blood_particles: GPUParticles2D = blood_particles_scene.instantiate()
 	blood_particles.global_position = $AnimatedSprite2D.global_position
