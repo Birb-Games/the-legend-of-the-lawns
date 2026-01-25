@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dpa88af6o4cu7"]
+[gd_scene load_steps=23 format=4 uid="uid://dpa88af6o4cu7"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_ftld5"]
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellow_flower.tscn" id="2_rg8jm"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://30584qe175b" path="res://scenes/lawn_features/sprinkler.tscn" id="19_y3n1o"]
 [ext_resource type="PackedScene" uid="uid://bsm20lnybkim0" path="res://scenes/enemies/mobile/wasp_nest.tscn" id="20_y3n1o"]
 [ext_resource type="PackedScene" uid="uid://bfpal888ujrry" path="res://scenes/enemies/mobile/worm_spawner.tscn" id="21_bxqry"]
+[ext_resource type="PackedScene" uid="uid://o1e8sispk3lw" path="res://scenes/player/power_up.tscn" id="22_221yd"]
 
 [node name="TestLawn" instance=ExtResource("1_ftld5")]
 max_weeds = 0
@@ -100,3 +101,6 @@ position = Vector2(100.00001, -114.00001)
 
 [node name="WormSpawner" parent="." index="23" instance=ExtResource("21_bxqry")]
 position = Vector2(0, 93)
+
+[node name="PowerUp" parent="." index="24" instance=ExtResource("22_221yd")]
+position = Vector2(129.65585, 85.56987)

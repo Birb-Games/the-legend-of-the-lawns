@@ -23,8 +23,8 @@ var target_velocity: Vector2 = Vector2.ZERO
 var dropped: bool = false
 var can_move: bool = true
 
-var max_health: int = 80
-var health: int = max_health
+var max_health_level: int = 0
+var health: int = get_max_health()
 # For displaying a red flash whenever the player takes damage
 const DAMAGE_COOLDOWN: float = 1.25
 var damage_timer: float = 0.0
@@ -37,6 +37,13 @@ var fire_timer: float = 0.0
 var fire_damage_timer: float = 0.0
 const FIRE_DAMAGE_INTERVAL: float = 0.2
 
+func get_max_health() -> int:
+	match max_health_level:
+		0:
+			return 80
+		_:
+			return 100
+
 func _ready() -> void:
 	$Lawnmower.hide()
 
@@ -44,14 +51,18 @@ func _ready() -> void:
 func get_hp_perc() -> float:
 	if health <= 0:
 		return 0.0
-	return float(health) / float(max_health)
+	return float(health) / float(get_max_health())
 
 func reset_health() -> void:
-	health = max_health
+	health = get_max_health()
 	damage_timer = 0.0
 
 func activate_hedge_timer() -> void:
 	hedge_collision_timer = HEDGE_TIMER
+
+func heal(amt: int) -> void:
+	health += amt
+	health = min(health, get_max_health())
 
 # Apply damage to the player using this function
 func damage(amt: int) -> void:
@@ -382,13 +393,13 @@ func get_tile_position() -> Vector2i:
 
 func save() -> Dictionary:
 	var data = {
-		"max_health" : max_health,
+		"max_health_level" : get_max_health(),
 	}
 	return data
 
 func reset() -> void:
 	$NeighborArrow.point_to = ""
-	max_health = 80
+	max_health_level = 0
 	fire_timer = 0.0
 
 func update_enemy_arrow() -> void:

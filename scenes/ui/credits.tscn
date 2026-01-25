@@ -191,7 +191,12 @@ File: footsteps_wood.wav
 Author: congusbongus
 URL: https://opengameart.org/content/footsteps-on-different-surfaces
 License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
-Modifications made: Added some silence at the end."
+Modifications made: Added some silence at the end.
+
+File: eat.wav
+Author: StarNinjas
+URL: https://opengameart.org/content/7-eating-crunches
+License: CC0"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

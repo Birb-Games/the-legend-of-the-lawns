@@ -73,9 +73,10 @@ func advance_day() -> void:
 	$HUD/Control/QuestScreen.show_alert = false
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
+	player.reset_health()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood
-	remove_child(neighborhood)	
+	remove_child(neighborhood)
 	# Load lawn
 	var lawn: Lawn = lawn_template.instantiate()
 	lawn.difficulty += difficulty_level
@@ -138,7 +139,7 @@ func update_hud_lawn(delta: float) -> void:
 		$HUD.update_progress_bar($Lawn.get_perc_cut(), $Lawn.weeds_killed, $Lawn.total_weeds)
 	else:
 		$HUD/Control/ProgressBar.hide()
-	$HUD.update_health_bar($Player.health, $Player.max_health)
+	$HUD.update_health_bar($Player.health, $Player.get_max_health())
 	$HUD.update_timer(delta)
 
 func update_hud_neighborhood() -> void:
@@ -265,7 +266,7 @@ func load_save() -> bool:
 		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
 	else:
 		data = json.data
-		player.max_health = max(Save.get_val(data, "max_health", 80), 1)
+		player.max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)
 	
 	if current_day == 1:
 		player.global_position = $/root/Main/Neighborhood/Intro/PlayerStart.global_position

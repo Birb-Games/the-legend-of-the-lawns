@@ -118,7 +118,7 @@ func activate() -> void:
 	var player: Player = $/root/Main/Player 
 	$InfoScreen/Stats/StatsText.text += "Name: %s\n" % main.player_name
 	$InfoScreen/Stats/StatsText.text += "Money: $%d\n" % main.money
-	$InfoScreen/Stats/StatsText.text += "Max Health: %d\n" % player.max_health
+	$InfoScreen/Stats/StatsText.text += "Max Health: %d\n" % player.get_max_health()
 
 	var current_quest: Quest = Quest.get_quest(main.current_level)
 	if current_quest == null:
