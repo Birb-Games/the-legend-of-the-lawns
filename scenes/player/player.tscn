@@ -1,7 +1,8 @@
-[gd_scene load_steps=49 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene load_steps=50 format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://c42yjcff8wti8" path="res://scenes/enemies/bullets/eggplant_bullet.tscn" id="2_fcs02"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cqowbl67yjalq" path="res://scripts/player/water_gun.gd" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c782i0j0kkyib" path="res://assets/textures/player/water_gun.png" id="4_tuyoq"]
@@ -266,6 +267,7 @@ size = Vector2(12, 10)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_gun") groups=["player"]]
 script = ExtResource("1_g2els")
 water_gun = NodePath("WaterGun")
+eggplant_bullet_scene = ExtResource("2_fcs02")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -406,7 +408,7 @@ script = ExtResource("11_je7p5")
 
 [node name="FootstepsGrass" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource("12_gx1jg")
-volume_db = -15.0
+volume_db = -30.0
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource("13_gx1jg")

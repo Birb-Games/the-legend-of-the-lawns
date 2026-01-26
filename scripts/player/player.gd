@@ -6,6 +6,7 @@ const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
 @onready var lawnmower: Lawnmower = get_node_or_null(LAWNMOWER_PATH)
 @onready var default_sprite_pos: Vector2 = $AnimatedSprite2D.position
 @export var water_gun: Sprite2D
+@export var eggplant_bullet_scene: PackedScene
 
 const NORMAL_SPEED: float = 60.0
 const LAWN_MOWER_SPEED: float = NORMAL_SPEED * 0.75
@@ -37,6 +38,9 @@ var fire_timer: float = 0.0
 var fire_damage_timer: float = 0.0
 const FIRE_DAMAGE_INTERVAL: float = 0.2
 var status_effects: Dictionary = {}
+# Eggplant
+var eggplant_timer: float = 0.0
+const EGGPLANT_INTERVAL: float = 0.5
 
 func get_max_health() -> int:
 	match max_health_level:
@@ -256,6 +260,26 @@ func take_fire_damage(delta: float) -> void:
 		fire_damage_timer = FIRE_DAMAGE_INTERVAL
 		damage(2)
 
+func shoot_eggplant_bullet(delta: float) -> void:
+	if get_status_effect_time("eggplant") <= 0.0:
+		return
+	eggplant_timer -= delta
+	if eggplant_timer > 0.0:
+		return
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		return
+	eggplant_timer = EGGPLANT_INTERVAL
+	var count: int = randi_range(4, 8)
+	var offset: float = randf_range(0.0, 2.0 * PI)
+	for i in range(count):
+		var eggplant_bullet = eggplant_bullet_scene.instantiate()
+		var angle: float = 2.0 * PI / count * i + offset
+		var bullet_dir = Vector2(cos(angle), sin(angle))
+		eggplant_bullet.position = get_sprite_pos()
+		eggplant_bullet.dir = bullet_dir
+		lawn.add_child(eggplant_bullet)
+
 func _process(delta: float) -> void:
 	update_status_effects(delta)
 	visible = health > 0
@@ -266,6 +290,7 @@ func _process(delta: float) -> void:
 		return
 
 	take_fire_damage(delta)
+	shoot_eggplant_bullet(delta)
 
 	update_enemy_arrow()
 	update_lawn_mower_arrow()
