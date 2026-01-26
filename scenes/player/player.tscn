@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene load_steps=51 format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bwwwtyegcjwi" path="res://assets/audio/sfx/footsteps/footsteps_grass.wav" id="12_gx1jg"]
 [ext_resource type="AudioStream" uid="uid://c2q15ntrokdi0" path="res://assets/audio/sfx/footsteps/footsteps.wav" id="13_gx1jg"]
 [ext_resource type="AudioStream" uid="uid://cteg86na8iivn" path="res://assets/audio/sfx/footsteps/footsteps_wood.wav" id="14_ugbui"]
+[ext_resource type="AudioStream" uid="uid://c5fg7exeno2b6" path="res://assets/audio/sfx/pop.wav" id="16_myrg7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_3vyb7")
@@ -416,6 +417,10 @@ volume_db = -10.0
 
 [node name="FootstepsWood" type="AudioStreamPlayer" parent="Footsteps"]
 stream = ExtResource("14_ugbui")
+volume_db = -10.0
+
+[node name="Pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_myrg7")
 volume_db = -10.0
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]

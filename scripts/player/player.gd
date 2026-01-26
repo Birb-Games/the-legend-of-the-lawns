@@ -269,6 +269,8 @@ func shoot_eggplant_bullet(delta: float) -> void:
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
 	if lawn == null:
 		return
+	if !$Pop.playing:
+		$Pop.play()
 	eggplant_timer = EGGPLANT_INTERVAL
 	var count: int = randi_range(4, 8)
 	var offset: float = randf_range(0.0, 2.0 * PI)
