@@ -9,7 +9,7 @@ radius = 4.0
 
 [node name="EggplantBullet" groups=["damage_weeds", "eggplant", "friendly_fire"] instance=ExtResource("1_v2bxe")]
 speed = 160.0
-rotation_speed = 900.0
+rotation_speed = 480.0
 damage_amt = 2
 
 [node name="Sprite2D" parent="." index="0"]

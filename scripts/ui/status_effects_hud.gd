@@ -21,3 +21,4 @@ func update_status_effect(status_effect: String, time: float) -> void:
 func _process(_delta: float) -> void:
 	update_status_effect("Speed", player.get_status_effect_time("speed"))
 	update_status_effect("Eggplant", player.get_status_effect_time("eggplant"))
+	update_status_effect("Fire", player.get_status_effect_time("fire"))

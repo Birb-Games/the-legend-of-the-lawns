@@ -25,7 +25,7 @@ func apply_power_up(player: Player) -> bool:
 
 	match power_up:
 		"tomato":
-			if player.health == player.get_max_health():
+			if player.health >= player.get_max_health():
 				return false
 			player.heal(50)
 		"spaghetti":
@@ -35,6 +35,12 @@ func apply_power_up(player: Player) -> bool:
 			var prev_time: float = player.get_status_effect_time("eggplant")	
 			player.set_status_effect_time("eggplant", prev_time + 15.0)
 			player.eggplant_timer = 0.0
+		"carrot":
+			# TODO
+			pass
+		"chilli":
+			var prev_time: float = player.get_status_effect_time("fire")	
+			player.set_status_effect_time("fire", prev_time + 20.0)
 	return true
 
 func _on_body_entered(body: Node2D) -> void:
