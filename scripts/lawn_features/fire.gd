@@ -174,6 +174,8 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet:
+		if area is FireBullet:
+			return
 		if area.active():
 			area.explode()
 			remove_lifetime_amt += 0.15

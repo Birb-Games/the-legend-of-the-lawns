@@ -99,7 +99,7 @@ func _on_area_entered(area: Area2D) -> void:
 		engaged = true
 		hit.emit()
 		area.explode()
-		health -= 1
+		health -= area.damage
 		health = max(health, 0)
 	elif area is EnemyBullet:
 		if area.is_in_group("damage_weeds"):

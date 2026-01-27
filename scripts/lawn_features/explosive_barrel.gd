@@ -62,7 +62,7 @@ func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 		if !area.active():
 			return
 		area.explode()
-		health -= 1
+		health -= area.damage
 		pulse = 1.0
 	elif area is EnemyBullet:
 		if !area.active():

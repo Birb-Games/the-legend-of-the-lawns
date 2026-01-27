@@ -249,7 +249,7 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 		if !body.active():
 			return
 		body.explode()
-		damage(1)
+		damage(body.damage)
 	elif body is EnemyBullet:
 		if !body.active():
 			return

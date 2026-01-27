@@ -156,6 +156,6 @@ func _on_area_entered(area: Area2D) -> void:
 	# Handle getting hit by a bullet
 	if area is PlayerBullet:
 		area.explode()
-		health -= 1
+		health -= area.damage
 		health = max(health, 0)
 		stun()

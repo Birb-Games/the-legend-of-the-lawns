@@ -39,7 +39,8 @@ func apply_power_up(player: Player) -> bool:
 			# TODO
 			pass
 		"chilli":
-			var prev_time: float = player.get_status_effect_time("fire")	
+			var prev_time: float = player.get_status_effect_time("fire")
+			player.damage(10)
 			player.set_status_effect_time("fire", prev_time + 20.0)
 	return true
 

@@ -4,9 +4,11 @@ extends Sprite2D
 # @onready var raycast: RayCast2D = $RayCast2D
 
 @onready var radius = (position - get_parent().get_node("AnimatedSprite2D").position).length()
+@onready var player: Player = get_parent()
 var size = scale.y
 
 @export var bullet_scene: PackedScene
+@export var fire_bullet_scene: PackedScene
 var SHOOT_COOLDOWN: float = 0.25
 var shoot_timer: float = 0.0
 
@@ -36,7 +38,11 @@ func _process(delta: float) -> void:
 
 	if shoot_timer <= 0.0 and Input.is_action_pressed("shoot_primary"):
 		$/root/Main.play_sfx("Shoot")
-		var bullet = bullet_scene.instantiate()
+		var bullet 
+		if player.get_status_effect_time("fire") > 0.0:
+			bullet = fire_bullet_scene.instantiate()
+		else:
+			bullet = bullet_scene.instantiate()
 		bullet.dir = Vector2(cos(rotation), sin(rotation))
 		bullet.position = $BulletSpawnPoint.global_position
 		$/root/Main/Lawn.add_child(bullet)

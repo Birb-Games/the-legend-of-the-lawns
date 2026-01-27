@@ -10,6 +10,8 @@ var lifetime: float = 5.0
 var can_hit_player: bool = false
 var can_activate_sprinkler: bool = true
 
+@export var damage: int = 1
+
 func active() -> bool:
 	return $Sprite2D.visible
 
