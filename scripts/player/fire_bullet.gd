@@ -9,7 +9,7 @@ func explode() -> void:
 	fire.global_position = global_position
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
 	if lawn:
-		lawn.add_child(fire)
+		lawn.call_deferred("add_child", fire)
 
 func _process(delta: float) -> void:
 	super._process(delta)
