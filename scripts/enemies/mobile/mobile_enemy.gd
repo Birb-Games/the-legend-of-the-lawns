@@ -22,7 +22,7 @@ var current_path_index: int = 0
 const ARRIVE_DISTANCE: float = 8.0
 var target_tile_pos: Vector2i
 # Fire damage
-var fire_collision_count: int = 0
+var fire_collisions: Dictionary
 var fire_damage_timer: float = 0.0
 var FIRE_DAMAGE_INTERVAL: float = 0.75
 var fire_time: float = 0.0
@@ -174,8 +174,17 @@ func take_fire_damage(delta: float) -> void:
 	if immune_to_fire:
 		return
 	var fire_particles: Node2D = get_node_or_null("FireParticles")
-	if fire_collision_count > 0:
-		fire_time = 2.0
+	# Try to set the enemy on fire
+	for fire_path: String in fire_collisions.keys():
+		var fire = get_node_or_null(fire_path)
+		# if the fire doesn't exist, ignore it
+		if fire == null:
+			continue
+		if fire is Fire:
+			# Make sure the fire is actually active
+			if fire.lifetime <= 0.2:
+				continue
+			fire_time = 2.0
 	if fire_time <= 0.0:
 		if fire_particles:
 			fire_particles.queue_free()
@@ -257,7 +266,7 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 			body.explode()
 			damage(body.damage_amt)
 	elif body is Fire:
-		fire_collision_count += 1
+		fire_collisions[body.get_path()] = true
 	elif body.get_parent() is Explosion:
 		if get_path() in body.get_parent().hit:
 			return
@@ -268,4 +277,4 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 
 func _on_bullet_hitbox_area_exited(body: Node2D) -> void:
 	if body is Fire:
-		fire_collision_count -= 1
+		fire_collisions.erase(body.get_path())
