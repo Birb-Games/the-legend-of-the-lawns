@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ivo8i"]
 radius = 4.0
 
-[node name="EggplantBullet" groups=["damage_weeds", "eggplant", "friendly_fire"] instance=ExtResource("1_v2bxe")]
+[node name="EggplantBullet" groups=["damage_weeds", "friendly_fire", "player_immune"] instance=ExtResource("1_v2bxe")]
 speed = 160.0
 rotation_speed = 480.0
 damage_amt = 2

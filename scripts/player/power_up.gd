@@ -7,6 +7,8 @@ const POWER_UP_LIST: Array[String] = [
 	"tomato",
 	"spaghetti",
 	"eggplant",
+	"carrot",
+	"chilli",
 ]
 @export var power_up: String = "tomato"
 @onready var sprite_y: float = $AnimatedSprite2D.position.y
@@ -36,8 +38,11 @@ func apply_power_up(player: Player) -> bool:
 			player.set_status_effect_time("eggplant", prev_time + 15.0)
 			player.eggplant_timer = 0.0
 		"carrot":
-			# TODO
-			pass
+			var rabbit: HelperRabbit = HelperRabbit.helper_rabbit_scene.instantiate()
+			rabbit.global_position = player.global_position
+			var lawn = get_node_or_null("/root/Main/Lawn/MobileEnemies")
+			if lawn:
+				lawn.call_deferred("add_child", rabbit)
 		"chilli":
 			var prev_time: float = player.get_status_effect_time("fire")
 			player.damage(10)

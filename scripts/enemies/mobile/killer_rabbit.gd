@@ -1,5 +1,7 @@
 extends MobileEnemy
 
+class_name KillerRabbit
+
 @export var blood_particles_scene: PackedScene
 @onready var default_contact_damage_pos: Vector2 = $ContactDamageZone.position
 var idle_timer: float = 0.0

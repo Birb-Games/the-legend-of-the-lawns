@@ -124,3 +124,7 @@ power_up = "chilli"
 [node name="PowerUp5" parent="." index="28" instance=ExtResource("22_221yd")]
 position = Vector2(132, 130)
 power_up = "carrot"
+
+[node name="PowerUp6" parent="." index="29" instance=ExtResource("22_221yd")]
+position = Vector2(150, 128)
+power_up = "carrot"

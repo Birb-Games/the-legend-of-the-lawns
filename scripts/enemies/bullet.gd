@@ -48,11 +48,11 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("lawn_obstacle") and $Sprite2D.visible:
-		explode()
+		explode()	
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_hitbox") and $Sprite2D.visible:
-		if is_in_group("eggplant"):
+		if is_in_group("player_immune"):
 			return
 		explode()
 		$/root/Main/Player.damage(damage_amt)

@@ -105,7 +105,9 @@ func _process(delta: float) -> void:
 	if hedge_destruction_timer > 0.0:
 		hedge_destruction_timer -= delta
 	elif lifetime > 0.1:
-		lawn.destroy_hedge(Vector2i(tile_x, tile_y))
+		if lawn.destroy_hedge(Vector2i(tile_x, tile_y)):
+			lawn.update_astar_grid = true
+			lawn.astar_grid.set_point_solid(Vector2i(tile_x, tile_y), false)
 
 	if can_spread:
 		hedge_spread_timer -= delta

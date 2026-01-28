@@ -1,5 +1,7 @@
 extends MobileEnemy
 
+class_name EvilGnome
+
 var active: bool = false
 var current_vel: Vector2 = Vector2.ZERO
 const CHANGE_DIR_INTERVAL: float = 0.1
@@ -104,4 +106,9 @@ func _on_wall_detector_body_entered(body: Node2D) -> void:
 func _on_wall_detector_body_exited(body: Node2D) -> void:
 	if body is TileMapLayer:
 		can_bounce = true
+
+func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
+	if body.is_in_group("target_all_mobile"):
+		return
+	super._on_bullet_hitbox_area_entered(body)
 

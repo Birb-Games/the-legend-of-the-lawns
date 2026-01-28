@@ -262,7 +262,7 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 	elif body is EnemyBullet:
 		if !body.active():
 			return
-		if !immune_to_friendly_fire and body.is_in_group("friendly_fire"):
+		if (!immune_to_friendly_fire and body.is_in_group("friendly_fire")) or body.is_in_group("target_all_mobile"):
 			body.explode()
 			damage(body.damage_amt)
 	elif body is Fire:
