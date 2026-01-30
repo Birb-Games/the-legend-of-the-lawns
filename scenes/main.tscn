@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://deycsrxnsbm3q"]
+[gd_scene format=3 uid="uid://deycsrxnsbm3q"]
 
 [ext_resource type="Script" uid="uid://dmiseibcivbxw" path="res://scripts/scene_control/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bs3x6d08che1a" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -25,105 +25,105 @@
 [ext_resource type="AudioStream" uid="uid://dpp6b66l37am0" path="res://assets/audio/sfx/cut_grass.wav" id="23_pm3ni"]
 [ext_resource type="AudioStream" uid="uid://cgr663goawjao" path="res://assets/audio/sfx/eat.wav" id="24_y6deb"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tefeu"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_y6deb"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=592425704]
 y_sort_enabled = true
 script = ExtResource("1_jyhfs")
 
-[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+[node name="Player" parent="." unique_id=1926989174 instance=ExtResource("1_o5qli")]
 position = Vector2(8, -142)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1074292849]
 zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("3_tefeu")
 
-[node name="AudioListener2D" type="AudioListener2D" parent="Player"]
+[node name="AudioListener2D" type="AudioListener2D" parent="Player" unique_id=1128162155]
 current = true
 
-[node name="Neighborhood" parent="." instance=ExtResource("3_sugp2")]
+[node name="Neighborhood" parent="." unique_id=1501943024 instance=ExtResource("3_sugp2")]
 metadata/_edit_lock_ = true
 
-[node name="HUD" parent="." instance=ExtResource("4_jyhfs")]
+[node name="HUD" parent="." unique_id=2047694319 instance=ExtResource("4_jyhfs")]
 
-[node name="PenaltyParticle" parent="." instance=ExtResource("5_tbgi4")]
+[node name="PenaltyParticle" parent="." unique_id=480127416 instance=ExtResource("5_tbgi4")]
 position = Vector2(8, -120)
-texture = SubResource("ViewportTexture_tefeu")
+texture = SubResource("ViewportTexture_y6deb")
 first_instance = true
 
-[node name="Sfx" type="Node" parent="."]
+[node name="Sfx" type="Node" parent="." unique_id=1253209665]
 
-[node name="DoorKnock" type="AudioStreamPlayer" parent="Sfx"]
+[node name="DoorKnock" type="AudioStreamPlayer" parent="Sfx" unique_id=2051960031]
 stream = ExtResource("7_o6xl0")
 
-[node name="Shoot" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Shoot" type="AudioStreamPlayer" parent="Sfx" unique_id=1724512458]
 stream = ExtResource("9_85g3d")
 volume_db = -15.0
 pitch_scale = 2.0
 
-[node name="LawnMowerStart" type="AudioStreamPlayer" parent="Sfx"]
+[node name="LawnMowerStart" type="AudioStreamPlayer" parent="Sfx" unique_id=790988990]
 stream = ExtResource("8_tipki")
 volume_db = -10.0
 bus = &"LawnMower"
 
-[node name="Mowing" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Mowing" type="AudioStreamPlayer" parent="Sfx" unique_id=868966380]
 stream = ExtResource("11_trceg")
 volume_db = -15.0
 bus = &"LawnMower"
 script = ExtResource("12_eb6dy")
 
-[node name="TurnOffMower" type="AudioStreamPlayer" parent="Sfx"]
+[node name="TurnOffMower" type="AudioStreamPlayer" parent="Sfx" unique_id=1933072759]
 stream = ExtResource("12_trceg")
 volume_db = -15.0
 bus = &"LawnMower"
 
-[node name="HedgeDestruction" type="AudioStreamPlayer" parent="Sfx"]
+[node name="HedgeDestruction" type="AudioStreamPlayer" parent="Sfx" unique_id=1939848742]
 stream = ExtResource("13_trceg")
 volume_db = 5.0
 max_polyphony = 8
 
-[node name="WaterGunInteraction" type="AudioStreamPlayer" parent="Sfx"]
+[node name="WaterGunInteraction" type="AudioStreamPlayer" parent="Sfx" unique_id=2089395982]
 stream = ExtResource("14_a8y0u")
 
-[node name="Click" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Click" type="AudioStreamPlayer" parent="Sfx" unique_id=164134672]
 stream = ExtResource("15_jkv2x")
 pitch_scale = 3.0
 bus = &"UI"
 
-[node name="Door" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Door" type="AudioStreamPlayer" parent="Sfx" unique_id=1531913251]
 stream = ExtResource("16_jbj1t")
 
-[node name="Hurt" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Hurt" type="AudioStreamPlayer" parent="Sfx" unique_id=1404394465]
 stream = ExtResource("17_muem4")
 volume_db = -8.0
 
-[node name="Money" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Money" type="AudioStreamPlayer" parent="Sfx" unique_id=566936732]
 stream = ExtResource("18_dp3eg")
 max_polyphony = 4
 bus = &"UI"
 
-[node name="Penalty" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Penalty" type="AudioStreamPlayer" parent="Sfx" unique_id=903519258]
 stream = ExtResource("19_0ld40")
 max_polyphony = 4
 bus = &"UI"
 
-[node name="Bus" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Bus" type="AudioStreamPlayer" parent="Sfx" unique_id=66827046]
 stream = ExtResource("20_gqmmt")
 
-[node name="MaleTalk" type="AudioStreamPlayer" parent="Sfx"]
+[node name="MaleTalk" type="AudioStreamPlayer" parent="Sfx" unique_id=639122370]
 stream = ExtResource("21_yc10j")
 
-[node name="FemaleTalk" type="AudioStreamPlayer" parent="Sfx"]
+[node name="FemaleTalk" type="AudioStreamPlayer" parent="Sfx" unique_id=1891184103]
 stream = ExtResource("22_jscy8")
 
-[node name="CutGrass" type="AudioStreamPlayer" parent="Sfx"]
+[node name="CutGrass" type="AudioStreamPlayer" parent="Sfx" unique_id=174892055]
 stream = ExtResource("23_pm3ni")
 volume_db = -25.0
 max_polyphony = 16
 bus = &"LawnMower"
 
-[node name="Eat" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Eat" type="AudioStreamPlayer" parent="Sfx" unique_id=1791339336]
 stream = ExtResource("24_y6deb")
