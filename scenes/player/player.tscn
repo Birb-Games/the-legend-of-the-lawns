@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bs3x6d08che1a"]
+[gd_scene format=3 uid="uid://bs3x6d08che1a"]
 
 [ext_resource type="Texture2D" uid="uid://c6bkr7cm3tjas" path="res://assets/textures/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -266,47 +266,47 @@ size = Vector2(12, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gtgg"]
 size = Vector2(12, 10)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_gun") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=466965754 node_paths=PackedStringArray("water_gun") groups=["player"]]
 script = ExtResource("1_g2els")
 water_gun = NodePath("WaterGun")
 eggplant_bullet_scene = ExtResource("2_fcs02")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=151721028]
 position = Vector2(0, -12)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_g2els")
 animation = &"idle_down"
 autoplay = "idle_down"
 
-[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D"]
+[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D" unique_id=2018121403]
 z_index = -1
 position = Vector2(0, 16)
 scale = Vector2(0.48718, 0.48718)
 texture = ExtResource("4_dqkch")
 
-[node name="InteractZone" type="Area2D" parent="AnimatedSprite2D"]
+[node name="InteractZone" type="Area2D" parent="AnimatedSprite2D" unique_id=1663056433]
 visible = false
 position = Vector2(0, -1.333334)
 scale = Vector2(1.3333334, 1.3333334)
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/InteractZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/InteractZone" unique_id=1059993365]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_qhqgy")
 
-[node name="PlayerHitbox" type="Area2D" parent="AnimatedSprite2D" groups=["player_hitbox"]]
+[node name="PlayerHitbox" type="Area2D" parent="AnimatedSprite2D" unique_id=22897084 groups=["player_hitbox"]]
 position = Vector2(0, 16)
 scale = Vector2(1.3333334, 1.3333334)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/PlayerHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/PlayerHitbox" unique_id=421684997]
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_fjrip")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1174439998]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="WaterGun" type="Sprite2D" parent="."]
+[node name="WaterGun" type="Sprite2D" parent="." unique_id=1707894527]
 position = Vector2(8, -9)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("4_tuyoq")
@@ -314,7 +314,7 @@ script = ExtResource("4_qlg0r")
 bullet_scene = ExtResource("7_smehm")
 fire_bullet_scene = ExtResource("8_kvlxm")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="WaterGun"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="WaterGun" unique_id=404010942]
 visible = false
 z_index = 1
 position = Vector2(18, 0)
@@ -324,63 +324,63 @@ texture = ExtResource("7_fjrip")
 lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_qhqgy")
 
-[node name="RayCast2D" type="RayCast2D" parent="WaterGun"]
+[node name="RayCast2D" type="RayCast2D" parent="WaterGun" unique_id=391149716]
 visible = false
 enabled = false
 target_position = Vector2(140, 0)
 collision_mask = 4
 collide_with_areas = true
 
-[node name="BulletSpawnPoint" type="Node2D" parent="WaterGun"]
+[node name="BulletSpawnPoint" type="Node2D" parent="WaterGun" unique_id=981779893]
 position = Vector2(17.1428, 0)
 
-[node name="Lawnmower" parent="." instance=ExtResource("8_5gtgg")]
+[node name="Lawnmower" parent="." unique_id=8083267 instance=ExtResource("8_5gtgg")]
 visible = false
 position = Vector2(0, -7)
 
-[node name="LawnmowerHitbox" type="CollisionShape2D" parent="."]
+[node name="LawnmowerHitbox" type="CollisionShape2D" parent="." unique_id=2037735989]
 visible = false
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_fm80t")
 
-[node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="."]
+[node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="." unique_id=1156750006]
 visible = false
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_gx1jg")
 
-[node name="UpCollisionChecker" type="Area2D" parent="."]
+[node name="UpCollisionChecker" type="Area2D" parent="." unique_id=1863485012]
 visible = false
 script = ExtResource("12_fm80t")
 
-[node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="UpCollisionChecker"]
+[node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="UpCollisionChecker" unique_id=1362176951]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_5gtgg")
 
-[node name="ReleaseCollisionChecker" type="Area2D" parent="."]
+[node name="ReleaseCollisionChecker" type="Area2D" parent="." unique_id=12205395]
 visible = false
 script = ExtResource("12_fm80t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseCollisionChecker"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseCollisionChecker" unique_id=1968324448]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="PickupCollisionChecker" type="Area2D" parent="."]
+[node name="PickupCollisionChecker" type="Area2D" parent="." unique_id=1674671902]
 script = ExtResource("12_fm80t")
 
-[node name="LawnmowerHitbox" type="CollisionShape2D" parent="PickupCollisionChecker"]
+[node name="LawnmowerHitbox" type="CollisionShape2D" parent="PickupCollisionChecker" unique_id=968390637]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_fm80t")
 
-[node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="PickupCollisionChecker"]
+[node name="LawnmowerUpHitbox" type="CollisionShape2D" parent="PickupCollisionChecker" unique_id=2058160523]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_gx1jg")
 
-[node name="NeighborArrow" parent="." instance=ExtResource("10_h17s1")]
+[node name="NeighborArrow" parent="." unique_id=1508890520 instance=ExtResource("10_h17s1")]
 modulate = Color(1, 1, 0, 0.627451)
 position = Vector2(29, -11)
 min_dist = 32.0
 
-[node name="LawnmowerArrow" parent="." instance=ExtResource("10_h17s1")]
+[node name="LawnmowerArrow" parent="." unique_id=1283328890 instance=ExtResource("10_h17s1")]
 modulate = Color(1, 0.25882354, 0.2, 0.5019608)
 position = Vector2(29, -11)
 scale = Vector2(0.25, 0.25)
@@ -389,7 +389,7 @@ point_to = NodePath("/root/Main/Lawn/Lawnmower")
 min_dist = 128.0
 max_dist = 1600.0
 
-[node name="WatergunArrow" parent="." instance=ExtResource("10_h17s1")]
+[node name="WatergunArrow" parent="." unique_id=1221262500 instance=ExtResource("10_h17s1")]
 modulate = Color(0.32156864, 0.5529412, 1, 0.5019608)
 position = Vector2(35, -11)
 scale = Vector2(0.25, 0.25)
@@ -398,7 +398,7 @@ point_to = NodePath("/root/Main/Lawn/WaterGun")
 min_dist = 128.0
 max_dist = 1600.0
 
-[node name="EnemyArrow" parent="." instance=ExtResource("10_h17s1")]
+[node name="EnemyArrow" parent="." unique_id=1060155911 instance=ExtResource("10_h17s1")]
 modulate = Color(0.16862746, 0.6901961, 0, 0.5019608)
 position = Vector2(29, -11)
 scale = Vector2(0.25, 0.25)
@@ -406,27 +406,29 @@ ignore_if_invisible = true
 min_dist = 80.0
 max_dist = 1600.0
 
-[node name="Footsteps" type="Node" parent="."]
+[node name="Footsteps" type="Node" parent="." unique_id=1158654524]
 script = ExtResource("11_je7p5")
 
-[node name="FootstepsGrass" type="AudioStreamPlayer" parent="Footsteps"]
+[node name="FootstepsGrass" type="AudioStreamPlayer" parent="Footsteps" unique_id=1032329719]
 stream = ExtResource("12_gx1jg")
 volume_db = -30.0
 
-[node name="Footsteps" type="AudioStreamPlayer" parent="Footsteps"]
+[node name="Footsteps" type="AudioStreamPlayer" parent="Footsteps" unique_id=439961838]
 stream = ExtResource("13_gx1jg")
 volume_db = -10.0
 
-[node name="FootstepsWood" type="AudioStreamPlayer" parent="Footsteps"]
+[node name="FootstepsWood" type="AudioStreamPlayer" parent="Footsteps" unique_id=1649999036]
 stream = ExtResource("14_ugbui")
 volume_db = -10.0
 
-[node name="Pop" type="AudioStreamPlayer" parent="."]
+[node name="Pop" type="AudioStreamPlayer" parent="." unique_id=1598686521]
 stream = ExtResource("16_myrg7")
 volume_db = -10.0
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_exited"]
+[connection signal="area_entered" from="AnimatedSprite2D/PlayerHitbox" to="." method="_on_player_hitbox_area_entered"]
+[connection signal="area_exited" from="AnimatedSprite2D/PlayerHitbox" to="." method="_on_player_hitbox_area_exited"]
 [connection signal="body_entered" from="UpCollisionChecker" to="UpCollisionChecker" method="_on_body_entered"]
 [connection signal="body_exited" from="UpCollisionChecker" to="UpCollisionChecker" method="_on_body_exited"]
 [connection signal="body_entered" from="ReleaseCollisionChecker" to="ReleaseCollisionChecker" method="_on_body_entered"]

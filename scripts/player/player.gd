@@ -17,6 +17,7 @@ var dir: String = "down"
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var can_pick_up_lawnmower: bool = false
+var inside_store: bool = false
 # The target velocity of the player based on the controls the player is pressing,
 # this might not be equal to `velocity` since the player may be walking into a wall
 var target_velocity: Vector2 = Vector2.ZERO
@@ -291,6 +292,12 @@ func _process(delta: float) -> void:
 		$WaterGun.hide()
 		return
 
+	# Hide neighbor arrow if we are inside the store
+	if inside_store and !$/root/Main.lawn_loaded:
+		$NeighborArrow.disabled = true
+	else:
+		$NeighborArrow.disabled = false
+
 	take_fire_damage(delta)
 	shoot_eggplant_bullet(delta)
 
@@ -485,3 +492,14 @@ func update_status_effects(delta: float) -> void:
 		status_effects[key] = time
 		if status_effects[key] <= 0.0:
 			status_effects.erase(key)
+
+func _on_player_hitbox_area_entered(area: Area2D) -> void:
+	# Check if we entered the store
+	if area.is_in_group("store"):
+		inside_store = true
+
+func _on_player_hitbox_area_exited(area: Area2D) -> void:
+	# We left the store
+	if area.is_in_group("store"):
+		inside_store = false
+
