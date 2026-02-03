@@ -39,6 +39,7 @@ func reset_buttons() -> void:
 	for button in buttons:
 		button.hide()
 		button.text = ""
+		button.disabled = false
 		# Disconnect the pressed signal
 		var connections = button.get_signal_connection_list("pressed")
 		for conn in connections:
@@ -297,6 +298,41 @@ func set_skip_day_menu() -> void:
 	buttons[1].text = "Yes (skip day)"
 	buttons[1].connect("pressed", skip_day)
 
+	show()
+
+func set_buy_menu(item: Buy) -> void:
+	current_npc = null
+	current_neighbor = null
+	reset_buttons()
+
+	set_menu_name("Buy %s?" % item.display_name)
+	set_wage_text("")
+	set_description_text(item.description)
+
+	buttons[0].show()
+	buttons[0].text = "No"
+	buttons[0].connect("pressed", on_leave_pressed)
+
+	buttons[1].show()
+	buttons[1].text = "Yes ($%d)" % item.price
+	buttons[1].connect(
+		"pressed",
+		func() -> void:
+			$/root/Main.play_sfx("Money")
+			item.buy()
+			reset_buttons()
+			
+			set_menu_name("Bought %s!" % item.display_name)
+			set_description_text("%s" % item.buy_text)
+
+			buttons[0].show()
+			buttons[0].text = "Leave"
+			buttons[0].connect("pressed", on_leave_pressed)
+	)
+	var main: Main = $/root/Main
+	if item.price > main.money:
+		buttons[1].disabled = true
+	
 	show()
 
 func on_leave_pressed() -> void:

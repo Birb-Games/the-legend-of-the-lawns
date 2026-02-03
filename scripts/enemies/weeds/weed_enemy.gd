@@ -61,7 +61,7 @@ func player_in_range() -> bool:
 # Upon death, an enemy might explode into a group of bullets that the player will
 # have to avoid
 func explode() -> void:
-	if randi() % 20 == 0:
+	if randi() % 50 == 0:
 		PowerUp.spawn($/root/Main/Lawn, global_position)
 	Sfx.play_at_pos(global_position, "pop", $/root/Main/Lawn)
 	var offset = randf() * 2.0 * PI

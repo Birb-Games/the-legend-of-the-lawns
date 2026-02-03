@@ -52,6 +52,8 @@
 [ext_resource type="PackedScene" uid="uid://uh2q8jylpyj2" path="res://scenes/decorations/potted_plant3.tscn" id="50_s3i68"]
 [ext_resource type="PackedScene" uid="uid://daji0sjv34jiy" path="res://scenes/interactable/glass_door.tscn" id="51_kpnj2"]
 [ext_resource type="Texture2D" uid="uid://8ewunhlh6hu7" path="res://assets/textures/decorations/store_window.png" id="52_vmv0n"]
+[ext_resource type="PackedScene" uid="uid://js2gvvvv4bla" path="res://scenes/decorations/store_display.tscn" id="53_sc68w"]
+[ext_resource type="PackedScene" uid="uid://dux415njqmp1m" path="res://scenes/interactable/buy.tscn" id="54_532a6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -678,6 +680,23 @@ texture = ExtResource("52_vmv0n")
 position = Vector2(-125, 725)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("52_vmv0n")
+
+[node name="StoreDisplay" parent="Store" unique_id=42241849 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 812)
+
+[node name="AppleJuice" parent="Store/StoreDisplay" unique_id=1063803969 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "apple juice"
+id = "apple_juice"
+description = "Increases maximum health."
+buy_text = "Increased max health! (80 -> 100)"
+price = 6
+
+[node name="StoreDisplay2" parent="Store" unique_id=1583091703 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 844)
+
+[node name="StoreDisplay3" parent="Store" unique_id=1939804169 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 876)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

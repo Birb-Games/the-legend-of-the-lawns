@@ -71,6 +71,7 @@ func advance_day() -> void:
 		if job.days_left <= 0:
 			job_list.erase(key)
 	$HUD/Control/QuestScreen.show_alert = false
+	Buy.update_buy_list()
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	player.reset_health()
@@ -181,6 +182,7 @@ func reset() -> void:
 	# Reset neighborhood
 	neighborhood = null
 	$Neighborhood.free()
+	Buy.buy_item_list.clear()
 	add_child(neighborhood_scene.instantiate())
 	neighborhood = $Neighborhood
 	job_list.clear()
@@ -290,6 +292,7 @@ func load_save() -> bool:
 	
 	update_continue_save()
 	$Neighborhood/JobBoard.update()
+	Buy.update_buy_list()
 	return true
 
 func update_continue_save() -> void:

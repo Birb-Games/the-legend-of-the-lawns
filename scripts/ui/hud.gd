@@ -151,6 +151,9 @@ func set_job_board_menu(job_board: JobBoard) -> void:
 func set_skip_day_menu() -> void:
 	$Control/NPCMenu.set_skip_day_menu()
 
+func set_buy_menu(item: Buy) -> void:
+	$Control/NPCMenu.set_buy_menu(item)
+
 func hide_neighbor_menu() -> void:
 	$Control/NPCMenu.hide_menu()
 

@@ -47,8 +47,10 @@ func get_max_health() -> int:
 	match max_health_level:
 		0:
 			return 80
-		_:
+		1:
 			return 100
+		_:
+			return 120
 
 func _ready() -> void:
 	$Lawnmower.hide()
