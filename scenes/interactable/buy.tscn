@@ -3,12 +3,37 @@
 [ext_resource type="Script" uid="uid://by0hmorqyn5gl" path="res://scripts/interactable/buy.gd" id="1_8nkxw"]
 [ext_resource type="Texture2D" uid="uid://ceuxs2wfhd4m4" path="res://assets/textures/items/upgrades/apple_juice.png" id="1_vhubf"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_weic1"]
+[ext_resource type="Texture2D" uid="uid://bc5xvgswjvvwi" path="res://assets/textures/items/upgrades/backpack.png" id="4_f82uq"]
+[ext_resource type="Texture2D" uid="uid://bbsiwpm0da0cd" path="res://assets/textures/items/upgrades/buy.png" id="4_gsonl"]
+[ext_resource type="Texture2D" uid="uid://c0evha1srh1ox" path="res://assets/textures/items/upgrades/red_shoes.png" id="4_ho0xu"]
+[ext_resource type="Texture2D" uid="uid://ddol2lvneo2rp" path="res://assets/textures/items/upgrades/bike_helmet.png" id="4_qukav"]
+[ext_resource type="Texture2D" uid="uid://ccgu1gouqgm1" path="res://assets/textures/items/upgrades/watch.png" id="6_ci6ny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weic1"]
-size = Vector2(22, 28.333332)
+size = Vector2(13.333333, 28.333332)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_weic1"]
 atlas = ExtResource("1_vhubf")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evmts"]
+atlas = ExtResource("4_f82uq")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f82uq"]
+atlas = ExtResource("4_qukav")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci6ny"]
+atlas = ExtResource("4_gsonl")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsonl"]
+atlas = ExtResource("4_ho0xu")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qukav"]
+atlas = ExtResource("6_ci6ny")
 region = Rect2(0, 0, 23, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xs01r"]
@@ -19,6 +44,46 @@ animations = [{
 }],
 "loop": true,
 "name": &"apple_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evmts")
+}],
+"loop": true,
+"name": &"backpack0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f82uq")
+}],
+"loop": true,
+"name": &"bike_helmet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci6ny")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsonl")
+}],
+"loop": true,
+"name": &"red_shoes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qukav")
+}],
+"loop": true,
+"name": &"watch",
 "speed": 5.0
 }]
 
@@ -37,7 +102,6 @@ texture = ExtResource("1_weic1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=873639486]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_xs01r")
-animation = &"apple_juice"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

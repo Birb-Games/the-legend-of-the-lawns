@@ -271,6 +271,7 @@ func load_save() -> bool:
 	else:
 		data = json.data
 		player.max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)
+		player.speed_level = max(Save.get_val(data, "speed_level", 0), 0)
 	
 	if current_day == 1:
 		player.global_position = $/root/Main/Neighborhood/Intro/PlayerStart.global_position

@@ -25,6 +25,7 @@ var target_velocity: Vector2 = Vector2.ZERO
 var dropped: bool = false
 var can_move: bool = true
 
+var speed_level: int = 0
 var max_health_level: int = 0
 var health: int = get_max_health()
 # For displaying a red flash whenever the player takes damage
@@ -340,6 +341,17 @@ func _process(delta: float) -> void:
 	hedge_collision_timer -= delta
 	hedge_collision_timer = max(hedge_collision_timer, 0.0)
 
+	# Attempt to buy something
+	if Input.is_action_just_pressed("interact") and !$/root/Main/HUD.npc_menu_open():
+		for buy_item: Buy in Buy.buy_item_list:	
+			if interact_text != buy_item.get_interact_text():
+				continue
+			if !buy_item.player_in_area:
+				continue
+			$/root/Main.play_sfx("Click")
+			$/root/Main/HUD.set_buy_menu(buy_item)
+			break
+
 func _physics_process(_delta: float) -> void:
 	if health <= 0:
 		return
@@ -433,7 +445,8 @@ func get_tile_position() -> Vector2i:
 
 func save() -> Dictionary:
 	var data = {
-		"max_health_level" : get_max_health(),
+		"max_health_level" : max_health_level,
+		"speed_level" : speed_level
 	}
 	return data
 
@@ -441,6 +454,7 @@ func reset() -> void:
 	status_effects.clear()
 	$NeighborArrow.point_to = ""
 	max_health_level = 0
+	speed_level = 0
 	fire_timer = 0.0
 
 func update_enemy_arrow() -> void:

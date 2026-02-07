@@ -27,6 +27,8 @@ func available() -> bool:
 	match id:
 		"apple_juice":
 			return player.max_health_level == 0
+		"red_shoes":
+			return player.speed_level == 0
 		_:
 			return true
 
@@ -37,28 +39,32 @@ func buy() -> void:
 	match id:
 		"apple_juice":
 			player.max_health_level = max(player.max_health_level, 1)
+		"red_shoes":
+			player.speed_level = max(player.speed_level, 1)
 		_:
 			pass
 
 func _process(_delta: float) -> void:
 	if !available():
 		hide()
-		return
+		return	
+	
+	if player_in_area:
+		player.interact_text = get_interact_text()
 
-	if Input.is_action_just_pressed("interact") and player_in_area and !$/root/Main/HUD.npc_menu_open():
-		$/root/Main.play_sfx("Click")
-		$/root/Main/HUD.set_buy_menu(self)
+func get_interact_text() -> String:
+	return "Buy %s - [SPACE]" % display_name
 
 func _on_body_entered(body: Node2D) -> void:
 	if !available():
 		return
 	if body is Player:
-		body.interact_text = "Buy %s - [SPACE]" % display_name
 		player_in_area = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if !available():
 		return
 	if body is Player:
-		body.interact_text = ""
+		if body.interact_text == get_interact_text():
+			body.interact_text = ""
 		player_in_area = false
