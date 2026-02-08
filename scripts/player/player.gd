@@ -90,6 +90,22 @@ func get_armor() -> float:
 		_:
 			return 0.2
 
+func get_bonus_multiplier() -> float:
+	match time_bonus_level:
+		0:
+			return 1.0
+		1:
+			return 1.5
+		2:
+			return 2.0
+		3:
+			return 2.5
+		_:
+			return 3.0
+
+func multiply_bonus(bonus: int) -> int:
+	return floori(float(bonus) * get_bonus_multiplier())
+
 func _ready() -> void:
 	$Lawnmower.hide()
 

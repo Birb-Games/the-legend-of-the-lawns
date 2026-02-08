@@ -122,6 +122,7 @@ func activate() -> void:
 	var armor_perc: int = int(floor(player.get_armor() * 100.0))
 	$InfoScreen/Stats/StatsText.text += "Armor: %d%%\n" % armor_perc
 	$InfoScreen/Stats/StatsText.text += "Speed: x%.2f\n" % player.get_speed_amount()
+	$InfoScreen/Stats/StatsText.text += "Time Bonus: x%.2f\n" % player.get_bonus_multiplier()
 
 	var current_quest: Quest = Quest.get_quest(main.current_level)
 	if current_quest == null:
