@@ -40,6 +40,6 @@ func _on_body_entered(body: Node2D) -> void:
 		explode()
 	elif body is Player:
 		if can_hit_player:
-			body.damage(1)
+			body.damage(1, true)
 			body.fire_timer = 0.0
 			explode()

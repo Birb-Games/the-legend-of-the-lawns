@@ -137,12 +137,21 @@ func update_hud_lawn(delta: float) -> void:
 		$HUD.update_info_text("Press [SPACE] to drop water gun.")
 	elif $Player.can_pick_up_water_gun:
 		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
-	
+
+	# Display the lawn progress bar
 	if $Player.health > 0:
 		$HUD.update_progress_bar($Lawn.get_perc_cut(), $Lawn.weeds_killed, $Lawn.total_weeds)
 	else:
 		$HUD/Control/ProgressBar.hide()
+	# Update health bar
 	$HUD.update_health_bar($Player.health, $Player.get_max_health())
+	# Update stamina bar
+	if $Player.speed_level == 0 or $Player.health <= 0:
+		# Player can not sprint, so hide the stamina bar by always passing 1.0
+		# as the stamina
+		$HUD.update_stamina_bar(1.0)
+	else:
+		$HUD.update_stamina_bar($Player.stamina)
 	$HUD.update_timer(delta)
 
 func update_hud_neighborhood() -> void:
@@ -153,6 +162,13 @@ func update_hud_neighborhood() -> void:
 	$HUD.update_progress_bar(-1.0, 0, 0) # -1.0 hides the progress bar
 	$HUD.update_health_bar(0, 0)
 	$HUD.hide_timer()
+	# Update stamina bar
+	if $Player.speed_level == 0:
+		# Player can not sprint, so hide the stamina bar by always passing 1.0
+		# as the stamina
+		$HUD.update_stamina_bar(1.0)
+	else:
+		$HUD.update_stamina_bar($Player.stamina)
 
 func update_hud(delta: float) -> void:
 	if lawn_loaded:
@@ -270,8 +286,7 @@ func load_save() -> bool:
 		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
 	else:
 		data = json.data
-		player.max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)
-		player.speed_level = max(Save.get_val(data, "speed_level", 0), 0)
+		player.load(data)
 	
 	if current_day == 1:
 		player.global_position = $/root/Main/Neighborhood/Intro/PlayerStart.global_position

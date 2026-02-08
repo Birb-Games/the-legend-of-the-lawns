@@ -7,6 +7,7 @@ const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
 @onready var default_sprite_pos: Vector2 = $AnimatedSprite2D.position
 @export var water_gun: Sprite2D
 @export var eggplant_bullet_scene: PackedScene
+@export var resist_particle_scene: PackedScene
 
 const NORMAL_SPEED: float = 60.0
 const LAWN_MOWER_SPEED: float = NORMAL_SPEED * 0.75
@@ -27,6 +28,13 @@ var can_move: bool = true
 
 var speed_level: int = 0
 var max_health_level: int = 0
+var inventory_level: int = 0
+var time_bonus_level: int = 0
+var armor_level: int = 0
+
+const STAMINA_RECHARD_DELAY: float = 6.0
+var stamina_recharge_cooldown: float = 0.0
+var stamina: float = 1.0
 var health: int = get_max_health()
 # For displaying a red flash whenever the player takes damage
 const DAMAGE_COOLDOWN: float = 1.25
@@ -53,6 +61,35 @@ func get_max_health() -> int:
 		_:
 			return 120
 
+func get_speed_amount() -> float:
+	match speed_level:
+		0, 1:
+			return 1.0
+		2:
+			return 1.1
+		3:
+			return 1.25
+		_:
+			return 1.33
+
+func get_stamina_time() -> float:
+	match speed_level:
+		0:
+			return 1.0
+		1:
+			return 3.0
+		_:
+			return 5.0
+
+func get_armor() -> float:
+	match armor_level:
+		0:
+			return 0.0
+		1:
+			return 0.07
+		_:
+			return 0.2
+
 func _ready() -> void:
 	$Lawnmower.hide()
 
@@ -74,8 +111,15 @@ func heal(amt: int) -> void:
 	health = min(health, get_max_health())
 
 # Apply damage to the player using this function
-func damage(amt: int) -> void:
+func damage(amt: int, apply_armor: bool = false) -> void:
 	if amt <= 0:
+		return
+	if apply_armor and randf() < get_armor():
+		var particles: GPUParticles2D = resist_particle_scene.instantiate()
+		particles.global_position = $AnimatedSprite2D.global_position
+		var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+		if lawn and health > 0:
+			lawn.add_child(particles)
 		return
 	health -= amt
 	health = max(health, 0)
@@ -262,7 +306,7 @@ func take_fire_damage(delta: float) -> void:
 	fire_damage_timer -= delta
 	if fire_damage_timer <= 0.0 or fire_timer <= 0.0:
 		fire_damage_timer = FIRE_DAMAGE_INTERVAL
-		damage(2)
+		damage(2, true)
 
 func shoot_eggplant_bullet(delta: float) -> void:
 	if get_status_effect_time("eggplant") <= 0.0:
@@ -333,6 +377,24 @@ func _process(delta: float) -> void:
 		speed = NORMAL_SPEED
 	if get_status_effect_time("speed") > 0.0:
 		speed *= 1.5
+	# Sprint
+	if Input.is_action_pressed("sprint") and speed_level >= 1 and stamina > 0.0:
+		if velocity.length() > 0.0:
+			stamina -= delta / get_stamina_time()
+		stamina = clamp(stamina, 0.0, 1.0)
+		speed *= 1.33
+		stamina_recharge_cooldown = STAMINA_RECHARD_DELAY
+	else:
+		# Recharge stamina
+		if stamina_recharge_cooldown > 0.0:
+			stamina_recharge_cooldown -= delta
+		else:
+			stamina += delta / get_stamina_time()
+			stamina = clamp(stamina, 0.0, 1.0)
+	# Slow down if we're out of stamina
+	if stamina <= 0.0:
+		speed *= 0.8
+	speed *= get_speed_amount()
 	
 	set_animation()
 	
@@ -446,16 +508,32 @@ func get_tile_position() -> Vector2i:
 func save() -> Dictionary:
 	var data = {
 		"max_health_level" : max_health_level,
-		"speed_level" : speed_level
+		"speed_level" : speed_level,
+		"inventory_level" : inventory_level,
+		"time_bonus_level" : time_bonus_level,
+		"armor_level" : armor_level,
 	}
 	return data
 
 func reset() -> void:
 	status_effects.clear()
 	$NeighborArrow.point_to = ""
+	fire_timer = 0.0
+	stamina = 1.0
+	stamina_recharge_cooldown = 0.0
+	# Reset the player levels	
 	max_health_level = 0
 	speed_level = 0
-	fire_timer = 0.0
+	inventory_level = 0
+	time_bonus_level = 0
+	armor_level = 0	
+
+func load(data: Dictionary) -> void:
+	max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)
+	speed_level = max(Save.get_val(data, "speed_level", 0), 0)
+	inventory_level = max(Save.get_val(data, "inventory_level", 0), 0)
+	time_bonus_level = max(Save.get_val(data, "time_bonus_level", 0), 0)
+	armor_level = max(Save.get_val(data, "armor_level", 0), 0)
 
 func update_enemy_arrow() -> void:
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
@@ -518,4 +596,3 @@ func _on_player_hitbox_area_exited(area: Area2D) -> void:
 	# We left the store
 	if area.is_in_group("store"):
 		inside_store = false
-

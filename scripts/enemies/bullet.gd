@@ -55,4 +55,4 @@ func _on_area_entered(area: Area2D) -> void:
 		if is_in_group("player_immune"):
 			return
 		explode()
-		$/root/Main/Player.damage(damage_amt)
+		$/root/Main/Player.damage(damage_amt, true)

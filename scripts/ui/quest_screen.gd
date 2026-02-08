@@ -119,6 +119,9 @@ func activate() -> void:
 	$InfoScreen/Stats/StatsText.text += "Name: %s\n" % main.player_name
 	$InfoScreen/Stats/StatsText.text += "Money: $%d\n" % main.money
 	$InfoScreen/Stats/StatsText.text += "Max Health: %d\n" % player.get_max_health()
+	var armor_perc: int = int(floor(player.get_armor() * 100.0))
+	$InfoScreen/Stats/StatsText.text += "Armor: %d%%\n" % armor_perc
+	$InfoScreen/Stats/StatsText.text += "Speed: x%.2f\n" % player.get_speed_amount()
 
 	var current_quest: Quest = Quest.get_quest(main.current_level)
 	if current_quest == null:

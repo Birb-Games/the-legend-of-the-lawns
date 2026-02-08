@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8jx2be4cfkb8"]
+[gd_scene format=3 uid="uid://c8jx2be4cfkb8"]
 
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/ui/hud.gd" id="1_oo0fn"]
@@ -15,30 +15,55 @@
 [sub_resource type="Gradient" id="Gradient_h022r"]
 colors = PackedColorArray(0, 0.30980393, 0.1882353, 1, 0.12156863, 0.6901961, 0.13725491, 1)
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=594664678]
 process_mode = 3
 script = ExtResource("1_oo0fn")
 progress_bar_gradient = SubResource("Gradient_h022r")
 
-[node name="MainMenu" parent="." instance=ExtResource("2_4jqwt")]
+[node name="MainMenu" parent="." unique_id=599443565 instance=ExtResource("2_4jqwt")]
 visible = false
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1545758993]
 z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 647.0
 
-[node name="ProgressBar" type="ColorRect" parent="Control"]
+[node name="StaminaBar" type="ColorRect" parent="Control" unique_id=116063545]
 layout_mode = 0
 offset_left = 417.0
-offset_top = 605.0
+offset_top = 566.0
 offset_right = 737.0
-offset_bottom = 625.0
+offset_bottom = 577.0
+color = Color(0.45490196, 0.76862746, 1, 0.627451)
+
+[node name="Outline" type="ColorRect" parent="Control/StaminaBar" unique_id=289545487]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 323.0
+offset_bottom = 14.0
+color = Color(0.08243013, 0.34653148, 0.50864434, 0.627451)
+
+[node name="StaminaBackground" type="ColorRect" parent="Control/StaminaBar" unique_id=1749333277]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 11.0
+color = Color(0.08235294, 0.34509805, 0.50980395, 0.627451)
+
+[node name="ProgressBar" type="ColorRect" parent="Control" unique_id=1786168736]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 619.0
+offset_right = 737.0
+offset_bottom = 639.0
 color = Color(0.12156863, 0.6901961, 0.13725491, 1)
 
-[node name="ProgressBarPercent" type="Label" parent="Control/ProgressBar"]
+[node name="ProgressBarPercent" type="Label" parent="Control/ProgressBar" unique_id=1528710001]
 layout_mode = 0
 offset_top = 3.0
 offset_right = 320.0
@@ -48,7 +73,7 @@ theme_override_font_sizes/font_size = 20
 text = "Lawn Progress: 0%"
 horizontal_alignment = 1
 
-[node name="Outline" type="ColorRect" parent="Control/ProgressBar"]
+[node name="Outline" type="ColorRect" parent="Control/ProgressBar" unique_id=1848068485]
 z_index = -1
 layout_mode = 0
 offset_left = -3.0
@@ -57,22 +82,22 @@ offset_right = 323.0
 offset_bottom = 23.0
 color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
-[node name="ProgressBackground" type="ColorRect" parent="Control/ProgressBar"]
+[node name="ProgressBackground" type="ColorRect" parent="Control/ProgressBar" unique_id=1264877041]
 z_index = -1
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 20.0
 color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
-[node name="HealthBar" type="ColorRect" parent="Control"]
+[node name="HealthBar" type="ColorRect" parent="Control" unique_id=1248791595]
 layout_mode = 0
 offset_left = 417.0
-offset_top = 572.0
+offset_top = 586.0
 offset_right = 737.0
-offset_bottom = 596.0
+offset_bottom = 610.0
 color = Color(0.878431, 0.0745098, 0.254902, 1)
 
-[node name="HealthPercent" type="Label" parent="Control/HealthBar"]
+[node name="HealthPercent" type="Label" parent="Control/HealthBar" unique_id=672059692]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 320.0
@@ -83,7 +108,7 @@ theme_override_font_sizes/font_size = 20
 text = "HP: 0/0"
 horizontal_alignment = 1
 
-[node name="Outline" type="ColorRect" parent="Control/HealthBar"]
+[node name="Outline" type="ColorRect" parent="Control/HealthBar" unique_id=183933950]
 z_index = -1
 layout_mode = 0
 offset_left = -3.0
@@ -92,14 +117,14 @@ offset_right = 323.0
 offset_bottom = 27.0
 color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
-[node name="HealthBackground" type="ColorRect" parent="Control/HealthBar"]
+[node name="HealthBackground" type="ColorRect" parent="Control/HealthBar" unique_id=1902471549]
 z_index = -1
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 24.0
 color = Color(0.1254902, 0.1254902, 0.1254902, 1)
 
-[node name="Timer" type="Label" parent="Control"]
+[node name="Timer" type="Label" parent="Control" unique_id=930640246]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 32.0
@@ -111,7 +136,7 @@ theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 30
 text = "00:00"
 
-[node name="Bonus" type="Label" parent="Control"]
+[node name="Bonus" type="Label" parent="Control" unique_id=1742455156]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 58.0
@@ -125,16 +150,16 @@ theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 24
 text = "BONUS: 00:00"
 
-[node name="NPCMenu" parent="Control" instance=ExtResource("6_5pdws")]
+[node name="NPCMenu" parent="Control" unique_id=2084685899 instance=ExtResource("6_5pdws")]
 visible = false
 layout_mode = 1
 
-[node name="InfoText" type="Label" parent="Control"]
+[node name="InfoText" type="Label" parent="Control" unique_id=1823214251]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 514.0
+offset_top = 507.0
 offset_right = 1152.0
-offset_bottom = 571.0
+offset_bottom = 564.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("1_ahhtf")
@@ -143,7 +168,7 @@ text = "Info Text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="Control"]
+[node name="MoneyLabel" type="Label" parent="Control" unique_id=1482171502]
 layout_mode = 0
 offset_left = 562.0
 offset_top = 29.0
@@ -156,7 +181,7 @@ theme_override_font_sizes/font_size = 32
 text = "Name $0"
 horizontal_alignment = 2
 
-[node name="DayLabel" type="Label" parent="Control"]
+[node name="DayLabel" type="Label" parent="Control" unique_id=674459384]
 layout_mode = 0
 offset_left = 848.0
 offset_top = 57.0
@@ -169,7 +194,7 @@ theme_override_font_sizes/font_size = 24
 text = "Day 1"
 horizontal_alignment = 2
 
-[node name="LawnCounter" type="Label" parent="Control"]
+[node name="LawnCounter" type="Label" parent="Control" unique_id=608713907]
 layout_mode = 0
 offset_left = 848.0
 offset_top = 78.0
@@ -182,40 +207,40 @@ theme_override_font_sizes/font_size = 24
 text = "Mowed 0 Lawns"
 horizontal_alignment = 2
 
-[node name="StatusEffectsHUD" parent="Control" instance=ExtResource("11_mj13f")]
+[node name="StatusEffectsHUD" parent="Control" unique_id=587926220 instance=ExtResource("11_mj13f")]
 layout_mode = 0
 offset_left = 1024.0
 offset_top = 379.0
 offset_right = 1149.0
 offset_bottom = 631.0
 
-[node name="QuestScreen" parent="Control" instance=ExtResource("10_kicr4")]
+[node name="QuestScreen" parent="Control" unique_id=1295251718 instance=ExtResource("10_kicr4")]
 visible = false
 layout_mode = 1
 
-[node name="DamageFlash" type="ColorRect" parent="Control"]
+[node name="DamageFlash" type="ColorRect" parent="Control" unique_id=1088162218]
 visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(1, 0, 0, 0.501961)
 
-[node name="PauseMenu" parent="Control" instance=ExtResource("4_047uy")]
+[node name="PauseMenu" parent="Control" unique_id=150444384 instance=ExtResource("4_047uy")]
 visible = false
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="Finishscreen" parent="Control" instance=ExtResource("6_047uy")]
+[node name="Finishscreen" parent="Control" unique_id=1305826465 instance=ExtResource("6_047uy")]
 visible = false
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="Failscreen" parent="Control" instance=ExtResource("7_5pdws")]
+[node name="Failscreen" parent="Control" unique_id=461086806 instance=ExtResource("7_5pdws")]
 visible = false
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="TransitionRect" type="ColorRect" parent="Control"]
+[node name="TransitionRect" type="ColorRect" parent="Control" unique_id=296227201]
 visible = false
 z_index = 2
 layout_mode = 0
@@ -225,7 +250,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("7_gss2c")
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="Control/TransitionRect"]
+[node name="Label" type="Label" parent="Control/TransitionRect" unique_id=487080955]
 layout_mode = 0
 offset_top = 225.0
 offset_right = 1152.0
@@ -236,7 +261,7 @@ text = "Day 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SaveIndicator" type="Label" parent="Control/TransitionRect"]
+[node name="SaveIndicator" type="Label" parent="Control/TransitionRect" unique_id=554892602]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 609.0

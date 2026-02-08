@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b8cv1f5uxjd26"]
+[gd_scene format=3 uid="uid://b8cv1f5uxjd26"]
 
 [ext_resource type="Script" uid="uid://bdg7dq32jr7oy" path="res://scripts/ui/quest_screen.gd" id="1_sfubm"]
 [ext_resource type="FontFile" uid="uid://b3j21gnxq1jn1" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Bold.ttf" id="2_44lm1"]
@@ -130,7 +130,7 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[node name="QuestScreen" type="Control"]
+[node name="QuestScreen" type="Control" unique_id=1580261145]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,7 +139,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sfubm")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=865479811]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 15.0
@@ -153,13 +153,13 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Alert" type="AnimatedSprite2D" parent="."]
+[node name="Alert" type="AnimatedSprite2D" parent="." unique_id=1287657475]
 position = Vector2(57, 99)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wf7ir")
 autoplay = "default"
 
-[node name="InfoScreen" type="Panel" parent="."]
+[node name="InfoScreen" type="Panel" parent="." unique_id=379156958]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -174,52 +174,52 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_wf7ir")
 
-[node name="QuestBox" type="VBoxContainer" parent="InfoScreen"]
+[node name="QuestBox" type="VBoxContainer" parent="InfoScreen" unique_id=2134496994]
 layout_mode = 0
 offset_left = 49.0
 offset_top = 52.2
 offset_right = 440.0
 offset_bottom = 478.2
 
-[node name="TODO" type="Label" parent="InfoScreen/QuestBox"]
+[node name="TODO" type="Label" parent="InfoScreen/QuestBox" unique_id=65888699]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_44lm1")
 theme_override_font_sizes/font_size = 32
 text = "TO-DO:"
 
-[node name="Spacing" type="ColorRect" parent="InfoScreen/QuestBox"]
+[node name="Spacing" type="ColorRect" parent="InfoScreen/QuestBox" unique_id=849897608]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="MowingGoal" type="Label" parent="InfoScreen/QuestBox"]
+[node name="MowingGoal" type="Label" parent="InfoScreen/QuestBox" unique_id=640303768]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 20
 text = " - Mow lawns:"
 
-[node name="Lawns" type="ScrollContainer" parent="InfoScreen/QuestBox"]
+[node name="Lawns" type="ScrollContainer" parent="InfoScreen/QuestBox" unique_id=1923298367]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 
-[node name="List" type="VBoxContainer" parent="InfoScreen/QuestBox/Lawns"]
+[node name="List" type="VBoxContainer" parent="InfoScreen/QuestBox/Lawns" unique_id=729328512]
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_constants/separation = 4
 
-[node name="Goals" type="VBoxContainer" parent="InfoScreen/QuestBox"]
+[node name="Goals" type="VBoxContainer" parent="InfoScreen/QuestBox" unique_id=1308132924]
 layout_mode = 2
 
-[node name="RewardLabel" type="Label" parent="InfoScreen/QuestBox"]
+[node name="RewardLabel" type="Label" parent="InfoScreen/QuestBox" unique_id=2036562462]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 24
 text = "Reward:"
 
-[node name="RewardLabel2" type="Label" parent="InfoScreen/QuestBox"]
+[node name="RewardLabel2" type="Label" parent="InfoScreen/QuestBox" unique_id=594003584]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
@@ -227,53 +227,53 @@ theme_override_font_sizes/font_size = 18
 text = "Go to the job board by the store 
 to claim rewards!"
 
-[node name="StartGameLabel" type="Label" parent="InfoScreen/QuestBox"]
+[node name="StartGameLabel" type="Label" parent="InfoScreen/QuestBox" unique_id=1760161376]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 theme_override_font_sizes/font_size = 18
 text = "Go outside and start mowing lawns!"
 
-[node name="Spacing2" type="ColorRect" parent="InfoScreen/QuestBox"]
+[node name="Spacing2" type="ColorRect" parent="InfoScreen/QuestBox" unique_id=1944539139]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="JobLabel" type="Label" parent="InfoScreen/QuestBox"]
+[node name="JobLabel" type="Label" parent="InfoScreen/QuestBox" unique_id=960023338]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_44lm1")
 theme_override_font_sizes/font_size = 20
 text = "Jobs:"
 
-[node name="JobLawns" type="ScrollContainer" parent="InfoScreen/QuestBox"]
+[node name="JobLawns" type="ScrollContainer" parent="InfoScreen/QuestBox" unique_id=1069573230]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 
-[node name="List" type="VBoxContainer" parent="InfoScreen/QuestBox/JobLawns"]
+[node name="List" type="VBoxContainer" parent="InfoScreen/QuestBox/JobLawns" unique_id=826440426]
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="Stats" type="VBoxContainer" parent="InfoScreen"]
+[node name="Stats" type="VBoxContainer" parent="InfoScreen" unique_id=359146388]
 layout_mode = 0
 offset_left = 579.0
 offset_top = 48.200012
 offset_right = 900.0
 offset_bottom = 298.2
 
-[node name="Label" type="Label" parent="InfoScreen/Stats"]
+[node name="Label" type="Label" parent="InfoScreen/Stats" unique_id=301449884]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_44lm1")
 theme_override_font_sizes/font_size = 36
 text = "Stats"
 
-[node name="Spacing" type="ColorRect" parent="InfoScreen/Stats"]
+[node name="Spacing" type="ColorRect" parent="InfoScreen/Stats" unique_id=1653932242]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="StatsText" type="Label" parent="InfoScreen/Stats"]
+[node name="StatsText" type="Label" parent="InfoScreen/Stats" unique_id=705988489]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
@@ -281,7 +281,7 @@ theme_override_font_sizes/font_size = 20
 text = "-"
 text_overrun_behavior = 3
 
-[node name="Map" type="Panel" parent="InfoScreen"]
+[node name="Map" type="Panel" parent="InfoScreen" unique_id=1304255198]
 layout_mode = 0
 offset_left = 575.0
 offset_top = 282.2
@@ -290,26 +290,26 @@ offset_bottom = 568.2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5niwt")
 script = ExtResource("7_wf7ir")
 
-[node name="HouseIcon" type="Sprite2D" parent="InfoScreen/Map"]
+[node name="HouseIcon" type="Sprite2D" parent="InfoScreen/Map" unique_id=1150477971]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("8_q2260")
 offset = Vector2(0, -6.5)
 
-[node name="StoreIcon" type="Sprite2D" parent="InfoScreen/Map"]
+[node name="StoreIcon" type="Sprite2D" parent="InfoScreen/Map" unique_id=14867550]
 scale = Vector2(2, 2)
 texture = ExtResource("9_jualb")
 offset = Vector2(-2, -11)
 
-[node name="PlayerIcon" type="Sprite2D" parent="InfoScreen/Map"]
+[node name="PlayerIcon" type="Sprite2D" parent="InfoScreen/Map" unique_id=618713123]
 z_index = 1
 scale = Vector2(2, 2)
 texture = ExtResource("10_wde8x")
 
-[node name="Circle" type="Sprite2D" parent="InfoScreen/Map"]
+[node name="Circle" type="Sprite2D" parent="InfoScreen/Map" unique_id=1377547408]
 texture = ExtResource("12_5niwt")
 offset = Vector2(0, -8)
 
-[node name="Label" type="Label" parent="InfoScreen/Map"]
+[node name="Label" type="Label" parent="InfoScreen/Map" unique_id=1588481920]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 264.0
@@ -319,7 +319,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 text = "The Neighborhood"
 
-[node name="NorthStLabel" type="Label" parent="InfoScreen/Map"]
+[node name="NorthStLabel" type="Label" parent="InfoScreen/Map" unique_id=40840267]
 layout_mode = 0
 offset_left = 45.0
 offset_top = 70.0
@@ -329,7 +329,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 text = "North Street"
 
-[node name="SouthStLabel" type="Label" parent="InfoScreen/Map"]
+[node name="SouthStLabel" type="Label" parent="InfoScreen/Map" unique_id=681501728]
 layout_mode = 0
 offset_left = 182.0
 offset_top = 242.0
@@ -339,7 +339,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 text = "South Street"
 
-[node name="BusStLabel" type="Label" parent="InfoScreen/Map"]
+[node name="BusStLabel" type="Label" parent="InfoScreen/Map" unique_id=1874328039]
 layout_mode = 0
 offset_left = 221.0
 offset_top = 221.0
@@ -350,7 +350,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 text = "Bus Street"
 
-[node name="BirbStLabel" type="Label" parent="InfoScreen/Map"]
+[node name="BirbStLabel" type="Label" parent="InfoScreen/Map" unique_id=1944292963]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 159.0
@@ -360,7 +360,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")
 text = "Birb Street"
 
-[node name="Label2" type="Label" parent="InfoScreen/Map"]
+[node name="Label2" type="Label" parent="InfoScreen/Map" unique_id=1304387131]
 layout_mode = 0
 offset_left = 5.0
 offset_top = -34.0
@@ -371,7 +371,7 @@ theme_override_fonts/font = ExtResource("2_ckwhv")
 text = "Click on a neighbor's name for 
 directions to their house."
 
-[node name="TemplateButton" type="Button" parent="."]
+[node name="TemplateButton" type="Button" parent="." unique_id=1847863571]
 custom_minimum_size = Vector2(240, 32)
 layout_mode = 0
 offset_right = 8.0
@@ -390,7 +390,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wf7ir")
 text = "[TEMPLATE BUTTON]"
 alignment = 0
 
-[node name="OpenSfx" type="AudioStreamPlayer" parent="."]
+[node name="OpenSfx" type="AudioStreamPlayer" parent="." unique_id=776572571]
 stream = ExtResource("6_jeve6")
 bus = &"UI"
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc5xvgswjvvwi"
-path="res://.godot/imported/backpack.png-7945a8424babf91d71bfeac2cae9d931.ctex"
+uid="uid://dwnetpvm5xjbb"
+path="res://.godot/imported/resist.png-9959bf736b7229c52c78a4049538e3f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/upgrades/backpack.png"
-dest_files=["res://.godot/imported/backpack.png-7945a8424babf91d71bfeac2cae9d931.ctex"]
+source_file="res://assets/textures/particles/resist.png"
+dest_files=["res://.godot/imported/resist.png-9959bf736b7229c52c78a4049538e3f4.ctex"]
 
 [params]
 

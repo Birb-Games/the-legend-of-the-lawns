@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://by0hmorqyn5gl" path="res://scripts/interactable/buy.gd" id="1_8nkxw"]
 [ext_resource type="Texture2D" uid="uid://ceuxs2wfhd4m4" path="res://assets/textures/items/upgrades/apple_juice.png" id="1_vhubf"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_weic1"]
-[ext_resource type="Texture2D" uid="uid://bc5xvgswjvvwi" path="res://assets/textures/items/upgrades/backpack.png" id="4_f82uq"]
+[ext_resource type="Texture2D" uid="uid://bc5xvgswjvvwi" path="res://assets/textures/items/upgrades/backpack0.png" id="4_f82uq"]
 [ext_resource type="Texture2D" uid="uid://bbsiwpm0da0cd" path="res://assets/textures/items/upgrades/buy.png" id="4_gsonl"]
 [ext_resource type="Texture2D" uid="uid://c0evha1srh1ox" path="res://assets/textures/items/upgrades/red_shoes.png" id="4_ho0xu"]
 [ext_resource type="Texture2D" uid="uid://ddol2lvneo2rp" path="res://assets/textures/items/upgrades/bike_helmet.png" id="4_qukav"]

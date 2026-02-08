@@ -29,6 +29,12 @@ func available() -> bool:
 			return player.max_health_level == 0
 		"red_shoes":
 			return player.speed_level == 0
+		"backpack0":
+			return player.inventory_level == 0
+		"watch":
+			return player.time_bonus_level == 0
+		"bike_helmet":
+			return player.armor_level == 0
 		_:
 			return true
 
@@ -41,6 +47,12 @@ func buy() -> void:
 			player.max_health_level = max(player.max_health_level, 1)
 		"red_shoes":
 			player.speed_level = max(player.speed_level, 1)
+		"backpack0":
+			player.inventory_level = max(player.inventory_level, 1)
+		"watch":
+			player.time_bonus_level = max(player.time_bonus_level, 1)
+		"bike_helmet":
+			player.armor_level = max(player.armor_level, 1)
 		_:
 			pass
 

@@ -54,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://8ewunhlh6hu7" path="res://assets/textures/decorations/store_window.png" id="52_vmv0n"]
 [ext_resource type="PackedScene" uid="uid://js2gvvvv4bla" path="res://scenes/decorations/store_display.tscn" id="53_sc68w"]
 [ext_resource type="PackedScene" uid="uid://dux415njqmp1m" path="res://scenes/interactable/buy.tscn" id="54_532a6"]
+[ext_resource type="Texture2D" uid="uid://dagtt6ra0h7dw" path="res://assets/textures/decorations/sale_poster.png" id="55_ka6mv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -697,18 +698,8 @@ position = Vector2(-19.000004, -15)
 scale = Vector2(0.8, 0.8)
 display_name = "shoes"
 id = "red_shoes"
-price = 15
-
-[node name="Watch" parent="Store/StoreDisplay" unique_id=1521992790 instance=ExtResource("54_532a6")]
-position = Vector2(20, -15)
-display_name = "watch"
-id = "watch"
-price = 20
-
-[node name="BikeHelmet" parent="Store/StoreDisplay" unique_id=794413820 instance=ExtResource("54_532a6")]
-position = Vector2(38, -15)
-display_name = "bike helmet"
-id = "bike_helmet"
+description = "Enables sprinting."
+buy_text = "Hold down `shift` to sprint."
 price = 15
 
 [node name="Backpack" parent="Store/StoreDisplay" unique_id=854580566 instance=ExtResource("54_532a6")]
@@ -716,7 +707,27 @@ position = Vector2(0, -15)
 scale = Vector2(0.75, 0.75)
 display_name = "backpack"
 id = "backpack0"
+description = "Increases inventory space."
 price = 20
+
+[node name="Watch" parent="Store/StoreDisplay" unique_id=1521992790 instance=ExtResource("54_532a6")]
+position = Vector2(20, -15)
+display_name = "watch"
+id = "watch"
+description = "Increases time bonus."
+price = 20
+
+[node name="BikeHelmet" parent="Store/StoreDisplay" unique_id=794413820 instance=ExtResource("54_532a6")]
+position = Vector2(38, -15)
+display_name = "bike helmet"
+id = "bike_helmet"
+description = "Increases armor."
+price = 15
+
+[node name="SalePoster" type="Sprite2D" parent="Store" unique_id=1531052310]
+position = Vector2(93, 725)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("55_ka6mv")
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]
