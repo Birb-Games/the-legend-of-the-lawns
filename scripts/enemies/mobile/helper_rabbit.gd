@@ -51,6 +51,9 @@ func shoot() -> void:
 		var weed: WeedEnemy = get_node_or_null(weed_path)
 		if weed == null:
 			continue
+		# Ignore weeds that are still spawning in
+		if weed.scale.x < weed.target_scale:
+			continue
 		if first_time:
 			first_time = false
 			closest_pos = weed.global_position
