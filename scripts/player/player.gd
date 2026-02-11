@@ -58,8 +58,16 @@ func get_max_health() -> int:
 			return 80
 		1:
 			return 100
-		_:
+		2:
 			return 120
+		3:
+			return 150
+		4:
+			return 180
+		5:
+			return 220
+		_:
+			return 250
 
 func get_speed_amount() -> float:
 	match speed_level:
@@ -78,17 +86,27 @@ func get_stamina_time() -> float:
 			return 1.0
 		1:
 			return 3.0
+		2:
+			return 4.0
+		3:
+			return 6.0
 		_:
-			return 5.0
+			return 7.5
 
 func get_armor() -> float:
 	match armor_level:
 		0:
-			return 0.0
+			return 0.00
 		1:
 			return 0.07
+		2:
+			return 0.10
+		3:
+			return 0.14
+		4:
+			return 0.18
 		_:
-			return 0.2
+			return 0.22
 
 func get_bonus_multiplier() -> float:
 	match time_bonus_level:
