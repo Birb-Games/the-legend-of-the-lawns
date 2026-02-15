@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy632qxlxuxrd"]
+
+[ext_resource type="PackedScene" uid="uid://b4a5sdixx0fuv" path="res://scenes/player/bullet.tscn" id="1_j80ou"]
+[ext_resource type="Script" uid="uid://dgnxostwvk6xx" path="res://scripts/player/fire_bullet.gd" id="2_hfiat"]
+[ext_resource type="Texture2D" uid="uid://cpreymp1fnr7s" path="res://assets/textures/particles/fire_bullet.png" id="2_uj8bn"]
+[ext_resource type="AudioStream" uid="uid://7l5qvc3tbae7" path="res://assets/audio/sfx/explosion.wav" id="3_b3pyd"]
+[ext_resource type="PackedScene" uid="uid://dt374voqtyp4c" path="res://scenes/particles/fire_particles.tscn" id="3_d8rga"]
+
+[node name="Bullet" instance=ExtResource("1_j80ou")]
+script = ExtResource("2_hfiat")
+damage = 5
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_uj8bn")
+
+[node name="GPUParticles2D" parent="." index="1"]
+texture = ExtResource("2_uj8bn")
+
+[node name="Explosion" parent="." index="3"]
+texture = ExtResource("2_uj8bn")
+
+[node name="Splash" parent="." index="4"]
+stream = ExtResource("3_b3pyd")
+volume_db = -5.0
+
+[node name="FireParticles" parent="." index="5" instance=ExtResource("3_d8rga")]
+scale = Vector2(0.3, 0.3)

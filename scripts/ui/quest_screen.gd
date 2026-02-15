@@ -118,7 +118,11 @@ func activate() -> void:
 	var player: Player = $/root/Main/Player 
 	$InfoScreen/Stats/StatsText.text += "Name: %s\n" % main.player_name
 	$InfoScreen/Stats/StatsText.text += "Money: $%d\n" % main.money
-	$InfoScreen/Stats/StatsText.text += "Max Health: %d\n" % player.max_health
+	$InfoScreen/Stats/StatsText.text += "Max Health: %d\n" % player.get_max_health()
+	var armor_perc: int = int(floor(player.get_armor() * 100.0))
+	$InfoScreen/Stats/StatsText.text += "Armor: %d%%\n" % armor_perc
+	$InfoScreen/Stats/StatsText.text += "Speed: x%.2f\n" % player.get_speed_amount()
+	$InfoScreen/Stats/StatsText.text += "Time Bonus: x%.2f\n" % player.get_bonus_multiplier()
 
 	var current_quest: Quest = Quest.get_quest(main.current_level)
 	if current_quest == null:
@@ -190,7 +194,7 @@ func _on_button_pressed() -> void:
 
 func _process(_delta: float) -> void:
 	var intro = get_node_or_null("/root/Main/HUD/Control/IntroWebsite")
-	if intro or $/root/Main/HUD/MainMenu.visible:
+	if intro or $/root/Main/HUD/MainMenu.visible or get_tree().paused:
 		return
 
 	var main: Main = $/root/Main

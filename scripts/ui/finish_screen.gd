@@ -76,11 +76,16 @@ func start_showing_menu() -> void:
 		extra *= (current_neighbor.max_bonus - current_neighbor.bonus_base)
 		time_bonus += floori(extra)
 	time_bonus = min(time_bonus, current_neighbor.max_bonus)
+	var player: Player = $/root/Main/Player
+	time_bonus = player.multiply_bonus(time_bonus)
 	current_wage_modifier += time_bonus
 
 	$Stats/TimeBonus.hide()
 	if time_bonus > 0:
-		$Stats/TimeBonus.text = "Time Bonus: $%d" % time_bonus
+		if player.time_bonus_level == 0:
+			$Stats/TimeBonus.text = "Time Bonus: $%d" % time_bonus
+		else:
+			$Stats/TimeBonus.text = "Time Bonus: $%d (x%.2f)" % [ time_bonus, player.get_bonus_multiplier() ]
 		add_labels([$Stats/TimeBonus], "Money")
 
 	# Payment

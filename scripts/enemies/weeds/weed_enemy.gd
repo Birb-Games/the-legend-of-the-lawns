@@ -61,6 +61,8 @@ func player_in_range() -> bool:
 # Upon death, an enemy might explode into a group of bullets that the player will
 # have to avoid
 func explode() -> void:
+	if randi() % 50 == 0:
+		PowerUp.spawn($/root/Main/Lawn, global_position)
 	Sfx.play_at_pos(global_position, "pop", $/root/Main/Lawn)
 	var offset = randf() * 2.0 * PI
 	for i in range(explosion_bullet_count):
@@ -97,7 +99,7 @@ func _on_area_entered(area: Area2D) -> void:
 		engaged = true
 		hit.emit()
 		area.explode()
-		health -= 1
+		health -= area.damage
 		health = max(health, 0)
 	elif area is EnemyBullet:
 		if area.is_in_group("damage_weeds"):

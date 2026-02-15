@@ -1,5 +1,7 @@
 extends MobileEnemy
 
+class_name KillerRabbit
+
 @export var blood_particles_scene: PackedScene
 @onready var default_contact_damage_pos: Vector2 = $ContactDamageZone.position
 var idle_timer: float = 0.0
@@ -44,6 +46,8 @@ func get_animation() -> String:
 	return "running"
 
 func explode() -> void:
+	if randi() % 30 == 0:
+		PowerUp.spawn($/root/Main/Lawn, global_position, "carrot")
 	play_death_sound()
 	var blood_particles: GPUParticles2D = blood_particles_scene.instantiate()
 	blood_particles.global_position = $AnimatedSprite2D.global_position

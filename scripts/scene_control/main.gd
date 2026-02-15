@@ -28,6 +28,9 @@ func update_money(modifier: int) -> void:
 	money += max(current_wage + modifier, 0)
 
 func _ready() -> void:
+	Settings.load()
+	Settings.apply_settings()
+
 	# Keep cursor in window - this is to prevent the mouse cursor from accidentally
 	# leaving when shooting enemies
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -68,11 +71,14 @@ func advance_day() -> void:
 		if job.days_left <= 0:
 			job_list.erase(key)
 	$HUD/Control/QuestScreen.show_alert = false
+	Buy.update_buy_list()
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
+	player.reset_health()
+	player.status_effects.clear()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	# Unload neighborhood
-	remove_child(neighborhood)	
+	remove_child(neighborhood)
 	# Load lawn
 	var lawn: Lawn = lawn_template.instantiate()
 	lawn.difficulty += difficulty_level
@@ -94,6 +100,7 @@ func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 func return_to_neighborhood() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	player.reset_health()
+	player.status_effects.clear()
 	if get_node_or_null("Lawn"):
 		get_node("Lawn").queue_free()
 	if !neighborhood.is_inside_tree():
@@ -130,12 +137,21 @@ func update_hud_lawn(delta: float) -> void:
 		$HUD.update_info_text("Press [SPACE] to drop water gun.")
 	elif $Player.can_pick_up_water_gun:
 		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
-	
+
+	# Display the lawn progress bar
 	if $Player.health > 0:
 		$HUD.update_progress_bar($Lawn.get_perc_cut(), $Lawn.weeds_killed, $Lawn.total_weeds)
 	else:
 		$HUD/Control/ProgressBar.hide()
-	$HUD.update_health_bar($Player.health, $Player.max_health)
+	# Update health bar
+	$HUD.update_health_bar($Player.health, $Player.get_max_health())
+	# Update stamina bar
+	if $Player.speed_level == 0 or $Player.health <= 0:
+		# Player can not sprint, so hide the stamina bar by always passing 1.0
+		# as the stamina
+		$HUD.update_stamina_bar(1.0)
+	else:
+		$HUD.update_stamina_bar($Player.stamina)
 	$HUD.update_timer(delta)
 
 func update_hud_neighborhood() -> void:
@@ -146,6 +162,13 @@ func update_hud_neighborhood() -> void:
 	$HUD.update_progress_bar(-1.0, 0, 0) # -1.0 hides the progress bar
 	$HUD.update_health_bar(0, 0)
 	$HUD.hide_timer()
+	# Update stamina bar
+	if $Player.speed_level == 0:
+		# Player can not sprint, so hide the stamina bar by always passing 1.0
+		# as the stamina
+		$HUD.update_stamina_bar(1.0)
+	else:
+		$HUD.update_stamina_bar($Player.stamina)
 
 func update_hud(delta: float) -> void:
 	if lawn_loaded:
@@ -175,6 +198,7 @@ func reset() -> void:
 	# Reset neighborhood
 	neighborhood = null
 	$Neighborhood.free()
+	Buy.buy_item_list.clear()
 	add_child(neighborhood_scene.instantiate())
 	neighborhood = $Neighborhood
 	job_list.clear()
@@ -262,7 +286,7 @@ func load_save() -> bool:
 		printerr("JSON parse error: ", json.get_error_message(), " in ", save_path)
 	else:
 		data = json.data
-		player.max_health = max(Save.get_val(data, "max_health", 80), 1)
+		player.load(data)
 	
 	if current_day == 1:
 		player.global_position = $/root/Main/Neighborhood/Intro/PlayerStart.global_position
@@ -284,6 +308,7 @@ func load_save() -> bool:
 	
 	update_continue_save()
 	$Neighborhood/JobBoard.update()
+	Buy.update_buy_list()
 	return true
 
 func update_continue_save() -> void:

@@ -95,7 +95,15 @@ func update_health_bar(health: int, max_health: int) -> void:
 	$Control/HealthBar.show()
 	var percent: float = float(health) / float(max_health)
 	$Control/HealthBar.size.x = percent * $Control/HealthBar/HealthBackground.size.x
-	$Control/HealthBar/HealthPercent.text = "HP: %d/%d" % [health, max_health] 
+	$Control/HealthBar/HealthPercent.text = "HP: %d/%d" % [health, max_health]
+
+# Stamina is given on a 0.0 -> 1.0 scale
+func update_stamina_bar(stamina: float) -> void:
+	if stamina < 0.0 or stamina >= 1.0:
+		$Control/StaminaBar.hide()
+		return
+	$Control/StaminaBar.show()
+	$Control/StaminaBar.size.x = stamina * $Control/StaminaBar/StaminaBackground.size.x
 
 func update_timer(delta: float) -> void:
 	$Control/Timer.show()
@@ -150,6 +158,9 @@ func set_job_board_menu(job_board: JobBoard) -> void:
 
 func set_skip_day_menu() -> void:
 	$Control/NPCMenu.set_skip_day_menu()
+
+func set_buy_menu(item: Buy) -> void:
+	$Control/NPCMenu.set_buy_menu(item)
 
 func hide_neighbor_menu() -> void:
 	$Control/NPCMenu.hide_menu()

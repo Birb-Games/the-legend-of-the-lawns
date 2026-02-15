@@ -158,7 +158,7 @@ File: male_talk.wav
 Author: pfranzen
 URL: https://freesound.org/people/pfranzen/sounds/264770/
 License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-Modifications made: Cut out parts, increased volume, decreased speed and pitch.
+Modifications made: Cut out parts, increased volume, decreased speed and pitch, denoised audio.
 
 File: female_talk.wav
 Author: Augdog
@@ -191,7 +191,12 @@ File: footsteps_wood.wav
 Author: congusbongus
 URL: https://opengameart.org/content/footsteps-on-different-surfaces
 License: CC-BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
-Modifications made: Added some silence at the end."
+Modifications made: Added some silence at the end.
+
+File: eat.wav
+Author: StarNinjas
+URL: https://opengameart.org/content/7-eating-crunches
+License: CC0"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

@@ -25,5 +25,5 @@ func _process(delta: float) -> void:
 	attack_timer -= delta
 	# Attempt to bite player
 	if can_attack_player() and attack_timer <= 0.0:
-		player.damage(damage_amt)
+		player.damage(damage_amt, true)
 		attack_timer = attack_cooldown

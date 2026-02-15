@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://o1e8sispk3lw"]
+
+[ext_resource type="Texture2D" uid="uid://df0kxpx3f4fws" path="res://assets/textures/items/power_ups/tomato.png" id="1_u5axp"]
+[ext_resource type="Script" uid="uid://5qh3tpua8p1o" path="res://scripts/player/power_up.gd" id="1_upmio"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_vdtji"]
+[ext_resource type="Texture2D" uid="uid://ba7gf84pym2ya" path="res://assets/textures/items/power_ups/chilli.png" id="3_8v7n1"]
+[ext_resource type="Texture2D" uid="uid://cdvexjqyqiwgx" path="res://assets/textures/items/power_ups/spaghetti.png" id="3_44ll4"]
+[ext_resource type="Texture2D" uid="uid://c1rv3kc12drmq" path="res://assets/textures/items/power_ups/carrot.png" id="3_f85wv"]
+[ext_resource type="Texture2D" uid="uid://7j04ib7ae8qw" path="res://assets/textures/items/power_ups/eggplant.png" id="3_sva4x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itviv"]
+size = Vector2(18, 6.6666665)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdpsf"]
+atlas = ExtResource("3_f85wv")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f85wv"]
+atlas = ExtResource("3_8v7n1")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v7n1"]
+atlas = ExtResource("3_sva4x")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sva4x"]
+atlas = ExtResource("3_44ll4")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5axp"]
+atlas = ExtResource("1_u5axp")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_itviv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdpsf")
+}],
+"loop": true,
+"name": &"carrot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f85wv")
+}],
+"loop": true,
+"name": &"chilli",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8v7n1")
+}],
+"loop": true,
+"name": &"eggplant",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sva4x")
+}],
+"loop": true,
+"name": &"spaghetti",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5axp")
+}],
+"loop": true,
+"name": &"tomato",
+"speed": 5.0
+}]
+
+[node name="PowerUp" type="Area2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_upmio")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.3333333)
+shape = SubResource("RectangleShape2D_itviv")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(0.50000006, 0.46153843)
+texture = ExtResource("1_vdtji")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_itviv")
+animation = &"tomato"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

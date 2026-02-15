@@ -83,6 +83,7 @@ func set_menu() -> void:
 		show()
 	$/root/Main/HUD.set_neighbor_menu(self)
 	$/root/Main/Player.can_move = true
+	$/root/Main/Player.interact_text = interact_text
 	knock_sound.disconnect("finished", set_menu)
 
 func _process(_delta: float) -> void:
@@ -96,6 +97,7 @@ func _process(_delta: float) -> void:
 			knock_sound.play()
 			knock_sound.connect("finished", set_menu)
 			$/root/Main/Player.can_move = false
+			$/root/Main/Player.interact_text = "*knock knock*"
 	if always_visible:
 		show()
 

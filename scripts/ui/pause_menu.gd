@@ -24,3 +24,9 @@ func _on_main_menu_pressed() -> void:
 	$/root/Main.reset()
 	hide()
 
+func _on_settings_pressed() -> void:
+	var main: Main = $/root/Main
+	main.play_sfx("Click")
+	$/root/Main/HUD/MainMenu.show()
+	$/root/Main/HUD/MainMenu/SettingsScreen.in_game = true
+	$/root/Main/HUD/MainMenu/SettingsScreen.activate()

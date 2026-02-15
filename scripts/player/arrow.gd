@@ -7,11 +7,12 @@ extends Sprite2D
 @onready var y_offset: float = position.y
 @onready var dist: float = position.x
 @onready var default_scale: Vector2 = scale
+var disabled: bool = false
 const MIN_MULTIPLIER = 0.5
 const MAX_MULTIPLIER = 1.25
 
 func _process(_delta: float) -> void:
-	if point_to.is_empty():
+	if disabled or point_to.is_empty():
 		hide()
 		return
 

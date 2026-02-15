@@ -105,7 +105,9 @@ func _process(delta: float) -> void:
 	if hedge_destruction_timer > 0.0:
 		hedge_destruction_timer -= delta
 	elif lifetime > 0.1:
-		lawn.destroy_hedge(Vector2i(tile_x, tile_y))
+		if lawn.destroy_hedge(Vector2i(tile_x, tile_y)):
+			lawn.update_astar_grid = true
+			lawn.astar_grid.set_point_solid(Vector2i(tile_x, tile_y), false)
 
 	if can_spread:
 		hedge_spread_timer -= delta
@@ -174,6 +176,8 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet:
+		if area is FireBullet:
+			return
 		if area.active():
 			area.explode()
 			remove_lifetime_amt += 0.15

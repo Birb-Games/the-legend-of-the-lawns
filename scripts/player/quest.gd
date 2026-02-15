@@ -54,11 +54,11 @@ static var list: Array[Quest] = [
 		),
 		[
 			Goal.new(
-				"Ask Mom if you can get the new Swapdeck.", 
+				"Ask Mom about the new Swapdeck.", 
 				func(main: Main) -> bool: return talked_to_npc(main, "Intro/MomIntro")
 			),
 			Goal.new(
-				"Ask Dad if you can get the new Swapdeck.", 
+				"Ask Dad about the new Swapdeck.", 
 				func(main: Main) -> bool: return talked_to_npc(main, "Intro/DadIntro")
 			),
 		]

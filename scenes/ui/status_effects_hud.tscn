@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhlsm7bvwaonr"]
+
+[ext_resource type="Texture2D" uid="uid://bg0c8elagaeo8" path="res://assets/textures/ui/status_icons/speed.png" id="1_4qvwc"]
+[ext_resource type="Script" uid="uid://bfsj4054bivku" path="res://scripts/ui/status_effects_hud.gd" id="1_6b5n0"]
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="1_rh7i5"]
+[ext_resource type="Texture2D" uid="uid://7j04ib7ae8qw" path="res://assets/textures/items/power_ups/eggplant.png" id="4_ftd6u"]
+[ext_resource type="Texture2D" uid="uid://b0dahx51b3p61" path="res://assets/textures/ui/status_icons/fire_icon.png" id="5_pstot"]
+
+[node name="StatusEffectsHUD" type="VBoxContainer"]
+offset_right = 125.0
+offset_bottom = 68.0
+alignment = 2
+script = ExtResource("1_6b5n0")
+
+[node name="Speed" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Speed"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_4qvwc")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Speed"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("1_rh7i5")
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+
+[node name="Eggplant" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Eggplant"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_ftd6u")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Eggplant"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("1_rh7i5")
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+
+[node name="Fire" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Fire"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("5_pstot")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Fire"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("1_rh7i5")
+theme_override_font_sizes/font_size = 24
+text = "00:00"

@@ -40,6 +40,9 @@ func play_sound(tile: Vector2i, source_id: int) -> void:
 func _process(_delta: float) -> void:
 	if player.velocity.length() == 0.0 or player.lawn_mower_active():
 		return
+	# Ignore if the player is dead
+	if player.health <= 0:
+		return
 
 	if !main.lawn_loaded:
 		# Check which tile the player is standing on

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://daji0sjv34jiy"]
+
+[ext_resource type="PackedScene" uid="uid://pff21d58ll8s" path="res://scenes/interactable/door.tscn" id="1_ajsxe"]
+[ext_resource type="Texture2D" uid="uid://cvgh31k24nk1c" path="res://assets/textures/houses/glass_door.png" id="2_jr3vy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajsxe"]
+size = Vector2(45.333336, 57.333336)
+
+[node name="Door" unique_id=1770307927 instance=ExtResource("1_ajsxe")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1772412345]
+shape = SubResource("RectangleShape2D_ajsxe")
+
+[node name="Sprite2D" parent="." index="1" unique_id=346465031]
+texture = ExtResource("2_jr3vy")

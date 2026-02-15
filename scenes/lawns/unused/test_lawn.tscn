@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dpa88af6o4cu7"]
+[gd_scene load_steps=24 format=4 uid="uid://dpa88af6o4cu7"]
 
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_ftld5"]
 [ext_resource type="PackedScene" uid="uid://kai60sy8qsix" path="res://scenes/enemies/flowers/yellow_flower.tscn" id="2_rg8jm"]
@@ -17,10 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://dkuhevs5nmf32" path="res://scenes/enemies/mobile/evil_gnome.tscn" id="15_y3n1o"]
 [ext_resource type="PackedScene" uid="uid://cm4b5rcedfd1n" path="res://scenes/lawn_features/boom_shroom.tscn" id="16_qj5sc"]
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="16_quhsh"]
+[ext_resource type="PackedScene" uid="uid://crnj1ljbpuy2m" path="res://scenes/enemies/mobile/tomato_boy.tscn" id="16_wfe5u"]
 [ext_resource type="PackedScene" uid="uid://boiyvtxjuw0rf" path="res://scenes/enemies/mobile/shrub_demon_mound.tscn" id="19_eriig"]
 [ext_resource type="PackedScene" uid="uid://30584qe175b" path="res://scenes/lawn_features/sprinkler.tscn" id="19_y3n1o"]
 [ext_resource type="PackedScene" uid="uid://bsm20lnybkim0" path="res://scenes/enemies/mobile/wasp_nest.tscn" id="20_y3n1o"]
 [ext_resource type="PackedScene" uid="uid://bfpal888ujrry" path="res://scenes/enemies/mobile/worm_spawner.tscn" id="21_bxqry"]
+[ext_resource type="PackedScene" uid="uid://o1e8sispk3lw" path="res://scenes/player/power_up.tscn" id="22_221yd"]
 
 [node name="TestLawn" instance=ExtResource("1_ftld5")]
 max_weeds = 0
@@ -69,6 +71,9 @@ position = Vector2(92.99999, 122)
 [node name="EvilGnome" parent="MobileEnemies" index="3" instance=ExtResource("15_y3n1o")]
 position = Vector2(116, -132)
 
+[node name="TomatoBoy" parent="MobileEnemies" index="4" instance=ExtResource("16_wfe5u")]
+position = Vector2(116.858, -35.579727)
+
 [node name="ExplosiveBarrel" parent="." index="14" instance=ExtResource("16_quhsh")]
 position = Vector2(10, -40)
 
@@ -100,3 +105,26 @@ position = Vector2(100.00001, -114.00001)
 
 [node name="WormSpawner" parent="." index="23" instance=ExtResource("21_bxqry")]
 position = Vector2(0, 93)
+
+[node name="PowerUp" parent="." index="24" instance=ExtResource("22_221yd")]
+position = Vector2(129.65585, 85.56987)
+
+[node name="PowerUp2" parent="." index="25" instance=ExtResource("22_221yd")]
+position = Vector2(139, 98)
+power_up = "spaghetti"
+
+[node name="PowerUp3" parent="." index="26" instance=ExtResource("22_221yd")]
+position = Vector2(134, 114)
+power_up = "eggplant"
+
+[node name="PowerUp4" parent="." index="27" instance=ExtResource("22_221yd")]
+position = Vector2(145, 148)
+power_up = "chilli"
+
+[node name="PowerUp5" parent="." index="28" instance=ExtResource("22_221yd")]
+position = Vector2(132, 130)
+power_up = "carrot"
+
+[node name="PowerUp6" parent="." index="29" instance=ExtResource("22_221yd")]
+position = Vector2(150, 128)
+power_up = "carrot"

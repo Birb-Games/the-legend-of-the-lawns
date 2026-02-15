@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 			main.advance_quest()
 			$/root/Main/HUD/Control/QuestScreen.show_alert = true
 		var player: Player = $/root/Main/Player
-		player.position = go_to.position
+		player.position = go_to.global_position
 		player.dir = "down"
 		# Activate transition animation
 		$/root/Main/HUD/Control/TransitionRect.start_bus_animation()

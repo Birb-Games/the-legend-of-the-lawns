@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bkp0337arv3rf"]
+
+[ext_resource type="Texture2D" uid="uid://dwnetpvm5xjbb" path="res://assets/textures/particles/resist.png" id="1_3rgo3"]
+[ext_resource type="Material" uid="uid://cquspu3ekvs3w" path="res://assets/pop_up_particle_material.tres" id="2_plhlh"]
+[ext_resource type="Script" uid="uid://biobcr36guyl1" path="res://scripts/particles/one_shot_particles.gd" id="3_cs50d"]
+
+[node name="ResistParticle" type="GPUParticles2D" unique_id=937413664]
+emitting = false
+amount = 1
+texture = ExtResource("1_3rgo3")
+lifetime = 0.75
+one_shot = true
+process_material = ExtResource("2_plhlh")
+script = ExtResource("3_cs50d")

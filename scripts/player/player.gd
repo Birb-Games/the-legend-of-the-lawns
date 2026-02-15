@@ -6,6 +6,8 @@ const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
 @onready var lawnmower: Lawnmower = get_node_or_null(LAWNMOWER_PATH)
 @onready var default_sprite_pos: Vector2 = $AnimatedSprite2D.position
 @export var water_gun: Sprite2D
+@export var eggplant_bullet_scene: PackedScene
+@export var resist_particle_scene: PackedScene
 
 const NORMAL_SPEED: float = 60.0
 const LAWN_MOWER_SPEED: float = NORMAL_SPEED * 0.75
@@ -16,6 +18,7 @@ var dir: String = "down"
 var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var can_pick_up_lawnmower: bool = false
+var inside_store: bool = false
 # The target velocity of the player based on the controls the player is pressing,
 # this might not be equal to `velocity` since the player may be walking into a wall
 var target_velocity: Vector2 = Vector2.ZERO
@@ -23,8 +26,16 @@ var target_velocity: Vector2 = Vector2.ZERO
 var dropped: bool = false
 var can_move: bool = true
 
-var max_health: int = 80
-var health: int = max_health
+var speed_level: int = 0
+var max_health_level: int = 0
+var inventory_level: int = 0
+var time_bonus_level: int = 0
+var armor_level: int = 0
+
+const STAMINA_RECHARD_DELAY: float = 6.0
+var stamina_recharge_cooldown: float = 0.0
+var stamina: float = 1.0
+var health: int = get_max_health()
 # For displaying a red flash whenever the player takes damage
 const DAMAGE_COOLDOWN: float = 1.25
 var damage_timer: float = 0.0
@@ -36,6 +47,82 @@ const HEDGE_TIMER: float = 0.3
 var fire_timer: float = 0.0
 var fire_damage_timer: float = 0.0
 const FIRE_DAMAGE_INTERVAL: float = 0.2
+var status_effects: Dictionary = {}
+# Eggplant
+var eggplant_timer: float = 0.0
+const EGGPLANT_INTERVAL: float = 0.5
+
+func get_max_health() -> int:
+	match max_health_level:
+		0:
+			return 80
+		1:
+			return 100
+		2:
+			return 120
+		3:
+			return 150
+		4:
+			return 180
+		5:
+			return 220
+		_:
+			return 250
+
+func get_speed_amount() -> float:
+	match speed_level:
+		0, 1:
+			return 1.0
+		2:
+			return 1.1
+		3:
+			return 1.25
+		_:
+			return 1.33
+
+func get_stamina_time() -> float:
+	match speed_level:
+		0:
+			return 1.0
+		1:
+			return 3.0
+		2:
+			return 4.0
+		3:
+			return 6.0
+		_:
+			return 7.5
+
+func get_armor() -> float:
+	match armor_level:
+		0:
+			return 0.00
+		1:
+			return 0.07
+		2:
+			return 0.10
+		3:
+			return 0.14
+		4:
+			return 0.18
+		_:
+			return 0.22
+
+func get_bonus_multiplier() -> float:
+	match time_bonus_level:
+		0:
+			return 1.0
+		1:
+			return 1.5
+		2:
+			return 2.0
+		3:
+			return 2.5
+		_:
+			return 3.0
+
+func multiply_bonus(bonus: int) -> int:
+	return floori(float(bonus) * get_bonus_multiplier())
 
 func _ready() -> void:
 	$Lawnmower.hide()
@@ -44,18 +131,29 @@ func _ready() -> void:
 func get_hp_perc() -> float:
 	if health <= 0:
 		return 0.0
-	return float(health) / float(max_health)
+	return float(health) / float(get_max_health())
 
 func reset_health() -> void:
-	health = max_health
+	health = get_max_health()
 	damage_timer = 0.0
 
 func activate_hedge_timer() -> void:
 	hedge_collision_timer = HEDGE_TIMER
 
+func heal(amt: int) -> void:
+	health += amt
+	health = min(health, get_max_health())
+
 # Apply damage to the player using this function
-func damage(amt: int) -> void:
+func damage(amt: int, apply_armor: bool = false) -> void:
 	if amt <= 0:
+		return
+	if apply_armor and randf() < get_armor():
+		var particles: GPUParticles2D = resist_particle_scene.instantiate()
+		particles.global_position = $AnimatedSprite2D.global_position
+		var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+		if lawn and health > 0:
+			lawn.add_child(particles)
 		return
 	health -= amt
 	health = max(health, 0)
@@ -242,9 +340,32 @@ func take_fire_damage(delta: float) -> void:
 	fire_damage_timer -= delta
 	if fire_damage_timer <= 0.0 or fire_timer <= 0.0:
 		fire_damage_timer = FIRE_DAMAGE_INTERVAL
-		damage(2)
+		damage(2, true)
+
+func shoot_eggplant_bullet(delta: float) -> void:
+	if get_status_effect_time("eggplant") <= 0.0:
+		return
+	eggplant_timer -= delta
+	if eggplant_timer > 0.0:
+		return
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		return
+	if !$Pop.playing:
+		$Pop.play()
+	eggplant_timer = EGGPLANT_INTERVAL
+	var count: int = randi_range(4, 8)
+	var offset: float = randf_range(0.0, 2.0 * PI)
+	for i in range(count):
+		var eggplant_bullet = eggplant_bullet_scene.instantiate()
+		var angle: float = 2.0 * PI / count * i + offset
+		var bullet_dir = Vector2(cos(angle), sin(angle))
+		eggplant_bullet.position = get_sprite_pos()
+		eggplant_bullet.dir = bullet_dir
+		lawn.add_child(eggplant_bullet)
 
 func _process(delta: float) -> void:
+	update_status_effects(delta)
 	visible = health > 0
 	if health <= 0:
 		if lawn_mower_active():
@@ -252,7 +373,14 @@ func _process(delta: float) -> void:
 		$WaterGun.hide()
 		return
 
+	# Hide neighbor arrow if we are inside the store
+	if inside_store and !$/root/Main.lawn_loaded:
+		$NeighborArrow.disabled = true
+	else:
+		$NeighborArrow.disabled = false
+
 	take_fire_damage(delta)
+	shoot_eggplant_bullet(delta)
 
 	update_enemy_arrow()
 	update_lawn_mower_arrow()
@@ -281,6 +409,26 @@ func _process(delta: float) -> void:
 		speed = LAWN_MOWER_SPEED
 	else:
 		speed = NORMAL_SPEED
+	if get_status_effect_time("speed") > 0.0:
+		speed *= 1.5
+	# Sprint
+	if Input.is_action_pressed("sprint") and speed_level >= 1 and stamina > 0.0:
+		if velocity.length() > 0.0:
+			stamina -= delta / get_stamina_time()
+		stamina = clamp(stamina, 0.0, 1.0)
+		speed *= 1.33
+		stamina_recharge_cooldown = STAMINA_RECHARD_DELAY
+	else:
+		# Recharge stamina
+		if stamina_recharge_cooldown > 0.0:
+			stamina_recharge_cooldown -= delta
+		else:
+			stamina += delta / get_stamina_time()
+			stamina = clamp(stamina, 0.0, 1.0)
+	# Slow down if we're out of stamina
+	if stamina <= 0.0:
+		speed *= 0.8
+	speed *= get_speed_amount()
 	
 	set_animation()
 	
@@ -288,6 +436,17 @@ func _process(delta: float) -> void:
 	damage_timer = max(damage_timer, 0.0)
 	hedge_collision_timer -= delta
 	hedge_collision_timer = max(hedge_collision_timer, 0.0)
+
+	# Attempt to buy something
+	if Input.is_action_just_pressed("interact") and !$/root/Main/HUD.npc_menu_open():
+		for buy_item: Buy in Buy.buy_item_list:	
+			if interact_text != buy_item.get_interact_text():
+				continue
+			if !buy_item.player_in_area:
+				continue
+			$/root/Main.play_sfx("Click")
+			$/root/Main/HUD.set_buy_menu(buy_item)
+			break
 
 func _physics_process(_delta: float) -> void:
 	if health <= 0:
@@ -314,7 +473,7 @@ func _physics_process(_delta: float) -> void:
 	# Normalize player velocity
 	if velocity.length() > 0.0:
 		velocity /= velocity.length()
-	velocity *= speed
+	velocity *= speed	
 	target_velocity = velocity
 	
 	var prev_position: Vector2 = global_position 
@@ -382,14 +541,33 @@ func get_tile_position() -> Vector2i:
 
 func save() -> Dictionary:
 	var data = {
-		"max_health" : max_health,
+		"max_health_level" : max_health_level,
+		"speed_level" : speed_level,
+		"inventory_level" : inventory_level,
+		"time_bonus_level" : time_bonus_level,
+		"armor_level" : armor_level,
 	}
 	return data
 
 func reset() -> void:
+	status_effects.clear()
 	$NeighborArrow.point_to = ""
-	max_health = 80
 	fire_timer = 0.0
+	stamina = 1.0
+	stamina_recharge_cooldown = 0.0
+	# Reset the player levels	
+	max_health_level = 0
+	speed_level = 0
+	inventory_level = 0
+	time_bonus_level = 0
+	armor_level = 0	
+
+func load(data: Dictionary) -> void:
+	max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)
+	speed_level = max(Save.get_val(data, "speed_level", 0), 0)
+	inventory_level = max(Save.get_val(data, "inventory_level", 0), 0)
+	time_bonus_level = max(Save.get_val(data, "time_bonus_level", 0), 0)
+	armor_level = max(Save.get_val(data, "armor_level", 0), 0)
 
 func update_enemy_arrow() -> void:
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
@@ -422,3 +600,33 @@ func update_lawn_mower_arrow() -> void:
 		return
 
 	$LawnmowerArrow.point_to = ""
+
+func get_status_effect_time(id: String) -> float:
+	if id in status_effects:
+		return status_effects[id]
+	return 0.0
+
+func set_status_effect_time(id: String, time: float) -> void:
+	status_effects[id] = time
+
+func update_status_effects(delta: float) -> void:
+	if health <= 0 and status_effects.size() > 0:
+		status_effects.clear()
+		return
+
+	for key in status_effects.keys():
+		var time: float = status_effects[key]
+		time -= delta
+		status_effects[key] = time
+		if status_effects[key] <= 0.0:
+			status_effects.erase(key)
+
+func _on_player_hitbox_area_entered(area: Area2D) -> void:
+	# Check if we entered the store
+	if area.is_in_group("store"):
+		inside_store = true
+
+func _on_player_hitbox_area_exited(area: Area2D) -> void:
+	# We left the store
+	if area.is_in_group("store"):
+		inside_store = false
