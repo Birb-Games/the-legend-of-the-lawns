@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://b56p62unyo688"]
+[gd_scene format=3 uid="uid://brq3scjfltm0n"]
 
 [ext_resource type="Texture2D" uid="uid://lc1mhacqpnmv" path="res://assets/textures/enemies/weeds/shrubweed.png" id="1_5vdpu"]
 [ext_resource type="Script" uid="uid://dca15nlfy8cen" path="res://scripts/enemies/weeds/shrubweed.gd" id="1_ddju8"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_flb5p"]
 [ext_resource type="PackedScene" uid="uid://dtfabyqtkdwdj" path="res://scenes/enemies/bullets/thorn_bullet.tscn" id="2_oqjow"]
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="2_vrv6m"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="3_hyfii"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="4_ah525"]
 
@@ -73,8 +74,9 @@ animations = [{
 [node name="Shrubweed" type="Area2D" unique_id=345420893]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_ddju8")
+seed_bullet_scene = ExtResource("2_vrv6m")
 bullet_scene = ExtResource("2_oqjow")
-bullet_cooldown = 3.5
+bullet_cooldown = 3.0
 max_shoot_distance = 200.0
 explosion_bullet_count = 8
 max_health = 15
@@ -96,6 +98,8 @@ autoplay = "default"
 [node name="ContactDamageZone" parent="." unique_id=921587516 instance=ExtResource("3_hyfii")]
 position = Vector2(0, -5)
 scale = Vector2(1.25, 1.25)
+damage_amt = 2
+attack_cooldown = 1.0
 
 [node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=1545267249]
 position = Vector2(0, -7)

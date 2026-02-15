@@ -11,6 +11,7 @@ class SpawnEntry:
 static var weed_enemies: Dictionary = {
 	"weed" : preload("uid://bhnk8apyedtit"),
 	"mini_thornweed" : preload("uid://bpn14mbnmv14h"),
+	"shrubweed" : preload("uid://brq3scjfltm0n"),
 	"thornweed": preload("uid://fqhlxrgabgqv"),
 	"mushroom" : preload("uid://bfrhyuagid5eh"),
 	"fungal_mother" : preload("uid://b60yupijenmi2"),
@@ -39,23 +40,25 @@ static var bosses : Dictionary = {
 static var weed_spawn_table: Dictionary = {
 	"easy" : [ 
 		SpawnEntry.new("weed", 3.0), 
-		SpawnEntry.new("mini_thornweed", 2.0) 
+		SpawnEntry.new("mini_thornweed", 2.0),
 	],
 
 	"easy+" : [ 
 		SpawnEntry.new("weed", 1.0), 
-		SpawnEntry.new("mini_thornweed", 1.0) 
+		SpawnEntry.new("mini_thornweed", 1.0),
 	],
 
 	"medium" : [ 
 		SpawnEntry.new("weed", 3.0),
 		SpawnEntry.new("mini_thornweed", 3.0), 
-		SpawnEntry.new("thornweed", 2.0) 
+		SpawnEntry.new("shrubweed", 2.0),
+		SpawnEntry.new("thornweed", 2.0),
 	],
 
 	"medium+" : [
 		SpawnEntry.new("weed", 3.0),
 		SpawnEntry.new("mini_thornweed", 3.0), 
+		SpawnEntry.new("shrubweed", 2.0),
 		SpawnEntry.new("thornweed", 2.0),
 		SpawnEntry.new("mushroom", 2.0), 
 	],
@@ -63,6 +66,7 @@ static var weed_spawn_table: Dictionary = {
 	"medium++" : [
 		SpawnEntry.new("weed", 1.0),
 		SpawnEntry.new("mini_thornweed", 1.0), 
+		SpawnEntry.new("shrubweed", 1.0),
 		SpawnEntry.new("thornweed", 1.0),
 		SpawnEntry.new("mushroom", 1.0), 
 	],
@@ -70,6 +74,7 @@ static var weed_spawn_table: Dictionary = {
 	"hard" : [
 		SpawnEntry.new("weed", 2.0),
 		SpawnEntry.new("mini_thornweed", 1.0), 
+		SpawnEntry.new("shrubweed", 1.0),
 		SpawnEntry.new("thornweed", 3.0),
 		SpawnEntry.new("mushroom", 3.0),
 		SpawnEntry.new("fungal_mother", 1.0),
@@ -78,6 +83,7 @@ static var weed_spawn_table: Dictionary = {
 	"hard+" : [
 		SpawnEntry.new("weed", 1.0),
 		SpawnEntry.new("mini_thornweed", 2.0), 
+		SpawnEntry.new("shrubweed", 1.0),
 		SpawnEntry.new("thornweed", 6.0),
 		SpawnEntry.new("mushroom", 5.0),
 		SpawnEntry.new("fungal_mother", 2.0),
@@ -86,6 +92,7 @@ static var weed_spawn_table: Dictionary = {
 	"hard++" : [
 		SpawnEntry.new("weed", 1.0),
 		SpawnEntry.new("mini_thornweed", 2.0),
+		SpawnEntry.new("shrubweed", 1.0),
 		SpawnEntry.new("thornweed", 8.0),
 		SpawnEntry.new("mushroom", 7.0),
 		SpawnEntry.new("fungal_mother", 4.0),
@@ -95,6 +102,7 @@ static var weed_spawn_table: Dictionary = {
 
 	"hard+++" : [
 		SpawnEntry.new("mini_thornweed", 1.0),
+		SpawnEntry.new("shrubweed", 1.0),
 		SpawnEntry.new("thornweed", 7.0),
 		SpawnEntry.new("mushroom", 7.0),
 		SpawnEntry.new("fungal_mother", 5.0),
