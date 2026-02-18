@@ -93,7 +93,7 @@ func _process(_delta: float) -> void:
 	# Have the player interact with the neighbor
 	if Input.is_action_just_pressed("interact") and player_in_area and (!visible or always_visible):
 		generate_dialog()
-		if knock_sound:
+		if knock_sound and !knock_sound.playing and !$/root/Main/HUD.npc_menu_open():
 			knock_sound.play()
 			knock_sound.connect("finished", set_menu)
 			$/root/Main/Player.can_move = false
