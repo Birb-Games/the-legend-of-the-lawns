@@ -112,8 +112,12 @@ func bullet_spawn_point() -> Vector2:
 
 # Shoots a bullet in the direction of the player, it can also have an offset
 # from being directly shot at the player.
-func shoot_bullet(offset: float = 0.0) -> void:
-	var bullet = bullet_scene.instantiate()
+func shoot_bullet(offset: float = 0.0, bullet_template: PackedScene = null) -> void:
+	var bullet
+	if bullet_template:
+		bullet = bullet_template.instantiate()
+	else:
+		bullet = bullet_scene.instantiate()
 	var angle = (player.position - global_position).angle() + offset
 	var dir = Vector2(cos(angle), sin(angle))
 	bullet.position = $BulletSpawnPoint.global_position
