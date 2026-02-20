@@ -729,5 +729,18 @@ position = Vector2(93, 725)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("55_ka6mv")
 
+[node name="StoreDisplay2" parent="Store" unique_id=139448975 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 814)
+
+[node name="Chocolate" parent="Store/StoreDisplay2" unique_id=1862968661 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "chocolate"
+id = "chocolate"
+description = "Restores 20 health points. Has 3 uses."
+buy_text = "Bought chocolate! (Left click to use item)"
+price = 4
+add_item = true
+
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

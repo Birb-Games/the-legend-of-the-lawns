@@ -28,9 +28,10 @@ var can_move: bool = true
 
 var speed_level: int = 0
 var max_health_level: int = 0
-var inventory_level: int = 0
 var time_bonus_level: int = 0
 var armor_level: int = 0
+# Inventory
+var inventory: Inventory = Inventory.new()
 
 const STAMINA_RECHARD_DELAY: float = 6.0
 var stamina_recharge_cooldown: float = 0.0
@@ -373,6 +374,7 @@ func _process(delta: float) -> void:
 		$WaterGun.hide()
 		return
 
+	inventory.update(delta, !$/root/Main.lawn_loaded)
 	# Hide neighbor arrow if we are inside the store
 	if inside_store and !$/root/Main.lawn_loaded:
 		$NeighborArrow.disabled = true
@@ -543,7 +545,7 @@ func save() -> Dictionary:
 	var data = {
 		"max_health_level" : max_health_level,
 		"speed_level" : speed_level,
-		"inventory_level" : inventory_level,
+		"inventory_level" : inventory.inventory_level,
 		"time_bonus_level" : time_bonus_level,
 		"armor_level" : armor_level,
 	}
@@ -558,14 +560,14 @@ func reset() -> void:
 	# Reset the player levels	
 	max_health_level = 0
 	speed_level = 0
-	inventory_level = 0
+	inventory = Inventory.new()
 	time_bonus_level = 0
 	armor_level = 0	
 
 func load(data: Dictionary) -> void:
 	max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)
 	speed_level = max(Save.get_val(data, "speed_level", 0), 0)
-	inventory_level = max(Save.get_val(data, "inventory_level", 0), 0)
+	inventory.inventory_level = max(Save.get_val(data, "inventory_level", 0), 0)
 	time_bonus_level = max(Save.get_val(data, "time_bonus_level", 0), 0)
 	armor_level = max(Save.get_val(data, "armor_level", 0), 0)
 

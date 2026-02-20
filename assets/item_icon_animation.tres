@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://djfxgqly8pts3"]
+
+[ext_resource type="Texture2D" uid="uid://b12gysuple4ce" path="res://assets/textures/items/consumables/chocolate.png" id="1_hv134"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4ab7"]
+atlas = ExtResource("1_hv134")
+region = Rect2(0, 0, 23, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4ab7")
+}],
+"loop": true,
+"name": &"chocolate",
+"speed": 5.0
+}]
