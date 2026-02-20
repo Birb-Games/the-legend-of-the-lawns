@@ -48,3 +48,18 @@ func use(main: Main) -> void:
 
 	cooldown = get_cooldown(id)
 	uses_left -= 1
+
+func _to_string() -> String:
+	return "%s|%d" % [ id, uses_left ]
+
+# Returns null if the parse failed
+static func parse(str: String) -> InventoryItem:
+	var split = str.split("|")
+	if split.size() != 2:
+		return null
+	var item: InventoryItem = InventoryItem.new(split[0])
+	var uses_left: int = int(split[1])
+	if uses_left <= 0:
+		return null
+	item.uses_left = uses_left
+	return item

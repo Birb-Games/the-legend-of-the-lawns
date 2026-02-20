@@ -21,6 +21,7 @@ func _ready() -> void:
 static func update_buy_list() -> void:
 	for item: Buy in buy_item_list:
 		item.bought = false
+		item.player_in_area = false
 		if item.available():
 			item.show()
 		else:
@@ -76,6 +77,8 @@ func get_interact_text() -> String:
 
 func _on_body_entered(body: Node2D) -> void:
 	if !available():
+		return
+	if !is_inside_tree():
 		return
 	if body is Player:
 		player_in_area = true

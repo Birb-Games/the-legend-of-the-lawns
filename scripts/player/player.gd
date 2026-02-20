@@ -33,7 +33,7 @@ var armor_level: int = 0
 # Inventory
 var inventory: Inventory = Inventory.new()
 
-const STAMINA_RECHARD_DELAY: float = 6.0
+const STAMINA_RECHARGE_DELAY: float = 6.0
 var stamina_recharge_cooldown: float = 0.0
 var stamina: float = 1.0
 var health: int = get_max_health()
@@ -419,7 +419,7 @@ func _process(delta: float) -> void:
 			stamina -= delta / get_stamina_time()
 		stamina = clamp(stamina, 0.0, 1.0)
 		speed *= 1.33
-		stamina_recharge_cooldown = STAMINA_RECHARD_DELAY
+		stamina_recharge_cooldown = STAMINA_RECHARGE_DELAY
 	else:
 		# Recharge stamina
 		if stamina_recharge_cooldown > 0.0:
@@ -546,6 +546,7 @@ func save() -> Dictionary:
 		"max_health_level" : max_health_level,
 		"speed_level" : speed_level,
 		"inventory_level" : inventory.inventory_level,
+		"inventory" : str(inventory),
 		"time_bonus_level" : time_bonus_level,
 		"armor_level" : armor_level,
 	}
@@ -567,6 +568,7 @@ func reset() -> void:
 func load(data: Dictionary) -> void:
 	max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)
 	speed_level = max(Save.get_val(data, "speed_level", 0), 0)
+	inventory = Inventory.parse(Save.get_val(data, "inventory", ""))
 	inventory.inventory_level = max(Save.get_val(data, "inventory_level", 0), 0)
 	time_bonus_level = max(Save.get_val(data, "time_bonus_level", 0), 0)
 	armor_level = max(Save.get_val(data, "armor_level", 0), 0)

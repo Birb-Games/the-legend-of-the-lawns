@@ -25,12 +25,14 @@ const KEYS: Array = [
 
 func _ready() -> void:
 	# Get the list of slots
-	for row in $InventoryContainer.get_children():
+	var rows = $InventoryContainer.get_children()
+	rows.reverse()
+	for row in rows:
 		for slot: InventorySlot in row.get_children():
 			slots.append(slot)
 
 func can_use_inventory() -> bool:
-	return visible and !player.water_gun.visible and !player.lawn_mower_active()
+	return visible and !player.water_gun.visible and !player.lawn_mower_active() and !get_tree().paused
 
 func update_selected_slot_with_keys() -> void:
 	if !can_use_inventory():
@@ -107,6 +109,8 @@ func _process(delta: float) -> void:
 
 	# Hide the whole display
 	visible = !(hud.npc_menu_open() or hud.quest_screen_open() or player.health <= 0)
+	if $/root/Main/HUD/MainMenu.visible:
+		hide()
 	if !visible:
 		return
 
@@ -157,3 +161,6 @@ func _process(delta: float) -> void:
 				selected_slot.hide()
 		else:
 			selected_slot.hide()
+
+func reset() -> void:
+	selected = 0

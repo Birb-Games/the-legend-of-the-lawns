@@ -18,6 +18,7 @@ alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="InventoryContainer" unique_id=881096295]
 layout_mode = 2
+alignment = 2
 
 [node name="InventorySlot" parent="InventoryContainer/HBoxContainer" unique_id=1859504097 instance=ExtResource("1_0mx8g")]
 layout_mode = 2

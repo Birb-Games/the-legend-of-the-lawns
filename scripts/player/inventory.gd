@@ -39,3 +39,20 @@ func update(delta: float, reset_cooldown: bool) -> void:
 			item.cooldown = 0.0
 		else:
 			item.cooldown = max(item.cooldown - delta, 0.0)
+
+func _to_string() -> String:
+	var str: String = ""
+	for item: InventoryItem in slots:
+		str += str(item) + ","
+	return str
+
+static func parse(str: String) -> Inventory:
+	var inventory: Inventory = Inventory.new()
+	var split = str.split(",")
+	for substr in split:
+		if substr.is_empty():
+			continue
+		var item: InventoryItem = InventoryItem.parse(substr)
+		if item:
+			inventory.slots.append(item)
+	return inventory
