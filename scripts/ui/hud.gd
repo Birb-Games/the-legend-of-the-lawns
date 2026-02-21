@@ -188,3 +188,6 @@ func npc_menu_open() -> bool:
 
 func quest_screen_open() -> bool:
 	return $Control/QuestScreen/InfoScreen.visible
+
+func reset() -> void:
+	$Control/InventoryGUI.reset()

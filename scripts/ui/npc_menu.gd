@@ -330,7 +330,7 @@ func set_buy_menu(item: Buy) -> void:
 			buttons[0].connect("pressed", on_leave_pressed)
 	)
 	var main: Main = $/root/Main
-	if item.price > main.money:
+	if item.price > main.money or (main.player.inventory.full() and item.add_item):
 		buttons[1].disabled = true
 	
 	show()

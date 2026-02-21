@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c0evha1srh1ox" path="res://assets/textures/items/upgrades/red_shoes.png" id="4_ho0xu"]
 [ext_resource type="Texture2D" uid="uid://ddol2lvneo2rp" path="res://assets/textures/items/upgrades/bike_helmet.png" id="4_qukav"]
 [ext_resource type="Texture2D" uid="uid://ccgu1gouqgm1" path="res://assets/textures/items/upgrades/watch.png" id="6_ci6ny"]
+[ext_resource type="Texture2D" uid="uid://b12gysuple4ce" path="res://assets/textures/items/consumables/chocolate.png" id="6_evmts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weic1"]
 size = Vector2(13.333333, 28.333332)
@@ -22,6 +23,10 @@ region = Rect2(0, 0, 23, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f82uq"]
 atlas = ExtResource("4_qukav")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lkhp"]
+atlas = ExtResource("6_evmts")
 region = Rect2(0, 0, 23, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ci6ny"]
@@ -60,6 +65,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"bike_helmet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lkhp")
+}],
+"loop": true,
+"name": &"chocolate",
 "speed": 5.0
 }, {
 "frames": [{

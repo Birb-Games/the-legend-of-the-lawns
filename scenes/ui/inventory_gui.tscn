@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c7wwl1dnxsgwv"]
+
+[ext_resource type="PackedScene" uid="uid://c4uyimrgl25bh" path="res://scenes/ui/inventory_slot.tscn" id="1_0mx8g"]
+[ext_resource type="Script" uid="uid://d2fhh0tl4pv7d" path="res://scripts/ui/inventory_gui.gd" id="1_5uqcy"]
+
+[node name="InventoryGUI" type="Control" unique_id=1654533886]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5uqcy")
+
+[node name="InventoryContainer" type="VBoxContainer" parent="." unique_id=92786946]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 412.0
+offset_right = 116.0
+offset_bottom = 632.0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryContainer" unique_id=881096295]
+layout_mode = 2
+alignment = 2
+
+[node name="InventorySlot" parent="InventoryContainer/HBoxContainer" unique_id=1859504097 instance=ExtResource("1_0mx8g")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="InventoryContainer/HBoxContainer" unique_id=1247643033 instance=ExtResource("1_0mx8g")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="InventoryContainer" unique_id=1075546725]
+layout_mode = 2
+
+[node name="InventorySlot" parent="InventoryContainer/HBoxContainer2" unique_id=1848409813 instance=ExtResource("1_0mx8g")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="InventoryContainer/HBoxContainer2" unique_id=839889578 instance=ExtResource("1_0mx8g")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="InventoryContainer" unique_id=1175452954]
+layout_mode = 2
+
+[node name="InventorySlot" parent="InventoryContainer/HBoxContainer3" unique_id=1404981771 instance=ExtResource("1_0mx8g")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="InventoryContainer/HBoxContainer3" unique_id=1523707963 instance=ExtResource("1_0mx8g")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="InventoryContainer" unique_id=64434028]
+layout_mode = 2
+
+[node name="InventorySlot" parent="InventoryContainer/HBoxContainer4" unique_id=2078251600 instance=ExtResource("1_0mx8g")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="InventoryContainer/HBoxContainer4" unique_id=661630252 instance=ExtResource("1_0mx8g")]
+layout_mode = 2

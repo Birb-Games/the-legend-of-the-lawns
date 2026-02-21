@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://c4uyimrgl25bh"]
+
+[ext_resource type="Texture2D" uid="uid://du2j4honcxodv" path="res://assets/textures/items/slot.png" id="1_kscix"]
+[ext_resource type="Script" uid="uid://dslx0w0x5eghg" path="res://scripts/ui/inventory_slot.gd" id="2_bngwc"]
+[ext_resource type="SpriteFrames" uid="uid://djfxgqly8pts3" path="res://assets/item_icon_animation.tres" id="2_ru537"]
+[ext_resource type="Texture2D" uid="uid://jf4rydcdp3gt" path="res://assets/textures/player/arrow.png" id="3_r4ab7"]
+[ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="5_uda2d"]
+
+[sub_resource type="Gradient" id="Gradient_bngwc"]
+offsets = PackedFloat32Array(0, 0.4900285, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1)
+
+[node name="InventorySlot" type="TextureRect" unique_id=1859504097]
+custom_minimum_size = Vector2(48, 52)
+texture = ExtResource("1_kscix")
+script = ExtResource("2_bngwc")
+gradient = SubResource("Gradient_bngwc")
+
+[node name="Icon" type="AnimatedSprite2D" parent="." unique_id=252383068]
+position = Vector2(26, 28.000002)
+rotation = 0.5235988
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("2_ru537")
+animation = &"chocolate"
+
+[node name="Selected" type="Sprite2D" parent="." unique_id=1456701738]
+position = Vector2(24, -2)
+rotation = 1.5707964
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_r4ab7")
+
+[node name="DurabilityBackground" type="ColorRect" parent="." unique_id=1626524539]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 44.0
+offset_right = 39.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 1)
+
+[node name="DurabilityBar" type="ColorRect" parent="DurabilityBackground" unique_id=1007571628]
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 4.0
+color = Color(0, 1, 0, 1)
+
+[node name="CooldownTimer" type="Label" parent="." unique_id=583148573]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 48.0
+offset_bottom = 38.0
+theme_override_colors/font_shadow_color = Color(0.39688927, 0.39688927, 0.39688924, 1)
+theme_override_fonts/font = ExtResource("5_uda2d")
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1

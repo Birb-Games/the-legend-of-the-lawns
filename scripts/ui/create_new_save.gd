@@ -13,6 +13,7 @@ func _on_back_pressed() -> void:
 	hide()
 
 func _on_start_pressed() -> void:	
+	$/root/Main/HUD.reset()
 	# Make sure we have a valid name
 	var player_name: String = $Name/TextEdit.text
 	if player_name.is_empty():

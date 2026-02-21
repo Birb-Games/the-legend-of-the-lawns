@@ -11,6 +11,8 @@ static var buy_item_list: Array = []
 @export_multiline var description: String
 @export_multiline var buy_text: String
 @export var price: int = 1
+@export var add_item: bool = false
+var bought: bool = false
 
 func _ready() -> void:
 	buy_item_list.append(self)
@@ -18,6 +20,8 @@ func _ready() -> void:
 
 static func update_buy_list() -> void:
 	for item: Buy in buy_item_list:
+		item.bought = false
+		item.player_in_area = false
 		if item.available():
 			item.show()
 		else:
@@ -30,31 +34,35 @@ func available() -> bool:
 		"red_shoes":
 			return player.speed_level == 0
 		"backpack0":
-			return player.inventory_level == 0
+			return player.inventory.inventory_level == 0
 		"watch":
 			return player.time_bonus_level == 0
 		"bike_helmet":
 			return player.armor_level == 0
 		_:
-			return true
+			return !bought
 
-func buy() -> void:
-	var main: Main = $/root/Main
-	main.money = max(0, main.money - price)
-	player.interact_text = "" 
+func buy() -> void: 
 	match id:
 		"apple_juice":
 			player.max_health_level = max(player.max_health_level, 1)
 		"red_shoes":
 			player.speed_level = max(player.speed_level, 1)
 		"backpack0":
-			player.inventory_level = max(player.inventory_level, 1)
+			player.inventory.inventory_level = max(player.inventory.inventory_level, 1)
 		"watch":
 			player.time_bonus_level = max(player.time_bonus_level, 1)
 		"bike_helmet":
 			player.armor_level = max(player.armor_level, 1)
+		"chocolate":
+			if !player.inventory.add_item("chocolate"):
+				return
 		_:
 			pass
+	bought = true
+	var main: Main = $/root/Main
+	main.money = max(0, main.money - price)
+	player.interact_text = ""
 
 func _process(_delta: float) -> void:
 	if !available():
@@ -69,6 +77,8 @@ func get_interact_text() -> String:
 
 func _on_body_entered(body: Node2D) -> void:
 	if !available():
+		return
+	if !is_inside_tree():
 		return
 	if body is Player:
 		player_in_area = true
