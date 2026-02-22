@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bvc7ww3cj7nqw"]
+
+[ext_resource type="Script" uid="uid://v5nmccxepu16" path="res://scripts/interactable/trash_can.gd" id="1_bt25j"]
+[ext_resource type="Texture2D" uid="uid://rvikh35xwld2" path="res://assets/textures/trash_can.png" id="1_kgp45"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_pacw5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibmje"]
+size = Vector2(16, 4.2500005)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pacw5"]
+size = Vector2(10.000002, 26.250004)
+
+[node name="TrashCan" type="StaticBody2D" unique_id=83958223]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_bt25j")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1973410856]
+position = Vector2(0, -0.5)
+scale = Vector2(0.546875, 0.5769231)
+texture = ExtResource("1_pacw5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1726920226]
+position = Vector2(0, -10)
+texture = ExtResource("1_kgp45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1819306963]
+position = Vector2(0, -5.875)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_ibmje")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1412137998]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1721873161]
+position = Vector2(0, -8.124996)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_pacw5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

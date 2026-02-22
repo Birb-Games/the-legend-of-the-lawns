@@ -12,6 +12,10 @@ const COOLDOWNS: Dictionary = {
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
+const DISPLAY_NAMES: Dictionary = {
+
+}
+
 var id: String = ""
 var cooldown: float = 0.0
 var uses_left: int = 1
@@ -56,6 +60,17 @@ func use(main: Main) -> void:
 
 	cooldown = get_cooldown(id)
 	uses_left -= 1
+
+func get_display_str() -> String:
+	var display_name: String
+	if id in DISPLAY_NAMES:
+		display_name = DISPLAY_NAMES[id]
+	else:
+		display_name = id
+	if uses_left == 1:
+		return "[%s, 1 use left)]" % display_name
+	else:
+		return "[%s, %d uses left]" % [ display_name, uses_left ]
 
 func _to_string() -> String:
 	return "%s|%d" % [ id, uses_left ]

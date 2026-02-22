@@ -55,6 +55,7 @@
 [ext_resource type="PackedScene" uid="uid://js2gvvvv4bla" path="res://scenes/decorations/store_display.tscn" id="53_sc68w"]
 [ext_resource type="PackedScene" uid="uid://dux415njqmp1m" path="res://scenes/interactable/buy.tscn" id="54_532a6"]
 [ext_resource type="Texture2D" uid="uid://dagtt6ra0h7dw" path="res://assets/textures/decorations/sale_poster.png" id="55_ka6mv"]
+[ext_resource type="PackedScene" uid="uid://bvc7ww3cj7nqw" path="res://scenes/interactable/trash_can.tscn" id="56_4nkst"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -484,6 +485,9 @@ position = Vector2(24, -427)
 display_name = "North St. End"
 connections = [NodePath("../Store"), NodePath("../NorthStreet")]
 
+[node name="TrashCan" parent="." unique_id=83958223 instance=ExtResource("56_4nkst")]
+position = Vector2(800.00006, -57.000004)
+
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="." unique_id=1830367940]
 
 [node name="ColllisionShape2D" type="CollisionShape2D" parent="LeftWorldBoundary" unique_id=2077491582]
@@ -753,6 +757,9 @@ description = "Increases speed temporarily."
 buy_text = "Bought soda! (Left click to use item)"
 price = 6
 add_item = true
+
+[node name="TrashCan" parent="Store" unique_id=1155408292 instance=ExtResource("56_4nkst")]
+position = Vector2(-40.000004, 758)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]
