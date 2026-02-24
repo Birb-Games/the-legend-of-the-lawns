@@ -725,6 +725,7 @@ price = 22
 
 [node name="Milk" parent="Store/StoreDisplay/Juice" unique_id=1259066601 instance=ExtResource("54_532a6")]
 position = Vector2(-40, -15)
+scale = Vector2(0.5, 0.5)
 display_name = "milk"
 id = "milk"
 description = "Increases maximum health."
