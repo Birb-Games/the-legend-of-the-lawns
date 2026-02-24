@@ -60,7 +60,7 @@ static func update_buy_list() -> void:
 
 func available() -> bool:
 	match id:
-		"apple_juice", "orange_juice", "grape_juice", "milk", "energy_drink", "golden_apple_juice":
+		"apple_juice", "orange_juice", "grape_juice", "milk", "carrot_juice", "golden_apple_juice":
 			return player.max_health_level == ID_TO_LEVEL[id]
 		"red_shoes", "blue_shoes", "gray_shoes", "athlete_shoes":
 			return player.speed_level == ID_TO_LEVEL[id]
@@ -75,7 +75,7 @@ func available() -> bool:
 
 func buy() -> void: 
 	match id:
-		"apple_juice", "orange_juice", "grape_juice", "milk", "energy_drink", "golden_apple_juice":
+		"apple_juice", "orange_juice", "grape_juice", "milk", "carrot_juice", "golden_apple_juice":
 			player.max_health_level = ID_TO_LEVEL[id] + 1
 		"red_shoes", "blue_shoes", "gray_shoes", "athlete_shoes":
 			player.speed_level = ID_TO_LEVEL[id] + 1

@@ -18,11 +18,16 @@
 [ext_resource type="Texture2D" uid="uid://m4m0edpj1c4l" path="res://assets/textures/items/upgrades/blue_shoes.png" id="9_hn2hx"]
 [ext_resource type="Texture2D" uid="uid://btctuyntb5whj" path="res://assets/textures/items/upgrades/gray_shoes.png" id="12_14nls"]
 [ext_resource type="Texture2D" uid="uid://ci34rnjwlgany" path="res://assets/textures/items/upgrades/combat_helmet.png" id="12_a6owq"]
+[ext_resource type="Texture2D" uid="uid://vcga3cfel6ml" path="res://assets/textures/items/upgrades/carrot_juice.png" id="12_kpk2y"]
 [ext_resource type="Texture2D" uid="uid://demcis4mletnq" path="res://assets/textures/items/upgrades/digital_watch.png" id="13_pwhbb"]
 [ext_resource type="Texture2D" uid="uid://dd7qemrywwncb" path="res://assets/textures/items/upgrades/football_helmet.png" id="14_0qkbw"]
 [ext_resource type="Texture2D" uid="uid://8tim7ufosjp5" path="res://assets/textures/items/upgrades/pocket_watch.png" id="15_04b1l"]
 [ext_resource type="Texture2D" uid="uid://buwaix53oxs30" path="res://assets/textures/items/upgrades/hat.png" id="15_7qyrw"]
+[ext_resource type="Texture2D" uid="uid://18xnjek2byjt" path="res://assets/textures/items/upgrades/grape_juice.png" id="17_cmarq"]
 [ext_resource type="Texture2D" uid="uid://bfm5d2lp3vstr" path="res://assets/textures/items/upgrades/rollx_watch.png" id="17_cphwn"]
+[ext_resource type="Texture2D" uid="uid://bjfilepcru71v" path="res://assets/textures/items/upgrades/golden_apple_juice.png" id="18_1afaq"]
+[ext_resource type="Texture2D" uid="uid://q6uoemuwmkcp" path="res://assets/textures/items/upgrades/orange_juice.png" id="19_gx71g"]
+[ext_resource type="Texture2D" uid="uid://do376xyetxupm" path="res://assets/textures/items/upgrades/milk.png" id="21_1qum4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weic1"]
 size = Vector2(13.333333, 28.333332)
@@ -131,6 +136,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("12_kpk2y")
+}],
+"loop": true,
+"name": &"carrot_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8lkhp")
 }],
 "loop": true,
@@ -171,6 +184,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("18_1afaq")
+}],
+"loop": true,
+"name": &"golden_apple_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_cmarq")
+}],
+"loop": true,
+"name": &"grape_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("12_14nls")
 }],
 "loop": true,
@@ -183,6 +212,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"hat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_1qum4")
+}],
+"loop": true,
+"name": &"milk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_gx71g")
+}],
+"loop": true,
+"name": &"orange_juice",
 "speed": 5.0
 }, {
 "frames": [{

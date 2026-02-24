@@ -699,6 +699,46 @@ description = "Increases maximum health."
 buy_text = "Increased max health! (80 -> 100)"
 price = 6
 
+[node name="OrangeJuice" parent="Store/StoreDisplay/Juice" unique_id=1190194880 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "orange juice"
+id = "orange_juice"
+description = "Increases maximum health."
+buy_text = "Increased max health! (100 -> 120)"
+price = 9
+
+[node name="GrapeJuice" parent="Store/StoreDisplay/Juice" unique_id=135413908 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "grape juice"
+id = "grape_juice"
+description = "Increases maximum health."
+buy_text = "Increased max health! (120 -> 150)"
+price = 16
+
+[node name="CarrotJuice" parent="Store/StoreDisplay/Juice" unique_id=553067214 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "carrot juice"
+id = "carrot_juice"
+description = "Increases maximum health."
+buy_text = "Increased max health! (150 -> 180)"
+price = 22
+
+[node name="Milk" parent="Store/StoreDisplay/Juice" unique_id=1259066601 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "milk"
+id = "milk"
+description = "Increases maximum health."
+buy_text = "Increased max health! (180 -> 220)"
+price = 28
+
+[node name="GoldenAppleJuice" parent="Store/StoreDisplay/Juice" unique_id=1998948837 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "golden apple juice"
+id = "golden_apple_juice"
+description = "Increases maximum health."
+buy_text = "Increased max health! (220 -> 250)"
+price = 45
+
 [node name="Shoes" type="Node2D" parent="Store/StoreDisplay" unique_id=905651957]
 
 [node name="RedShoes" parent="Store/StoreDisplay/Shoes" unique_id=337230633 instance=ExtResource("54_532a6")]
