@@ -870,7 +870,7 @@ price = 24
 
 [node name="FootballHelmet" parent="Store/StoreDisplay/Helmets" unique_id=1884394142 instance=ExtResource("54_532a6")]
 position = Vector2(38, -15)
-display_name = "(american) football helmet"
+display_name = "sportball helmet"
 id = "football_helmet"
 description = "Increases armor."
 buy_text = "Increased armor! (10% -> 14%)"
@@ -914,9 +914,19 @@ add_item = true
 position = Vector2(-24, -15)
 display_name = "soda"
 id = "soda"
-description = "Increases speed temporarily."
+description = "Increases speed temporarily. Has 4 uses."
 buy_text = "Bought soda! (Left click to use item)"
 price = 8
+add_item = true
+
+[node name="IceCream" parent="Store/StoreDisplay2" unique_id=2008948231 instance=ExtResource("54_532a6")]
+position = Vector2(-8, -15)
+scale = Vector2(0.45, 0.45)
+display_name = "ice cream"
+id = "ice_cream"
+description = "Heals 60 health points, but slows you down. Has 4 uses."
+buy_text = "Bought ice cream! (Left click to use item)"
+price = 18
 add_item = true
 
 [node name="TrashCan" parent="Store" unique_id=1155408292 instance=ExtResource("56_4nkst")]

@@ -413,6 +413,8 @@ func _process(delta: float) -> void:
 		speed = NORMAL_SPEED
 	if get_status_effect_time("speed") > 0.0:
 		speed *= 1.5
+	if get_status_effect_time("slowness") > 0.0:
+		speed *= 0.6
 	# Sprint
 	if Input.is_action_pressed("sprint") and speed_level >= 1 and stamina > 0.0:
 		if velocity.length() > 0.0:

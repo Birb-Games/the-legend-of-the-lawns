@@ -3,17 +3,19 @@ class_name InventoryItem
 const USE_COUNTS: Dictionary = {
 	"chocolate" : 3,
 	"soda" : 4,
+	"ice_cream" : 4,
 }
 const DEFAULT_USE_COUNT: int = 1
 
 const COOLDOWNS: Dictionary = {
 	"chocolate" : 25.0,
 	"soda" : 30.0,
+	"ice_cream" : 40.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
 const DISPLAY_NAMES: Dictionary = {
-
+	"ice_cream" : "ice cream",
 }
 
 var id: String = ""
@@ -51,10 +53,18 @@ func use(main: Main) -> void:
 			main.play_sfx("Eat")
 		"soda":
 			var prev_time = main.player.get_status_effect_time("speed")
-			main.player.set_status_effect_time("speed", prev_time + 8.0)
+			main.player.set_status_effect_time("speed", prev_time + 7.0)
 			# Increase stamina
 			main.player.stamina = min(main.player.stamina + 0.25, 1.0) 
 			main.play_sfx("Drink")
+		"ice_cream":
+			# Do not heal the player if the player is at max health
+			if main.player.health >= main.player.get_max_health():
+				return
+			var prev_time = main.player.get_status_effect_time("slowness")
+			main.player.set_status_effect_time("slowness", prev_time + 17.0)
+			main.player.heal(60)
+			main.play_sfx("Eat")
 		_:
 			pass
 
