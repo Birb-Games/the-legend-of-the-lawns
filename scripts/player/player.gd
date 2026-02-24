@@ -88,11 +88,11 @@ func get_stamina_time() -> float:
 		1:
 			return 3.0
 		2:
-			return 4.0
+			return 3.5
 		3:
-			return 6.0
+			return 4.5
 		_:
-			return 7.5
+			return 5.5
 
 func get_armor() -> float:
 	match armor_level:
