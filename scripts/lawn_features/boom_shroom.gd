@@ -7,9 +7,16 @@ var explosion_timer: float = 0.0
 @export var explosion_scene: PackedScene
 @export var fire_scene: PackedScene
 @export var explosion_flash_gradient: Gradient
+@onready var default_scale: Vector2 = scale
+const SPAWN_TIME: float = 1.5
 const POWER: float = 2.0
 
 func _process(delta: float) -> void:
+	if scale.x < default_scale.x:
+		scale.x += 1.0 / SPAWN_TIME * delta
+		scale.x = min(scale.x, default_scale.x)
+		scale.y = scale.x
+		return
 	if !explode_flag:
 		return
 	explosion_timer += delta
@@ -38,9 +45,13 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
+	if scale.x < default_scale.x:
+		return
 	if body is Player:
 		explode_flag = true
 
 func _on_area_entered(area: Area2D) -> void:
+	if scale.x < default_scale.x:
+		return
 	if area.get_parent() is Explosion:
 		explode_flag = true

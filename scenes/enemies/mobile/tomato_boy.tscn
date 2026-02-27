@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://crnj1ljbpuy2m"]
+[gd_scene format=3 uid="uid://crnj1ljbpuy2m"]
 
 [ext_resource type="Texture2D" uid="uid://bulte52ba84qm" path="res://assets/textures/enemies/mobile/tomato_boy.png" id="1_84l2f"]
 [ext_resource type="Script" uid="uid://b25hgp106v8ev" path="res://scripts/enemies/mobile/tomato_boy.gd" id="1_b1yu5"]
@@ -162,53 +162,54 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_tfheh"]
 radius = 10.666667
 
-[node name="TomatoBoy" type="CharacterBody2D"]
+[node name="TomatoBoy" type="CharacterBody2D" unique_id=886336158]
 scale = Vector2(0.75, 0.75)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_b1yu5")
 explosion_scene = ExtResource("2_tfheh")
 speed = 48.0
+min_chase_distance = 6.0
 max_chase_distance = 9999.0
 max_health = 8
 explosion_bullet_count = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1914351121]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_8b8uy")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=965595613]
 scale = Vector2(0.5, 0.46153846)
 texture = ExtResource("1_buule")
 
-[node name="SpawnShadow" type="Sprite2D" parent="."]
+[node name="SpawnShadow" type="Sprite2D" parent="." unique_id=1504536195]
 visible = false
 scale = Vector2(0.6666667, 0.4615385)
 texture = ExtResource("1_buule")
 
-[node name="Healthbar" parent="." instance=ExtResource("3_vuec1")]
+[node name="Healthbar" parent="." unique_id=168019809 instance=ExtResource("3_vuec1")]
 offset_top = -21.0
 offset_bottom = -19.0
 
-[node name="ContactDamageZone" parent="." instance=ExtResource("4_pqdwm")]
+[node name="ContactDamageZone" parent="." unique_id=692433764 instance=ExtResource("4_pqdwm")]
 position = Vector2(0, -7)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.6, 1.6)
 
-[node name="BulletHitbox" type="Area2D" parent="."]
+[node name="BulletHitbox" type="Area2D" parent="." unique_id=1330605870]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox" unique_id=1971461830]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_vuec1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1096083256]
 position = Vector2(0, -9.5)
 sprite_frames = SubResource("SpriteFrames_8b8uy")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="WallDetector" type="Area2D" parent="."]
+[node name="WallDetector" type="Area2D" parent="." unique_id=1872794560]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector" unique_id=1456967228]
 position = Vector2(0, -5.3333387)
 shape = SubResource("CircleShape2D_tfheh")
 

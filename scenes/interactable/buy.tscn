@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://btctuyntb5whj" path="res://assets/textures/items/upgrades/gray_shoes.png" id="12_14nls"]
 [ext_resource type="Texture2D" uid="uid://ci34rnjwlgany" path="res://assets/textures/items/upgrades/combat_helmet.png" id="12_a6owq"]
 [ext_resource type="Texture2D" uid="uid://vcga3cfel6ml" path="res://assets/textures/items/upgrades/carrot_juice.png" id="12_kpk2y"]
+[ext_resource type="Texture2D" uid="uid://17tmf70i7lm" path="res://assets/textures/items/consumables/boom_shroom_spores.png" id="12_peyeh"]
 [ext_resource type="Texture2D" uid="uid://demcis4mletnq" path="res://assets/textures/items/upgrades/digital_watch.png" id="13_pwhbb"]
 [ext_resource type="Texture2D" uid="uid://dd7qemrywwncb" path="res://assets/textures/items/upgrades/football_helmet.png" id="14_0qkbw"]
 [ext_resource type="Texture2D" uid="uid://8tim7ufosjp5" path="res://assets/textures/items/upgrades/pocket_watch.png" id="15_04b1l"]
@@ -29,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://q6uoemuwmkcp" path="res://assets/textures/items/upgrades/orange_juice.png" id="19_gx71g"]
 [ext_resource type="Texture2D" uid="uid://do376xyetxupm" path="res://assets/textures/items/upgrades/milk.png" id="21_1qum4"]
 [ext_resource type="Texture2D" uid="uid://dn0il1ilrb5wd" path="res://assets/textures/items/consumables/ice_cream.png" id="22_o7txd"]
+[ext_resource type="Texture2D" uid="uid://dnommrruprxex" path="res://assets/textures/items/consumables/tomato_seeds.png" id="29_2am8v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weic1"]
 size = Vector2(13.333333, 28.333332)
@@ -133,6 +135,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"blue_shoes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_peyeh")
+}],
+"loop": true,
+"name": &"boom_shroom_spores",
 "speed": 5.0
 }, {
 "frames": [{
@@ -269,6 +279,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"soda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_2am8v")
+}],
+"loop": true,
+"name": &"tomato_seeds",
 "speed": 5.0
 }, {
 "frames": [{

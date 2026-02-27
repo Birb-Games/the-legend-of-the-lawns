@@ -25,8 +25,9 @@
 [ext_resource type="AudioStream" uid="uid://dpp6b66l37am0" path="res://assets/audio/sfx/cut_grass.wav" id="23_pm3ni"]
 [ext_resource type="AudioStream" uid="uid://cgr663goawjao" path="res://assets/audio/sfx/eat.wav" id="24_y6deb"]
 [ext_resource type="AudioStream" uid="uid://c6c7tp2ajt4dp" path="res://assets/audio/sfx/drink.wav" id="25_og1vs"]
+[ext_resource type="AudioStream" uid="uid://bwwwtyegcjwi" path="res://assets/audio/sfx/footsteps/footsteps_grass.wav" id="26_2wyq8"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2wyq8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_og1vs"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Main" type="Node2D" unique_id=592425704]
@@ -52,7 +53,7 @@ metadata/_edit_lock_ = true
 
 [node name="PenaltyParticle" parent="." unique_id=480127416 instance=ExtResource("5_tbgi4")]
 position = Vector2(8, -120)
-texture = SubResource("ViewportTexture_2wyq8")
+texture = SubResource("ViewportTexture_og1vs")
 first_instance = true
 
 [node name="Sfx" type="Node" parent="." unique_id=1253209665]
@@ -131,3 +132,6 @@ stream = ExtResource("24_y6deb")
 
 [node name="Drink" type="AudioStreamPlayer" parent="Sfx" unique_id=265566391]
 stream = ExtResource("25_og1vs")
+
+[node name="Grass" type="AudioStreamPlayer" parent="Sfx" unique_id=381995311]
+stream = ExtResource("26_2wyq8")

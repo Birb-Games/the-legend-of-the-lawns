@@ -979,8 +979,55 @@ add_item = true
 [node name="StoreDisplay3" parent="Store" unique_id=55058432 instance=ExtResource("53_sc68w")]
 position = Vector2(88, 862)
 
+[node name="TomatoSeeds" parent="Store/StoreDisplay3" unique_id=1072131991 instance=ExtResource("54_532a6")]
+position = Vector2(-35, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "tomato seeds"
+id = "tomato_seeds"
+description = "Spawns a tomato boy.
+-> The McMoneyPants Food Corporation genetically engineered these seeds to be more connected with the \"magical side\" of nature, whatever that means."
+buy_text = "Bought tomato seeds! (Left click to use item)"
+price = 24
+add_item = true
+
+[node name="BoomShroomSpores" parent="Store/StoreDisplay3" unique_id=26537955 instance=ExtResource("54_532a6")]
+position = Vector2(-12, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "boom shroom spores"
+id = "boom_shroom_spores"
+description = "Spawns a boom shroom.
+-> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
+buy_text = "Bought boom shroom spores! (Left click to use item)"
+price = 10
+add_item = true
+
+[node name="BoomShroomSpores2" parent="Store/StoreDisplay3" unique_id=1327583245 instance=ExtResource("54_532a6")]
+position = Vector2(12, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "boom shroom spores"
+id = "boom_shroom_spores"
+description = "Spawns a boom shroom.
+-> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
+buy_text = "Bought boom shroom spores! (Left click to use item)"
+price = 10
+add_item = true
+
+[node name="BoomShroomSpores3" parent="Store/StoreDisplay3" unique_id=357933668 instance=ExtResource("54_532a6")]
+position = Vector2(35, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "boom shroom spores"
+id = "boom_shroom_spores"
+description = "Spawns a boom shroom.
+-> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
+buy_text = "Bought boom shroom spores! (Left click to use item)"
+price = 10
+add_item = true
+
 [node name="TrashCan" parent="Store" unique_id=1155408292 instance=ExtResource("56_4nkst")]
 position = Vector2(-40.000004, 758)
+
+[node name="StoreDisplay4" parent="Store" unique_id=168454794 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 910)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

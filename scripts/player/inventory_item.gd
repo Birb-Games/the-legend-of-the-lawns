@@ -4,6 +4,8 @@ const USE_COUNTS: Dictionary = {
 	"chocolate" : 3,
 	"soda" : 4,
 	"ice_cream" : 4,
+	"tomato_seeds" : 3,
+	"boom_shroom_spores" : 5,
 }
 const DEFAULT_USE_COUNT: int = 1
 
@@ -11,16 +13,23 @@ const COOLDOWNS: Dictionary = {
 	"chocolate" : 25.0,
 	"soda" : 30.0,
 	"ice_cream" : 40.0,
+	"tomato_seeds" : 80.0,
+	"boom_shroom_spores" : 25.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
 const DISPLAY_NAMES: Dictionary = {
 	"ice_cream" : "ice cream",
+	"tomato_seeds" : "tomato seeds",
+	"boom_shroom_spores" : "boom shroom spores",
 }
 
 var id: String = ""
 var cooldown: float = 0.0
 var uses_left: int = 1
+
+static var tomato_boy_scene: PackedScene = preload("uid://crnj1ljbpuy2m")
+static var boom_shroom_scene: PackedScene = preload("uid://cm4b5rcedfd1n")
 
 static func get_use_count(item_id: String) -> int:
 	if !(item_id in USE_COUNTS):
@@ -65,6 +74,26 @@ func use(main: Main) -> void:
 			main.player.set_status_effect_time("slowness", prev_time + 17.0)
 			main.player.heal(60)
 			main.play_sfx("Eat")
+		"tomato_seeds":
+			var lawn: Lawn = main.get_node_or_null("Lawn")
+			Spawning.spawn_at_point(
+				lawn,
+				lawn.get_node("MobileEnemies"),
+				main.player.global_position,
+				tomato_boy_scene,
+			)
+			main.play_sfx("Grass")
+		"boom_shroom_spores":
+			var lawn: Lawn = main.get_node_or_null("Lawn")
+			var boom_shroom: Node2D = boom_shroom_scene.instantiate()
+			boom_shroom.global_position = main.player.global_position
+			if main.player.dir == "up":
+				boom_shroom.global_position.y -= 2.0
+			else:
+				boom_shroom.global_position.y += 2.0
+			lawn.add_child(boom_shroom)
+			boom_shroom.scale = Vector2(0.0, 0.0)
+			main.play_sfx("Grass")
 		_:
 			pass
 

@@ -1,8 +1,10 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://djfxgqly8pts3"]
 
+[ext_resource type="Texture2D" uid="uid://17tmf70i7lm" path="res://assets/textures/items/consumables/boom_shroom_spores.png" id="1_3c3y7"]
 [ext_resource type="Texture2D" uid="uid://b12gysuple4ce" path="res://assets/textures/items/consumables/chocolate.png" id="1_hv134"]
 [ext_resource type="Texture2D" uid="uid://dn0il1ilrb5wd" path="res://assets/textures/items/consumables/ice_cream.png" id="2_gktae"]
 [ext_resource type="Texture2D" uid="uid://ddjpyouo4gff2" path="res://assets/textures/items/consumables/soda.png" id="2_rkkop"]
+[ext_resource type="Texture2D" uid="uid://dnommrruprxex" path="res://assets/textures/items/consumables/tomato_seeds.png" id="4_tglea"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4ab7"]
 atlas = ExtResource("1_hv134")
@@ -10,6 +12,14 @@ region = Rect2(0, 0, 23, 24)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3c3y7")
+}],
+"loop": true,
+"name": &"boom_shroom_spores",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r4ab7")
@@ -32,5 +42,13 @@ animations = [{
 }],
 "loop": true,
 "name": &"soda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tglea")
+}],
+"loop": true,
+"name": &"tomato_seeds",
 "speed": 5.0
 }]
