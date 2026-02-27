@@ -88,9 +88,8 @@ func buy() -> void:
 		"chocolate", "soda", "ice_cream":
 			if !player.inventory.add_item(id):
 				return
-		_:
-			pass
 	bought = true
+	print(name, " ", bought)
 	var main: Main = $/root/Main
 	main.money = max(0, main.money - price)
 	player.interact_text = ""

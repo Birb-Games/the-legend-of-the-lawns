@@ -686,6 +686,11 @@ position = Vector2(-125, 725)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("52_vmv0n")
 
+[node name="SalePoster" type="Sprite2D" parent="Store" unique_id=1531052310]
+position = Vector2(93, 725)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("55_ka6mv")
+
 [node name="StoreDisplay" parent="Store" unique_id=42241849 instance=ExtResource("53_sc68w")]
 position = Vector2(88, 764)
 
@@ -695,7 +700,8 @@ position = Vector2(88, 764)
 position = Vector2(-40, -15)
 display_name = "apple juice"
 id = "apple_juice"
-description = "Increases maximum health."
+description = "Increases maximum health.
+-> A good sized box of apple juice. Rich in vitamins."
 buy_text = "Increased max health! (80 -> 100)"
 price = 6
 
@@ -703,7 +709,8 @@ price = 6
 position = Vector2(-40, -15)
 display_name = "orange juice"
 id = "orange_juice"
-description = "Increases maximum health."
+description = "Increases maximum health.
+-> Made with fresh oranges imported from the Sur de Cocas Islands. A good source of Vitamin C."
 buy_text = "Increased max health! (100 -> 120)"
 price = 9
 
@@ -711,7 +718,8 @@ price = 9
 position = Vector2(-40, -15)
 display_name = "grape juice"
 id = "grape_juice"
-description = "Increases maximum health."
+description = "Increases maximum health.
+-> Made with fresh grapes from Roma."
 buy_text = "Increased max health! (120 -> 150)"
 price = 16
 
@@ -719,7 +727,8 @@ price = 16
 position = Vector2(-40, -15)
 display_name = "carrot juice"
 id = "carrot_juice"
-description = "Increases maximum health."
+description = "Increases maximum health.
+-> Apparently drinking carrot juice is a new health fad on the internet."
 buy_text = "Increased max health! (150 -> 180)"
 price = 22
 
@@ -728,7 +737,8 @@ position = Vector2(-40, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "milk"
 id = "milk"
-description = "Increases maximum health."
+description = "Increases maximum health.
+-> A great source of calcium for strong bones. Probably should be refrigerated though."
 buy_text = "Increased max health! (180 -> 220)"
 price = 28
 
@@ -736,7 +746,8 @@ price = 28
 position = Vector2(-40, -15)
 display_name = "golden apple juice"
 id = "golden_apple_juice"
-description = "Increases maximum health."
+description = "Increases maximum health.
+-> Made from the fruit of the rare and endangered golden apple tree found only in the rainforests of Aldoria. Some say the golden apple tree has magical properties that hold the secrets of eternal life..."
 buy_text = "Increased max health! (220 -> 250)"
 price = 45
 
@@ -747,7 +758,8 @@ position = Vector2(-19, -15)
 scale = Vector2(0.8, 0.8)
 display_name = "shoes"
 id = "red_shoes"
-description = "Enables sprinting."
+description = "Enables sprinting.
+-> Some nice red shoes. They look quite comfortable."
 buy_text = "Hold down `shift` to sprint."
 price = 15
 
@@ -756,7 +768,8 @@ position = Vector2(-19, -15)
 scale = Vector2(0.8, 0.8)
 display_name = "shoes"
 id = "blue_shoes"
-description = "Increases speed."
+description = "Increases speed.
+-> The company that made these advertises that they designed the soles to be supposedly more efficient for walking."
 buy_text = "Increased speed! (x1.00 -> x1.10)"
 price = 22
 
@@ -765,7 +778,8 @@ position = Vector2(-19, -15)
 scale = Vector2(0.8, 0.8)
 display_name = "shoes"
 id = "gray_shoes"
-description = "Increases speed."
+description = "Increases speed.
+-> These are the cheap knock-offs of the shoes that a lot of famous athletes wear."
 buy_text = "Increased speed! (x1.10 -> x1.25)"
 price = 32
 
@@ -774,7 +788,8 @@ position = Vector2(-19, -15)
 scale = Vector2(0.8, 0.8)
 display_name = "athlete shoes"
 id = "athlete_shoes"
-description = "Increases speed."
+description = "Increases speed.
+-> Almost every professional athlete that played in the International Games swears by these shoes, they are just that good. Either that or they're just repeating the sponsor script."
 buy_text = "Increased speed! (x1.25 -> x1.33)"
 price = 50
 
@@ -785,7 +800,8 @@ position = Vector2(0, -15)
 scale = Vector2(0.75, 0.75)
 display_name = "backpack"
 id = "backpack0"
-description = "Increases inventory space."
+description = "Increases inventory space.
+-> It's a backpack to hold your stuff. You should probably buy one before you return to school in autumn."
 buy_text = "Increased inventory size! (2 slots -> 4 slots)"
 price = 20
 
@@ -794,7 +810,8 @@ position = Vector2(0, -15)
 scale = Vector2(0.75, 0.75)
 display_name = "backpack"
 id = "backpack1"
-description = "Increases inventory space."
+description = "Increases inventory space.
+-> It has a picture of a cute frog on it. What's not to love about it?"
 buy_text = "Increased inventory size! (4 slots -> 6 slots)"
 price = 28
 
@@ -803,7 +820,8 @@ position = Vector2(0, -15)
 scale = Vector2(0.75, 0.75)
 display_name = "backpack"
 id = "backpack2"
-description = "Increases inventory space."
+description = "Increases inventory space.
+-> It's a 'Hello SuperPinkCat' (a show for 3 year olds) branded backpack. Your friends would never let you hear the end of it if they see you wear it, but man does it have a lot of space..."
 buy_text = "Increased inventory size! (6 slots -> 8 slots)"
 price = 35
 
@@ -812,7 +830,8 @@ position = Vector2(0, -15)
 scale = Vector2(0.75, 0.75)
 display_name = "backpack"
 id = "backpack3"
-description = "Increases inventory space."
+description = "Increases inventory space.
+-> It's a limited edition luxury McMoneyPants designer backpack. Quite the flex if you can afford it."
 buy_text = "Increased inventory size! (8 slots -> 10 slots)"
 price = 45
 
@@ -822,7 +841,8 @@ price = 45
 position = Vector2(20, -15)
 display_name = "watch"
 id = "watch"
-description = "Increases time bonus."
+description = "Increases time bonus.
+-> It's just a generic standard watch to help you tell the time. I hope you know how to read an analog clock."
 buy_text = "Increased time bonus! (x1.00 -> x1.50)"
 price = 20
 
@@ -830,7 +850,8 @@ price = 20
 position = Vector2(20, -15)
 display_name = "digital watch"
 id = "digital_watch"
-description = "Increases time bonus."
+description = "Increases time bonus.
+-> A fancy digital watch. It can track your steps, give you the weather forecast, and even comes with a (somewhat) helpful AI assistant."
 buy_text = "Increased time bonus! (x1.50 -> x2.00)"
 price = 40
 
@@ -838,7 +859,8 @@ price = 40
 position = Vector2(20, -15)
 display_name = "pocket watch"
 id = "pocket_watch"
-description = "Increases time bonus."
+description = "Increases time bonus.
+-> Supposedly this used to be the property of some noble from the 1800s."
 buy_text = "Increased time bonus! (x2.00 -> x2.50)"
 price = 65
 
@@ -846,7 +868,8 @@ price = 65
 position = Vector2(20, -15)
 display_name = "RollX watch"
 id = "rollx_watch"
-description = "Increases time bonus."
+description = "Increases time bonus.
+-> RollX is known for their luxury, high quality, but expensive watches. This is one of the cheaper ones."
 buy_text = "Increased time bonus! (x2.50 -> x3.00)"
 price = 85
 
@@ -856,7 +879,8 @@ price = 85
 position = Vector2(38, -15)
 display_name = "hat"
 id = "hat"
-description = "Increases armor."
+description = "Increases armor.
+-> A nice propeller beanie. You had one of these when you were 5 but lost it."
 buy_text = "Increased armor! (0% -> 7%)"
 price = 15
 
@@ -864,7 +888,8 @@ price = 15
 position = Vector2(38, -15)
 display_name = "bike helmet"
 id = "bike_helmet"
-description = "Increases armor."
+description = "Increases armor.
+-> Pretty good protection for when you crash your bike into a tree."
 buy_text = "Increased armor! (7% -> 10%)"
 price = 24
 
@@ -872,7 +897,8 @@ price = 24
 position = Vector2(38, -15)
 display_name = "sportball helmet"
 id = "football_helmet"
-description = "Increases armor."
+description = "Increases armor.
+-> I'm not entirely sure if this can stop a concussion but maybe it can protect your face from an angry shrubdemon?"
 buy_text = "Increased armor! (10% -> 14%)"
 price = 35
 
@@ -880,7 +906,8 @@ price = 35
 position = Vector2(38, -15)
 display_name = "combat helmet"
 id = "combat_helmet"
-description = "Increases armor."
+description = "Increases armor.
+-> It even comes with leaves for camouflage! I don't think it will trick the weeds though..."
 buy_text = "Increased armor! (14% -> 18%)"
 price = 60
 
@@ -888,46 +915,69 @@ price = 60
 position = Vector2(38, -15)
 display_name = "astronaut helmet"
 id = "astronaut_helmet"
-description = "Increases armor."
+description = "Increases armor.
+-> If it can survive the vacuum of space, then it can probably stand a killer rabbit attack."
 buy_text = "Increased armor! (18% -> 22%)"
 price = 65
-
-[node name="SalePoster" type="Sprite2D" parent="Store" unique_id=1531052310]
-position = Vector2(93, 725)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("55_ka6mv")
 
 [node name="StoreDisplay2" parent="Store" unique_id=139448975 instance=ExtResource("53_sc68w")]
 position = Vector2(88, 814)
 
 [node name="Chocolate" parent="Store/StoreDisplay2" unique_id=1862968661 instance=ExtResource("54_532a6")]
-position = Vector2(-40, -15)
+position = Vector2(-37, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "chocolate"
 id = "chocolate"
-description = "Restores 20 health points. Has 3 uses."
+description = "Restores 20 health points. Has 3 uses.
+-> Eating a delicious bar of chocolate always makes everything better, even when you're mortally wounded."
+buy_text = "Bought chocolate! (Left click to use item)"
+price = 6
+add_item = true
+
+[node name="Chocolate2" parent="Store/StoreDisplay2" unique_id=340583536 instance=ExtResource("54_532a6")]
+position = Vector2(-19, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "chocolate"
+id = "chocolate"
+description = "Restores 20 health points. Has 3 uses.
+-> Eating a delicious bar of chocolate always makes everything better, even when you're mortally wounded."
 buy_text = "Bought chocolate! (Left click to use item)"
 price = 6
 add_item = true
 
 [node name="Soda" parent="Store/StoreDisplay2" unique_id=1075520689 instance=ExtResource("54_532a6")]
-position = Vector2(-24, -15)
+position = Vector2(0, -15)
 display_name = "soda"
 id = "soda"
-description = "Increases speed temporarily. Has 4 uses."
+description = "Increases speed temporarily. Has 4 uses.
+-> I'm not sure if consuming this much sugar is good for you but it definitely will give you quite the rush. (and maybe a bit of type II diabetes...)"
+buy_text = "Bought soda! (Left click to use item)"
+price = 8
+add_item = true
+
+[node name="Soda2" parent="Store/StoreDisplay2" unique_id=1735607132 instance=ExtResource("54_532a6")]
+position = Vector2(19, -15)
+display_name = "soda"
+id = "soda"
+description = "Increases speed temporarily. Has 4 uses.
+-> I'm not sure if consuming this much sugar is good for you but it definitely will give you quite the rush. (and maybe a bit of type II diabetes...)"
 buy_text = "Bought soda! (Left click to use item)"
 price = 8
 add_item = true
 
 [node name="IceCream" parent="Store/StoreDisplay2" unique_id=2008948231 instance=ExtResource("54_532a6")]
-position = Vector2(-8, -15)
+position = Vector2(38, -15)
 scale = Vector2(0.45, 0.45)
 display_name = "ice cream"
 id = "ice_cream"
-description = "Heals 60 health points, but slows you down. Has 4 uses."
+description = "Heals 60 health points, but slows you down. Has 4 uses.
+-> The perfect summer treat. You should probably eat it before it melts though."
 buy_text = "Bought ice cream! (Left click to use item)"
 price = 18
 add_item = true
+
+[node name="StoreDisplay3" parent="Store" unique_id=55058432 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 862)
 
 [node name="TrashCan" parent="Store" unique_id=1155408292 instance=ExtResource("56_4nkst")]
 position = Vector2(-40.000004, 758)

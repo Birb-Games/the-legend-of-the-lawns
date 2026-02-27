@@ -448,6 +448,8 @@ func _process(delta: float) -> void:
 				continue
 			if !buy_item.player_in_area:
 				continue
+			if !buy_item.available():
+				continue
 			$/root/Main.play_sfx("Click")
 			$/root/Main/HUD.set_buy_menu(buy_item)
 			break
