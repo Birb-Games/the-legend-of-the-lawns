@@ -928,7 +928,7 @@ position = Vector2(-37, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "chocolate"
 id = "chocolate"
-description = "Restores 20 health points. Has 3 uses.
+description = "Restores 20 health points.
 -> Eating a delicious bar of chocolate always makes everything better, even when you're mortally wounded."
 buy_text = "Bought chocolate! (Left click to use item)"
 price = 6
@@ -939,7 +939,7 @@ position = Vector2(-19, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "chocolate"
 id = "chocolate"
-description = "Restores 20 health points. Has 3 uses.
+description = "Restores 20 health points.
 -> Eating a delicious bar of chocolate always makes everything better, even when you're mortally wounded."
 buy_text = "Bought chocolate! (Left click to use item)"
 price = 6
@@ -949,7 +949,7 @@ add_item = true
 position = Vector2(0, -15)
 display_name = "soda"
 id = "soda"
-description = "Increases speed temporarily. Has 4 uses.
+description = "Increases speed temporarily.
 -> I'm not sure if consuming this much sugar is good for you but it definitely will give you quite the rush. (and maybe a bit of type II diabetes...)"
 buy_text = "Bought soda! (Left click to use item)"
 price = 8
@@ -959,7 +959,7 @@ add_item = true
 position = Vector2(19, -15)
 display_name = "soda"
 id = "soda"
-description = "Increases speed temporarily. Has 4 uses.
+description = "Increases speed temporarily.
 -> I'm not sure if consuming this much sugar is good for you but it definitely will give you quite the rush. (and maybe a bit of type II diabetes...)"
 buy_text = "Bought soda! (Left click to use item)"
 price = 8
@@ -970,7 +970,7 @@ position = Vector2(38, -15)
 scale = Vector2(0.45, 0.45)
 display_name = "ice cream"
 id = "ice_cream"
-description = "Heals 60 health points, but slows you down. Has 4 uses.
+description = "Heals 60 health points, but slows you down.
 -> The perfect summer treat. You should probably eat it before it melts though."
 buy_text = "Bought ice cream! (Left click to use item)"
 price = 18
@@ -1028,6 +1028,16 @@ position = Vector2(-40.000004, 758)
 
 [node name="StoreDisplay4" parent="Store" unique_id=168454794 instance=ExtResource("53_sc68w")]
 position = Vector2(88, 910)
+
+[node name="Gasoline" parent="Store/StoreDisplay4" unique_id=1841829751 instance=ExtResource("54_532a6")]
+position = Vector2(38, -15)
+display_name = "gasoline"
+id = "gasoline"
+description = "Gives a short speed boost when using the lawn mower.
+-> High quality premium gasoline to refuel your lawn mower. Warning: flammable."
+buy_text = "Bought gasoline! (Left click while holding the lawn mower to use)"
+price = 10
+add_item = true
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

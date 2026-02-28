@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://7j04ib7ae8qw" path="res://assets/textures/items/power_ups/eggplant.png" id="4_ftd6u"]
 [ext_resource type="Texture2D" uid="uid://b0dahx51b3p61" path="res://assets/textures/ui/status_icons/fire_icon.png" id="5_pstot"]
 [ext_resource type="Texture2D" uid="uid://b0wj040x600lo" path="res://assets/textures/ui/status_icons/slowness.png" id="6_5bo34"]
+[ext_resource type="Texture2D" uid="uid://cbxyfduk8lrxy" path="res://assets/textures/ui/status_icons/gasoline.png" id="7_dnmi7"]
 
 [node name="StatusEffectsHUD" type="VBoxContainer" unique_id=164748899]
 offset_right = 125.0
@@ -74,6 +75,23 @@ texture = ExtResource("6_5bo34")
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="Slowness" unique_id=1503258620]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("1_rh7i5")
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+
+[node name="Gas" type="HBoxContainer" parent="." unique_id=1134001939]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Gas" unique_id=1748551463]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("7_dnmi7")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Gas" unique_id=1020024682]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 6

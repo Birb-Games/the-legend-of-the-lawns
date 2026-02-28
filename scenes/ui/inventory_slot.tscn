@@ -17,7 +17,7 @@ script = ExtResource("2_bngwc")
 gradient = SubResource("Gradient_bngwc")
 
 [node name="Icon" type="AnimatedSprite2D" parent="." unique_id=252383068]
-position = Vector2(26, 28.000002)
+position = Vector2(25, 28)
 rotation = 0.5235988
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("2_ru537")

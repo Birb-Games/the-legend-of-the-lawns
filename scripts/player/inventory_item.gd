@@ -6,6 +6,7 @@ const USE_COUNTS: Dictionary = {
 	"ice_cream" : 4,
 	"tomato_seeds" : 3,
 	"boom_shroom_spores" : 5,
+	"gasoline" : 3,
 }
 const DEFAULT_USE_COUNT: int = 1
 
@@ -15,6 +16,7 @@ const COOLDOWNS: Dictionary = {
 	"ice_cream" : 40.0,
 	"tomato_seeds" : 80.0,
 	"boom_shroom_spores" : 25.0,
+	"gasoline" : 35.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
@@ -96,6 +98,13 @@ func use(main: Main) -> void:
 			lawn.add_child(boom_shroom)
 			boom_shroom.scale = Vector2(0.0, 0.0)
 			main.play_sfx("Grass")
+		"gasoline":
+			if main.player.lawn_mower_active():
+				var prev_time = main.player.get_status_effect_time("gas")
+				main.player.set_status_effect_time("gas", prev_time + 6.0)
+				main.play_sfx("Gas")
+			else:
+				return
 		_:
 			pass
 

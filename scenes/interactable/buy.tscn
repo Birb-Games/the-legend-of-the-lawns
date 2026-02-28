@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://18xnjek2byjt" path="res://assets/textures/items/upgrades/grape_juice.png" id="17_cmarq"]
 [ext_resource type="Texture2D" uid="uid://bfm5d2lp3vstr" path="res://assets/textures/items/upgrades/rollx_watch.png" id="17_cphwn"]
 [ext_resource type="Texture2D" uid="uid://bjfilepcru71v" path="res://assets/textures/items/upgrades/golden_apple_juice.png" id="18_1afaq"]
+[ext_resource type="Texture2D" uid="uid://ia63ql0nle6m" path="res://assets/textures/items/consumables/gasoline.png" id="19_55i2v"]
 [ext_resource type="Texture2D" uid="uid://q6uoemuwmkcp" path="res://assets/textures/items/upgrades/orange_juice.png" id="19_gx71g"]
 [ext_resource type="Texture2D" uid="uid://do376xyetxupm" path="res://assets/textures/items/upgrades/milk.png" id="21_1qum4"]
 [ext_resource type="Texture2D" uid="uid://dn0il1ilrb5wd" path="res://assets/textures/items/consumables/ice_cream.png" id="22_o7txd"]
@@ -191,6 +192,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"football_helmet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_55i2v")
+}],
+"loop": true,
+"name": &"gasoline",
 "speed": 5.0
 }, {
 "frames": [{

@@ -90,21 +90,22 @@ func update_position(delta: float) -> void:
 	)
 
 func use_item() -> void:
-	if !can_use_inventory():
+	var item: InventoryItem = player.inventory.get_item(selected)
+	if item == null:
+		return
+	if !can_use_inventory() and !(player.lawn_mower_active() and item.id == "gasoline"):
 		return
 	if !Input.is_action_just_pressed("shoot_primary"):
 		return
 	if !main.lawn_loaded:
 		return
 	
-	var item: InventoryItem = player.inventory.get_item(selected)
-	if item:
-		if item.cooldown > 0.0:
-			return
-		item.use(main)
-		# Remove item if the player used it too many times
-		if item.uses_left <= 0:
-			player.inventory.remove_item(selected)
+	if item.cooldown > 0.0:
+		return
+	item.use(main)
+	# Remove item if the player used it too many times
+	if item.uses_left <= 0:
+		player.inventory.remove_item(selected)
 
 func _process(delta: float) -> void:
 	update_position(delta)
@@ -152,8 +153,18 @@ func _process(delta: float) -> void:
 		if main.lawn_loaded:
 			var selected_item: InventoryItem = player.inventory.get_item(selected)
 			if selected_item:
-				if can_use_inventory():
-					selected_slot.modulate = Color8(255, 255, 255)
+				if can_use_inventory() or selected_item.id == "gasoline":
+					# Special case for gasoline, it is disabled when the player
+					# is not holding the lawn mower and enabled when the player
+					# is holding the lawn mower, which is kind of the opposite
+					# for the other items.
+					if selected_item.id == "gasoline":
+						if player.lawn_mower_active():
+							selected_slot.modulate = Color8(255, 255, 255)
+						else:
+							selected_slot.modulate = Color8(255, 255, 255, 64)
+					else:
+						selected_slot.modulate = Color8(255, 255, 255)
 				else:
 					selected_slot.modulate = Color8(255, 255, 255, 64)
 				selected_slot.show()

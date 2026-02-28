@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b12gysuple4ce" path="res://assets/textures/items/consumables/chocolate.png" id="1_hv134"]
 [ext_resource type="Texture2D" uid="uid://dn0il1ilrb5wd" path="res://assets/textures/items/consumables/ice_cream.png" id="2_gktae"]
 [ext_resource type="Texture2D" uid="uid://ddjpyouo4gff2" path="res://assets/textures/items/consumables/soda.png" id="2_rkkop"]
+[ext_resource type="Texture2D" uid="uid://ia63ql0nle6m" path="res://assets/textures/items/consumables/gasoline.png" id="3_tshlp"]
 [ext_resource type="Texture2D" uid="uid://dnommrruprxex" path="res://assets/textures/items/consumables/tomato_seeds.png" id="4_tglea"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4ab7"]
@@ -26,6 +27,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"chocolate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tshlp")
+}],
+"loop": true,
+"name": &"gasoline",
 "speed": 5.0
 }, {
 "frames": [{

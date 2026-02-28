@@ -26,8 +26,9 @@
 [ext_resource type="AudioStream" uid="uid://cgr663goawjao" path="res://assets/audio/sfx/eat.wav" id="24_y6deb"]
 [ext_resource type="AudioStream" uid="uid://c6c7tp2ajt4dp" path="res://assets/audio/sfx/drink.wav" id="25_og1vs"]
 [ext_resource type="AudioStream" uid="uid://bwwwtyegcjwi" path="res://assets/audio/sfx/footsteps/footsteps_grass.wav" id="26_2wyq8"]
+[ext_resource type="AudioStream" uid="uid://xgy8vud86gki" path="res://assets/audio/sfx/gas.wav" id="27_vxglm"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_og1vs"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2f3dj"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Main" type="Node2D" unique_id=592425704]
@@ -53,7 +54,7 @@ metadata/_edit_lock_ = true
 
 [node name="PenaltyParticle" parent="." unique_id=480127416 instance=ExtResource("5_tbgi4")]
 position = Vector2(8, -120)
-texture = SubResource("ViewportTexture_og1vs")
+texture = SubResource("ViewportTexture_2f3dj")
 first_instance = true
 
 [node name="Sfx" type="Node" parent="." unique_id=1253209665]
@@ -80,6 +81,11 @@ script = ExtResource("12_eb6dy")
 [node name="TurnOffMower" type="AudioStreamPlayer" parent="Sfx" unique_id=1933072759]
 stream = ExtResource("12_trceg")
 volume_db = -15.0
+bus = &"LawnMower"
+
+[node name="Gas" type="AudioStreamPlayer" parent="Sfx" unique_id=1712463154]
+stream = ExtResource("27_vxglm")
+volume_db = -5.0
 bus = &"LawnMower"
 
 [node name="HedgeDestruction" type="AudioStreamPlayer" parent="Sfx" unique_id=1939848742]

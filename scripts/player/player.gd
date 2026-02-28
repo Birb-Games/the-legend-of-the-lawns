@@ -303,6 +303,8 @@ func drop_lawn_mower() -> bool:
 		return false
 	if $Lawnmower/CollisionChecker.colliding() and health > 0:
 		return false
+	if get_status_effect_time("gas") > 0.0:
+		return false
 	if Input.is_action_just_pressed("interact") or health <= 0:
 		$/root/Main.play_sfx("TurnOffMower")
 		lawnmower.position = global_position + $Lawnmower.position
@@ -433,6 +435,8 @@ func _process(delta: float) -> void:
 	if stamina <= 0.0:
 		speed *= 0.8
 	speed *= get_speed_amount()
+	if lawn_mower_active() and get_status_effect_time("gas") > 0.0:
+		speed *= lerpf(1.0, 2.75, clamp(get_status_effect_time("gas") * 2.0, 0.0, 1.0))
 	
 	set_animation()
 	
@@ -471,6 +475,8 @@ func _physics_process(_delta: float) -> void:
 			velocity.x -= 1.0
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1.0
+	if lawn_mower_active() and get_status_effect_time("gas") > 0.0 and velocity.length() == 0.0:
+		velocity = get_dir_vec()
 	
 	if velocity.x == 0.0 and velocity.y < 0.0:
 		if $UpCollisionChecker.colliding() and lawn_mower_active():

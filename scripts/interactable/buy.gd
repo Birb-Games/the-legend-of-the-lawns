@@ -85,7 +85,7 @@ func buy() -> void:
 			player.time_bonus_level = ID_TO_LEVEL[id] + 1
 		"hat", "bike_helmet", "football_helmet", "combat_helmet", "astronaut_helmet":
 			player.armor_level = ID_TO_LEVEL[id] + 1
-		"chocolate", "soda", "ice_cream", "tomato_seeds", "boom_shroom_spores":
+		"chocolate", "soda", "ice_cream", "tomato_seeds", "boom_shroom_spores", "gasoline":
 			if !player.inventory.add_item(id):
 				return
 	bought = true

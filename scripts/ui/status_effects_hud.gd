@@ -23,3 +23,4 @@ func _process(_delta: float) -> void:
 	update_status_effect("Eggplant", player.get_status_effect_time("eggplant"))
 	update_status_effect("Fire", player.get_status_effect_time("fire"))
 	update_status_effect("Slowness", player.get_status_effect_time("slowness"))
+	update_status_effect("Gas", player.get_status_effect_time("gas"))
