@@ -90,7 +90,9 @@ func use(main: Main) -> void:
 			if main.player.dir == "up":
 				boom_shroom.global_position.y -= 2.0
 			else:
-				boom_shroom.global_position.y += 2.0
+				boom_shroom.global_position.y += 1.0
+				var dir_vec: Vector2 = main.player.get_dir_vec()
+				boom_shroom.global_position.x += dir_vec.x * 3.0
 			lawn.add_child(boom_shroom)
 			boom_shroom.scale = Vector2(0.0, 0.0)
 			main.play_sfx("Grass")
