@@ -369,11 +369,18 @@ func shoot_eggplant_bullet(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	update_status_effects(delta)
+
+	if get_status_effect_time("gas") > 0.0 and velocity.length() > 0.0:
+		$SpeedParticles.emitting = true
+	else:
+		$SpeedParticles.emitting = false
+
 	visible = health > 0
 	if health <= 0:
 		if lawn_mower_active():
 			drop_lawn_mower()
 		$WaterGun.hide()
+		$SpeedParticles.emitting = false
 		return
 
 	inventory.update(delta, !$/root/Main.lawn_loaded)

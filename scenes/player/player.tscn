@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://c2q15ntrokdi0" path="res://assets/audio/sfx/footsteps/footsteps.wav" id="13_gx1jg"]
 [ext_resource type="AudioStream" uid="uid://cteg86na8iivn" path="res://assets/audio/sfx/footsteps/footsteps_wood.wav" id="14_ugbui"]
 [ext_resource type="AudioStream" uid="uid://c5fg7exeno2b6" path="res://assets/audio/sfx/pop.wav" id="16_myrg7"]
+[ext_resource type="Texture2D" uid="uid://cpreymp1fnr7s" path="res://assets/textures/particles/fire_bullet.png" id="19_lgqa7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_3vyb7")
@@ -267,6 +268,25 @@ size = Vector2(12, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gtgg"]
 size = Vector2(12, 10)
 
+[sub_resource type="Curve" id="Curve_lgqa7"]
+_data = [Vector2(0, 0.18428004), 0.0, 0.0, 0, 0, Vector2(0.16993463, 1), 0.0, 0.0, 0, 0, Vector2(0.60130715, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8ydkj"]
+curve = SubResource("Curve_lgqa7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ydkj"]
+particle_flag_disable_z = true
+angular_velocity_min = 179.99998
+angular_velocity_max = 359.99997
+radial_velocity_min = 49.999977
+radial_velocity_max = 74.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_8ydkj")
+color = Color(1, 1, 1, 0.78431374)
+
 [node name="Player" type="CharacterBody2D" unique_id=466965754 node_paths=PackedStringArray("water_gun") groups=["player"]]
 script = ExtResource("1_g2els")
 water_gun = NodePath("WaterGun")
@@ -426,6 +446,13 @@ volume_db = -10.0
 [node name="Pop" type="AudioStreamPlayer" parent="." unique_id=1598686521]
 stream = ExtResource("16_myrg7")
 volume_db = -10.0
+
+[node name="SpeedParticles" type="GPUParticles2D" parent="." unique_id=98287930]
+position = Vector2(0, -1)
+emitting = false
+amount = 32
+texture = ExtResource("19_lgqa7")
+process_material = SubResource("ParticleProcessMaterial_8ydkj")
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_exited"]
