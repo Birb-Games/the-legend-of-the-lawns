@@ -1029,8 +1029,35 @@ position = Vector2(-40.000004, 758)
 [node name="StoreDisplay4" parent="Store" unique_id=168454794 instance=ExtResource("53_sc68w")]
 position = Vector2(88, 910)
 
+[node name="ShieldGenerator" parent="Store/StoreDisplay4" unique_id=678809379 instance=ExtResource("54_532a6")]
+position = Vector2(-41, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "shield generator"
+id = "shield_generator"
+add_item = true
+
+[node name="ElectricDoodad" parent="Store/StoreDisplay4" unique_id=688363830 instance=ExtResource("54_532a6")]
+position = Vector2(-25, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "electric doodad"
+id = "electric_doodad"
+add_item = true
+
+[node name="DroneController" parent="Store/StoreDisplay4" unique_id=248807824 instance=ExtResource("54_532a6")]
+position = Vector2(-9, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "drone controller"
+id = "drone_controller"
+add_item = true
+
+[node name="Fireworks" parent="Store/StoreDisplay4" unique_id=101699015 instance=ExtResource("54_532a6")]
+position = Vector2(8, -15)
+display_name = "fireworks"
+id = "fireworks"
+add_item = true
+
 [node name="Gasoline" parent="Store/StoreDisplay4" unique_id=1841829751 instance=ExtResource("54_532a6")]
-position = Vector2(38, -15)
+position = Vector2(25, -15)
 display_name = "gasoline"
 id = "gasoline"
 description = "Gives a short speed boost when using the lawn mower.
@@ -1038,6 +1065,19 @@ description = "Gives a short speed boost when using the lawn mower.
 buy_text = "Bought gasoline! (Left click while holding the lawn mower to use)"
 price = 10
 add_item = true
+
+[node name="Insecticide" parent="Store/StoreDisplay4" unique_id=118012183 instance=ExtResource("54_532a6")]
+position = Vector2(41, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "insecticide"
+id = "insecticide"
+add_item = true
+
+[node name="StoreDisplay5" parent="Store" unique_id=1357847614 instance=ExtResource("53_sc68w")]
+position = Vector2(-88, 910)
+
+[node name="StoreDisplay6" parent="Store" unique_id=1402963401 instance=ExtResource("53_sc68w")]
+position = Vector2(-88, 862)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

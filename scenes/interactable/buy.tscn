@@ -27,11 +27,16 @@
 [ext_resource type="Texture2D" uid="uid://18xnjek2byjt" path="res://assets/textures/items/upgrades/grape_juice.png" id="17_cmarq"]
 [ext_resource type="Texture2D" uid="uid://bfm5d2lp3vstr" path="res://assets/textures/items/upgrades/rollx_watch.png" id="17_cphwn"]
 [ext_resource type="Texture2D" uid="uid://bjfilepcru71v" path="res://assets/textures/items/upgrades/golden_apple_juice.png" id="18_1afaq"]
+[ext_resource type="Texture2D" uid="uid://cho3mlswr3ofw" path="res://assets/textures/items/consumables/electric_doodad.png" id="18_nmgib"]
+[ext_resource type="Texture2D" uid="uid://b41h53yy4il2g" path="res://assets/textures/items/consumables/drone_controller.png" id="18_nqu8b"]
 [ext_resource type="Texture2D" uid="uid://ia63ql0nle6m" path="res://assets/textures/items/consumables/gasoline.png" id="19_55i2v"]
 [ext_resource type="Texture2D" uid="uid://q6uoemuwmkcp" path="res://assets/textures/items/upgrades/orange_juice.png" id="19_gx71g"]
+[ext_resource type="Texture2D" uid="uid://pqw487qcsila" path="res://assets/textures/items/consumables/fireworks.png" id="20_5e0lj"]
 [ext_resource type="Texture2D" uid="uid://do376xyetxupm" path="res://assets/textures/items/upgrades/milk.png" id="21_1qum4"]
 [ext_resource type="Texture2D" uid="uid://dn0il1ilrb5wd" path="res://assets/textures/items/consumables/ice_cream.png" id="22_o7txd"]
+[ext_resource type="Texture2D" uid="uid://ba81g8k32trjf" path="res://assets/textures/items/consumables/insecticide.png" id="28_rfce6"]
 [ext_resource type="Texture2D" uid="uid://dnommrruprxex" path="res://assets/textures/items/consumables/tomato_seeds.png" id="29_2am8v"]
+[ext_resource type="Texture2D" uid="uid://k0x1tunq2hhx" path="res://assets/textures/items/consumables/shield_generator.png" id="30_gl38w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weic1"]
 size = Vector2(13.333333, 28.333332)
@@ -55,6 +60,18 @@ region = Rect2(0, 0, 23, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ci6ny"]
 atlas = ExtResource("4_gsonl")
 region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqu8b"]
+atlas = ExtResource("18_nmgib")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e0lj"]
+atlas = ExtResource("18_nmgib")
+region = Rect2(23, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfce6"]
+atlas = ExtResource("18_nmgib")
+region = Rect2(46, 0, 23, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsonl"]
 atlas = ExtResource("4_ho0xu")
@@ -188,6 +205,39 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("18_nqu8b")
+}],
+"loop": true,
+"name": &"drone_controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqu8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e0lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqu8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfce6")
+}],
+"loop": true,
+"name": &"electric_doodad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_5e0lj")
+}],
+"loop": true,
+"name": &"fireworks",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("14_0qkbw")
 }],
 "loop": true,
@@ -244,6 +294,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("28_rfce6")
+}],
+"loop": true,
+"name": &"insecticide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("21_1qum4")
 }],
 "loop": true,
@@ -280,6 +338,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"rollx_watch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_gl38w")
+}],
+"loop": true,
+"name": &"shield_generator",
 "speed": 5.0
 }, {
 "frames": [{

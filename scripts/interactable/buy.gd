@@ -48,6 +48,7 @@ const ID_TO_LEVEL: Dictionary = {
 func _ready() -> void:
 	buy_item_list.append(self)
 	$AnimatedSprite2D.animation = id
+	$AnimatedSprite2D.play($AnimatedSprite2D.animation)
 
 static func update_buy_list() -> void:
 	for item: Buy in buy_item_list:

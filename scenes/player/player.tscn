@@ -269,7 +269,8 @@ size = Vector2(12, 10)
 size = Vector2(12, 10)
 
 [sub_resource type="Curve" id="Curve_lgqa7"]
-_data = [Vector2(0, 0.18428004), 0.0, 0.0, 0, 0, Vector2(0.16993463, 1), 0.0, 0.0, 0, 0, Vector2(0.60130715, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.003963), 0.0, 0.0, 0, 0, Vector2(0.16993463, 2), 0.0, 0.0, 0, 0, Vector2(0.45424834, 0.48877144), -2.3183615, -2.3183615, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_8ydkj"]
