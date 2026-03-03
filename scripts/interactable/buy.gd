@@ -89,6 +89,10 @@ func buy() -> void:
 		"chocolate", "soda", "ice_cream", "tomato_seeds", "boom_shroom_spores", "gasoline":
 			if !player.inventory.add_item(id):
 				return
+		# Another line in order to prevent the top case from being a giant line
+		"shield_generator":
+			if !player.inventory.add_item(id):
+				return
 	bought = true
 	print(name, " ", bought)
 	var main: Main = $/root/Main

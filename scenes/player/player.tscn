@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cteg86na8iivn" path="res://assets/audio/sfx/footsteps/footsteps_wood.wav" id="14_ugbui"]
 [ext_resource type="AudioStream" uid="uid://c5fg7exeno2b6" path="res://assets/audio/sfx/pop.wav" id="16_myrg7"]
 [ext_resource type="Texture2D" uid="uid://cpreymp1fnr7s" path="res://assets/textures/particles/fire_bullet.png" id="19_lgqa7"]
+[ext_resource type="Texture2D" uid="uid://dy32b6kiulp8q" path="res://assets/textures/player/player_shield.png" id="20_8ydkj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_3vyb7")
@@ -454,6 +455,17 @@ emitting = false
 amount = 32
 texture = ExtResource("19_lgqa7")
 process_material = SubResource("ParticleProcessMaterial_8ydkj")
+
+[node name="PlayerShield" type="Sprite2D" parent="." unique_id=1430735869]
+modulate = Color(1, 1, 1, 0.47058824)
+position = Vector2(0, -13)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_8ydkj")
+
+[node name="SecondLayer" type="Sprite2D" parent="PlayerShield" unique_id=1568063180]
+modulate = Color(1, 1, 1, 0.78431374)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("20_8ydkj")
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_exited"]

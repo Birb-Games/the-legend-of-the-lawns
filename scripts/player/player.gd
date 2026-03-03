@@ -5,6 +5,8 @@ extends CharacterBody2D
 const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
 @onready var lawnmower: Lawnmower = get_node_or_null(LAWNMOWER_PATH)
 @onready var default_sprite_pos: Vector2 = $AnimatedSprite2D.position
+@onready var default_shield_scale: Vector2 = $PlayerShield.scale
+@onready var default_shield_alpha: float = $PlayerShield.modulate.a
 @export var water_gun: Sprite2D
 @export var eggplant_bullet_scene: PackedScene
 @export var resist_particle_scene: PackedScene
@@ -149,7 +151,8 @@ func heal(amt: int) -> void:
 func damage(amt: int, apply_armor: bool = false) -> void:
 	if amt <= 0:
 		return
-	if apply_armor and randf() < get_armor():
+	var shield_time: float = get_status_effect_time("shield")
+	if (apply_armor and randf() < get_armor()) or shield_time > 0.0:
 		var particles: GPUParticles2D = resist_particle_scene.instantiate()
 		particles.global_position = $AnimatedSprite2D.global_position
 		var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
@@ -303,7 +306,7 @@ func drop_lawn_mower() -> bool:
 		return false
 	if $Lawnmower/CollisionChecker.colliding() and health > 0:
 		return false
-	if get_status_effect_time("gas") > 0.0:
+	if get_status_effect_time("gas") > 0.0 and health > 0:
 		return false
 	if Input.is_action_just_pressed("interact") or health <= 0:
 		$/root/Main.play_sfx("TurnOffMower")
@@ -367,9 +370,39 @@ func shoot_eggplant_bullet(delta: float) -> void:
 		eggplant_bullet.dir = bullet_dir
 		lawn.add_child(eggplant_bullet)
 
+func update_shield(delta: float) -> void:
+	var shield_time: float = get_status_effect_time("shield")
+	# Hide the shield if we do not have the shield effect applied
+	if shield_time <= 0.0:
+		$PlayerShield.scale = Vector2(0.0, 0.0)
+		$PlayerShield.hide()
+		$PlayerShield.modulate.a = default_shield_alpha
+		return
+	# Hide the shield if we are dead
+	if health <= 0:
+		$PlayerShield.hide()
+		return
+	else:
+		$PlayerShield.show()
+	# Grow when the shield is first shown
+	if $PlayerShield.scale.x < default_shield_scale.x:
+		$PlayerShield.scale.x += delta * 2.0
+		$PlayerShield.scale.x = min($PlayerShield.scale.x, default_shield_scale.x)
+		$PlayerShield.scale.y = $PlayerShield.scale.x
+	# Flash if the time is running low
+	if shield_time <= 1.5:
+		var alpha: float = (sin((7.0 * PI * shield_time / 1.5 - PI / 2.0)) + 1.0) / 2.0
+		$PlayerShield.modulate.a = alpha * default_shield_alpha
+	# Set position
+	$PlayerShield.position = $AnimatedSprite2D.position
+	$PlayerShield.rotation += delta * PI / 2.0
+	# Rotate the second layer in the opposite direction
+	$PlayerShield/SecondLayer.rotation -= delta * (PI / 4.0 + PI / 2.0)
+
 func _process(delta: float) -> void:
 	update_status_effects(delta)
 
+	update_shield(delta)
 	if get_status_effect_time("gas") > 0.0 and velocity.length() > 0.0:
 		$SpeedParticles.emitting = true
 	else:

@@ -172,3 +172,8 @@ License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
 File: gas.wav
 Notes: combined lawn_mower_start.wav (author: straget) and active_lawn_mower.wav
 (author: morgantj, license: CC-BY 4.0).
+
+File: zap.wav
+Author: bevibeldesign
+URL: https://freesound.org/people/bevibeldesign/sounds/315918/
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)

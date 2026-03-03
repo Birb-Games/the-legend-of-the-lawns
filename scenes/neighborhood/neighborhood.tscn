@@ -1034,6 +1034,10 @@ position = Vector2(-41, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "shield generator"
 id = "shield_generator"
+description = "Temporarily makes you invulnerable to damage.
+-> Generates an electromagnetic shield to protect you from all kinds of damage. A truly incredible invention, would be nice if it had better battery life though."
+buy_text = "Bought shield generator! (Left click to use item)"
+price = 32
 add_item = true
 
 [node name="ElectricDoodad" parent="Store/StoreDisplay4" unique_id=688363830 instance=ExtResource("54_532a6")]

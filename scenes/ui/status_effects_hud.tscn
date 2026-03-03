@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b0dahx51b3p61" path="res://assets/textures/ui/status_icons/fire_icon.png" id="5_pstot"]
 [ext_resource type="Texture2D" uid="uid://b0wj040x600lo" path="res://assets/textures/ui/status_icons/slowness.png" id="6_5bo34"]
 [ext_resource type="Texture2D" uid="uid://cbxyfduk8lrxy" path="res://assets/textures/ui/status_icons/gasoline.png" id="7_dnmi7"]
+[ext_resource type="Texture2D" uid="uid://c20mw8g3g5r8a" path="res://assets/textures/ui/status_icons/shield.png" id="8_ix60b"]
 
 [node name="StatusEffectsHUD" type="VBoxContainer" unique_id=164748899]
 offset_right = 125.0
@@ -92,6 +93,23 @@ texture = ExtResource("7_dnmi7")
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="Gas" unique_id=1020024682]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("1_rh7i5")
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+
+[node name="Shield" type="HBoxContainer" parent="." unique_id=1606590417]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Shield" unique_id=1291344929]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_ix60b")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Shield" unique_id=1043098926]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 6

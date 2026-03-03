@@ -7,6 +7,7 @@ const USE_COUNTS: Dictionary = {
 	"tomato_seeds" : 3,
 	"boom_shroom_spores" : 5,
 	"gasoline" : 3,
+	"shield_generator" : 4,
 }
 const DEFAULT_USE_COUNT: int = 1
 
@@ -17,6 +18,7 @@ const COOLDOWNS: Dictionary = {
 	"tomato_seeds" : 80.0,
 	"boom_shroom_spores" : 25.0,
 	"gasoline" : 35.0,
+	"shield_generator" : 90.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
@@ -24,6 +26,7 @@ const DISPLAY_NAMES: Dictionary = {
 	"ice_cream" : "ice cream",
 	"tomato_seeds" : "tomato seeds",
 	"boom_shroom_spores" : "boom shroom spores",
+	"shield_generator" : "shield generator",
 }
 
 var id: String = ""
@@ -105,6 +108,10 @@ func use(main: Main) -> void:
 				main.play_sfx("Gas")
 			else:
 				return
+		"shield_generator":
+			main.play_sfx("Zap")
+			var prev_time = main.player.get_status_effect_time("shield")
+			main.player.set_status_effect_time("shield", prev_time + 8.0)
 		_:
 			pass
 
