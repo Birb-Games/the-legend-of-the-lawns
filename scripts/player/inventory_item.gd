@@ -8,6 +8,7 @@ const USE_COUNTS: Dictionary = {
 	"boom_shroom_spores" : 5,
 	"gasoline" : 3,
 	"shield_generator" : 4,
+	"electric_doodad" : 4,
 }
 const DEFAULT_USE_COUNT: int = 1
 
@@ -19,6 +20,7 @@ const COOLDOWNS: Dictionary = {
 	"boom_shroom_spores" : 25.0,
 	"gasoline" : 35.0,
 	"shield_generator" : 90.0,
+	"electric_doodad" : 50.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
@@ -27,6 +29,7 @@ const DISPLAY_NAMES: Dictionary = {
 	"tomato_seeds" : "tomato seeds",
 	"boom_shroom_spores" : "boom shroom spores",
 	"shield_generator" : "shield generator",
+	"electric_doodad" : "electric doodad",
 }
 
 var id: String = ""
@@ -35,6 +38,7 @@ var uses_left: int = 1
 
 static var tomato_boy_scene: PackedScene = preload("uid://crnj1ljbpuy2m")
 static var boom_shroom_scene: PackedScene = preload("uid://cm4b5rcedfd1n")
+static var electric_shock_scene: PackedScene = preload("uid://cy8u2eu12sgc3")
 
 static func get_use_count(item_id: String) -> int:
 	if !(item_id in USE_COUNTS):
@@ -52,8 +56,9 @@ func _init(item_id: String) -> void:
 	uses_left = get_use_count(id)
 
 func use(main: Main) -> void:
+	var lawn: Lawn = main.get_node_or_null("Lawn")
 	# Only allow the item to be used on the lawn
-	if !main.lawn_loaded:
+	if !main.lawn_loaded or lawn == null:
 		return
 	if uses_left <= 0:
 		return
@@ -80,7 +85,6 @@ func use(main: Main) -> void:
 			main.player.heal(60)
 			main.play_sfx("Eat")
 		"tomato_seeds":
-			var lawn: Lawn = main.get_node_or_null("Lawn")
 			Spawning.spawn_at_point(
 				lawn,
 				lawn.get_node("MobileEnemies"),
@@ -89,7 +93,6 @@ func use(main: Main) -> void:
 			)
 			main.play_sfx("Grass")
 		"boom_shroom_spores":
-			var lawn: Lawn = main.get_node_or_null("Lawn")
 			var boom_shroom: Node2D = boom_shroom_scene.instantiate()
 			boom_shroom.global_position = main.player.global_position
 			if main.player.dir == "up":
@@ -112,6 +115,11 @@ func use(main: Main) -> void:
 			main.play_sfx("Zap")
 			var prev_time = main.player.get_status_effect_time("shield")
 			main.player.set_status_effect_time("shield", prev_time + 8.0)
+		"electric_doodad":
+			main.play_sfx("Zap")
+			var shock = electric_shock_scene.instantiate()
+			shock.global_position = main.player.get_sprite_pos()
+			lawn.add_child(shock)
 		_:
 			pass
 

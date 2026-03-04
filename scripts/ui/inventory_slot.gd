@@ -11,10 +11,13 @@ func set_item_icon(item: InventoryItem) -> void:
 		$Icon.hide()
 		$DurabilityBackground.hide()
 		$CooldownTimer.hide()
+		$Icon.stop()
 		return
 	$Icon.show()
 	$DurabilityBackground.show()
 	$Icon.animation = item.id
+	if !$Icon.is_playing():
+		$Icon.play($Icon.animation)
 	# Update durability bar
 	if item.uses_left >= InventoryItem.get_use_count(item.id):
 		$DurabilityBackground.hide()

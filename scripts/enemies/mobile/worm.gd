@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Worm
+
 @export var max_health: int = 128
 @export var bullet_scene: PackedScene
 @onready var health: int = max_health

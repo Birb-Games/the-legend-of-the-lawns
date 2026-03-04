@@ -1045,6 +1045,10 @@ position = Vector2(-25, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "electric doodad"
 id = "electric_doodad"
+description = "Shocks nearby enemies.
+-> *Shockingly* effective."
+buy_text = "Bought electric doodad! (Left click to use item)"
+price = 32
 add_item = true
 
 [node name="DroneController" parent="Store/StoreDisplay4" unique_id=248807824 instance=ExtResource("54_532a6")]

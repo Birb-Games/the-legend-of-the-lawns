@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cy8u2eu12sgc3"]
+
+[ext_resource type="Texture2D" uid="uid://bqs3vhm5c35g6" path="res://assets/textures/player/electric_shock.png" id="1_ixd8x"]
+[ext_resource type="Script" uid="uid://dij7caylbrfvj" path="res://scripts/player/electric_shock.gd" id="1_uoxpb"]
+[ext_resource type="PackedScene" uid="uid://dcyro1vcetkcj" path="res://scenes/particles/shock_particles.tscn" id="2_qeld6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixd8x"]
+radius = 33.13608
+
+[node name="ElectricShock" type="Area2D" unique_id=443224921 groups=["shock"]]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_uoxpb")
+shock_particles_scene = ExtResource("2_qeld6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=727534558]
+shape = SubResource("CircleShape2D_ixd8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=643348443]
+modulate = Color(1, 1, 1, 0.78431374)
+texture = ExtResource("1_ixd8x")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1811201862]
+modulate = Color(1, 1, 1, 0.627451)
+scale = Vector2(0.84375, 0.8437501)
+texture = ExtResource("1_ixd8x")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -274,6 +274,12 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 		damage(body.get_parent().calculate_damage(global_position))
 	elif body is BoomShroom:
 		body.explode_flag = true
+	elif body.is_in_group("shock"):
+		if !visible:
+			return
+		$/root/Main.play_sfx("Zap")
+		body.add_shock_particles(self)
+		damage(randi_range(3, 6))
 
 func _on_bullet_hitbox_area_exited(body: Node2D) -> void:
 	if body is Fire:

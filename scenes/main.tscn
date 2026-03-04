@@ -29,7 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://xgy8vud86gki" path="res://assets/audio/sfx/gas.wav" id="27_vxglm"]
 [ext_resource type="AudioStream" uid="uid://3qcisgamecil" path="res://assets/audio/sfx/zap.wav" id="28_2f3dj"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yq6so"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2f3dj"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Main" type="Node2D" unique_id=592425704]
@@ -55,7 +55,7 @@ metadata/_edit_lock_ = true
 
 [node name="PenaltyParticle" parent="." unique_id=480127416 instance=ExtResource("5_tbgi4")]
 position = Vector2(8, -120)
-texture = SubResource("ViewportTexture_yq6so")
+texture = SubResource("ViewportTexture_2f3dj")
 first_instance = true
 
 [node name="Sfx" type="Node" parent="." unique_id=1253209665]
@@ -145,3 +145,4 @@ stream = ExtResource("26_2wyq8")
 
 [node name="Zap" type="AudioStreamPlayer" parent="Sfx" unique_id=1558738125]
 stream = ExtResource("28_2f3dj")
+max_polyphony = 12
