@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ia63ql0nle6m" path="res://assets/textures/items/consumables/gasoline.png" id="3_tshlp"]
 [ext_resource type="Texture2D" uid="uid://dnommrruprxex" path="res://assets/textures/items/consumables/tomato_seeds.png" id="4_tglea"]
 [ext_resource type="Texture2D" uid="uid://k0x1tunq2hhx" path="res://assets/textures/items/consumables/shield_generator.png" id="5_vn2ag"]
+[ext_resource type="Texture2D" uid="uid://ba81g8k32trjf" path="res://assets/textures/items/consumables/insecticide.png" id="6_e0tc1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4ab7"]
 atlas = ExtResource("1_hv134")
@@ -74,6 +75,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"ice_cream",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_e0tc1")
+}],
+"loop": true,
+"name": &"insecticide",
 "speed": 5.0
 }, {
 "frames": [{

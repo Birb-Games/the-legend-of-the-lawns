@@ -177,3 +177,8 @@ File: zap.wav
 Author: bevibeldesign
 URL: https://freesound.org/people/bevibeldesign/sounds/315918/
 License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+
+File: spray.wav
+Author: FOSSarts
+URL: https://freesound.org/people/FOSSarts/sounds/741078/
+License: CC0

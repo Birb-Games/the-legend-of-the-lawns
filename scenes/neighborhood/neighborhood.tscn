@@ -1079,6 +1079,10 @@ position = Vector2(41, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "insecticide"
 id = "insecticide"
+description = "Creates a cloud of poison that damages enemies.
+-> I'm pretty sure this stuff violates several environmental and health regulations..."
+buy_text = "Bought insecticide! (Left click to use item)"
+price = 14
 add_item = true
 
 [node name="StoreDisplay5" parent="Store" unique_id=1357847614 instance=ExtResource("53_sc68w")]

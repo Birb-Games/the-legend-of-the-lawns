@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bf2a1d6r4asm1"]
+
+[ext_resource type="Script" uid="uid://dgb64s8wailvd" path="res://scripts/lawn_features/poison_cloud.gd" id="1_2vebr"]
+[ext_resource type="Texture2D" uid="uid://btspvfcbp648g" path="res://assets/textures/particles/circle_particle.png" id="1_lch5v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ne78e"]
+radius = 55.036346
+
+[sub_resource type="Curve" id="Curve_lch5v"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0.42404222), 0.0, 0.0, 0, 0, Vector2(0.11764706, 3), 0.0, 0.0, 0, 0, Vector2(0.47385624, 2.2529721), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2vebr"]
+curve = SubResource("Curve_lch5v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lch5v"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+angular_velocity_min = 179.99998
+angular_velocity_max = 359.99997
+radial_velocity_min = 59.999977
+radial_velocity_max = 59.999977
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_2vebr")
+color = Color(0.84705883, 0.06666667, 0.8509804, 0.7058824)
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.049999975
+
+[node name="PoisonCloud" type="Area2D" unique_id=1867314365]
+scale = Vector2(0.4, 0.4)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_2vebr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=651850860]
+position = Vector2(0, -60.499985)
+shape = SubResource("CircleShape2D_ne78e")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=257346785]
+position = Vector2(0, -60)
+amount = 32
+texture = ExtResource("1_lch5v")
+lifetime = 1.25
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_lch5v")

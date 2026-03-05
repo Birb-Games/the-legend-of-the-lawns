@@ -33,7 +33,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return	
 	if area is WeedEnemy:
 		$/root/Main.play_sfx("Zap")
-		area.health -= randi_range(3, 6)
+		area.health -= randi_range(3, 8)
 		add_shock_particles(area)
 		if !area.visible or !area.is_inside_tree():
 			return
@@ -45,7 +45,7 @@ func _on_area_entered(area: Area2D) -> void:
 			return
 	elif area is Worm:
 		$/root/Main.play_sfx("Zap")
-		area.damage(randi_range(3, 6))
+		area.damage(randi_range(3, 8))
 		add_shock_particles(area)
 		if !area.visible or !area.is_inside_tree():
 			return

@@ -10,7 +10,7 @@ var selected: int = 0
 @onready var default_inventory_x: float = $InventoryContainer.position.x
 const SLIDE_SPEED: float = 480.0
 
-const SCROLL_DELAY = 0.03
+const SCROLL_DELAY = 0.02
 var scroll_timer: float = 0.0
 const KEYS: Array = [
 	KEY_1,

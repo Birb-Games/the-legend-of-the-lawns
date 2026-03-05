@@ -9,6 +9,7 @@ const USE_COUNTS: Dictionary = {
 	"gasoline" : 3,
 	"shield_generator" : 4,
 	"electric_doodad" : 4,
+	"insecticide" : 4,
 }
 const DEFAULT_USE_COUNT: int = 1
 
@@ -21,6 +22,7 @@ const COOLDOWNS: Dictionary = {
 	"gasoline" : 35.0,
 	"shield_generator" : 90.0,
 	"electric_doodad" : 50.0,
+	"insecticide" : 45.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
@@ -39,6 +41,7 @@ var uses_left: int = 1
 static var tomato_boy_scene: PackedScene = preload("uid://crnj1ljbpuy2m")
 static var boom_shroom_scene: PackedScene = preload("uid://cm4b5rcedfd1n")
 static var electric_shock_scene: PackedScene = preload("uid://cy8u2eu12sgc3")
+static var poison_cloud_scene: PackedScene = preload("uid://bf2a1d6r4asm1")
 
 static func get_use_count(item_id: String) -> int:
 	if !(item_id in USE_COUNTS):
@@ -120,6 +123,11 @@ func use(main: Main) -> void:
 			var shock = electric_shock_scene.instantiate()
 			shock.global_position = main.player.get_sprite_pos()
 			lawn.add_child(shock)
+		"insecticide":
+			main.play_sfx("Spray")
+			var poison = poison_cloud_scene.instantiate()
+			poison.global_position = main.player.global_position + Vector2(0.0, 4.0)
+			lawn.add_child(poison)
 		_:
 			pass
 

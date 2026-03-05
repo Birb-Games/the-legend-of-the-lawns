@@ -21,6 +21,7 @@ var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var can_pick_up_lawnmower: bool = false
 var inside_store: bool = false
+var hazards: Dictionary = {}
 # The target velocity of the player based on the controls the player is pressing,
 # this might not be equal to `velocity` since the player may be walking into a wall
 var target_velocity: Vector2 = Vector2.ZERO
@@ -139,6 +140,7 @@ func get_hp_perc() -> float:
 func reset_health() -> void:
 	health = get_max_health()
 	damage_timer = 0.0
+	hazards.clear()
 
 func activate_hedge_timer() -> void:
 	hedge_collision_timer = HEDGE_TIMER
@@ -366,7 +368,7 @@ func shoot_eggplant_bullet(delta: float) -> void:
 		var eggplant_bullet = eggplant_bullet_scene.instantiate()
 		var angle: float = 2.0 * PI / count * i + offset
 		var bullet_dir = Vector2(cos(angle), sin(angle))
-		eggplant_bullet.position = get_sprite_pos()
+		eggplant_bullet.position = get_sprite_pos() + bullet_dir * 16.0
 		eggplant_bullet.dir = bullet_dir
 		lawn.add_child(eggplant_bullet)
 
@@ -425,6 +427,18 @@ func _process(delta: float) -> void:
 
 	take_fire_damage(delta)
 	shoot_eggplant_bullet(delta)
+	# Do not take damage from hazards in the lawn
+	if !$/root/Main.lawn_loaded:
+		hazards.clear()
+	# Update damage from hazards
+	for path: NodePath in hazards:
+		var node = get_node_or_null(path)
+		if node == null:
+			hazards.erase(path)
+			continue
+		var hazard: Hazard = hazards[path]
+		if hazard.update(delta):
+			damage(hazard.damage_amt)
 
 	update_enemy_arrow()
 	update_lawn_mower_arrow()
@@ -679,8 +693,12 @@ func _on_player_hitbox_area_entered(area: Area2D) -> void:
 	# Check if we entered the store
 	if area.is_in_group("store"):
 		inside_store = true
+	elif area is Poison:
+		hazards[area.get_path()] = Hazard.from_preset("poison")
 
 func _on_player_hitbox_area_exited(area: Area2D) -> void:
 	# We left the store
 	if area.is_in_group("store"):
 		inside_store = false
+	elif area is Poison:
+		hazards.erase(area.get_path())
