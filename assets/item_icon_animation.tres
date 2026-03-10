@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dn0il1ilrb5wd" path="res://assets/textures/items/consumables/ice_cream.png" id="2_gktae"]
 [ext_resource type="Texture2D" uid="uid://ddjpyouo4gff2" path="res://assets/textures/items/consumables/soda.png" id="2_rkkop"]
 [ext_resource type="Texture2D" uid="uid://cho3mlswr3ofw" path="res://assets/textures/items/consumables/electric_doodad.png" id="3_na0l6"]
+[ext_resource type="Texture2D" uid="uid://b41h53yy4il2g" path="res://assets/textures/items/consumables/drone_controller.png" id="3_tavnr"]
 [ext_resource type="Texture2D" uid="uid://ia63ql0nle6m" path="res://assets/textures/items/consumables/gasoline.png" id="3_tshlp"]
+[ext_resource type="Texture2D" uid="uid://pqw487qcsila" path="res://assets/textures/items/consumables/fireworks.png" id="4_18sl8"]
 [ext_resource type="Texture2D" uid="uid://dnommrruprxex" path="res://assets/textures/items/consumables/tomato_seeds.png" id="4_tglea"]
 [ext_resource type="Texture2D" uid="uid://k0x1tunq2hhx" path="res://assets/textures/items/consumables/shield_generator.png" id="5_vn2ag"]
 [ext_resource type="Texture2D" uid="uid://ba81g8k32trjf" path="res://assets/textures/items/consumables/insecticide.png" id="6_e0tc1"]
@@ -46,6 +48,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_tavnr")
+}],
+"loop": true,
+"name": &"drone_controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_e0tc1")
 }, {
 "duration": 1.0,
@@ -59,6 +69,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"electric_doodad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_18sl8")
+}],
+"loop": true,
+"name": &"fireworks",
 "speed": 5.0
 }, {
 "frames": [{

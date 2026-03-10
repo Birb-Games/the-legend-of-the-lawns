@@ -9,7 +9,9 @@ const USE_COUNTS: Dictionary = {
 	"gasoline" : 3,
 	"shield_generator" : 4,
 	"electric_doodad" : 4,
-	"insecticide" : 4,
+	"insecticide" : 5,
+	"drone_controller" : 3,
+	"fireworks" : 3,
 }
 const DEFAULT_USE_COUNT: int = 1
 
@@ -23,6 +25,8 @@ const COOLDOWNS: Dictionary = {
 	"shield_generator" : 90.0,
 	"electric_doodad" : 50.0,
 	"insecticide" : 45.0,
+	"drone_controller" : 80.0,
+	"fireworks" : 60.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
@@ -32,6 +36,7 @@ const DISPLAY_NAMES: Dictionary = {
 	"boom_shroom_spores" : "boom shroom spores",
 	"shield_generator" : "shield generator",
 	"electric_doodad" : "electric doodad",
+	"drone_controller" : "drone controller",
 }
 
 var id: String = ""
@@ -42,6 +47,7 @@ static var tomato_boy_scene: PackedScene = preload("uid://crnj1ljbpuy2m")
 static var boom_shroom_scene: PackedScene = preload("uid://cm4b5rcedfd1n")
 static var electric_shock_scene: PackedScene = preload("uid://cy8u2eu12sgc3")
 static var poison_cloud_scene: PackedScene = preload("uid://bf2a1d6r4asm1")
+static var drone_scene: PackedScene = preload("uid://0ryvlletdxf")
 
 static func get_use_count(item_id: String) -> int:
 	if !(item_id in USE_COUNTS):
@@ -128,6 +134,14 @@ func use(main: Main) -> void:
 			var poison = poison_cloud_scene.instantiate()
 			poison.global_position = main.player.global_position + Vector2(0.0, 4.0)
 			lawn.add_child(poison)
+		"drone_controller":
+			main.play_sfx("Zap")
+			var drone = drone_scene.instantiate()
+			drone.global_position = main.player.global_position
+			var angle = randf_range(0.0, 2.0 * PI)
+			var dist = randf_range(16.0, 48.0)
+			drone.global_position += Vector2(cos(angle), sin(angle)) * dist
+			lawn.add_child(drone)
 		_:
 			pass
 

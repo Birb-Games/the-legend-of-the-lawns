@@ -1056,6 +1056,10 @@ position = Vector2(-9, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "drone controller"
 id = "drone_controller"
+description = "Spawns a drone that shoots at enemies for you.
+-> A military grade attack drone manufactured by the McMoneyPants Robotics Corporation. Hopefully its AI control systems don't go rogue anytime soon..."
+buy_text = "Bought drone controller! (Left click to use item)"
+price = 27
 add_item = true
 
 [node name="Fireworks" parent="Store/StoreDisplay4" unique_id=101699015 instance=ExtResource("54_532a6")]

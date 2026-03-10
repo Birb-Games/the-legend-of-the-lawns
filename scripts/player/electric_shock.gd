@@ -49,3 +49,9 @@ func _on_area_entered(area: Area2D) -> void:
 		add_shock_particles(area)
 		if !area.visible or !area.is_inside_tree():
 			return
+	elif area is Drone:
+		# Heal drones
+		$/root/Main.play_sfx("Zap")
+		area.health += 3
+		area.health = min(area.health, area.MAX_HEALTH)
+		add_shock_particles(area)

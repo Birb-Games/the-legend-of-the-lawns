@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://31eq1efolnad"]
+
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="1_fsl5v"]
+[ext_resource type="Texture2D" uid="uid://cu8huxwhps8rb" path="res://assets/textures/enemies/bullets/drone_bullet.png" id="2_cfn6t"]
+[ext_resource type="Texture2D" uid="uid://4jtj17c3sumf" path="res://assets/textures/particles/drone_bullet_particle.png" id="3_75von"]
+[ext_resource type="AudioStream" uid="uid://bljuxksg17toe" path="res://assets/audio/sfx/drone_shoot.wav" id="4_v25rk"]
+
+[node name="Dronebullet" unique_id=1981990357 groups=["damage_weeds", "player_immune", "target_all_mobile"] instance=ExtResource("1_fsl5v")]
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.78431374)
+texture = ExtResource("2_cfn6t")
+
+[node name="GPUParticles2D" parent="." index="2"]
+modulate = Color(1, 1, 1, 0.5019608)
+texture = ExtResource("3_75von")
+
+[node name="HitSfx" type="AudioStreamPlayer2D" parent="." index="3" unique_id=1282100005]
+stream = ExtResource("4_v25rk")
+volume_db = -5.0
+attenuation = 2.0

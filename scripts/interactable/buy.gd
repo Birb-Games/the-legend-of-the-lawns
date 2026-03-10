@@ -90,7 +90,7 @@ func buy() -> void:
 			if !player.inventory.add_item(id):
 				return
 		# Another line in order to prevent the top case from being a giant line
-		"shield_generator", "electric_doodad", "insecticide":
+		"shield_generator", "electric_doodad", "insecticide", "drone_controller", "fireworks":
 			if !player.inventory.add_item(id):
 				return
 	bought = true
