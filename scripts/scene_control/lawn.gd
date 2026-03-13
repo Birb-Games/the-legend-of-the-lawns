@@ -21,6 +21,8 @@ var flowers_destroyed: int = 0
 var weeds_killed: int = 0
 var total_weeds: int = 0
 var weeds: Dictionary = {}
+# Key: tile position -> number of weeds at that position
+var weed_positions: Dictionary = {}
 
 var astar_grid: AStarGrid2D
 # Whether we should update the A* grid
