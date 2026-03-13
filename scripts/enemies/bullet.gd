@@ -24,10 +24,10 @@ func explode() -> void:
 	var trail: GPUParticles2D = get_node_or_null("BulletTrail")
 	if trail:
 		trail.hide()
-	$Sprite2D.hide()
-	$GPUParticles2D.emitting = true
-	if hit_sfx:
+	if hit_sfx and active():
 		hit_sfx.play()
+	$Sprite2D.hide()
+	$GPUParticles2D.emitting = true	
 
 func active() -> bool:
 	return $Sprite2D.visible
