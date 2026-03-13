@@ -1066,6 +1066,10 @@ add_item = true
 position = Vector2(8, -15)
 display_name = "fireworks"
 id = "fireworks"
+description = "Launches a bunch of firework rockets that explode and damage enemies.
+-> This year's Independence Day fireworks show is going to be so awesome!"
+buy_text = "Bought fireworks! (Left click to use item)"
+price = 36
 add_item = true
 
 [node name="Gasoline" parent="Store/StoreDisplay4" unique_id=1841829751 instance=ExtResource("54_532a6")]

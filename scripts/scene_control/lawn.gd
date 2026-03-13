@@ -317,3 +317,52 @@ func _process(delta: float) -> void:
 
 func get_spawn() -> Vector2:
 	return $PlayerSpawn.position
+
+# Returns the position of the closest enemy (either weed or mobile) to a
+# certain position, returns pos if no enemy was found
+# skip is a list of enemy types that this function should ignore
+func get_closest_enemy_pos(pos: Vector2, skip: Array = []) -> Vector2:
+	var closest_pos: Vector2 = pos
+	var closest_dist: float = 0.0
+	var first_time: bool = true
+	# Target weeds
+	for weed_path: NodePath in weeds:
+		var weed: WeedEnemy = get_node_or_null(weed_path)
+		if weed == null:
+			continue
+		# Ignore weeds that are still spawning in
+		if weed.scale.x < weed.target_scale:
+			continue
+		if first_time:
+			first_time = false
+			closest_pos = weed.global_position
+			closest_dist = (weed.global_position - pos).length()
+			continue
+		var dist = (weed.global_position - pos).length()
+		if dist < closest_dist:
+			closest_dist = dist
+			closest_pos = weed.global_position
+
+	# Target mobile enemies
+	for enemy in $MobileEnemies.get_children():
+		# Do not target other helper rabbits, evil gnomes, and killer rabbits
+		if enemy is HelperRabbit or enemy is EvilGnome:
+			continue
+		var should_skip: bool = false
+		for skip_group in skip:
+			if enemy.is_in_group(skip_group):
+				should_skip = true
+				break
+		if should_skip:
+			continue
+		if first_time:
+			first_time = false
+			closest_pos = enemy.global_position
+			closest_dist = (enemy.global_position - pos).length()
+			continue
+		var dist = (enemy.global_position - pos).length()
+		if dist < closest_dist:
+			closest_dist = dist
+			closest_pos = enemy.global_position
+
+	return closest_pos

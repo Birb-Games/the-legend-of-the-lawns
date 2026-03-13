@@ -26,7 +26,7 @@ const COOLDOWNS: Dictionary = {
 	"electric_doodad" : 50.0,
 	"insecticide" : 45.0,
 	"drone_controller" : 80.0,
-	"fireworks" : 60.0,
+	"fireworks" : 80.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
@@ -142,6 +142,9 @@ func use(main: Main) -> void:
 			var dist = randf_range(16.0, 48.0)
 			drone.global_position += Vector2(cos(angle), sin(angle)) * dist
 			lawn.add_child(drone)
+		"fireworks":
+			main.player.firework_timer = 0.0
+			main.player.fireworks_to_shoot += randi_range(6, 10)
 		_:
 			pass
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b32ibsy1iagox"]
+[gd_scene format=3 uid="uid://b32ibsy1iagox"]
 
 [ext_resource type="Script" uid="uid://byy7pmegiokpj" path="res://scripts/enemies/mobile/killer_rabbit.gd" id="1_bu858"]
 [ext_resource type="PackedScene" uid="uid://diwrxq5bcgtyl" path="res://scenes/particles/blood_particles.tscn" id="2_26bvs"]
@@ -163,7 +163,7 @@ size = Vector2(15.000007, 13.750006)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42wqo"]
 size = Vector2(10.0000105, 6.2500114)
 
-[node name="KillerRabbit" type="CharacterBody2D"]
+[node name="KillerRabbit" type="CharacterBody2D" unique_id=2053728680 groups=["killer_rabbit"]]
 scale = Vector2(0.75, 0.75)
 collision_layer = 0
 collision_mask = 4
@@ -174,45 +174,45 @@ max_chase_distance = 240.0
 max_health = 18
 explosion_bullet_count = 0
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=348981504]
 scale = Vector2(0.5625, 0.53846157)
 texture = ExtResource("3_738o7")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990319618]
 position = Vector2(0, -9.5)
 scale = Vector2(0.875, 0.875)
 sprite_frames = SubResource("SpriteFrames_738o7")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="Healthbar" parent="." instance=ExtResource("2_nr2qv")]
+[node name="Healthbar" parent="." unique_id=1662453520 instance=ExtResource("2_nr2qv")]
 offset_top = -22.0
 offset_bottom = -20.0
 metadata/_edit_use_anchors_ = true
 
-[node name="ContactDamageZone" parent="." instance=ExtResource("4_n4dd6")]
+[node name="ContactDamageZone" parent="." unique_id=2039795304 instance=ExtResource("4_n4dd6")]
 position = Vector2(0, -7)
 scale = Vector2(1.5, 1.5)
 damage_amt = 3
 attack_cooldown = 0.5
 
-[node name="BulletHitbox" type="Area2D" parent="."]
+[node name="BulletHitbox" type="Area2D" parent="." unique_id=1405710833]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox" unique_id=693455759]
 position = Vector2(6.7055214e-07, -6.8749995)
 scale = Vector2(0.9999994, 0.9999994)
 shape = SubResource("RectangleShape2D_n4dd6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=685916965]
 position = Vector2(7.450577e-08, -3.1249974)
 scale = Vector2(0.9999986, 0.9999986)
 shape = SubResource("RectangleShape2D_42wqo")
 
-[node name="StunParticles" parent="." instance=ExtResource("6_re68s")]
+[node name="StunParticles" parent="." unique_id=1204935465 instance=ExtResource("6_re68s")]
 visible = false
 position = Vector2(4, -18.666672)
 
-[node name="AngerParticles" parent="." instance=ExtResource("7_xo21h")]
+[node name="AngerParticles" parent="." unique_id=1510542772 instance=ExtResource("7_xo21h")]
 visible = false
 position = Vector2(4, -14.666664)
 

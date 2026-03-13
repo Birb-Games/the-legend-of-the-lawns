@@ -28,46 +28,10 @@ func shoot() -> void:
 		return
 	
 	# Attempt to target the closest enemy
-	var closest_pos: Vector2 = Vector2.ZERO
-	var closest_dist: float = 0.0
-	var first_time: bool = true
-	# Target weeds
-	for weed_path: NodePath in lawn.weeds:
-		var weed: WeedEnemy = get_node_or_null(weed_path)
-		if weed == null:
-			continue
-		# Ignore weeds that are still spawning in
-		if weed.scale.x < weed.target_scale:
-			continue
-		if first_time:
-			first_time = false
-			closest_pos = weed.global_position
-			closest_dist = (weed.global_position - global_position).length()
-			continue
-		var dist = (weed.global_position - global_position).length()
-		if dist < closest_dist:
-			closest_dist = dist
-			closest_pos = weed.global_position
+	var closest_pos: Vector2 = lawn.get_closest_enemy_pos(global_position)
+	var closest_dist: float = (global_position - closest_pos).length()
 
-	# Target mobile enemies
-	for enemy in lawn.get_node("MobileEnemies").get_children():
-		# Do not target other helper rabbits, evil gnomes, and killer rabbits
-		if enemy is HelperRabbit or enemy is EvilGnome or enemy is KillerRabbit:
-			continue
-		if first_time:
-			first_time = false
-			closest_pos = enemy.global_position
-			closest_dist = (enemy.global_position - global_position).length()
-			continue
-		var dist = (enemy.global_position - global_position).length()
-		if dist < closest_dist:
-			closest_dist = dist
-			closest_pos = enemy.global_position
-
-	if closest_dist > SHOOT_RANGE:
-		return
-
-	if first_time:
+	if closest_dist > SHOOT_RANGE or closest_dist < 1.0:
 		return
 	if bullet_scene == null:
 		return

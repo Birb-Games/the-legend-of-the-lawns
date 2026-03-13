@@ -10,6 +10,7 @@ const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
 @export var water_gun: Sprite2D
 @export var eggplant_bullet_scene: PackedScene
 @export var resist_particle_scene: PackedScene
+@export var firework_bullet_scene: PackedScene
 
 const NORMAL_SPEED: float = 60.0
 const LAWN_MOWER_SPEED: float = NORMAL_SPEED * 0.75
@@ -55,6 +56,10 @@ var status_effects: Dictionary = {}
 # Eggplant
 var eggplant_timer: float = 0.0
 const EGGPLANT_INTERVAL: float = 0.5
+# Fireworks
+var fireworks_to_shoot: int = 0
+var firework_timer: float = 0.0
+const FIREWORK_DELAY: float = 0.4
 
 func get_max_health() -> int:
 	match max_health_level:
@@ -372,6 +377,30 @@ func shoot_eggplant_bullet(delta: float) -> void:
 		eggplant_bullet.dir = bullet_dir
 		lawn.add_child(eggplant_bullet)
 
+func shoot_fireworks(delta: float) -> void:
+	if fireworks_to_shoot <= 0:
+		return
+	if firework_timer > 0.0:
+		firework_timer -= delta
+		return
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		return
+	fireworks_to_shoot -= 1
+	var firework_bullet = firework_bullet_scene.instantiate()
+	# Choose a random direction to fire off in
+	var angle: float = randf_range(0.0, 2.0 * PI)
+	# Target enemies
+	var closest_pos: Vector2 = lawn.get_closest_enemy_pos(global_position)
+	if (closest_pos - global_position).length() > 1.0:
+		angle = (closest_pos - global_position).angle() + randf_range(-PI / 10.0, PI / 10.0)
+	var bullet_dir = Vector2(cos(angle), sin(angle))
+	firework_bullet.position = get_sprite_pos() + bullet_dir * 8.0
+	firework_bullet.dir = bullet_dir
+	$/root/Main.play_sfx("Woosh")
+	lawn.add_child(firework_bullet)
+	firework_timer = FIREWORK_DELAY
+
 func update_shield(delta: float) -> void:
 	var shield_time: float = get_status_effect_time("shield")
 	# Hide the shield if we do not have the shield effect applied
@@ -426,6 +455,7 @@ func _process(delta: float) -> void:
 		$NeighborArrow.disabled = false
 
 	take_fire_damage(delta)
+	shoot_fireworks(delta)
 	shoot_eggplant_bullet(delta)
 	# Do not take damage from hazards in the lawn
 	if !$/root/Main.lawn_loaded:
@@ -628,6 +658,9 @@ func reset() -> void:
 	inventory = Inventory.new()
 	time_bonus_level = 0
 	armor_level = 0	
+	firework_timer = 0.0
+	fireworks_to_shoot = 0
+	hazards.clear()
 
 func load(data: Dictionary) -> void:
 	max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)

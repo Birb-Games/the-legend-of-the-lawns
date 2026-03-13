@@ -215,6 +215,11 @@ License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
 File: spray.wav
 Author: FOSSarts
 URL: https://freesound.org/people/FOSSarts/sounds/741078/
+License: CC0
+
+File: woosh.wav
+Author: ReadeOnly
+URL: https://freesound.org/people/ReadeOnly/sounds/186956/
 License: CC0"
 
 [node name="Label" type="Label" parent="." unique_id=761217542]

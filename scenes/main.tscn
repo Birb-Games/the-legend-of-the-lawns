@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://xgy8vud86gki" path="res://assets/audio/sfx/gas.wav" id="27_vxglm"]
 [ext_resource type="AudioStream" uid="uid://3qcisgamecil" path="res://assets/audio/sfx/zap.wav" id="28_2f3dj"]
 [ext_resource type="AudioStream" uid="uid://drg01qop0a38f" path="res://assets/audio/sfx/spray.wav" id="29_yq6so"]
+[ext_resource type="AudioStream" uid="uid://dxks8hxa44djr" path="res://assets/audio/sfx/woosh.wav" id="30_fv21b"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yq6so"]
 viewport_path = NodePath("SubViewport")
@@ -150,3 +151,8 @@ max_polyphony = 12
 
 [node name="Spray" type="AudioStreamPlayer" parent="Sfx" unique_id=535797331]
 stream = ExtResource("29_yq6so")
+
+[node name="Woosh" type="AudioStreamPlayer" parent="Sfx" unique_id=1186536635]
+stream = ExtResource("30_fv21b")
+volume_db = -15.0
+max_polyphony = 4
