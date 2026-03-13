@@ -20,7 +20,7 @@ var flowers_destroyed: int = 0
 
 var weeds_killed: int = 0
 var total_weeds: int = 0
-var weeds: Array[NodePath]
+var weeds: Dictionary = {}
 
 var astar_grid: AStarGrid2D
 # Whether we should update the A* grid
@@ -262,6 +262,13 @@ func _process(delta: float) -> void:
 
 	if player == null:
 		return
+
+	# Clear out weeds list of paths that do not exist
+	for path: NodePath in weeds:
+		var node: Node = get_node_or_null(path)
+		if node:
+			continue
+		weeds.erase(path)
 
 	if lawn_completed() and player != null and player.health > 0:
 		finish_timer -= delta
