@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://bsm20lnybkim0" path="res://scenes/enemies/mobile/wasp_nest.tscn" id="20_y3n1o"]
 [ext_resource type="PackedScene" uid="uid://bfpal888ujrry" path="res://scenes/enemies/mobile/worm_spawner.tscn" id="21_bxqry"]
 [ext_resource type="PackedScene" uid="uid://o1e8sispk3lw" path="res://scenes/player/power_up.tscn" id="22_221yd"]
-[ext_resource type="PackedScene" uid="uid://b56p62unyo688" path="res://scenes/enemies/weeds/shrubweed.tscn" id="24_iqinj"]
 
 [node name="TestLawn" unique_id=515026508 instance=ExtResource("1_ftld5")]
 max_weeds = 0
@@ -129,6 +128,3 @@ power_up = "carrot"
 [node name="PowerUp6" parent="." index="29" unique_id=672235484 instance=ExtResource("22_221yd")]
 position = Vector2(150, 128)
 power_up = "carrot"
-
-[node name="Shrubweed" parent="." index="30" unique_id=345420893 instance=ExtResource("24_iqinj")]
-position = Vector2(-95, -12.000001)

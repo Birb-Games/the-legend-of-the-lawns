@@ -429,6 +429,26 @@ static func spawn_around_point(
 	parent.add_child(node)
 	return true
 
+# Spawns an item at a point without any checks
+static func spawn_at_point(
+	lawn: Lawn,
+	parent: Node,
+	position: Vector2,
+	scene: PackedScene,
+) -> Node2D:
+	var node: Node2D = scene.instantiate()
+	var tile_pos: Vector2i = Vector2i(
+		int(floor(position.x / lawn.tile_size.x)),
+		int(floor(position.y / lawn.tile_size.y))
+	)
+	# Spawn the object centered on the tile
+	node.global_position = Vector2(
+		(tile_pos.x + 0.5) * lawn.tile_size.x, 
+		(tile_pos.y + 0.5) * lawn.tile_size.y
+	)
+	parent.add_child(node)
+	return node
+
 static func try_spawning_around_point(
 	lawn: Lawn,
 	parent: Node,
@@ -438,8 +458,9 @@ static func try_spawning_around_point(
 	max_dist: float,
 	tries: int,
 	rand_offset: float = 0.0
-) -> void:
+) -> bool:
 	for i in range(tries):
 		var res: bool = spawn_around_point(lawn, parent, position, scene, min_dist, max_dist, rand_offset)
 		if res:
-			return
+			return true
+	return false

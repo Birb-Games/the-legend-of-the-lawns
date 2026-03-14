@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://x6kjfvrsnx0e" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://c42yjcff8wti8" path="res://scenes/enemies/bullets/eggplant_bullet.tscn" id="2_fcs02"]
 [ext_resource type="PackedScene" uid="uid://bkp0337arv3rf" path="res://scenes/particles/resist_particle.tscn" id="3_uf5tr"]
+[ext_resource type="PackedScene" uid="uid://bldcvm5c3oh75" path="res://scenes/player/firework_bullet.tscn" id="4_3j4b4"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://cqowbl67yjalq" path="res://scripts/player/water_gun.gd" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c782i0j0kkyib" path="res://assets/textures/player/water_gun.png" id="4_tuyoq"]
@@ -18,6 +19,8 @@
 [ext_resource type="AudioStream" uid="uid://c2q15ntrokdi0" path="res://assets/audio/sfx/footsteps/footsteps.wav" id="13_gx1jg"]
 [ext_resource type="AudioStream" uid="uid://cteg86na8iivn" path="res://assets/audio/sfx/footsteps/footsteps_wood.wav" id="14_ugbui"]
 [ext_resource type="AudioStream" uid="uid://c5fg7exeno2b6" path="res://assets/audio/sfx/pop.wav" id="16_myrg7"]
+[ext_resource type="Texture2D" uid="uid://cpreymp1fnr7s" path="res://assets/textures/particles/fire_bullet.png" id="19_lgqa7"]
+[ext_resource type="Texture2D" uid="uid://dy32b6kiulp8q" path="res://assets/textures/player/player_shield.png" id="20_8ydkj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_3vyb7")
@@ -267,11 +270,32 @@ size = Vector2(12, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gtgg"]
 size = Vector2(12, 10)
 
+[sub_resource type="Curve" id="Curve_lgqa7"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.003963), 0.0, 0.0, 0, 0, Vector2(0.16993463, 2), 0.0, 0.0, 0, 0, Vector2(0.45424834, 0.48877144), -2.3183615, -2.3183615, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8ydkj"]
+curve = SubResource("Curve_lgqa7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ydkj"]
+particle_flag_disable_z = true
+angular_velocity_min = 179.99998
+angular_velocity_max = 359.99997
+radial_velocity_min = 49.999977
+radial_velocity_max = 74.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_8ydkj")
+color = Color(1, 1, 1, 0.78431374)
+
 [node name="Player" type="CharacterBody2D" unique_id=466965754 node_paths=PackedStringArray("water_gun") groups=["player"]]
 script = ExtResource("1_g2els")
 water_gun = NodePath("WaterGun")
 eggplant_bullet_scene = ExtResource("2_fcs02")
 resist_particle_scene = ExtResource("3_uf5tr")
+firework_bullet_scene = ExtResource("4_3j4b4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=151721028]
 position = Vector2(0, -12)
@@ -426,6 +450,25 @@ volume_db = -10.0
 [node name="Pop" type="AudioStreamPlayer" parent="." unique_id=1598686521]
 stream = ExtResource("16_myrg7")
 volume_db = -10.0
+
+[node name="SpeedParticles" type="GPUParticles2D" parent="." unique_id=98287930]
+position = Vector2(0, -1)
+emitting = false
+amount = 32
+texture = ExtResource("19_lgqa7")
+process_material = SubResource("ParticleProcessMaterial_8ydkj")
+
+[node name="PlayerShield" type="Sprite2D" parent="." unique_id=1430735869]
+visible = false
+modulate = Color(1, 1, 1, 0.47058824)
+position = Vector2(0, -13)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_8ydkj")
+
+[node name="SecondLayer" type="Sprite2D" parent="PlayerShield" unique_id=1568063180]
+modulate = Color(1, 1, 1, 0.78431374)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("20_8ydkj")
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/InteractZone" to="." method="_on_interact_zone_body_exited"]

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c3x6useidlf8i" path="res://scripts/ui/hud.gd" id="1_oo0fn"]
 [ext_resource type="PackedScene" uid="uid://cenxxd8t4m6fq" path="res://scenes/ui/main_menu.tscn" id="2_4jqwt"]
 [ext_resource type="PackedScene" uid="uid://bt7cyrrey8yth" path="res://scenes/ui/pause_menu.tscn" id="4_047uy"]
+[ext_resource type="PackedScene" uid="uid://c4uyimrgl25bh" path="res://scenes/ui/inventory_slot.tscn" id="5_4d46k"]
 [ext_resource type="PackedScene" uid="uid://dq8tglr0iktqf" path="res://scenes/ui/npc_menu.tscn" id="6_5pdws"]
 [ext_resource type="PackedScene" uid="uid://dnqh6jeh6decu" path="res://scenes/ui/finish_screen.tscn" id="6_047uy"]
 [ext_resource type="PackedScene" uid="uid://bbaa6s8vockj8" path="res://scenes/ui/fail_screen.tscn" id="7_5pdws"]
@@ -11,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://b3j21gnxq1jn1" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Bold.ttf" id="8_h022r"]
 [ext_resource type="PackedScene" uid="uid://b8cv1f5uxjd26" path="res://scenes/ui/quest_screen.tscn" id="10_kicr4"]
 [ext_resource type="PackedScene" uid="uid://bhlsm7bvwaonr" path="res://scenes/ui/status_effects_hud.tscn" id="11_mj13f"]
+[ext_resource type="PackedScene" uid="uid://c7wwl1dnxsgwv" path="res://scenes/ui/inventory_gui.tscn" id="12_0h1do"]
 
 [sub_resource type="Gradient" id="Gradient_h022r"]
 colors = PackedColorArray(0, 0.30980393, 0.1882353, 1, 0.12156863, 0.6901961, 0.13725491, 1)
@@ -150,6 +152,16 @@ theme_override_fonts/font = ExtResource("1_ahhtf")
 theme_override_font_sizes/font_size = 24
 text = "BONUS: 00:00"
 
+[node name="InventoryGUI" parent="Control" unique_id=1654533886 instance=ExtResource("12_0h1do")]
+layout_mode = 1
+
+[node name="Selected" parent="Control/InventoryGUI" unique_id=1859504097 instance=ExtResource("5_4d46k")]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 587.0
+offset_right = 410.0
+offset_bottom = 639.0
+
 [node name="NPCMenu" parent="Control" unique_id=2084685899 instance=ExtResource("6_5pdws")]
 visible = false
 layout_mode = 1
@@ -157,9 +169,9 @@ layout_mode = 1
 [node name="InfoText" type="Label" parent="Control" unique_id=1823214251]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 507.0
+offset_top = 510.0
 offset_right = 1152.0
-offset_bottom = 564.0
+offset_bottom = 558.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("1_ahhtf")

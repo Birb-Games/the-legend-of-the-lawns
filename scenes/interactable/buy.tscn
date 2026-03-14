@@ -3,11 +3,40 @@
 [ext_resource type="Script" uid="uid://by0hmorqyn5gl" path="res://scripts/interactable/buy.gd" id="1_8nkxw"]
 [ext_resource type="Texture2D" uid="uid://ceuxs2wfhd4m4" path="res://assets/textures/items/upgrades/apple_juice.png" id="1_vhubf"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_weic1"]
+[ext_resource type="Texture2D" uid="uid://45h4s1aas7g8" path="res://assets/textures/items/upgrades/astronaut_helmet.png" id="4_4mpeq"]
+[ext_resource type="Texture2D" uid="uid://dwrb0cnhvnm22" path="res://assets/textures/items/upgrades/athlete_shoes.png" id="4_crsb4"]
 [ext_resource type="Texture2D" uid="uid://bc5xvgswjvvwi" path="res://assets/textures/items/upgrades/backpack0.png" id="4_f82uq"]
 [ext_resource type="Texture2D" uid="uid://bbsiwpm0da0cd" path="res://assets/textures/items/upgrades/buy.png" id="4_gsonl"]
 [ext_resource type="Texture2D" uid="uid://c0evha1srh1ox" path="res://assets/textures/items/upgrades/red_shoes.png" id="4_ho0xu"]
 [ext_resource type="Texture2D" uid="uid://ddol2lvneo2rp" path="res://assets/textures/items/upgrades/bike_helmet.png" id="4_qukav"]
+[ext_resource type="Texture2D" uid="uid://bunnodoftyapb" path="res://assets/textures/items/upgrades/backpack1.png" id="5_p4vmw"]
 [ext_resource type="Texture2D" uid="uid://ccgu1gouqgm1" path="res://assets/textures/items/upgrades/watch.png" id="6_ci6ny"]
+[ext_resource type="Texture2D" uid="uid://b12gysuple4ce" path="res://assets/textures/items/consumables/chocolate.png" id="6_evmts"]
+[ext_resource type="Texture2D" uid="uid://bdj8qx8osg7jk" path="res://assets/textures/items/upgrades/backpack2.png" id="6_hn2hx"]
+[ext_resource type="Texture2D" uid="uid://csyc3g0j0ikyd" path="res://assets/textures/items/upgrades/backpack3.png" id="7_14nls"]
+[ext_resource type="Texture2D" uid="uid://ddjpyouo4gff2" path="res://assets/textures/items/consumables/soda.png" id="9_8lkhp"]
+[ext_resource type="Texture2D" uid="uid://m4m0edpj1c4l" path="res://assets/textures/items/upgrades/blue_shoes.png" id="9_hn2hx"]
+[ext_resource type="Texture2D" uid="uid://btctuyntb5whj" path="res://assets/textures/items/upgrades/gray_shoes.png" id="12_14nls"]
+[ext_resource type="Texture2D" uid="uid://ci34rnjwlgany" path="res://assets/textures/items/upgrades/combat_helmet.png" id="12_a6owq"]
+[ext_resource type="Texture2D" uid="uid://vcga3cfel6ml" path="res://assets/textures/items/upgrades/carrot_juice.png" id="12_kpk2y"]
+[ext_resource type="Texture2D" uid="uid://17tmf70i7lm" path="res://assets/textures/items/consumables/boom_shroom_spores.png" id="12_peyeh"]
+[ext_resource type="Texture2D" uid="uid://demcis4mletnq" path="res://assets/textures/items/upgrades/digital_watch.png" id="13_pwhbb"]
+[ext_resource type="Texture2D" uid="uid://dd7qemrywwncb" path="res://assets/textures/items/upgrades/football_helmet.png" id="14_0qkbw"]
+[ext_resource type="Texture2D" uid="uid://8tim7ufosjp5" path="res://assets/textures/items/upgrades/pocket_watch.png" id="15_04b1l"]
+[ext_resource type="Texture2D" uid="uid://buwaix53oxs30" path="res://assets/textures/items/upgrades/hat.png" id="15_7qyrw"]
+[ext_resource type="Texture2D" uid="uid://18xnjek2byjt" path="res://assets/textures/items/upgrades/grape_juice.png" id="17_cmarq"]
+[ext_resource type="Texture2D" uid="uid://bfm5d2lp3vstr" path="res://assets/textures/items/upgrades/rollx_watch.png" id="17_cphwn"]
+[ext_resource type="Texture2D" uid="uid://bjfilepcru71v" path="res://assets/textures/items/upgrades/golden_apple_juice.png" id="18_1afaq"]
+[ext_resource type="Texture2D" uid="uid://cho3mlswr3ofw" path="res://assets/textures/items/consumables/electric_doodad.png" id="18_nmgib"]
+[ext_resource type="Texture2D" uid="uid://b41h53yy4il2g" path="res://assets/textures/items/consumables/drone_controller.png" id="18_nqu8b"]
+[ext_resource type="Texture2D" uid="uid://ia63ql0nle6m" path="res://assets/textures/items/consumables/gasoline.png" id="19_55i2v"]
+[ext_resource type="Texture2D" uid="uid://q6uoemuwmkcp" path="res://assets/textures/items/upgrades/orange_juice.png" id="19_gx71g"]
+[ext_resource type="Texture2D" uid="uid://pqw487qcsila" path="res://assets/textures/items/consumables/fireworks.png" id="20_5e0lj"]
+[ext_resource type="Texture2D" uid="uid://do376xyetxupm" path="res://assets/textures/items/upgrades/milk.png" id="21_1qum4"]
+[ext_resource type="Texture2D" uid="uid://dn0il1ilrb5wd" path="res://assets/textures/items/consumables/ice_cream.png" id="22_o7txd"]
+[ext_resource type="Texture2D" uid="uid://ba81g8k32trjf" path="res://assets/textures/items/consumables/insecticide.png" id="28_rfce6"]
+[ext_resource type="Texture2D" uid="uid://dnommrruprxex" path="res://assets/textures/items/consumables/tomato_seeds.png" id="29_2am8v"]
+[ext_resource type="Texture2D" uid="uid://k0x1tunq2hhx" path="res://assets/textures/items/consumables/shield_generator.png" id="30_gl38w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weic1"]
 size = Vector2(13.333333, 28.333332)
@@ -24,9 +53,25 @@ region = Rect2(0, 0, 23, 24)
 atlas = ExtResource("4_qukav")
 region = Rect2(0, 0, 23, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lkhp"]
+atlas = ExtResource("6_evmts")
+region = Rect2(0, 0, 23, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ci6ny"]
 atlas = ExtResource("4_gsonl")
 region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqu8b"]
+atlas = ExtResource("18_nmgib")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e0lj"]
+atlas = ExtResource("18_nmgib")
+region = Rect2(23, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfce6"]
+atlas = ExtResource("18_nmgib")
+region = Rect2(46, 0, 23, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsonl"]
 atlas = ExtResource("4_ho0xu")
@@ -48,10 +93,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_4mpeq")
+}],
+"loop": true,
+"name": &"astronaut_helmet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_crsb4")
+}],
+"loop": true,
+"name": &"athlete_shoes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_evmts")
 }],
 "loop": true,
 "name": &"backpack0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_p4vmw")
+}],
+"loop": true,
+"name": &"backpack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hn2hx")
+}],
+"loop": true,
+"name": &"backpack2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_14nls")
+}],
+"loop": true,
+"name": &"backpack3",
 "speed": 5.0
 }, {
 "frames": [{
@@ -64,6 +149,46 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("9_hn2hx")
+}],
+"loop": true,
+"name": &"blue_shoes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_peyeh")
+}],
+"loop": true,
+"name": &"boom_shroom_spores",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_kpk2y")
+}],
+"loop": true,
+"name": &"carrot_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lkhp")
+}],
+"loop": true,
+"name": &"chocolate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_a6owq")
+}],
+"loop": true,
+"name": &"combat_helmet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ci6ny")
 }],
 "loop": true,
@@ -72,10 +197,171 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("13_pwhbb")
+}],
+"loop": true,
+"name": &"digital_watch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_nqu8b")
+}],
+"loop": true,
+"name": &"drone_controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqu8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e0lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqu8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfce6")
+}],
+"loop": true,
+"name": &"electric_doodad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_5e0lj")
+}],
+"loop": true,
+"name": &"fireworks",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_0qkbw")
+}],
+"loop": true,
+"name": &"football_helmet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_55i2v")
+}],
+"loop": true,
+"name": &"gasoline",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_1afaq")
+}],
+"loop": true,
+"name": &"golden_apple_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_cmarq")
+}],
+"loop": true,
+"name": &"grape_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_14nls")
+}],
+"loop": true,
+"name": &"gray_shoes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_7qyrw")
+}],
+"loop": true,
+"name": &"hat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_o7txd")
+}],
+"loop": true,
+"name": &"ice_cream",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_rfce6")
+}],
+"loop": true,
+"name": &"insecticide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_1qum4")
+}],
+"loop": true,
+"name": &"milk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_gx71g")
+}],
+"loop": true,
+"name": &"orange_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_04b1l")
+}],
+"loop": true,
+"name": &"pocket_watch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_gsonl")
 }],
 "loop": true,
 "name": &"red_shoes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_cphwn")
+}],
+"loop": true,
+"name": &"rollx_watch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_gl38w")
+}],
+"loop": true,
+"name": &"shield_generator",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_8lkhp")
+}],
+"loop": true,
+"name": &"soda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_2am8v")
+}],
+"loop": true,
+"name": &"tomato_seeds",
 "speed": 5.0
 }, {
 "frames": [{

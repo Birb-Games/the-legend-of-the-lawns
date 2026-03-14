@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bldcvm5c3oh75"]
+
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="1_epsgc"]
+[ext_resource type="Texture2D" uid="uid://j2dtuet7m6qq" path="res://assets/textures/player/firework_bullet.png" id="2_pl0mn"]
+[ext_resource type="Script" uid="uid://b38a6vcev43kf" path="res://scripts/player/firework_bullet.gd" id="2_vydfw"]
+[ext_resource type="Texture2D" uid="uid://bii641wh2btoc" path="res://assets/textures/particles/anger_particle.png" id="3_7yekm"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="3_f8jfr"]
+[ext_resource type="Texture2D" uid="uid://cpreymp1fnr7s" path="res://assets/textures/particles/fire_bullet.png" id="4_f8jfr"]
+[ext_resource type="AudioStream" uid="uid://7l5qvc3tbae7" path="res://assets/audio/sfx/explosion.wav" id="8_ytxrr"]
+
+[sub_resource type="Curve" id="Curve_f8jfr"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23423424, 0.9392047), 0.0, 0.0, 0, 0, Vector2(0.45945945, 1.3380682), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ytxrr"]
+curve = SubResource("Curve_f8jfr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f8jfr"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+angular_velocity_min = 89.999985
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.14999999
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_ytxrr")
+
+[sub_resource type="Curve" id="Curve_w66qs"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08108107, 1), 0.0, 0.0, 0, 0, Vector2(0.67867863, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_vydfw"]
+curve = SubResource("Curve_w66qs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w66qs"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = 540.0
+angular_velocity_max = 540.0
+radial_velocity_min = 44.999977
+radial_velocity_max = 59.999977
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_vydfw")
+anim_speed_min = 0.5
+anim_speed_max = 0.5
+
+[node name="FireworkBullet" unique_id=271304758 groups=["damage_flowers", "damage_weeds", "player_immune", "target_all_mobile"] instance=ExtResource("1_epsgc")]
+script = ExtResource("2_vydfw")
+explosion_scene = ExtResource("3_f8jfr")
+speed = 200.0
+damage_amt = 6
+lifetime = 8.0
+directional = true
+
+[node name="BulletTrail" type="GPUParticles2D" parent="." index="0" unique_id=1849653627]
+position = Vector2(-1, 0)
+amount = 16
+texture = ExtResource("4_f8jfr")
+lifetime = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_f8jfr")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_pl0mn")
+
+[node name="CollisionShape2D" parent="." index="2"]
+scale = Vector2(2, 2)
+
+[node name="GPUParticles2D" parent="." index="3"]
+texture = ExtResource("3_7yekm")
+lifetime = 1.5
+explosiveness = 0.85
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_w66qs")
+
+[node name="HitSfx" type="AudioStreamPlayer2D" parent="." index="4" unique_id=970237343]
+stream = ExtResource("8_ytxrr")

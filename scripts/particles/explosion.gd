@@ -42,4 +42,7 @@ func _on_damage_zone_area_entered(area: Area2D) -> void:
 		if can_damage_plants:
 			area.health -= damage_applied
 			area.stun()
+	elif area is Drone:
+		if can_damage_mobile:
+			area.health -= damage_applied
 

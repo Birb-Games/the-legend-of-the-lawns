@@ -163,3 +163,27 @@ File: eat.wav
 Author: StarNinjas
 URL: https://opengameart.org/content/7-eating-crunches
 License: CC0
+
+File: drink.wav
+Author: SilverIllusionist
+URL: https://freesound.org/people/SilverIllusionist/sounds/411172/
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+
+File: gas.wav
+Notes: combined lawn_mower_start.wav (author: straget) and active_lawn_mower.wav
+(author: morgantj, license: CC-BY 4.0).
+
+File: zap.wav
+Author: bevibeldesign
+URL: https://freesound.org/people/bevibeldesign/sounds/315918/
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+
+File: spray.wav
+Author: FOSSarts
+URL: https://freesound.org/people/FOSSarts/sounds/741078/
+License: CC0
+
+File: woosh.wav
+Author: ReadeOnly
+URL: https://freesound.org/people/ReadeOnly/sounds/186956/
+License: CC0

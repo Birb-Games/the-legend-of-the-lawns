@@ -9,10 +9,14 @@ var current_vel: Vector2 = Vector2.ZERO
 var can_bounce: bool = true
 var lifetime: float = 12.0
 var resist_hit_timer: float = 0.0
+var time_until_pause: float = randf_range(3.0, 6.0)
+var pause_time: float = 0.0
 
 func _ready() -> void:
 	super._ready()
 	$AnimatedSprite2D.animation = "spawn"
+	# Randomize the speed
+	speed = randf_range(speed * 0.9, speed * 1.25)
 
 func calculate_velocity() -> Vector2:
 	if lifetime <= 0.0:
@@ -20,6 +24,8 @@ func calculate_velocity() -> Vector2:
 	if spawn_timer > 0.0:
 		return Vector2.ZERO
 	if chase_player:
+		if pause_time > 0.0:
+			return Vector2.ZERO
 		return super.calculate_velocity()
 	return current_vel
 
@@ -65,6 +71,17 @@ func _process(delta: float) -> void:
 	$Shadow.visible = !$SpawnShadow.visible
 
 	super._process(delta)
+
+	if chase_player:
+		if time_until_pause > 0.0 and pause_time <= 0.0:
+			time_until_pause -= delta
+			if time_until_pause < 0.0:
+				pause_time = randf_range(0.25, 0.5)
+		elif pause_time > 0.0:
+			pause_time -= delta
+			if pause_time <= 0.0:
+				time_until_pause = randf_range(3.0, 5.0)
+				pause_time = 0.0
 
 	if lifetime < 0.0:
 		$Healthbar.hide()

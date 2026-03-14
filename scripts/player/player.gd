@@ -5,9 +5,12 @@ extends CharacterBody2D
 const LAWNMOWER_PATH: String = "/root/Main/Lawn/Lawnmower"
 @onready var lawnmower: Lawnmower = get_node_or_null(LAWNMOWER_PATH)
 @onready var default_sprite_pos: Vector2 = $AnimatedSprite2D.position
+@onready var default_shield_scale: Vector2 = $PlayerShield.scale
+@onready var default_shield_alpha: float = $PlayerShield.modulate.a
 @export var water_gun: Sprite2D
 @export var eggplant_bullet_scene: PackedScene
 @export var resist_particle_scene: PackedScene
+@export var firework_bullet_scene: PackedScene
 
 const NORMAL_SPEED: float = 60.0
 const LAWN_MOWER_SPEED: float = NORMAL_SPEED * 0.75
@@ -19,6 +22,7 @@ var interact_text: String = ""
 var can_pick_up_water_gun: bool = false
 var can_pick_up_lawnmower: bool = false
 var inside_store: bool = false
+var hazards: Dictionary = {}
 # The target velocity of the player based on the controls the player is pressing,
 # this might not be equal to `velocity` since the player may be walking into a wall
 var target_velocity: Vector2 = Vector2.ZERO
@@ -28,11 +32,12 @@ var can_move: bool = true
 
 var speed_level: int = 0
 var max_health_level: int = 0
-var inventory_level: int = 0
 var time_bonus_level: int = 0
 var armor_level: int = 0
+# Inventory
+var inventory: Inventory = Inventory.new()
 
-const STAMINA_RECHARD_DELAY: float = 6.0
+const STAMINA_RECHARGE_DELAY: float = 6.0
 var stamina_recharge_cooldown: float = 0.0
 var stamina: float = 1.0
 var health: int = get_max_health()
@@ -51,6 +56,10 @@ var status_effects: Dictionary = {}
 # Eggplant
 var eggplant_timer: float = 0.0
 const EGGPLANT_INTERVAL: float = 0.5
+# Fireworks
+var fireworks_to_shoot: int = 0
+var firework_timer: float = 0.0
+const FIREWORK_DELAY: float = 0.4
 
 func get_max_health() -> int:
 	match max_health_level:
@@ -87,11 +96,11 @@ func get_stamina_time() -> float:
 		1:
 			return 3.0
 		2:
-			return 4.0
+			return 3.5
 		3:
-			return 6.0
+			return 4.5
 		_:
-			return 7.5
+			return 5.5
 
 func get_armor() -> float:
 	match armor_level:
@@ -136,6 +145,7 @@ func get_hp_perc() -> float:
 func reset_health() -> void:
 	health = get_max_health()
 	damage_timer = 0.0
+	hazards.clear()
 
 func activate_hedge_timer() -> void:
 	hedge_collision_timer = HEDGE_TIMER
@@ -148,7 +158,8 @@ func heal(amt: int) -> void:
 func damage(amt: int, apply_armor: bool = false) -> void:
 	if amt <= 0:
 		return
-	if apply_armor and randf() < get_armor():
+	var shield_time: float = get_status_effect_time("shield")
+	if (apply_armor and randf() < get_armor()) or shield_time > 0.0:
 		var particles: GPUParticles2D = resist_particle_scene.instantiate()
 		particles.global_position = $AnimatedSprite2D.global_position
 		var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
@@ -302,6 +313,8 @@ func drop_lawn_mower() -> bool:
 		return false
 	if $Lawnmower/CollisionChecker.colliding() and health > 0:
 		return false
+	if get_status_effect_time("gas") > 0.0 and health > 0:
+		return false
 	if Input.is_action_just_pressed("interact") or health <= 0:
 		$/root/Main.play_sfx("TurnOffMower")
 		lawnmower.position = global_position + $Lawnmower.position
@@ -360,19 +373,81 @@ func shoot_eggplant_bullet(delta: float) -> void:
 		var eggplant_bullet = eggplant_bullet_scene.instantiate()
 		var angle: float = 2.0 * PI / count * i + offset
 		var bullet_dir = Vector2(cos(angle), sin(angle))
-		eggplant_bullet.position = get_sprite_pos()
+		eggplant_bullet.position = get_sprite_pos() + bullet_dir * 16.0
 		eggplant_bullet.dir = bullet_dir
 		lawn.add_child(eggplant_bullet)
 
+func shoot_fireworks(delta: float) -> void:
+	if fireworks_to_shoot <= 0:
+		return
+	if firework_timer > 0.0:
+		firework_timer -= delta
+		return
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn == null:
+		return
+	fireworks_to_shoot -= 1
+	var firework_bullet = firework_bullet_scene.instantiate()
+	# Choose a random direction to fire off in
+	var angle: float = randf_range(0.0, 2.0 * PI)
+	# Target enemies
+	var closest_pos: Vector2 = lawn.get_closest_enemy_pos(global_position)
+	if (closest_pos - global_position).length() > 1.0:
+		angle = (closest_pos - global_position).angle() + randf_range(-PI / 10.0, PI / 10.0)
+	var bullet_dir = Vector2(cos(angle), sin(angle))
+	firework_bullet.position = get_sprite_pos() + bullet_dir * 8.0
+	firework_bullet.dir = bullet_dir
+	$/root/Main.play_sfx("Woosh")
+	lawn.add_child(firework_bullet)
+	firework_timer = FIREWORK_DELAY
+
+func update_shield(delta: float) -> void:
+	var shield_time: float = get_status_effect_time("shield")
+	# Hide the shield if we do not have the shield effect applied
+	if shield_time <= 0.0:
+		$PlayerShield.scale = Vector2(0.0, 0.0)
+		$PlayerShield.hide()
+		$PlayerShield.modulate.a = default_shield_alpha
+		return
+	# Hide the shield if we are dead
+	if health <= 0:
+		$PlayerShield.hide()
+		return
+	else:
+		$PlayerShield.show()
+	# Grow when the shield is first shown
+	if $PlayerShield.scale.x < default_shield_scale.x:
+		$PlayerShield.scale.x += delta * 2.0
+		$PlayerShield.scale.x = min($PlayerShield.scale.x, default_shield_scale.x)
+		$PlayerShield.scale.y = $PlayerShield.scale.x
+	# Flash if the time is running low
+	if shield_time <= 1.5:
+		var alpha: float = (sin((7.0 * PI * shield_time / 1.5 - PI / 2.0)) + 1.0) / 2.0
+		$PlayerShield.modulate.a = alpha * default_shield_alpha
+	# Set position
+	$PlayerShield.position = $AnimatedSprite2D.position
+	$PlayerShield.rotation += delta * PI / 2.0
+	# Rotate the second layer in the opposite direction
+	$PlayerShield/SecondLayer.rotation -= delta * (PI / 4.0 + PI / 2.0)
+
 func _process(delta: float) -> void:
 	update_status_effects(delta)
+
+	update_shield(delta)
+	if get_status_effect_time("gas") > 0.0 and velocity.length() > 0.0:
+		$SpeedParticles.emitting = true
+	else:
+		$SpeedParticles.emitting = false
+
 	visible = health > 0
 	if health <= 0:
 		if lawn_mower_active():
 			drop_lawn_mower()
 		$WaterGun.hide()
+		$SpeedParticles.emitting = false
 		return
 
+	inventory.update(delta, !$/root/Main.lawn_loaded)
 	# Hide neighbor arrow if we are inside the store
 	if inside_store and !$/root/Main.lawn_loaded:
 		$NeighborArrow.disabled = true
@@ -380,7 +455,20 @@ func _process(delta: float) -> void:
 		$NeighborArrow.disabled = false
 
 	take_fire_damage(delta)
+	shoot_fireworks(delta)
 	shoot_eggplant_bullet(delta)
+	# Do not take damage from hazards in the lawn
+	if !$/root/Main.lawn_loaded:
+		hazards.clear()
+	# Update damage from hazards
+	for path: NodePath in hazards:
+		var node = get_node_or_null(path)
+		if node == null:
+			hazards.erase(path)
+			continue
+		var hazard: Hazard = hazards[path]
+		if hazard.update(delta):
+			damage(hazard.damage_amt)
 
 	update_enemy_arrow()
 	update_lawn_mower_arrow()
@@ -411,13 +499,15 @@ func _process(delta: float) -> void:
 		speed = NORMAL_SPEED
 	if get_status_effect_time("speed") > 0.0:
 		speed *= 1.5
+	if get_status_effect_time("slowness") > 0.0:
+		speed *= 0.6
 	# Sprint
 	if Input.is_action_pressed("sprint") and speed_level >= 1 and stamina > 0.0:
 		if velocity.length() > 0.0:
 			stamina -= delta / get_stamina_time()
 		stamina = clamp(stamina, 0.0, 1.0)
 		speed *= 1.33
-		stamina_recharge_cooldown = STAMINA_RECHARD_DELAY
+		stamina_recharge_cooldown = STAMINA_RECHARGE_DELAY
 	else:
 		# Recharge stamina
 		if stamina_recharge_cooldown > 0.0:
@@ -429,6 +519,8 @@ func _process(delta: float) -> void:
 	if stamina <= 0.0:
 		speed *= 0.8
 	speed *= get_speed_amount()
+	if lawn_mower_active() and get_status_effect_time("gas") > 0.0:
+		speed *= lerpf(1.0, 2.75, clamp(get_status_effect_time("gas") * 2.0, 0.0, 1.0))
 	
 	set_animation()
 	
@@ -443,6 +535,8 @@ func _process(delta: float) -> void:
 			if interact_text != buy_item.get_interact_text():
 				continue
 			if !buy_item.player_in_area:
+				continue
+			if !buy_item.available():
 				continue
 			$/root/Main.play_sfx("Click")
 			$/root/Main/HUD.set_buy_menu(buy_item)
@@ -465,6 +559,8 @@ func _physics_process(_delta: float) -> void:
 			velocity.x -= 1.0
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1.0
+	if lawn_mower_active() and get_status_effect_time("gas") > 0.0 and velocity.length() == 0.0:
+		velocity = get_dir_vec()
 	
 	if velocity.x == 0.0 and velocity.y < 0.0:
 		if $UpCollisionChecker.colliding() and lawn_mower_active():
@@ -543,7 +639,8 @@ func save() -> Dictionary:
 	var data = {
 		"max_health_level" : max_health_level,
 		"speed_level" : speed_level,
-		"inventory_level" : inventory_level,
+		"inventory_level" : inventory.inventory_level,
+		"inventory" : str(inventory),
 		"time_bonus_level" : time_bonus_level,
 		"armor_level" : armor_level,
 	}
@@ -558,14 +655,18 @@ func reset() -> void:
 	# Reset the player levels	
 	max_health_level = 0
 	speed_level = 0
-	inventory_level = 0
+	inventory = Inventory.new()
 	time_bonus_level = 0
 	armor_level = 0	
+	firework_timer = 0.0
+	fireworks_to_shoot = 0
+	hazards.clear()
 
 func load(data: Dictionary) -> void:
 	max_health_level = max(Save.get_val(data, "max_health_level", 0), 0)
 	speed_level = max(Save.get_val(data, "speed_level", 0), 0)
-	inventory_level = max(Save.get_val(data, "inventory_level", 0), 0)
+	inventory = Inventory.parse(Save.get_val(data, "inventory", ""))
+	inventory.inventory_level = max(Save.get_val(data, "inventory_level", 0), 0)
 	time_bonus_level = max(Save.get_val(data, "time_bonus_level", 0), 0)
 	armor_level = max(Save.get_val(data, "armor_level", 0), 0)
 
@@ -625,8 +726,12 @@ func _on_player_hitbox_area_entered(area: Area2D) -> void:
 	# Check if we entered the store
 	if area.is_in_group("store"):
 		inside_store = true
+	elif area is Poison:
+		hazards[area.get_path()] = Hazard.from_preset("poison")
 
 func _on_player_hitbox_area_exited(area: Area2D) -> void:
 	# We left the store
 	if area.is_in_group("store"):
 		inside_store = false
+	elif area is Poison:
+		hazards.erase(area.get_path())

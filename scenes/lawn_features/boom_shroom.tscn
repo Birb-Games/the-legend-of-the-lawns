@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm4b5rcedfd1n"]
+[gd_scene format=3 uid="uid://cm4b5rcedfd1n"]
 
 [ext_resource type="Texture2D" uid="uid://dgptksdm4x4fl" path="res://assets/textures/lawn_features/boom_shroom.png" id="1_06ib6"]
 [ext_resource type="Script" uid="uid://bixlmcwmji15h" path="res://scripts/lawn_features/boom_shroom.gd" id="1_cl3ch"]
@@ -12,7 +12,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.09111201, 0.876205, 0.99999994, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pekys"]
 size = Vector2(10, 13)
 
-[node name="BoomShroom" type="Area2D"]
+[node name="BoomShroom" type="Area2D" unique_id=2045686728]
 scale = Vector2(0.5, 0.5)
 collision_layer = 7
 collision_mask = 7
@@ -21,15 +21,15 @@ explosion_scene = ExtResource("2_pvoyu")
 fire_scene = ExtResource("3_8cav8")
 explosion_flash_gradient = SubResource("Gradient_8cav8")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1660897871]
 scale = Vector2(0.3125, 0.30769232)
 texture = ExtResource("1_pekys")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1777590459]
 position = Vector2(0, -6.5)
 texture = ExtResource("1_06ib6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1855667295]
 position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_pekys")
 

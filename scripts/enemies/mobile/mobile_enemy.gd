@@ -26,6 +26,8 @@ var fire_collisions: Dictionary
 var fire_damage_timer: float = 0.0
 var FIRE_DAMAGE_INTERVAL: float = 0.75
 var fire_time: float = 0.0
+# Other hazards
+var hazards: Dictionary = {}
 @onready var spawn_timer: float = spawn_animation_time
 
 const UPDATE_PATH_INTERVAL: float = 0.25
@@ -220,6 +222,16 @@ func _process(delta: float) -> void:
 	handle_path_update(delta)	
 	update_shooting(delta)
 
+	# Update damage from hazards
+	for node_path: NodePath in hazards:
+		var node = get_node_or_null(node_path)
+		if node == null:
+			hazards.erase(path)
+			continue
+		var hazard: Hazard = hazards[node_path]
+		if hazard.update(delta):
+			damage(hazard.damage_amt)
+
 func _physics_process(_delta: float) -> void:
 	velocity = calculate_velocity()
 	move_and_slide()
@@ -274,7 +286,18 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 		damage(body.get_parent().calculate_damage(global_position))
 	elif body is BoomShroom:
 		body.explode_flag = true
+	elif body.is_in_group("shock"):
+		if !visible:
+			return
+		$/root/Main.play_sfx("Zap")
+		body.add_shock_particles(self)
+		damage(randi_range(3, 8))
+	elif body is Poison:
+		damage(Hazard.from_preset("poison").damage_amt)
+		hazards[body.get_path()] = Hazard.from_preset("poison")
 
 func _on_bullet_hitbox_area_exited(body: Node2D) -> void:
 	if body is Fire:
 		fire_collisions.erase(body.get_path())
+	elif body is Poison:
+		hazards.erase(body.get_path())

@@ -159,3 +159,10 @@ func _on_area_entered(area: Area2D) -> void:
 		health -= area.damage
 		health = max(health, 0)
 		stun()
+	elif area is EnemyBullet:
+		if !area.is_in_group("damage_flowers"):
+			return
+		area.explode()
+		health -= area.damage_amt
+		health = max(health, 0)
+		stun()

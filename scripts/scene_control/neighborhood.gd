@@ -6,6 +6,7 @@ func update_neighbors() -> void:
 	for neighbor: NeighborNPC in $Neighbors.get_children():
 		neighbor.cooldown -= 1
 		neighbor.cooldown = max(neighbor.cooldown, 0)
+		neighbor.player_in_area = false
 
 func save() -> Array:
 	var data = []

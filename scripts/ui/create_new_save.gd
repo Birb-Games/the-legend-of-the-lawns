@@ -13,6 +13,7 @@ func _on_back_pressed() -> void:
 	hide()
 
 func _on_start_pressed() -> void:	
+	$/root/Main/HUD.reset()
 	# Make sure we have a valid name
 	var player_name: String = $Name/TextEdit.text
 	if player_name.is_empty():
@@ -36,7 +37,7 @@ func _on_start_pressed() -> void:
 	main.reset()
 	# Kind of meant to be a joke/easter egg but also helpful for testing
 	var lowercase: String = player_name.to_lower()
-	if lowercase == "elon musk" or lowercase == "jeff bezos" or lowercase == "bill gates":
+	if lowercase == "mcmoneypants":
 		main.money = 9999999999
 	
 	# $/root/Main/HUD/Control/TransitionRect.start_animation()

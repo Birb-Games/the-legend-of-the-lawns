@@ -55,6 +55,7 @@
 [ext_resource type="PackedScene" uid="uid://js2gvvvv4bla" path="res://scenes/decorations/store_display.tscn" id="53_sc68w"]
 [ext_resource type="PackedScene" uid="uid://dux415njqmp1m" path="res://scenes/interactable/buy.tscn" id="54_532a6"]
 [ext_resource type="Texture2D" uid="uid://dagtt6ra0h7dw" path="res://assets/textures/decorations/sale_poster.png" id="55_ka6mv"]
+[ext_resource type="PackedScene" uid="uid://bvc7ww3cj7nqw" path="res://scenes/interactable/trash_can.tscn" id="56_4nkst"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -484,6 +485,9 @@ position = Vector2(24, -427)
 display_name = "North St. End"
 connections = [NodePath("../Store"), NodePath("../NorthStreet")]
 
+[node name="TrashCan" parent="." unique_id=83958223 instance=ExtResource("56_4nkst")]
+position = Vector2(800.00006, -57.000004)
+
 [node name="LeftWorldBoundary" type="StaticBody2D" parent="." unique_id=1830367940]
 
 [node name="ColllisionShape2D" type="CollisionShape2D" parent="LeftWorldBoundary" unique_id=2077491582]
@@ -682,52 +686,418 @@ position = Vector2(-125, 725)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("52_vmv0n")
 
-[node name="StoreDisplay" parent="Store" unique_id=42241849 instance=ExtResource("53_sc68w")]
-position = Vector2(88, 764)
-
-[node name="AppleJuice" parent="Store/StoreDisplay" unique_id=1063803969 instance=ExtResource("54_532a6")]
-position = Vector2(-40, -15)
-display_name = "apple juice"
-id = "apple_juice"
-description = "Increases maximum health."
-buy_text = "Increased max health! (80 -> 100)"
-price = 6
-
-[node name="RedShoes" parent="Store/StoreDisplay" unique_id=337230633 instance=ExtResource("54_532a6")]
-position = Vector2(-19.000004, -15)
-scale = Vector2(0.8, 0.8)
-display_name = "shoes"
-id = "red_shoes"
-description = "Enables sprinting."
-buy_text = "Hold down `shift` to sprint."
-price = 15
-
-[node name="Backpack" parent="Store/StoreDisplay" unique_id=854580566 instance=ExtResource("54_532a6")]
-position = Vector2(0, -15)
-scale = Vector2(0.75, 0.75)
-display_name = "backpack"
-id = "backpack0"
-description = "Increases inventory space."
-price = 20
-
-[node name="Watch" parent="Store/StoreDisplay" unique_id=1521992790 instance=ExtResource("54_532a6")]
-position = Vector2(20, -15)
-display_name = "watch"
-id = "watch"
-description = "Increases time bonus."
-price = 20
-
-[node name="BikeHelmet" parent="Store/StoreDisplay" unique_id=794413820 instance=ExtResource("54_532a6")]
-position = Vector2(38, -15)
-display_name = "bike helmet"
-id = "bike_helmet"
-description = "Increases armor."
-price = 15
-
 [node name="SalePoster" type="Sprite2D" parent="Store" unique_id=1531052310]
 position = Vector2(93, 725)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("55_ka6mv")
+
+[node name="StoreDisplay" parent="Store" unique_id=42241849 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 764)
+
+[node name="Juice" type="Node2D" parent="Store/StoreDisplay" unique_id=496039771]
+
+[node name="AppleJuice" parent="Store/StoreDisplay/Juice" unique_id=1063803969 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "apple juice"
+id = "apple_juice"
+description = "Increases maximum health.
+-> A good sized box of apple juice. Rich in vitamins."
+buy_text = "Increased max health! (80 -> 100)"
+price = 6
+
+[node name="OrangeJuice" parent="Store/StoreDisplay/Juice" unique_id=1190194880 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "orange juice"
+id = "orange_juice"
+description = "Increases maximum health.
+-> Made with fresh oranges imported from the Sur de Cocas Islands. A good source of Vitamin C."
+buy_text = "Increased max health! (100 -> 120)"
+price = 9
+
+[node name="GrapeJuice" parent="Store/StoreDisplay/Juice" unique_id=135413908 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "grape juice"
+id = "grape_juice"
+description = "Increases maximum health.
+-> Made with fresh grapes from Roma."
+buy_text = "Increased max health! (120 -> 150)"
+price = 16
+
+[node name="CarrotJuice" parent="Store/StoreDisplay/Juice" unique_id=553067214 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "carrot juice"
+id = "carrot_juice"
+description = "Increases maximum health.
+-> Apparently drinking carrot juice is a new health fad on the internet."
+buy_text = "Increased max health! (150 -> 180)"
+price = 22
+
+[node name="Milk" parent="Store/StoreDisplay/Juice" unique_id=1259066601 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "milk"
+id = "milk"
+description = "Increases maximum health.
+-> A great source of calcium for strong bones. Probably should be refrigerated though."
+buy_text = "Increased max health! (180 -> 220)"
+price = 28
+
+[node name="GoldenAppleJuice" parent="Store/StoreDisplay/Juice" unique_id=1998948837 instance=ExtResource("54_532a6")]
+position = Vector2(-40, -15)
+display_name = "golden apple juice"
+id = "golden_apple_juice"
+description = "Increases maximum health.
+-> Made from the fruit of the rare and endangered golden apple tree found only in the rainforests of Aldoria. Some say the golden apple tree has magical properties that hold the secrets of eternal life..."
+buy_text = "Increased max health! (220 -> 250)"
+price = 45
+
+[node name="Shoes" type="Node2D" parent="Store/StoreDisplay" unique_id=905651957]
+
+[node name="RedShoes" parent="Store/StoreDisplay/Shoes" unique_id=337230633 instance=ExtResource("54_532a6")]
+position = Vector2(-19, -15)
+scale = Vector2(0.8, 0.8)
+display_name = "shoes"
+id = "red_shoes"
+description = "Enables sprinting.
+-> Some nice red shoes. They look quite comfortable."
+buy_text = "Hold down `shift` to sprint."
+price = 15
+
+[node name="BlueShoes" parent="Store/StoreDisplay/Shoes" unique_id=2081946521 instance=ExtResource("54_532a6")]
+position = Vector2(-19, -15)
+scale = Vector2(0.8, 0.8)
+display_name = "shoes"
+id = "blue_shoes"
+description = "Increases speed.
+-> The company that made these advertises that they designed the soles to be supposedly more efficient for walking."
+buy_text = "Increased speed! (x1.00 -> x1.10)"
+price = 22
+
+[node name="GrayShoes" parent="Store/StoreDisplay/Shoes" unique_id=1132238852 instance=ExtResource("54_532a6")]
+position = Vector2(-19, -15)
+scale = Vector2(0.8, 0.8)
+display_name = "shoes"
+id = "gray_shoes"
+description = "Increases speed.
+-> These are the cheap knock-offs of the shoes that a lot of famous athletes wear."
+buy_text = "Increased speed! (x1.10 -> x1.25)"
+price = 32
+
+[node name="AthleteShoes" parent="Store/StoreDisplay/Shoes" unique_id=2011781773 instance=ExtResource("54_532a6")]
+position = Vector2(-19, -15)
+scale = Vector2(0.8, 0.8)
+display_name = "athlete shoes"
+id = "athlete_shoes"
+description = "Increases speed.
+-> Almost every professional athlete that played in the International Games swears by these shoes, they are just that good. Either that or they're just repeating the sponsor script."
+buy_text = "Increased speed! (x1.25 -> x1.33)"
+price = 50
+
+[node name="Backpacks" type="Node2D" parent="Store/StoreDisplay" unique_id=2138569241]
+
+[node name="Backpack0" parent="Store/StoreDisplay/Backpacks" unique_id=854580566 instance=ExtResource("54_532a6")]
+position = Vector2(0, -15)
+scale = Vector2(0.75, 0.75)
+display_name = "backpack"
+id = "backpack0"
+description = "Increases inventory space.
+-> It's a backpack to hold your stuff. You should probably buy one before you return to school in autumn."
+buy_text = "Increased inventory size! (2 slots -> 4 slots)"
+price = 20
+
+[node name="Backpack1" parent="Store/StoreDisplay/Backpacks" unique_id=2111446196 instance=ExtResource("54_532a6")]
+position = Vector2(0, -15)
+scale = Vector2(0.75, 0.75)
+display_name = "backpack"
+id = "backpack1"
+description = "Increases inventory space.
+-> It has a picture of a cute frog on it. What's not to love about it?"
+buy_text = "Increased inventory size! (4 slots -> 6 slots)"
+price = 28
+
+[node name="Backpack2" parent="Store/StoreDisplay/Backpacks" unique_id=849988165 instance=ExtResource("54_532a6")]
+position = Vector2(0, -15)
+scale = Vector2(0.75, 0.75)
+display_name = "backpack"
+id = "backpack2"
+description = "Increases inventory space.
+-> It's a 'Hello SuperPinkCat' (a show for 3 year olds) branded backpack. Your friends would never let you hear the end of it if they see you wear it, but man does it have a lot of space..."
+buy_text = "Increased inventory size! (6 slots -> 8 slots)"
+price = 35
+
+[node name="Backpack3" parent="Store/StoreDisplay/Backpacks" unique_id=2084709326 instance=ExtResource("54_532a6")]
+position = Vector2(0, -15)
+scale = Vector2(0.75, 0.75)
+display_name = "backpack"
+id = "backpack3"
+description = "Increases inventory space.
+-> It's a limited edition luxury McMoneyPants designer backpack. Quite the flex if you can afford it."
+buy_text = "Increased inventory size! (8 slots -> 10 slots)"
+price = 45
+
+[node name="Watches" type="Node2D" parent="Store/StoreDisplay" unique_id=1916284599]
+
+[node name="Watch" parent="Store/StoreDisplay/Watches" unique_id=1521992790 instance=ExtResource("54_532a6")]
+position = Vector2(20, -15)
+display_name = "watch"
+id = "watch"
+description = "Increases time bonus.
+-> It's just a generic standard watch to help you tell the time. I hope you know how to read an analog clock."
+buy_text = "Increased time bonus! (x1.00 -> x1.50)"
+price = 20
+
+[node name="DigitalWatch" parent="Store/StoreDisplay/Watches" unique_id=1392993712 instance=ExtResource("54_532a6")]
+position = Vector2(20, -15)
+display_name = "digital watch"
+id = "digital_watch"
+description = "Increases time bonus.
+-> A fancy digital watch. It can track your steps, give you the weather forecast, and even comes with a (somewhat) helpful AI assistant."
+buy_text = "Increased time bonus! (x1.50 -> x2.00)"
+price = 40
+
+[node name="PocketWatch" parent="Store/StoreDisplay/Watches" unique_id=829682900 instance=ExtResource("54_532a6")]
+position = Vector2(20, -15)
+display_name = "pocket watch"
+id = "pocket_watch"
+description = "Increases time bonus.
+-> Supposedly this used to be the property of some noble from the 1800s."
+buy_text = "Increased time bonus! (x2.00 -> x2.50)"
+price = 65
+
+[node name="RollxWatch" parent="Store/StoreDisplay/Watches" unique_id=2123175744 instance=ExtResource("54_532a6")]
+position = Vector2(20, -15)
+display_name = "RollX watch"
+id = "rollx_watch"
+description = "Increases time bonus.
+-> RollX is known for their luxury, high quality, but expensive watches. This is one of the cheaper ones."
+buy_text = "Increased time bonus! (x2.50 -> x3.00)"
+price = 85
+
+[node name="Helmets" type="Node2D" parent="Store/StoreDisplay" unique_id=676622692]
+
+[node name="Hat" parent="Store/StoreDisplay/Helmets" unique_id=2053376832 instance=ExtResource("54_532a6")]
+position = Vector2(38, -15)
+display_name = "hat"
+id = "hat"
+description = "Increases armor.
+-> A nice propeller beanie. You had one of these when you were 5 but lost it."
+buy_text = "Increased armor! (0% -> 7%)"
+price = 15
+
+[node name="BikeHelmet" parent="Store/StoreDisplay/Helmets" unique_id=794413820 instance=ExtResource("54_532a6")]
+position = Vector2(38, -15)
+display_name = "bike helmet"
+id = "bike_helmet"
+description = "Increases armor.
+-> Pretty good protection for when you crash your bike into a tree."
+buy_text = "Increased armor! (7% -> 10%)"
+price = 24
+
+[node name="FootballHelmet" parent="Store/StoreDisplay/Helmets" unique_id=1884394142 instance=ExtResource("54_532a6")]
+position = Vector2(38, -15)
+display_name = "sportball helmet"
+id = "football_helmet"
+description = "Increases armor.
+-> I'm not entirely sure if this can stop a concussion but maybe it can protect your face from an angry shrubdemon?"
+buy_text = "Increased armor! (10% -> 14%)"
+price = 35
+
+[node name="CombatHelmet" parent="Store/StoreDisplay/Helmets" unique_id=280737930 instance=ExtResource("54_532a6")]
+position = Vector2(38, -15)
+display_name = "combat helmet"
+id = "combat_helmet"
+description = "Increases armor.
+-> It even comes with leaves for camouflage! I don't think it will trick the weeds though..."
+buy_text = "Increased armor! (14% -> 18%)"
+price = 60
+
+[node name="AstronautHelmet" parent="Store/StoreDisplay/Helmets" unique_id=105126978 instance=ExtResource("54_532a6")]
+position = Vector2(38, -15)
+display_name = "astronaut helmet"
+id = "astronaut_helmet"
+description = "Increases armor.
+-> If it can survive the vacuum of space, then it can probably stand a killer rabbit attack."
+buy_text = "Increased armor! (18% -> 22%)"
+price = 65
+
+[node name="StoreDisplay2" parent="Store" unique_id=139448975 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 814)
+
+[node name="Chocolate" parent="Store/StoreDisplay2" unique_id=1862968661 instance=ExtResource("54_532a6")]
+position = Vector2(-37, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "chocolate"
+id = "chocolate"
+description = "Restores 20 health points.
+-> Eating a delicious bar of chocolate always makes everything better, even when you're mortally wounded."
+buy_text = "Bought chocolate! (Left click to use item)"
+price = 6
+add_item = true
+
+[node name="Chocolate2" parent="Store/StoreDisplay2" unique_id=340583536 instance=ExtResource("54_532a6")]
+position = Vector2(-19, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "chocolate"
+id = "chocolate"
+description = "Restores 20 health points.
+-> Eating a delicious bar of chocolate always makes everything better, even when you're mortally wounded."
+buy_text = "Bought chocolate! (Left click to use item)"
+price = 6
+add_item = true
+
+[node name="Soda" parent="Store/StoreDisplay2" unique_id=1075520689 instance=ExtResource("54_532a6")]
+position = Vector2(0, -15)
+display_name = "soda"
+id = "soda"
+description = "Increases speed temporarily.
+-> I'm not sure if consuming this much sugar is good for you but it definitely will give you quite the rush. (and maybe a bit of type II diabetes...)"
+buy_text = "Bought soda! (Left click to use item)"
+price = 8
+add_item = true
+
+[node name="Soda2" parent="Store/StoreDisplay2" unique_id=1735607132 instance=ExtResource("54_532a6")]
+position = Vector2(19, -15)
+display_name = "soda"
+id = "soda"
+description = "Increases speed temporarily.
+-> I'm not sure if consuming this much sugar is good for you but it definitely will give you quite the rush. (and maybe a bit of type II diabetes...)"
+buy_text = "Bought soda! (Left click to use item)"
+price = 8
+add_item = true
+
+[node name="IceCream" parent="Store/StoreDisplay2" unique_id=2008948231 instance=ExtResource("54_532a6")]
+position = Vector2(38, -15)
+scale = Vector2(0.45, 0.45)
+display_name = "ice cream"
+id = "ice_cream"
+description = "Heals 60 health points, but slows you down.
+-> The perfect summer treat. You should probably eat it before it melts though."
+buy_text = "Bought ice cream! (Left click to use item)"
+price = 18
+add_item = true
+
+[node name="StoreDisplay3" parent="Store" unique_id=55058432 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 862)
+
+[node name="TomatoSeeds" parent="Store/StoreDisplay3" unique_id=1072131991 instance=ExtResource("54_532a6")]
+position = Vector2(-35, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "tomato seeds"
+id = "tomato_seeds"
+description = "Spawns a tomato boy.
+-> The McMoneyPants Food Corporation genetically engineered these seeds to be more connected with the \"magical side\" of nature, whatever that means."
+buy_text = "Bought tomato seeds! (Left click to use item)"
+price = 24
+add_item = true
+
+[node name="BoomShroomSpores" parent="Store/StoreDisplay3" unique_id=26537955 instance=ExtResource("54_532a6")]
+position = Vector2(-12, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "boom shroom spores"
+id = "boom_shroom_spores"
+description = "Spawns a boom shroom.
+-> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
+buy_text = "Bought boom shroom spores! (Left click to use item)"
+price = 10
+add_item = true
+
+[node name="BoomShroomSpores2" parent="Store/StoreDisplay3" unique_id=1327583245 instance=ExtResource("54_532a6")]
+position = Vector2(12, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "boom shroom spores"
+id = "boom_shroom_spores"
+description = "Spawns a boom shroom.
+-> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
+buy_text = "Bought boom shroom spores! (Left click to use item)"
+price = 10
+add_item = true
+
+[node name="BoomShroomSpores3" parent="Store/StoreDisplay3" unique_id=357933668 instance=ExtResource("54_532a6")]
+position = Vector2(35, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "boom shroom spores"
+id = "boom_shroom_spores"
+description = "Spawns a boom shroom.
+-> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
+buy_text = "Bought boom shroom spores! (Left click to use item)"
+price = 10
+add_item = true
+
+[node name="TrashCan" parent="Store" unique_id=1155408292 instance=ExtResource("56_4nkst")]
+position = Vector2(-40.000004, 758)
+
+[node name="StoreDisplay4" parent="Store" unique_id=168454794 instance=ExtResource("53_sc68w")]
+position = Vector2(88, 910)
+
+[node name="ShieldGenerator" parent="Store/StoreDisplay4" unique_id=678809379 instance=ExtResource("54_532a6")]
+position = Vector2(-41, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "shield generator"
+id = "shield_generator"
+description = "Temporarily makes you invulnerable to damage.
+-> Generates an electromagnetic shield to protect you from all kinds of damage. A truly incredible invention, would be nice if it had better battery life though."
+buy_text = "Bought shield generator! (Left click to use item)"
+price = 32
+add_item = true
+
+[node name="ElectricDoodad" parent="Store/StoreDisplay4" unique_id=688363830 instance=ExtResource("54_532a6")]
+position = Vector2(-25, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "electric doodad"
+id = "electric_doodad"
+description = "Shocks nearby enemies.
+-> *Shockingly* effective."
+buy_text = "Bought electric doodad! (Left click to use item)"
+price = 32
+add_item = true
+
+[node name="DroneController" parent="Store/StoreDisplay4" unique_id=248807824 instance=ExtResource("54_532a6")]
+position = Vector2(-9, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "drone controller"
+id = "drone_controller"
+description = "Spawns a drone that shoots at enemies for you.
+-> A military grade attack drone manufactured by the McMoneyPants Robotics Corporation. Hopefully its AI control systems don't go rogue anytime soon..."
+buy_text = "Bought drone controller! (Left click to use item)"
+price = 27
+add_item = true
+
+[node name="Fireworks" parent="Store/StoreDisplay4" unique_id=101699015 instance=ExtResource("54_532a6")]
+position = Vector2(8, -15)
+display_name = "fireworks"
+id = "fireworks"
+description = "Launches a bunch of firework rockets that explode and damage enemies.
+-> This year's Independence Day fireworks show is going to be so awesome!"
+buy_text = "Bought fireworks! (Left click to use item)"
+price = 36
+add_item = true
+
+[node name="Gasoline" parent="Store/StoreDisplay4" unique_id=1841829751 instance=ExtResource("54_532a6")]
+position = Vector2(25, -15)
+display_name = "gasoline"
+id = "gasoline"
+description = "Gives a short speed boost when using the lawn mower.
+-> High quality premium gasoline to refuel your lawn mower. Warning: flammable."
+buy_text = "Bought gasoline! (Left click while holding the lawn mower to use)"
+price = 10
+add_item = true
+
+[node name="Insecticide" parent="Store/StoreDisplay4" unique_id=118012183 instance=ExtResource("54_532a6")]
+position = Vector2(41, -15)
+scale = Vector2(0.5, 0.5)
+display_name = "insecticide"
+id = "insecticide"
+description = "Creates a cloud of poison that damages enemies.
+-> I'm pretty sure this stuff violates several environmental and health regulations..."
+buy_text = "Bought insecticide! (Left click to use item)"
+price = 14
+add_item = true
+
+[node name="StoreDisplay5" parent="Store" unique_id=1357847614 instance=ExtResource("53_sc68w")]
+position = Vector2(-88, 910)
+
+[node name="StoreDisplay6" parent="Store" unique_id=1402963401 instance=ExtResource("53_sc68w")]
+position = Vector2(-88, 862)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

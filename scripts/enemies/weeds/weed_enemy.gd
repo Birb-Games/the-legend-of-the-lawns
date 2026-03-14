@@ -42,8 +42,23 @@ func _ready() -> void:
 
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
 	if lawn:
+		var tile_pos: Vector2i = Vector2i(
+			floori(global_position.x / lawn.tile_size.x),
+			floori(global_position.y / lawn.tile_size.y)
+		)
+		# If there's a weed in the position, do not bother spawning
+		if tile_pos in lawn.weed_positions and lawn.weed_positions[tile_pos] > 0 and !boss:
+			hide()
+			scale = Vector2.ZERO
+			call_deferred("queue_free")
+			return
+
 		lawn.total_weeds += 1
-		lawn.weeds.push_back(get_path())
+		lawn.weeds[get_path()] = true	
+		if tile_pos in lawn.weed_positions:
+			lawn.weed_positions[tile_pos] += 1
+		else:
+			lawn.weed_positions[tile_pos] = 1
 
 	# Add some screenshake to the camera
 	var camera: GameCamera = $/root/Main/Player/Camera2D
@@ -75,6 +90,12 @@ func explode() -> void:
 	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
 	if lawn:
 		lawn.weeds_killed += 1
+		var tile_pos: Vector2i = Vector2i(
+			floori(global_position.x / lawn.tile_size.x),
+			floori(global_position.y / lawn.tile_size.y)
+		)
+		if tile_pos in lawn.weed_positions:
+			lawn.weed_positions[tile_pos] -= 1
 	queue_free()
 
 # controls the growing animation for the enemy

@@ -103,16 +103,17 @@ func return_to_neighborhood() -> void:
 	player.status_effects.clear()
 	if get_node_or_null("Lawn"):
 		get_node("Lawn").queue_free()
+	player.position = player_pos
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
 	$Neighborhood/JobBoard.update()
 	$Player/Lawnmower.hide()
 	$Player/WaterGun.hide()
 	$Player/NeighborArrow.point_to = ""
-	player.position = player_pos
 	current_wage = 0
 	player.dir = "down"
-	$Player.fire_timer = 0.0
+	player.fire_timer = 0.0
+	player.interact_text = ""
 	lawn_loaded = false
 	# Disable camera position smoothing for a frame so that we do not have any 
 	# strange sudden camera movements when we are returning to the neighborhood
@@ -252,6 +253,7 @@ func get_job_list_str() -> String:
 	return job_list_str
 
 func load_save() -> bool:
+	$HUD.reset()
 	var save_file = FileAccess.open(save_path, FileAccess.READ)
 
 	if !save_file:

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dcyro1vcetkcj"]
+
+[ext_resource type="Texture2D" uid="uid://b7tan7jwmqbar" path="res://assets/textures/particles/stun_particle.png" id="1_7v64b"]
+[ext_resource type="Script" uid="uid://biobcr36guyl1" path="res://scripts/particles/one_shot_particles.gd" id="2_jrny7"]
+
+[sub_resource type="Curve" id="Curve_jrny7"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.19286656), 0.0, 0.0, 0, 0, Vector2(0.24183005, 2), 0.0, 0.0, 0, 0, Vector2(0.5555556, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gbugd"]
+curve = SubResource("Curve_jrny7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jrny7"]
+particle_flag_disable_z = true
+angular_velocity_min = 179.99998
+angular_velocity_max = 359.99997
+radial_velocity_min = 49.999977
+radial_velocity_max = 49.999977
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_gbugd")
+color = Color(1, 1, 1, 0.5019608)
+
+[node name="ShockParticles" type="GPUParticles2D" unique_id=14861175]
+emitting = false
+amount = 24
+texture = ExtResource("1_7v64b")
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.9
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_jrny7")
+script = ExtResource("2_jrny7")

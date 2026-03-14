@@ -330,9 +330,50 @@ func set_buy_menu(item: Buy) -> void:
 			buttons[0].connect("pressed", on_leave_pressed)
 	)
 	var main: Main = $/root/Main
-	if item.price > main.money:
+	if item.price > main.money or (main.player.inventory.full() and item.add_item):
 		buttons[1].disabled = true
 	
+	show()
+
+func set_trash_menu() -> void:
+	current_npc = null
+	current_neighbor = null
+	reset_buttons()
+
+	var main: Main = $/root/Main
+	var inventory_gui: InventoryGUI = $/root/Main/HUD/Control/InventoryGUI
+	set_menu_name("Trash")
+	set_wage_text("")	
+	var selected_item: InventoryItem = main.player.inventory.get_item(inventory_gui.selected)
+	if selected_item:
+		set_description_text("""Are you sure you want to throw away %s? 
+This will permanently remove it from your inventory.""" % selected_item.get_display_str())
+		buttons[0].show()
+		buttons[0].text = "No"
+		buttons[0].connect("pressed", on_leave_pressed)
+
+		buttons[1].show()
+		buttons[1].text = "Yes"
+		buttons[1].connect(
+			"pressed",
+			func() -> void:
+				main.play_sfx("Click")
+				main.player.inventory.remove_item(inventory_gui.selected)
+				reset_buttons()
+			
+				set_menu_name("Trash")
+				set_description_text("Discarded %s." % selected_item.get_display_str())
+
+				buttons[0].show()
+				buttons[0].text = "Leave"
+				buttons[0].connect("pressed", on_leave_pressed)
+		)
+	else:
+		set_description_text("You can throw away items here.")	
+		buttons[0].show()
+		buttons[0].text = "Leave"
+		buttons[0].connect("pressed", on_leave_pressed)
+
 	show()
 
 func on_leave_pressed() -> void:
