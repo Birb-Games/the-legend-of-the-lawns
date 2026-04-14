@@ -354,6 +354,8 @@ static func get_rand_mob_count(difficulty: int, id: String) -> int:
 	var count_table: Dictionary = mob_count_table[int_difficulty_to_string(difficulty)]
 	if count_table.is_empty():
 		return 0
+	if !(id in count_table):
+		return 0
 	var counts: Array = count_table[id]
 	if counts.is_empty():
 		return 0

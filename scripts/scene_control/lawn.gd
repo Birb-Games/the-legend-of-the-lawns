@@ -188,7 +188,7 @@ func spawn_weeds(pos: Vector2) -> void:
 		)
 
 func spawn_mobs(pos: Vector2) -> void:	
-	var weights = Spawning.get_mob_spawn_weights(difficulty)
+	var weights = Spawning.get_mob_spawn_weights(max(difficulty - 1, 0))
 	if weights.is_empty():
 		return
 
