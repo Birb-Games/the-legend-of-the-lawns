@@ -428,7 +428,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrakx"]
-size = Vector2(18, 42)
+size = Vector2(18, 19.666668)
 
 [node name="Neighbor" type="AnimatedSprite2D" unique_id=1784388205 groups=["neighbor"]]
 y_sort_enabled = true
@@ -443,6 +443,7 @@ lawn_template = ExtResource("3_x7cql")
 position = Vector2(0, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=52541084]
+position = Vector2(0, 11.166666)
 shape = SubResource("RectangleShape2D_nrakx")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=378860302]

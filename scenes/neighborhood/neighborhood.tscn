@@ -696,6 +696,25 @@ script = ExtResource("72_0nn5q")
 required_npcs = [NodePath("../../../Store/ITGirl4")]
 disable_after_first_time = true
 
+[node name="DataCenterManager" parent="Neighbors" unique_id=1343551970 node_paths=PackedStringArray("knock_sound") instance=ExtResource("3_tqujx")]
+position = Vector2(768, -60)
+animation = &"mr_mcmoneypants"
+display_name = "Mr. Manager"
+always_visible = true
+level = 19
+knock_sound = NodePath("Click")
+at_store = true
+knock_subtitle = ""
+interact_text = "Press [SPACE] to talk to Mr. Manager."
+
+[node name="NeighborController" type="Node2D" parent="Neighbors/DataCenterManager" unique_id=1173550733 node_paths=PackedStringArray("required_npcs")]
+script = ExtResource("72_0nn5q")
+required_npcs = [NodePath("../../../Store/ITGirl5")]
+disable_after_first_time = true
+
+[node name="Click" type="AudioStreamPlayer" parent="Neighbors/DataCenterManager" unique_id=1832668202]
+stream = ExtResource("71_qo1hn")
+
 [node name="FastTravel" type="Node2D" parent="." unique_id=845814038]
 y_sort_enabled = true
 
@@ -1482,6 +1501,7 @@ position = Vector2(-33, 809.00006)
 animation = &"mr_manager"
 display_name = "Mr. Manager"
 min_level = 6
+max_level = 17
 dialog_json = ExtResource("65_xio3b")
 
 [node name="Martin" parent="Store" unique_id=1479892227 instance=ExtResource("4_dcvy4")]
