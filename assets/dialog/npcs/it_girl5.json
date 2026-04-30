@@ -1,0 +1,23 @@
+{
+	"first_dialog": [
+		"Alright kid, it seems you did quite a number on that robot, nice work!",
+		"So yeah, while some of the RAM sticks got fried, I was still able to salvage some good stuff. I can't wait to upgrade my gaming PC...",
+		"Oh yeah, that too. Yeah, I got the RAM needed to repair the Swapdeck. Now we need a GPU, which is going to be kind of hard to get, given the computer part shortages.",
+		"However, I do think I know where we can get one - a new AI data center opened nearby and I think I saw a job posting for mowing their front lawn.",
+		"Here's the plan: I think the data center manager is coming by soon so go check the job board, show him the work contract, and then take the job offer.",
+		"Once you're done mowing the lawn, you break into the data center, rush past security, grab a GPU, and then get out of there before the cops arrive.",
+		"It probably is, but as long as you run faster than the security thugs, you should be fine. Now go get that GPU!"
+	],
+	"player_dialog": [
+		"Thanks?",
+		"So the Swapdeck?...",
+		"Oh...",
+		"Okay?",
+		"Um, sure, I guess?",
+		"That sounds kind of illegal.",
+		"Okay..."
+	],
+	"possible_dialog": [
+		"Do you have the GPU? No? Then go get it! I can't help you repair the Swapdeck if I don't have the parts!"
+	]
+}

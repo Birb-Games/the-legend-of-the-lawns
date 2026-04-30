@@ -108,6 +108,7 @@
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl2.json" id="97_a61lq"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl3.json" id="98_yc5ru"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl4.json" id="103_eog07"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl5.json" id="109_6turh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -883,7 +884,7 @@ interact_text = "Enter Store"
 go_to = NodePath("../StoreExit/StoreInterior")
 
 [node name="StoreExterior" type="Node2D" parent="Store/StoreDoor" unique_id=1684918642]
-position = Vector2(0, 21.333313)
+position = Vector2(0, 18.666656)
 
 [node name="Marker2D" type="Marker2D" parent="Store/StoreDoor/StoreExterior" unique_id=1482365001]
 
@@ -1541,6 +1542,15 @@ min_level = 16
 max_level = 17
 use_female_voice = true
 dialog_json = ExtResource("103_eog07")
+
+[node name="ITGirl5" parent="Store" unique_id=26957543 instance=ExtResource("4_dcvy4")]
+position = Vector2(-18, 902)
+animation = &"it_girl"
+display_name = "IT Girl"
+min_level = 18
+max_level = 19
+use_female_voice = true
+dialog_json = ExtResource("109_6turh")
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

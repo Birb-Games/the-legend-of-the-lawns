@@ -27,17 +27,21 @@ func _process(_delta: float) -> void:
 		$/root/Main/HUD/Control/TransitionRect.start_bus_animation()
 		$/root/Main/Player/Camera2D.position_smoothing_enabled = false
 
+func get_interact_text() -> String:
+	var main: Main = $/root/Main
+	var current_quest: Quest = Quest.get_quest(main.current_level)
+	if main.current_level >= min_level or (current_quest and current_quest.completed(main)):
+		return "%s - [SPACE]" % interact_text
+	else:
+		return unavailable_msg
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		var main: Main = $/root/Main
-		var current_quest: Quest = Quest.get_quest(main.current_level)
-		if main.current_level >= min_level or (current_quest and current_quest.completed(main)):
-			body.interact_text = "%s - [SPACE]" % interact_text
-		else:
-			body.interact_text = unavailable_msg
+		body.interact_text = get_interact_text()
 		player_in_area = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
-		body.interact_text = ""
+		if body.interact_text == get_interact_text():
+			body.interact_text = ""
 		player_in_area = false
