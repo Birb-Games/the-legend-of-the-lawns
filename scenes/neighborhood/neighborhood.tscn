@@ -104,6 +104,8 @@
 [ext_resource type="AudioStream" uid="uid://eyyq58oktsp" path="res://assets/audio/sfx/click.wav" id="71_qo1hn"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/robot_neighbor_dialog.json" id="71_tsyeq"]
 [ext_resource type="Script" uid="uid://3am5ms0m2qq1" path="res://scripts/npc/neighbor_controller.gd" id="72_0nn5q"]
+[ext_resource type="PackedScene" uid="uid://wdx61euj7m73" path="res://scenes/lawns/data_center_lawn.tscn" id="75_bsq1q"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/manager_neighbor_dialog.json" id="76_sgpx3"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl1.json" id="89_vnrcm"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl2.json" id="97_a61lq"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl3.json" id="98_yc5ru"]
@@ -696,23 +698,28 @@ script = ExtResource("72_0nn5q")
 required_npcs = [NodePath("../../../Store/ITGirl4")]
 disable_after_first_time = true
 
-[node name="DataCenterManager" parent="Neighbors" unique_id=1343551970 node_paths=PackedStringArray("knock_sound") instance=ExtResource("3_tqujx")]
+[node name="Manager" parent="Neighbors" unique_id=1343551970 node_paths=PackedStringArray("knock_sound") instance=ExtResource("3_tqujx")]
 position = Vector2(768, -60)
 animation = &"mr_mcmoneypants"
 display_name = "Mr. Manager"
 always_visible = true
+lawn_template = ExtResource("75_bsq1q")
 level = 19
 knock_sound = NodePath("Click")
 at_store = true
+wage = 36
+max_bonus = 18
+hedge_penalty = 2
 knock_subtitle = ""
 interact_text = "Press [SPACE] to talk to Mr. Manager."
+dialog_json = ExtResource("76_sgpx3")
 
-[node name="NeighborController" type="Node2D" parent="Neighbors/DataCenterManager" unique_id=1173550733 node_paths=PackedStringArray("required_npcs")]
+[node name="NeighborController" type="Node2D" parent="Neighbors/Manager" unique_id=1173550733 node_paths=PackedStringArray("required_npcs")]
 script = ExtResource("72_0nn5q")
 required_npcs = [NodePath("../../../Store/ITGirl5")]
 disable_after_first_time = true
 
-[node name="Click" type="AudioStreamPlayer" parent="Neighbors/DataCenterManager" unique_id=1832668202]
+[node name="Click" type="AudioStreamPlayer" parent="Neighbors/Manager" unique_id=1832668202]
 stream = ExtResource("71_qo1hn")
 
 [node name="FastTravel" type="Node2D" parent="." unique_id=845814038]
