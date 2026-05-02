@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://cuirhqjgskqaw"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_0oq8u"]
+[ext_resource type="Script" uid="uid://cg5fmeadieh1r" path="res://scripts/enemies/mobile/security_guard.gd" id="1_rpmat"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="2_dusdt"]
+[ext_resource type="Texture2D" uid="uid://0d7cj5hlrsh4" path="res://assets/textures/enemies/mobile/security_guard.png" id="3_6c6lh"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="3_oenrs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1klq"]
+size = Vector2(8, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bshgw"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlbv3"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(18, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c6lh"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(36, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gueth"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(72, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujrij"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(54, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxid4"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(90, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbaxg"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(36, 40, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32xqt"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(72, 40, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8qle"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(54, 40, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tyc3"]
+atlas = ExtResource("3_6c6lh")
+region = Rect2(90, 40, 18, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0oq8u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bshgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlbv3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c6lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gueth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujrij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxid4")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbaxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32xqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8qle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tyc3")
+}],
+"loop": true,
+"name": &"walking_side",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpmat"]
+size = Vector2(16, 40)
+
+[node name="SecurityGuard" type="CharacterBody2D" unique_id=69579524]
+scale = Vector2(0.75, 0.75)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_rpmat")
+speed = 45.0
+max_chase_distance = 9999.0
+spawn_animation_time = 0.0
+immune_to_friendly_fire = true
+immune_to_freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2119303131]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_e1klq")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=110627948]
+z_index = -1
+position = Vector2(0, -0.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0oq8u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1417400617]
+position = Vector2(0, -20)
+sprite_frames = SubResource("SpriteFrames_0oq8u")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="ContactDamageZone" parent="." unique_id=1773449155 instance=ExtResource("2_dusdt")]
+position = Vector2(0, -6)
+scale = Vector2(1.25, 1.25)
+damage_amt = 50
+attack_cooldown = 0.5
+
+[node name="Healthbar" parent="." unique_id=1214767469 instance=ExtResource("3_oenrs")]
+offset_top = -43.0
+offset_bottom = -41.0
+
+[node name="BulletHitbox" type="Area2D" parent="." unique_id=1391804598]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox" unique_id=2012520916]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_rpmat")
+
+[node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=1216394305]
+
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="area_exited" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_exited"]

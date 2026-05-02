@@ -68,6 +68,8 @@ func explode() -> void:
 		fire = fire_scene.instantiate()
 		fire.global_position = fire_position
 		lawn.add_child(fire)
+	
+	queue_free()
 
 func calculate_velocity() -> Vector2:
 	if !hostile or pause_timer > 0.0 or attack_queue.size() > 0:
