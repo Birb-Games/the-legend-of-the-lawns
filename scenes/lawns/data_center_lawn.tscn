@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_tj7e2"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_3gkf0"]
 [ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/weeds/enemy_spawner.tscn" id="3_vdc3w"]
-[ext_resource type="PackedScene" uid="uid://cuirhqjgskqaw" path="res://scenes/enemies/mobile/security_guard.tscn" id="4_asvpl"]
 [ext_resource type="PackedScene" uid="uid://erqm5oc06v80" path="res://scenes/lawn_features/data_center.tscn" id="4_s4vqm"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_tj7e2")]
@@ -41,9 +40,6 @@ position = Vector2(180, 0)
 
 [node name="Enemyspawner6" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="5" unique_id=1358266987 instance=ExtResource("3_vdc3w")]
 position = Vector2(-180, 0)
-
-[node name="SecurityGuard" parent="MobileEnemies" parent_id_path=PackedInt32Array(119355386) index="0" unique_id=69579524 instance=ExtResource("4_asvpl")]
-position = Vector2(0, -184)
 
 [node name="DataCenter" parent="." index="7" unique_id=2096905459 instance=ExtResource("4_s4vqm")]
 position = Vector2(0, -240)
