@@ -283,6 +283,33 @@ static var list: Array[Quest] = [
 		),
 		[]
 	),
+
+	# Quest 20
+	Quest.new(
+		Reward.new(
+			"$5",
+			func(main: Main) -> void: main.money += 5
+		),
+		[
+			Goal.new(
+				"Talk to IT Girl at the store.", 
+				func(main: Main) -> bool: return talked_to_npc(main, "Store/ITGirl6")
+			),
+			Goal.new(
+				"Talk to Mr. Manager at the store.", 
+				func(main: Main) -> bool: return talked_to_npc(main, "Store/MrManager2")
+			),
+		]
+	),
+
+	# Quest 21
+	Quest.new(
+		Reward.new(
+			"$8",
+			func(main: Main) -> void: main.money += 8
+		),
+		[]
+	),
 ]
 
 static func get_quest(index: int) -> Quest:

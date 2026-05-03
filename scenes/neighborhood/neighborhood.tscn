@@ -111,6 +111,8 @@
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl3.json" id="98_yc5ru"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl4.json" id="103_eog07"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl5.json" id="109_6turh"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl6.json" id="112_d5weh"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/mr_manager2_dialog.json" id="113_raaw6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -603,6 +605,8 @@ dialog_json = ExtResource("50_mncw8")
 position = Vector2(-424.00003, 229.00002)
 animation = &"alien"
 display_name = "Alien"
+level = 21
+secret = true
 
 [node name="NeighborNicole" parent="Neighbors" unique_id=633893793 instance=ExtResource("3_tqujx")]
 position = Vector2(648, -539)
@@ -1578,6 +1582,22 @@ min_level = 18
 max_level = 19
 use_female_voice = true
 dialog_json = ExtResource("109_6turh")
+
+[node name="ITGirl6" parent="Store" unique_id=1893693435 instance=ExtResource("4_dcvy4")]
+position = Vector2(-145, 822)
+animation = &"it_girl"
+display_name = "IT Girl"
+min_level = 20
+max_level = 21
+use_female_voice = true
+dialog_json = ExtResource("112_d5weh")
+
+[node name="MrManager2" parent="Store" unique_id=2057134434 instance=ExtResource("4_dcvy4")]
+position = Vector2(-33, 809.07)
+animation = &"mr_manager"
+display_name = "Mr. Manager"
+min_level = 20
+dialog_json = ExtResource("113_raaw6")
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]
