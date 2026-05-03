@@ -1,7 +1,10 @@
 extends Area2D
 
+class_name ElectricShock
+
 @onready var default_scale: Vector2 = scale
 @export var shock_particles_scene: PackedScene
+var can_damage_player: bool = false
 
 func _ready() -> void:
 	scale = Vector2(0.0, 0.0)
@@ -45,13 +48,13 @@ func _on_area_entered(area: Area2D) -> void:
 			return
 	elif area is Worm:
 		$/root/Main.play_sfx("Zap")
-		area.damage(randi_range(3, 8))
+		area.damage(randi_range(12, 16))
 		add_shock_particles(area)
 		if !area.visible or !area.is_inside_tree():
 			return
 	elif area is Drone:
 		# Heal drones
 		$/root/Main.play_sfx("Zap")
-		area.health += 3
+		area.health += 6
 		area.health = min(area.health, area.MAX_HEALTH)
 		add_shock_particles(area)

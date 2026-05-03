@@ -23,6 +23,7 @@ var cooldown: int = 0
 @export var knock_sound: AudioStreamPlayer
 @export var secret: bool = false
 @export var give_item_list: PackedStringArray = []
+@export var at_store: bool = false
 
 @export_group("Wage Info")
 @export var wage: int = 10
@@ -35,6 +36,8 @@ var cooldown: int = 0
 @export var hedge_penalty: int = 1
 
 @export_group("Dialog")
+@export var custom_talk_audio: AudioStreamPlayer
+@export var knock_subtitle: String = "*knock knock*"
 @export var use_female_voice: bool = false
 @export_multiline var interact_text: String = "Press [SPACE] to knock on door."
 var possible_dialog: PackedStringArray = Dialog.DEFAULT_POSSIBLE_DIALOG
@@ -73,7 +76,8 @@ func generate_dialog() -> void:
 			return
 		current_dialog = reject_dialog[randi() % len(reject_dialog)]
 		return
-	if first_time and !first_dialog.is_empty():
+	if times_mowed == 0 and !first_dialog.is_empty():
+		current_dialog = first_job_offer
 		return
 	
 	if possible_dialog.is_empty():
@@ -91,6 +95,7 @@ func set_menu() -> void:
 		knock_sound.disconnect("finished", conn.callable)
 
 func _process(_delta: float) -> void:
+	$Area2D/CollisionShape2D.disabled = disabled
 	if disabled:
 		return
 
@@ -101,7 +106,7 @@ func _process(_delta: float) -> void:
 			knock_sound.play()
 			knock_sound.connect("finished", set_menu)
 			$/root/Main/Player.can_move = false
-			$/root/Main/Player.interact_text = "*knock knock*"
+			$/root/Main/Player.interact_text = knock_subtitle
 	if always_visible:
 		show()
 

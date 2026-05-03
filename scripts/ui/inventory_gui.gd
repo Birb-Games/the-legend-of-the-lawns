@@ -37,6 +37,9 @@ func can_use_inventory() -> bool:
 	return visible and !player.water_gun.visible and !player.lawn_mower_active() and !get_tree().paused
 
 func can_use_item() -> bool:
+	if player.inside_store:
+		return false
+
 	if $/root/Main/HUD.npc_menu_open():
 		return false
 

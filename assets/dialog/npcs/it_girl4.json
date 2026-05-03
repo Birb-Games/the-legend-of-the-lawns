@@ -1,0 +1,27 @@
+{
+	"first_dialog": [
+		"Okay kid, I think I have an idea on how we can get a stick of RAM for your Swapdeck!",
+		"I realized that the RAM in the brains of the robots the store has are compatible with the Swapdeck - we just need to get our hands on a robot brain!",
+		"Well, the robot inside the store got their noodle completely fried and is mostly useless for our purposes. However, the store does have a backup robot that they were planning on using to automate mowing the store lawn.",
+		"So my thinking was that if we're able to crack open a clanker head, we should be able to get access to a couple of high end RAM sticks. I'm keeping the good stuff for myself of course, but you can just have what's necessary for the Swapdeck.",
+		"Good question, I already have a plan. The store will not be happy if we just break their property so we have to make this look like a catastrophic malfunction.",
+		"So I just deployed the robot outside to start mowing the lawn and you need to go talk to it and say that you want to assist.",
+		"Once you're done mowing the lawn, you need to shoot it with your water gun to disable it. I'll then tell management there was an \"accident\" and then I can take out the brain for \"repairs\". Then we can get our free RAM sticks!",
+		"Just one small issue: I believe the robot does have some self defense subroutines programmed in so you might want to be careful... that thing has some interesting defenses built in.",
+		"Anyway I've created a job posting for mowing the store's lawn so head out to the job board and afterwards go talk to the robot. Got it?"
+	],
+	"player_dialog": [
+		"Wait really? What do I need to do?",
+		"And how exactly are we going to do that?",
+		"Okay...",
+		"Alright, how are we going to get the brain though?",
+		"Go on...",
+		"Um, Okay...",
+		"Seems like a solid plan.",
+		"Oh...",
+		"Okay"
+	],
+	"possible_dialog": [
+		"Did you assassinate that clanker yet? No? Well then, quit wasting my time and go get that robot brain!"
+	]
+}

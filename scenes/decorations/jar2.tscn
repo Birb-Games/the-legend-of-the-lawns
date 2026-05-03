@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dc0pf5stwpebk"]
+
+[ext_resource type="Texture2D" uid="uid://bci7t0m51heay" path="res://assets/textures/decorations/jar2.png" id="1_38rhf"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_xcff8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcff8"]
+atlas = ExtResource("1_38rhf")
+region = Rect2(0, 0, 15, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4aof"]
+atlas = ExtResource("1_38rhf")
+region = Rect2(15, 0, 15, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tndtn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcff8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4aof")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Jar2" type="Node2D" unique_id=1859612477]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945870198]
+position = Vector2(0, -0.5)
+scale = Vector2(0.5625, 0.46153846)
+texture = ExtResource("1_xcff8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1844888983]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_tndtn")
+autoplay = "default"

@@ -62,7 +62,7 @@ func _process(_delta: float) -> void:
 
 		# Find the closest house
 		var neighbor: NeighborNPC = get_node_or_null(quest_screen.neighbor_paths[quest_screen.selected])
-		if neighbor:
+		if neighbor and !neighbor.at_store:
 			var closest_dist: float = -1.0
 			var closest_pos: Vector2 = Vector2.ZERO
 			for pos: Vector2 in house_positions:
@@ -71,5 +71,7 @@ func _process(_delta: float) -> void:
 					closest_dist = dist
 					closest_pos = pos
 			$Circle.position = get_map_pos(closest_pos)
+		elif neighbor and neighbor.at_store:
+			$Circle.position = $StoreIcon.position
 	else:
 		$Circle.hide()

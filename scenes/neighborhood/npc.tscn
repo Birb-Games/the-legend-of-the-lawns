@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bf6s87rxw88ot" path="res://assets/textures/npcs/mom.png" id="2_7n8xq"]
 [ext_resource type="Script" uid="uid://8ydcu6g7fdhb" path="res://scripts/npc/npc.gd" id="2_rv78h"]
 [ext_resource type="Texture2D" uid="uid://c51yfqi7bpdyc" path="res://assets/textures/npcs/spotty.png" id="3_4wlns"]
+[ext_resource type="Texture2D" uid="uid://gf5c5ehgvp77" path="res://assets/textures/npcs/neighbors/cyborg.png" id="3_5ff7o"]
 [ext_resource type="Texture2D" uid="uid://c8063uw57s5x4" path="res://assets/textures/npcs/neighbors/mr_mcmoneypants.png" id="3_nosrm"]
 [ext_resource type="Texture2D" uid="uid://bs6hlo2tyy5ku" path="res://assets/textures/npcs/gnome_npc.png" id="4_360nv"]
 [ext_resource type="Texture2D" uid="uid://b5604g3f4bbp0" path="res://assets/textures/npcs/fluffy.png" id="4_bcc3h"]
@@ -29,6 +30,14 @@ region = Rect2(0, 0, 18, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a4vms"]
 atlas = ExtResource("1_gtr5b")
+region = Rect2(18, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w22s"]
+atlas = ExtResource("3_5ff7o")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p34bo"]
+atlas = ExtResource("3_5ff7o")
 region = Rect2(18, 0, 18, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv78h"]
@@ -137,6 +146,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"cashier_guy",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w22s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p34bo")
+}],
+"loop": true,
+"name": &"cyborg",
 "speed": 2.0
 }, {
 "frames": [{

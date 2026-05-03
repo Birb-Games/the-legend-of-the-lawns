@@ -1,0 +1,23 @@
+{
+	"possible_dialog": [
+		"BZZZT. Oh, you want to mow my lawn? I suppose it is a bit overgrown...",
+		"My lawn needs to be mowed today but I'm too lazy. BZZZT.",
+		"BUZZ BUZZ BZZZZT"
+	],
+	"reject_dialog": [
+		"BZZZZZT. Sorry, my lawn doesn't need to be mowed today."
+	],
+	"first_dialog": [
+		"BUZZ BUZZ BZZZZT",
+		"BZZZT - Okay buddy, I know I'm not the most good looking guy but you didn't need to be so rude about it.",
+		"Yeah, I get that a lot. I was born with a rare genetic disease that turned my face into that of a bug but I'm still a human just like you. What do you want? BZZZT.",
+		"Oh, sure. I have a bad wasp infestation by my flowers that I need cleared out. Can you help with that? BZZZT."
+	],
+	"player_dialog": [
+		"GAH!!!",
+		"No, it's just - YOUR FACE!!!",
+		"Uhm, are you in need of any lawn care services?",
+		"But, aren't those like your brothers?"
+	],
+	"first_job_offer": "BZZZT. Yeah, yeah, very funny. I just told you, I'm human like you and I just happen to have the face of a bug. Are you going to help me out or just stare at me?"
+}

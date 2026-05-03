@@ -122,7 +122,6 @@ func return_to_neighborhood() -> void:
 
 func update_hud_lawn(delta: float) -> void:
 	$HUD/Control/InfoText.visible = player.health > 0
-	$HUD.update_info_text("")
 	if $Player/WaterGun.visible and $Player.can_pick_up_lawnmower:
 		$HUD.update_info_text("You can not move the lawn mower while holding a water gun.")
 	elif $Player/Lawnmower.visible:
@@ -139,6 +138,8 @@ func update_hud_lawn(delta: float) -> void:
 		$HUD.update_info_text("Press [SPACE] to drop water gun.")
 	elif $Player.can_pick_up_water_gun:
 		$HUD.update_info_text("Press [SPACE] to pick up water gun.")
+	else:
+		$HUD.update_info_text(player.interact_text)
 
 	# Display the lawn progress bar
 	if $Player.health > 0:
@@ -178,7 +179,7 @@ func update_hud(delta: float) -> void:
 	else:
 		update_hud_neighborhood()
 
-	if lawn_loaded:
+	if lawn_loaded and !player.inside_store:
 		$HUD.hide_neighborhood_hud()
 	elif !lawn_loaded and $HUD.quest_screen_open():
 		$HUD.hide_neighborhood_hud()
@@ -339,7 +340,10 @@ func advance_quest() -> void:
 
 func get_current_neighbors() -> Array:
 	var neighbors: Array = []
-	for neighbor in $Neighborhood/Neighbors.get_children():
+	var neighbors_node: Node2D = get_node_or_null("Neighborhood/Neighbors")
+	if neighbors_node == null:
+		return neighbors
+	for neighbor in neighbors_node.get_children():
 		if neighbor is NeighborNPC:
 			if neighbor.disabled:
 				continue

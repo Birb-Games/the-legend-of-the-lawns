@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://comqqrvdmt27s"]
+[gd_scene format=3 uid="uid://comqqrvdmt27s"]
 
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_2pl8y"]
 [ext_resource type="Script" uid="uid://blrqu0acu47rh" path="res://scripts/enemies/weeds/super_thornweed.gd" id="1_48rs0"]
@@ -62,7 +62,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="SuperThornweed" type="Area2D"]
+[node name="SuperThornweed" type="Area2D" unique_id=387886381]
 script = ExtResource("1_48rs0")
 mini_thornweed_scene = ExtResource("2_4ahs1")
 bullet_scene = ExtResource("2_8hmmj")
@@ -73,38 +73,36 @@ max_health = 50
 boss = true
 grow_delay = 0.25
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=867810127]
 position = Vector2(8.940694e-07, -8.124999)
 scale = Vector2(0.9999994, 0.9999994)
 shape = SubResource("RectangleShape2D_xgmye")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=778463933]
 position = Vector2(0, 1.1920929e-07)
 scale = Vector2(0.78125, 0.5769231)
 texture = ExtResource("1_2pl8y")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1784960688]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_48rs0")
 autoplay = "default"
 frame_progress = 0.9623387
 
-[node name="ContactDamageZone" parent="." instance=ExtResource("3_tu2b5")]
+[node name="ContactDamageZone" parent="." unique_id=246806088 instance=ExtResource("3_tu2b5")]
 position = Vector2(0, -3.9999995)
 scale = Vector2(1.4, 1.4)
 damage_amt = 6
 attack_cooldown = 0.75
 
-[node name="BulletSpawnPoint" type="Node2D" parent="."]
+[node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=1489369564]
 position = Vector2(0, -8)
 
-[node name="Healthbar" parent="." instance=ExtResource("4_yvgfp")]
+[node name="Healthbar" parent="." unique_id=2075640403 instance=ExtResource("4_yvgfp")]
 offset_top = -21.3333
 offset_bottom = -19.3333
 
-[node name="Spawns" type="Node2D" parent="."]
-
-[node name="Digging" type="AudioStreamPlayer2D" parent="."]
+[node name="Digging" type="AudioStreamPlayer2D" parent="." unique_id=707696405]
 stream = ExtResource("8_rbtkl")
 max_distance = 480.0
 

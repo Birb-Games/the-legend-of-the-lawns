@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c46o0wpc8bifn"]
+
+[ext_resource type="PackedScene" uid="uid://7u1in8lvdbqm" path="res://scenes/enemies/bullets/seed_bullet.tscn" id="1_q31ii"]
+[ext_resource type="Texture2D" uid="uid://cu8huxwhps8rb" path="res://assets/textures/enemies/bullets/drone_bullet.png" id="2_2bl7m"]
+[ext_resource type="Script" uid="uid://0a33iyi5eftp" path="res://scripts/enemies/mobile/energy_bullet.gd" id="2_cukuv"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="3_cukuv"]
+
+[node name="EnergyBullet" unique_id=1866963475 groups=["damage_weeds", "friendly_fire"] instance=ExtResource("1_q31ii")]
+scale = Vector2(1.25, 1.25)
+script = ExtResource("2_cukuv")
+explosion_scene = ExtResource("3_cukuv")
+speed = 160.0
+damage_amt = 10
+lifetime = 10.0
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.78431374)
+texture = ExtResource("2_2bl7m")
+
+[node name="GPUParticles2D" parent="." index="2"]
+texture = ExtResource("2_2bl7m")

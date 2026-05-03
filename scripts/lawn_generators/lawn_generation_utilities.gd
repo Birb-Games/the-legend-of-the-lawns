@@ -68,6 +68,8 @@ static func set_outline(tilemap: TileMapLayer, tile: Vector2i, outline_width: in
 # Give hedges their proper edges
 static func prune_hedges(tilemap: TileMapLayer) -> void:
 	for tile in tilemap.get_used_cells():
+		if tilemap.get_cell_source_id(tile) != 0:
+			continue
 		if !is_hedge(tilemap.get_cell_atlas_coords(tile)):
 			continue
 		

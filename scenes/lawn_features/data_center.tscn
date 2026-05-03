@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://erqm5oc06v80"]
+
+[ext_resource type="Texture2D" uid="uid://dayg4xockbxe" path="res://assets/textures/houses/data_center.png" id="1_dd88n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd88n"]
+size = Vector2(204, 54.666668)
+
+[node name="DataCenter" type="Node2D" unique_id=2096905459]
+y_sort_enabled = true
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1034578208]
+position = Vector2(0, -76)
+texture = ExtResource("1_dd88n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1907079319]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1956424633]
+position = Vector2(0, -27.333334)
+shape = SubResource("RectangleShape2D_dd88n")

@@ -15,13 +15,21 @@ var update_shoot_mode_timer: float = UPDATE_SHOOT_MODE_INTERVAL
 # since a digging sound has to be played before it starts growing, I guess this
 # can also create a sense of suspense as well.
 var pause_timer: float = 1.0
+var mini_thornweed_paths: Array[NodePath]
 
 func _ready() -> void:
 	super._ready()
 	$Digging.play()
 
+func get_mini_thornweed_count() -> int:
+	var count: int = 0
+	for path: NodePath in mini_thornweed_paths:
+		if get_node_or_null(path):
+			count += 1
+	return count
+
 func get_random_shoot_mode() -> String:
-	if health <= int(max_health / 2.0) and $Spawns.get_child_count() == 0:
+	if health <= int(max_health / 2.0) and get_mini_thornweed_count() == 0:
 		return "spawn"
 	if len(POSSIBLE_SHOOT_MODES) == 0:
 		return ""
@@ -31,9 +39,12 @@ func get_random_shoot_mode() -> String:
 	return mode
 
 func explode() -> void:
-	for child in $Spawns.get_children():
-		if child is Thornweed:
-			child.explode()
+	for path: NodePath in mini_thornweed_paths:
+		var mini_thornweed: Node = get_node_or_null(path)
+		if mini_thornweed == null:
+			continue
+		if mini_thornweed is Thornweed:
+			mini_thornweed.explode()
 	super.explode()
 
 func shoot() -> void:
@@ -50,14 +61,16 @@ func shoot() -> void:
 			super.shoot()
 		"spawn":
 			# Spawn 5 mini thornweeds in a circle
-			if $Spawns.get_child_count() > 0:
+			if get_mini_thornweed_count() > 0:
 				shoot_mode = "triple"
 				return
+			mini_thornweed_paths.clear()
 			var offset = randf() * 2.0 * PI
 			for i in range(5):
 				var thornweed = mini_thornweed_scene.instantiate()
-				thornweed.position = Vector2(cos(offset), sin(offset)) * 30.0
-				$Spawns.add_child(thornweed)
+				thornweed.global_position = Vector2(cos(offset), sin(offset)) * 30.0 + global_position
+				$/root/Main/Lawn/Weeds.add_child(thornweed)	
+				mini_thornweed_paths.push_back(thornweed.get_path())
 				offset += 2.0 * PI / 5.0 
 			shoot_mode = "triple"
 		"rapid_fire":
@@ -89,7 +102,7 @@ func _process(delta: float) -> void:
 	if pause_timer > 0.0:
 		return
 
-	if health <= int(max_health / 2.0) and $Spawns.get_child_count() == 0:
+	if health <= int(max_health / 2.0) and get_mini_thornweed_count() == 0:
 		shoot_timer = 0.0
 		update_shoot_mode_timer = 0.0
 

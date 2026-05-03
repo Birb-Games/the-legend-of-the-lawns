@@ -1,0 +1,23 @@
+{
+	"first_dialog": [
+		"Hello?",
+		"Okay kid, I know I have an... unusual appearance, but you didn't need to be so rude about it. But to answer your question, I was a veteran in the second war against the United Chicken Federation and in one of the battles I got my face blown off.",
+		"They thought I wasn't going to make it but then the doctors decided to experiment with some cybernetic enhancements and I was able to pull through. The only downside is that my face freaks people out now.",
+		"Okay, now, what do you want? I presume you didn't just come to my house to gawk at my face, correct?",
+		"Oh, sure. I think my lawn probably needs to be mowed and cleared of weeds. Be careful though, I am growing and training some flowers to act as guards to my compound should civilization collapse.",
+		"I've been getting some anomalous readings about the local magical field on the radio scanner I built. There seems to be a disturbance nearby that might collapse and cause a massive disaster so I'm prepping for that. You probably should as well.",
+		"In fact, since you're helping me mow my lawn, which I think has become especially dangerous recently - those weeds are crazy - I'm willing to sell you some stuff from my lab.",
+		"Mostly just gadgets I make in my free time while tinkering in my lab. I'm able to make them for much cheaper than the junk at Store Corp. so you're getting a deal here."
+	],
+	"player_dialog": [
+		"H- Wait, what's up with your face?!",
+		"Wow...",
+		"That's... interesting, but cool.",
+		"Are you in need of any lawn care services?",
+		"Wait, what?!",
+		"Okay...",
+		"What do you sell?",
+		"Alright, that sounds interesting!"
+	],
+	"first_job_offer": "I'll even let you have a free shield generator - never know when being invulnerable will come in handy. So, do we have a deal?"
+}

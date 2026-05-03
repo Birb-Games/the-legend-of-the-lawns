@@ -108,7 +108,7 @@ func use(main: Main) -> void:
 			if main.player.health >= main.player.get_max_health():
 				return
 			var prev_time = main.player.get_status_effect_time("slowness")
-			main.player.set_status_effect_time("slowness", prev_time + 17.0)
+			main.player.set_status_effect_time("slowness", prev_time + 7.0)
 			main.player.heal(60)
 			main.play_sfx("Eat")
 		"tomato_seeds":

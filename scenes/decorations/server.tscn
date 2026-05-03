@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cgfyu45dlhk8j"]
+
+[ext_resource type="Texture2D" uid="uid://x4frc3hnfi22" path="res://assets/textures/decorations/server.png" id="1_lhnud"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bksln"]
+atlas = ExtResource("1_lhnud")
+region = Rect2(0, 0, 23, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4dr5"]
+atlas = ExtResource("1_lhnud")
+region = Rect2(23, 0, 23, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_021es"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bksln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4dr5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnud"]
+size = Vector2(22, 12)
+
+[node name="Server" type="StaticBody2D" unique_id=722577949]
+scale = Vector2(0.75, 0.75)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1814240965]
+position = Vector2(0, -17)
+sprite_frames = SubResource("SpriteFrames_021es")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1459935966]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_lhnud")

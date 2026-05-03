@@ -66,7 +66,6 @@ const ID_TO_LEVEL: Dictionary = {
 }
 
 func _ready() -> void:
-	buy_item_list.append(self)
 	$AnimatedSprite2D.animation = id
 	$AnimatedSprite2D.play($AnimatedSprite2D.animation)
 
@@ -130,6 +129,8 @@ func _process(_delta: float) -> void:
 		player.interact_text = get_interact_text()
 
 func get_interact_text() -> String:
+	if price == 0:
+		return "Pick up %s - [SPACE]" % display_name
 	return "Buy %s - [SPACE]" % display_name
 
 func _on_body_entered(body: Node2D) -> void:
@@ -147,3 +148,14 @@ func _on_body_exited(body: Node2D) -> void:
 		if body.interact_text == get_interact_text():
 			body.interact_text = ""
 		player_in_area = false
+
+func _on_tree_exited() -> void:
+	var index: int = 0
+	for item: Buy in buy_item_list:
+		if item == self:
+			break
+		index += 1
+	buy_item_list.remove_at(index)
+
+func _on_tree_entered() -> void:	
+	buy_item_list.append(self)

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b7p5uc1ws7c3d"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_6j356"]
+[ext_resource type="Texture2D" uid="uid://c28on7v4qcm8h" path="res://assets/textures/decorations/robot_head.png" id="1_wjodl"]
+
+[node name="RobotHead" type="Node2D" unique_id=1655633695]
+scale = Vector2(0.75, 0.75)
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=100950829]
+scale = Vector2(0.43749997, 0.30769232)
+texture = ExtResource("1_6j356")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1419336950]
+position = Vector2(0, -8)
+texture = ExtResource("1_wjodl")

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://citm7hst78ivs"]
+
+[ext_resource type="Texture2D" uid="uid://d33gu10tw8jvg" path="res://assets/textures/decorations/chemistry_machine.png" id="1_nopvp"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_sgcua"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgcua"]
+size = Vector2(24, 3.3333335)
+
+[node name="ChemistryMachine" type="StaticBody2D" unique_id=510048467]
+scale = Vector2(1.25, 1.25)
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=441680681]
+position = Vector2(-6, 0.25)
+scale = Vector2(0.4, 0.20512818)
+texture = ExtResource("1_sgcua")
+
+[node name="Shadow2" type="Sprite2D" parent="." unique_id=1477913519]
+position = Vector2(6.75, 0.25)
+scale = Vector2(0.35, 0.2051282)
+texture = ExtResource("1_sgcua")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1801194269]
+position = Vector2(0, -1.6666663)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_sgcua")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=76973478]
+position = Vector2(0, -10)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_nopvp")

@@ -90,16 +90,18 @@ func start_showing_menu() -> void:
 			$Stats/TimeBonus.text = "Time Bonus: $%d (x%.2f)" % [ time_bonus, player.get_bonus_multiplier() ]
 		add_labels([$Stats/TimeBonus], "Money")
 	
+	# Calculate the amount the player earned
+	var payment = max(main.current_wage + current_wage_modifier, 0)
+	
 	$Stats/ItemText.hide()
-	if current_neighbor.give_item_list.size() > 0:
+	if current_neighbor.give_item_list.size() > 0 and payment > 0:
 		var rand_index: int = randi() % current_neighbor.give_item_list.size()
 		var rand_item: String = current_neighbor.give_item_list[rand_index]
 		if player.inventory.add_item(rand_item):
 			$Stats/ItemText/AnimatedSprite2D.animation = rand_item
 			add_labels([$Stats/ItemText], "Money")
 
-	# Payment
-	var payment = max(main.current_wage + current_wage_modifier, 0)
+	# Payment text
 	$Stats/Earned.hide()
 	add_labels([$Stats/Earned], "")
 	$Stats/Earned.text = "Earned $%d" % payment

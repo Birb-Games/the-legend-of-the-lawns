@@ -1,0 +1,24 @@
+{
+	"unavailable_msg": "*He is eating a ham and cheese sandwich while listening to some kind of podcast on his phone*\nMr. Manager is currently on his lunch break, get the work contract at the job board first, then come back.",
+	"first_dialog": [
+		"*He's finishing his sandwich*.\nOh hey there kiddo, I'm nearly done with my lunch break, I'll be with you in a second.",
+		"So what can I help you with? I do have to say though that Store Corp. does not offer refunds so I can not help with that if that's what you're asking about.",
+		"Oh, okay, then what is it? I have to make an important business call in a few minutes so please make it quick.",
+		"Ah, I see. You want to apply to assist with lawn care at our newest data center? Well then, I'm going to need to review your resume and cover letter for that.",
+		"Ha, I'm just kidding. You're our only applicant for this position so you're hired!",
+		"So just as a quick run down of what you need to do, some executives from MicroTech are coming by to decide whether to give us a contract to host their latest AI model that they developed. It's very exciting.",
+		"First impressions are vital so we need to make sure the front lawn is in tip top shape, that means we need to get the grass cut and weeds cleared out.",
+		"I've gotten some reports that the weeds in the front lawn have also been more aggressive recently so be careful with that. And one more thing: Store Corp. will cover your bus fare to get to the data center, so don't worry about transportation costs."
+	],
+	"player_dialog": [
+		"Okay.",
+		"No it's not that.",
+		"I found this work contract on the job board.",
+		"Wait, what?",
+		"Oh, nice.",
+		"Okay.",
+		"Okay.",
+		"Sounds good."
+	],
+	"first_job_offer": "Anyway, I think that's it for the contract details. Just sign here and after you take the bus to the data center you can start right away!"
+}

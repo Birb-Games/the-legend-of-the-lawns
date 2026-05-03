@@ -1,0 +1,17 @@
+{
+	"possible_dialog": [
+		"LET US GET TO WORK HUMAN."
+	],
+	"unavailable_msg": "The robot appears to still be booting up its subsystems, you should come back later...",
+	"first_dialog": [
+		"GREETINGS. I AM LAWNBOT-843C HOW MAY I BE OF ASSISTANCE?",
+		"PROCESSING INPUT... SORRY, BUT UNLESS YOU HAVE A WORK CONTRACT FROM THE JOB BOARD, I MAY NOT ALLOW YOU TO HELP ME MOW THE LAWN. APOLOGIES. HOW ELSE CAN I HELP YOU?",
+		"SCANNING... SCANNING... PROCESSING... NO ANOMALIES DETECTED. VALID CONTRACT."
+	],
+	"player_dialog": [
+		"Um, do you need any help mowing the lawn?",
+		"Actually, I, um, have a contract right here!",
+		"Okay, I presume that's good, right?"
+	],
+	"first_job_offer": "CORRECT. YOU MAY NOW PROVIDE ASSISTANCE WITH MOWING STORE CORP'S LAWN. CALCULATING WAGE..."
+}

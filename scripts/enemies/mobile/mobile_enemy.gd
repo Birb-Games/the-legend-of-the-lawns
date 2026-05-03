@@ -302,7 +302,7 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 		if !immune_to_freeze and body.is_in_group("ice_bullet"):
 			freeze_timer = FREEZE_TIME
 			if vulnerable_to_freeze:
-				freeze_timer *= 2.5
+				freeze_timer *= 3.0
 	elif body is EnemyBullet:
 		if !body.active():
 			return
@@ -323,7 +323,9 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 			return
 		$/root/Main.play_sfx("Zap")
 		body.add_shock_particles(self)
-		damage(randi_range(3, 8))
+		var lower_bound = max(ceili(max_health * 0.4), 4)
+		var upper_bound = max(ceili(max_health * 0.9), lower_bound + 4)
+		damage(randi_range(lower_bound, upper_bound))
 	elif body is Poison:
 		damage(Hazard.from_preset("poison").damage_amt)
 		hazards[body.get_path()] = Hazard.from_preset("poison")

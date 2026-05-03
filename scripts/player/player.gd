@@ -453,6 +453,9 @@ func _process(delta: float) -> void:
 		$NeighborArrow.disabled = true
 	else:
 		$NeighborArrow.disabled = false
+	
+	$WatergunArrow.disabled = inside_store
+	$LawnmowerArrow.disabled = inside_store
 
 	if get_status_effect_time("shield") > 0.0:
 		damage_timer = 0.0
@@ -747,6 +750,11 @@ func _on_player_hitbox_area_entered(area: Area2D) -> void:
 		inside_store = true
 	elif area is Poison:
 		hazards[area.get_path()] = Hazard.from_preset("poison")
+	elif area is ElectricShock:
+		if area.can_damage_player:
+			$/root/Main.play_sfx("Zap")
+			damage(8)
+			area.add_shock_particles($AnimatedSprite2D)
 
 func _on_player_hitbox_area_exited(area: Area2D) -> void:
 	# We left the store

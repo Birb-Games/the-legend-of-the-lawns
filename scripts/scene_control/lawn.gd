@@ -64,7 +64,7 @@ func _ready() -> void:
 	var top_left: Vector2i = Vector2i.ZERO
 	var bottom_right: Vector2i = Vector2i.ZERO
 	var first: bool = true
-	for cell in $TileMapLayer.get_used_cells():
+	for cell in $TileMapLayer.get_used_cells():	
 		valid_spawn_tiles[cell] = true
 		if first:
 			top_left = cell
@@ -76,6 +76,8 @@ func _ready() -> void:
 			bottom_right.x = max(bottom_right.x, cell.x)
 			bottom_right.y = max(bottom_right.y, cell.y)
 		if LawnGenerationUtilities.is_grass($TileMapLayer.get_cell_atlas_coords(cell)):
+			if $TileMapLayer.get_cell_source_id(cell) != 0:
+				continue
 			total_grass_tiles += 1
 	bottom_right += Vector2i(1, 1)
 	var used_rect: Rect2i = Rect2i(top_left, bottom_right - top_left)
@@ -101,6 +103,8 @@ func get_tile(x: int, y: int) -> Vector2i:
 	return $TileMapLayer.get_cell_atlas_coords(Vector2i(x, y))
 
 func is_valid_spawn_tile(x: int, y: int) -> bool:
+	if $TileMapLayer.get_cell_source_id(Vector2i(x, y)) != 0:
+		return false
 	return Vector2i(x, y) in valid_spawn_tiles
 
 func update_enemy_pathfinding() -> void:
@@ -113,6 +117,8 @@ func get_perc_cut() -> float:
 
 # Mows a grass tile
 func mow_tile(pos: Vector2i) -> void:
+	if $TileMapLayer.get_cell_source_id(pos) != 0:
+		return
 	var cell_atlas = $TileMapLayer.get_cell_atlas_coords(pos)
 	if cell_atlas != Vector2i(1, 0):
 		return
@@ -122,6 +128,8 @@ func mow_tile(pos: Vector2i) -> void:
 
 # Returns true if a hedge has been destroyed, false otherwise
 func destroy_hedge(pos: Vector2i) -> bool:
+	if $TileMapLayer.get_cell_source_id(pos) != 0:
+		return false
 	var cell_atlas = $TileMapLayer.get_cell_atlas_coords(pos)
 	if !LawnGenerationUtilities.is_hedge(cell_atlas):
 		# No hedge
@@ -170,6 +178,13 @@ func water_gun_interaction() -> void:
 		drop_water_gun()
 
 func lawn_completed() -> bool:
+	var mobile_enemies = $MobileEnemies
+	if mobile_enemies is WaveSpawner:
+		if mobile_enemies.current_wave < mobile_enemies.waves.size():
+			return false
+		if mobile_enemies.current_wave >= mobile_enemies.waves.size():
+			if mobile_enemies.current_enemy < mobile_enemies.enemies_to_spawn.size():
+				return false
 	if weeds_killed < total_weeds:
 		return false
 	if bosses_killed < boss_count:

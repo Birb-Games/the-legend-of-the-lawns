@@ -16,6 +16,7 @@ func active() -> bool:
 	return $Sprite2D.visible
 
 func explode() -> void:
+	z_index = 1
 	$Explosion.emitting = true
 	$Sprite2D.hide()
 	$GPUParticles2D.emitting = false

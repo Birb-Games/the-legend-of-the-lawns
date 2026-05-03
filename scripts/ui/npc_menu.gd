@@ -64,7 +64,9 @@ func set_menu_unavailable(neighbor: NeighborNPC) -> void:
 
 # This is the message displayed if the neighbor does not need their lawn mowed.
 func set_menu_reject(neighbor: NeighborNPC) -> void:
-	if neighbor.use_female_voice:
+	if neighbor.custom_talk_audio:
+		neighbor.custom_talk_audio.play()
+	elif neighbor.use_female_voice:
 		$/root/Main.play_sfx("FemaleTalk")
 	else:
 		$/root/Main.play_sfx("MaleTalk")
@@ -92,7 +94,9 @@ func advance_first_dialog(neighbor: NeighborNPC, index: int) -> void:
 # when they first meet them.
 func set_menu_first(neighbor: NeighborNPC, index: int) -> void:
 	if neighbor.first_dialog[index] != "...":
-		if neighbor.use_female_voice:
+		if neighbor.custom_talk_audio:
+			neighbor.custom_talk_audio.play()
+		elif neighbor.use_female_voice:
 			$/root/Main.play_sfx("FemaleTalk")
 		else:
 			$/root/Main.play_sfx("MaleTalk")
@@ -115,7 +119,9 @@ func set_menu_first(neighbor: NeighborNPC, index: int) -> void:
 
 # This is the menu displayed if the player can mow the neighbor's lawn.
 func set_mowing_menu(neighbor: NeighborNPC) -> void:
-	if neighbor.use_female_voice:
+	if neighbor.custom_talk_audio:
+		neighbor.custom_talk_audio.play()
+	elif neighbor.use_female_voice:
 		$/root/Main.play_sfx("FemaleTalk")
 	else:
 		$/root/Main.play_sfx("MaleTalk")
@@ -292,7 +298,6 @@ func skip_day() -> void:
 
 func set_skip_day_menu() -> void:
 	current_npc = null
-	current_neighbor = null
 	reset_buttons()
 
 	set_menu_name("Your House")
@@ -311,10 +316,12 @@ func set_skip_day_menu() -> void:
 
 func set_buy_menu(item: Buy) -> void:
 	current_npc = null
-	current_neighbor = null
 	reset_buttons()
 
-	set_menu_name("Buy %s?" % item.display_name)
+	if item.price == 0:
+		set_menu_name("Pick up %s?" % item.display_name)
+	else:
+		set_menu_name("Buy %s?" % item.display_name)
 	set_wage_text("")
 	set_description_text(item.description)
 
@@ -323,15 +330,24 @@ func set_buy_menu(item: Buy) -> void:
 	buttons[0].connect("pressed", on_leave_pressed)
 
 	buttons[1].show()
-	buttons[1].text = "Yes ($%d)" % item.price
+	if item.price == 0:
+		buttons[1].text = "Yes"
+	else:
+		buttons[1].text = "Yes ($%d)" % item.price
 	buttons[1].connect(
 		"pressed",
 		func() -> void:
-			$/root/Main.play_sfx("Money")
+			if item.price == 0:
+				$/root/Main.play_sfx("Click")
+			else:
+				$/root/Main.play_sfx("Money")
 			item.buy()
 			reset_buttons()
 			
-			set_menu_name("Bought %s!" % item.display_name)
+			if item.price == 0:
+				set_menu_name("Picked up %s!" % item.display_name)
+			else:
+				set_menu_name("Bought %s!" % item.display_name)
 			set_description_text("%s" % item.buy_text)
 
 			buttons[0].show()
@@ -346,7 +362,6 @@ func set_buy_menu(item: Buy) -> void:
 
 func set_trash_menu() -> void:
 	current_npc = null
-	current_neighbor = null
 	reset_buttons()
 
 	var main: Main = $/root/Main
