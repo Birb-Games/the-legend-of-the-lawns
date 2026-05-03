@@ -178,6 +178,13 @@ func water_gun_interaction() -> void:
 		drop_water_gun()
 
 func lawn_completed() -> bool:
+	var mobile_enemies = $MobileEnemies
+	if mobile_enemies is WaveSpawner:
+		if mobile_enemies.current_wave < mobile_enemies.waves.size():
+			return false
+		if mobile_enemies.current_wave >= mobile_enemies.waves.size():
+			if mobile_enemies.current_enemy < mobile_enemies.enemies_to_spawn.size():
+				return false
 	if weeds_killed < total_weeds:
 		return false
 	if bosses_killed < boss_count:

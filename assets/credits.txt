@@ -197,3 +197,9 @@ File: grunt.wav
 Author: tonsil5
 URL: https://freesound.org/people/tonsil5/sounds/416839/
 License: CC0
+
+File: alarm.wav
+Author: qubodup
+URL: https://freesound.org/people/qubodup/sounds/182724/
+License: CC0
+Modifications made: Sped up audio, added fade out.

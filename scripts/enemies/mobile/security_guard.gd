@@ -5,6 +5,7 @@ var pause_timer: float = 0.0
 @onready var gun_radius: float = $Gun.position.x
 @onready var gun_size: float = $Gun.scale.y
 var fade_away_timer: float = 3.0
+@onready var pause_interval_timer: float = randf_range(4.0, 10.0)
 
 func update_gun_transform() -> void:
 	var center = $AnimatedSprite2D.position
@@ -24,7 +25,7 @@ func _ready() -> void:
 	super._ready()
 
 func calculate_velocity() -> Vector2:
-	if health <= 0:
+	if health <= 0 or pause_timer > 0.0:
 		return Vector2.ZERO
 	return super.calculate_velocity()
 
@@ -51,6 +52,11 @@ func _process(delta: float) -> void:
 	pause_timer = max(pause_timer - delta, 0.0)
 	if (player.global_position - global_position).length() <= min_chase_distance:
 		pause_timer = 0.75
+	if pause_timer <= 0.0:
+		pause_interval_timer -= delta
+	if pause_interval_timer <= 0.0:
+		pause_timer = randf_range(1.0, 4.0)
+		pause_interval_timer = randf_range(4.0, 10.0)
 	if health <= 0:
 		$Gun.hide()
 		$AnimatedSprite2D.flip_h = true
@@ -69,6 +75,7 @@ func _process(delta: float) -> void:
 		else:
 			fade_away_timer -= delta
 		if modulate.a <= 0.0:
+			lawn.bosses_killed += 1
 			queue_free()
 		return
 	set_sprite_dir()
@@ -78,6 +85,9 @@ func _process(delta: float) -> void:
 func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 	if body.get_parent() is Explosion:
 		return
+	if body is ElectricShock:
+		if body.can_damage_player:
+			return
 	super._on_bullet_hitbox_area_entered(body)
 
 func damage(amt: int) -> void:

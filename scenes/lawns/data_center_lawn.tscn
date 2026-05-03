@@ -3,10 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://dxpn5t34f6wkw" path="res://scenes/lawns/lawn.tscn" id="1_tj7e2"]
 [ext_resource type="Script" uid="uid://18au7p7nyvb1" path="res://scripts/lawn_generators/basic_lawn_generator.gd" id="2_3gkf0"]
 [ext_resource type="PackedScene" uid="uid://bxgj76gitliya" path="res://scenes/enemies/weeds/enemy_spawner.tscn" id="3_vdc3w"]
+[ext_resource type="Script" uid="uid://h8dn2mx2b4kk" path="res://scripts/enemies/enemy_wave_spawner.gd" id="4_asvpl"]
 [ext_resource type="PackedScene" uid="uid://erqm5oc06v80" path="res://scenes/lawn_features/data_center.tscn" id="4_s4vqm"]
+[ext_resource type="PackedScene" uid="uid://cuirhqjgskqaw" path="res://scenes/enemies/mobile/security_guard.tscn" id="5_chshw"]
+[ext_resource type="PackedScene" uid="uid://ylxdxotynqaj" path="res://scenes/enemies/mobile/robot_enemy.tscn" id="6_2ic37"]
+[ext_resource type="AudioStream" uid="uid://b64oobxayhfg4" path="res://assets/audio/sfx/door.wav" id="7_s2occ"]
+[ext_resource type="Script" uid="uid://div1w54jyvcxl" path="res://scripts/audio/sfx.gd" id="8_ygfrk"]
+[ext_resource type="AudioStream" uid="uid://cstfusdexorc6" path="res://assets/audio/sfx/alarm.wav" id="10_n21ci"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_tj7e2")]
-time_limit = 600.0
+time_limit = 960.0
 difficulty = 7
 max_mobs = 0
 
@@ -41,5 +47,30 @@ position = Vector2(180, 0)
 [node name="Enemyspawner6" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="5" unique_id=1358266987 instance=ExtResource("3_vdc3w")]
 position = Vector2(-180, 0)
 
+[node name="SecuritySpawnPoint" type="Node2D" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="6" unique_id=282047447]
+position = Vector2(0, -232)
+
+[node name="MobileEnemies" parent="." index="5" unique_id=119355386 node_paths=PackedStringArray("spawn_points", "spawn_audio", "alert_audio")]
+script = ExtResource("4_asvpl")
+spawn_points = [NodePath("../Spawners/SecuritySpawnPoint")]
+enemy_scenes = Dictionary[String, PackedScene]({
+"robot": ExtResource("6_2ic37"),
+"security": ExtResource("5_chshw")
+})
+waves = PackedStringArray("security,security", "security,security,security,security", "robot,security,security")
+alert_messages = PackedStringArray("Data Center\nALERT ALERT INTRUDER DETECTED MISSING GRAPHICS CARD DETECTED, DEPLOYING SECURITY!\nLooks like they found IT Girl...", "", "Data Center\nSECURITY BREACH DETECTED - DEPLOYING ANTI-INTRUDER ROBOT\nOh no...")
+spawn_audio = NodePath("../SpawnAudio")
+alert_audio = NodePath("../AlertAudio")
+
 [node name="DataCenter" parent="." index="7" unique_id=2096905459 instance=ExtResource("4_s4vqm")]
 position = Vector2(0, -240)
+
+[node name="SpawnAudio" type="AudioStreamPlayer2D" parent="." index="8" unique_id=1707396103]
+stream = ExtResource("7_s2occ")
+volume_db = 5.0
+script = ExtResource("8_ygfrk")
+
+[node name="AlertAudio" type="AudioStreamPlayer" parent="." index="9" unique_id=1112097708]
+stream = ExtResource("10_n21ci")
+
+[connection signal="finished" from="SpawnAudio" to="SpawnAudio" method="_on_finished"]
