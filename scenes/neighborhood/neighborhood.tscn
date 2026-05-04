@@ -85,6 +85,7 @@
 [ext_resource type="Texture2D" uid="uid://dagtt6ra0h7dw" path="res://assets/textures/decorations/sale_poster.png" id="55_ka6mv"]
 [ext_resource type="PackedScene" uid="uid://bvc7ww3cj7nqw" path="res://scenes/interactable/trash_can.tscn" id="56_4nkst"]
 [ext_resource type="PackedScene" uid="uid://j1o3nsqogkvk" path="res://scenes/lawns/malcom_lawn.tscn" id="57_xpodr"]
+[ext_resource type="PackedScene" uid="uid://bf6rq1w1sewn5" path="res://scenes/lawns/alien_lawn.tscn" id="58_f1vlx"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/malcom_dialog.json" id="58_jm8ja"]
 [ext_resource type="PackedScene" uid="uid://dv1kjcw51idgj" path="res://scenes/lawns/mrtie_lawn.tscn" id="58_p4k6h"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/mrtie_dialog.json" id="60_uuxxi"]
@@ -605,6 +606,7 @@ dialog_json = ExtResource("50_mncw8")
 position = Vector2(-424.00003, 229.00002)
 animation = &"alien"
 display_name = "Alien"
+lawn_template = ExtResource("58_f1vlx")
 level = 21
 secret = true
 
