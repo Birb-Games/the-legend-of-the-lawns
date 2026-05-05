@@ -1,5 +1,9 @@
 extends MobileEnemy
 
+# Technically this script can be used for other enemies that run around and
+# shoot at the player but I don't want to rename this
+class_name SecurityGuard
+
 var pause_timer: float = 0.0
 @onready var default_shadow_scale: Vector2 = $Shadow.scale
 @onready var gun_radius: float = $Gun.position.x

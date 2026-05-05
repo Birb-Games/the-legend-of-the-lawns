@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d0bp3gmttuseq"]
+
+[ext_resource type="Texture2D" uid="uid://jm8snd5agqru" path="res://assets/textures/light.png" id="1_6hyql"]
+[ext_resource type="Script" uid="uid://bjt5tsuvuyiam" path="res://scripts/enemies/mobile/orbital_strike.gd" id="1_jpagt"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="2_aglxl"]
+[ext_resource type="PackedScene" uid="uid://bodmljl34l6om" path="res://scenes/lawn_features/fire.tscn" id="3_aglxl"]
+
+[node name="OrbitalStrike" type="Node2D" unique_id=1788058518]
+z_index = -1
+script = ExtResource("1_jpagt")
+explosion_scene = ExtResource("2_aglxl")
+fire_scene = ExtResource("3_aglxl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=971662577]
+self_modulate = Color(1, 0.09411765, 0, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("1_6hyql")

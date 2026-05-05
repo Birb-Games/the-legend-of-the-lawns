@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://h8dn2mx2b4kk" path="res://scripts/enemies/enemy_wave_spawner.gd" id="5_jkrvx"]
 [ext_resource type="PackedScene" uid="uid://ceuswsu37hqhg" path="res://scenes/enemies/mobile/alien_mafia_goon.tscn" id="6_k66dy"]
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="6_p2q0h"]
+[ext_resource type="PackedScene" uid="uid://df1bc7w8mdvyi" path="res://scenes/enemies/mobile/alien_mafia_boss.tscn" id="8_6271x"]
 [ext_resource type="AudioStream" uid="uid://bljuxksg17toe" path="res://assets/audio/sfx/drone_shoot.wav" id="9_b1mua"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_pxivk")]
@@ -63,16 +64,17 @@ script = ExtResource("5_jkrvx")
 spawn_interval = 4.5
 spawn_points = [NodePath("../SpawnPoint1"), NodePath("../SpawnPoint2"), NodePath("../SpawnPoint3"), NodePath("../SpawnPoint4")]
 enemy_scenes = Dictionary[String, PackedScene]({
+"mafia_boss": ExtResource("8_6271x"),
 "mafia_goon": ExtResource("6_k66dy")
 })
-waves = PackedStringArray("mafia_goon,mafia_goon,mafia_goon")
+waves = PackedStringArray("mafia_goon,mafia_goon,mafia_goon", "mafia_boss,mafia_goon,mafia_goon")
 spawn_audio = NodePath("../SpawnAudio")
 
 [node name="EvilGnome" parent="MobileEnemies" index="0" unique_id=1624038834 instance=ExtResource("5_5rfhn")]
-position = Vector2(-10, -300)
+position = Vector2(-8, -300)
 
 [node name="EvilGnome2" parent="MobileEnemies" index="1" unique_id=1729977151 instance=ExtResource("5_5rfhn")]
-position = Vector2(10, 320)
+position = Vector2(8, 320)
 
 [node name="Sprinkler" parent="." index="7" unique_id=616509941 instance=ExtResource("5_3prma")]
 position = Vector2(-152, -150)
