@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://30584qe175b" path="res://scenes/lawn_features/sprinkler.tscn" id="5_3prma"]
 [ext_resource type="PackedScene" uid="uid://dkuhevs5nmf32" path="res://scenes/enemies/mobile/evil_gnome.tscn" id="5_5rfhn"]
 [ext_resource type="Script" uid="uid://h8dn2mx2b4kk" path="res://scripts/enemies/enemy_wave_spawner.gd" id="5_jkrvx"]
+[ext_resource type="PackedScene" uid="uid://ceuswsu37hqhg" path="res://scenes/enemies/mobile/alien_mafia_goon.tscn" id="6_k66dy"]
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="6_p2q0h"]
+[ext_resource type="AudioStream" uid="uid://bljuxksg17toe" path="res://assets/audio/sfx/drone_shoot.wav" id="9_b1mua"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_pxivk")]
-time_limit = 600.0
+time_limit = 720.0
 difficulty = 7
 
 [node name="TileMapLayer" parent="." index="0" unique_id=1119632854]
@@ -56,14 +58,21 @@ position = Vector2(113, -265)
 [node name="Enemyspawner6" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="9" unique_id=377531642 instance=ExtResource("3_12p3i")]
 position = Vector2(-113, 265)
 
-[node name="MobileEnemies" parent="." index="5" unique_id=119355386]
+[node name="MobileEnemies" parent="." index="5" unique_id=119355386 node_paths=PackedStringArray("spawn_points", "spawn_audio")]
 script = ExtResource("5_jkrvx")
+spawn_interval = 4.5
+spawn_points = [NodePath("../SpawnPoint1"), NodePath("../SpawnPoint2"), NodePath("../SpawnPoint3"), NodePath("../SpawnPoint4")]
+enemy_scenes = Dictionary[String, PackedScene]({
+"mafia_goon": ExtResource("6_k66dy")
+})
+waves = PackedStringArray("mafia_goon,mafia_goon,mafia_goon")
+spawn_audio = NodePath("../SpawnAudio")
 
 [node name="EvilGnome" parent="MobileEnemies" index="0" unique_id=1624038834 instance=ExtResource("5_5rfhn")]
-position = Vector2(-183, -182)
+position = Vector2(-10, -300)
 
 [node name="EvilGnome2" parent="MobileEnemies" index="1" unique_id=1729977151 instance=ExtResource("5_5rfhn")]
-position = Vector2(183, 185)
+position = Vector2(10, 320)
 
 [node name="Sprinkler" parent="." index="7" unique_id=616509941 instance=ExtResource("5_3prma")]
 position = Vector2(-152, -150)
@@ -106,3 +115,20 @@ position = Vector2(211.99997, -247.00002)
 
 [node name="ExplosiveBarrel10" parent="." index="20" unique_id=88394629 instance=ExtResource("6_p2q0h")]
 position = Vector2(0, -38)
+
+[node name="SpawnPoint1" type="Node2D" parent="." index="21" unique_id=1652043182]
+position = Vector2(0, -280)
+
+[node name="SpawnPoint2" type="Node2D" parent="." index="22" unique_id=1991113872]
+position = Vector2(0, 280)
+
+[node name="SpawnPoint3" type="Node2D" parent="." index="23" unique_id=283611256]
+position = Vector2(280, 0)
+
+[node name="SpawnPoint4" type="Node2D" parent="." index="24" unique_id=1564241099]
+position = Vector2(-280, 0)
+
+[node name="SpawnAudio" type="AudioStreamPlayer2D" parent="." index="25" unique_id=1460444787]
+stream = ExtResource("9_b1mua")
+volume_db = 10.0
+pitch_scale = 0.5

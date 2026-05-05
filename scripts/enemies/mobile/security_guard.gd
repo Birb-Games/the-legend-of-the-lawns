@@ -18,6 +18,11 @@ func update_gun_transform() -> void:
 	$BulletSpawnPoint.global_position = $Gun/BulletSpawnPoint.global_position
 
 func _ready() -> void:
+	if spawn_timer > 0.0:
+		modulate.a = 0.0
+	var spawn_particle: GPUParticles2D = get_node_or_null("SpawnParticles")
+	if spawn_particle:
+		spawn_particle.emitting = true
 	speed *= randf_range(1.0, 1.125)
 	lawn.boss_count += 1
 	$AnimatedSprite2D/StunParticles.hide()
@@ -78,6 +83,10 @@ func _process(delta: float) -> void:
 			lawn.bosses_killed += 1
 			queue_free()
 		return
+	if spawn_timer > 0.0:
+		modulate.a = (cos(5.0 * PI * spawn_timer) + 1.0) / 2.0
+	else:
+		modulate.a = 1.0
 	set_sprite_dir()
 	update_gun_transform()
 	super._process(delta)
@@ -91,6 +100,8 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 	super._on_bullet_hitbox_area_entered(body)
 
 func damage(amt: int) -> void:
+	if spawn_timer > 0.0:
+		return
 	var prev_health: int = health
 	super.damage(amt)
 	if health <= 0 and prev_health > 0:
