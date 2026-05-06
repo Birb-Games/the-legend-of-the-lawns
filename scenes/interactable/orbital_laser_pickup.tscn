@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://3tj83abaiiwf"]
+
+[ext_resource type="PackedScene" uid="uid://dux415njqmp1m" path="res://scenes/interactable/buy.tscn" id="1_fre6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fre6f"]
+size = Vector2(16, 12)
+
+[node name="OrbitalLaserPickup" unique_id=1063803969 instance=ExtResource("1_fre6f")]
+scale = Vector2(0.5, 0.5)
+display_name = "Orbital Laser Controller"
+id = "orbital_laser_controller"
+description = "An alien device that seems to be able to send commands to an orbital laser. It seems you can input coordinates for a location you want to strike. 
+You should probably be careful with this thing."
+buy_text = "Left click to use item."
+price = 0
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1274223717]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_fre6f")
+
+[node name="AnimatedSprite2D" parent="." index="2" unique_id=873639486]
+animation = &"orbital_laser_controller"

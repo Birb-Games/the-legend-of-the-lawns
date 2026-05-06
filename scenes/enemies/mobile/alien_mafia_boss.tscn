@@ -5,12 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="3_gspjt"]
 [ext_resource type="PackedScene" uid="uid://bodmljl34l6om" path="res://scenes/lawn_features/fire.tscn" id="4_g08xr"]
 [ext_resource type="PackedScene" uid="uid://d0bp3gmttuseq" path="res://scenes/enemies/mobile/orbital_strike.tscn" id="5_kre5d"]
+[ext_resource type="PackedScene" uid="uid://3tj83abaiiwf" path="res://scenes/interactable/orbital_laser_pickup.tscn" id="6_ikj6j"]
 
 [node name="AlienMafiaBoss" unique_id=69579524 instance=ExtResource("1_lsw4f")]
 script = ExtResource("2_64rrs")
 explosion_scene = ExtResource("3_gspjt")
 fire_scene = ExtResource("4_g08xr")
 orbital_strike_scene = ExtResource("5_kre5d")
+orbital_laser_controller_scene = ExtResource("6_ikj6j")
 max_health = 65
 immune_to_fire = true
 

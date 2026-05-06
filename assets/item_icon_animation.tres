@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://k0x1tunq2hhx" path="res://assets/textures/items/consumables/shield_generator.png" id="5_vn2ag"]
 [ext_resource type="Texture2D" uid="uid://ba81g8k32trjf" path="res://assets/textures/items/consumables/insecticide.png" id="6_e0tc1"]
 [ext_resource type="Texture2D" uid="uid://chdwqhrpqt1ps" path="res://assets/textures/items/weapons/ice.png" id="8_vsd31"]
+[ext_resource type="Texture2D" uid="uid://c6jfo2q4c54jo" path="res://assets/textures/items/consumables/orbital_laser_controller.png" id="11_fik2a"]
 [ext_resource type="Texture2D" uid="uid://dj88qgg7tekwy" path="res://assets/textures/items/weapons/weedkiller.png" id="12_cyeoo"]
 [ext_resource type="Texture2D" uid="uid://hpbqq66n3kdn" path="res://assets/textures/items/weapons/super_duper_weedkiller.png" id="12_tquv1"]
 [ext_resource type="Texture2D" uid="uid://cnxiib055pncw" path="res://assets/textures/items/weapons/ultra_high_powered_weedkiller.png" id="14_k8fii"]
@@ -33,6 +34,18 @@ region = Rect2(23, 0, 23, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tavnr"]
 atlas = ExtResource("3_na0l6")
+region = Rect2(46, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq6e7"]
+atlas = ExtResource("11_fik2a")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ivfh"]
+atlas = ExtResource("11_fik2a")
+region = Rect2(23, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65ix3"]
+atlas = ExtResource("11_fik2a")
 region = Rect2(46, 0, 23, 24)
 
 [resource]
@@ -124,6 +137,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"insecticide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq6e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ivfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq6e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65ix3")
+}],
+"loop": true,
+"name": &"orbital_laser_controller",
 "speed": 5.0
 }, {
 "frames": [{

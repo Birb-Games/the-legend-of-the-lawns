@@ -32,6 +32,7 @@ const ITEM_LIST: Array = [
 	"water_bottle_pack",
 	"water_jug",
 	"ice",
+	"orbital_laser_controller",
 ]
 
 const ID_TO_LEVEL: Dictionary = {

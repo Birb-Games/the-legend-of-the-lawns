@@ -3,6 +3,7 @@ extends SecurityGuard
 @export var explosion_scene: PackedScene
 @export var fire_scene: PackedScene
 @export var orbital_strike_scene: PackedScene
+@export var orbital_laser_controller_scene: PackedScene
 var orbital_strike_timer: float = 5.0
 var second_phase: bool = false
 
@@ -42,6 +43,10 @@ func explode() -> void:
 		fire = fire_scene.instantiate()
 		fire.global_position = fire_position
 		lawn.add_child(fire)
+	
+	var orbital_laser_controller: Buy = orbital_laser_controller_scene.instantiate()
+	orbital_laser_controller.global_position = global_position
+	lawn.add_child(orbital_laser_controller)
 
 func _process(delta: float) -> void:
 	if health <= 0:

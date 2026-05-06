@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://dnommrruprxex" path="res://assets/textures/items/consumables/tomato_seeds.png" id="29_2am8v"]
 [ext_resource type="Texture2D" uid="uid://chdwqhrpqt1ps" path="res://assets/textures/items/weapons/ice.png" id="29_auyg3"]
 [ext_resource type="Texture2D" uid="uid://k0x1tunq2hhx" path="res://assets/textures/items/consumables/shield_generator.png" id="30_gl38w"]
+[ext_resource type="Texture2D" uid="uid://c6jfo2q4c54jo" path="res://assets/textures/items/consumables/orbital_laser_controller.png" id="33_1qx4y"]
 [ext_resource type="Texture2D" uid="uid://hpbqq66n3kdn" path="res://assets/textures/items/weapons/super_duper_weedkiller.png" id="37_wfv51"]
 [ext_resource type="Texture2D" uid="uid://dj88qgg7tekwy" path="res://assets/textures/items/weapons/weedkiller.png" id="38_xwuje"]
 [ext_resource type="Texture2D" uid="uid://cnxiib055pncw" path="res://assets/textures/items/weapons/ultra_high_powered_weedkiller.png" id="39_2j57w"]
@@ -74,6 +75,18 @@ region = Rect2(23, 0, 23, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfce6"]
 atlas = ExtResource("18_nmgib")
+region = Rect2(46, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htqd6"]
+atlas = ExtResource("33_1qx4y")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj5us"]
+atlas = ExtResource("33_1qx4y")
+region = Rect2(23, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55u1e"]
+atlas = ExtResource("33_1qx4y")
 region = Rect2(46, 0, 23, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qukav"]
@@ -329,6 +342,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"orange_juice",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htqd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj5us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htqd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55u1e")
+}],
+"loop": true,
+"name": &"orbital_laser_controller",
 "speed": 5.0
 }, {
 "frames": [{

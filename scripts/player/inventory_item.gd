@@ -12,6 +12,7 @@ const USE_COUNTS: Dictionary = {
 	"insecticide" : 8,
 	"drone_controller" : 4,
 	"fireworks" : 3,
+	"orbital_laser_controller" : 5,
 	# Weapons
 	"weedkiller" : 75,
 	"acidic_weedkiller" : 45,
@@ -40,6 +41,7 @@ const COOLDOWNS: Dictionary = {
 	"acidic_weedkiller" : 0.75,
 	"super_weedkiller" : 1.5,
 	"ultra_weedkiller" : 3.0,
+	"orbital_laser_controller" : 120.0,
 }
 const DEFAULT_COOLDOWN: float = 1.0
 
@@ -55,6 +57,7 @@ const DISPLAY_NAMES: Dictionary = {
 	"ultra_weedkiller" : "ultra weed-be-gone (tm)",
 	"water_bottle_pack" : "water bottle pack",
 	"water_jug" : "water jug",
+	"orbital_laser_controller" : "orbital laser controller",
 }
 
 var id: String = ""
@@ -66,6 +69,7 @@ static var boom_shroom_scene: PackedScene = preload("uid://cm4b5rcedfd1n")
 static var electric_shock_scene: PackedScene = preload("uid://cy8u2eu12sgc3")
 static var poison_cloud_scene: PackedScene = preload("uid://bf2a1d6r4asm1")
 static var drone_scene: PackedScene = preload("uid://0ryvlletdxf")
+static var orbital_strike_scene: PackedScene = preload("uid://d0bp3gmttuseq")
 
 static func get_use_count(item_id: String) -> int:
 	if !(item_id in USE_COUNTS):
@@ -163,6 +167,11 @@ func use(main: Main) -> void:
 		"fireworks":
 			main.player.firework_timer = 0.0
 			main.player.fireworks_to_shoot += randi_range(6, 10)
+		"orbital_laser_controller":
+			var orbital_strike = orbital_strike_scene.instantiate()
+			orbital_strike.countdown = 3.0
+			orbital_strike.global_position = main.player.global_position
+			lawn.add_child(orbital_strike)
 		# Ignore weapons
 		"weedkiller", "acidic_weedkiller", "super_weedkiller", "ultra_weedkiller":
 			return
