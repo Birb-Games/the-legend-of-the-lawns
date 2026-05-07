@@ -310,6 +310,15 @@ static var list: Array[Quest] = [
 		),
 		[]
 	),
+
+	# Quest 22
+	Quest.new(
+		Reward.new(
+			"$1",
+			func(main: Main) -> void: main.money += 1; main.player.inventory.has_alien_battery = false
+		),
+		[]
+	),
 ]
 
 static func get_quest(index: int) -> Quest:

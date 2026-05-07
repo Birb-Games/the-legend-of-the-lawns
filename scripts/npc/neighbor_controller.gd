@@ -21,4 +21,5 @@ func available() -> bool:
 
 func _process(_delta: float) -> void:
 	neighbor.disabled = !available()
-	neighbor.visible = available()
+	if neighbor.always_visible:
+		neighbor.visible = available()

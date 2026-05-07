@@ -609,6 +609,14 @@ display_name = "Alien"
 lawn_template = ExtResource("58_f1vlx")
 level = 21
 secret = true
+give_item_list = ["alien_battery"]
+wage = 20
+max_bonus = 10
+hedge_penalty = 0
+
+[node name="NeighborController" type="Node2D" parent="Neighbors/Alien" unique_id=858235080]
+script = ExtResource("72_0nn5q")
+disable_after_first_time = true
 
 [node name="NeighborNicole" parent="Neighbors" unique_id=633893793 instance=ExtResource("3_tqujx")]
 position = Vector2(648, -539)
