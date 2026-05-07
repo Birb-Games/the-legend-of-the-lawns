@@ -58,6 +58,7 @@ func _process(delta: float) -> void:
 
 	if health <= int(max_health / 2.0) and !second_phase:
 		second_phase = true
+		$Talk.play()
 		$/root/Main/HUD.alert("Alien Mob Boss", SECOND_PHASE_TEXT, "Oh crud.", true)
 
 	if player.health > 0 and second_phase:

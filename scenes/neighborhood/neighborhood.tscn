@@ -88,6 +88,7 @@
 [ext_resource type="PackedScene" uid="uid://bf6rq1w1sewn5" path="res://scenes/lawns/alien_lawn.tscn" id="58_f1vlx"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/malcom_dialog.json" id="58_jm8ja"]
 [ext_resource type="PackedScene" uid="uid://dv1kjcw51idgj" path="res://scenes/lawns/mrtie_lawn.tscn" id="58_p4k6h"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/alien_dialog.json" id="59_ij3kc"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/mrtie_dialog.json" id="60_uuxxi"]
 [ext_resource type="PackedScene" uid="uid://buheoinf6a4kd" path="res://scenes/lawns/bugman_lawn.tscn" id="62_nsl0s"]
 [ext_resource type="PackedScene" uid="uid://cjee4hiyjwavr" path="res://scenes/decorations/checkout_counter.tscn" id="62_rb5n6"]
@@ -613,6 +614,7 @@ give_item_list = ["alien_battery"]
 wage = 20
 max_bonus = 10
 hedge_penalty = 0
+dialog_json = ExtResource("59_ij3kc")
 
 [node name="NeighborController" type="Node2D" parent="Neighbors/Alien" unique_id=858235080]
 script = ExtResource("72_0nn5q")

@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="6_p2q0h"]
 [ext_resource type="PackedScene" uid="uid://df1bc7w8mdvyi" path="res://scenes/enemies/mobile/alien_mafia_boss.tscn" id="8_6271x"]
 [ext_resource type="AudioStream" uid="uid://bljuxksg17toe" path="res://assets/audio/sfx/drone_shoot.wav" id="9_b1mua"]
+[ext_resource type="AudioStream" uid="uid://bravg6u55evt" path="res://assets/audio/sfx/male_talk.wav" id="12_pqbjp"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_pxivk")]
 time_limit = 720.0
@@ -59,7 +60,7 @@ position = Vector2(113, -265)
 [node name="Enemyspawner6" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="9" unique_id=377531642 instance=ExtResource("3_12p3i")]
 position = Vector2(-113, 265)
 
-[node name="MobileEnemies" parent="." index="5" unique_id=119355386 node_paths=PackedStringArray("spawn_points", "spawn_audio")]
+[node name="MobileEnemies" parent="." index="5" unique_id=119355386 node_paths=PackedStringArray("spawn_points", "spawn_audio", "alert_audio")]
 script = ExtResource("5_jkrvx")
 spawn_interval = 4.5
 spawn_points = [NodePath("../SpawnPoint1"), NodePath("../SpawnPoint2"), NodePath("../SpawnPoint3"), NodePath("../SpawnPoint4")]
@@ -68,7 +69,9 @@ enemy_scenes = Dictionary[String, PackedScene]({
 "mafia_goon": ExtResource("6_k66dy")
 })
 waves = PackedStringArray("mafia_goon,mafia_goon,mafia_goon", "mafia_boss,mafia_goon,mafia_goon")
+alert_messages = PackedStringArray("Alien Mafia Goon\nAlright boys, I think we found where the rat has been hiding! Let\'s go whack \'em!\nUh oh...", "Alien Mafia Boss\nWow, you idiots couldn\'t even handle an earthling child? Looks like I\'ll have to finish the job.\nCrud.")
 spawn_audio = NodePath("../SpawnAudio")
+alert_audio = NodePath("../AlertAudio")
 
 [node name="EvilGnome" parent="MobileEnemies" index="0" unique_id=1624038834 instance=ExtResource("5_5rfhn")]
 position = Vector2(-8, -300)
@@ -134,3 +137,6 @@ position = Vector2(-280, 0)
 stream = ExtResource("9_b1mua")
 volume_db = 10.0
 pitch_scale = 0.5
+
+[node name="AlertAudio" type="AudioStreamPlayer" parent="." index="26" unique_id=2112024293]
+stream = ExtResource("12_pqbjp")
