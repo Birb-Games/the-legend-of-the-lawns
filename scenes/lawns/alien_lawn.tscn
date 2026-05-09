@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="6_p2q0h"]
 [ext_resource type="PackedScene" uid="uid://df1bc7w8mdvyi" path="res://scenes/enemies/mobile/alien_mafia_boss.tscn" id="8_6271x"]
 [ext_resource type="AudioStream" uid="uid://bljuxksg17toe" path="res://assets/audio/sfx/drone_shoot.wav" id="9_b1mua"]
+[ext_resource type="PackedScene" uid="uid://cp2t5aumc0wcn" path="res://scenes/enemies/mobile/alien_brain_boss.tscn" id="9_gnn65"]
 [ext_resource type="AudioStream" uid="uid://bravg6u55evt" path="res://assets/audio/sfx/male_talk.wav" id="12_pqbjp"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_pxivk")]
@@ -65,11 +66,12 @@ script = ExtResource("5_jkrvx")
 spawn_interval = 4.5
 spawn_points = [NodePath("../SpawnPoint1"), NodePath("../SpawnPoint2"), NodePath("../SpawnPoint3"), NodePath("../SpawnPoint4")]
 enemy_scenes = Dictionary[String, PackedScene]({
+"alien_brain": ExtResource("9_gnn65"),
 "mafia_boss": ExtResource("8_6271x"),
 "mafia_goon": ExtResource("6_k66dy")
 })
-waves = PackedStringArray("mafia_goon,mafia_goon,mafia_goon", "mafia_boss,mafia_goon,mafia_goon")
-alert_messages = PackedStringArray("Alien Mafia Goon\nAlright boys, I think we found where the rat has been hiding! Let\'s go whack \'em!\nUh oh...", "Alien Mafia Boss\nWow, you idiots couldn\'t even handle an earthling child? Looks like I\'ll have to finish the job.\nCrud.")
+waves = PackedStringArray("mafia_goon,mafia_goon,mafia_goon", "mafia_boss,mafia_goon,mafia_goon", "alien_brain")
+alert_messages = PackedStringArray("Alien Mafia Goon\nAlright boys, I think we found where the rat has been hiding! Let\'s go whack \'em! Remember, no witnesses!\nUh oh...", "Alien Mafia Boss\nWow, you idiots couldn\'t even handle an earthling child? Looks like I\'ll have to finish the job.\nCrud.", "Blorgham the Brain\nBlorging blorgheads can\'t even blorg a blorgling? Blorg, looks like I\'ll have to finish the blorgin\' job.\nFight!")
 spawn_audio = NodePath("../SpawnAudio")
 alert_audio = NodePath("../AlertAudio")
 
