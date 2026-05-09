@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://df1bc7w8mdvyi"]
+
+[ext_resource type="PackedScene" uid="uid://ceuswsu37hqhg" path="res://scenes/enemies/mobile/alien_mafia_goon.tscn" id="1_lsw4f"]
+[ext_resource type="Script" uid="uid://cxrrbk22jqxnt" path="res://scripts/enemies/mobile/alien_mafia_boss.gd" id="2_64rrs"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="3_gspjt"]
+[ext_resource type="PackedScene" uid="uid://bodmljl34l6om" path="res://scenes/lawn_features/fire.tscn" id="4_g08xr"]
+[ext_resource type="PackedScene" uid="uid://d0bp3gmttuseq" path="res://scenes/enemies/mobile/orbital_strike.tscn" id="5_kre5d"]
+[ext_resource type="PackedScene" uid="uid://3tj83abaiiwf" path="res://scenes/interactable/orbital_laser_pickup.tscn" id="6_ikj6j"]
+[ext_resource type="AudioStream" uid="uid://bravg6u55evt" path="res://assets/audio/sfx/male_talk.wav" id="7_55pby"]
+
+[node name="AlienMafiaBoss" unique_id=69579524 instance=ExtResource("1_lsw4f")]
+script = ExtResource("2_64rrs")
+explosion_scene = ExtResource("3_gspjt")
+fire_scene = ExtResource("4_g08xr")
+orbital_strike_scene = ExtResource("5_kre5d")
+orbital_laser_controller_scene = ExtResource("6_ikj6j")
+max_health = 65
+immune_to_fire = true
+
+[node name="Shoot" parent="." index="9" unique_id=881354299]
+max_polyphony = 2
+
+[node name="Talk" type="AudioStreamPlayer2D" parent="." index="11" unique_id=1038516790]
+stream = ExtResource("7_55pby")

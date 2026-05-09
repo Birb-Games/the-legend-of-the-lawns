@@ -26,6 +26,7 @@ const KEYS: Array = [
 ]
 
 func _ready() -> void:
+	$AlienBattery.play()
 	# Get the list of slots
 	var rows = $InventoryContainer.get_children()
 	rows.reverse()
@@ -131,6 +132,12 @@ func use_item() -> void:
 	if item.uses_left <= 0:
 		player.inventory.remove_item(selected)
 
+func show_alien_battery_icon() -> void:
+	if player.inventory.has_alien_battery:
+		$AlienBattery.show()
+	else:
+		$AlienBattery.hide()
+
 func _process(delta: float) -> void:
 	update_position(delta)
 
@@ -140,6 +147,7 @@ func _process(delta: float) -> void:
 		hide()
 	if !visible:
 		return
+	show_alien_battery_icon()
 
 	# Update display of the inventory slots 
 	for i in range(slots.size()):

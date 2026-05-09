@@ -1,0 +1,19 @@
+{
+	"first_dialog": [
+		"Okay, that was pretty crazy back there. They nearly caught me but I managed to dodge security by breaking and jumping out of a window.",
+		"Relax, they've got enough investment money coming in that they don't care about a single GPU. Also I hacked into their security cameras and scrubbed the footage so they wouldn't even have evidence against us.",
+		"Anyway, I do have a GPU for the Swapdeck, so that's two of the three parts that we need right now. However, we of course still need an actual power source.",
+		"I'm not entirely sure right now... normally it wouldn't be that difficult to find a compatible battery but if you've been following the news the war in Siliconia has escalated and there's now a lithium blockade and battery prices have shot up.",
+		"It sucks - hopefully I can find an affordable battery soon, assuming the scalpers don't get to it first. In the mean time, just go back to mowing lawns so that you can have enough money to afford the Swapdeck when I fix it." 
+	],
+	"player_dialog": [
+		"Are they going to call the cops on us?!",
+		"Okay...",
+		"So how are we going to get a battery?",
+		"Oh... that's not good.",
+		"Okay."
+	],
+	"possible_dialog": [
+		"Be patient, I'm still looking for how we can get a battery for the Swapdeck. I'll hopefully find something soon-ish."
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"first_dialog": [
+		"Gleep Glorp Bloop Bop",
+		"Bogos Binted?",
+		"*ACTIVATING UNIVERSAL TRANSLATOR*\nSorry, I forgot to turn on my translation device, what do you want, make it quick, I'm on the run from the Galactica Mafia and I have to get out of here soon.",
+		"It's a long story but I kind of got in trouble with the Galactic Federation for helping the mafia smuggle energy weapons and antimatter batteries and I ratted them out to avoid going to jail and now they kind of want me... eliminated.",
+		"I think they might have found me and are coming to get me soon so what do you want?",
+		"Well, it's not really my lawn. And this isn't my house - I've just been squatting here over the summer. I think the people who live here are on vacation. Although yes, I do think it is the least I can do to pay them back for letting me stay here.",
+		"Yes, but they haven't stopped me on account of them being on vacation. I don't have much cash on hand to pay you but I do still have an antimatter battery that I think is compatible with some human game consoles. Does that sound like a deal?"
+	],
+	"player_dialog": [
+		"GAH!!!",
+		"WHAT IN THE WORLD?!",
+		"Wait, what?",
+		"Oh...",
+		"Does your lawn need to be mowed?",
+		"You're squatting though.",
+		"Yeah, that sounds interesting!"
+	],
+	"first_job_offer": "Alright, deal! If the Galactic Mob does get here though, just play it cool, okay? They don't mess around. Anyway, I suppose you should get to mowing now."
+}

@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://ceuswsu37hqhg"]
+
+[ext_resource type="PackedScene" uid="uid://cuirhqjgskqaw" path="res://scenes/enemies/mobile/security_guard.tscn" id="1_solj0"]
+[ext_resource type="Texture2D" uid="uid://clud1sqkh1670" path="res://assets/textures/enemies/mobile/alien_mafia_goon.png" id="2_fdhq8"]
+[ext_resource type="PackedScene" uid="uid://dcyro1vcetkcj" path="res://scenes/particles/shock_particles.tscn" id="3_gedi6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gedi6"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(0, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb0hs"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(18, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdhq8"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(0, 44, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcuw8"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(36, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgaiu"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(72, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqpd8"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(54, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc57j"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(90, 0, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78uwi"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(36, 44, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dd2j"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(72, 44, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm7uf"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(54, 44, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uinlw"]
+atlas = ExtResource("2_fdhq8")
+region = Rect2(90, 44, 18, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_solj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gedi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb0hs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdhq8")
+}],
+"loop": true,
+"name": &"knocked_out",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcuw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgaiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqpd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc57j")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78uwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dd2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm7uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uinlw")
+}],
+"loop": true,
+"name": &"walking_side",
+"speed": 5.0
+}]
+
+[node name="AlienMafiaGoon" unique_id=69579524 instance=ExtResource("1_solj0")]
+spawn_animation_time = 1.0
+bullet_cooldown = 2.0
+
+[node name="AnimatedSprite2D" parent="." index="2" unique_id=1417400617]
+position = Vector2(0, -22)
+sprite_frames = SubResource("SpriteFrames_solj0")
+animation = &"idle"
+
+[node name="Healthbar" parent="." index="4" unique_id=1214767469]
+offset_top = -48.333332
+offset_bottom = -46.333332
+
+[node name="SpawnParticles" parent="." index="10" unique_id=14861175 instance=ExtResource("3_gedi6")]
+position = Vector2(0, -19.999994)

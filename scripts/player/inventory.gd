@@ -2,6 +2,7 @@ class_name Inventory
 
 var slots: Array[InventoryItem] = []
 var inventory_level: int = 0
+var has_alien_battery: bool = false
 
 func get_slot_count() -> int:
 	match inventory_level:
@@ -18,6 +19,9 @@ func get_slot_count() -> int:
 
 # Returns true if an item was successfully added, false otherwise
 func add_item(id: String) -> bool:
+	if id == "alien_battery":
+		has_alien_battery = true
+		return true
 	if full():
 		return false
 	slots.append(InventoryItem.new(id))
@@ -48,6 +52,8 @@ func _to_string() -> String:
 	var s: String = ""
 	for item: InventoryItem in slots:
 		s += str(item) + ","
+	if has_alien_battery:
+		s += "alien_battery"
 	return s
 
 static func parse(s: String) -> Inventory:
@@ -55,6 +61,9 @@ static func parse(s: String) -> Inventory:
 	var split = s.split(",")
 	for substr in split:
 		if substr.is_empty():
+			continue
+		if substr == "alien_battery":
+			inventory.has_alien_battery = true
 			continue
 		var item: InventoryItem = InventoryItem.parse(substr)
 		if item:

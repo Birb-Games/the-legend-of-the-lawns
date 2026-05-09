@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c4uyimrgl25bh" path="res://scenes/ui/inventory_slot.tscn" id="1_0mx8g"]
 [ext_resource type="Script" uid="uid://d2fhh0tl4pv7d" path="res://scripts/ui/inventory_gui.gd" id="1_5uqcy"]
+[ext_resource type="SpriteFrames" uid="uid://djfxgqly8pts3" path="res://assets/item_icon_animation.tres" id="3_am3at"]
 
 [node name="InventoryGUI" type="Control" unique_id=1654533886]
 layout_mode = 3
@@ -61,3 +62,10 @@ layout_mode = 2
 
 [node name="InventorySlot2" parent="InventoryContainer/HBoxContainer5" unique_id=630819746 instance=ExtResource("1_0mx8g")]
 layout_mode = 2
+
+[node name="AlienBattery" type="AnimatedSprite2D" parent="." unique_id=681269557]
+position = Vector2(144.00003, 607.9999)
+rotation = 0.5235988
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("3_am3at")
+animation = &"alien_battery"

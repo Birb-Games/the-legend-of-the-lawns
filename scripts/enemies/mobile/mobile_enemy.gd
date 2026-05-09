@@ -323,9 +323,7 @@ func _on_bullet_hitbox_area_entered(body: Node2D) -> void:
 			return
 		$/root/Main.play_sfx("Zap")
 		body.add_shock_particles(self)
-		var lower_bound = max(ceili(max_health * 0.4), 4)
-		var upper_bound = max(ceili(max_health * 0.9), lower_bound + 4)
-		damage(randi_range(lower_bound, upper_bound))
+		damage(randi_range(8, 16))
 	elif body is Poison:
 		damage(Hazard.from_preset("poison").damage_amt)
 		hazards[body.get_path()] = Hazard.from_preset("poison")

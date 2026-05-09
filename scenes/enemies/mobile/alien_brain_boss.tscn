@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://cp2t5aumc0wcn"]
+
+[ext_resource type="Texture2D" uid="uid://b45n1aaa81p2" path="res://assets/textures/enemies/mobile/alien_brain_boss.png" id="1_h4cvv"]
+[ext_resource type="Script" uid="uid://bbs58t1xybj77" path="res://scripts/enemies/mobile/alien_brain_boss.gd" id="1_lgr3v"]
+[ext_resource type="Texture2D" uid="uid://jm8snd5agqru" path="res://assets/textures/light.png" id="1_ujvxv"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="2_ga62p"]
+[ext_resource type="PackedScene" uid="uid://c46o0wpc8bifn" path="res://scenes/enemies/bullets/energy_bullet.tscn" id="2_n8041"]
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="2_s550w"]
+[ext_resource type="PackedScene" uid="uid://bodmljl34l6om" path="res://scenes/lawn_features/fire.tscn" id="3_u4aog"]
+[ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="4_plr8g"]
+[ext_resource type="PackedScene" uid="uid://cy8u2eu12sgc3" path="res://scenes/player/electric_shock.tscn" id="4_u4aog"]
+[ext_resource type="PackedScene" uid="uid://d0bp3gmttuseq" path="res://scenes/enemies/mobile/orbital_strike.tscn" id="5_b7rd5"]
+[ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="5_vt638"]
+[ext_resource type="PackedScene" uid="uid://dcyro1vcetkcj" path="res://scenes/particles/shock_particles.tscn" id="7_ipu1y"]
+[ext_resource type="AudioStream" uid="uid://bljuxksg17toe" path="res://assets/audio/sfx/drone_shoot.wav" id="8_u387b"]
+[ext_resource type="AudioStream" uid="uid://3qcisgamecil" path="res://assets/audio/sfx/zap.wav" id="14_grocf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga62p"]
+atlas = ExtResource("1_h4cvv")
+region = Rect2(0, 60, 58, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4aog"]
+atlas = ExtResource("1_h4cvv")
+region = Rect2(58, 60, 58, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7rd5"]
+atlas = ExtResource("1_h4cvv")
+region = Rect2(116, 60, 58, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grocf"]
+atlas = ExtResource("1_h4cvv")
+region = Rect2(174, 60, 58, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujvxv"]
+atlas = ExtResource("1_h4cvv")
+region = Rect2(0, 0, 58, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s550w"]
+atlas = ExtResource("1_h4cvv")
+region = Rect2(58, 0, 58, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plr8g"]
+atlas = ExtResource("1_h4cvv")
+region = Rect2(116, 0, 58, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vt638"]
+atlas = ExtResource("1_h4cvv")
+region = Rect2(174, 0, 58, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_blqtu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga62p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4aog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7rd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grocf")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujvxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s550w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plr8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vt638")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8041"]
+size = Vector2(7.0588226, 4.70588)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu1y"]
+size = Vector2(49.41176, 45.88236)
+
+[node name="AlienBrainBoss" type="CharacterBody2D" unique_id=2139392415]
+scale = Vector2(0.85, 0.85)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_lgr3v")
+explosion_scene = ExtResource("2_ga62p")
+fire_scene = ExtResource("3_u4aog")
+electric_shock_scene = ExtResource("4_u4aog")
+orbital_strike_scene = ExtResource("5_b7rd5")
+speed = 20.0
+min_chase_distance = 64.0
+max_chase_distance = 9999.0
+max_health = 256
+bullet_scene = ExtResource("2_n8041")
+bullet_cooldown = 1.5
+immune_to_friendly_fire = true
+immune_to_fire = true
+immune_to_freeze = true
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1328102504]
+scale = Vector2(1.3235295, 0.90497744)
+texture = ExtResource("2_s550w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=801414334]
+visible = false
+modulate = Color(0.5372549, 1, 0.9607843, 1)
+scale = Vector2(1.1253196, 0.48681542)
+texture = ExtResource("1_ujvxv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=476712031]
+position = Vector2(0, -29.823524)
+sprite_frames = SubResource("SpriteFrames_blqtu")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26525438]
+position = Vector2(0, -2.3529418)
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("RectangleShape2D_n8041")
+
+[node name="ContactDamageZone" parent="." unique_id=1558325369 instance=ExtResource("4_plr8g")]
+position = Vector2(0, -11.764692)
+scale = Vector2(2.5, 2.5)
+damage_amt = 30
+attack_cooldown = 0.5
+
+[node name="Healthbar" parent="." unique_id=259921231 instance=ExtResource("5_vt638")]
+offset_left = -10.529419
+offset_top = -63.35295
+offset_right = 3.470581
+offset_bottom = -61.35295
+scale = Vector2(1.6, 1.6)
+
+[node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=637443228]
+position = Vector2(0, -18.823536)
+
+[node name="SpawnParticles" parent="." unique_id=14861175 instance=ExtResource("7_ipu1y")]
+position = Vector2(0, -23.529408)
+
+[node name="BulletHitbox" type="Area2D" parent="." unique_id=1223063809]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox" unique_id=145445599]
+position = Vector2(0, -26.470602)
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("RectangleShape2D_ipu1y")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="." unique_id=537256768]
+stream = ExtResource("8_u387b")
+max_polyphony = 4
+
+[node name="Zap" type="AudioStreamPlayer2D" parent="." unique_id=1633192662]
+stream = ExtResource("14_grocf")
+max_polyphony = 2
+
+[connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="area_exited" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_exited"]

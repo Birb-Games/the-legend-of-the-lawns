@@ -1,0 +1,19 @@
+{
+	"first_dialog": [
+		"Oh, hello there, I'd like to talk about what happened while you were mowing the lawn for our data center.",
+		"No, you're fine. However, someone broke into the data center while you were on the job and stole a graphics card. Security wasn't able to stop them and the camera footage was somehow wiped.",
+		"We're still investigating and we're increasing security at the data center and also looking into getting a replacement graphics card. Due to these extra costs, we also have to make some cuts, and one of the initial cuts is to eliminate your position.",
+		"We will be looking into figuring out how to automate lawn care with a robot in the near future to hopefully save on costs. We do apologize for your job loss though. As compensation you are entitled to a $5 Store Corp. gift card.",
+		"Anyway, I now have to make some important business calls so if you need help with anything else, please ask the other employees for assistance."
+	],
+	"player_dialog": [
+		"Uhm, am I in trouble?",
+		"Oh, that's not... good.",
+		"Oh... okay...",
+		"Gee, thanks...",
+		"..."
+	],
+	"possible_dialog": [
+		"*He's on his phone talking about business stuff that you don't care about*"
+	]
+}

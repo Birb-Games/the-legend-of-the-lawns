@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b12gysuple4ce" path="res://assets/textures/items/consumables/chocolate.png" id="1_hv134"]
 [ext_resource type="Texture2D" uid="uid://dn0il1ilrb5wd" path="res://assets/textures/items/consumables/ice_cream.png" id="2_gktae"]
 [ext_resource type="Texture2D" uid="uid://ddjpyouo4gff2" path="res://assets/textures/items/consumables/soda.png" id="2_rkkop"]
+[ext_resource type="Texture2D" uid="uid://cusfwnbvefmho" path="res://assets/textures/items/alien_battery.png" id="2_uq6e7"]
 [ext_resource type="Texture2D" uid="uid://cho3mlswr3ofw" path="res://assets/textures/items/consumables/electric_doodad.png" id="3_na0l6"]
 [ext_resource type="Texture2D" uid="uid://b41h53yy4il2g" path="res://assets/textures/items/consumables/drone_controller.png" id="3_tavnr"]
 [ext_resource type="Texture2D" uid="uid://ia63ql0nle6m" path="res://assets/textures/items/consumables/gasoline.png" id="3_tshlp"]
@@ -13,11 +14,36 @@
 [ext_resource type="Texture2D" uid="uid://k0x1tunq2hhx" path="res://assets/textures/items/consumables/shield_generator.png" id="5_vn2ag"]
 [ext_resource type="Texture2D" uid="uid://ba81g8k32trjf" path="res://assets/textures/items/consumables/insecticide.png" id="6_e0tc1"]
 [ext_resource type="Texture2D" uid="uid://chdwqhrpqt1ps" path="res://assets/textures/items/weapons/ice.png" id="8_vsd31"]
+[ext_resource type="Texture2D" uid="uid://c6jfo2q4c54jo" path="res://assets/textures/items/consumables/orbital_laser_controller.png" id="11_fik2a"]
 [ext_resource type="Texture2D" uid="uid://dj88qgg7tekwy" path="res://assets/textures/items/weapons/weedkiller.png" id="12_cyeoo"]
 [ext_resource type="Texture2D" uid="uid://hpbqq66n3kdn" path="res://assets/textures/items/weapons/super_duper_weedkiller.png" id="12_tquv1"]
 [ext_resource type="Texture2D" uid="uid://cnxiib055pncw" path="res://assets/textures/items/weapons/ultra_high_powered_weedkiller.png" id="14_k8fii"]
 [ext_resource type="Texture2D" uid="uid://co7sxr2k4jrys" path="res://assets/textures/items/weapons/water_bottle_pack.png" id="15_mg8t1"]
 [ext_resource type="Texture2D" uid="uid://c4hd6380frh0u" path="res://assets/textures/items/weapons/water_jug.png" id="16_w1uli"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heky8"]
+atlas = ExtResource("2_uq6e7")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd42y"]
+atlas = ExtResource("2_uq6e7")
+region = Rect2(23, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnhr8"]
+atlas = ExtResource("2_uq6e7")
+region = Rect2(46, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xga5i"]
+atlas = ExtResource("2_uq6e7")
+region = Rect2(0, 24, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlryy"]
+atlas = ExtResource("2_uq6e7")
+region = Rect2(23, 24, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkotm"]
+atlas = ExtResource("2_uq6e7")
+region = Rect2(46, 24, 23, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4ab7"]
 atlas = ExtResource("1_hv134")
@@ -35,6 +61,18 @@ region = Rect2(23, 0, 23, 24)
 atlas = ExtResource("3_na0l6")
 region = Rect2(46, 0, 23, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq6e7"]
+atlas = ExtResource("11_fik2a")
+region = Rect2(0, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ivfh"]
+atlas = ExtResource("11_fik2a")
+region = Rect2(23, 0, 23, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65ix3"]
+atlas = ExtResource("11_fik2a")
+region = Rect2(46, 0, 23, 24)
+
 [resource]
 animations = [{
 "frames": [{
@@ -44,6 +82,35 @@ animations = [{
 "loop": true,
 "name": &"acidic_weedkiller",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heky8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd42y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heky8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnhr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xga5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlryy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xga5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkotm")
+}],
+"loop": true,
+"name": &"alien_battery",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -124,6 +191,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"insecticide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq6e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ivfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq6e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65ix3")
+}],
+"loop": true,
+"name": &"orbital_laser_controller",
 "speed": 5.0
 }, {
 "frames": [{
