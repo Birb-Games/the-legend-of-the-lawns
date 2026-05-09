@@ -317,6 +317,20 @@ static var list: Array[Quest] = [
 			"$1",
 			func(main: Main) -> void: main.money += 1; main.player.inventory.has_alien_battery = false
 		),
+		[
+			Goal.new(
+				"Talk to IT Girl at the store.", 
+				func(main: Main) -> bool: return talked_to_npc(main, "Store/ITGirl7")
+			),
+		]
+	),
+
+	# Quest 23
+	Quest.new(
+		Reward.new(
+			"$10",
+			func(main: Main) -> void: main.money += 10
+		),
 		[]
 	),
 ]

@@ -1,0 +1,17 @@
+{
+	"first_dialog": [
+		"Oh hey there, what's up? If you're here to ask about the battery, I still haven't found one yet, I'm still working on that.",
+		"Wait, really? Woah, is this one of those alien antimatter battries?! You are probably breaking several laws and regulations right now... oh well, at least we have the battery! By the way, who gave this to you?",
+		"Huh, strange. Space mobsters are no joke though. Anyway, I think with some small modifications I can make this battery compatible with the Swapdeck...",
+		"Anyway, how about you leave the battery by the job board and after work I'll get to work repairing your Swapdeck! In the meantime, you probably should mow some more lawns to get the funds to actually buy it."
+	],
+	"player_dialog": [
+		"I actually already found a battery!",
+		"Some guy on the run from the Galactic Mafia.",
+		"Okay",
+		"Sounds good!"
+	],
+	"possible_dialog": [
+		"I'll fix your Swapdeck when my shift ends."
+	]
+}

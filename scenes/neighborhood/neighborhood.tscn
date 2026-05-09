@@ -115,6 +115,7 @@
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl5.json" id="109_6turh"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl6.json" id="112_d5weh"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/mr_manager2_dialog.json" id="113_raaw6"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl7.json" id="116_8f8a4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -509,6 +510,7 @@ autoplay = "default"
 position = Vector2(-296, -523)
 animation = &"mr_mcmoneypants"
 display_name = "Mr. McMoneyPants"
+level = 23
 
 [node name="Hat" type="AnimatedSprite2D" parent="Neighbors/McMoneyPants" unique_id=202869963]
 z_index = 1
@@ -1610,6 +1612,15 @@ animation = &"mr_manager"
 display_name = "Mr. Manager"
 min_level = 20
 dialog_json = ExtResource("113_raaw6")
+
+[node name="ITGirl7" parent="Store" unique_id=1444863123 instance=ExtResource("4_dcvy4")]
+position = Vector2(-87, 824.00006)
+animation = &"it_girl"
+display_name = "IT Girl"
+min_level = 22
+max_level = 23
+use_female_voice = true
+dialog_json = ExtResource("116_8f8a4")
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

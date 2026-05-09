@@ -345,7 +345,7 @@ func get_current_neighbors() -> Array:
 		return neighbors
 	for neighbor in neighbors_node.get_children():
 		if neighbor is NeighborNPC:
-			if neighbor.disabled:
+			if neighbor.disabled and neighbor.times_mowed == 0:
 				continue
 			if neighbor.level == current_level:
 				neighbors.push_back(neighbor)
