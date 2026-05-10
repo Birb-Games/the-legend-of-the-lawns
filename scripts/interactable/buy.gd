@@ -91,6 +91,11 @@ func available() -> bool:
 			return player.time_bonus_level == ID_TO_LEVEL[id]
 		"hat", "bike_helmet", "football_helmet", "combat_helmet", "astronaut_helmet":
 			return player.armor_level == ID_TO_LEVEL[id]
+		"swapdeck":
+			var main: Main = $/root/Main
+			if main.current_level == 24 and !bought:
+				show()
+			return main.current_level == 24 and !bought
 		_:
 			return !bought
 

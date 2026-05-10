@@ -333,6 +333,20 @@ static var list: Array[Quest] = [
 		),
 		[]
 	),
+
+	# Quest 24
+	Quest.new(
+		Reward.new(
+			"Your very own Swapdeck!",
+			func(_main: Main) -> void: pass
+		),
+		[
+			Goal.new(
+				"Buy the Swapdeck!", 
+				func(_main: Main) -> bool: return false
+			),
+		]
+	),
 ]
 
 static func get_quest(index: int) -> Quest:

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://rf50stauwwcg"]
+
+[ext_resource type="PackedScene" uid="uid://dux415njqmp1m" path="res://scenes/interactable/buy.tscn" id="1_s58l5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s58l5"]
+size = Vector2(46.666664, 46.666664)
+
+[node name="Swapdeck" unique_id=1063803969 instance=ExtResource("1_s58l5")]
+scale = Vector2(0.375, 0.375)
+display_name = "Swapdeck"
+id = "swapdeck"
+description = "The Swapdeck 2.0 - it's the hottest new game console on the market and might be one of the greatest gaming devices ever made. It's sold out everywhere else but at least this store has one available now..."
+buy_text = "Thank you for your purchase!"
+price = 400
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1274223717]
+position = Vector2(0, 16.666666)
+shape = SubResource("RectangleShape2D_s58l5")
+
+[node name="Shadow" parent="." index="1" unique_id=869876012]
+position = Vector2(0, -0.5)
+scale = Vector2(1.3333335, 0.82051283)
+
+[node name="AnimatedSprite2D" parent="." index="2" unique_id=873639486]
+animation = &"swapdeck"

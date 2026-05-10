@@ -115,10 +115,12 @@
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl2.json" id="97_a61lq"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl3.json" id="98_yc5ru"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl4.json" id="103_eog07"]
+[ext_resource type="PackedScene" uid="uid://rf50stauwwcg" path="res://scenes/interactable/swapdeck.tscn" id="106_l11it"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl5.json" id="109_6turh"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl6.json" id="112_d5weh"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/mr_manager2_dialog.json" id="113_raaw6"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl7.json" id="116_8f8a4"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl8.json" id="121_qjdr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -1529,6 +1531,9 @@ position = Vector2(-54, -13.5)
 [node name="PottedPlant4" parent="Store/CheckoutCounter" unique_id=256526804 instance=ExtResource("50_s3i68")]
 position = Vector2(55, -39.5)
 
+[node name="Swapdeck" parent="Store/CheckoutCounter" unique_id=1483209686 instance=ExtResource("106_l11it")]
+position = Vector2(-11, -14)
+
 [node name="Painting" type="Sprite2D" parent="Store" unique_id=1639100205]
 position = Vector2(-156.00002, 719.00006)
 scale = Vector2(0.8, 0.8)
@@ -1558,6 +1563,7 @@ position = Vector2(16, 826.00006)
 animation = &"robot"
 display_name = "Store Corp. Robot"
 min_level = 6
+max_level = 24
 dialog_json = ExtResource("66_qqjl7")
 
 [node name="CustomVoice" type="AudioStreamPlayer" parent="Store/Robot" unique_id=1095783524]
@@ -1629,6 +1635,7 @@ position = Vector2(-33, 809.07)
 animation = &"mr_manager"
 display_name = "Mr. Manager"
 min_level = 20
+max_level = 25
 dialog_json = ExtResource("113_raaw6")
 
 [node name="ITGirl7" parent="Store" unique_id=1444863123 instance=ExtResource("4_dcvy4")]
@@ -1639,6 +1646,15 @@ min_level = 22
 max_level = 23
 use_female_voice = true
 dialog_json = ExtResource("116_8f8a4")
+
+[node name="ITGirl8" parent="Store" unique_id=2023654166 instance=ExtResource("4_dcvy4")]
+position = Vector2(24.000002, 778)
+animation = &"it_girl"
+display_name = "IT Girl"
+min_level = 24
+max_level = 24
+use_female_voice = true
+dialog_json = ExtResource("121_qjdr8")
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]
