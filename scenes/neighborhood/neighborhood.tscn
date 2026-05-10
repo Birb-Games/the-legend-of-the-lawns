@@ -34,6 +34,7 @@
 [ext_resource type="JSON" path="res://assets/dialog/npcs/gnome_dialog.json" id="20_boqfi"]
 [ext_resource type="Texture2D" uid="uid://db3c1j4jldunq" path="res://assets/textures/npcs/hats/witchhat.png" id="21_6hoof"]
 [ext_resource type="PackedScene" uid="uid://hxirrs1or5r8" path="res://scenes/lawns/emily_lawn.tscn" id="21_dys3o"]
+[ext_resource type="JSON" path="res://assets/dialog/npcs/garden_bot_dialog.json" id="21_fnwjp"]
 [ext_resource type="PackedScene" uid="uid://1fi7xb3mewly" path="res://scenes/interactable/bus_stop.tscn" id="21_pqaru"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/jim_dialog.json" id="22_7273a"]
 [ext_resource type="Texture2D" uid="uid://cnccoqerc1v07" path="res://assets/textures/npcs/hats/tophat.png" id="22_k0lcp"]
@@ -65,6 +66,7 @@
 [ext_resource type="PackedScene" uid="uid://cdfcnerrnsnlt" path="res://scenes/lawns/mcmoneypants_lawn.tscn" id="41_4wetw"]
 [ext_resource type="Texture2D" uid="uid://mhf7o0ftg6r7" path="res://assets/textures/decorations/window.png" id="41_iequl"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/paul_dialog.json" id="42_4u1lm"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/mcmoneypants_dialog.json" id="42_5rq0e"]
 [ext_resource type="Texture2D" uid="uid://jpv0e5id5kg4" path="res://assets/textures/decorations/painting.png" id="43_lygeb"]
 [ext_resource type="Texture2D" uid="uid://8ie1qtueenbu" path="res://assets/textures/decorations/couch.png" id="46_5t5wj"]
 [ext_resource type="PackedScene" uid="uid://ws2gds4yg1b" path="res://scenes/lawns/tam_lawn.tscn" id="46_maaj1"]
@@ -345,6 +347,15 @@ display_name = "Lawn Gnome"
 can_talk = false
 dialog_json = ExtResource("20_boqfi")
 
+[node name="GardenBot" parent="NPCs" unique_id=598898397 instance=ExtResource("4_dcvy4")]
+position = Vector2(-213, -492.00003)
+animation = &"robot"
+display_name = "GardenBot"
+dialog_json = ExtResource("21_fnwjp")
+
+[node name="CustomVoice" type="AudioStreamPlayer" parent="NPCs/GardenBot" unique_id=1179511586]
+stream = ExtResource("70_qo1hn")
+
 [node name="Decorations" type="Node2D" parent="." unique_id=1445640183]
 y_sort_enabled = true
 
@@ -517,6 +528,7 @@ wage = 100
 max_bonus = 60
 flower_penalty = 5
 hedge_penalty = 5
+dialog_json = ExtResource("42_5rq0e")
 
 [node name="Hat" type="AnimatedSprite2D" parent="Neighbors/McMoneyPants" unique_id=202869963]
 z_index = 1

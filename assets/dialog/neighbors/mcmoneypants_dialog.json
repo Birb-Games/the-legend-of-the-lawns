@@ -1,0 +1,22 @@
+{
+	"unavailable_msg": "The door is locked...\nYou should probably leave before the mansion's security system goes off.",
+	"first_dialog": [
+		"Greetings!",
+		"Correct, I am indeed the founder and owner of McMoneyPants Corporation! So how may I help you?",
+		"Ah, I see you saw my work contract to mow my lawn! I do in fact need someone to assist with lawn care, I'm a busy man after all. Firstly though, we need to work out the terms of employment.",
+		"Very good, I have already had my lawyers prepare a work contract for you. I'll summarize it for you: for each lawn you mow I'll provide a $100 payment and if you are fast enough, I might also provide a bonus.",
+		"However, should you damage my property (such as flowers and hedges) I do reserve the right to take damage costs out of your wage.",
+		"You will also legally be an employee of McMoneyPants corporation. As such, McMoneyPants corporation will make a 5% contribution to your retirement pension while you are employed. You are entitled to 2 sick days this year as well.",
+		"We also reserve the right to use cameras and drones to monitor your productivity and to terminate your employment at any time for any reason."
+	],
+	"player_dialog": [
+		"Woah, are you Mr. McMoneyPants?",
+		"I'm here to mow your lawn!",
+		"Um, okay?",
+		"Okay...",
+		"Sure, that sounds fair...",
+		"Huh?",
+		"Wait, what?"
+	],
+	"first_job_offer": "Now, just sign down here and we have a deal! Chop, chop, get to work!"
+}
