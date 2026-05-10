@@ -62,6 +62,7 @@
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/poofball_dialog.json" id="40_56e4w"]
 [ext_resource type="Texture2D" uid="uid://bva25eo4vevtm" path="res://assets/textures/decorations/bed.png" id="40_tr241"]
 [ext_resource type="PackedScene" uid="uid://bjqvksf8i8pgk" path="res://scenes/lawns/paul_lawn.tscn" id="41_0cus8"]
+[ext_resource type="PackedScene" uid="uid://cdfcnerrnsnlt" path="res://scenes/lawns/mcmoneypants_lawn.tscn" id="41_4wetw"]
 [ext_resource type="Texture2D" uid="uid://mhf7o0ftg6r7" path="res://assets/textures/decorations/window.png" id="41_iequl"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/paul_dialog.json" id="42_4u1lm"]
 [ext_resource type="Texture2D" uid="uid://jpv0e5id5kg4" path="res://assets/textures/decorations/painting.png" id="43_lygeb"]
@@ -510,7 +511,12 @@ autoplay = "default"
 position = Vector2(-296, -523)
 animation = &"mr_mcmoneypants"
 display_name = "Mr. McMoneyPants"
+lawn_template = ExtResource("41_4wetw")
 level = 23
+wage = 100
+max_bonus = 60
+flower_penalty = 5
+hedge_penalty = 5
 
 [node name="Hat" type="AnimatedSprite2D" parent="Neighbors/McMoneyPants" unique_id=202869963]
 z_index = 1

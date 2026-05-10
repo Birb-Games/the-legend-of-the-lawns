@@ -134,7 +134,7 @@ func use_item() -> void:
 
 func show_alien_battery_icon() -> void:
 	if player.inventory.has_alien_battery:
-		$AlienBattery.show()
+		$AlienBattery.visible = !(player.water_gun.visible or player.lawn_mower_active())
 	else:
 		$AlienBattery.hide()
 
