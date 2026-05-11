@@ -13,10 +13,16 @@ class Reward:
 	var description: String
 	# Should be of the form func(Main) -> void
 	var give: Callable
+	var secret: bool = false
 
 	func _init(desc: String, give_func: Callable) -> void:
 		self.give = give_func
 		self.description = desc
+	
+	static func secret_reward(desc: String, give_func: Callable) -> Reward:
+		var reward: Reward = Reward.new(desc, give_func)
+		reward.secret = true
+		return reward
 
 var reward: Reward
 var goals: Array = []
@@ -364,6 +370,15 @@ static var list: Array[Quest] = [
 				func(main: Main) -> bool: return talked_to_npc(main, "SecretLab/Willow")
 			),
 		]
+	),
+
+	# Quest 26
+	Quest.new(
+		Reward.secret_reward(
+			"$999999",
+			func(main: Main) -> void: main.money += 999999
+		),
+		[]
 	),
 ]
 

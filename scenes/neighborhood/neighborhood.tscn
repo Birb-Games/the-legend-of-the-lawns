@@ -778,6 +778,29 @@ disable_after_first_time = true
 [node name="Click" type="AudioStreamPlayer" parent="Neighbors/Manager" unique_id=1832668202]
 stream = ExtResource("71_qo1hn")
 
+[node name="SecurityBot" parent="Neighbors" unique_id=1585777769 node_paths=PackedStringArray("knock_sound", "custom_talk_audio") instance=ExtResource("3_tqujx")]
+position = Vector2(424.00003, 1012)
+animation = &"robot"
+display_name = "Lab Security Bot"
+always_visible = true
+level = 26
+knock_sound = NodePath("Click")
+secret = true
+at_store = true
+custom_talk_audio = NodePath("CustomVoice")
+knock_subtitle = ""
+interact_text = "Press [SPACE] to talk to robot."
+
+[node name="Click" type="AudioStreamPlayer" parent="Neighbors/SecurityBot" unique_id=2122836476]
+stream = ExtResource("71_qo1hn")
+
+[node name="CustomVoice" type="AudioStreamPlayer" parent="Neighbors/SecurityBot" unique_id=1551822385]
+stream = ExtResource("70_qo1hn")
+
+[node name="NeighborController" type="Node2D" parent="Neighbors/SecurityBot" unique_id=701861908]
+script = ExtResource("72_0nn5q")
+disable_after_first_time = true
+
 [node name="FastTravel" type="Node2D" parent="." unique_id=845814038]
 y_sort_enabled = true
 
@@ -1784,7 +1807,7 @@ price = 0
 position = Vector2(-20, -14.718018)
 
 [node name="Jar2" parent="SecretLab/StoreDisplay" unique_id=1331517438 instance=ExtResource("127_dgy4m")]
-position = Vector2(-28, -13.718018)
+position = Vector2(-29, -13.718018)
 
 [node name="StoreDisplay2" parent="SecretLab" unique_id=1390517953 instance=ExtResource("53_sc68w")]
 position = Vector2(78, 1147.718)
@@ -1948,10 +1971,13 @@ position = Vector2(424, 1227)
 
 [node name="Marker2D" type="Marker2D" parent="SecretLab/Hallway" unique_id=1767089752]
 
-[node name="Sprite2D" type="Sprite2D" parent="SecretLab" unique_id=630969202]
+[node name="Door2" type="Sprite2D" parent="SecretLab" unique_id=630969202]
 position = Vector2(424.00003, 990)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("122_g55tb")
+
+[node name="TrashCan" parent="SecretLab" unique_id=705922546 instance=ExtResource("56_4nkst")]
+position = Vector2(-105, 1091)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]
