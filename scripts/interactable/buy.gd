@@ -99,6 +99,34 @@ func available() -> bool:
 		_:
 			return !bought
 
+func trigger_ending() -> void:
+	var main: Main = $/root/Main
+	main.current_level += 1
+	$/root/Main/HUD/Control/TransitionRect.start_bus_animation()
+	$/root/Main/HUD.hide_neighbor_menu()
+	$/root/Main/HUD.alert(
+		"The floor collapsed!",
+		"You find yourself in a secret lab under the store...", 
+		"What happened?!"
+	)
+	$/root/Main/HUD/Control/QuestScreen.show_alert = true
+	player.dir = "down"
+	var camera: GameCamera = $/root/Main/Player/Camera2D
+	camera.position_smoothing_enabled = false
+	var goto: Node2D = get_node_or_null("Goto")
+	if goto:
+		player.global_position = goto.global_position
+	var audio: AudioStreamPlayer 
+	audio = get_node_or_null("Explosion")
+	if audio:
+		audio.play()
+	
+	audio = get_node_or_null("Earthquake")
+	if audio:
+		var connections = audio.get_signal_connection_list("finished")
+		for conn in connections:
+			audio.disconnect("finished", conn.callable)
+
 func buy() -> void: 
 	match id:
 		"apple_juice", "orange_juice", "grape_juice", "milk", "carrot_juice", "golden_apple_juice":
@@ -111,6 +139,13 @@ func buy() -> void:
 			player.time_bonus_level = ID_TO_LEVEL[id] + 1
 		"hat", "bike_helmet", "football_helmet", "combat_helmet", "astronaut_helmet":
 			player.armor_level = ID_TO_LEVEL[id] + 1
+		"swapdeck":
+			var camera: GameCamera = $/root/Main/Player/Camera2D
+			camera.add_trauma(8.0)
+			var audio: AudioStreamPlayer = get_node_or_null("Earthquake")
+			if audio:
+				audio.play(0.5)
+				audio.connect("finished", trigger_ending)
 		_:
 			if id in ITEM_LIST:
 				if !player.inventory.add_item(id):

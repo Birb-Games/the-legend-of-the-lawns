@@ -1,0 +1,17 @@
+{
+	"first_dialog": [
+    	"What the heck is happening right now?!",
+		"There's a whole freakin' lab down here! What other secrets is management keeping from us?! Then again, I'm not paid enough to care... But still, this is insane!",
+		"The weirdest part is that when we fell in here, the manager panicked and ran away for some reason. He then locked us in here which is kind of jerk move in my opinion.",
+		"Beats me. This is well above my pay grade. Maybe I should consider asking for hazard pay after all the crazy things that have happened."
+	],
+	"player_dialog": [
+		"I don't know.",
+		"Yeah...",
+		"So do you know how to get that door open?",
+		"..."
+	],
+	"possible_dialog": [
+		"Kid, whatever you want help with, it's way above my pay grade."
+	]
+}

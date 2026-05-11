@@ -213,6 +213,7 @@ theme_override_constants/separation = 4
 layout_mode = 2
 
 [node name="RewardLabel" type="Label" parent="InfoScreen/QuestBox" unique_id=2036562462]
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ckwhv")

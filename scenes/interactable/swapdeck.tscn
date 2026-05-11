@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://rf50stauwwcg"]
 
 [ext_resource type="PackedScene" uid="uid://dux415njqmp1m" path="res://scenes/interactable/buy.tscn" id="1_s58l5"]
+[ext_resource type="AudioStream" uid="uid://dcil08gymr3gr" path="res://assets/audio/sfx/digging.wav" id="2_ofpl2"]
+[ext_resource type="AudioStream" uid="uid://7l5qvc3tbae7" path="res://assets/audio/sfx/explosion.wav" id="3_m134i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s58l5"]
 size = Vector2(46.666664, 46.666664)
@@ -23,3 +25,10 @@ scale = Vector2(1.3333335, 0.82051283)
 
 [node name="AnimatedSprite2D" parent="." index="2" unique_id=873639486]
 animation = &"swapdeck"
+
+[node name="Earthquake" type="AudioStreamPlayer" parent="." index="3" unique_id=1731017209]
+stream = ExtResource("2_ofpl2")
+
+[node name="Explosion" type="AudioStreamPlayer" parent="." index="4" unique_id=1517676076]
+stream = ExtResource("3_m134i")
+volume_db = 15.0
