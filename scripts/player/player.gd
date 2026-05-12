@@ -29,6 +29,7 @@ var target_velocity: Vector2 = Vector2.ZERO
 # Whether the player just dropped the lawn mower
 var dropped: bool = false
 var can_move: bool = true
+var automatically_move: bool = false
 
 var speed_level: int = 0
 var max_health_level: int = 0
@@ -553,7 +554,10 @@ func _physics_process(_delta: float) -> void:
 	if health <= 0:
 		return
 
-	velocity = Vector2.ZERO	
+	if !can_move and automatically_move:
+		velocity = target_velocity
+	else:
+		velocity = Vector2.ZERO	
 
 	# movement
 	# don't move when menu is open

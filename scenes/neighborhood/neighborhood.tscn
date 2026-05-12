@@ -112,6 +112,7 @@
 [ext_resource type="PackedScene" uid="uid://wdx61euj7m73" path="res://scenes/lawns/data_center_lawn.tscn" id="75_bsq1q"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/manager_neighbor_dialog.json" id="76_sgpx3"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/security_bot_dialog.json" id="82_8iufv"]
+[ext_resource type="PackedScene" uid="uid://bi787mn4555wh" path="res://scenes/lawns/final_boss_lawn.tscn" id="82_etw5q"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl1.json" id="89_vnrcm"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl2.json" id="97_a61lq"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl3.json" id="98_yc5ru"]
@@ -786,6 +787,7 @@ position = Vector2(424.00003, 1012)
 animation = &"robot"
 display_name = "Lab Security Bot"
 always_visible = true
+lawn_template = ExtResource("82_etw5q")
 level = 26
 knock_sound = NodePath("Click")
 secret = true
