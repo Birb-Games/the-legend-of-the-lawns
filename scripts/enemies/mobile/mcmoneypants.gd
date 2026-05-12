@@ -36,4 +36,3 @@ func _process(delta: float) -> void:
 	if hostile() and hostile_timer > 0.0:
 		hostile_timer -= delta
 	super._process(delta)
-	modulate.a = 1.0
