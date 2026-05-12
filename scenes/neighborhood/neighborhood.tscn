@@ -111,6 +111,7 @@
 [ext_resource type="Script" uid="uid://3am5ms0m2qq1" path="res://scripts/npc/neighbor_controller.gd" id="72_0nn5q"]
 [ext_resource type="PackedScene" uid="uid://wdx61euj7m73" path="res://scenes/lawns/data_center_lawn.tscn" id="75_bsq1q"]
 [ext_resource type="JSON" path="res://assets/dialog/neighbors/manager_neighbor_dialog.json" id="76_sgpx3"]
+[ext_resource type="JSON" path="res://assets/dialog/neighbors/security_bot_dialog.json" id="82_8iufv"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl1.json" id="89_vnrcm"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl2.json" id="97_a61lq"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/it_girl3.json" id="98_yc5ru"]
@@ -133,6 +134,8 @@
 [ext_resource type="PackedScene" uid="uid://dt374voqtyp4c" path="res://scenes/particles/fire_particles.tscn" id="129_y78ax"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/cashier_guy_lab_dialog.json" id="130_vuljm"]
 [ext_resource type="JSON" path="res://assets/dialog/npcs/willow_lab_dialog.json" id="132_22gny"]
+[ext_resource type="PackedScene" uid="uid://dppe60nwwel2o" path="res://scenes/decorations/empty_clone_tube.tscn" id="134_h0k2y"]
+[ext_resource type="PackedScene" uid="uid://m5gc7wykww2p" path="res://scenes/decorations/clone_tube.tscn" id="135_vxay5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("21_6hoof")
@@ -787,9 +790,15 @@ level = 26
 knock_sound = NodePath("Click")
 secret = true
 at_store = true
+wage = 20
+bonus_base = 0
+max_bonus = 0
+flower_penalty = 0
+hedge_penalty = 0
 custom_talk_audio = NodePath("CustomVoice")
 knock_subtitle = ""
 interact_text = "Press [SPACE] to talk to robot."
+dialog_json = ExtResource("82_8iufv")
 
 [node name="Click" type="AudioStreamPlayer" parent="Neighbors/SecurityBot" unique_id=2122836476]
 stream = ExtResource("71_qo1hn")
@@ -1971,13 +1980,65 @@ position = Vector2(424, 1227)
 
 [node name="Marker2D" type="Marker2D" parent="SecretLab/Hallway" unique_id=1767089752]
 
-[node name="Door2" type="Sprite2D" parent="SecretLab" unique_id=630969202]
+[node name="TrashCan" parent="SecretLab" unique_id=705922546 instance=ExtResource("56_4nkst")]
+position = Vector2(-105, 1091)
+
+[node name="HallwayObjects" type="Node2D" parent="SecretLab" unique_id=1956141688]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Door" type="Sprite2D" parent="SecretLab/HallwayObjects" unique_id=630969202]
 position = Vector2(424.00003, 990)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("122_g55tb")
 
-[node name="TrashCan" parent="SecretLab" unique_id=705922546 instance=ExtResource("56_4nkst")]
-position = Vector2(-105, 1091)
+[node name="EmptyCloneTube" parent="SecretLab/HallwayObjects" unique_id=1340525978 instance=ExtResource("134_h0k2y")]
+position = Vector2(396.00003, 1108.0001)
+
+[node name="EmptyCloneTube2" parent="SecretLab/HallwayObjects" unique_id=1956474320 instance=ExtResource("134_h0k2y")]
+position = Vector2(396.00003, 1044.0001)
+
+[node name="CloneTube" parent="SecretLab/HallwayObjects" unique_id=348755013 instance=ExtResource("135_vxay5")]
+position = Vector2(396.00003, 1060.0001)
+
+[node name="CloneTube2" parent="SecretLab/HallwayObjects" unique_id=651474241 instance=ExtResource("135_vxay5")]
+position = Vector2(396.00003, 1076.0001)
+
+[node name="EmptyCloneTube3" parent="SecretLab/HallwayObjects" unique_id=1146833126 instance=ExtResource("134_h0k2y")]
+position = Vector2(396.00003, 1092.0001)
+
+[node name="CloneTube3" parent="SecretLab/HallwayObjects" unique_id=805187894 instance=ExtResource("135_vxay5")]
+position = Vector2(396.00003, 1124)
+
+[node name="CloneTube4" parent="SecretLab/HallwayObjects" unique_id=1592595731 instance=ExtResource("135_vxay5")]
+position = Vector2(396.00003, 1140.0001)
+
+[node name="EmptyCloneTube5" parent="SecretLab/HallwayObjects" unique_id=546773442 instance=ExtResource("134_h0k2y")]
+position = Vector2(452, 1044)
+
+[node name="EmptyCloneTube6" parent="SecretLab/HallwayObjects" unique_id=2052579378 instance=ExtResource("134_h0k2y")]
+position = Vector2(452, 1060)
+
+[node name="CloneTube5" parent="SecretLab/HallwayObjects" unique_id=689370030 instance=ExtResource("135_vxay5")]
+position = Vector2(452, 1076)
+
+[node name="CloneTube6" parent="SecretLab/HallwayObjects" unique_id=227785503 instance=ExtResource("135_vxay5")]
+position = Vector2(452, 1092.0001)
+
+[node name="CloneTube7" parent="SecretLab/HallwayObjects" unique_id=1758422274 instance=ExtResource("135_vxay5")]
+position = Vector2(452, 1108.0001)
+
+[node name="CloneTube8" parent="SecretLab/HallwayObjects" unique_id=845120561 instance=ExtResource("135_vxay5")]
+position = Vector2(452, 1124.0001)
+
+[node name="CloneTube9" parent="SecretLab/HallwayObjects" unique_id=12801418 instance=ExtResource("135_vxay5")]
+position = Vector2(452, 1140.0001)
+
+[node name="CloneTube10" parent="SecretLab/HallwayObjects" unique_id=732145105 instance=ExtResource("135_vxay5")]
+position = Vector2(396.00003, 1156.0001)
+
+[node name="CloneTube11" parent="SecretLab/HallwayObjects" unique_id=595535991 instance=ExtResource("135_vxay5")]
+position = Vector2(452.00003, 1156.0001)
 
 [connection signal="body_entered" from="SkipDay" to="SkipDay" method="_on_body_entered"]
 [connection signal="body_exited" from="SkipDay" to="SkipDay" method="_on_body_exited"]

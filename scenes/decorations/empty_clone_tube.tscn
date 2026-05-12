@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dppe60nwwel2o"]
+
+[ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_3wulk"]
+[ext_resource type="Texture2D" uid="uid://cle7ophlaowt0" path="res://assets/textures/decorations/empty_clone_tube.png" id="1_ndvsm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hiaad"]
+size = Vector2(26.666668, 11.4285755)
+
+[node name="EmptyCloneTube" type="StaticBody2D" unique_id=1340525978]
+scale = Vector2(0.7, 0.7)
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1689069235]
+position = Vector2(0, -4.000001)
+scale = Vector2(0.9166667, 1.0256412)
+texture = ExtResource("1_3wulk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1922057596]
+position = Vector2(0, -32.000004)
+texture = ExtResource("1_ndvsm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1022764590]
+position = Vector2(0, -9.999998)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_hiaad")
