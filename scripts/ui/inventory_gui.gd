@@ -124,6 +124,10 @@ func use_item() -> void:
 		return
 	if !main.lawn_loaded:
 		return
+	var lawn: Lawn = $/root/Main/Lawn
+	if lawn is FinalBossLawn:
+		if lawn.begin_dialog or lawn.intro:
+			return
 	
 	if item.cooldown > 0.0:
 		return
@@ -142,7 +146,12 @@ func _process(delta: float) -> void:
 	update_position(delta)
 
 	# Hide the whole display
-	visible = !(hud.quest_screen_open() or player.health <= 0)
+	visible = !(hud.npc_menu_open() or hud.quest_screen_open() or player.health <= 0)
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn:
+		if lawn is FinalBossLawn:
+			if lawn.begin_dialog:
+				visible = false
 	if $/root/Main/HUD/MainMenu.visible:
 		hide()
 	if !visible:

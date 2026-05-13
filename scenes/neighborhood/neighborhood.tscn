@@ -304,12 +304,14 @@ y_sort_enabled = true
 [node name="Dad" parent="NPCs" unique_id=167889500 instance=ExtResource("4_dcvy4")]
 position = Vector2(-133, -134)
 display_name = "Dad"
+max_level = 24
 dialog_json = ExtResource("13_cvosm")
 
 [node name="Mom" parent="NPCs" unique_id=2029163491 instance=ExtResource("4_dcvy4")]
 position = Vector2(47, -103)
 animation = &"mom"
 display_name = "Mom"
+max_level = 24
 use_female_voice = true
 dialog_json = ExtResource("14_ixbld")
 
@@ -1613,6 +1615,7 @@ dialog_json = ExtResource("65_xio3b")
 position = Vector2(153, 758)
 animation = &"martin"
 display_name = "Martin"
+max_level = 24
 dialog_json = ExtResource("65_2qen0")
 
 [node name="Robot" parent="Store" unique_id=13456353 instance=ExtResource("4_dcvy4")]
@@ -1630,6 +1633,7 @@ stream = ExtResource("70_qo1hn")
 position = Vector2(-121.00001, 756)
 animation = &"cashier_guy"
 display_name = "Cashier Guy"
+max_level = 24
 dialog_json = ExtResource("66_bg1hm")
 
 [node name="ITGirl" parent="Store" unique_id=751590026 instance=ExtResource("4_dcvy4")]
@@ -1692,7 +1696,7 @@ position = Vector2(-33, 809.07)
 animation = &"mr_manager"
 display_name = "Mr. Manager"
 min_level = 20
-max_level = 25
+max_level = 24
 dialog_json = ExtResource("113_raaw6")
 
 [node name="ITGirl7" parent="Store" unique_id=1444863123 instance=ExtResource("4_dcvy4")]

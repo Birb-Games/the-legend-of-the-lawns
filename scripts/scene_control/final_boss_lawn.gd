@@ -45,7 +45,8 @@ func explode_manager() -> void:
 
 func _ready() -> void:
 	super._ready()
-
+	$Spawners/Boss.spawn()
+	$Spawners/Boss.can_spawn = false
 	player.can_move = false
 	player.automatically_move = true
 
