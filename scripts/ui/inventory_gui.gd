@@ -142,7 +142,7 @@ func _process(delta: float) -> void:
 	update_position(delta)
 
 	# Hide the whole display
-	visible = !(hud.npc_menu_open() or hud.quest_screen_open() or player.health <= 0)
+	visible = !(hud.quest_screen_open() or player.health <= 0)
 	if $/root/Main/HUD/MainMenu.visible:
 		hide()
 	if !visible:
