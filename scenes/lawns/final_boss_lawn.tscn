@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://comqqrvdmt27s" path="res://scenes/enemies/weeds/super_thornweed.tscn" id="8_apsnv"]
 [ext_resource type="PackedScene" uid="uid://bth8etqrg8jox" path="res://scenes/enemies/weeds/ancient_tree.tscn" id="9_og7db"]
 [ext_resource type="PackedScene" uid="uid://deieyv2snbfnr" path="res://scenes/enemies/weeds/super_shroom.tscn" id="9_q82no"]
-[ext_resource type="PackedScene" uid="uid://30584qe175b" path="res://scenes/lawn_features/sprinkler.tscn" id="13_deggc"]
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="14_1wnnc"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_7dl4a")]
@@ -79,56 +78,32 @@ position = Vector2(0, 74)
 [node name="Talk" type="AudioStreamPlayer" parent="." index="9" unique_id=1345492867]
 stream = ExtResource("4_j1fdo")
 
-[node name="Sprinkler" parent="." index="10" unique_id=302807734 instance=ExtResource("13_deggc")]
-position = Vector2(-264, 206)
-
-[node name="Sprinkler3" parent="." index="11" unique_id=1950989582 instance=ExtResource("13_deggc")]
-position = Vector2(-192, 270)
-
-[node name="Sprinkler5" parent="." index="12" unique_id=767833271 instance=ExtResource("13_deggc")]
-position = Vector2(264, 206)
-
-[node name="Sprinkler8" parent="." index="13" unique_id=905529665 instance=ExtResource("13_deggc")]
-position = Vector2(192, 270)
-
-[node name="Sprinkler9" parent="." index="14" unique_id=1368119138 instance=ExtResource("13_deggc")]
-position = Vector2(-192, -262)
-
-[node name="Sprinkler12" parent="." index="15" unique_id=334144250 instance=ExtResource("13_deggc")]
-position = Vector2(192, -262)
-
-[node name="Sprinkler14" parent="." index="16" unique_id=1797947098 instance=ExtResource("13_deggc")]
-position = Vector2(-264, -194)
-
-[node name="Sprinkler16" parent="." index="17" unique_id=972296141 instance=ExtResource("13_deggc")]
-position = Vector2(264, -194)
-
-[node name="ExplosiveBarrel" parent="." index="18" unique_id=345136296 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel" parent="." index="10" unique_id=345136296 instance=ExtResource("14_1wnnc")]
 position = Vector2(-346, -344.00003)
 
-[node name="ExplosiveBarrel2" parent="." index="19" unique_id=882381894 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel2" parent="." index="11" unique_id=882381894 instance=ExtResource("14_1wnnc")]
 position = Vector2(-321, -335)
 
-[node name="ExplosiveBarrel3" parent="." index="20" unique_id=514741626 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel3" parent="." index="12" unique_id=514741626 instance=ExtResource("14_1wnnc")]
 position = Vector2(-355, 335.99997)
 
-[node name="ExplosiveBarrel4" parent="." index="21" unique_id=1001665302 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel4" parent="." index="13" unique_id=1001665302 instance=ExtResource("14_1wnnc")]
 position = Vector2(-330, 329.00003)
 
-[node name="ExplosiveBarrel5" parent="." index="22" unique_id=1957533113 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel5" parent="." index="14" unique_id=1957533113 instance=ExtResource("14_1wnnc")]
 position = Vector2(-336, 341.99997)
 
-[node name="ExplosiveBarrel7" parent="." index="23" unique_id=2032668856 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel7" parent="." index="15" unique_id=2032668856 instance=ExtResource("14_1wnnc")]
 position = Vector2(322, 342)
 
-[node name="ExplosiveBarrel8" parent="." index="24" unique_id=930361653 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel8" parent="." index="16" unique_id=930361653 instance=ExtResource("14_1wnnc")]
 position = Vector2(351, 332)
 
-[node name="ExplosiveBarrel9" parent="." index="25" unique_id=1994456673 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel9" parent="." index="17" unique_id=1994456673 instance=ExtResource("14_1wnnc")]
 position = Vector2(343, -339)
 
-[node name="ExplosiveBarrel10" parent="." index="26" unique_id=1833114597 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel10" parent="." index="18" unique_id=1833114597 instance=ExtResource("14_1wnnc")]
 position = Vector2(315, -334)
 
-[node name="ExplosiveBarrel11" parent="." index="27" unique_id=2067509858 instance=ExtResource("14_1wnnc")]
+[node name="ExplosiveBarrel11" parent="." index="19" unique_id=2067509858 instance=ExtResource("14_1wnnc")]
 position = Vector2(334, -316)
