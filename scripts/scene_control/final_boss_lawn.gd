@@ -57,11 +57,19 @@ func _process(delta: float) -> void:
 	if intro:
 		player.target_velocity = player.NORMAL_SPEED * Vector2.UP
 		player.dir = "up"
+		player.can_move = false
+		player.automatically_move = true
 		if player.global_position.y <= $Stop.global_position.y:
 			intro = false
 			player.automatically_move = false
 			begin_dialog = true
 	elif begin_dialog and !hud.npc_menu_open():
+		player.can_move = false
+		if current_dialog >= dialog.size():
+			begin_dialog = false
+			player.can_move = true
+			return
+
 		var dialog_str: String = dialog[current_dialog]
 		if current_dialog in dialog_action:
 			dialog_action[current_dialog].call()
@@ -76,8 +84,4 @@ func _process(delta: float) -> void:
 				dialog_text += dialog_parts[i]
 				if i != dialog_parts.size() - 2:
 					dialog_text += "\n"
-			hud.alert(dialog_parts[0], dialog_text, dialog_parts[dialog_parts.size() - 1])
-
-		if current_dialog >= dialog.size():
-			begin_dialog = false
-			player.can_move = true
+			hud.alert(dialog_parts[0], dialog_text, dialog_parts[dialog_parts.size() - 1])	

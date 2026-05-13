@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://dkh46yxvw2g3a" path="res://scripts/enemies/weeds/ancient_tree.gd" id="1_1bfwm"]
 [ext_resource type="Texture2D" uid="uid://c1mwbw0kon1tr" path="res://assets/textures/shadow.png" id="1_bujjq"]
 [ext_resource type="Texture2D" uid="uid://i5trdukn4px5" path="res://assets/textures/enemies/weeds/ancient_tree.png" id="1_ek0jc"]
+[ext_resource type="PackedScene" uid="uid://e6kb8yfp0yjr" path="res://scenes/particles/explosion.tscn" id="2_1n4o5"]
 [ext_resource type="PackedScene" uid="uid://bkp0337arv3rf" path="res://scenes/particles/resist_particle.tscn" id="2_47quv"]
 [ext_resource type="PackedScene" uid="uid://dle1nhc76n43p" path="res://scenes/enemies/bullets/spore_bullet.tscn" id="2_nyalb"]
+[ext_resource type="PackedScene" uid="uid://bodmljl34l6om" path="res://scenes/lawn_features/fire.tscn" id="3_ns0kn"]
 [ext_resource type="PackedScene" uid="uid://dv3lwtiudcy5r" path="res://scenes/enemies/healthbar.tscn" id="3_xj4ax"]
 [ext_resource type="PackedScene" uid="uid://b0wa7n410abxn" path="res://scenes/enemies/contact_damage_zone.tscn" id="4_x3m8g"]
+[ext_resource type="AudioStream" uid="uid://cwsjr4b81fvih" path="res://assets/audio/sfx/roar.wav" id="8_grykl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ek0jc"]
 size = Vector2(22, 27)
@@ -50,11 +53,13 @@ animations = [{
 [node name="AncientTree" type="Area2D" unique_id=1696124264]
 scale = Vector2(1.25, 1.25)
 script = ExtResource("1_1bfwm")
+explosion_scene = ExtResource("2_1n4o5")
+fire_scene = ExtResource("3_ns0kn")
 resist_particle_scene = ExtResource("2_47quv")
 bullet_scene = ExtResource("2_nyalb")
 bullet_cooldown = 1.5
 max_shoot_distance = 9999.0
-max_health = 300
+max_health = 360
 boss = true
 add_camera_shake_if_boss = false
 
@@ -80,7 +85,7 @@ offset_left = -10.0
 offset_top = -49.0
 offset_right = 4.0
 offset_bottom = -47.0
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.4, 1.4)
 
 [node name="ContactDamageZone" parent="." unique_id=1356563913 instance=ExtResource("4_x3m8g")]
 position = Vector2(0, -3)
@@ -88,4 +93,8 @@ scale = Vector2(1.5, 1.5)
 damage_amt = 50
 attack_cooldown = 0.5
 
+[node name="Roar" type="AudioStreamPlayer2D" parent="." unique_id=899200855]
+stream = ExtResource("8_grykl")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="hit" from="." to="." method="_on_hit"]
