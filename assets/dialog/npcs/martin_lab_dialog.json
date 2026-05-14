@@ -1,0 +1,15 @@
+{
+	"first_dialog": [
+		"OW! OW! OW! OW! OW! OW!",
+		"NO! I think I broke my arm when we fell down here. Why does this always happen to me... OW! OW! OW! OW!",
+		"Also I think all the plants down here are triggering my allergies *ACHOO* *ACHOO* *ACHOO* I hate this job so much!!!"
+	],
+	"player_dialog": [
+		"Um, are you okay?",
+		"...",
+		"..."
+	],
+	"possible_dialog": [
+		"OW! OW! OW! OW! OW! OW!"
+	]
+}

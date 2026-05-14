@@ -62,7 +62,9 @@ func _process(delta: float) -> void:
 
 func advance_day() -> void:
 	current_day += 1
-	$HUD/Control/TransitionRect.start_animation()
+	var lawn: Lawn = get_node_or_null("Lawn")
+	if lawn == null or !(lawn is FinalBossLawn):
+		$HUD/Control/TransitionRect.start_animation()
 	for key: String in job_list.keys():
 		var job: Job = job_list[key]
 		job.update()
@@ -103,7 +105,15 @@ func return_to_neighborhood() -> void:
 	player.reset_health()
 	player.status_effects.clear()
 	if get_node_or_null("Lawn"):
-		get_node("Lawn").queue_free()
+		var lawn = get_node("Lawn")
+		# Activate final credits if the player successfully defeated this lawn
+		if lawn is FinalBossLawn:
+			if player.health > 0 and lawn.cut_grass_tiles >= lawn.total_grass_tiles:
+				for sfx: AudioStreamPlayer in $Sfx.get_children():
+					sfx.stop()
+				get_tree().paused = true
+				$HUD.add_final_credits()
+		lawn.queue_free()
 	player.position = player_pos
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
@@ -345,7 +355,7 @@ func get_current_neighbors() -> Array:
 		return neighbors
 	for neighbor in neighbors_node.get_children():
 		if neighbor is NeighborNPC:
-			if neighbor.disabled:
+			if neighbor.disabled and neighbor.times_mowed == 0:
 				continue
 			if neighbor.level == current_level:
 				neighbors.push_back(neighbor)

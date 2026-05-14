@@ -30,11 +30,12 @@ var player_in_area: bool = false
 func _ready() -> void:
 	if interact_text.is_empty():
 		interact_text = "talk to %s" % display_name
-	
+		
 	play(animation)
-	var rand_frame: int = randi_range(0, sprite_frames.get_frame_count(animation))
-	set_frame(rand_frame)
-	frame_progress = randf_range(0.0, 1.0)
+	if get_node_or_null("Hat") == null:
+		var rand_frame: int = randi_range(0, sprite_frames.get_frame_count(animation))
+		set_frame(rand_frame)
+		frame_progress = randf_range(0.0, 1.0)
 	Dialog.set_npc_dialog_from_json(self, dialog_json)
 
 func generate_dialog() -> void:
@@ -47,7 +48,9 @@ func generate_dialog() -> void:
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 
 func _process(_delta: float) -> void:
-	var main: Main = $/root/Main
+	var main: Main = get_node_or_null("/root/Main")
+	if main == null:
+		return
 	var quest_completed: bool = (Quest.get_quest(main.current_level) == null) or Quest.get_quest(main.current_level).completed(main)
 	if min_level > main.current_level:
 		hide()

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://m5gc7wykww2p"]
+
+[ext_resource type="PackedScene" uid="uid://dppe60nwwel2o" path="res://scenes/decorations/empty_clone_tube.tscn" id="1_gdid4"]
+[ext_resource type="Texture2D" uid="uid://dgi67nve4jmq2" path="res://assets/textures/decorations/clone_tube.png" id="2_bj3oo"]
+
+[node name="CloneTube" unique_id=1340525978 instance=ExtResource("1_gdid4")]
+
+[node name="Sprite2D" parent="." index="1" unique_id=1922057596]
+texture = ExtResource("2_bj3oo")

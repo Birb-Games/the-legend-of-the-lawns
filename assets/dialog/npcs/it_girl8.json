@@ -1,0 +1,13 @@
+{
+	"first_dialog": [
+		"Alright, I got your Swapdeck fixed! It's available for purchase at the checkout counter for $400. You're really lucky, these things are sold out throughout the world.",
+		"Anyway, I've got to finish my shift now, I've got to update the antivirus software on the store computers. Maybe when I get off you can let me test out that Swapdeck as well - I really do want to see if it lives to the hype."
+	],
+	"player_dialog": [
+		"Okay, thanks!",
+		"Sure."
+	],
+	"possible_dialog": [
+		"I'm busy coming up with excuses not to do work right now, talk to me later."
+	]
+}

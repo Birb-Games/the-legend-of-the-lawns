@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var progress_bar_gradient: Gradient
+@export var final_credits_scene: PackedScene
 
 var time_elapsed: float = 0.0
 
@@ -37,6 +38,9 @@ func _process(_delta: float) -> void:
 	
 	if $Control/Finishscreen.visible or $Control/Failscreen.visible:
 		return
+
+	if get_node_or_null("Control/FinalCredits"):
+		return
 	
 	if activate_fail_screen():
 		return
@@ -48,7 +52,7 @@ func _process(_delta: float) -> void:
 	# Open pause menu
 	if Input.is_action_just_pressed("ui_cancel"):
 		$Control/TransitionRect.end_transition()
-		if npc_menu_open():
+		if npc_menu_open() and npc_menu_buttons_visible():
 			# Exit out of neighbor menu
 			$Control/NPCMenu.hide()
 			$Control/NPCMenu.hide_neighbor()
@@ -197,6 +201,12 @@ func num_as_time_string(num: float) -> String:
 func npc_menu_open() -> bool:
 	return $Control/NPCMenu.visible
 
+func npc_menu_buttons_visible() -> bool:
+	for button in $Control/NPCMenu.buttons:
+		if button.visible:
+			return true
+	return false
+
 func npc_menu_can_move() -> bool:
 	return $Control/NPCMenu.player_can_move
 
@@ -211,3 +221,8 @@ func cheat_console_open() -> bool:
 
 func reset() -> void:
 	$Control/InventoryGUI.reset()
+
+func add_final_credits() -> void:
+	if get_node_or_null("Control/FinalCredits"):
+		return
+	$Control.add_child(final_credits_scene.instantiate())

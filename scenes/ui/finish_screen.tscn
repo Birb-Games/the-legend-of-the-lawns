@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bmm383cy7pfhf" path="res://scripts/ui/finish_screen.gd" id="1_nicm2"]
 [ext_resource type="FontFile" uid="uid://b83lr4reqbm0y" path="res://assets/fonts/8BitOperator/8bitOperatorPlus8-Regular.ttf" id="2_m00dn"]
 [ext_resource type="SpriteFrames" uid="uid://djfxgqly8pts3" path="res://assets/item_icon_animation.tres" id="4_piuhf"]
+[ext_resource type="AudioStream" uid="uid://eyyq58oktsp" path="res://assets/audio/sfx/click.wav" id="5_becja"]
 
 [node name="Finishscreen" type="Control" unique_id=887075648]
 process_mode = 3
@@ -173,5 +174,8 @@ theme_override_fonts/font = ExtResource("2_m00dn")
 theme_override_font_sizes/font_size = 64
 text = "Total: $0"
 horizontal_alignment = 1
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=1706972718]
+stream = ExtResource("5_becja")
 
 [connection signal="pressed" from="HBoxContainer/Return" to="." method="_on_return_pressed"]

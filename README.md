@@ -10,9 +10,6 @@ initially thought. Can you survive killer weeds, angry flowers, and other
 yard hazards and emerge victorious with your brand new Swapdeck or will you
 succumb to the dangers of your neighbor Bob's backyard?
 
-**This game is still a work in progress, we still have to implement more features
-and there might be some bugs/issues that need to be fixed.**
-
 ## Name
 
 This game's official name is *The Legend of the Lawns: The Quest for a Swapdeck*

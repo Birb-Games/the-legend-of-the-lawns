@@ -1,0 +1,23 @@
+{
+	"first_dialog": [
+		"Oh man, thank goodness you finally came to. That fall knocked you out hard.",
+		"Just when you bought the Swapdeck a giant earthquake hit the store and then the floor caved in and we all fell into what appears to be a secret lab. By the way, I kept your Swapdeck safe, here you go.",
+		"Anyway, you got knocked out after the fall and Martin broke his arm. The jerk manager ran away and didn't do anything to help us, in fact, he locked us in here! I'm quitting this job the moment we get out of here.",
+		"So yeah, I thought we were doomed until my sister teleports here out of nowhere - probably a spell she learned at witch school - and is now trying to help us out. It's kind of weird since I haven't heard from her in months.",
+		"So yeah, that's basically the tldr of what happened. A pretty crazy day if you ask me.",
+		"Well, kind of. One of the locks is digital so I have a device that you can use to hack it and unlock it but there's a second lock - it's magic so my tech can't break through. Maybe my sister can help.",
+		"Anyway, here's the hacking device. Oh, and here's a thing that I found on the desk over there - it seems to be some kind of robot override remote - I'm not sure if it'll be useful but take it just in case. I'll stay behind to help out my sister."
+	],
+	"player_dialog": [
+		"What happened?!",
+		"Oh, thanks.",
+		"Yikes.",
+		"...",
+		"So do you know how to get the door open?",
+		"Okay.",
+		"Okay, sounds good!"
+	],
+	"possible_dialog": [
+		"I can't help you get through the magic lock, my sister should be of more help though."
+	]
+}

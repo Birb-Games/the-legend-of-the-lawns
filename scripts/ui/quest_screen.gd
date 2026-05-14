@@ -184,7 +184,10 @@ func activate() -> void:
 		$InfoScreen/QuestBox/RewardLabel2.hide()
 
 	# Set up reward button
-	$InfoScreen/QuestBox/RewardLabel.text = "Reward: %s" % current_quest.reward.description
+	if current_quest.reward.secret:
+		$InfoScreen/QuestBox/RewardLabel.text = "Reward: ???"
+	else:
+		$InfoScreen/QuestBox/RewardLabel.text = "Reward: %s" % current_quest.reward.description
 	if current_quest.reward.description.is_empty():
 		$InfoScreen/QuestBox/RewardLabel.hide()
 		$InfoScreen/QuestBox/RewardLabel2.hide()

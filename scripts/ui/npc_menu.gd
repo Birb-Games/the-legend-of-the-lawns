@@ -349,10 +349,11 @@ func set_buy_menu(item: Buy) -> void:
 			else:
 				set_menu_name("Bought %s!" % item.display_name)
 			set_description_text("%s" % item.buy_text)
-
-			buttons[0].show()
-			buttons[0].text = "Leave"
-			buttons[0].connect("pressed", on_leave_pressed)
+			
+			if item.id != "swapdeck":
+				buttons[0].show()
+				buttons[0].text = "Leave"
+				buttons[0].connect("pressed", on_leave_pressed)
 	)
 	var main: Main = $/root/Main
 	if item.price > main.money or (main.player.inventory.full() and item.is_item()):

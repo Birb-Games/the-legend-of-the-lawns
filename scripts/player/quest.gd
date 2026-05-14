@@ -13,10 +13,16 @@ class Reward:
 	var description: String
 	# Should be of the form func(Main) -> void
 	var give: Callable
+	var secret: bool = false
 
 	func _init(desc: String, give_func: Callable) -> void:
 		self.give = give_func
 		self.description = desc
+	
+	static func secret_reward(desc: String, give_func: Callable) -> Reward:
+		var reward: Reward = Reward.new(desc, give_func)
+		reward.secret = true
+		return reward
 
 var reward: Reward
 var goals: Array = []
@@ -316,6 +322,61 @@ static var list: Array[Quest] = [
 		Reward.new(
 			"$1",
 			func(main: Main) -> void: main.money += 1; main.player.inventory.has_alien_battery = false
+		),
+		[
+			Goal.new(
+				"Talk to IT Girl at the store.", 
+				func(main: Main) -> bool: return talked_to_npc(main, "Store/ITGirl7")
+			),
+		]
+	),
+
+	# Quest 23
+	Quest.new(
+		Reward.new(
+			"$10",
+			func(main: Main) -> void: main.money += 10
+		),
+		[]
+	),
+
+	# Quest 24
+	Quest.new(
+		Reward.new(
+			"Your very own Swapdeck!",
+			func(_main: Main) -> void: pass
+		),
+		[
+			Goal.new(
+				"Buy the Swapdeck!", 
+				func(_main: Main) -> bool: return false
+			),
+		]
+	),
+
+	# Quest 25
+	Quest.new(
+		Reward.new(
+			"",
+			func(_main: Main) -> void: pass
+		),
+		[
+			Goal.new(
+				"Talk to IT Girl", 
+				func(main: Main) -> bool: return talked_to_npc(main, "SecretLab/ITGirl")
+			),
+			Goal.new(
+				"Talk to Willow", 
+				func(main: Main) -> bool: return talked_to_npc(main, "SecretLab/Willow")
+			),
+		]
+	),
+
+	# Quest 26
+	Quest.new(
+		Reward.secret_reward(
+			"$999999",
+			func(main: Main) -> void: main.money += 999999
 		),
 		[]
 	),

@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://ddb5uy861jnlu" path="res://assets/textures/npcs/mr_gov_job_man.png" id="5_cw63i"]
 [ext_resource type="Texture2D" uid="uid://b235qhfs52p4u" path="res://assets/textures/npcs/robot.png" id="5_w4eg2"]
 [ext_resource type="Texture2D" uid="uid://c7j7itvakvwul" path="res://assets/textures/npcs/it_girl.png" id="6_a4vms"]
+[ext_resource type="Texture2D" uid="uid://vc331o7dcch6" path="res://assets/textures/npcs/player.png" id="12_dmd0u"]
+[ext_resource type="Texture2D" uid="uid://u2oc48mbh1tr" path="res://assets/textures/npcs/neighbors/willow.png" id="14_ix8r2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmd0u"]
 atlas = ExtResource("1_p1bmu")
@@ -100,6 +102,14 @@ region = Rect2(0, 0, 18, 40)
 atlas = ExtResource("3_nosrm")
 region = Rect2(18, 0, 18, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_x150b"]
+atlas = ExtResource("12_dmd0u")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65xh2"]
+atlas = ExtResource("12_dmd0u")
+region = Rect2(18, 0, 18, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1bmu"]
 atlas = ExtResource("5_w4eg2")
 region = Rect2(0, 0, 18, 40)
@@ -123,6 +133,14 @@ region = Rect2(34, 0, 17, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v4e37"]
 atlas = ExtResource("3_4wlns")
 region = Rect2(51, 0, 17, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2xdt"]
+atlas = ExtResource("14_ix8r2")
+region = Rect2(0, 0, 18, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqhet"]
+atlas = ExtResource("14_ix8r2")
+region = Rect2(18, 0, 18, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tcuxl"]
 animations = [{
@@ -246,6 +264,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_x150b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65xh2")
+}],
+"loop": true,
+"name": &"player",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_p1bmu")
 }, {
 "duration": 1.0,
@@ -271,6 +300,17 @@ animations = [{
 "loop": true,
 "name": &"spotty",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2xdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqhet")
+}],
+"loop": true,
+"name": &"willow",
+"speed": 2.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcuxl"]

@@ -1,0 +1,31 @@
+{
+	"first_dialog": [
+		"Okay good, it looks like the charm that I put on you finally got you to wake up - you really did take a hard fall.",
+		"No problem, I also cast a spell to contain the fire and prevent it from hurting you all - it doesn't extend past this room but it should stop us from all burning to a crisp.",
+		"The moment the earthquake hit I knew something was wrong so I cast a quick short range teleportation spell - I learned that this semester actually.",
+		"I'm not entirely sure but I think someone was experimenting with magic in this lab and had an accident which caused the earthquake and the floor to collapse and expose this lab.",
+		"I don't know who exactly owns this lab, but whatever they're doing it's reckless and could seriously hurt the people in this neighborhood, as you can already see.",
+		"I am also sensing the magical disturbance more strongly than ever, I think it's very possible that whatever it is, it's down here in the lab with us.",
+		"The disturbance might collapse very soon as well and possibly wipe out the entire neighborhood - we need to act now.",
+		"It's probably just past that door but my sister says that the store manager ran away and locked it which isn't good.",
+		"There's a digital lock and magical lock so I can give you a charm to break the magic lock but I'm bad with computers so my sister is going to need to help you out with that.",
+		"Anyway, here's the magical charm to break the magic lock. Unlock the door and stop whoever's behind this. I need to help heal Martin's broken arm so I'll stay behind. Hurry, we might not have much time before the disturbance collapses.",
+		"Also, don't worry, I called the fire department and they should be here soon - I'll make sure they get you when they arrive."
+	],
+	"player_dialog": [
+		"Oh, thanks.",
+		"That's nice, so how did you even get here?",
+		"Okay, and what even happened?!",
+		"Wow, that's kind of crazy.",
+		"Of course.",
+		"Oh... that's not good.",
+		"Okay.",
+		"...",
+		"Sure.",
+		"Alright, got it.",
+		"Got it, thanks!"
+	],
+	"possible_dialog": [
+		"Hurry, the magical collapse can happen any minute now!"
+	]
+}

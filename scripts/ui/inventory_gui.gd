@@ -124,6 +124,10 @@ func use_item() -> void:
 		return
 	if !main.lawn_loaded:
 		return
+	var lawn: Lawn = $/root/Main/Lawn
+	if lawn is FinalBossLawn:
+		if lawn.begin_dialog or lawn.intro:
+			return
 	
 	if item.cooldown > 0.0:
 		return
@@ -134,7 +138,7 @@ func use_item() -> void:
 
 func show_alien_battery_icon() -> void:
 	if player.inventory.has_alien_battery:
-		$AlienBattery.show()
+		$AlienBattery.visible = !(player.water_gun.visible or player.lawn_mower_active())
 	else:
 		$AlienBattery.hide()
 
@@ -143,6 +147,11 @@ func _process(delta: float) -> void:
 
 	# Hide the whole display
 	visible = !(hud.npc_menu_open() or hud.quest_screen_open() or player.health <= 0)
+	var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+	if lawn:
+		if lawn is FinalBossLawn:
+			if lawn.begin_dialog:
+				visible = false
 	if $/root/Main/HUD/MainMenu.visible:
 		hide()
 	if !visible:

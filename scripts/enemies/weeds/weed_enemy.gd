@@ -19,6 +19,7 @@ extends Area2D
 @export var explosion_bullet_count: int = 5
 @export var max_health: int = 10
 @export var boss: bool = false
+@export var add_camera_shake_if_boss: bool = true
 @export var grow_delay: float = 0.0
 var freeze_timer: float = 0.0
 const FREEZE_TIME: float = 8.0
@@ -69,7 +70,7 @@ func _ready() -> void:
 
 	# Add some screenshake to the camera
 	var camera: GameCamera = $/root/Main/Player/Camera2D
-	if boss:
+	if boss and add_camera_shake_if_boss:
 		camera.add_trauma(1.0)
 
 	scale = Vector2.ZERO
@@ -119,6 +120,10 @@ func update_growing_animation(delta: float) -> bool:
 		return true
 	return false
 
+func damage(amt: int) -> void:
+	health -= amt
+	health = max(health, 0)
+
 func _on_area_entered(area: Area2D) -> void:
 	if scale.x < target_scale:
 		return
@@ -127,15 +132,13 @@ func _on_area_entered(area: Area2D) -> void:
 		engaged = true
 		hit.emit()
 		area.explode()
-		health -= area.damage
-		health = max(health, 0)
+		damage(area.damage)
 		if area.is_in_group("ice_bullet") and !boss:
 			freeze_timer = FREEZE_TIME
 	elif area is EnemyBullet:
 		if area.is_in_group("damage_weeds"):
 			area.explode()
-			health -= area.damage_amt
-			health = max(health, 0)
+			damage(area.damage_amt)
 
 func bullet_spawn_point() -> Vector2:
 	return $BulletSpawnPoint.global_position

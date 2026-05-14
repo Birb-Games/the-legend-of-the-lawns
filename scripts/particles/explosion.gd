@@ -37,7 +37,7 @@ func _on_damage_zone_area_entered(area: Area2D) -> void:
 	var damage_applied = calculate_damage(area.global_position)
 	if area is WeedEnemy:
 		if can_damage_plants:
-			area.health -= damage_applied
+			area.damage(damage_applied)
 	elif area is FlowerEnemy:
 		if can_damage_plants:
 			area.health -= damage_applied

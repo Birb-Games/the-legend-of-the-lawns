@@ -65,7 +65,7 @@ func start_showing_menu() -> void:
 	var time_limit = $/root/Main/Lawn.time_limit
 	var time_bonus: int = 0
 	# Calculate the time bonus
-	if $/root/Main/HUD.time_elapsed < time_limit:
+	if $/root/Main/HUD.time_elapsed < time_limit and time_limit != 0.0:
 		# if we were able to complete it within the time limit,
 		# give the player the base bonus
 		time_bonus += current_neighbor.bonus_base
@@ -156,7 +156,7 @@ func _on_return_pressed() -> void:
 	var main: Main = $/root/Main
 	if !main.lawn_loaded:
 		return
-	main.play_sfx("Click")
+	$Click.play()
 	var prev_money: int = main.money
 	main.lawns_mowed += 1
 	main.update_money(current_wage_modifier)

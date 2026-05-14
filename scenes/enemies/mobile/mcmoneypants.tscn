@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://ckwt4evq85fse"]
+
+[ext_resource type="PackedScene" uid="uid://cuirhqjgskqaw" path="res://scenes/enemies/mobile/security_guard.tscn" id="1_lw5vc"]
+[ext_resource type="Script" uid="uid://cw64ki7wkvmar" path="res://scripts/enemies/mobile/mcmoneypants.gd" id="2_guvxa"]
+[ext_resource type="Texture2D" uid="uid://c7egp3dwg5kev" path="res://assets/textures/enemies/mobile/mcmoneypants.png" id="2_qva2l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guvxa"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(0, 0, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsvgb"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(18, 0, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qva2l"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(0, 49, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvl8m"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(36, 0, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djb7y"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(72, 0, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bn8f"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(54, 0, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uasth"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(90, 0, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikkom"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(36, 49, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfabb"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(90, 49, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ygsc"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(54, 49, 18, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdegq"]
+atlas = ExtResource("2_qva2l")
+region = Rect2(72, 49, 18, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qva2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guvxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsvgb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qva2l")
+}],
+"loop": true,
+"name": &"knocked_out",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvl8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djb7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bn8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uasth")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikkom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfabb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ygsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdegq")
+}],
+"loop": true,
+"name": &"walking_side",
+"speed": 6.0
+}]
+
+[node name="McMoneyPants" unique_id=69579524 instance=ExtResource("1_lw5vc")]
+script = ExtResource("2_guvxa")
+max_health = 128
+immune_to_fire = true
+
+[node name="AnimatedSprite2D" parent="." index="2" unique_id=1417400617]
+position = Vector2(0, -24.5)
+sprite_frames = SubResource("SpriteFrames_qva2l")
+
+[node name="Healthbar" parent="." index="4" unique_id=1214767469]
+offset_top = -52.333336
+offset_bottom = -50.333336
