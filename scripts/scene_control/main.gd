@@ -73,6 +73,7 @@ func advance_day() -> void:
 		if job.days_left <= 0:
 			job_list.erase(key)
 	$HUD/Control/QuestScreen.show_alert = false
+	Buy.update_buy_list()
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	player.reset_health()
