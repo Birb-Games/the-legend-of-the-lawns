@@ -64,5 +64,7 @@ func _on_return_pressed() -> void:
 	var main: Main = get_node_or_null("/root/Main")
 	if main:
 		main.return_to_neighborhood()
+		$/root/Main/HUD/Control/TransitionRect.start_animation()
+		main.play_sfx("Door")
 	get_tree().paused = false
 	queue_free()

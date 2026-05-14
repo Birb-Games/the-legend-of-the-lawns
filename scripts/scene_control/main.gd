@@ -109,6 +109,8 @@ func return_to_neighborhood() -> void:
 		# Activate final credits if the player successfully defeated this lawn
 		if lawn is FinalBossLawn:
 			if player.health > 0 and lawn.cut_grass_tiles >= lawn.total_grass_tiles:
+				for sfx: AudioStreamPlayer in $Sfx.get_children():
+					sfx.stop()
 				get_tree().paused = true
 				$HUD.add_final_credits()
 		lawn.queue_free()

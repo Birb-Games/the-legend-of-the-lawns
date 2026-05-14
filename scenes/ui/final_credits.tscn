@@ -280,7 +280,7 @@ offset_bottom = 664.0
 color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Scene4" unique_id=1262160542]
-position = Vector2(618.00006, 448)
+position = Vector2(592.00006, 448)
 scale = Vector2(6, 6)
 texture = ExtResource("13_imkkv")
 
@@ -356,7 +356,7 @@ offset_bottom = 23.0
 
 [node name="Title" type="Sprite2D" parent="." unique_id=541127966]
 z_index = 1
-position = Vector2(578, 758.9999)
+position = Vector2(578, 735.9999)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("20_bojqd")
 
@@ -365,6 +365,7 @@ modulate = Color(0, 0, 0, 0.5019608)
 z_index = -1
 position = Vector2(7.5000305, 10.000015)
 texture = ExtResource("20_bojqd")
+metadata/_edit_lock_ = true
 
 [node name="Credits" type="Label" parent="." unique_id=396628874]
 z_index = 2
@@ -373,9 +374,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -531.0
-offset_top = 959.00006
+offset_top = 936.00006
 offset_right = 531.0
-offset_bottom = 2084.0
+offset_bottom = 2061.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0.74138474, 0.7413847, 0.74138457, 1)
 theme_override_constants/shadow_offset_x = 1
