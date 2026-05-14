@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var progress_bar_gradient: Gradient
+@export var final_credits_scene: PackedScene
 
 var time_elapsed: float = 0.0
 
@@ -36,6 +37,9 @@ func _process(_delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	
 	if $Control/Finishscreen.visible or $Control/Failscreen.visible:
+		return
+
+	if get_node_or_null("Control/FinalCredits"):
 		return
 	
 	if activate_fail_screen():
@@ -217,3 +221,8 @@ func cheat_console_open() -> bool:
 
 func reset() -> void:
 	$Control/InventoryGUI.reset()
+
+func add_final_credits() -> void:
+	if get_node_or_null("Control/FinalCredits"):
+		return
+	$Control.add_child(final_credits_scene.instantiate())

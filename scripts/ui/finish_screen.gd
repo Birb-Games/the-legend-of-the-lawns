@@ -156,7 +156,7 @@ func _on_return_pressed() -> void:
 	var main: Main = $/root/Main
 	if !main.lawn_loaded:
 		return
-	main.play_sfx("Click")
+	$Click.play()
 	var prev_money: int = main.money
 	main.lawns_mowed += 1
 	main.update_money(current_wage_modifier)

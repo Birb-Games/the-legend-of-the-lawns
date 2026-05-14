@@ -48,7 +48,9 @@ func generate_dialog() -> void:
 	current_dialog = possible_dialog[randi() % len(possible_dialog)]
 
 func _process(_delta: float) -> void:
-	var main: Main = $/root/Main
+	var main: Main = get_node_or_null("/root/Main")
+	if main == null:
+		return
 	var quest_completed: bool = (Quest.get_quest(main.current_level) == null) or Quest.get_quest(main.current_level).completed(main)
 	if min_level > main.current_level:
 		hide()
