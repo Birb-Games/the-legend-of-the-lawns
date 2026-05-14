@@ -73,7 +73,6 @@ func advance_day() -> void:
 		if job.days_left <= 0:
 			job_list.erase(key)
 	$HUD/Control/QuestScreen.show_alert = false
-	Buy.update_buy_list()
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	player.reset_health()
@@ -129,6 +128,7 @@ func return_to_neighborhood() -> void:
 	# Disable camera position smoothing for a frame so that we do not have any 
 	# strange sudden camera movements when we are returning to the neighborhood
 	$Player/Camera2D.position_smoothing_enabled = false
+	Buy.update_buy_list()
 
 func update_hud_lawn(delta: float) -> void:
 	$HUD/Control/InfoText.visible = player.health > 0
