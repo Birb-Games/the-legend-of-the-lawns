@@ -22,7 +22,7 @@ var cooldown: int = 0
 @export var level: int = -1
 @export var knock_sound: AudioStreamPlayer
 @export var secret: bool = false
-@export var give_item_list: PackedStringArray = []
+var give_item_list: PackedStringArray = []
 @export var at_store: bool = false
 
 @export_group("Wage Info")

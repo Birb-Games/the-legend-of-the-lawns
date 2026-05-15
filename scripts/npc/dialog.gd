@@ -23,6 +23,7 @@ static func set_neighbor_dialog_from_json(neighbor: NeighborNPC, json: JSON) -> 
 	neighbor.first_dialog = Save.get_val(json.data, "first_dialog", DEFAULT_FIRST_DIALOG)
 	neighbor.player_dialog = Save.get_val(json.data, "player_dialog", DEFAULT_PLAYER_DIALOG)
 	neighbor.first_job_offer = Save.get_val(json.data, "first_job_offer", DEFAULT_FIRST_JOB_OFFER)
+	neighbor.give_item_list = Save.get_val(json.data, "give_item_list", [])
 
 static func set_npc_dialog_from_json(npc: NPC, json: JSON) -> void:
 	if json == null:
