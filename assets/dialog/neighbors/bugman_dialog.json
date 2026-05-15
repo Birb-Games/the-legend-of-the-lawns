@@ -19,5 +19,8 @@
 		"Uhm, are you in need of any lawn care services?",
 		"But, aren't those like your brothers?"
 	],
-	"first_job_offer": "BZZZT. Yeah, yeah, very funny. I just told you, I'm human like you and I just happen to have the face of a bug. Are you going to help me out or just stare at me?"
+	"first_job_offer": "BZZZT. Yeah, yeah, very funny. I just told you, I'm human like you and I just happen to have the face of a bug. Are you going to help me out or just stare at me?",
+	"give_item_list": [
+		"insecticide"
+	]
 }

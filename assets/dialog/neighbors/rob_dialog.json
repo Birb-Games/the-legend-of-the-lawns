@@ -13,5 +13,9 @@
 		"Uhm... okay?",
 		"..."
 	],
-	"first_job_offer": "Sorry about that, I've been listening to Neighbor Hunter's conspiracy podcast too much recently. So yeah, are you still willing to mow my lawn?"
+	"first_job_offer": "Sorry about that, I've been listening to Neighbor Hunter's conspiracy podcast too much recently. So yeah, are you still willing to mow my lawn?",
+	"give_item_list": [
+		"ice_cream",
+		"chocolate"
+	]
 }

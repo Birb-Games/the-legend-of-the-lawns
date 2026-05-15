@@ -656,7 +656,6 @@ display_name = "Alien"
 lawn_template = ExtResource("58_f1vlx")
 level = 21
 secret = true
-give_item_list = ["alien_battery"]
 wage = 20
 max_bonus = 10
 hedge_penalty = 0

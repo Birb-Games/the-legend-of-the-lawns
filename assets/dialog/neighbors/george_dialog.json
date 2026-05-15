@@ -8,7 +8,7 @@
 		"The weeds in my yard have been really aggressive recently, so I tried buying some ultra high powered weedkiller - I bought several barrels.",
 		"The only issue is that it turns out that the weedkiller is super reactive - in short, it explodes easily and sets everything on fire.",
 		"I can't get a refund on my order so I'm just storing them in my backyard.",
-		"I've rigged up a basic sprinkler system to put out any accidental fires but I won't gaurantee it will work.",
+		"I've rigged up a basic sprinkler system to put out any accidental fires but I won't gaurantee it will work."
 	],
 	"player_dialog": [
 		"Oh, hey there Mr. George...",
@@ -20,5 +20,8 @@
 		"...",
 		"Uhm... okay?"
 	],
-	"first_job_offer": "To trigger a sprinkler, just hit it with any projectile. Now, don't go about burning down my hedges, okay?"
+	"first_job_offer": "To trigger a sprinkler, just hit it with any projectile. Now, don't go about burning down my hedges, okay?",
+	"give_item_list": [
+		"weedkiller"
+	]
 }
