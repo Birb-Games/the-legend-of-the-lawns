@@ -22,9 +22,10 @@ func add_labels(labels: Array, sfx_id: String) -> void:
 	sfx_to_play.push_back(sfx_id)
 
 func activate() -> void:
-	if $/root/Main/Player.health <= 0:
+	var main: Main = $/root/Main
+	if main.player.health <= 0:
 		return
-	if !$/root/Main.lawn_loaded:
+	if !main.lawn_loaded:
 		return
 	timer = DELAY
 	show()

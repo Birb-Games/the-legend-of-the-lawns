@@ -30,8 +30,10 @@
 [ext_resource type="AudioStream" uid="uid://3qcisgamecil" path="res://assets/audio/sfx/zap.wav" id="28_2f3dj"]
 [ext_resource type="AudioStream" uid="uid://drg01qop0a38f" path="res://assets/audio/sfx/spray.wav" id="29_yq6so"]
 [ext_resource type="AudioStream" uid="uid://dxks8hxa44djr" path="res://assets/audio/sfx/woosh.wav" id="30_fv21b"]
+[ext_resource type="Script" uid="uid://davm5hlsaf323" path="res://scripts/scene_control/music.gd" id="31_qkpxi"]
+[ext_resource type="AudioStream" uid="uid://dim2dljcg2w3a" path="res://assets/audio/music/yard_party.res" id="31_tel4y"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fv21b"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_qkpxi"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Main" type="Node2D" unique_id=592425704]
@@ -52,7 +54,7 @@ current = true
 
 [node name="PenaltyParticle" parent="Player" unique_id=480127416 instance=ExtResource("5_tbgi4")]
 position = Vector2(0, 6)
-texture = SubResource("ViewportTexture_fv21b")
+texture = SubResource("ViewportTexture_qkpxi")
 first_instance = true
 
 [node name="Neighborhood" parent="." unique_id=1501943024 instance=ExtResource("3_sugp2")]
@@ -156,3 +158,12 @@ stream = ExtResource("29_yq6so")
 stream = ExtResource("30_fv21b")
 volume_db = -15.0
 max_polyphony = 4
+
+[node name="Music" type="Node" parent="." unique_id=88408651]
+process_mode = 3
+script = ExtResource("31_qkpxi")
+
+[node name="LawnMusic" type="AudioStreamPlayer" parent="Music" unique_id=1978617493]
+stream = ExtResource("31_tel4y")
+volume_db = -5.0
+bus = &"Music"

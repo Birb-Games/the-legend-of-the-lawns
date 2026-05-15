@@ -5,6 +5,7 @@ extends Node2D
 @onready var neighborhood_scene: PackedScene = preload("uid://8t3kf3315lkx")
 @onready var neighborhood: Neighborhood = $Neighborhood
 @onready var player: Player = $Player
+@onready var music_controller: MusicController = $Music
 @onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
 
@@ -76,6 +77,7 @@ func advance_day() -> void:
 	Buy.update_buy_list()
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
+	music_controller.play_music("LawnMusic")
 	player.reset_health()
 	player.status_effects.clear()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -100,6 +102,7 @@ func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	$Player/Camera2D.position_smoothing_enabled = false
 
 func return_to_neighborhood() -> void:
+	music_controller.clear_music()
 	$HUD.hide_neighbor_menu()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	player.reset_health()
