@@ -29,9 +29,9 @@ tile_set = ExtResource("1_frppp")
 
 [node name="Title" type="Label" parent="." unique_id=256756535]
 layout_mode = 0
-offset_top = 45.0
+offset_top = 35.0
 offset_right = 1152.0
-offset_bottom = 121.0
+offset_bottom = 111.0
 theme_override_colors/font_shadow_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_outline_size = 2
@@ -58,9 +58,9 @@ Neighborhood"
 
 [node name="Stats" type="VBoxContainer" parent="." unique_id=392840848]
 layout_mode = 0
-offset_top = 129.0
+offset_top = 106.0
 offset_right = 1152.0
-offset_bottom = 524.0
+offset_bottom = 525.0
 
 [node name="Wage" type="Label" parent="Stats" unique_id=240989385]
 custom_minimum_size = Vector2(0, 46)
@@ -122,7 +122,7 @@ text = "My hedges are ruined..."
 horizontal_alignment = 1
 
 [node name="TimeBonus" type="Label" parent="Stats" unique_id=426343431]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 0.63529414, 0, 1)
@@ -131,6 +131,18 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_fonts/font = ExtResource("2_m00dn")
 theme_override_font_sizes/font_size = 32
 text = "Time Bonus: +$0"
+horizontal_alignment = 1
+
+[node name="Interest" type="Label" parent="Stats" unique_id=131738594]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.63529414, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 24
+text = "Interest: +$0"
 horizontal_alignment = 1
 
 [node name="ItemText" type="Label" parent="Stats" unique_id=998069577]

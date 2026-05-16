@@ -127,7 +127,7 @@ func set_mowing_menu(neighbor: NeighborNPC) -> void:
 		$/root/Main.play_sfx("MaleTalk")
 
 	set_menu_name(neighbor.display_name)
-	set_wage_text(format_wage(neighbor.wage))
+	set_wage_text(format_wage(neighbor.get_wage()))
 	set_description_text(neighbor.current_dialog)
 	
 	buttons[0].show()
@@ -427,7 +427,7 @@ func on_accept_pressed() -> void:
 	if current_neighbor.max_difficulty > 0:
 		difficulty = min(difficulty, current_neighbor.max_difficulty)
 	$/root/Main.load_lawn(current_neighbor.lawn_template, difficulty)
-	$/root/Main.current_wage = current_neighbor.wage
+	$/root/Main.current_wage = current_neighbor.get_wage()
 
 func _process(delta: float) -> void:
 	if $Menu/VBoxContainer/Wage.text.is_empty():
