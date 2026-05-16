@@ -1380,7 +1380,7 @@ id = "shield_generator"
 description = "Temporarily makes you invulnerable to damage, 6 uses.
 -> Generates an electromagnetic shield to protect you from all kinds of damage. A truly incredible invention, would be nice if it had better battery life though."
 buy_text = "Left click to use item."
-price = 15
+price = 12
 
 [node name="ElectricDoodad" parent="Store/StoreDisplay4" unique_id=688363830 instance=ExtResource("54_532a6")]
 position = Vector2(-25, -15)
@@ -1390,7 +1390,7 @@ id = "electric_doodad"
 description = "Shocks nearby enemies, 6 uses.
 -> *Shockingly* effective."
 buy_text = "Left click to use item."
-price = 15
+price = 12
 
 [node name="DroneController" parent="Store/StoreDisplay4" unique_id=248807824 instance=ExtResource("54_532a6")]
 position = Vector2(-9, -15)
@@ -1400,7 +1400,7 @@ id = "drone_controller"
 description = "Spawns a drone that shoots at enemies for you, 4 uses.
 -> A military grade attack drone manufactured by the McMoneyPants Robotics Corporation. Hopefully its AI control systems don't go rogue anytime soon..."
 buy_text = "Left click to use item."
-price = 12
+price = 10
 
 [node name="Fireworks" parent="Store/StoreDisplay4" unique_id=101699015 instance=ExtResource("54_532a6")]
 position = Vector2(8, -15)
@@ -1409,7 +1409,7 @@ id = "fireworks"
 description = "Launches a bunch of firework rockets that explode and damage enemies, 3 uses.
 -> This year's Independence Day fireworks show is going to be so awesome!"
 buy_text = "Left click to use item."
-price = 30
+price = 25
 
 [node name="Gasoline" parent="Store/StoreDisplay4" unique_id=1841829751 instance=ExtResource("54_532a6")]
 position = Vector2(25, -15)
@@ -1508,7 +1508,7 @@ id = "water_jug"
 description = "Use this with your water gun to shoot bullets that explode upon impact.
 -> It's a jug of water, good for if you need refreshments for a party or if you need to stockpile resources for the apocalypse."
 buy_text = "To use it, select it in your inventory and then pick up the water gun. You will now shoot explosive water bullets from your water gun."
-price = 14
+price = 9
 
 [node name="WaterJug2" parent="Store/StoreDisplay6" unique_id=779481063 instance=ExtResource("54_532a6")]
 position = Vector2(-8, -15)
@@ -1517,7 +1517,7 @@ id = "water_jug"
 description = "Use this with your water gun to shoot bullets that explode upon impact.
 -> It's a jug of water, good for if you need refreshments for a party or if you need to stockpile resources for the apocalypse."
 buy_text = "To use it, select it in your inventory and then pick up the water gun. You will now shoot explosive water bullets from your water gun."
-price = 14
+price = 9
 
 [node name="Ice" parent="Store/StoreDisplay6" unique_id=854869466 instance=ExtResource("54_532a6")]
 position = Vector2(-24, -15)
@@ -1527,7 +1527,7 @@ id = "ice"
 description = "Use this with your water gun to shoot ice cubes that freeze enemies.
 -> Imported directly from the arctic."
 buy_text = "To use it, select it in your inventory and then pick up the water gun. You will now shoot ice cubes from your water gun."
-price = 16
+price = 10
 
 [node name="Ice2" parent="Store/StoreDisplay6" unique_id=538126086 instance=ExtResource("54_532a6")]
 position = Vector2(-39, -15)
@@ -1537,7 +1537,7 @@ id = "ice"
 description = "Use this with your water gun to shoot ice cubes that freeze enemies.
 -> Imported directly from the arctic."
 buy_text = "To use it, select it in your inventory and then pick up the water gun. You will now shoot ice cubes from your water gun."
-price = 16
+price = 10
 
 [node name="PottedPlants" type="Node2D" parent="Store" unique_id=647634743]
 y_sort_enabled = true

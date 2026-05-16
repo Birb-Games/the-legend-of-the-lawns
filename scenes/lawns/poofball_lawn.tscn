@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d3dbcnyk3dtej" path="res://scenes/enemies/mobile/poofball.tscn" id="8_q03h4"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_myuwb")]
-time_limit = 300.0
+time_limit = 360.0
 difficulty = 4
 
 [node name="TileMapLayer" parent="." index="0" unique_id=1119632854]

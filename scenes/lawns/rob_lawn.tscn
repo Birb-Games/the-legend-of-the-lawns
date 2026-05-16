@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="4_xf112"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_tt2uy")]
-time_limit = 360.0
+time_limit = 510.0
 difficulty = 5
 
 [node name="TileMapLayer" parent="." index="0" unique_id=1119632854]

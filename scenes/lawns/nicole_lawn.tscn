@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dkuhevs5nmf32" path="res://scenes/enemies/mobile/evil_gnome.tscn" id="9_vjxa0"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_54fhv")]
-time_limit = 330.0
+time_limit = 540.0
 difficulty = 5
 
 [node name="TileMapLayer" parent="." index="0" unique_id=1119632854]
