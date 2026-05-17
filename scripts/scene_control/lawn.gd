@@ -48,10 +48,10 @@ var astar_update_timer: float = ASTAR_UPDATE_INTERVAL
 const DIFFICULTY_SPEED: float = 0.97
 @export var max_weeds: int = 20
 @export var max_mobs: int = 20
-@onready var weed_spawn_timer: float = max(32.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
-@onready var weed_spawn_frequency: float = max(32.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
-@onready var mob_spawn_timer: float = max(45.0 * pow(DIFFICULTY_SPEED, difficulty), 20.0)
-@onready var mob_spawn_frequency: float = max(45.0 * pow(DIFFICULTY_SPEED, difficulty), 20.0)
+@onready var weed_spawn_timer: float = max(30.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
+@onready var weed_spawn_frequency: float = max(25.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
+@onready var mob_spawn_timer: float = max(40.0 * pow(DIFFICULTY_SPEED, difficulty), 20.0)
+@onready var mob_spawn_frequency: float = max(40.0 * pow(DIFFICULTY_SPEED, difficulty), 20.0)
 # Valid tiles that enemies  can spawn on
 var valid_spawn_tiles: Dictionary
 
@@ -293,16 +293,16 @@ func spawn_enemies(delta: float) -> void:
 	# Spawn mobile enemies
 	mob_spawn_timer -= delta
 	if mob_spawn_timer <= 0.0:
-		if randi() % 2 == 0:
+		if randi() % 3 != 0:
 			spawn_mobs(player.global_position)
-		mob_spawn_timer = mob_spawn_frequency * randf_range(1.0, 1.75) + randf() * 3.0
+		mob_spawn_timer = mob_spawn_frequency * randf_range(1.0, 1.5) + randf() * 3.0
 
 	# Spawn weed enemies
 	weed_spawn_timer -= delta
 	if weed_spawn_timer <= 0.0:
-		if randi() % 2 == 0:
+		if randi() % 3 != 0:
 			spawn_weeds(player.global_position)
-		weed_spawn_timer = weed_spawn_frequency * randf_range(1.0, 1.75) + randf() * 3.0
+		weed_spawn_timer = weed_spawn_frequency * randf_range(1.0, 1.5) + randf() * 3.0
 
 func _process(delta: float) -> void:
 	var player: Player = get_node_or_null("/root/Main/Player")
