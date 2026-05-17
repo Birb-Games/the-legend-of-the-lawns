@@ -72,6 +72,12 @@ func shoot(angle_offset: float = 0.0) -> bool:
 					bullet = mega_bullet_scene.instantiate()
 					selected_item.uses_left -= 1
 					selected_item.cooldown = InventoryItem.get_cooldown(selected_item.id)
+				"gasoline":
+					if selected_item.cooldown > 0.0:
+						return false
+					bullet = fire_bullet_scene.instantiate()
+					selected_item.uses_left -= 1
+					selected_item.cooldown = InventoryItem.get_cooldown(selected_item.id)
 				"ice":
 					bullet = ice_bullet_scene.instantiate()
 					selected_item.uses_left -= 1

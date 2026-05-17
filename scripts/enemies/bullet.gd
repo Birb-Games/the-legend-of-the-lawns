@@ -15,6 +15,7 @@ extends Area2D
 @export var ignore_lawn_obstacles: bool = false
 var timer: float = 0.0
 @onready var hit_sfx: AudioStreamPlayer2D = get_node_or_null("HitSfx")
+var exploded: bool = false
 
 # Should have magnitude 1.0
 var dir: Vector2 = Vector2.ZERO
@@ -23,6 +24,8 @@ func _ready() -> void:
 	timer = lifetime
 
 func explode() -> void:
+	if exploded:
+		return
 	var trail: GPUParticles2D = get_node_or_null("BulletTrail")
 	if trail:
 		trail.hide()
@@ -30,11 +33,19 @@ func explode() -> void:
 		hit_sfx.play()
 	$Sprite2D.hide()
 	$GPUParticles2D.emitting = true	
+	exploded = true
 
 func active() -> bool:
 	return $Sprite2D.visible
 
 func _process(delta: float) -> void:
+	# Sprite hidden and particles no longer emitting = dead
+	if !$Sprite2D.visible and !$GPUParticles2D.emitting:
+		if hit_sfx and hit_sfx.playing:
+			return
+		queue_free()
+		return
+
 	timer -= delta
 	if timer < 0.0:
 		explode()
@@ -45,13 +56,7 @@ func _process(delta: float) -> void:
 		if !directional:
 			rotation += rotation_speed * PI / 180.0 * delta
 		else:
-			rotation = dir.angle()
-	
-	# Sprite hidden and particles no longer emitting = dead
-	if !$Sprite2D.visible and !$GPUParticles2D.emitting:
-		if hit_sfx and hit_sfx.playing:
-			return
-		queue_free()
+			rotation = dir.angle()	
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("lawn_obstacle") and $Sprite2D.visible and !ignore_lawn_obstacles:

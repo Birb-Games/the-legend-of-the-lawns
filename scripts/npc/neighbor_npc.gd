@@ -136,3 +136,9 @@ func load_from(data: Dictionary) -> void:
 func enable() -> void:
 	disabled = false
 	$Area2D/CollisionShape2D.disabled = disabled
+
+# Returns the 'modified' wage - wage increases by $1 every time the player mows
+# the lawn, increases wage by $2 every time the player plays the lawn, caps the
+# wage at 3 times the base wage
+func get_wage() -> int:
+	return min(floori(wage * (1.0 + 0.2 * times_mowed)), wage * 2)
