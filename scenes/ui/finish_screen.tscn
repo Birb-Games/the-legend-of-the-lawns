@@ -29,9 +29,9 @@ tile_set = ExtResource("1_frppp")
 
 [node name="Title" type="Label" parent="." unique_id=256756535]
 layout_mode = 0
-offset_top = 35.0
+offset_top = 63.0
 offset_right = 1152.0
-offset_bottom = 111.0
+offset_bottom = 139.0
 theme_override_colors/font_shadow_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_outline_size = 2
@@ -40,6 +40,137 @@ theme_override_font_sizes/font_size = 64
 text = "Lawn Finished!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="." unique_id=392840848]
+layout_mode = 0
+offset_top = 136.0
+offset_right = 1152.0
+offset_bottom = 518.0
+
+[node name="Wage" type="Label" parent="Stats" unique_id=240989385]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 36
+text = "Wage: $0"
+horizontal_alignment = 1
+
+[node name="FlowerPenalty" type="Label" parent="Stats" unique_id=960493418]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.36778843, 0.3002166, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 28
+text = "Flower Penalty: -$0"
+horizontal_alignment = 1
+
+[node name="FlowerCommentText" type="Label" parent="Stats" unique_id=1510985687]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.36778843, 0.3002166, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 22
+text = "My poor flowers!!!"
+horizontal_alignment = 1
+
+[node name="HedgePenalty" type="Label" parent="Stats" unique_id=1590381272]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.36778843, 0.3002166, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 28
+text = "Hedge Penalty: -$0"
+horizontal_alignment = 1
+
+[node name="HedgeCommentText" type="Label" parent="Stats" unique_id=182180083]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.36778843, 0.3002166, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 22
+text = "My hedges are ruined..."
+horizontal_alignment = 1
+
+[node name="TimeBonus" type="Label" parent="Stats" unique_id=426343431]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.63529414, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 28
+text = "Time Bonus: +$0"
+horizontal_alignment = 1
+
+[node name="Interest" type="Label" parent="Stats" unique_id=131738594]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.63529414, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 22
+text = "Interest: +$0"
+horizontal_alignment = 1
+
+[node name="ItemText" type="Label" parent="Stats" unique_id=998069577]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.63529414, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 28
+text = "New Item!"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stats/ItemText" unique_id=1823209062]
+position = Vector2(688.9999, 10)
+rotation = 0.5235988
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("4_piuhf")
+animation = &"chocolate"
+
+[node name="Earned" type="Label" parent="Stats" unique_id=825412982]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 40
+text = "Earned: $0"
+horizontal_alignment = 1
+
+[node name="Total" type="Label" parent="Stats" unique_id=1401800362]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_m00dn")
+theme_override_font_sizes/font_size = 56
+text = "Total: $0"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1030662196]
 layout_mode = 0
@@ -55,137 +186,6 @@ theme_override_fonts/font = ExtResource("2_m00dn")
 theme_override_font_sizes/font_size = 32
 text = "Return to 
 Neighborhood"
-
-[node name="Stats" type="VBoxContainer" parent="." unique_id=392840848]
-layout_mode = 0
-offset_top = 106.0
-offset_right = 1152.0
-offset_bottom = 525.0
-
-[node name="Wage" type="Label" parent="Stats" unique_id=240989385]
-custom_minimum_size = Vector2(0, 46)
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 44
-text = "Wage: $0"
-horizontal_alignment = 1
-
-[node name="FlowerPenalty" type="Label" parent="Stats" unique_id=960493418]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 0.36778843, 0.3002166, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 32
-text = "Flower Penalty: -$0"
-horizontal_alignment = 1
-
-[node name="FlowerCommentText" type="Label" parent="Stats" unique_id=1510985687]
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 0.36778843, 0.3002166, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 24
-text = "My poor flowers!!!"
-horizontal_alignment = 1
-
-[node name="HedgePenalty" type="Label" parent="Stats" unique_id=1590381272]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 0.36778843, 0.3002166, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 32
-text = "Hedge Penalty: -$0"
-horizontal_alignment = 1
-
-[node name="HedgeCommentText" type="Label" parent="Stats" unique_id=182180083]
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 0.36778843, 0.3002166, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 24
-text = "My hedges are ruined..."
-horizontal_alignment = 1
-
-[node name="TimeBonus" type="Label" parent="Stats" unique_id=426343431]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 0.63529414, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 32
-text = "Time Bonus: +$0"
-horizontal_alignment = 1
-
-[node name="Interest" type="Label" parent="Stats" unique_id=131738594]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 0.63529414, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 24
-text = "Interest: +$0"
-horizontal_alignment = 1
-
-[node name="ItemText" type="Label" parent="Stats" unique_id=998069577]
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 0.63529414, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 32
-text = "New Item!"
-horizontal_alignment = 1
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stats/ItemText" unique_id=1823209062]
-position = Vector2(688.9999, 10)
-rotation = 0.5235988
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("4_piuhf")
-animation = &"chocolate"
-
-[node name="Earned" type="Label" parent="Stats" unique_id=825412982]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 48
-text = "Earned: $0"
-horizontal_alignment = 1
-
-[node name="Total" type="Label" parent="Stats" unique_id=1401800362]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/font = ExtResource("2_m00dn")
-theme_override_font_sizes/font_size = 64
-text = "Total: $0"
-horizontal_alignment = 1
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=1706972718]
 stream = ExtResource("5_becja")
