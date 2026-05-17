@@ -29,7 +29,7 @@
 size = Vector2(210, 169)
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_eptqb")]
-time_limit = 720.0
+time_limit = 900.0
 difficulty = 6
 max_weeds = 10
 max_mobs = 10

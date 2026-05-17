@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://comqqrvdmt27s" path="res://scenes/enemies/weeds/super_thornweed.tscn" id="6_yf8df"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_m2qwn")]
-time_limit = 840.0
+time_limit = 1500.0
 difficulty = 6
 max_weeds = 10
 max_mobs = 10

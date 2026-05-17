@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c07jh4tyii0gs" path="res://scenes/lawn_features/explosive_barrel.tscn" id="10_2n3df"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_qgpre")]
-time_limit = 1200.0
+time_limit = 1800.0
 difficulty = 6
 max_weeds = 5
 max_mobs = 5
