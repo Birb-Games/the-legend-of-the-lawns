@@ -141,4 +141,4 @@ func enable() -> void:
 # the lawn, increases wage by $2 every time the player plays the lawn, caps the
 # wage at 3 times the base wage
 func get_wage() -> int:
-	return min(wage + times_mowed * 2, wage * 3)
+	return min(floori(wage * (1.0 + 0.2 * times_mowed)), wage * 2)
