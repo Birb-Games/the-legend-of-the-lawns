@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bravg6u55evt" path="res://assets/audio/sfx/male_talk.wav" id="12_pqbjp"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_pxivk")]
-time_limit = 720.0
+time_limit = 1020.0
 difficulty = 7
 
 [node name="TileMapLayer" parent="." index="0" unique_id=1119632854]
