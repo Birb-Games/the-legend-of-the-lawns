@@ -9,9 +9,9 @@ class_name Drone
 @onready var speed_factor: float = randf_range(0.55, 0.75)
 var rotation_speed: float = 0.0
 const SHOOT_RANGE: float = 300.0
-const SHOOT_COOLDOWN: float = 2.0
+const SHOOT_COOLDOWN: float = 0.65
 var shoot_timer: float = SHOOT_COOLDOWN
-const MAX_HEALTH: int = 14
+const MAX_HEALTH: int = 24
 var health: int = MAX_HEALTH
 var pause_timer: float = 0.0
 var time_until_next_pause: float = randf_range(2.0, 4.0)

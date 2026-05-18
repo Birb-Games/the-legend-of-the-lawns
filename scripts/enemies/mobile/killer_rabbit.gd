@@ -134,8 +134,10 @@ func _process(delta: float) -> void:
 		idle_timer = max(idle_timer, 0.0)
 
 func damage(amt: int) -> void:
-	# If the rabbit is stunned, do not take damage
+	# If the rabbit is stunned, damage the rabbit and unstun it
 	if stun_timer > 0.0:
+		stun_timer = 0.0
+		super.damage(amt)
 		return
 	# Rabbit gains some resistance to damage when angry
 	if anger_timer > 0.0 and randi() % 2 == 0 and amt <= 2:

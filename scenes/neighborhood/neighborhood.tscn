@@ -1400,7 +1400,7 @@ id = "drone_controller"
 description = "Spawns a drone that shoots at enemies for you, 4 uses.
 -> A military grade attack drone manufactured by the McMoneyPants Robotics Corporation. Hopefully its AI control systems don't go rogue anytime soon..."
 buy_text = "Left click to use item."
-price = 10
+price = 12
 
 [node name="Fireworks" parent="Store/StoreDisplay4" unique_id=101699015 instance=ExtResource("54_532a6")]
 position = Vector2(8, -15)
