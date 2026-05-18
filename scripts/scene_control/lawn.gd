@@ -45,13 +45,13 @@ var astar_update_timer: float = ASTAR_UPDATE_INTERVAL
 @export var tomato_boy_scene: PackedScene
 @onready var tomato_boy_spawn_timer = randf_range(45.0, 90.0)
 # How much to increase the speed of spawning enemies
-const DIFFICULTY_SPEED: float = 0.97
+const DIFFICULTY_SPEED: float = 0.95
 @export var max_weeds: int = 20
 @export var max_mobs: int = 20
-@onready var weed_spawn_timer: float = max(32.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
-@onready var weed_spawn_frequency: float = max(32.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
-@onready var mob_spawn_timer: float = max(45.0 * pow(DIFFICULTY_SPEED, difficulty), 20.0)
-@onready var mob_spawn_frequency: float = max(45.0 * pow(DIFFICULTY_SPEED, difficulty), 20.0)
+@onready var weed_spawn_timer: float = max(30.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
+@onready var weed_spawn_frequency: float = max(25.0 * pow(DIFFICULTY_SPEED, difficulty), 15.0)
+@onready var mob_spawn_timer: float = max(40.0 * pow(DIFFICULTY_SPEED, difficulty), 20.0)
+@onready var mob_spawn_frequency: float = max(40.0 * pow(DIFFICULTY_SPEED, difficulty), 20.0)
 # Valid tiles that enemies  can spawn on
 var valid_spawn_tiles: Dictionary
 
@@ -203,24 +203,23 @@ func spawn_weeds(pos: Vector2) -> void:
 	if weed_count >= max_weeds:
 		return
 
-	var spawn_count = min(Spawning.get_rand_weed_count(max(difficulty - 1, 0)), 3)
+	var spawn_count = min(Spawning.get_rand_weed_count(max(difficulty - 1, 0)), 4)
 	# Slow down the rate at which weeds are spawning if we start getting too many
 	if weed_count >= ceili(max_weeds / 3.0):
-		spawn_count = min(spawn_count, 2)
+		spawn_count = min(spawn_count, 3)
 	if weed_count >= ceili(max_weeds * 0.75):
-		spawn_count = min(spawn_count, 1)
+		spawn_count = min(spawn_count, 2)
 	for i in range(spawn_count):
 		var enemy_id: String = Spawning.get_rand(weights)
 		if enemy_id.is_empty():
 			continue
-		# If we are at less than half "weed capacity", ignore 1 in 3 weeds
+		# If we are at less than half "weed capacity", ignore 1 in 4 weeds
 		if weed_count * 2 < max_weeds:
-			if randi() % 3 == 0:
+			if randi() % 4 == 0:
 				continue
-		# If we are at less than half "weed capacity", ignore 2 in 3 weeds
-		else:
-			if randi() % 3 <= 1:
-				continue
+		# If we are at more than half "weed capacity", ignore 1 in 2 weeds
+		elif randi() % 2 == 0:
+			continue
 		Spawning.try_spawning_around_point(
 			self,
 			$Weeds,
@@ -228,7 +227,7 @@ func spawn_weeds(pos: Vector2) -> void:
 			Spawning.get_weed_scene(enemy_id),
 			3.0,
 			8.0,
-			2,
+			4,
 			0.2,
 			true
 		)
@@ -293,16 +292,19 @@ func spawn_enemies(delta: float) -> void:
 	# Spawn mobile enemies
 	mob_spawn_timer -= delta
 	if mob_spawn_timer <= 0.0:
-		if randi() % 2 == 0:
+		if randi() % 3 != 0:
 			spawn_mobs(player.global_position)
-		mob_spawn_timer = mob_spawn_frequency * randf_range(1.0, 1.75) + randf() * 3.0
+		if randi() % 2 == 0:
+			mob_spawn_frequency = max(mob_spawn_frequency * DIFFICULTY_SPEED, 15.0)
+		mob_spawn_timer = mob_spawn_frequency * randf_range(1.0, 1.5) + randf() * 3.0
 
 	# Spawn weed enemies
 	weed_spawn_timer -= delta
 	if weed_spawn_timer <= 0.0:
-		if randi() % 2 == 0:
+		if randi() % 3 != 0:
 			spawn_weeds(player.global_position)
-		weed_spawn_timer = weed_spawn_frequency * randf_range(1.0, 1.75) + randf() * 3.0
+		weed_spawn_frequency = max(weed_spawn_frequency * DIFFICULTY_SPEED, 20.0)
+		weed_spawn_timer = weed_spawn_frequency * randf_range(1.0, 1.5) + randf() * 3.0
 
 func _process(delta: float) -> void:
 	var player: Player = get_node_or_null("/root/Main/Player")
