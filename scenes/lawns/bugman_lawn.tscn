@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkuhevs5nmf32" path="res://scenes/enemies/mobile/evil_gnome.tscn" id="8_mybwe"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_rwfyo")]
-time_limit = 630.0
+time_limit = 900.0
 difficulty = 6
 max_weeds = 10
 max_mobs = 10
