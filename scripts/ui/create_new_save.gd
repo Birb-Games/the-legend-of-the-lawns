@@ -2,6 +2,8 @@ extends Control
 
 @export var intro: PackedScene
 
+const REPLACE_WITH_UNDERSCORE: Array = [ '/', '\\', '<', '>', ':', '"', '|', '?', '*', ' ', '.' ]
+
 func activate() -> void:
 	show()
 	$Name/Error.text = ""
@@ -12,17 +14,37 @@ func _on_back_pressed() -> void:
 	main.play_sfx("Click")
 	hide()
 
+# Convert all illegal characters in the string into underscores
+static func convert_name_to_save(player_name: String) -> String:
+	var modified_name: String = ""
+	for i in range(player_name.length()):
+		var ch: String = char(player_name.unicode_at(i))
+		# Strip out unprintable characters
+		if ord(ch) <= 31:
+			continue
+		if ch in REPLACE_WITH_UNDERSCORE:
+			ch = '_'
+		modified_name += ch
+	return modified_name
+
 func _on_start_pressed() -> void:	
 	$/root/Main/HUD.reset()
 	# Make sure we have a valid name
 	var player_name: String = $Name/LineEdit.text
 	if player_name.is_empty():
 		player_name = $Name/LineEdit.placeholder_text
+	player_name = player_name.strip_edges()
 
 	# Make sure the string isn't only whitespace
-	if player_name.strip_edges().is_empty():
+	if player_name.is_empty():
 		printerr("Invalid name: name consists of only whitespace.")
 		$Name/Error.text = "Invalid name."
+		$ErrorSound.play()
+		return
+
+	if player_name.length() > 80:
+		printerr("Invalid name: name is too long.")
+		$Name/Error.text = "Name is too long.\nMax length is 80 chars."
 		$ErrorSound.play()
 		return
 
@@ -45,11 +67,12 @@ func _on_start_pressed() -> void:
 	get_tree().paused = true
 	$/root/Main/HUD/Control/QuestScreen.show_alert = true
 	
-	print("Created new save: \"%s\"" % player_name)
+	var save_name: String = convert_name_to_save(player_name)
+	print("Created new save: \"%s\"" % save_name)
 	var id: int = 0
-	while FileAccess.file_exists(Save.get_save_path(player_name, id)):
+	while FileAccess.file_exists(Save.get_save_path(save_name, id)):
 		id += 1
-	var save_path: String = Save.get_save_path(player_name, id)
+	var save_path: String = Save.get_save_path(save_name, id)
 	print("Saving to: ", save_path)
 	main.save_path = save_path
 	main.save_progress()
