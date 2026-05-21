@@ -41,7 +41,7 @@ func start_showing_menu() -> void:
 	$TileMapLayer.show()
 	title_speed = START_SPEED
 	update_title = true
-	var main = $/root/Main
+	var main: Main = $/root/Main
 	$Stats/Wage.hide()
 	add_labels([$Stats/Wage], "Money")
 	$Stats/Wage.text = "Wage: $%d" % main.current_wage
@@ -90,6 +90,13 @@ func start_showing_menu() -> void:
 		else:
 			$Stats/TimeBonus.text = "Time Bonus: $%d (x%.2f)" % [ time_bonus, player.get_bonus_multiplier() ]
 		add_labels([$Stats/TimeBonus], "Money")
+	
+	$Stats/Interest.hide()
+	var interest: int = floori(main.money / 10.0)
+	current_wage_modifier += interest
+	if interest > 0:
+		$Stats/Interest.text = "Interest: $%d" % interest
+		add_labels([$Stats/Interest], "Money")
 	
 	# Calculate the amount the player earned
 	var payment = max(main.current_wage + current_wage_modifier, 0)

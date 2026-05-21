@@ -10,6 +10,7 @@ radius = 4.0
 [node name="Seedbullet" unique_id=1278289948 instance=ExtResource("1_qfnuv")]
 speed = 128.0
 damage_amt = 6
+lifetime = 4.0
 ignore_lawn_obstacles = true
 
 [node name="Sprite2D" parent="." index="0"]

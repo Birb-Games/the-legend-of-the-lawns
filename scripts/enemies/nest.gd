@@ -79,7 +79,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet:
 		area.explode()
-		health -= ceili(area.damage / 2.0)
+		health -= area.damage
 		health = max(health, 0)
 		# Spawn enemies in retaliation
 		if randf() < retaliate_probability and health > 0:

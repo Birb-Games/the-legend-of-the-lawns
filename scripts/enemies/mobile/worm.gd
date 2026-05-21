@@ -81,10 +81,11 @@ func _process(delta: float) -> void:
 		if scale.x <= 0.01:
 			hide()
 			shrink = false
-			if health <= 0 and !$RoarSfx.playing:
-				var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
-				lawn.bosses_killed += 1
-				queue_free()
+	if health <= 0 and !$RoarSfx.playing and scale.x <= 0.01:
+		var lawn: Lawn = get_node_or_null("/root/Main/Lawn")
+		lawn.bosses_killed += 1
+		queue_free()
+		return
 	if grow:
 		scale.x += delta * 3.0
 		scale.x = min(scale.x, target_scale)
@@ -141,7 +142,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		var player: Player = $/root/Main/Player
 		var dist: float = (player.global_position - global_position).length()
 		if dist < 16.0:
-			player.damage(40)	
+			player.damage(40)
 		$AnimatedSprite2D.animation = "default"
 		$AnimatedSprite2D.play("default")
 	elif $AnimatedSprite2D.animation == "despawn":

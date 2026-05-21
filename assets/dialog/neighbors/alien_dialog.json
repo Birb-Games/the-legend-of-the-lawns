@@ -17,5 +17,8 @@
 		"You're squatting though.",
 		"Yeah, that sounds interesting!"
 	],
-	"first_job_offer": "Alright, deal! If the Galactic Mob does get here though, just play it cool, okay? They don't mess around. Anyway, I suppose you should get to mowing now."
+	"first_job_offer": "Alright, deal! If the Galactic Mob does get here though, just play it cool, okay? They don't mess around. Anyway, I suppose you should get to mowing now.",
+	"give_item_list": [
+		"alien_battery"
+	]
 }

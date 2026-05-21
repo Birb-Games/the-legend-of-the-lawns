@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dkuhevs5nmf32" path="res://scenes/enemies/mobile/evil_gnome.tscn" id="9_vjxa0"]
 
 [node name="Lawn" unique_id=1949302452 instance=ExtResource("1_54fhv")]
-time_limit = 330.0
+time_limit = 600.0
 difficulty = 5
 
 [node name="TileMapLayer" parent="." index="0" unique_id=1119632854]
@@ -24,49 +24,40 @@ position = Vector2(-187, -100)
 [node name="Enemyspawner2" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="1" unique_id=144493823 instance=ExtResource("3_rote5")]
 position = Vector2(191, -91)
 
-[node name="Enemyspawner3" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="2" unique_id=1278033609 instance=ExtResource("3_rote5")]
-position = Vector2(270, 75)
-
-[node name="Enemyspawner4" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="3" unique_id=1052648451 instance=ExtResource("3_rote5")]
+[node name="Enemyspawner4" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="2" unique_id=1052648451 instance=ExtResource("3_rote5")]
 position = Vector2(178, 133)
 
-[node name="Enemyspawner5" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="4" unique_id=1989969076 instance=ExtResource("3_rote5")]
+[node name="Enemyspawner5" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="3" unique_id=1989969076 instance=ExtResource("3_rote5")]
 position = Vector2(-255, 72)
 
-[node name="Enemyspawner6" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="5" unique_id=653427245 instance=ExtResource("3_rote5")]
-position = Vector2(-150, 157)
-
-[node name="MobSpawner" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="6" unique_id=427116467 instance=ExtResource("4_b42t4")]
+[node name="MobSpawner" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="4" unique_id=427116467 instance=ExtResource("4_b42t4")]
 position = Vector2(0, 157)
 
-[node name="MobSpawner2" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="7" unique_id=841528316 instance=ExtResource("4_b42t4")]
+[node name="MobSpawner2" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="5" unique_id=841528316 instance=ExtResource("4_b42t4")]
 position = Vector2(-273, -49)
 
-[node name="MobSpawner3" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="8" unique_id=1189769099 instance=ExtResource("4_b42t4")]
+[node name="MobSpawner3" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="6" unique_id=1189769099 instance=ExtResource("4_b42t4")]
 position = Vector2(267, -23)
 
-[node name="MobSpawner5" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="9" unique_id=1758259847 instance=ExtResource("4_b42t4")]
-position = Vector2(-1, -120)
-
-[node name="Flowerspawner" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="10" unique_id=423980725 instance=ExtResource("5_a7bbh")]
+[node name="Flowerspawner" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="7" unique_id=423980725 instance=ExtResource("5_a7bbh")]
 position = Vector2(35, -352)
 
-[node name="Flowerspawner2" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="11" unique_id=1697421561 instance=ExtResource("5_a7bbh")]
+[node name="Flowerspawner2" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="8" unique_id=1697421561 instance=ExtResource("5_a7bbh")]
 position = Vector2(70, -352)
 
-[node name="Flowerspawner3" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="12" unique_id=2142330297 instance=ExtResource("5_a7bbh")]
+[node name="Flowerspawner3" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="9" unique_id=2142330297 instance=ExtResource("5_a7bbh")]
 position = Vector2(87, 191)
 difficulty = 1
 spawn_count = 4
 
-[node name="Flowerspawner4" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="13" unique_id=1765353399 instance=ExtResource("5_a7bbh")]
+[node name="Flowerspawner4" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="10" unique_id=1765353399 instance=ExtResource("5_a7bbh")]
 position = Vector2(-297, -158)
 spawn_count = 4
 
-[node name="Flowerspawner5" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="14" unique_id=1799474674 instance=ExtResource("5_a7bbh")]
+[node name="Flowerspawner5" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="11" unique_id=1799474674 instance=ExtResource("5_a7bbh")]
 position = Vector2(108, -352)
 
-[node name="Flowerspawner6" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="15" unique_id=737556985 instance=ExtResource("5_a7bbh")]
+[node name="Flowerspawner6" parent="Spawners" parent_id_path=PackedInt32Array(602942949) index="12" unique_id=737556985 instance=ExtResource("5_a7bbh")]
 position = Vector2(140, -352)
 
 [node name="WaspNest" parent="." index="7" unique_id=1952215212 instance=ExtResource("4_d8tlf")]

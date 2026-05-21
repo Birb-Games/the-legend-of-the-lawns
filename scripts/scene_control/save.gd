@@ -31,6 +31,7 @@ static func get_save_entries() -> Array:
 	if !dir:
 		printerr("Error: could not open saves directory!")
 		return saves
+	dir.set_include_hidden(true)
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	while !file_name.is_empty():
@@ -57,6 +58,7 @@ static func get_save_entries() -> Array:
 			
 			saves.push_back(entry)
 		file_name = dir.get_next()
+	dir.list_dir_end()
 	return saves
 
 # Can return any type

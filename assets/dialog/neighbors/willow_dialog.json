@@ -39,5 +39,11 @@
 		"Yes...",
 		"Okay..."
 	],
-	"first_job_offer": "I assume that you don't want the magical field around this neighborhood to collapse, so do we have a deal?"
+	"first_job_offer": "I assume that you don't want the magical field around this neighborhood to collapse, so do we have a deal?",
+	"give_item_list": [
+		"tomato_seeds",
+		"boom_shroom_spores",
+		"boom_shroom_spores",
+		"weedkiller"
+	]
 }

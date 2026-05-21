@@ -518,6 +518,7 @@ position = Vector2(344, 229)
 animation = &"neighbor_emily"
 display_name = "Neighbor Emily"
 lawn_template = ExtResource("21_dys3o")
+max_difficulty = 4
 level = 5
 wage = 9
 max_bonus = 6
@@ -567,6 +568,7 @@ position = Vector2(200.00002, 229.00002)
 animation = &"neighbor_hunter"
 display_name = "Neighbor Hunter"
 lawn_template = ExtResource("37_kg5j4")
+max_difficulty = 3
 level = 7
 wage = 15
 max_bonus = 8
@@ -592,6 +594,7 @@ position = Vector2(488, 229)
 animation = &"neighbor_james"
 display_name = "Neighbor James"
 lawn_template = ExtResource("11_e6rtj")
+max_difficulty = 4
 level = 5
 wage = 8
 flower_penalty = 2
@@ -602,6 +605,7 @@ position = Vector2(72, 229)
 animation = &"neighbor_paul"
 display_name = "Neighbor Paul"
 lawn_template = ExtResource("41_0cus8")
+max_difficulty = 2
 level = 8
 wage = 14
 max_bonus = 7
@@ -623,6 +627,7 @@ position = Vector2(1112, 229.00002)
 animation = &"neighbor_george"
 display_name = "Neighbor George"
 lawn_template = ExtResource("37_lse0k")
+max_difficulty = 3
 level = 5
 bonus_base = 2
 max_bonus = 7
@@ -635,6 +640,7 @@ position = Vector2(-152, 229.00002)
 animation = &"neighbor_tam"
 display_name = "Neighbor Tam"
 lawn_template = ExtResource("46_maaj1")
+max_difficulty = 2
 level = 8
 wage = 14
 max_bonus = 7
@@ -644,6 +650,7 @@ dialog_json = ExtResource("48_fhdko")
 position = Vector2(-280, 229)
 display_name = "Neighbor Rob"
 lawn_template = ExtResource("47_8wdp2")
+max_difficulty = 2
 level = 8
 wage = 16
 max_bonus = 10
@@ -656,7 +663,6 @@ display_name = "Alien"
 lawn_template = ExtResource("58_f1vlx")
 level = 21
 secret = true
-give_item_list = ["alien_battery"]
 wage = 20
 max_bonus = 10
 hedge_penalty = 0
@@ -1278,7 +1284,7 @@ position = Vector2(-37, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "chocolate"
 id = "chocolate"
-description = "Restores 20 health points.
+description = "Restores 20 health points, 4 uses.
 -> Eating a delicious bar of chocolate always makes everything better, even when you're mortally wounded."
 buy_text = "Left click to use item."
 price = 3
@@ -1288,7 +1294,7 @@ position = Vector2(-19, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "chocolate"
 id = "chocolate"
-description = "Restores 20 health points.
+description = "Restores 20 health points, 4 uses.
 -> Eating a delicious bar of chocolate always makes everything better, even when you're mortally wounded."
 buy_text = "Left click to use item."
 price = 3
@@ -1297,7 +1303,7 @@ price = 3
 position = Vector2(0, -15)
 display_name = "soda"
 id = "soda"
-description = "Increases speed temporarily.
+description = "Increases speed temporarily, 4 uses.
 -> I'm not sure if consuming this much sugar is good for you but it definitely will give you quite the rush. (and maybe a bit of type II diabetes...)"
 buy_text = "Left click to use item."
 price = 5
@@ -1306,7 +1312,7 @@ price = 5
 position = Vector2(19, -15)
 display_name = "soda"
 id = "soda"
-description = "Increases speed temporarily.
+description = "Increases speed temporarily, 4 uses.
 -> I'm not sure if consuming this much sugar is good for you but it definitely will give you quite the rush. (and maybe a bit of type II diabetes...)"
 buy_text = "Left click to use item."
 price = 5
@@ -1316,7 +1322,7 @@ position = Vector2(38, -15)
 scale = Vector2(0.45, 0.45)
 display_name = "ice cream"
 id = "ice_cream"
-description = "Heals 60 health points, but slows you down.
+description = "Heals 60 health points, but slows you down, 5 uses.
 -> The perfect summer treat. You should probably eat it before it melts though."
 buy_text = "Left click to use item."
 price = 8
@@ -1329,7 +1335,7 @@ position = Vector2(-35, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "tomato seeds"
 id = "tomato_seeds"
-description = "Spawns a tomato boy.
+description = "Spawns a tomato boy, 3 uses.
 -> The McMoneyPants Food Corporation genetically engineered these seeds to be more connected with the \"magical side\" of nature, whatever that means."
 buy_text = "Left click to use item."
 price = 18
@@ -1339,7 +1345,7 @@ position = Vector2(-12, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "boom shroom spores"
 id = "boom_shroom_spores"
-description = "Spawns a boom shroom.
+description = "Spawns a boom shroom, 5 uses.
 -> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
 buy_text = "Left click to use item.
 Boom shrooms will only explode when something walks on top of them."
@@ -1350,7 +1356,7 @@ position = Vector2(12, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "boom shroom spores"
 id = "boom_shroom_spores"
-description = "Spawns a boom shroom.
+description = "Spawns a boom shroom, 5 uses.
 -> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
 buy_text = "Left click to use item.
 Boom shrooms will only explode when something walks on top of them."
@@ -1361,7 +1367,7 @@ position = Vector2(35, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "boom shroom spores"
 id = "boom_shroom_spores"
-description = "Spawns a boom shroom.
+description = "Spawns a boom shroom, 5 uses.
 -> Be careful when planting. The McMoneyPants Corporation is not liable for any injury/lost limbs from your stupid gardening experiments."
 buy_text = "Left click to use item.
 Boom shrooms will only explode when something walks on top of them."
@@ -1378,27 +1384,27 @@ position = Vector2(-41, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "shield generator"
 id = "shield_generator"
-description = "Temporarily makes you invulnerable to damage.
+description = "Temporarily makes you invulnerable to damage, 6 uses.
 -> Generates an electromagnetic shield to protect you from all kinds of damage. A truly incredible invention, would be nice if it had better battery life though."
 buy_text = "Left click to use item."
-price = 15
+price = 12
 
 [node name="ElectricDoodad" parent="Store/StoreDisplay4" unique_id=688363830 instance=ExtResource("54_532a6")]
 position = Vector2(-25, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "electric doodad"
 id = "electric_doodad"
-description = "Shocks nearby enemies.
+description = "Shocks nearby enemies, 6 uses.
 -> *Shockingly* effective."
 buy_text = "Left click to use item."
-price = 15
+price = 12
 
 [node name="DroneController" parent="Store/StoreDisplay4" unique_id=248807824 instance=ExtResource("54_532a6")]
 position = Vector2(-9, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "drone controller"
 id = "drone_controller"
-description = "Spawns a drone that shoots at enemies for you.
+description = "Spawns a drone that shoots at enemies for you, 4 uses.
 -> A military grade attack drone manufactured by the McMoneyPants Robotics Corporation. Hopefully its AI control systems don't go rogue anytime soon..."
 buy_text = "Left click to use item."
 price = 12
@@ -1407,16 +1413,16 @@ price = 12
 position = Vector2(8, -15)
 display_name = "fireworks"
 id = "fireworks"
-description = "Launches a bunch of firework rockets that explode and damage enemies.
+description = "Launches a bunch of firework rockets that explode and damage enemies, 3 uses.
 -> This year's Independence Day fireworks show is going to be so awesome!"
 buy_text = "Left click to use item."
-price = 30
+price = 25
 
 [node name="Gasoline" parent="Store/StoreDisplay4" unique_id=1841829751 instance=ExtResource("54_532a6")]
 position = Vector2(25, -15)
 display_name = "gasoline"
 id = "gasoline"
-description = "Gives a short speed boost when using the lawn mower.
+description = "Gives a short speed boost when using the lawn mower, 4 uses.
 -> High quality premium gasoline to refuel your lawn mower. Warning: flammable."
 buy_text = "Left click while holding the lawn mower to use."
 price = 7
@@ -1426,7 +1432,7 @@ position = Vector2(41, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "insecticide"
 id = "insecticide"
-description = "Creates a cloud of poison that damages enemies.
+description = "Creates a cloud of poison that damages enemies, 8 uses.
 -> I'm pretty sure this stuff violates several environmental and health regulations..."
 buy_text = "Left click to use item."
 price = 9
@@ -1509,7 +1515,7 @@ id = "water_jug"
 description = "Use this with your water gun to shoot bullets that explode upon impact.
 -> It's a jug of water, good for if you need refreshments for a party or if you need to stockpile resources for the apocalypse."
 buy_text = "To use it, select it in your inventory and then pick up the water gun. You will now shoot explosive water bullets from your water gun."
-price = 14
+price = 9
 
 [node name="WaterJug2" parent="Store/StoreDisplay6" unique_id=779481063 instance=ExtResource("54_532a6")]
 position = Vector2(-8, -15)
@@ -1518,7 +1524,7 @@ id = "water_jug"
 description = "Use this with your water gun to shoot bullets that explode upon impact.
 -> It's a jug of water, good for if you need refreshments for a party or if you need to stockpile resources for the apocalypse."
 buy_text = "To use it, select it in your inventory and then pick up the water gun. You will now shoot explosive water bullets from your water gun."
-price = 14
+price = 9
 
 [node name="Ice" parent="Store/StoreDisplay6" unique_id=854869466 instance=ExtResource("54_532a6")]
 position = Vector2(-24, -15)
@@ -1528,7 +1534,7 @@ id = "ice"
 description = "Use this with your water gun to shoot ice cubes that freeze enemies.
 -> Imported directly from the arctic."
 buy_text = "To use it, select it in your inventory and then pick up the water gun. You will now shoot ice cubes from your water gun."
-price = 16
+price = 10
 
 [node name="Ice2" parent="Store/StoreDisplay6" unique_id=538126086 instance=ExtResource("54_532a6")]
 position = Vector2(-39, -15)
@@ -1538,7 +1544,7 @@ id = "ice"
 description = "Use this with your water gun to shoot ice cubes that freeze enemies.
 -> Imported directly from the arctic."
 buy_text = "To use it, select it in your inventory and then pick up the water gun. You will now shoot ice cubes from your water gun."
-price = 16
+price = 10
 
 [node name="PottedPlants" type="Node2D" parent="Store" unique_id=647634743]
 y_sort_enabled = true
@@ -1898,7 +1904,7 @@ position = Vector2(-17, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "shield generator"
 id = "shield_generator"
-description = "Temporarily makes you invulnerable to damage.
+description = "Temporarily makes you invulnerable to damage, 6 uses.
 -> Generates an electromagnetic shield to protect you from all kinds of damage. A truly incredible invention, would be nice if it had better battery life though."
 buy_text = "Left click to use item."
 price = 0
@@ -1908,7 +1914,7 @@ position = Vector2(-2, -15)
 scale = Vector2(0.5, 0.5)
 display_name = "electric doodad"
 id = "electric_doodad"
-description = "Shocks nearby enemies.
+description = "Shocks nearby enemies, 6 uses.
 -> *Shockingly* effective."
 buy_text = "Left click to use item."
 price = 0

@@ -28,5 +28,8 @@
 		"Uhm... Okay?",
 		"Alright."
 	],
-	"first_job_offer": "*grunt*"
+	"first_job_offer": "*grunt*",
+	"give_item_list": [
+		"acidic_weedkiller"
+	]
 }
