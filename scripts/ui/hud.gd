@@ -201,6 +201,9 @@ func num_as_time_string(num: float) -> String:
 func npc_menu_open() -> bool:
 	return $Control/NPCMenu.visible
 
+func pause_menu_open() -> bool:
+	return $Control/PauseMenu.visible
+
 func npc_menu_buttons_visible() -> bool:
 	for button in $Control/NPCMenu.buttons:
 		if button.visible:

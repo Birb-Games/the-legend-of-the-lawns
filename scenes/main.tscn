@@ -165,5 +165,4 @@ script = ExtResource("31_qkpxi")
 
 [node name="LawnMusic" type="AudioStreamPlayer" parent="Music" unique_id=1978617493]
 stream = ExtResource("31_tel4y")
-volume_db = -5.0
 bus = &"Music"
