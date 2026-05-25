@@ -68,12 +68,12 @@ position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_ek0jc")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=710267130]
-position = Vector2(0, -1.1999999)
-scale = Vector2(0.9000001, 0.67692304)
+position = Vector2(0, -1.6000001)
+scale = Vector2(0.9000001, 0.7384615)
 texture = ExtResource("1_bujjq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1758997535]
-position = Vector2(0, -21.699999)
+position = Vector2(-0.5, -21.7)
 sprite_frames = SubResource("SpriteFrames_nyalb")
 autoplay = "default"
 
