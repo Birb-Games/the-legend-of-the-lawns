@@ -14,36 +14,36 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ek0jc"]
 size = Vector2(22, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bujjq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n4o5"]
 atlas = ExtResource("1_ek0jc")
-region = Rect2(0, 0, 44, 45)
+region = Rect2(0, 0, 44, 46)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bfwm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns0kn"]
 atlas = ExtResource("1_ek0jc")
-region = Rect2(132, 0, 44, 45)
+region = Rect2(44, 0, 44, 46)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3m8g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_elgpg"]
 atlas = ExtResource("1_ek0jc")
-region = Rect2(88, 0, 44, 45)
+region = Rect2(88, 0, 44, 46)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xj4ax"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_umbke"]
 atlas = ExtResource("1_ek0jc")
-region = Rect2(44, 0, 44, 45)
+region = Rect2(132, 0, 44, 46)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nyalb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bujjq")
+"texture": SubResource("AtlasTexture_1n4o5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1bfwm")
+"texture": SubResource("AtlasTexture_ns0kn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x3m8g")
+"texture": SubResource("AtlasTexture_elgpg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xj4ax")
+"texture": SubResource("AtlasTexture_umbke")
 }],
 "loop": true,
 "name": &"default",
@@ -68,12 +68,12 @@ position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_ek0jc")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=710267130]
-position = Vector2(0, -1)
-scale = Vector2(0.9500001, 0.64615387)
+position = Vector2(0, -1.1999999)
+scale = Vector2(0.9000001, 0.67692304)
 texture = ExtResource("1_bujjq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1758997535]
-position = Vector2(0, -22.5)
+position = Vector2(0, -21.699999)
 sprite_frames = SubResource("SpriteFrames_nyalb")
 autoplay = "default"
 
