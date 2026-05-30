@@ -48,6 +48,9 @@ func _ready() -> void:
 	var file = FileAccess.open("user://continue", FileAccess.READ)
 	if file != null:
 		continue_save = file.get_line()
+	
+	# Start playing the menu music
+	music_controller.play_music("Menu")
 
 func _process(delta: float) -> void:
 	update_hud(delta)
@@ -77,7 +80,6 @@ func advance_day() -> void:
 	Buy.update_buy_list()
 
 func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
-	music_controller.play_music("LawnMusic")
 	player.reset_health()
 	player.status_effects.clear()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -88,6 +90,10 @@ func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	lawn.difficulty += difficulty_level
 	lawn.difficulty = clamp(lawn.difficulty, 0, 8)
 	lawn.name = "Lawn"
+	# Keep playing suspense music when the lawn is a final boss lawn,
+	# otherwise play the standard lawn theme
+	if !(lawn is FinalBossLawn):
+		music_controller.play_music("LawnMusic")
 	add_child(lawn)	
 	# Set player position and direction
 	player.position = lawn.get_spawn()
@@ -276,6 +282,7 @@ func get_job_list_str() -> String:
 	return job_list_str
 
 func load_save() -> bool:
+	music_controller.clear_music()
 	$HUD.reset()
 	var save_file = FileAccess.open(save_path, FileAccess.READ)
 

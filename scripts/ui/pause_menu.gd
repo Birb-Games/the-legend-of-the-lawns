@@ -23,6 +23,7 @@ func _on_main_menu_pressed() -> void:
 	main.play_sfx("Click")
 	$/root/Main/HUD/MainMenu.show()
 	$/root/Main.reset()
+	main.music_controller.play_music("Menu")
 	hide()
 
 func _on_settings_pressed() -> void:
