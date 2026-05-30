@@ -4,6 +4,7 @@ class_name FireBullet
 
 func explode() -> void:
 	super.explode()
+	$FireParticles.hide()
 	# Spawn a fire
 	var fire: Fire = Fire.fire_scene.instantiate()
 	fire.global_position = global_position
