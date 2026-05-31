@@ -35,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://16sf5m4cseqi" path="res://assets/audio/music/menu.res" id="33_5q0nq"]
 [ext_resource type="AudioStream" uid="uid://rotmgih3uj51" path="res://assets/audio/music/suspense.res" id="34_dgi5k"]
 [ext_resource type="AudioStream" uid="uid://1wagbo3j7nlw" path="res://assets/audio/music/eldritch_weedkiller.res" id="35_j8jky"]
+[ext_resource type="AudioStream" uid="uid://pxn8sbge6ifs" path="res://assets/audio/music/neighborhood.res" id="36_kmb1v"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_j8jky"]
 viewport_path = NodePath("SubViewport")
@@ -181,3 +182,7 @@ volume_db = -3.0
 [node name="FinalBossMusic" type="AudioStreamPlayer" parent="Music" unique_id=1317641929]
 stream = ExtResource("35_j8jky")
 volume_db = -5.0
+
+[node name="Neighborhood" type="AudioStreamPlayer" parent="Music" unique_id=1138278785]
+stream = ExtResource("36_kmb1v")
+volume_db = -7.0

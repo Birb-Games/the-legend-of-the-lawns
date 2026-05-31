@@ -122,7 +122,11 @@ func return_to_neighborhood() -> void:
 					sfx.stop()
 				get_tree().paused = true
 				$HUD.add_final_credits()
+		else:
+			music_controller.play_music("Neighborhood")
 		lawn.queue_free()
+	else:
+		music_controller.play_music("Neighborhood")
 	player.position = player_pos
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
@@ -282,7 +286,7 @@ func get_job_list_str() -> String:
 	return job_list_str
 
 func load_save() -> bool:
-	music_controller.clear_music()
+	music_controller.play_music("Neighborhood")
 	$HUD.reset()
 	var save_file = FileAccess.open(save_path, FileAccess.READ)
 
