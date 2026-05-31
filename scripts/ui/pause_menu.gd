@@ -21,7 +21,7 @@ func _on_yes_pressed() -> void:
 func _on_main_menu_pressed() -> void:
 	var main: Main = $/root/Main
 	main.play_sfx("Click")
-	$/root/Main/HUD/MainMenu.show()
+	$/root/Main/HUD/MainMenu.activate()
 	$/root/Main.reset()
 	main.music_controller.play_music("Menu")
 	hide()
