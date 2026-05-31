@@ -117,6 +117,24 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
+[node name="MusicVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1295802490]
+layout_mode = 2
+
+[node name="Slider" type="HSlider" parent="ScrollContainer/VBoxContainer/MusicVolume" unique_id=857343875]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MusicVolume" unique_id=1768292986]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0qbrj")
+theme_override_font_sizes/font_size = 24
+text = "Music Volume"
+
+[node name="Spacing5" type="ColorRect" parent="ScrollContainer/VBoxContainer" unique_id=275421785]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
 [node name="FullScreen" type="CheckBox" parent="ScrollContainer/VBoxContainer" unique_id=842000912]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_0qbrj")

@@ -15,7 +15,9 @@ func _process(delta: float) -> void:
 	time_active += delta
 
 func activate() -> void:
-	$/root/Main.play_sfx("Hurt", true)
+	var main: Main = $/root/Main
+	main.play_sfx("Hurt", true)
+	main.music_controller.clear_music()
 	time_active = 0.0
 	# Add knocked out player
 	knocked_out_sprite = knocked_out.instantiate()

@@ -25,12 +25,14 @@ func set_menu_values() -> void:
 	set_slider_val("MasterVolume", Settings.master_volume * 100.0)
 	set_slider_val("LawnMowerVolume", Settings.lawn_mower_volume * 100.0)
 	set_slider_val("UIVolume", Settings.ui_volume * 100.0)
+	set_slider_val("MusicVolume", Settings.music_volume * 100.0)
 	$ScrollContainer/VBoxContainer/FullScreen.button_pressed = Settings.fullscreen
 
 func update_settings() -> void:
 	Settings.master_volume = get_slider_val("MasterVolume") / 100.0
 	Settings.lawn_mower_volume = get_slider_val("LawnMowerVolume") / 100.0
 	Settings.ui_volume = get_slider_val("UIVolume") / 100.0
+	Settings.music_volume = get_slider_val("MusicVolume") / 100.0
 	Settings.fullscreen = $ScrollContainer/VBoxContainer/FullScreen.button_pressed
 
 func _on_back_pressed() -> void:
@@ -68,3 +70,5 @@ func _process(_delta: float) -> void:
 	set_slider_label("LawnMowerVolume", " Lawn Mower Volume (%d%%)" % lawn_mower_vol_perc)
 	var ui_vol_perc: float = int(round(get_slider_val("UIVolume")))
 	set_slider_label("UIVolume", " UI Volume (%d%%)" % ui_vol_perc)
+	var music_vol_perc: float = int(round(get_slider_val("MusicVolume")))
+	set_slider_label("MusicVolume", " Music Volume (%d%%)" % music_vol_perc)

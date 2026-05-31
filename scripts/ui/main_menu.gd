@@ -6,14 +6,25 @@ var subtitle_font_scale_change: float = SUBTITLE_SCALE_RATE
 const SUBTITLE_MIN_SCALE: float = 0.9
 const SUBTITLE_MAX_SCALE: float = 1.05
 
-func _ready() -> void:
+func activate() -> void:
 	show()
+	$Title.modulate.a = 0.0
+	for sprite in $Sprites.get_children():
+		sprite.reset()
+
+func _ready() -> void:
+	activate()
 	if OS.get_name() == "Web":
-		$Buttons/Quit.hide()	
+		$Buttons/Quit.hide()
 
 func _process(delta: float) -> void:
 	if !visible:
 		return
+	
+	if $Title.modulate.a < 1.0:
+		$Title.modulate.a += delta / 2.5
+		$Title.modulate.a = min($Title.modulate.a, 1.0)
+
 	$Title/SubtitleParent.scale.x += subtitle_font_scale_change * delta
 	$Title/SubtitleParent.scale.y = $Title/SubtitleParent.scale.x
 	if $Title/SubtitleParent.scale.x > SUBTITLE_MAX_SCALE:

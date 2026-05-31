@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://1fi7xb3mewly" path="res://scenes/interactable/bus_stop.tscn" id="13_yknso"]
 [ext_resource type="AudioStream" uid="uid://eyyq58oktsp" path="res://assets/audio/sfx/click.wav" id="18_dimrm"]
 [ext_resource type="Texture2D" uid="uid://c4cnmykq1b2n1" path="res://assets/textures/ui/title.png" id="20_bojqd"]
+[ext_resource type="AudioStream" uid="uid://dim2dljcg2w3a" path="res://assets/audio/music/yard_party.res" id="21_oh8w7"]
+[ext_resource type="AudioStream" uid="uid://16sf5m4cseqi" path="res://assets/audio/music/menu.res" id="22_pejnv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lcp"]
 atlas = ExtResource("9_mq4j6")
@@ -394,6 +396,9 @@ Bridget Wu
 Nullptr Error
 Bridget Wu
 
+<Music>
+Tarin
+
 <Third Party>
 
 Font: 8BitOperator by Grand Chaos Productions
@@ -440,6 +445,14 @@ theme_override_fonts/font = ExtResource("7_6diyf")
 theme_override_font_sizes/font_size = 32
 text = "Return to 
 Neighborhood"
+
+[node name="LawnMusic" type="AudioStreamPlayer" parent="." unique_id=1699820710]
+stream = ExtResource("21_oh8w7")
+bus = &"Music"
+
+[node name="Menu" type="AudioStreamPlayer" parent="." unique_id=1667906675]
+stream = ExtResource("22_pejnv")
+bus = &"Music"
 
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="HBoxContainer/Return" to="." method="_on_return_pressed"]

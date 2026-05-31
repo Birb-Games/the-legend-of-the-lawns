@@ -9,6 +9,7 @@ var current_slide: int = 0
 const SPEED: float = 24.0
 
 func _ready() -> void:
+	$LawnMusic.play()
 	$HBoxContainer.hide()
 	slide_text = Save.get_val(slide_json.data, "slide_text", [])
 	slides = Save.get_val(slide_json.data, "slides", [])
@@ -50,6 +51,8 @@ func _on_next_pressed() -> void:
 		$HBoxContainer.show()
 		$Label.hide()
 		$Next.hide()
+		$LawnMusic.stop()
+		$Menu.play()
 		return
 	scene = get_node_or_null(slides[current_slide])
 	if scene:
@@ -61,6 +64,8 @@ func _on_next_pressed() -> void:
 		$Label.text = ""
 
 func _on_return_pressed() -> void:
+	$LawnMusic.stop()
+	$Menu.stop()
 	var main: Main = get_node_or_null("/root/Main")
 	if main:
 		main.return_to_neighborhood()

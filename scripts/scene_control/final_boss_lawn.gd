@@ -50,6 +50,11 @@ func _ready() -> void:
 	player.can_move = false
 	player.automatically_move = true
 
+func on_finish() -> void:
+	super.on_finish()
+	var main: Main = $/root/Main
+	main.music_controller.clear_music()
+
 func _process(delta: float) -> void:
 	super._process(delta)
 
@@ -68,6 +73,8 @@ func _process(delta: float) -> void:
 		if current_dialog >= dialog.size():
 			begin_dialog = false
 			player.can_move = true
+			var main: Main = $/root/Main
+			main.music_controller.play_music("FinalBossMusic")
 			return
 
 		var dialog_str: String = dialog[current_dialog]

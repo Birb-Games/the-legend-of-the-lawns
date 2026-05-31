@@ -86,11 +86,9 @@ position = Vector2(-82, 39)
 
 [node name="BoomShroom" parent="." index="17" unique_id=365498276 instance=ExtResource("16_qj5sc")]
 position = Vector2(-14, -50)
-scale = Vector2(0.65, 0.65)
 
 [node name="BoomShroom3" parent="." index="18" unique_id=2020919267 instance=ExtResource("16_qj5sc")]
 position = Vector2(62.000008, 85)
-scale = Vector2(0.65, 0.65)
 
 [node name="ShrubDemonMound" parent="." index="19" unique_id=459814294 instance=ExtResource("19_eriig")]
 position = Vector2(-113, -316)

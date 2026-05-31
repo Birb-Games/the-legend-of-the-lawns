@@ -306,6 +306,10 @@ func spawn_enemies(delta: float) -> void:
 		weed_spawn_frequency = max(weed_spawn_frequency * DIFFICULTY_SPEED, 20.0)
 		weed_spawn_timer = weed_spawn_frequency * randf_range(1.0, 1.5) + randf() * 3.0
 
+func on_finish() -> void:
+	get_tree().paused = true
+	$/root/Main/HUD.activate_finish_screen()
+
 func _process(delta: float) -> void:
 	var player: Player = get_node_or_null("/root/Main/Player")
 
@@ -324,8 +328,7 @@ func _process(delta: float) -> void:
 		finish_timer = max(finish_timer, 0.0)
 
 	if lawn_completed() and finish_timer <= 0.0:
-		get_tree().paused = true
-		$/root/Main/HUD.activate_finish_screen()
+		on_finish()
 		return
 
 	if player.health > 0:

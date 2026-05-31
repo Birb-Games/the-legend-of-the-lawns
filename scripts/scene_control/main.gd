@@ -5,6 +5,7 @@ extends Node2D
 @onready var neighborhood_scene: PackedScene = preload("uid://8t3kf3315lkx")
 @onready var neighborhood: Neighborhood = $Neighborhood
 @onready var player: Player = $Player
+@onready var music_controller: MusicController = $Music
 @onready var player_pos: Vector2 = $Player.position
 var lawn_loaded: bool = false
 
@@ -47,6 +48,9 @@ func _ready() -> void:
 	var file = FileAccess.open("user://continue", FileAccess.READ)
 	if file != null:
 		continue_save = file.get_line()
+	
+	# Start playing the menu music
+	music_controller.play_music("Menu")
 
 func _process(delta: float) -> void:
 	update_hud(delta)
@@ -86,6 +90,10 @@ func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	lawn.difficulty += difficulty_level
 	lawn.difficulty = clamp(lawn.difficulty, 0, 8)
 	lawn.name = "Lawn"
+	# Keep playing suspense music when the lawn is a final boss lawn,
+	# otherwise play the standard lawn theme
+	if !(lawn is FinalBossLawn):
+		music_controller.play_music("LawnMusic")
 	add_child(lawn)	
 	# Set player position and direction
 	player.position = lawn.get_spawn()
@@ -100,6 +108,7 @@ func load_lawn(lawn_template: PackedScene, difficulty_level: int) -> void:
 	$Player/Camera2D.position_smoothing_enabled = false
 
 func return_to_neighborhood() -> void:
+	music_controller.clear_music()
 	$HUD.hide_neighbor_menu()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	player.reset_health()
@@ -113,7 +122,11 @@ func return_to_neighborhood() -> void:
 					sfx.stop()
 				get_tree().paused = true
 				$HUD.add_final_credits()
+		else:
+			music_controller.play_music("Neighborhood")
 		lawn.queue_free()
+	else:
+		music_controller.play_music("Neighborhood")
 	player.position = player_pos
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
@@ -273,6 +286,7 @@ func get_job_list_str() -> String:
 	return job_list_str
 
 func load_save() -> bool:
+	music_controller.play_music("Neighborhood")
 	$HUD.reset()
 	var save_file = FileAccess.open(save_path, FileAccess.READ)
 

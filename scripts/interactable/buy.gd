@@ -101,6 +101,7 @@ func available() -> bool:
 
 func trigger_ending() -> void:
 	var main: Main = $/root/Main
+	main.music_controller.play_music("Suspense")
 	main.current_level += 1
 	$/root/Main/HUD/Control/TransitionRect.start_bus_animation()
 	$/root/Main/HUD.hide_neighbor_menu()
