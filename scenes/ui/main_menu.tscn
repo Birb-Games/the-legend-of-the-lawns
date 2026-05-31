@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cenxxd8t4m6fq"]
+[gd_scene format=4 uid="uid://cenxxd8t4m6fq"]
 
 [ext_resource type="Script" uid="uid://botrxsvwyqq4u" path="res://scripts/ui/main_menu.gd" id="1_m1kxf"]
 [ext_resource type="TileSet" uid="uid://5ovepoc8woop" path="res://assets/tileset.tres" id="1_sl1te"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cimgjsiw0t7vs" path="res://assets/textures/ui/settings_icon.png" id="10_8g5eo"]
 [ext_resource type="PackedScene" uid="uid://0dfayhe5k248" path="res://scenes/ui/settings_screen.tscn" id="11_7suek"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1819485552]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,46 +21,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m1kxf")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1706111540]
 modulate = Color(0.851769, 0.8517689, 0.85176885, 1)
 z_index = -1
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAADAAoAAAAAAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAGAP//AAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAP//AAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAP//AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAP//AAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAALAP//AAAAAAAAAAALAAAAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAAMAP//AAAAAAAAAAAMAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAkAAAAAAAAAAAAMAAoAAAAAAAAAAAANAP//AAAAAAAAAAANAAAAAAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAANAAkAAAAAAAAAAAANAAoAAAAAAAAAAAAOAP//AAAAAAAAAAAOAAAAAAAAAAAAAAAOAAEAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAAOAAoAAAAAAAAAAAAPAP//AAAAAAAAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAQAP//AAAAAAAAAAAQAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAARAP//AAAAAAAAAAARAAAAAAAAAAAAAAARAAEAAAAAAAAAAAARAAIAAAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAAAAAARAAoAAAAAAAAAAAASAP//AAAAAAAAAAASAAAAAAAAAAAAAAASAAEAAAAAAAAAAAASAAIAAAAAAAAAAAASAAMAAAAAAAAAAAASAAQAAAAAAAAAAAASAAUAAAAAAAAAAAASAAYAAAAAAAAAAAASAAcAAAAAAAAAAAASAAgAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAA=")
 tile_set = ExtResource("1_sl1te")
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=1749523483]
 y_sort_enabled = true
 
-[node name="ShrubDemon" parent="Sprites" instance=ExtResource("3_wb0q5")]
+[node name="ShrubDemon" parent="Sprites" unique_id=650923460 instance=ExtResource("3_wb0q5")]
 scale = Vector2(4, 4)
 collision_mask = 0
 script = ExtResource("4_q85j6")
 
-[node name="ShrubDemon2" parent="Sprites" instance=ExtResource("3_wb0q5")]
+[node name="ShrubDemon2" parent="Sprites" unique_id=726892990 instance=ExtResource("3_wb0q5")]
 scale = Vector2(4, 4)
 collision_mask = 0
 script = ExtResource("4_q85j6")
 
-[node name="ShrubDemon3" parent="Sprites" instance=ExtResource("3_wb0q5")]
+[node name="ShrubDemon3" parent="Sprites" unique_id=132570294 instance=ExtResource("3_wb0q5")]
 scale = Vector2(4, 4)
 collision_mask = 0
 script = ExtResource("4_q85j6")
 
-[node name="ShrubDemon4" parent="Sprites" instance=ExtResource("3_wb0q5")]
+[node name="ShrubDemon4" parent="Sprites" unique_id=1100499709 instance=ExtResource("3_wb0q5")]
 scale = Vector2(4, 4)
 collision_mask = 0
 script = ExtResource("4_q85j6")
 
-[node name="Title" type="Sprite2D" parent="."]
+[node name="Title" type="Sprite2D" parent="." unique_id=1882336170]
 z_index = 1
 position = Vector2(450, 150.99998)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_fe2o3")
 
-[node name="SubtitleParent" type="Node2D" parent="Title"]
+[node name="SubtitleParent" type="Node2D" parent="Title" unique_id=460265889]
 position = Vector2(479.99988, 99.99997)
 
-[node name="Subtitle" type="Label" parent="Title/SubtitleParent"]
+[node name="Subtitle" type="Label" parent="Title/SubtitleParent" unique_id=1054357500]
 offset_left = -303.74994
 offset_top = 35.00004
 offset_right = 346.25006
@@ -77,13 +77,13 @@ text = "The Quest for a Swapdeck"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Shadow" type="Sprite2D" parent="Title"]
+[node name="Shadow" type="Sprite2D" parent="Title" unique_id=1654332688]
 modulate = Color(0, 0, 0, 0.5019608)
 z_index = -1
 position = Vector2(7.5000305, 10.000015)
 texture = ExtResource("2_fe2o3")
 
-[node name="Buttons" type="VBoxContainer" parent="."]
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=54872798]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 259.0
@@ -91,7 +91,7 @@ offset_right = 392.0
 offset_bottom = 587.0
 theme_override_constants/separation = 12
 
-[node name="Continue" type="Button" parent="Buttons"]
+[node name="Continue" type="Button" parent="Buttons" unique_id=1863734886]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 0.84705883, 0, 1)
@@ -100,7 +100,7 @@ theme_override_font_sizes/font_size = 32
 text = " > Continue"
 alignment = 0
 
-[node name="Load" type="Button" parent="Buttons"]
+[node name="Load" type="Button" parent="Buttons" unique_id=1467552801]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 0.84705883, 0, 1)
@@ -109,7 +109,7 @@ theme_override_font_sizes/font_size = 32
 text = " > Load Game"
 alignment = 0
 
-[node name="NewGame" type="Button" parent="Buttons"]
+[node name="NewGame" type="Button" parent="Buttons" unique_id=1643473403]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 0.84705883, 0, 1)
@@ -118,7 +118,7 @@ theme_override_font_sizes/font_size = 32
 text = " > New Game"
 alignment = 0
 
-[node name="Credits" type="Button" parent="Buttons"]
+[node name="Credits" type="Button" parent="Buttons" unique_id=1278149438]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 0.84705883, 0, 1)
@@ -127,7 +127,7 @@ theme_override_font_sizes/font_size = 32
 text = " > Credits"
 alignment = 0
 
-[node name="Quit" type="Button" parent="Buttons"]
+[node name="Quit" type="Button" parent="Buttons" unique_id=623187007]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 0.84705883, 0, 1)
@@ -136,7 +136,7 @@ theme_override_font_sizes/font_size = 32
 text = " > Quit"
 alignment = 0
 
-[node name="Settings" type="Button" parent="."]
+[node name="Settings" type="Button" parent="." unique_id=788044561]
 layout_mode = 0
 offset_left = 1058.0
 offset_top = 554.0
@@ -146,22 +146,22 @@ icon = ExtResource("10_8g5eo")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Credits" parent="." instance=ExtResource("5_x2yvf")]
+[node name="Credits" parent="." unique_id=1380336795 instance=ExtResource("5_x2yvf")]
 visible = false
 z_index = 2
 layout_mode = 1
 
-[node name="CreateNewSave" parent="." instance=ExtResource("6_uhagc")]
+[node name="CreateNewSave" parent="." unique_id=1220044718 instance=ExtResource("6_uhagc")]
 visible = false
 z_index = 2
 layout_mode = 1
 
-[node name="LoadScreen" parent="." instance=ExtResource("7_btxxm")]
+[node name="LoadScreen" parent="." unique_id=1321912497 instance=ExtResource("7_btxxm")]
 visible = false
 z_index = 2
 layout_mode = 1
 
-[node name="SettingsScreen" parent="." instance=ExtResource("11_7suek")]
+[node name="SettingsScreen" parent="." unique_id=1258908742 instance=ExtResource("11_7suek")]
 visible = false
 layout_mode = 1
 
