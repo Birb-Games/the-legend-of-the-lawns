@@ -551,10 +551,10 @@ animation = &"mr_mcmoneypants"
 display_name = "Mr. McMoneyPants"
 lawn_template = ExtResource("41_4wetw")
 level = 23
-wage = 100
-max_bonus = 60
+wage = 150
+max_bonus = 100
 flower_penalty = 5
-hedge_penalty = 5
+hedge_penalty = 2
 dialog_json = ExtResource("42_5rq0e")
 
 [node name="Hat" type="AnimatedSprite2D" parent="Neighbors/McMoneyPants" unique_id=202869963]

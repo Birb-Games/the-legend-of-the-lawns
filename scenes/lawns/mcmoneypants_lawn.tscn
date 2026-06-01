@@ -179,6 +179,3 @@ position = Vector2(519, 728)
 
 [node name="ExplosiveBarrel9" parent="." index="28" unique_id=244556530 instance=ExtResource("10_2n3df")]
 position = Vector2(-190, 142)
-
-[node name="ExplosiveBarrel10" parent="." index="29" unique_id=1871600994 instance=ExtResource("10_2n3df")]
-position = Vector2(20, 352)
