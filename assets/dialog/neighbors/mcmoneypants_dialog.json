@@ -18,5 +18,12 @@
 		"Huh?",
 		"Wait, what?"
 	],
-	"first_job_offer": "Now, just sign down here and we have a deal! Chop, chop, get to work!"
+	"first_job_offer": "Now, just sign down here and we have a deal! Chop, chop, get to work!",
+	"give_item_list": [
+		"acidic_weedkiller",
+		"ice_cream",
+		"shield_generator",
+		"electric_doodad",
+		"ultra_weedkiller"
+	]
 }
