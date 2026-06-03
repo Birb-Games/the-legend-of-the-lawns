@@ -178,11 +178,14 @@ bus = &"Music"
 [node name="Suspense" type="AudioStreamPlayer" parent="Music" unique_id=534078017]
 stream = ExtResource("34_dgi5k")
 volume_db = -3.0
+bus = &"Music"
 
 [node name="FinalBossMusic" type="AudioStreamPlayer" parent="Music" unique_id=1317641929]
 stream = ExtResource("35_j8jky")
 volume_db = -5.0
+bus = &"Music"
 
 [node name="Neighborhood" type="AudioStreamPlayer" parent="Music" unique_id=1138278785]
 stream = ExtResource("36_kmb1v")
 volume_db = -7.0
+bus = &"Music"
