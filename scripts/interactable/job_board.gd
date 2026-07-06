@@ -11,6 +11,15 @@ func get_neighbors(main: Main) -> Array:
 	for child: NeighborNPC in main.neighborhood.get_node("Neighbors").get_children():
 		if child.disabled:
 			continue
+		
+		# Check if the neighbor has a 'neighbor controller' node and make sure
+		# that the neighbor is available
+		var neigbhor_controller: NeighborController = child.get_node_or_null("NeighborController")
+		if neigbhor_controller:
+			# Skip over the neighbor if they are not available
+			if !neigbhor_controller.available():
+				continue
+
 		if child.times_mowed > 0:
 			neighbors.push_back(child)
 	return neighbors

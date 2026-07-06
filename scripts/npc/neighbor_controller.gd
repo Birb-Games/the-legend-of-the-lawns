@@ -1,3 +1,5 @@
+class_name NeighborController
+
 extends Node2D
 
 @onready var neighbor: NeighborNPC = get_parent()
