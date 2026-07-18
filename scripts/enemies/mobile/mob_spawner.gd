@@ -57,6 +57,7 @@ func spawn() -> void:
 
 func _ready() -> void:
 	difficulty += $/root/Main/Lawn.difficulty
+	difficulty = clamp(difficulty, 0, 8)
 
 func _on_activation_zone_body_entered(body: Node2D) -> void:
 	if body is Player:

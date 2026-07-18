@@ -194,7 +194,7 @@ func lawn_completed() -> bool:
 	return cut_grass_tiles >= total_grass_tiles
 
 func spawn_weeds(pos: Vector2) -> void:
-	var weights = Spawning.get_weed_spawn_weights(max(difficulty - 1, 0))
+	var weights = Spawning.get_weed_spawn_weights(clamp(difficulty - 1, 0, 8))
 	
 	if weights.is_empty():
 		return
@@ -203,7 +203,7 @@ func spawn_weeds(pos: Vector2) -> void:
 	if weed_count >= max_weeds:
 		return
 
-	var spawn_count = min(Spawning.get_rand_weed_count(max(difficulty - 1, 0)), 4)
+	var spawn_count = min(Spawning.get_rand_weed_count(clamp(difficulty - 1, 0, 8)), 4)
 	# Slow down the rate at which weeds are spawning if we start getting too many
 	if weed_count >= ceili(max_weeds / 3.0):
 		spawn_count = min(spawn_count, 3)
@@ -233,7 +233,7 @@ func spawn_weeds(pos: Vector2) -> void:
 		)
 
 func spawn_mobs(pos: Vector2) -> void:	
-	var weights = Spawning.get_mob_spawn_weights(max(difficulty - 1, 0))
+	var weights = Spawning.get_mob_spawn_weights(clamp(difficulty - 1, 0, 8))
 	if weights.is_empty():
 		return
 
@@ -241,9 +241,9 @@ func spawn_mobs(pos: Vector2) -> void:
 		return
 
 	var enemy_id: String = Spawning.get_rand(weights)
-	var spawn_count = min(Spawning.get_rand_mob_count(max(difficulty - 1, 0), enemy_id), 3)
+	var spawn_count = min(Spawning.get_rand_mob_count(clamp(difficulty - 1, 0, 8), enemy_id), 3)
 	if enemy_id == "random":
-		weights = Spawning.get_mob_spawn_weights(max(difficulty - 1, 0))
+		weights = Spawning.get_mob_spawn_weights(clamp(difficulty - 1, 0, 8))
 		for i in range(spawn_count):
 			enemy_id = Spawning.get_rand(weights)
 			if enemy_id.is_empty():
