@@ -24,6 +24,7 @@ func spawn() -> void:
 
 func _ready() -> void:
 	difficulty += $/root/Main/Lawn.difficulty
+	difficulty = clamp(difficulty, 0, 8)
 
 	if randf() > spawn_probability:
 		return

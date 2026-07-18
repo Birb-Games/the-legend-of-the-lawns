@@ -292,7 +292,7 @@ static func int_difficulty_to_string(difficulty: int) -> String:
 			return "hard++"
 		8:
 			return "hard+++"
-	return ""
+	return "hard+++"
 
 # Returns an index based on the array of weights
 # Example: [ 2.0, 2.0, 1.0 ]

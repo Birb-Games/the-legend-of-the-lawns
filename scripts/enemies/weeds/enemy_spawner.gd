@@ -37,6 +37,7 @@ func spawn() -> void:
 
 func _ready() -> void:
 	difficulty += $/root/Main/Lawn.difficulty
+	difficulty = clamp(difficulty, 0, 8)
 
 	if spawn_count == 0:
 		spawn_count = Spawning.get_rand_weed_count(difficulty)
