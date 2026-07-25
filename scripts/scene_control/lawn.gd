@@ -194,6 +194,9 @@ func lawn_completed() -> bool:
 	return cut_grass_tiles >= total_grass_tiles
 
 func spawn_weeds(pos: Vector2) -> void:
+	if max_weeds <= 0:
+		return
+
 	var weights = Spawning.get_weed_spawn_weights(clamp(difficulty - 1, 0, 8))
 	
 	if weights.is_empty():
@@ -233,6 +236,9 @@ func spawn_weeds(pos: Vector2) -> void:
 		)
 
 func spawn_mobs(pos: Vector2) -> void:	
+	if max_mobs <= 0:
+		return
+
 	var weights = Spawning.get_mob_spawn_weights(clamp(difficulty - 1, 0, 8))
 	if weights.is_empty():
 		return

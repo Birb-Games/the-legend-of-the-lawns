@@ -111,7 +111,6 @@ func return_to_neighborhood() -> void:
 	music_controller.clear_music()
 	$HUD.hide_neighbor_menu()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	player.reset_health()
 	player.status_effects.clear()
 	if get_node_or_null("Lawn"):
 		var lawn = get_node("Lawn")
@@ -127,6 +126,7 @@ func return_to_neighborhood() -> void:
 		lawn.queue_free()
 	else:
 		music_controller.play_music("Neighborhood")
+	player.reset_health()
 	player.position = player_pos
 	if !neighborhood.is_inside_tree():
 		add_child(neighborhood)
